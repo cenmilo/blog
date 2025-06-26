@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>并发编程 on cmdragon's Blog</title><link>/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link><description>Recent content in 并发编程 on cmdragon's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 24 Feb 2025 00:18:53 +0800</lastBuildDate><atom:link href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Python异步编程终极指南：用协程与事件循环重构你的高并发系统</title><link>/posts/bac9c0badd47defc03ac5508af4b6e1a/</link><pubDate>Mon, 24 Feb 2025 00:18:53 +0800</pubDate><guid>/posts/bac9c0badd47defc03ac5508af4b6e1a/</guid><description>🚀 深入剖析Python异步编程的核心机制。你将掌握：\n 事件循环的底层实现原理与调度算法\n async/await协程的6种高级用法模式\n 异步HTTP请求的性能优化技巧（速度提升15倍+）\n 常见异步陷阱的26种解决方案</description></item><item><title>深入理解Python多进程：从基础到实战</title><link>/posts/e812fcfaa2f6e1e4e25715242373b47b/</link><pubDate>Mon, 29 Apr 2024 20:49:41 +0800</pubDate><guid>/posts/e812fcfaa2f6e1e4e25715242373b47b/</guid><description>&lt;img src="/images/2024_04_29 20_53_37.png" title="2024_04_29 20_53_37.png" alt="2024_04_29 20_53_37.png"/>
+&lt;h2 id="引言">&lt;strong>引言&lt;/strong>&lt;/h2>
+&lt;p>在Python编程中，多进程是一种重要的并发编程方式，可以让我们充分利用多核处理器的计算能力，实现并行处理任务，提高程序的运行效率。与多线程相比，多进程具有独立的内存空间，避免了全局解释器锁（GIL）的影响，因此更适合于CPU密集型的任务。&lt;/p></description></item><item><title>Python多线程编程深度探索：从入门到实战</title><link>/posts/8d7b4344fdbb3d86c53804ac8f3b6fb6/</link><pubDate>Sun, 28 Apr 2024 18:57:17 +0800</pubDate><guid>/posts/8d7b4344fdbb3d86c53804ac8f3b6fb6/</guid><description>&lt;img src="/images/2024_04_28 19_06_58.png" title="2024_04_28 19_06_58.png" alt="2024_04_28 19_06_58.png"/>
+&lt;h2 id="第1章python基础知识与多线程概念">&lt;strong>第1章：Python基础知识与多线程概念&lt;/strong>&lt;/h2>
+&lt;h3 id="python简介">&lt;strong>Python简介：&lt;/strong>&lt;/h3>
+&lt;p>Python是一种高级、通用、解释型的编程语言，由Guido van
+Rossum于1991年创建。Python以其简洁、易读的语法而闻名，被广泛用于Web开发、数据科学、人工智能等领域。Python具有丰富的标准库和第三方库，支持多种编程范式，包括面向对象、函数式和过程式编程。&lt;/p></description></item><item><title>深入理解Python协程：从基础到实战</title><link>/posts/5d1545ed32733a56b5e71c7ee880a847/</link><pubDate>Sat, 27 Apr 2024 16:48:43 +0800</pubDate><guid>/posts/5d1545ed32733a56b5e71c7ee880a847/</guid><description>&lt;img src="/images/2024_04_27 17_03_18.png" title="2024_04_27 17_03_18.png" alt="2024_04_27 17_03_18.png"/>
+&lt;img src="/images/2024_04_27 17_05_32.png" title="2024_04_27 17_05_32.png" alt="2024_04_27 17_05_32.png"/>
+&lt;h2 id="第1章协程基础">&lt;strong>第1章：协程基础&lt;/strong>&lt;/h2>
+&lt;h3 id="11-协程概念介绍">&lt;strong>1.1 协程概念介绍&lt;/strong>&lt;/h3>
+&lt;p>协程（Coroutines）是一种特殊的软件构造，它允许程序在执行过程中暂停并恢复执行，而不会丢失当前的执行上下文。与线程和进程不同，协程在单个线程中运行，通过调度机制实现并发，降低了上下文切换的开销，提高了程序的执行效率。协程通常用于处理I/O密集型任务，如网络请求、文件读写等。&lt;/p></description></item><item><title>多进程编程：原理、技术与应用</title><link>/posts/acb62ae2b56d9c6ac77eafbca169b7a0/</link><pubDate>Fri, 26 Apr 2024 12:14:47 +0800</pubDate><guid>/posts/acb62ae2b56d9c6ac77eafbca169b7a0/</guid><description>&lt;img src="/images/2024_04_26 12_21_48.png" title="2024_04_26 12_21_48.png" alt="2024_04_26 12_21_48.png"/>
+&lt;h3 id="第一章进程与线程">第一章：进程与线程&lt;/h3>
+&lt;h4 id="进程与线程的概念及区别">进程与线程的概念及区别：&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>进程&lt;/strong>：进程是操作系统中的一个程序执行实例。每个进程都有自己独立的内存空间，包括代码、数据、堆栈等。进程之间是相互独立的，彼此不会直接影响。进程是系统进行资源分配和调度的基本单位。&lt;/p></description></item></channel></rss>
