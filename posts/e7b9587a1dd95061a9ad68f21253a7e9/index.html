@@ -55,7 +55,15 @@ CREATE TABLE Enrollments (
 2.2 主键的特性 唯一性：主键的值在表中必须是唯一的，不能重复。 非空性：主键字段不能包含NULL值，确保每一行都有一个有效的标识。 不可变性：主键的值在记录创建后不应被修改，以保持数据的稳定性。 2.3 主键的类型 单一主键：由单个字段组成的主键。 复合主键：由多个字段组合而成的主键，通常用于需要多个属性共同唯一标识一条记录的情况。 3. 外键的概念 3.1 外键的定义 外键是指在一个表中引用另一个表的主键，用于建立表之间的关系。外键的主要作用是确保数据的完整性和一致性，防止孤立数据的出现。
 3.2 外键的特性 引用完整性：外键的值必须在被引用的表的主键中存在，确保数据之间的有效关联。 可空性：外键字段可以包含NULL值，表示该记录不与任何其他记录关联。 级联操作：外键可以设置级联更新和删除规则，以便在主表数据变化时自动更新或删除相关的外键记录。 3.3 外键的作用 建立关系：外键用于在不同表之间建立逻辑关系，形成数据的网络结构。 维护数据完整性：通过外键约束，确保数据的一致性和完整性，防止无效数据的插入。 4. 主键和外键的实现 4.1 创建主键 在创建表时，可以通过SQL语句定义主键。例如：
 CREATE TABLE Students ( StudentID INT PRIMARY KEY, StudentName VARCHAR(100), Age INT ); 在这个例子中，StudentID 被定义为主键，确保每个学生的ID是唯一的。
-4.2 创建外键 外键的 …`,categories:'["前端开发"]',tags:'["主键","外键","数据库设计","数据完整性","关系型数据库","数据约束","数据建模"]',url:t.currentUrl},o=[{title:"Vue 3 透传 Attributes 第一章：基本概念与工作原理完全解析",summary:"Vue 3 的 Attributes 透传机制是组件通信的重要组成部分。本章将深入讲解什么是 Attributes 透传、工作原理以及单根组件与多根组件的透传差异，帮助你建立扎实的基础认知。",content:` 扫描 二维码 关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+4.2 创建外键 外键的 …`,categories:'["前端开发"]',tags:'["主键","外键","数据库设计","数据完整性","关系型数据库","数据约束","数据建模"]',url:t.currentUrl},o=[{title:"Anthropic Claude Desktop 静默安装浏览器间谍桥接组件深度分析",summary:"安全研究员发现 Anthropic Claude Desktop 应用在未告知用户的情况下，向 7 款主流 Chromium 浏览器静默注册 Native Messaging 桥接组件。该组件以用户权限运行于浏览器沙箱之外，具备完整的浏览器自动化能力，引发严重的安全与隐私争议。本文深入剖析技术细节、攻击面扩大风险、合规问题及防御策略。",content:` 扫描 二维码 关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+发现 1000+ 提升效率与开发的 AI 工具和实用程序：https://tools.cmdragon.cn/
+一、事件概述：AI 巨头的&amp;quot;暗门&amp;quot;操作 2026 年 4 月，安全研究员 Alexander Hanff 在其个人博客发表了一篇引发全球关注的技术分析文章，揭露 Anthropic 公司在其桌面应用 Claude Desktop 中，未经用户同意、未作任何说明的情况下，静默向用户设备上的 7 款主流 Chromium 浏览器注册了 Native Messaging 桥接组件（Native Messaging Host Manifest）。
+该桥接组件一旦激活，可赋予 AI 代理完整的浏览器自动化能力，包括读取用户已登录的银行账户、填写表单、截取屏幕、提取 DOM 数据等敏感操作。更令人震惊的是，这些文件不仅写入用户已安装的浏览器，甚至预先注册到未安装的浏览器目录中，且每次启动 Claude Desktop 都会自动重建被删除的桥接文件。
+该事件迅速在安全社区引发轩然大波，涉及 AI 安全边界、用户隐私权、软件供应链信任模型等多重核心议题。
+二、Native Messaging 技术原理与桥接机制 2.1 什么是 Native Messaging？ Native Messaging 是 Chromium 浏览器提供的一种机制，允许浏览器扩展与本地机器上的可执行程序进行通信。其核心设计目的是为浏览器扩展提供超越沙箱限制的系统级能力。
+工作流程：
+graph LR A[浏览器扩展] --&amp;gt;|调用 connectNative| B[浏览器内核] B --&amp;gt;|读取 Manifest 文件| C[获取本地程序路径] C --&amp;gt;|启动进程| D[Native Host 二进制] D --&amp;gt;|stdio 通信| A Manifest 文件示例（被发现的桥接配置）：
+{ &amp;#34;name&amp;#34;: &amp;#34;com.anthropic.claude_browser_extension&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;Claude Browser Extension Native Host&amp;#34;, …`,categories:'["security"]',tags:'["AI 安全","Claude Desktop","隐私泄露","Native Messaging","浏览器安全","供应链攻击","零信任"]',url:"https://blog.cmdragon.cn/posts/anthropic-claude-desktop-spyware-bridge-analysis/",date:"2026-04-21",cover:"https://api2.cmdragon.cn/upload/cmder/images/b871c6e44cda4e71ae8bb85ce7475577~tplv-5jbd59dj06-image.png"},{title:"Vue 3 透传 Attributes 第一章：基本概念与工作原理完全解析",summary:"Vue 3 的 Attributes 透传机制是组件通信的重要组成部分。本章将深入讲解什么是 Attributes 透传、工作原理以及单根组件与多根组件的透传差异，帮助你建立扎实的基础认知。",content:` 扫描 二维码 关注或者微信搜一搜：编程智域 前端至全栈交流与成长
 发现 1000+ 提升效率与开发的 AI 工具和实用程序：https://tools.cmdragon.cn/
 一、什么是 Attributes 透传 在 Vue 3 组件开发中，Attributes 透传（Attribute Fallthrough）是一个非常重要却又容易被忽视的特性。简单来说，当一个父组件向子组件传递了一些 props 和事件监听器之外的 attributes 时，这些&amp;quot;多余&amp;quot;的 attributes 会自动传递给子组件的根元素。
 想象一下这个场景：你有一个按钮组件，父组件在使用时传递了 class、id、data-* 等属性，但这些属性并没有在子组件中通过 props 声明。Vue 会自动将这些属性&amp;quot;透传&amp;quot;到子组件的根元素上，这就是 Attributes 透传。
