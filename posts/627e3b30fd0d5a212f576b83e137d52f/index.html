@@ -113,7 +113,92 @@ Celery基础概念 Celery架构由三部分组成：客户端（发送任务）�
 FastAPI与Celery集成步骤
 graph TD; A(用户请求) --&amp;gt; B(FastAPI路由); B --&amp;gt; C(任务入队); C --&amp;gt; D(消息队列); D --&amp;gt; E(Celery Worker处理); E --&amp;gt; F(结果存储); F --&amp;gt; G(客户端查询); 代码实现与解析 安装依赖： pip install fastapi==0.103.2 celery==5.3.4 redis==4.5.5 uvicorn==0.23.2 pydantic==2.5.2 项目结构：
 project/ ├── main.py ├── celery_app.py └── tasks.py 核心代码示例：
-# celery_app.py from celery import Celery celery_app = Celery( &amp;#39;worker&amp;#39;, broker=&amp;#39;redis://localhost:6379/0&amp;#39;, backend=&amp;#39;redis://localhost:6379/1&amp;#39;, include=[&amp;#39;project.tasks&amp;#39;] ) celery_app.conf.update(task_track_started=True) # tasks.py from .celery_app import celery_app @celery_app.task def process_data(data: dict) -&amp;gt; dict: &amp;#34;&amp;#34;&amp;#34;模拟耗时数据处理任务&amp;#34;&amp;#34;&amp;#34; import time time.sleep(5) return …`,categories:'["fastapi"]',tags:'["Celery","FastAPI","Redis","异步任务处理","任务优先级","任务状态查询","报错解决方案"]',url:t.currentUrl},o=[{title:"四六级必考词汇预测！3个免费工具帮你考前突击",summary:"四六级考试倒计时！颉斌斌四六级急救、必考词汇预测冲上热搜。本文推荐3个免费在线工具，帮你高效背单词、查词典、专注复习，考前突击必备。",content:` 立即体验：英语词典 - 免费在线工具 | 更多1000+免费工具
+# celery_app.py from celery import Celery celery_app = Celery( &amp;#39;worker&amp;#39;, broker=&amp;#39;redis://localhost:6379/0&amp;#39;, backend=&amp;#39;redis://localhost:6379/1&amp;#39;, include=[&amp;#39;project.tasks&amp;#39;] ) celery_app.conf.update(task_track_started=True) # tasks.py from .celery_app import celery_app @celery_app.task def process_data(data: dict) -&amp;gt; dict: &amp;#34;&amp;#34;&amp;#34;模拟耗时数据处理任务&amp;#34;&amp;#34;&amp;#34; import time time.sleep(5) return …`,categories:'["fastapi"]',tags:'["Celery","FastAPI","Redis","异步任务处理","任务优先级","任务状态查询","报错解决方案"]',url:t.currentUrl},o=[{title:"AI正在杀死音乐吗？3个免费AI音乐工具让你自己判断",summary:"AI正在杀死音乐吗？B站热搜162万，歌词生成、Strudel音乐工作室、AI聊天3款免费工具实测",content:` 立即体验：歌词生成 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、&amp;ldquo;AI正在杀死音乐吗&amp;quot;冲上热搜，你怎么看？ 最近&amp;quot;AI正在杀死音乐吗&amp;quot;直接冲上B站热搜，热度飙到162万！🔥 同时LKs做的&amp;quot;AI和真人推歌大PK&amp;quot;也火了，让AI和真人音乐人各推一首歌，结果观众根本分不清哪首是AI做的……
+评论区直接炸了——
+有人说：&amp;ldquo;AI写出来的歌居然比真人还好听，音乐人要失业了？&amp;rdquo;
+也有人说：&amp;ldquo;AI只是工具，没有灵魂的音乐不叫音乐。&amp;rdquo;
+还有人直接开怼：&amp;ldquo;别光吵，你自己试试AI写歌不就知道了？&amp;rdquo;
+说实话，光看别人争论没意义，不如自己上手体验一下AI音乐创作，到底是&amp;quot;杀死音乐&amp;quot;还是&amp;quot;解放创作&amp;rdquo;，试过才有发言权！下面3个免费工具，带你从零体验AI音乐创作👇
+二、工具1：歌词生成器 —— AI写歌到底行不行？ 👉 立即体验 歌词生成器
+&amp;ldquo;AI正在杀死音乐吗&amp;quot;这个话题里，争议最大的就是AI写歌词。AI写的歌词有没有感情？能不能打动人？试试就知道了！
+3步用AI写一首歌词 第1步：打开 歌词生成器，选择你想要的风格——流行、民谣、说唱、古风全都有。
+第2步：输入你的创作主题和关键词。
+第3步：点击生成，30秒出一首完整歌词！
+提示词示例 试试输入这些关键词，看看AI能写出什么：
+主题：AI与音乐的对话 | 风格：民谣 | 关键词：琴弦、代码、心跳、未来
+主题：深夜独白 | 风格：流行 | 关键词：霓虹、孤独、回忆、黎明
+主题：赛博朋克 | 风格：说唱 | 关键词：数据流、霓虹街、机械心脏
+💡 小技巧：关键词越具体，AI生成的歌词越有画面感。不要只写&amp;quot;爱情&amp;rdquo;，试试&amp;quot;雨天的地铁站最后一班列车&amp;quot;这种场景化描述。
+生成完你可能会惊讶——AI写的歌词居然押韵工整、意境也不错。但仔细读读，是不是少了点什么？那种&amp;quot;只有人才有的情绪裂缝&amp;quot;，AI目前还模仿不来。这恰恰就是&amp;quot;AI正在杀死音乐吗&amp;quot;这个问题的核心——技术可以模仿形式，但灵魂需要人来注 …`,categories:'["tweets"]',tags:'["AI正在杀死音乐吗","歌词生成","AI聊天","Strudel音乐工作室","AI音乐","免费工具"]',url:"https://blog.cmdragon.cn/posts/is-ai-killing-music-2026/",date:"2026-06-12",cover:""},{title:"四六级题型速通3个免费工具帮你高效备考",summary:"四六级题型速通冲热搜！AI聊天预测题型、英语词典秒查生词、番茄钟白噪音专注备考，3个免费工具助你高效通关。",content:` 立即体验：AI聊天 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、&amp;ldquo;四六级题型速通&amp;quot;冲上热搜，你还在裸考？ 最近&amp;quot;四六级题型速通&amp;quot;和&amp;quot;四六级必考词汇预测&amp;quot;双双冲上B站热搜，播放量加起来破千万！大家都在疯狂找速通攻略，说明一个残酷的事实——考试真的要来了，而且很多人还没准备好！
+听力听不懂、阅读做不完、翻译写不出、作文凑字数……四六级四大题型，哪个是你的噩梦？
+别慌！今天给你3个免费在线工具，从题型预测到专项训练，从查词到专注，一条龙帮你速通四六级！
+二、工具1：AI聊天 - 四六级速通的秘密武器 👉 立即体验 AI聊天
+AI聊天不只是聊天，它是你的四六级速通外挂！免费、随时可用，比报班划算一万倍。
+2.1 预测题型，提前锁定考点 提示词示例：请分析近5年四级考试题型分布规律，预测2026年6月四级听力、阅读、翻译、写作最可能考的话题和题型，给出详细分析。
+AI会根据历年真题趋势，帮你预测今年最可能考的方向。知道了考什么，复习才有针对性，效率直接翻倍！
+2.2 练作文，AI当你的免费批改老师 提示词示例：请出一道四级作文题，主题围绕&amp;quot;人工智能对大学生活的影响&amp;rdquo;，等我写完后帮我批改，指出语法错误、用词不当，并给出修改建议和范文。
+AI出题 → 你写 → AI批改 → 你改 → 再批改，几轮下来作文水平蹭蹭涨！比花几百块报作文班强多了。
+2.3 练翻译，逐句精批不放过 提示词示例：请给我5句四级翻译练习，涉及中国文化、经济发展等高频话题，等我翻译完后逐句批改，指出错误并给出更地道的表达。
+翻译是四六级最好拿分的题型，多练多改，考试时下笔如有神！
+2.4 模拟口语，开口不再紧张 提示词示例：我们来模拟四级口语考试，你当考官，我当考生，按照四级口语考试的流程进行，每次给我反馈。
+即使不考口语，开口说英语也能帮你加深记忆，语感上来了听力阅读自然跟着提升！
+三、工具2：英语词典 - 秒查生词不卡壳 👉 立即体验 英语词典
+做真题最烦的是什么？生词太多，查词太慢！ 翻纸质词典？太慢了。手机App？广告弹窗烦死人。英语词典，打开就用，秒出结果！
+3个高效用法 用法1：阅读理解查词
+阅读理解遇到 …`,categories:'["tweets"]',tags:'["四六级题型速通","四六级必考词汇预测","AI聊天","英语词典","番茄钟白噪音","免费工具"]',url:"https://blog.cmdragon.cn/posts/cet46-exam-speed-run-2026/",date:"2026-06-12",cover:""},{title:"夏奇拉抖音分享开幕式表演怎么保存？2个免费工具帮你无水印下载和做GIF",summary:"夏奇拉抖音分享开幕式表演冲上热搜779万！2个免费工具帮你无水印下载视频和制作GIF动图，轻松保存精彩瞬间。",content:` 立即体验：视频下载器 - 免费无水印下载 | GIF合成器 - 一键制作动图 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、夏奇拉开幕式表演刷屏了！ 今天&amp;quot;夏奇拉抖音分享开幕式表演&amp;quot;冲上热搜，热度飙到779万！🔥
+夏奇拉在开幕式上的表演简直炸裂——标志性的抖腰舞步、充满感染力的歌声，整个表演燃爆全场。她在抖音上分享的开幕式表演视频更是瞬间刷屏，评论区全是&amp;quot;太绝了&amp;quot;&amp;ldquo;看一百遍都不够&amp;quot;&amp;ldquo;求保存&amp;rdquo;。
+但问题来了：抖音上的视频想保存到手机，要么没有下载入口，要么下载下来带着碍眼的水印。想截取精彩片段做成GIF动图分享给朋友？更是不知道从何下手。
+别急！今天我就来分享2个免费在线工具，帮你无水印下载夏奇拉开幕式表演视频，还能把最精彩的片段做成GIF动图，3步搞定！
+二、工具1：视频下载器 - 无水印保存抖音视频 🔗 工具地址：Cmdragon视频下载器
+看到夏奇拉的开幕式表演视频想保存？用这个工具，下载下来的视频干干净净，没有任何水印！
+核心优势 完全免费：不注册、不登录、不收费，打开网页就能用 无水印下载：下载的视频和原视频一样清晰，没有平台水印 支持多平台：抖音、快手、小红书、B站、微博等主流平台全覆盖 高清画质：支持下载原画质视频，夏奇拉的每一个舞步都清晰可见 无需安装：在线工具，手机电脑都能用，不占内存 3步搞定无水印下载 第一步：复制视频链接
+打开抖音App，找到夏奇拉分享的开幕式表演视频，点击右下角「分享」按钮，在弹出的菜单中选择「复制链接」。
+第二步：粘贴链接解析
+打开 Cmdragon视频下载器，将刚才复制的链接粘贴到输入框中，点击「解析」按钮。
+第三步：下载无水印视频
+解析完成后，页面会显示视频的缩略图和标题，确认是夏奇拉的开幕式表演后，点击「下载」按钮，视频就会保存到你的设备中。
+整个过程不到10秒！下载下来的视频没有水印，画质和原视频一模一样，随时随地回看夏奇拉的精彩表演 🎶
+💡 小贴士：电脑上下载的视频会保存到浏览器默认下载目录，手机上则保存到相册或文件管理器中。
+三、工具2：GIF合成器 - 把精彩片段做成动图 🔗 工具地址：GIF合成器
+光保存视频还不够？想把夏奇拉最经典的 …`,categories:'["tweets"]',tags:'["夏奇拉抖音","开幕式表演","无水印下载","视频下载","GIF制作","抖音下载","免费工具"]',url:"https://blog.cmdragon.cn/posts/shakira-douyin-opening-ceremony-2026/",date:"2026-06-12",cover:""},{title:"梅西首次回应慌得一批表情包图片怎么处理2个免费工具帮你搞定",summary:"梅西首次回应慌得一批表情包冲上热搜！表情包图片太大发不出、太模糊看不清？图片压缩和图片放大2个免费工具帮你搞定。",content:` 立即体验：图片压缩 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、梅西终于回应了！那个慌得一批的表情包你存了吗？ 今天&amp;quot;梅西首次回应慌得一批表情包&amp;quot;直接冲上微博热搜，热度炸裂！
+2018年世界杯期间，梅西在场边那个茫然无措的表情被网友做成表情包，从此火遍全网。这么多年过去了，梅西终于正面回应了这个梗，说自己当时确实很紧张。这一回应又把那组经典表情包送上了热搜，朋友圈、微信群、微博到处都在转发。
+但问题来了——
+保存的表情包图片太大，微信发不出去？ 从网上扒下来的表情包模糊不清，发出去像打了马赛克？ 想自己制作专属表情包，不知道用什么工具？ 别慌！今天给你推荐2个免费在线工具，图片压缩和图片放大，帮你轻松搞定表情包图片处理的所有烦恼！
+二、工具1：图片压缩 — 表情包太大发不出去？压缩一下秒解决 👉 立即体验 图片压缩
+你一定遇到过这种情况：好不容易找到一张绝版梅西慌得一批表情包，结果图片5MB，微信提示&amp;quot;文件过大无法发送&amp;quot;。更惨的是，有些平台限制上传图片不能超过2MB，你只能望图兴叹。
+这时候，图片压缩就是你的救星！
+3步搞定图片压缩 打开工具：访问 图片压缩，无需注册登录，直接用 上传图片：把表情包图片拖进去，或者点击选择文件，支持批量上传 调整压缩：选择压缩质量，点击压缩，几秒钟就搞定 压缩效果有多强？ 压缩前 压缩后 压缩率 5.2MB 380KB 92% 3.8MB 260KB 93% 2.1MB 180KB 91% 压缩后图片体积大幅缩小，但画质几乎看不出差别！发微信、发微博、发朋友圈，统统没问题。
+💡 小技巧：表情包建议压缩到500KB以内，这样在任何平台都能顺利发送，而且加载速度更快！
+三、工具2：图片放大 — 表情包太模糊看不清？无损放大让表情包变清晰 👉 立即体验 图片放大
+还有一种痛苦：找到的表情包只有200×200像素，放大后全是马赛克，梅西的脸糊成一团，完全看不出慌得一批的精髓。
+图片放大用AI算法实现无损放大，让模糊的表情包重获新生！
+怎么用？ 打开工具：访问 图片放大 上传模糊图片：把那张糊到看不清的表情包传上去 选择放大倍数：支持2倍、4倍放大，点击开始处理 下载高清图：处理完成后下载，表 …`,categories:'["tweets"]',tags:'["梅西首次回应慌得一批表情包","图片压缩","图片放大","表情包制作","免费工具"]',url:"https://blog.cmdragon.cn/posts/messi-meme-image-tools-2026/",date:"2026-06-12",cover:""},{title:"男子离世留下27万逾期贷款法院判了用金融计算器帮你算清贷款账",summary:"男子离世留下27万逾期贷款法院判了冲上热搜！用金融计算器帮你算清贷款利息，等额本息等额本金一目了然，免费在线工具。",content:` 立即体验：金融计算器 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、27万逾期贷款法院判了，这笔账到底怎么算？ 今天，&amp;ldquo;男子离世留下27万逾期贷款 法院判了&amp;quot;冲上头条热搜，热度高达1725万！
+事情大致是这样的：一位男子不幸离世，留下了27万元的逾期贷款。银行要求其家属偿还，家属认为不应承担如此高额的债务。最终法院给出了判决——继承人在继承遗产的实际价值范围内清偿被继承人的债务。
+这个案子引发了全网对贷款利息的热烈讨论：
+27万贷款逾期后利息到底涨了多少？ 等额本息和等额本金还款差多少？ 提前还款到底划不划算？ 这些问题，光靠脑子算是算不清的。今天就用 金融计算器 帮你把这笔账算得明明白白！
+二、27万贷款到底要还多少？用金融计算器算一算 我们以27万贷款为例，分别用等额本息和等额本金两种方式计算，看看差距有多大。
+2.1 假设条件 参数 数值 贷款金额 27万元 贷款期限 20年（240期） 年利率 4.2%（参考当前房贷利率） 2.2 等额本息还款 用 金融计算器 输入以上参数，选择等额本息方式：
+每月还款：约1,668元 还款总额：约40.04万元 利息总额：约13.04万元 2.3 等额本金还款 同样参数，选择等额本金方式：
+首月还款：约2,070元（逐月递减） 末月还款：约1,131元 还款总额：约38.34万元 利息总额：约11.34万元 2.4 两种方式对比 对比项 等额本息 等额本金 每月还款 固定1,668元 首月2,070元，逐月递减 利息总额 约13.04万 约11.34万 还款总额 约40.04万 约38.34万 利息差额 — 少还约1.7万 💡 结论：同样27万贷款，等额本金比等额本息少还约1.7万利息！但等额本金前期月供压力更大，适合收入较高且稳定的人群。
+如果这27万贷款已经逾期，按照逾期利率（通常上浮30%-50%）计算，利息还会更高。这就是为什么逾期贷款的&amp;quot;雪球&amp;quot;越滚越大！
+三、金融计算器使用教程：3步搞定贷款计算 别再手动按计算器了！用 金融计算器，3步就能算清贷款账：
+第1步：输入贷款参数 打开 金融计算器，输入贷款金额、贷款期限和年利率。比如输入27万、20年、4.2%。
+第2 …`,categories:'["tweets"]',tags:'["男子离世留下27万逾期贷款","金融计算器","贷款计算","房贷计算","利息计算","免费工具"]',url:"https://blog.cmdragon.cn/posts/loan-calculator-court-case-2026/",date:"2026-06-12",cover:""},{title:"四六级必考词汇预测！3个免费工具帮你考前突击",summary:"四六级考试倒计时！颉斌斌四六级急救、必考词汇预测冲上热搜。本文推荐3个免费在线工具，帮你高效背单词、查词典、专注复习，考前突击必备。",content:` 立即体验：英语词典 - 免费在线工具 | 更多1000+免费工具
 无需下载安装，打开浏览器即用，完全免费！
 扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
 一、四六级考试倒计时，你慌了吗？ &amp;ldquo;颉斌斌四六级急救&amp;quot;和&amp;quot;四六级必考词汇预测&amp;quot;今天双双冲上B站热搜，热度加起来超过340万！说明什么？大家都慌了！
@@ -7305,14 +7390,14 @@ lg:overflow-visible flex flex-col"><div class="toc-header flex justify-between i
 <button id=toc-close class="ml-1 lg:hidden text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
 <iconify-icon icon=mdi:close width=20 height=20></iconify-icon></button></div></div><div id=toc-content class="toc text-sm text-gray-700 dark:text-gray-300 flex-grow overflow-y-auto"><nav id=TableOfContents><ul><li><a href=#往期文章归档>往期文章归档：</a></li><li><a href=#免费好用的热门在线工具>免费好用的热门在线工具</a></li></ul></nav></div></div><div id=toc-overlay class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden backdrop-blur-sm"></div><div class="lg:sticky lg:top-[calc(100vh-320px)] bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 mb-8 border border-gray-100 dark:border-gray-700"><div class="text-xs text-gray-500 dark:text-gray-400 mb-3 text-center">广告位</div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2874982874195135" crossorigin=anonymous></script><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-2874982874195135 data-ad-slot=6984392540 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></aside></div></div><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js></script><link rel=stylesheet href=/css/code-highlight.min.ec690d5f44c0bc50302407e95a0059375527153e46bd5a38ceed951c0c685dabfc65cb5105db63e48a69ea847a6b578104507b3aec7384f448c4ae942b390090.css integrity="sha512-7GkNX0TAvFAwJAfpWgBZN1UnFT5GvVo4zu2VHAxoXav8ZctRBdtj5Ipp6oR6a1eBBFB7OuxzhPRIxK6UKzkAkA=="><link rel=stylesheet href=/css/markdown.min.4721401ceae83b0603d50bb248719ef7b2d064eaba4104198abfc4e6a054363f1f40c58cadd3cd40d1cace04e0df5ee99bbec80b3a9403c7bf65b0b5a35554f7.css integrity="sha512-RyFAHOroOwYD1QuySHGe97LQZOq6QQQZir/E5qBUNj8fQMWMrdPNQNHKzgTg317pm77ICzqUA8e/ZbC1o1VU9w=="><link rel=stylesheet href=/css/image-viewer.min.537f38c9c7d5706d32054a67368e64e9c46e979e7bf2746f42cfaf425a84695ed9e7d869ed650f74df0b8871aaef0959aead28fc3b8abde2ea7b48b80b63e321.css integrity="sha512-U384ycfVcG0yBUpnNo5k6cRul5578nRvQs+vQlqEaV7Z59hp7WUPdN8LiHGq7wlZrq0o/DuKveLqe0i4C2PjIQ=="><script src=/js/code-highlight.min.290edb55b4573dcbbacb8b8a18d03863bbc233fd9bad41196fc20239446170d97ff298f85b171cfb5e7887c00dd6ee33f393a82f05c3a1fc7531e4a67262c437.js integrity="sha512-KQ7bVbRXPcu6y4uKGNA4Y7vCM/2brUEZb8ICOURhcNl/8pj4Wxcc+154h8AN1u4z85OoLwXDofx1MeSmcmLENw=="></script><script src=/js/toc.min.92a4653787fea9432dea3eeb9adc03e050ff554e6d14172e05ab388e02e2710fad92e2eee79e77f913e6a1eb6121b9fcdc7e01737092c908fe94037db5245260.js integrity="sha512-kqRlN4f+qUMt6j7rmtwD4FD/VU5tFBcuBas4jgLicQ+tkuLu5553+RPmoethIbn83H4Bc3CSyQj+lAN9tSRSYA=="></script><script src=/js/image-viewer.min.9f1010ebec4f14ac3dc59adef576c5430e73339d1e527a832c0fb7243683f73a93584bfdc11198edec5c27e609d69d3b985b98cd1931c3f0595e429bf874d23d.js integrity="sha512-nxAQ6+xPFKw9xZre9XbFQw5zM50eUnqDLA+3JDaD9zqTWEv9wRGY7excJ+YJ1p07mFuYzRkxw/BZXkKb+HTSPQ=="></script><script>document.addEventListener("DOMContentLoaded",function(){window.hljs&&document.querySelectorAll("pre code").forEach(function(e){hljs.highlightElement(e)})})</script><style>#toc-content{max-height:none}@media(min-width:1024px){#toc-content{max-height:none;overflow:visible}#toc-container{max-height:calc(100vh - 120px);overflow-y:auto}nav#TableOfContents{overflow:visible}}@media(max-width:1023px){#toc-container{padding-bottom:env(safe-area-inset-bottom,20px);display:flex;flex-direction:column}#toc-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:20px}}</style></main><footer class="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-inner py-10 mt-12 border-t border-gray-200 dark:border-gray-700"><div class="container mx-auto px-4"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8"><div><h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white flex items-center"><div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-1.5 rounded text-white mr-2"><iconify-icon icon=mdi:information width=16 height=16></iconify-icon></div>关于本站</h3><p class="text-sm text-gray-600 dark:text-gray-400 mb-4">cmdragon's Blog 是一个专注于编程和技术分享的个性化网站，旨在为编程爱好者、学习者和从业者提供全面的前端开发、后端开发以及全栈开发学习资源。</p><div class="flex space-x-3"><a href=mailto:support@cmdragon.cn class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 bg-gray-100 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600" aria-label=发送邮件 tabindex=0 target=_blank rel="noopener noreferrer"><iconify-icon icon=mdi:email width=18 height=18></iconify-icon></a><a href=https://github.com/cmdragon class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 bg-gray-100 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600" aria-label="GitHub 主页" tabindex=0 target=_blank rel="noopener noreferrer"><iconify-icon icon=mdi:github width=18 height=18></iconify-icon></a><a href=/index.xml class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 bg-gray-100 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600" aria-label="RSS 订阅" tabindex=0><iconify-icon icon=mdi:rss width=18 height=18></iconify-icon></a><button class="wechat-btn text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 bg-gray-100 dark:bg-gray-700 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600" aria-label=微信公众号 tabindex=0>
 <iconify-icon icon=mdi:wechat width=18 height=18></iconify-icon></button></div></div><div><h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white flex items-center"><div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-1.5 rounded text-white mr-2"><iconify-icon icon=mdi:link-variant width=16 height=16></iconify-icon></div>快速链接</h3><ul class=space-y-2><li><a href=https://movie.cmdragon.cn/ class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 flex items-center" target=_blank rel="noopener noreferrer" aria-label=高清影视库><iconify-icon icon=mdi:movie-search-outline class="mr-2 text-primary" width=16 height=16></iconify-icon>高清影视库</a></li><li><a href=https://manga.cmdragon.cn/ class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 flex items-center" target=_blank rel="noopener noreferrer" aria-label=精选漫画阅读><iconify-icon icon=mdi:comic-thought-bubble-outline class="mr-2 text-primary" width=16 height=16></iconify-icon>精选漫画阅读</a></li><li><a href=https://tools.cmdragon.cn/zh class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 flex items-center" target=_blank rel="noopener noreferrer" aria-label=实用在线工具><iconify-icon icon=mdi:tools class="mr-2 text-primary" width=16 height=16></iconify-icon>实用在线工具</a></li><li><a href=https://hot-movie.cmdragon.cn/ class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 flex items-center" target=_blank rel="noopener noreferrer" aria-label=热映影视推荐><iconify-icon icon=mdi:filmstrip class="mr-2 text-primary" width=16 height=16></iconify-icon>热映影视推荐</a></li></ul></div><div><h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white flex items-center"><div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-1.5 rounded text-white mr-2"><iconify-icon icon=mdi:tag-multiple width=16 height=16></iconify-icon></div>热门标签</h3><div class="flex flex-wrap gap-2"><a href=https://blog.cmdragon.cn/tags/%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#基础入门 <span class="text-xs opacity-70">(221)</span>
-</a><a href=https://blog.cmdragon.cn/tags/FastAPI/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#FastAPI <span class="text-xs opacity-70">(167)</span>
+</a><a href=https://blog.cmdragon.cn/tags/fastapi/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#Fastapi <span class="text-xs opacity-70">(167)</span>
 </a><a href=https://blog.cmdragon.cn/tags/nuxt/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#Nuxt <span class="text-xs opacity-70">(147)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#性能优化 <span class="text-xs opacity-70">(78)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E9%92%A9%E5%AD%90/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#钩子 <span class="text-xs opacity-70">(62)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#错误处理 <span class="text-xs opacity-70">(57)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#在线工具 <span class="text-xs opacity-70">(56)</span>
+</a><a href=https://blog.cmdragon.cn/tags/%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#免费工具 <span class="text-xs opacity-70">(45)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#生命周期 <span class="text-xs opacity-70">(41)</span>
-</a><a href=https://blog.cmdragon.cn/tags/%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#免费工具 <span class="text-xs opacity-70">(40)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#依赖注入 <span class="text-xs opacity-70">(36)</span></a></div></div></div><div class="border-t border-gray-200 dark:border-gray-700 pt-6"><div class="flex flex-col md:flex-row justify-between items-center"><div class="text-center md:text-left mb-4 md:mb-0"><p class="text-sm text-gray-600 dark:text-gray-400">&copy; 2023 cmdragon's Blog. 保留所有权利.</p><p class="text-xs text-gray-500 dark:text-gray-500 mt-1">由 <a href=https://gohugo.io/ class="hover:text-primary transition-colors duration-300" target=_blank rel="noopener noreferrer">Hugo</a> 强力驱动 |
 <a href=/license/ class="hover:text-primary transition-colors duration-300" aria-label="Apache 2.0 许可证" tabindex=0>Apache License 2.0</a></p></div><button id=back-to-top class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center text-sm font-medium">
 <iconify-icon icon=mdi:arrow-up class=mr-1 width=16 height=16></iconify-icon>返回顶部</button></div></div></div><div id=wechat-modal class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden" onclick='this.classList.add("hidden")'><div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl max-w-sm w-full relative" onclick=event.stopPropagation()><button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" onclick='document.getElementById("wechat-modal").classList.add("hidden")'>
