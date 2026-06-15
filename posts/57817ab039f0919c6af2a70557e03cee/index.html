@@ -107,7 +107,91 @@ export default defineNuxtModule({
 Nitro 是 Nuxt 3 的服务器引擎，支持多种运行环境。它允许你创建高性能的服务器端应用程序，处理各种 HTTP 请求，动态生成内容等。
 2. 基本概念 处理程序：函数，用于处理特定的 HTTP 请求或路由。 路由：URL 路径，用于匹配处理程序。 中间件：在处理请求前处理某些操作的函数，通常用于身份验证或请求修改。 3. 创建 Nuxt 3 项目 首先，在你的开发环境中创建一个新的 Nuxt 3 项目：
 npx nuxi init my-nuxt-app cd my-nuxt-app npm install 4. 添加服务器处理程序 4.1 使用 addServerHandler 4.1.1 创建处理程序 在项目根目录下创建 module.ts 文件。 创建 runtime/robots.get.ts 文件来定义处理程序。 // module.ts import { createResolver, defineNuxtModule, addServerHandler } from &amp;#39;@nuxt/kit&amp;#39;; export default defineNuxtModule({ setup(options) { const resolver = createResolver(import.meta.url); // 解析路径 addServerHandler({ route: &amp;#39;/robots.txt&amp;#39;, // 定义路由 handler: resolver.resolve(&amp;#39;./runtime/robots.get.ts&amp;#39;), // 指向处理程序 }); } }); 4.1.2 定义处理程序 // runtime/robots.get.ts export default defineEventHandler((event) =&amp;gt; { return \`User-agent: * Disallow: /\`; }); 4.1.3 完整项目结构 my-nuxt-app/ ├── module.ts ├── runtime/ │ └── robots.get.ts └── nuxt.config.ts 4.2 运行项目 使用以下命令启动开发服务器：
-npx …`,categories:'["前端开发"]',tags:'["Nuxt 3","Nitro","服务器","处理程序","插件","预渲染","模块化"]',url:t.currentUrl},o=[{title:"AI正在杀死音乐吗？3个免费AI音乐工具让你自己判断",summary:"AI正在杀死音乐吗？B站热搜162万，歌词生成、Strudel音乐工作室、AI聊天3款免费工具实测",content:` 立即体验：歌词生成 | 更多1000+免费工具
+npx …`,categories:'["前端开发"]',tags:'["Nuxt 3","Nitro","服务器","处理程序","插件","预渲染","模块化"]',url:t.currentUrl},o=[{title:"九鹭非香把七时吉祥重新做成AI剧了！用AI文生图也能做同款",summary:"九鹭非香把七时吉祥重新做成AI剧了！用AI文生图和AI聊天，你也能做出同款仙侠风AI剧图片。",content:` 立即体验：AI文生图 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、&amp;ldquo;九鹭非香把七时吉祥重新做成AI剧了&amp;rdquo;——热搜背后是什么？ 最近&amp;quot;九鹭非香把七时吉祥重新做成AI剧了&amp;quot;直接冲上微博热搜，阅读量破亿！网友们炸了：AI剧是什么？七时吉祥还能这么玩？
+先给不了解的朋友科普一下：七时吉祥是九鹭非香的经典仙侠IP，讲的是初空和祥云七世情缘的故事，之前已经拍过电视剧。而所谓&amp;quot;AI剧&amp;quot;，就是用AI文生图技术重新演绎经典IP，把小说中的名场面用AI绘画的方式呈现出来，画面精美到让人怀疑人生——这居然是AI画的？！
+九鹭非香本人亲自操刀，用AI重新构建了七时吉祥的世界观：仙气飘飘的天界、缠绵悱恻的七世轮回、初空和祥云的每一个经典瞬间，全部用AI文生图重新绘制。效果一出，仙侠粉和AI爱好者都沸腾了。
+更让人兴奋的是——你也能做同款！ 不需要任何绘画基础，不需要专业软件，用免费的AI文生图工具，三步就能生成仙侠风AI剧图片。今天就来手把手教你！
+二、AI剧是怎么做出来的？ AI剧听起来高大上，其实原理很简单：
+构思场景：从原作中选取经典场景，用文字描述画面内容 AI文生图：把文字描述输入AI绘画工具，AI自动生成对应画面 迭代优化：调整提示词，反复生成，直到效果满意 组合成剧：把多张AI生成的图片按剧情顺序排列，配上文字，就是一部AI剧 核心就是AI文生图技术——你用文字描述想要的画面，AI帮你画出来。2026年的AI文生图已经进化到什么程度？仙侠风的飘逸衣袂、流光溢彩的法术特效、云雾缭绕的仙境……这些以前需要专业画师花几天才能画出来的场景，现在输入文字几秒就能生成！
+三、工具1：AI文生图——做仙侠风AI剧同款图片 首推AI文生图，免费、零门槛、打开即用，生成仙侠风图片效果一绝。
+3步生成你的第一张仙侠风AI剧图片 第一步：打开工具
+访问 AI文生图，页面简洁，没有乱七八糟的广告。
+第二步：输入仙侠风提示词
+在输入框里描述你想要的仙侠画面。比如：
+一位白衣仙人站在云端，长发随风飘扬，手持玉笛，身后是金色霞光和飘渺仙山，中国仙侠风格，唯美光影，8K超清
+第三步：点击生成，等待几秒
+点击生成按钮，几秒钟后一张仙气满满 …`,categories:'["tweets"]',tags:'["九鹭非香七时吉祥AI剧","AI文生图","AI聊天","AI绘画","免费工具"]',url:"https://blog.cmdragon.cn/posts/qishixiangxiang-ai-drama-2026/",date:"2026-06-13",cover:""},{title:"四级作文看不懂3个免费AI工具帮你考场救急",summary:"四级作文看不懂？四级翻译一日为师终身为父怎么翻？3个免费AI工具帮你考场救急，AI聊天+英语词典+文字计数。",content:` 立即体验：AI聊天 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、今天四六级考试，热搜炸了！ &amp;ldquo;四级作文&amp;quot;冲上微博热搜248万阅读，&amp;ldquo;四级作文看不懂&amp;quot;72万，&amp;ldquo;四级翻译一日为师终身为父&amp;quot;61万——今天是四六级考试日，全网都在哀嚎！
+作文题目看不懂？翻译&amp;quot;一日为师终身为父&amp;quot;翻成&amp;quot;A day is a teacher, a life is a father&amp;rdquo;？别笑，考场上脑子一片空白的时候，这种神翻译真的会冒出来。
+考完的同学在热搜里抱团取暖，还没考的同学瑟瑟发抖。但不管你是考完了想复盘，还是下次考试想提前准备，3个免费AI工具都能帮你救急！
+二、工具1：AI聊天 - 考场救急神器 👉 立即体验 AI聊天
+AI聊天简直是四六级的&amp;quot;外挂&amp;rdquo;！模拟作文题、批改作文、翻译练习，一个工具全搞定。关键是完全免费，打开浏览器就能用。
+2.1 模拟作文题，提前押题 提示词示例：请根据近5年四级作文出题趋势，模拟3道2026年6月四级作文题，涵盖议论文、应用文和图表作文，并给出每道题的写作思路和关键词提示。
+AI会根据历年趋势帮你押题，比你自己翻真题集效率高太多。万一押中了呢？那可就赚大了！
+2.2 批改作文，精准纠错 提示词示例：请帮我批改以下四级作文，从语法错误、用词准确性、逻辑连贯性三个维度打分（满分各10分），并给出修改建议：[粘贴你的作文]
+写完作文不知道自己写得怎么样？让AI帮你批改，语法错误、用词不当、逻辑跳跃，一个都跑不掉。改几轮下来，作文水平蹭蹭涨！
+2.3 翻译练习，专治&amp;quot;一日为师终身为父&amp;rdquo; 提示词示例：请翻译以下中文为英文，并解释翻译思路：一日为师，终身为父。然后给我5个类似的四级翻译难句练习。
+&amp;ldquo;一日为师，终身为父&amp;quot;的正确翻译是 &amp;ldquo;A teacher for a day, a father for life&amp;rdquo; 或者 &amp;ldquo;Once a teacher, forever a father&amp;rdquo;。AI不仅能给你正确翻译，还能讲清楚为什么这么翻，下次遇 …`,categories:'["tweets"]',tags:'["四级作文","四级翻译","AI聊天","英语词典","文字计数","免费工具","四六级"]',url:"https://blog.cmdragon.cn/posts/cet4-writing-emergency-ai-tools-2026/",date:"2026-06-13",cover:""},{title:"抖音AI反网暴行动来了！3个免费AI工具帮你用AI传递正能量",summary:"抖音AI反网暴行动来了冲上热搜769万！3个免费AI工具帮你用AI传递正能量，从创意表达到温暖文案。",content:` 立即体验：AI聊天 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、&amp;ldquo;抖音AI反网暴行动来了&amp;quot;冲上热搜769万！ 最近，&amp;ldquo;抖音AI反网暴行动来了&amp;quot;直接冲上抖音热搜，热度高达769万！这场行动号召大家用AI的力量对抗网络暴力，用温暖和善意覆盖恶意评论。
+看到这个话题，很多人第一反应是：AI不是用来画画、写文章的吗？怎么还能反网暴？
+其实，AI不仅能创作，更能传递正能量！你可以用AI写温暖文案、画正能量海报、创作传播善意的种草内容——每一个善意的表达，都是对网络暴力的有力回击。
+今天就教你用3个完全免费的AI工具，从零开始制作反网暴正能量内容，让AI成为传递温暖的武器！
+二、工具1：AI聊天 — 用AI写温暖文案 👉 立即体验 AI聊天
+反网暴最直接的方式是什么？用温暖的文字对抗恶意的言语！
+AI聊天工具就像你的&amp;quot;温暖文案助手&amp;rdquo;，打开浏览器就能用，完全免费。它能帮你写出各种正能量的文字内容：
+2.1 写反网暴文案 提示词示例：请帮我写3条反网暴的温暖文案，要求简短有力，适合发抖音评论区，语气温暖但不鸡汤。
+AI可能会给你这样的回复：
+🌟 你的一句话可能是别人的整个世界，请选择让它变得更好。
+🌟 键盘敲出的每个字都有重量，轻一点，温柔一点。
+🌟 屏幕那头是一个真实的人，你的善意比恶意更有力量。
+2.2 写温暖留言 看到有人被网暴，想安慰却不知道说什么？让AI帮你：
+提示词示例：有人在评论区被恶意攻击，请帮我写一条温暖的安慰留言，要真诚自然，不要太官方。
+2.3 写正能量短句 提示词示例：请写5条适合抖音传播的正能量短句，主题是&amp;quot;用善意连接彼此&amp;rdquo;，每条不超过20字。
+💡 小技巧：提示词中加上&amp;quot;温暖&amp;quot;&amp;ldquo;真诚&amp;quot;&amp;ldquo;简短&amp;quot;等关键词，AI生成的文案会更有人情味，不会显得生硬说教。
+三、工具2：AI文生图 — 用AI画正能量海报 👉 立即体验 AI文生图
+文字有力量，图片更有冲击力！用AI文生图工具，3步就能制作一张反网暴主题的正能量海报。
+3步制作反网暴主题图片 第1步：打开 AI文生图，在输入框中描述你想要的画面。
+第2步：点 …`,categories:'["tweets"]',tags:'["抖音AI反网暴行动","AI聊天","AI文生图","小红书文案","免费工具"]',url:"https://blog.cmdragon.cn/posts/douyin-ai-anti-cyberbullying-2026/",date:"2026-06-13",cover:""},{title:"特朗普扮忍者AI视频引日本不满！AI文生图也能让你秒变忍者",summary:"特朗普扮忍者AI视频引日本不满冲上头条热搜832万！用AI文生图和AI聊天，你也能秒变忍者风格头像。",content:` 立即体验：AI文生图 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、特朗普扮忍者AI视频，832万人围观！ 你刷到了吗？&amp;ldquo;特朗普扮忍者AI视频引日本不满&amp;quot;直接冲上头条热搜832万！视频里特朗普身穿黑色忍者服，手持武士刀，动作行云流水——但这一切都是AI生成的！日本网友炸了锅，认为这把忍者文化&amp;quot;玩坏了&amp;rdquo;，而国内网友则一边吃瓜一边感叹：AI视频技术也太强了吧！
+说实话，这已经不是AI视频第一次出圈了。从之前的AI换脸到如今的AI生成完整视频片段，技术迭代速度令人咋舌。但比起AI视频，更接地气、更容易上手的是AI文生图——输入文字描述，AI帮你画出想要的画面。想扮忍者？不用视频，一张忍者风格头像就能让你在朋友圈C位出道！
+二、AI视频和AI图片是怎么做出来的？ 先简单科普一下原理。AI生成图片和视频的核心技术叫扩散模型（Diffusion Model），通俗来说就是：
+AI学习了海量图片和视频数据，理解了&amp;quot;什么样的文字对应什么样的画面&amp;quot; 你输入一段文字描述（提示词），AI根据学到的知识，从&amp;quot;噪点&amp;quot;一步步还原出清晰的图片 视频则是在图片基础上增加了时间维度，让画面动起来 所以关键在于提示词——你描述得越精准，AI生成的画面就越符合你的想象。这也是为什么今天要重点推荐AI文生图工具，因为它的门槛最低、效果最直观，任何人都能3分钟上手！
+三、工具1：AI文生图——输入文字秒变忍者风 AI文生图是我用过的最简单的AI绘画工具，打开网页就能用，完全免费，不需要注册登录。
+3步生成你的忍者风格图片 第一步：打开工具
+访问 AI文生图，页面简洁清爽，没有任何干扰。
+第二步：输入提示词
+在输入框里描述你想要的忍者画面，比如：
+忍者风格头像，戴黑色面罩的神秘武士，红色围巾随风飘动，月光下的古城屋顶，动漫风格，高清细节
+点击生成，等几秒钟，一张超酷的忍者头像就出来了！
+第三步：下载保存
+满意的话一键下载，不满意就换一段提示词重新生成，反正免费不限次！
+忍者风格提示词示例 这里给大家准备了几个现成的提示词，直接复制就能用：
+风格 提示词 忍者头像 忍者风格头像，戴黑色面罩的武士，红色围巾飘动，月光背景， …`,categories:'["tweets"]',tags:'["特朗普扮忍者AI视频","AI文生图","AI聊天","AI绘画","免费工具"]',url:"https://blog.cmdragon.cn/posts/trump-ninja-ai-video-image-generator-2026/",date:"2026-06-13",cover:""},{title:"造梦师与华纳音乐官宣合作！2个免费AI音乐工具让你也能写歌",summary:"造梦师与华纳音乐官宣合作冲上抖音热搜768万！2个免费AI音乐工具让你也能写歌，歌词生成+Strudel音乐工作室。",content:` 立即体验：歌词生成 - 免费在线工具 | 更多1000+免费工具
+无需下载安装，打开浏览器即用，完全免费！
+扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
+一、&amp;ldquo;造梦师与华纳音乐官宣合作&amp;quot;冲上抖音热搜768万！ 最近，&amp;ldquo;造梦师与华纳音乐官宣合作&amp;quot;直接冲上抖音热搜，热度飙到768万！🔥 这条消息瞬间引爆了整个音乐圈和科技圈——AI音乐平台正式牵手全球三大唱片公司之一的华纳音乐，这意味着什么？
+意味着AI音乐创作不再是&amp;quot;地下玩法&amp;rdquo;，而是正在被主流音乐产业正式接纳！
+评论区直接炸了——
+有人说：&amp;ldquo;华纳都下场了，AI音乐要起飞了！&amp;rdquo;
+也有人担忧：&amp;ldquo;大厂入局，独立音乐人怎么办？&amp;rdquo;
+还有人直接行动派：&amp;ldquo;别光看热闹，我也想试试AI写歌！&amp;rdquo;
+说实话，与其围观大佬们合作，不如自己上手体验一下AI音乐创作。今天给大家推荐2个免费工具，从歌词到编曲，零基础也能写出一首完整的歌👇
+二、造梦师是什么？AI音乐行业最新动态 造梦师（Dreamscape）是一家专注于AI音乐生成的平台，这次与华纳音乐的官宣合作，标志着AI音乐正式进入&amp;quot;正规军&amp;quot;时代。
+这次合作意味着什么？ 版权正规化：AI生成的音乐有了合法的版权路径，创作者不再担心侵权问题 音色库升级：华纳音乐旗下艺人的音色授权，让AI音乐的表现力大幅提升 商业变现通道：AI创作的音乐可以通过华纳的发行渠道进入主流平台 AI音乐行业趋势 造梦师与华纳的合作不是孤例。从Suno到Udio，从网易天音到腾讯音乐MUSE，全球科技巨头和音乐公司都在加速布局AI音乐赛道。2026年，AI音乐已经从&amp;quot;新奇玩具&amp;quot;进化为&amp;quot;创作工具&amp;rdquo;，越来越多的音乐人开始把AI当作创作伙伴而非竞争对手。
+关键信号：AI音乐不是要取代音乐人，而是要让更多人能参与音乐创作——包括你！
+三、工具1：歌词生成器 —— AI帮你写歌词 👉 立即体验 歌词生成器
+造梦师与华纳合作后，AI写歌词的能力又上了一个台阶。但不用等造梦师开放，你现在就能用 歌词生成器 免费体验AI写歌词！
+3步用AI写一首歌词 第1步：打开 歌词生成器，选择你想要的风格。
+第2步：输入创作主题和关键词 …`,categories:'["tweets"]',tags:'["造梦师与华纳音乐官宣合作","歌词生成","Strudel音乐工作室","AI写歌","免费工具"]',url:"https://blog.cmdragon.cn/posts/dreamscape-warner-music-ai-tools-2026/",date:"2026-06-13",cover:""},{title:"AI正在杀死音乐吗？3个免费AI音乐工具让你自己判断",summary:"AI正在杀死音乐吗？B站热搜162万，歌词生成、Strudel音乐工作室、AI聊天3款免费工具实测",content:` 立即体验：歌词生成 | 更多1000+免费工具
 无需下载安装，打开浏览器即用，完全免费！
 扫描二维码关注或者微信搜一搜：编程智域 前端至全栈交流与成长
 一、&amp;ldquo;AI正在杀死音乐吗&amp;quot;冲上热搜，你怎么看？ 最近&amp;quot;AI正在杀死音乐吗&amp;quot;直接冲上B站热搜，热度飙到162万！🔥 同时LKs做的&amp;quot;AI和真人推歌大PK&amp;quot;也火了，让AI和真人音乐人各推一首歌，结果观众根本分不清哪首是AI做的……
@@ -7392,7 +7476,7 @@ lg:overflow-visible flex flex-col"><div class="toc-header flex justify-between i
 </a><a href=https://blog.cmdragon.cn/tags/%E9%92%A9%E5%AD%90/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#钩子 <span class="text-xs opacity-70">(62)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#错误处理 <span class="text-xs opacity-70">(57)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#在线工具 <span class="text-xs opacity-70">(56)</span>
-</a><a href=https://blog.cmdragon.cn/tags/%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#免费工具 <span class="text-xs opacity-70">(45)</span>
+</a><a href=https://blog.cmdragon.cn/tags/%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#免费工具 <span class="text-xs opacity-70">(50)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#生命周期 <span class="text-xs opacity-70">(41)</span>
 </a><a href=https://blog.cmdragon.cn/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/ class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full hover:bg-blue-700 hover:text-white transition-colors duration-300">#依赖注入 <span class="text-xs opacity-70">(36)</span></a></div></div></div><div class="border-t border-gray-200 dark:border-gray-700 pt-6"><div class="flex flex-col md:flex-row justify-between items-center"><div class="text-center md:text-left mb-4 md:mb-0"><p class="text-sm text-gray-600 dark:text-gray-400">&copy; 2023 cmdragon's Blog. 保留所有权利.</p><p class="text-xs text-gray-500 dark:text-gray-500 mt-1">由 <a href=https://gohugo.io/ class="hover:text-primary transition-colors duration-300" target=_blank rel="noopener noreferrer">Hugo</a> 强力驱动 |
 <a href=/license/ class="hover:text-primary transition-colors duration-300" aria-label="Apache 2.0 许可证" tabindex=0>Apache License 2.0</a></p></div><button id=back-to-top class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center text-sm font-medium">
