@@ -1,6 +1,6 @@
 ---
 url: /en-US/posts/a453a875e784bbb98f84a81a587310cd/
-title: pptist: AI PPT Generator - Free 5-Step Online Tool
+title: pptist： AI PPT Generator - Free 5-Step Online Tool
 date: 2025-11-25T15:05:51+08:00
 lastmod: 2025-11-25T15:05:51+08:00
 author: cmdragon

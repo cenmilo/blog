@@ -1,6 +1,6 @@
 ---
 url: /en-US/posts/07755af00a1779ac0ab6cb087ff3epfl/
-title: AI Magic Resume: Connect to Free AI in 10 Minutes
+title: AI Magic Resume： Connect to Free AI in 10 Minutes
 date: 2026-03-29T07:40:34+08:00
 lastmod: 2026-03-29T07:40:34+08:00
 author: cmdragon

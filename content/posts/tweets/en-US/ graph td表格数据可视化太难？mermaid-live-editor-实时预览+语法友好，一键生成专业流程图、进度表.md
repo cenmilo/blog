@@ -1,6 +1,6 @@
 ---
 url: /en-US/posts/4e39beda336567fcc19d7569bcec9c9e/
-title: Graph TD Made Easy: Mermaid Live Editor Guide
+title: Graph TD Made Easy Mermaid Live Editor Guide
 date: 2025-12-06T10:55:55+08:00
 lastmod: 2025-12-06T10:55:55+08:00
 author: cmdragon
