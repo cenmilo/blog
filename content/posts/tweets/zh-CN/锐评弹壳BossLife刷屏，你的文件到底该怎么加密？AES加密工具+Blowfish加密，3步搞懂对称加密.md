@@ -1,6 +1,6 @@
 ---
 url: /posts/aes-vs-des-vs-blowfish-encryption-2026/
-title: 锐评弹壳BossLife刷屏，你的文件到底该怎么加密？AES加密工具+Blowfish加密，3步搞懂对称加密
+title: 锐评弹壳BossLife：文件怎么加密？AES+Blowfish 3步搞懂对称加密
 date: 2026-09-07T00:00:00+08:00
 lastmod: 2026-09-07T00:00:00+08:00
 author: cmdragon
