@@ -1,6 +1,6 @@
 ---
 url: /posts/11b946b51306fb86fc9fb005f9e870a9/
-title: payload：nuxtApp 读写服务端到客户端的数据
+title: 279 - payload：nuxtApp 读写服务端到客户端的数据
 date: 2027-01-13T09:00:00+08:00
 updated: 2027-01-13T09:00:00+08:00
 author: cmdragon
@@ -48,7 +48,7 @@ use-nuxt-app 页对它的定位：
 
 > After fetching the value of `count` using `useAsyncData` in the example above, if you access `payload.data`, you will see `{ count: 1 }` recorded there.
 
-而且 `payload.data` 在服务端也能读——官方补了一句："When accessing the same `payload.data` from `ssrcontext`, you can access the same value on the server side as well."（把 279 和 280 的 `ssrContext.payload` 接上了）。这也解释了 P08 那一路的机制：服务端取过的数，浏览器不再重复请求，就是因为结果在这儿、水合时直接读走。key（例子里的 `'count'`）就是它在 `data` 里的索引。
+而且 `payload.data` 在服务端也能读——官方补了一句："When accessing the same `payload.data` from `ssrcontext`, you can access the same value on the server side as well."（把 279 和 280 的 `ssrContext.payload` 接上了）。这也解释了 210-249 那一路的机制：服务端取过的数，浏览器不再重复请求，就是因为结果在这儿、水合时直接读走。key（例子里的 `'count'`）就是它在 `data` 里的索引。
 
 ## state：useState 的落点
 

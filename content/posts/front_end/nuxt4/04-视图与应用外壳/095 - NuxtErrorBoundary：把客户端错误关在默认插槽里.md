@@ -1,12 +1,12 @@
 ---
 url: /posts/7e88d82c5220cd7b2488f7da2c30c6eb/
-title: NuxtErrorBoundary：把客户端错误关在默认插槽里
+title: 095 - NuxtErrorBoundary：把客户端错误关在默认插槽里
 date: 2026-11-12T11:00:00+08:00
 updated: 2026-11-12T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`<NuxtErrorBoundary>` 的官方定义是"处理发生在其默认插槽内的客户端错误"，而它在错误处理那一页的定位说得更实用：**允许你处理应用内部的客户端错误，而不必用错误页替换掉整个站点**。这个组件有三条边界必须一起记住——只管**默认插槽**里发生的错误（官方："这个组件负责处理发生在其默认插槽内的错误。在客户端，它会阻止错误向上冒泡到顶层，转而渲染 `#error` 插槽"）；只管**客户端**错误；底层是 Vue 的 `onErrorCaptured` 钩子（官方 tip 原话）。对外接口只有两个：事件 `@error`（"当该组件的默认插槽抛出错误时发出"）与插槽 `#error`（"指定在发生错误时要显示的后备内容"，可从中拿到 `error` 与 `clearError`）。关于恢复，错误处理页写了两条容易漏的：`#error` 插槽会接收 `error` 作为 prop，**如果你把 `error` 设为 `null`，会触发默认插槽重新渲染——你需要先确保错误真的被解决了，否则错误插槽只会被再渲染一次**；以及一条 tip——**如果你导航到另一个路由，错误会被自动清除**。想在 `<script setup>` 里读 `error` 或调用 `clearError()`，官方的做法是用 `useTemplateRef('errorBoundary')` 拿到实例后走 `errorBoundary.value?.error` 与 `errorBoundary.value?.clearError()`。
+  摘要：`<NuxtErrorBoundary>` 的官方定义是"处理发生在其默认插槽内的客户端错误"，而它在错误处理那一节的定位说得更实用：**允许你处理应用内部的客户端错误，而不必用错误页替换掉整个站点**。这个组件有三条边界必须一起记住——只管**默认插槽**里发生的错误（官方："这个组件负责处理发生在其默认插槽内的错误。在客户端，它会阻止错误向上冒泡到顶层，转而渲染 `#error` 插槽"）；只管**客户端**错误；底层是 Vue 的 `onErrorCaptured` 钩子（官方 tip 原话）。对外接口只有两个：事件 `@error`（"当该组件的默认插槽抛出错误时发出"）与插槽 `#error`（"指定在发生错误时要显示的后备内容"，可从中拿到 `error` 与 `clearError`）。关于恢复，错误处理页写了两条容易漏的：`#error` 插槽会接收 `error` 作为 prop，**如果你把 `error` 设为 `null`，会触发默认插槽重新渲染——你需要先确保错误真的被解决了，否则错误插槽只会被再渲染一次**；以及一条 tip——**如果你导航到另一个路由，错误会被自动清除**。想在 `<script setup>` 里读 `error` 或调用 `clearError()`，官方的做法是用 `useTemplateRef('errorBoundary')` 拿到实例后走 `errorBoundary.value?.error` 与 `errorBoundary.value?.clearError()`。
 
 categories:
   - 前端开发

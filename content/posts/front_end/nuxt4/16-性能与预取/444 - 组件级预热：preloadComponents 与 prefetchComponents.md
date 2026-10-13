@@ -1,6 +1,6 @@
 ---
 url: /posts/27873c4c744d3974e13e77adb0946719/
-title: 组件级预热：preloadComponents 与 prefetchComponents
+title: 444 - 组件级预热：preloadComponents 与 prefetchComponents
 date: 2027-03-09T09:00:00+08:00
 updated: 2027-03-09T09:00:00+08:00
 author: cmdragon
@@ -30,13 +30,13 @@ tags:
 
 ## preload 与 prefetch 的官方定义
 
-`preloadComponents` 那一页的第一段是这么定义预热的：
+`preloadComponents` 那一节的第一段是这么定义预热的：
 
 > Preloading components loads components that your page will need very soon, which you want to start loading early in rendering lifecycle. This ensures they are available earlier and are less likely to block the page's render, improving performance.
 
-重点是 **early in rendering lifecycle**（在渲染生命周期里提早开始），目标是"别挡着这页渲染"。
+重点是 **early in rendering lifecycle**（在渲染生命周期里提早开始），目标是"别挡着这个页面的渲染"。
 
-`prefetchComponents` 那页的定义口吻不同：
+`prefetchComponents` 那一节的定义口吻不同：
 
 > Prefetching component downloads the code in the background, this is based on the assumption that the component will likely be used for rendering, enabling the component to load instantly if and when the user requests it. The component is downloaded and cached for anticipated future use without the user making an explicit request for it.
 
@@ -54,7 +54,7 @@ tags:
 
 ## 三条硬边界
 
-两页对用法的描述是一字不差的两段：
+两节对用法的描述是一字不差的两段：
 
 > Use `preloadComponents` to manually preload individual components that have been registered globally in your Nuxt app. By default Nuxt registers these as async components. You must use the Pascal-cased version of the component name.
 
@@ -72,7 +72,7 @@ tags:
 
 ## 用法
 
-两页给的示例形状相同，单个和数组都支持：
+两节给的示例形状相同，单个和数组都支持：
 
 ```ts
 await preloadComponents('MyGlobalComponent')
@@ -86,7 +86,7 @@ await prefetchComponents('MyGlobalComponent')
 await prefetchComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])
 ```
 
-官方在两页里都写了 `await`。结合上面"服务端无效"那条，这两个调用要放在**浏览器里跑**的位置——组件的 setup、事件处理函数、或者客户端插件。
+官方在两节里都写了 `await`。结合上面"服务端无效"那条，这两个调用要放在**浏览器里跑**的位置——组件的 setup、事件处理函数、或者客户端插件。
 
 ## 怎么确认它真的取了什么
 

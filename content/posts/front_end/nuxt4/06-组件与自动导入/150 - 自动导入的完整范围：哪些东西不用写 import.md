@@ -1,6 +1,6 @@
 ---
 url: /posts/f94392560f34e0a6d2bc704a595947f4/
-title: 自动导入的完整范围：哪些东西不用写 import
+title: 150 - 自动导入的完整范围：哪些东西不用写 import
 date: 2026-12-01T09:00:00+08:00
 updated: 2026-12-01T09:00:00+08:00
 author: cmdragon
@@ -104,7 +104,7 @@ const double = computed(() => count.value * 2)
 - 组件那条线的规则（默认只扫哪里、同名怎么办、前缀怎么加）比这三行字多得多，我从 156 起专门讲。
 - `composables/` 与 `utils/` 的命名约定（`useXxx` 前缀、文件名怎么变成导入名）在 063 那条线已经过。
 
-**一个命名混用值得注意**：这一页同时出现 `app/components/`（4.x 的目录写法）与 `~/components`（旧别名写法）——组件那一节原话是 "Nuxt also automatically imports components from your `~/components` directory"。两处指同一个东西，`~` 是 srcDir 的别名（051 讲过那张别名表）。
+**一个命名混用值得注意**：这一节同时出现 `app/components/`（4.x 的目录写法）与 `~/components`（旧别名写法）——组件那一节原话是 "Nuxt also automatically imports components from your `~/components` directory"。两处指同一个东西，`~` 是 srcDir 的别名（051 讲过那张别名表）。
 
 ## ④ 服务端那条线的范围更窄
 
@@ -230,6 +230,6 @@ const double = computed(() => count.value * 2)
   - 原文（Auto-Import from Third-Party Packages）："Nuxt also allows auto-importing from third-party packages."；tip "If you are using the Nuxt module for that package, it is likely that the module has already configured auto-imports for that package."；示例 `imports: { presets: [{ from: 'vue-i18n', imports: ['useI18n'] }] }`
   - 原文（页尾）：`::link-example{to="https://nuxt.com/docs/examples/features/auto-imports"}`
 - `https://nuxt.com/docs/4.x/directory-structure/app/components`、`https://nuxt.com/docs/4.x/directory-structure/app/composables`、`https://nuxt.com/docs/4.x/directory-structure/app/utils`、`https://nuxt.com/docs/4.x/directory-structure/server`
-  - 对照用（见 063、151、156）：四个目录页，本页三条目录来源与 server note 都以它们为链接目标
+  - 对照用（见 063、151、156）：四个目录页，这一节三条目录来源与 server note 都以它们为链接目标
 - `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 对照用（见 152、153）：`imports` 一节（本页 note 与 `presets` 示例都链接到 `api/nuxt-config#imports`）
+  - 对照用（见 152、153）：`imports` 一节（这一节 note 与 `presets` 示例都链接到 `api/nuxt-config#imports`）

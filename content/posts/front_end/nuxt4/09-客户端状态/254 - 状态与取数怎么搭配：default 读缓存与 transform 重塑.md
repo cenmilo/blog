@@ -1,12 +1,12 @@
 ---
 url: /posts/d05475faa4d1171c146ef459f38340d5/
-title: 状态与取数怎么搭配：default 读缓存与 transform 重塑
+title: 254 - 状态与取数怎么搭配：default 读缓存与 transform 重塑
 date: 2027-01-04T11:00:00+08:00
 updated: 2027-01-04T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`useState` 与取数函数不是竞争关系，官方的三个用法把它们接在一起。**一，用缓存当开场值**：`useNuxtData` 那页的示例就是这套——列表页 `useFetch('/api/posts', { key: 'posts' })`，详情页 `const { data: posts } = useNuxtData('posts')` 之后把 `default () { return posts.value.find(post => post.id === route.params.id) }` 填进 `useLazyFetch`，官方注释分别是 "Access to the cached value of useFetch in posts.vue (parent route)" 与 "Find the individual post from the cache and set it as the default value."；而 `default` 的定义是 "Factory for default value of `data` before async resolves."，它同时是 `clear()` 的复位目标。**二，用 transform 重塑**："Function to transform the result after resolving."，官方在 `pick` 那句之后补的是 "If you need more control or map over several objects, you can use the `transform` function to alter the result of the query."。**三，副作用别塞进 handler**：这条有两处原文，`useAsyncData` 那页的 warning 是 "The `handler` function should be **side-effect free** to ensure predictable behavior during SSR and CSR hydration. If you need to trigger side effects, use the `callOnce` utility to do so."，data-fetching 那页更具体——"`useAsyncData` is for fetching and caching data, **not triggering side effects like calling Pinia actions**, as this can cause unintended behavior such as repeated executions with nullish values."，并给了 ❌ 示例。约束也别忘：同 key 的多次调用里 `default`、`transform`、`getCachedData` 都在**必须一致**那七项内（215）。
+  摘要：`useState` 与取数函数不是竞争关系，官方的三个用法把它们接在一起。**一，用缓存当开场值**：`useNuxtData` 那一节的示例就是这套——列表页 `useFetch('/api/posts', { key: 'posts' })`，详情页 `const { data: posts } = useNuxtData('posts')` 之后把 `default () { return posts.value.find(post => post.id === route.params.id) }` 填进 `useLazyFetch`，官方注释分别是 "Access to the cached value of useFetch in posts.vue (parent route)" 与 "Find the individual post from the cache and set it as the default value."；而 `default` 的定义是 "Factory for default value of `data` before async resolves."，它同时是 `clear()` 的复位目标。**二，用 transform 重塑**："Function to transform the result after resolving."，官方在 `pick` 那句之后补的是 "If you need more control or map over several objects, you can use the `transform` function to alter the result of the query."。**三，副作用别塞进 handler**：这条有两处原文，`useAsyncData` 那一节的 warning 是 "The `handler` function should be **side-effect free** to ensure predictable behavior during SSR and CSR hydration. If you need to trigger side effects, use the `callOnce` utility to do so."，data-fetching 那一节更具体——"`useAsyncData` is for fetching and caching data, **not triggering side effects like calling Pinia actions**, as this can cause unintended behavior such as repeated executions with nullish values."，并给了 ❌ 示例。约束也别忘：同 key 的多次调用里 `default`、`transform`、`getCachedData` 都在**必须一致**那七项内（215）。
 
 categories:
   - 前端开发
@@ -73,7 +73,7 @@ const { data } = useLazyFetch(`/api/posts/${route.params.id}`, {
 
 **但要注意 `default` 的返回值也要能进 payload**（251 的序列化边界）。这个例子里返回的是列表里那个普通对象，没问题；如果对象里有 `Date` 或类实例，就得按 252 的结论先测。
 
-`useNuxtData` 那页给的适用场景也是这三件：
+`useNuxtData` 那一节给的适用场景也是这三件：
 
 > This is particularly useful for optimizing performance by reusing already-fetched data or implementing features like Optimistic Updates or cascading data updates.
 
@@ -89,11 +89,11 @@ const { data } = useLazyFetch(`/api/posts/${route.params.id}`, {
 
 ## 四，副作用去哪：不是 handler，是 callOnce
 
-两处原文都指同一件事。`useAsyncData` 那页的 warning：
+两处原文都指同一件事。`useAsyncData` 那一节的 warning：
 
 > The `handler` function should be **side-effect free** to ensure predictable behavior during SSR and CSR hydration. If you need to trigger side effects, use the `callOnce` utility to do so.
 
-data-fetching 那页把"store 的 action"单独点出来（并配了 ❌ 示例）：
+data-fetching 那一节把"store 的 action"单独点出来（并配了 ❌ 示例）：
 
 > `useAsyncData` is for fetching and caching data, not triggering side effects like calling Pinia actions, as this can cause unintended behavior such as repeated executions with nullish values. If you need to trigger side effects, use the `callOnce` utility to do so.
 

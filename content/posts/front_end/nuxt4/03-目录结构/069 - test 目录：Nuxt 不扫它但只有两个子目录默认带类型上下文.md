@@ -1,6 +1,6 @@
 ---
 url: /posts/09b5d42fd34d4a3552e36bbbb6f780e9/
-title: test 目录：Nuxt 不扫它，但只有两个子目录默认带类型上下文
+title: 069 - test 目录：Nuxt 不扫它，但只有两个子目录默认带类型上下文
 date: 2026-11-04T09:00:00+08:00
 updated: 2026-11-04T09:00:00+08:00
 author: cmdragon
@@ -144,7 +144,7 @@ npx vitest --project nuxt
 npx vitest --watch
 ```
 
-**注意 `--project unit` / `--project nuxt` 这两个值，与前面那份目录布局（`test/unit/`、`test/nuxt/`）同名**——这是官方示例里的对应关系（Vitest 的 project 配置本身在 P19 的 491 那节展开）。
+**注意 `--project unit` / `--project nuxt` 这两个值，与前面那份目录布局（`test/unit/`、`test/nuxt/`）同名**——这是官方示例里的对应关系（Vitest 的 project 配置本身在 490-509 的 491 那节展开）。
 
 ## 为什么必须把两类测试分开：那条 warning
 

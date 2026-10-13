@@ -1,6 +1,6 @@
 ---
 url: /posts/b0ab2157d20012471ed053a6b2f1ff0b/
-title: Vue 生命周期在 Nuxt 里被切成两段
+title: 368 - Vue 生命周期在 Nuxt 里被切成两段
 date: 2027-02-11T11:00:00+08:00
 updated: 2027-02-11T11:00:00+08:00
 author: cmdragon

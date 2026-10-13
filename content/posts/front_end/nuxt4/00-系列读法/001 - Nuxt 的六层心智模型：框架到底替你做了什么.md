@@ -1,6 +1,6 @@
 ---
 url: /posts/1688ac2feaa84ccd3dc7d48538cf3ba5/
-title: Nuxt 的六层心智模型：框架到底替你做了什么
+title: 001 - Nuxt 的六层心智模型：框架到底替你做了什么
 date: 2026-10-12T10:00:00+08:00
 updated: 2026-10-12T10:00:00+08:00
 author: cmdragon

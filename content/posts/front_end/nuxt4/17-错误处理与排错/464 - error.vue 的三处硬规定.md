@@ -1,6 +1,6 @@
 ---
 url: /posts/bc89e81d0c8dd6befe0badaa8cd90dc3/
-title: error.vue 的三处硬规定
+title: 464 - error.vue 的三处硬规定
 date: 2027-03-15T11:00:00+08:00
 updated: 2027-03-15T11:00:00+08:00
 author: cmdragon
@@ -34,7 +34,7 @@ tags:
 
 > During the lifespan of your application, some errors may appear unexpectedly at runtime. In such case, we can use the `error.vue` file to override the default error files and display the error nicely.
 
-**作用是覆盖默认的错误文件**。位置在错误处理那一页写得具体：
+**作用是覆盖默认的错误文件**。位置在错误处理那一节写得具体：
 
 > Customize the default error page by adding `~/error.vue` in the source directory of your application, alongside `app.vue`.
 
@@ -82,7 +82,7 @@ const props = defineProps<{ error: NuxtError }>()
 
 三处细节值得照抄：**类型从 `#app` 导入**（`import type { NuxtError } from '#app'`）、模板里读的是 `error.status`（**不是 `statusCode`**）、以及"回首页"用的是 `<NuxtLink>`。
 
-两个页面的 props 写法不一样，这点要留意——`error.vue` 那一页用的是泛型形式 `defineProps<{ error: NuxtError }>()`，而错误处理那一页给的是带断言的形式：
+两个页面的 props 写法不一样，这点要留意——`error.vue` 那一节用的是泛型形式 `defineProps<{ error: NuxtError }>()`，而错误处理那一节给的是带断言的形式：
 
 ```ts
 const props = defineProps({
@@ -94,7 +94,7 @@ const props = defineProps({
 
 ## 规定三：字段按类型收敛
 
-这一页给的错误对象形状是八个字段：
+这一节给的错误对象形状是八个字段：
 
 ```ts
 interface NuxtError {
@@ -111,7 +111,7 @@ interface NuxtError {
 }
 ```
 
-其中两个字段被官方**注释成 legacy/deprecated 等价物**：`statusCode` 对应 `status`、`statusMessage` 对应 `statusText`。**新代码要读 `status` 与 `statusText`**——这也和 461 记录的三处不一致对上了：只有这一页列了 `unhandled` 和这两个旧字段，也只有这一页**没有列 `message`**。
+其中两个字段被官方**注释成 legacy/deprecated 等价物**：`statusCode` 对应 `status`、`statusMessage` 对应 `statusText`。**新代码要读 `status` 与 `statusText`**——这也和 461 记录的三处不一致对上了：只有这一节列了 `unhandled` 和这两个旧字段，也只有这一节**没有列 `message`**。
 
 紧跟着那句是第三条规定的正文：
 
@@ -131,7 +131,7 @@ throw createError({
 
 ## 什么时候它会被渲染
 
-这一页只说了"覆盖默认错误页"，没说触发条件。触发条件在别处，正好接上前两篇：
+这一节只说了"覆盖默认错误页"，没说触发条件。触发条件在别处，正好接上前两篇：
 
 - 服务端任何未处理错误，或客户端 `fatal: true` 创建的错误 → 触发全屏错误页（460 的 fatal 定义）。
 - `showError` 会触发全屏错误页，`createError` 在服务端 throw 也会（462）。
@@ -152,6 +152,6 @@ throw createError({
 
 ## 本文依据
 
-- `error.vue` 那一页：定性句（override the default error files、display the error nicely）、完整示例（`import type { NuxtError } from '#app'`、`defineProps<{ error: NuxtError }>()`、`error.status`、`<NuxtLink to="/">`）、`::note` 三条（不是路由且不放 `~/pages`、同一理由不用 `definePageMeta`、可用 `NuxtLayout` 指定布局名）、"single prop - `error`"、八字段 `NuxtError` 接口含两个标注 legacy/deprecated 的等价字段、"自定义字段会丢失、应放进 `data`"及 `createError({ data: { myCustomField: true } })` 示例（`directory-structure/app/error`）
+- `error.vue` 那一节：定性句（override the default error files、display the error nicely）、完整示例（`import type { NuxtError } from '#app'`、`defineProps<{ error: NuxtError }>()`、`error.status`、`<NuxtLink to="/">`）、`::note` 三条（不是路由且不放 `~/pages`、同一理由不用 `definePageMeta`、可用 `NuxtLayout` 指定布局名）、"single prop - `error`"、八字段 `NuxtError` 接口含两个标注 legacy/deprecated 的等价字段、"自定义字段会丢失、应放进 `data`"及 `createError({ data: { myCustomField: true } })` 示例（`directory-structure/app/error`）
 - 错误处理页：`~/error.vue` 与 `app.vue` 同级的位置句、`defineProps({ error: Object as () => NuxtError })` 形式的示例与 `clearError({ redirect: '/' })`、fatal 与全屏错误页的 `::note`（`getting-started/error-handling`）
 - `createError` 的参数与 `data`、`error.value.data.data`（`api/utils/create-error`）

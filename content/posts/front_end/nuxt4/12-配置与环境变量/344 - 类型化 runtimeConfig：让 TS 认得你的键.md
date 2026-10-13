@@ -1,6 +1,6 @@
 ---
 url: /posts/3d78e5b696ac7b4d918fdea678122c7a/
-title: 类型化 runtimeConfig：让 TS 认得你的键
+title: 344 - 类型化 runtimeConfig：让 TS 认得你的键
 date: 2027-02-03T11:00:00+08:00
 updated: 2027-02-03T11:00:00+08:00
 author: cmdragon

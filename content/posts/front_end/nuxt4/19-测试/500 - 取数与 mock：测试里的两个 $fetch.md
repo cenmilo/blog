@@ -1,6 +1,6 @@
 ---
 url: /posts/098e1fb2f405f92ce80689f0db63649e/
-title: 取数与 mock：测试里的两个 $fetch
+title: 500 - 取数与 mock：测试里的两个 $fetch
 date: 2027-03-27T11:00:00+08:00
 updated: 2027-03-27T11:00:00+08:00
 author: cmdragon
@@ -38,7 +38,7 @@ tags:
 
 ## 内部路由在 SSR 期间不发网络请求
 
-`api/utils/$fetch` 那页有一条 `::tip`，是理解测试行为的关键：
+`api/utils/$fetch` 那一节有一条 `::tip`，是理解测试行为的关键：
 
 > During server-side rendering, calling `$fetch` to fetch your internal API routes will directly call the relevant function (emulating the request), **saving an additional API call**.
 
@@ -65,7 +65,7 @@ const { data } = await useFetch('/api/item')
 
 ## 只在客户端执行的方法里可以放心用
 
-那页给的第二个用法示例是表单提交：
+那一节给的第二个用法示例是表单提交：
 
 ```vue [app/pages/contact.vue]
 <script setup lang="ts">
@@ -90,7 +90,7 @@ async function contactForm () {
 
 ## cookies 不会被带上，这是有意的
 
-那页最后一个小节 Pass Headers and Cookies 讲了一条安全限制，测试里踩到会很费解：
+那一节最后一个小节 Pass Headers and Cookies 讲了一条安全限制，测试里踩到会很费解：
 
 > When we call `$fetch` in the browser, user headers like `cookie` will be directly sent to the API.
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/2949441a5fb04f554610b5f9b0f676e3/
-title: defineNuxtRouteMiddleware：包一层才有 Nuxt 上下文
+title: 130 - defineNuxtRouteMiddleware：包一层才有 Nuxt 上下文
 date: 2026-11-24T10:00:00+08:00
 updated: 2026-11-24T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`defineNuxtRouteMiddleware` 的官方用途是"**用 `defineNuxtRouteMiddleware` helper 函数来创建命名路由中间件**"，并紧接着说明位置："路由中间件存放在你 Nuxt 应用的 `app/middleware/` 里（除非另行设置）。"它的签名把"包一层"这件事写在类型里：`export function defineNuxtRouteMiddleware (middleware: RouteMiddleware): RouteMiddleware`，即**收一个中间件函数、返回一个中间件函数**；而 `interface RouteMiddleware { (to: RouteLocationNormalized, from: RouteLocationNormalized): ReturnType<NavigationGuard> }` 说明**参数是两个 Vue Router 的路由位置对象**——官方原文："**一个函数，它接收两个 Vue Router 的路由位置对象作为参数：下一个路由 `to` 作为第一个，当前路由 `from` 作为第二个。**"为什么要专门包这一层，答案在 NuxtApp 那一页：**"许多组合式函数与工具，无论是内置的还是用户自己写的，都可能需要访问 Nuxt 实例。这个实例并不是在你应用的任何地方都存在的，因为每一次请求都会创建一个全新的实例。"** 而官方给出的可访问范围里明确带着一个条件——"**目前，Nuxt 上下文只能在以下位置访问：插件、Nuxt 钩子、Nuxt 中间件（如果用 `defineNuxtRouteMiddleware` 包裹起来的话），以及 setup 函数（页面与组件中）。**"也就是说**"在中间件里"并不自动等于"有上下文"，包了这层宏才算**。官方还写了撞墙时的报错与出路："**如果一个组合式函数在被调用时无法访问上下文，你可能会得到一个错误，内容是 'A composable that requires access to the Nuxt instance was called outside of a plugin, Nuxt hook, Nuxt middleware, or Vue setup function.' 在这种情况下，你也可以通过 `nuxtApp.runWithContext` 显式地在这个上下文内调用函数。**"上下文之内能直接用哪两个 helper，官方在示例末尾点名："**`navigateTo` 与 `abortNavigation` 都是全局可用的 helper 函数，你可以在 `defineNuxtRouteMiddleware` 内部使用它们。**"两个官方示例分别演示"抛错误页"与"按登录状态重定向"，后者正是靠上下文才能用 `useState`。
+  摘要：`defineNuxtRouteMiddleware` 的官方用途是"**用 `defineNuxtRouteMiddleware` helper 函数来创建命名路由中间件**"，并紧接着说明位置："路由中间件存放在你 Nuxt 应用的 `app/middleware/` 里（除非另行设置）。"它的签名把"包一层"这件事写在类型里：`export function defineNuxtRouteMiddleware (middleware: RouteMiddleware): RouteMiddleware`，即**收一个中间件函数、返回一个中间件函数**；而 `interface RouteMiddleware { (to: RouteLocationNormalized, from: RouteLocationNormalized): ReturnType<NavigationGuard> }` 说明**参数是两个 Vue Router 的路由位置对象**——官方原文："**一个函数，它接收两个 Vue Router 的路由位置对象作为参数：下一个路由 `to` 作为第一个，当前路由 `from` 作为第二个。**"为什么要专门包这一层，答案在 NuxtApp 那一节：**"许多组合式函数与工具，无论是内置的还是用户自己写的，都可能需要访问 Nuxt 实例。这个实例并不是在你应用的任何地方都存在的，因为每一次请求都会创建一个全新的实例。"** 而官方给出的可访问范围里明确带着一个条件——"**目前，Nuxt 上下文只能在以下位置访问：插件、Nuxt 钩子、Nuxt 中间件（如果用 `defineNuxtRouteMiddleware` 包裹起来的话），以及 setup 函数（页面与组件中）。**"也就是说**"在中间件里"并不自动等于"有上下文"，包了这层宏才算**。官方还写了撞墙时的报错与出路："**如果一个组合式函数在被调用时无法访问上下文，你可能会得到一个错误，内容是 'A composable that requires access to the Nuxt instance was called outside of a plugin, Nuxt hook, Nuxt middleware, or Vue setup function.' 在这种情况下，你也可以通过 `nuxtApp.runWithContext` 显式地在这个上下文内调用函数。**"上下文之内能直接用哪两个 helper，官方在示例末尾点名："**`navigateTo` 与 `abortNavigation` 都是全局可用的 helper 函数，你可以在 `defineNuxtRouteMiddleware` 内部使用它们。**"两个官方示例分别演示"抛错误页"与"按登录状态重定向"，后者正是靠上下文才能用 `useState`。
 
 categories:
   - 前端开发
@@ -54,11 +54,11 @@ interface RouteMiddleware {
 | `(to, from)` | 官方说明："**一个函数，它接收两个 Vue Router 的路由位置对象作为参数：下一个路由 `to` 作为第一个，当前路由 `from` 作为第二个。**" |
 | 返回类型 `ReturnType<NavigationGuard>` | **中间件的返回值遵循导航守卫的返回语义**——这正是 132 那张"返回值就是指令"的类型来源 |
 
-关于 `to`/`from` 这两个参数，官方在中间件那一页还写了为什么必须有它们：**中间件里没有"当前路由"的概念**，因为中间件可以中止一次导航或重定向到另一个路由（128）。**`to` 与 `from` 不是便利，而是唯一正确的取法。**
+关于 `to`/`from` 这两个参数，官方在中间件那一节还写了为什么必须有它们：**中间件里没有"当前路由"的概念**，因为中间件可以中止一次导航或重定向到另一个路由（128）。**`to` 与 `from` 不是便利，而是唯一正确的取法。**
 
 ## 为什么要包这一层：上下文只在四个地方有
 
-官方在 NuxtApp 那一页先解释了实例的来源：
+官方在 NuxtApp 那一节先解释了实例的来源：
 
 > 许多组合式函数与工具，无论是内置的还是用户自己写的，**都可能需要访问 Nuxt 实例。这个实例并不是在你应用的任何地方都存在的，因为每一次请求都会创建一个全新的实例。**
 
@@ -148,7 +148,7 @@ definePageMeta({
 | | 命名中间件 | 匿名（内联）中间件 |
 | --- | --- | --- |
 | 写在哪 | `app/middleware/*.ts` | `definePageMeta({ middleware: [function (to, from) {}] })` |
-| 是否用这个宏 | 官方这一页的用途就是"**创建命名路由中间件**" | 不需要，直接给函数 |
+| 是否用这个宏 | 官方这一节的用途就是"**创建命名路由中间件**" | 不需要，直接给函数 |
 | 参数 | `to`、`from`（同 `RouteMiddleware`） | 同上 |
 | 谁能引用它 | 任何页面按名字点 | 只有这一个页面 |
 

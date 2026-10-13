@@ -1,12 +1,12 @@
 ---
 url: /posts/9a1fb306a543afc462a41386bc1739f9/
-title: defineNuxtComponent：Options API 组件的框架包装器
+title: 162 - defineNuxtComponent：Options API 组件的框架包装器
 date: 2026-12-05T09:00:00+08:00
 updated: 2026-12-05T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：官方给这一页的定位句是："**defineNuxtComponent() is a helper function for defining type safe components with Options API.**"，那条 note 把与 Vue 原生 API 的关系和增量能力一起说完："**`defineNuxtComponent()` is a helper function for defining type safe Vue components using options API similar to `defineComponent()`. `defineNuxtComponent()` wrapper also adds support for `asyncData` and `head` component options.**"——也就是说它比 `defineComponent()` 多的就是这两个选项。数据获取那一页给出的是**强制条件**："**Nuxt provides a way to perform `asyncData` fetching within the Options API. You must wrap your component definition within `defineNuxtComponent` for this to work.**"，示例里除了 `async asyncData () { return { hello: await $fetch('/api/hello') } }` 还带了一个第三选项："**/* Use the fetchKey option to provide a unique key */** `fetchKey: 'hello'`"。`asyncData` 与 `head` 的官方写法分别是 `asyncData () { return { data: { greetings: 'hello world!' } } }` 与 `head (nuxtApp) { return { title: 'My site' } }`（`head` 的形参就是 `nuxtApp`）。官方同时两处以几乎相同的句子泼冷水："**Using `<script setup lang=\"ts\">` is the recommended way of declaring Vue components in Nuxt.**"。**151 那两条上下文规则也指向它**：非 SFC 组件里要用需要 Nuxt 上下文的 composable 时，官方原句是 "**you need to wrap your component with `defineNuxtComponent` instead of `defineComponent`**"，而它可以跨 `await` 保住同步上下文——这是官方列的四个例外之一。最后是一条会直接失效的场景，Vapor 组件的限制里写着："**The Options API is not supported in Vapor components, so `asyncData` and `fetchKey` via `defineNuxtComponent` are unavailable. Use `<script setup>` with `useAsyncData` instead.**"
+  摘要：官方给这一节的定位句是："**defineNuxtComponent() is a helper function for defining type safe components with Options API.**"，那条 note 把与 Vue 原生 API 的关系和增量能力一起说完："**`defineNuxtComponent()` is a helper function for defining type safe Vue components using options API similar to `defineComponent()`. `defineNuxtComponent()` wrapper also adds support for `asyncData` and `head` component options.**"——也就是说它比 `defineComponent()` 多的就是这两个选项。数据获取那一节给出的是**强制条件**："**Nuxt provides a way to perform `asyncData` fetching within the Options API. You must wrap your component definition within `defineNuxtComponent` for this to work.**"，示例里除了 `async asyncData () { return { hello: await $fetch('/api/hello') } }` 还带了一个第三选项："**/* Use the fetchKey option to provide a unique key */** `fetchKey: 'hello'`"。`asyncData` 与 `head` 的官方写法分别是 `asyncData () { return { data: { greetings: 'hello world!' } } }` 与 `head (nuxtApp) { return { title: 'My site' } }`（`head` 的形参就是 `nuxtApp`）。官方同时两处以几乎相同的句子泼冷水："**Using `<script setup lang=\"ts\">` is the recommended way of declaring Vue components in Nuxt.**"。**151 那两条上下文规则也指向它**：非 SFC 组件里要用需要 Nuxt 上下文的 composable 时，官方原句是 "**you need to wrap your component with `defineNuxtComponent` instead of `defineComponent`**"，而它可以跨 `await` 保住同步上下文——这是官方列的四个例外之一。最后是一条会直接失效的场景，Vapor 组件的限制里写着："**The Options API is not supported in Vapor components, so `asyncData` and `fetchKey` via `defineNuxtComponent` are unavailable. Use `<script setup>` with `useAsyncData` instead.**"
 
 categories:
   - 前端开发
@@ -48,7 +48,7 @@ tags:
 
 ## 强制条件：想用 asyncData 就必须包
 
-数据获取那一页的 "Options API Support" 一节给了唯一的硬性说法：
+数据获取那一节的 "Options API Support" 一节给了唯一的硬性说法：
 
 > Nuxt provides a way to perform `asyncData` fetching within the Options API. **You must wrap your component definition within `defineNuxtComponent` for this to work.**
 
@@ -110,9 +110,9 @@ export default defineNuxtComponent({
 
 - 两句动机完全同构：**"If you choose not to use `setup()`"**——这两个选项是给"不用 setup 的人"准备的。
 - `head` 的**形参是 `nuxtApp`**，官方签名里带上了它（返回值形状是 `{ title }`）。
-- 两个示例的返回形状不一样：这一页的 `asyncData` 返回 `{ data: { greetings } }`，数据获取页的例子返回 `{ hello }`。**文档没有解释两种形状的差异**，我能确认的只有"返回一个普通对象"这一点是共同的。真要嵌 `data` 还是平铺，我按数据获取页那种**平铺**写法试——它和 `$fetch` 的直接返回值搭配看起来更自然，但这属于风格选择，不是官方规定。
+- 两个示例的返回形状不一样：这一节的 `asyncData` 返回 `{ data: { greetings } }`，数据获取那一节的例子返回 `{ hello }`。**文档没有解释两种形状的差异**，能确认的只有"返回一个普通对象"这一点是共同的。真要嵌 `data` 还是平铺，我按数据获取页那种**平铺**写法试——它和 `$fetch` 的直接返回值搭配看起来更自然，但这属于风格选择，不是官方规定。
 
-`head` 这个选项与 `useHead` 是同一目标的两种入口（`head` 走 Options API，`useHead` 走 setup，见 030/标题那一条线），这一页没做对比。
+`head` 这个选项与 `useHead` 是同一目标的两种入口（`head` 走 Options API，`useHead` 走 setup，见 030/标题那一条线），这一节没做对比。
 
 ## 另外两个必须用它的场合
 
@@ -130,15 +130,15 @@ export default defineNuxtComponent({
 
 > ... you cannot use `await` before calling a composable, **except within `<script setup>` blocks, within the setup function of a component declared with `defineNuxtComponent`, in `defineNuxtPlugin` or in `defineNuxtRouteMiddleware`**, where we perform a transform to keep the synchronous context even after the `await`.
 
-**注意范围**：例外说的是"`defineNuxtComponent` 声明的组件里的 **setup 函数**"，而不是它的 `asyncData`/`head` 选项。这两个选项里的上下文规则，官方没有在这一页展开。
+**注意范围**：例外说的是"`defineNuxtComponent` 声明的组件里的 **setup 函数**"，而不是它的 `asyncData`/`head` 选项。这两个选项里的上下文规则，官方没有在这一节展开。
 
 ## 官方推荐仍是 `<script setup>`
 
-这一页与数据获取页各放了一条一模一样的 note，位置都在示例之后：
+这一节与数据获取页各放了一条一模一样的 note，位置都在示例之后：
 
 > Using `<script setup lang="ts">` is the recommended way of declaring Vue components in Nuxt.
 
-开发范式那一页也把方向写得很清楚：
+开发范式那一节也把方向写得很清楚：
 
 > The goal of Nuxt is to provide a great developer experience around the **Composition API**.
 
@@ -171,11 +171,11 @@ export default defineNuxtComponent({
 
 1. 官方给 `defineNuxtComponent` 的定位句是什么？它与 `defineComponent()` 的关系是哪几个词？
 2. note 说它额外支持两个选项，示例里出现了第三个——分别是哪些？`fetchKey` 那行注释怎么说？
-3. "必须包"这句原文在哪一页的哪一节？它针对的是哪个选项？
+3. "必须包"这句原文在官方文档的哪个位置？它针对的是哪个选项？
 4. `head` 的形参是什么？`asyncData` 两个官方示例的返回形状有什么不同？文档解释了吗？
 5. 非 SFC 组件那条 tip 的原话是什么？它对比的是哪两个函数？
 6. 可以跨 `await` 的四个例外分别是什么？`defineNuxtComponent` 那条限在哪个函数范围内？
-7. 官方两条一模一样的推荐 note 出现在哪两页？内容是什么？
+7. 官方两条一模一样的推荐 note 出现在哪两节？内容是什么？
 8. Vapor 组件里为什么用不了它？官方给的替代写法是什么？
 
 ## 下一篇

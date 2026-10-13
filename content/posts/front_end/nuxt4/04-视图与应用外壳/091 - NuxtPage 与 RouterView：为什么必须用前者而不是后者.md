@@ -1,6 +1,6 @@
 ---
 url: /posts/3cde6c68ed7520e72eabcf32cd755fc8/
-title: NuxtPage 与 RouterView：为什么必须用前者而不是后者
+title: 091 - NuxtPage 与 RouterView：为什么必须用前者而不是后者
 date: 2026-11-11T10:00:00+08:00
 updated: 2026-11-11T10:00:00+08:00
 author: cmdragon

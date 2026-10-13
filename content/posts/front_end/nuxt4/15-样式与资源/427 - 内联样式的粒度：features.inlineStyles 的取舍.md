@@ -1,6 +1,6 @@
 ---
 url: /posts/b14eea783e90f8b774cb15ab2db1e3c3/
-title: 内联样式的粒度：features.inlineStyles 的取舍
+title: 427 - 内联样式的粒度：features.inlineStyles 的取舍
 date: 2027-03-03T10:00:00+08:00
 updated: 2027-03-03T10:00:00+08:00
 author: cmdragon

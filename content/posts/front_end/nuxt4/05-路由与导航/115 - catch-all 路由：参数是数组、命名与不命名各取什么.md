@@ -1,6 +1,6 @@
 ---
 url: /posts/18d32d49d3014a04761b9683755beff0/
-title: catch-all 路由：参数是数组、命名与不命名各取什么
+title: 115 - catch-all 路由：参数是数组、命名与不命名各取什么
 date: 2026-11-19T10:00:00+08:00
 updated: 2026-11-19T10:00:00+08:00
 author: cmdragon

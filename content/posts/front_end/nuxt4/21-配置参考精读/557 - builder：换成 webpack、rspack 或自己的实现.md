@@ -1,6 +1,6 @@
 ---
 url: /posts/6871b64ec97e73b3f64873ebf1897471/
-title: builder：换成 webpack、rspack 或自己的实现
+title: 557 - builder：换成 webpack、rspack 或自己的实现
 date: 2027-04-15T11:00:00+08:00
 updated: 2027-04-15T11:00:00+08:00
 author: cmdragon
@@ -84,7 +84,7 @@ export default defineNuxtConfig({
 
 所以换 `'webpack'` 之后报"找不到构建器"是正常的——**这一节没给安装命令**，按你自己项目的包管理器装对应包即可（`webpack` 那节还提到要配置加载器与插件的选项，都在 `webpack` 键下）。
 
-**第二条：按名字识别的只有三个。** builders 那页写得更硬：**"Only the three official builder specifiers (`@nuxt/vite-builder`, `@nuxt/webpack-builder`, `@nuxt/rspack-builder`) are recognised by name for builder-specific behaviour elsewhere in Nuxt. A custom builder still works through the generic contract described below."**
+**第二条：按名字识别的只有三个。** builders 那一节写得更硬：**"Only the three official builder specifiers (`@nuxt/vite-builder`, `@nuxt/webpack-builder`, `@nuxt/rspack-builder`) are recognised by name for builder-specific behaviour elsewhere in Nuxt. A custom builder still works through the generic contract described below."**
 
 这条的实际含义是：**"构建器专属行为"只对这三个包名生效**——`webpack` 那一整节、`vite` 那一整节的选项，都是构建器专属的；自定义构建器读不到它们，只能走通用契约。
 

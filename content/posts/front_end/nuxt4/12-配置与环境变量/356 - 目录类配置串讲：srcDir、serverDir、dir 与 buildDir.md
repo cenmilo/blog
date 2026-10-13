@@ -1,6 +1,6 @@
 ---
 url: /posts/029b812bd8156a750d07f7ce58ff751b/
-title: 目录类配置串讲：srcDir、serverDir、dir 与 buildDir
+title: 356 - 目录类配置串讲：srcDir、serverDir、dir 与 buildDir
 date: 2027-02-07T11:00:00+08:00
 updated: 2027-02-07T11:00:00+08:00
 author: cmdragon

@@ -1,12 +1,12 @@
 ---
 url: /posts/de3a4f9fd6edbcc58bc69f73510e386b/
-title: 过渡与保活的三条入口：nuxt.config、NuxtPage 与 definePageMeta
+title: 119 - 过渡与保活的三条入口：nuxt.config、NuxtPage 与 definePageMeta
 date: 2026-11-20T11:00:00+08:00
 updated: 2026-11-20T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`transition` 与 `keepalive` 这两件事，官方一共给了三条入口，而它们的作用范围不一样、官方明确写出的覆盖关系也只有一条，所以搞混之后的表现是"某一层的设置看起来没生效"。三条入口的原文出处是 `<NuxtPage>` 那一页这句话："**默认情况下，Nuxt 不会启用 `<Transition>` 和 `<KeepAlive>`。你可以在 nuxt.config 文件里启用它们，或者通过在 `<NuxtPage>` 上设置 `transition` 和 `keepalive` 属性来启用它们。如果你想定义某个特定的页面，可以在页面组件里通过 `definePageMeta` 来设置。**"也就是说：前两者是**全局启用**的两条路（配置文件里一次，或在出口组件上一次性对所有由它渲染的页面生效），第三者是**单页**的定制口。覆盖关系官方只在过渡那一页写明了一条："**要覆盖全局过渡属性，请使用 `definePageMeta` 为单个 Nuxt 页面定义页面或布局过渡，并覆盖在 `nuxt.config` 文件里定义的任何页面或布局过渡。**"——即 `definePageMeta` 明确覆盖 `nuxt.config`。至于 `<NuxtPage>` 上的属性与单页 `definePageMeta` 同时出现时谁生效，官方没有把它写成一条规则，所以这一层要按实测来定（方法在本篇给出）。`keepalive` 一侧官方给了三种可用写法与一条父路由专用语法："`definePageMeta` 里设 `keepalive: true` 时，Nuxt 会自动把你的页面包进 Vue 的 `<KeepAlive>` 组件……例如在**拥有动态子路由的父路由**里这么做，如果你想跨路由变化保留页面状态"；"**如果你的目标是保留父路由的状态，请使用这种语法：`<NuxtPage keepalive />`**，你也可以设置要传给 `<KeepAlive>` 的 props"；"**你可以在你的 `nuxt.config` 里为这个属性设置一个默认值。**"细粒度控制的官方示例是 `keepalive: { exclude: ['modal'] }`（配合 `key: route => route.fullPath` 与自定义字段 `pageType: 'Checkout'` 出现在同一段里）。两件事还共享同一个结构前提：`<NuxtPage>` 内部是 `RouterView → (Transition) → (KeepAlive) → Suspense → component`，而 `Transition` 与 `KeepAlive` 在官方注释里被标成 Optional——**默认都不开**，因此"保活没生效"与"过渡没生效"要先看的是同一个位置：有没有真的把这两层装上。
+  摘要：`transition` 与 `keepalive` 这两件事，官方一共给了三条入口，而它们的作用范围不一样、官方明确写出的覆盖关系也只有一条，所以搞混之后的表现是"某一层的设置看起来没生效"。三条入口的原文出处是 `<NuxtPage>` 那一节这句话："**默认情况下，Nuxt 不会启用 `<Transition>` 和 `<KeepAlive>`。你可以在 nuxt.config 文件里启用它们，或者通过在 `<NuxtPage>` 上设置 `transition` 和 `keepalive` 属性来启用它们。如果你想定义某个特定的页面，可以在页面组件里通过 `definePageMeta` 来设置。**"也就是说：前两者是**全局启用**的两条路（配置文件里一次，或在出口组件上一次性对所有由它渲染的页面生效），第三者是**单页**的定制口。覆盖关系官方只在过渡那一节写明了一条："**要覆盖全局过渡属性，请使用 `definePageMeta` 为单个 Nuxt 页面定义页面或布局过渡，并覆盖在 `nuxt.config` 文件里定义的任何页面或布局过渡。**"——即 `definePageMeta` 明确覆盖 `nuxt.config`。至于 `<NuxtPage>` 上的属性与单页 `definePageMeta` 同时出现时谁生效，官方没有把它写成一条规则，所以这一层要按实测来定（方法在本篇给出）。`keepalive` 一侧官方给了三种可用写法与一条父路由专用语法："`definePageMeta` 里设 `keepalive: true` 时，Nuxt 会自动把你的页面包进 Vue 的 `<KeepAlive>` 组件……例如在**拥有动态子路由的父路由**里这么做，如果你想跨路由变化保留页面状态"；"**如果你的目标是保留父路由的状态，请使用这种语法：`<NuxtPage keepalive />`**，你也可以设置要传给 `<KeepAlive>` 的 props"；"**你可以在你的 `nuxt.config` 里为这个属性设置一个默认值。**"细粒度控制的官方示例是 `keepalive: { exclude: ['modal'] }`（配合 `key: route => route.fullPath` 与自定义字段 `pageType: 'Checkout'` 出现在同一段里）。两件事还共享同一个结构前提：`<NuxtPage>` 内部是 `RouterView → (Transition) → (KeepAlive) → Suspense → component`，而 `Transition` 与 `KeepAlive` 在官方注释里被标成 Optional——**默认都不开**，因此"保活没生效"与"过渡没生效"要先看的是同一个位置：有没有真的把这两层装上。
 
 categories:
   - 前端开发
@@ -30,7 +30,7 @@ tags:
 
 ## 官方那句话给了三条入口
 
-`<NuxtPage>` 那一页的原文，一次说全：
+`<NuxtPage>` 那一节的原文，一次说全：
 
 > 默认情况下，Nuxt 不会启用 `<Transition>` 和 `<KeepAlive>`。**你可以在 nuxt.config 文件里启用它们，或者通过在 `<NuxtPage>` 上设置 `transition` 和 `keepalive` 属性来启用它们。如果你想定义某个特定的页面，可以在页面组件里通过 `definePageMeta` 来设置。**
 
@@ -44,7 +44,7 @@ tags:
 
 ## 覆盖关系：官方明确写了一条
 
-只有一条是官方写死的，来自过渡那一页：
+只有一条是官方写死的，来自过渡那一节：
 
 > **要覆盖全局过渡属性，请使用 `definePageMeta` 为单个 Nuxt 页面定义页面或布局过渡，并覆盖在 `nuxt.config` 文件里定义的任何页面或布局过渡。**
 
@@ -87,11 +87,11 @@ definePageMeta（单页）
 
 所以"过渡没生效"和"保活没生效"的第一现场是同一个：**`<Transition>` 与 `<KeepAlive>` 是否真的被装上了**。三个入口只是装载方式，不装就都没有。
 
-同一份文档还有一句和保活直接相关的限制：**如果你在页面组件里启用 `<Transition>`，请确保该页面只有一个根元素**（过渡那一页的 important 块把这条说得更完整，118 已引）。
+同一份文档还有一句和保活直接相关的限制：**如果你在页面组件里启用 `<Transition>`，请确保该页面只有一个根元素**（过渡那一节的 important 块把这条说得更完整，118 已引）。
 
 ## `keepalive` 的三种写法与一条专用语法
 
-官方在 `app/pages/` 那一页给了完整说法：
+官方在 `app/pages/` 那一节给了完整说法：
 
 > 如果你在 `definePageMeta` 里设置 `keepalive: true`，**Nuxt 会自动把你的页面包进 Vue 的 `<KeepAlive>` 组件**。这可能有用，例如在**一个拥有动态子路由的父路由**里，如果你想跨路由变化保留页面状态。
 

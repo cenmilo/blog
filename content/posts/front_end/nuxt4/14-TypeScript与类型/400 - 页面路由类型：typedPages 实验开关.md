@@ -1,6 +1,6 @@
 ---
 url: /posts/20e075373da46aad5b8a5bd27acd6799/
-title: 页面路由类型：typedPages 实验开关
+title: 400 - 页面路由类型：typedPages 实验开关
 date: 2027-02-22T10:00:00+08:00
 updated: 2027-02-22T10:00:00+08:00
 author: cmdragon
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
 
 ## 和另两个类型化开关的层次
 
-P14 里连着三个和"路由/接口类型化"有关的开关，别混：
+395-414 里连着三个和"路由/接口类型化"有关的开关，别混：
 
 | 开关 | 管什么 |
 | --- | --- |

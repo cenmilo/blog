@@ -1,6 +1,6 @@
 ---
 url: /posts/d5b109d6a1bb659af49ea8b25289f332/
-title: titleTemplate 与动态标题：函数为什么不能写在 nuxt.config
+title: 488 - titleTemplate 与动态标题：函数为什么不能写在 nuxt.config
 date: 2027-03-23T11:00:00+08:00
 updated: 2027-03-23T11:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 
 把 `titleTemplate` 写成函数放进 `nuxt.config.ts`，编辑器不报错，跑起来标题却一直是兜底值。
 
-这不是 bug。官方在 SEO 那一页对这一项有明确的位置限制，而限制的成因与 `definePageMeta` 那条构建期规则是同一类事情。
+这不是 bug。官方在 SEO 那一节对这一项有明确的位置限制，而限制的成因与 `definePageMeta` 那条构建期规则是同一类事情。
 
 ## 两种形态与一条位置限制
 
@@ -152,7 +152,7 @@ useHead({
 
 ## 下一篇
 
-下一篇 489 收这一页剩下的两节：滚动行为（默认三种：新路由滚到顶、返回时恢复位置、命中锚点滚动；改法是 `scrollBehaviorType` 或自己在 `router.options.ts` 里写 `scrollBehavior`，并要尊重 `prefers-reduced-motion`）与页末列出的三条外部资源。
+下一篇 489 收官方那一节剩下的两节：滚动行为（默认三种：新路由滚到顶、返回时恢复位置、命中锚点滚动；改法是 `scrollBehaviorType` 或自己在 `router.options.ts` 里写 `scrollBehavior`，并要尊重 `prefers-reduced-motion`）与那一节末尾列出的三条外部资源。
 
 ## 本文依据
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/3c4668366eda2b86d5de98234c6db075/
-title: Kit 的模块类函数只有两个：defineNuxtModule 与 installModule
+title: 644 - Kit 的模块类函数只有两个：defineNuxtModule 与 installModule
 date: 2027-05-14T11:00:00+08:00
 updated: 2027-05-14T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：Kit 里管"模块本身"的那页**只有两个函数**，而且**第二个已经废弃**：`defineNuxtModule` 与 `installModule`。`defineNuxtModule` 有两个重载——**直接传定义对象**那种返回 `NuxtModule`，**先写 `defineNuxtModule<TOptions>()` 再用 `.with({...})`** 那种是给合并后的选项拿准确类型用的。`installModule` 的调用面是 `moduleToInstall`（字符串或模块对象）、`inlineOptions`、`nuxt` 三个参数，废弃说明给的替代是 `moduleDependencies` 选项，并留了一句"未来会被移除（或可能变成非阻塞）"。这一页其余内容都是参数表与例子，**没有第三个函数**——注入资产的工具在别的页。
+  摘要：Kit 里管"模块本身"的那一节**只有两个函数**，而且**第二个已经废弃**：`defineNuxtModule` 与 `installModule`。`defineNuxtModule` 有两个重载——**直接传定义对象**那种返回 `NuxtModule`，**先写 `defineNuxtModule<TOptions>()` 再用 `.with({...})`** 那种是给合并后的选项拿准确类型用的。`installModule` 的调用面是 `moduleToInstall`（字符串或模块对象）、`inlineOptions`、`nuxt` 三个参数，废弃说明给的替代是 `moduleDependencies` 选项，并留了一句"未来会被移除（或可能变成非阻塞）"。这一节其余内容都是参数表与例子，**没有第三个函数**——注入资产的工具在别的页。
 
 categories:
   - 前端开发
@@ -24,13 +24,13 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-写模块时最容易高估的一件事是"Kit 里应该有个函数专门做这个"。**管模块定义的这一页其实只有两个函数，其中一个是留给旧代码的**。这一篇把这两个的形态与边界说清。
+写模块时最容易高估的一件事是"Kit 里应该有个函数专门做这个"。**管模块定义的这一节其实只有两个函数，其中一个是留给旧代码的**。这一篇把这两个的形态与边界说清。
 
-## 这一页的开场句
+## 这一节的开场句
 
-页面对模块的定位是一句：**模块是 Nuxt 的构件（building blocks）**。紧接着给了这一页存在的理由：**你可以用 `defineNuxtModule` 函数来定义一个模块，并用 `moduleDependencies` 选项来声明依赖**。
+页面对模块的定位是一句：**模块是 Nuxt 的构件（building blocks）**。紧接着给了这一节存在的理由：**你可以用 `defineNuxtModule` 函数来定义一个模块，并用 `moduleDependencies` 选项来声明依赖**。
 
-注意这句里两个动作分给了**同一个函数的两个键**——定义与依赖都不需要额外函数。这页只有 2 个条目的原因就在这里。
+注意这句里两个动作分给了**同一个函数的两个键**——定义与依赖都不需要额外函数。这一节只有 2 个条目的原因就在这里。
 
 ## 函数一：`defineNuxtModule`
 
@@ -123,24 +123,28 @@ export default defineNuxtModule({
 
 替代之所以成立，是因为右边那张表把"你在 `setup` 里手写的那段判断"变成了声明。**而 `moduleDependencies` 不能做的只有一件事：把一个已经拿到手的模块对象当依赖目标**——`installModule` 的 `moduleToInstall` 类型里包含 `NuxtModule`，声明式的键只接受字符串键。
 
-**新代码没有理由再调它**。但这一页仍然把它写全了，因为它还在 Kit 的公开出口里；看旧模块源码时会遇到。
+**新代码没有理由再调它**。但这一节仍然把它写全了，因为它还在 Kit 的公开出口里；看旧模块源码时会遇到。
 
-## 这一页没有的东西
+## 这一节没有的东西
 
-三个常被误以为在这页的能力：
+三个常被误以为在这一节的能力：
 
-- **注入插件、组件、组合式函数**：分别在 plugins、components、autoimports 三页。
-- **拿 `nuxt` 实例**：context 页的 `useNuxt` 与 `tryUseNuxt`（这一页的 `installModule` 只是**引用**了 `useNuxt()` 这个取法）。
+- **注入插件、组件、组合式函数**：分别在 plugins、components、autoimports 三节。
+- **拿 `nuxt` 实例**：context 页的 `useNuxt` 与 `tryUseNuxt`（这一节的 `installModule` 只是**引用**了 `useNuxt()` 这个取法）。
 - **路径解析**：`createResolver` 在 resolving 页，而几乎每个模块示例的前两行都用它。
 
-也就是说这一页管的是"模块怎么被定义出来"，从定义往外的每一步都要换页查。
+也就是说这一节管的是"模块怎么被定义出来"，从定义往外的每一步都要换页查。
 
 ## 自查两行
 
 1. 你的 `setup` 里有没有 `await installModule(...)`？**改成 `moduleDependencies` 后顺带把版本约束补上**（这是旧写法唯一给不了的东西）。
 2. 你在 `setup` 里读选项时有没有写 `options.x ?? 默认值` 这类兜底？**有默认值却还需要兜底，通常是没用 `.with()`**，属于类型问题而不是运行时问题。
 
-下一篇讲编程式用法那一页的五个函数——不用 `nuxt` 命令行动 Nuxt。
+下一篇讲编程式用法那一节的五个函数——不用 `nuxt` 命令行动 Nuxt。
+
+## 下一篇
+
+下一篇 645：编程式五函数：loadNuxt 两项、loadNuxtConfig 十一项与 diff 的五字段
 
 ## 本文依据
 

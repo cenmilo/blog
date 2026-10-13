@@ -1,6 +1,6 @@
 ---
 url: /posts/3958d9d48af59ff67511e890be4c7014/
-title: CDN 与静态资源路径：buildAssetsDir 与 cdnURL
+title: 522 - CDN 与静态资源路径：buildAssetsDir 与 cdnURL
 date: 2027-04-04T09:00:00+08:00
 updated: 2027-04-04T09:00:00+08:00
 author: cmdragon
@@ -54,13 +54,13 @@ NUXT_APP_CDN_URL=https://mycdn.org/ node .output/server/index.mjs
 
 这一点与 `buildAssetsDir` 那句"构建期固定、不该运行时定制"正好互补：**换 CDN 域名不需要重新构建，改资源目录名需要。**
 
-`use-runtime-config` 那页给了读取侧的对应说法：**"Nuxt uses `app` namespace in runtime-config with keys including `baseURL` and `cdnURL`. You can customize their values at runtime by setting environment variables."**，并且专门有一段讲 `app.cdnURL`：**"You can use a custom CDN for serving static assets inside `.output/public` using the `NUXT_APP_CDN_URL` environment variable."**——注意这句里的对象是 `.output/public` 里的静态资源。
+`use-runtime-config` 那一节给了读取侧的对应说法：**"Nuxt uses `app` namespace in runtime-config with keys including `baseURL` and `cdnURL`. You can customize their values at runtime by setting environment variables."**，并且专门有一段讲 `app.cdnURL`：**"You can use a custom CDN for serving static assets inside `.output/public` using the `NUXT_APP_CDN_URL` environment variable."**——注意这句里的对象是 `.output/public` 里的静态资源。
 
 ## 那一处例外：写死的 head 链接不会被解析
 
-`public/` 那页说得很清楚，这些文件**保持原名、不被构建过程修改**："Files contained within the `public/` directory are served at the root and are not modified by the build process. This is suitable for files that have to keep their names (e.g. `robots.txt`) *or* likely won't change (e.g. `favicon.ico`)."
+`public/` 那一节说得很清楚，这些文件**保持原名、不被构建过程修改**："Files contained within the `public/` directory are served at the root and are not modified by the build process. This is suitable for files that have to keep their names (e.g. `robots.txt`) *or* likely won't change (e.g. `favicon.ico`)."
 
-于是 SEO 那页专门写了一条 `::note`，处理的就是设了 `cdnURL` 之后的边界：
+于是 SEO 那一节专门写了一条 `::note`，处理的就是设了 `cdnURL` 之后的边界：
 
 > When you set `app.cdnURL`, assets in your `public/` directory (including `favicon.ico`) are served from that CDN. Nuxt resolves public assets against `cdnURL`, falling back to `app.baseURL`. However, a static `app.head` link such as `href: '/favicon.ico'` above is a literal path and is **not** resolved against `cdnURL`.
 
@@ -91,7 +91,7 @@ useHead({
 | 保持原名的文件 | `public/` | **不改名**（官方举例 `robots.txt` 要保名、`favicon.ico` 大概不会变） | Nuxt 按 `cdnURL` 解析、退回 `baseURL`；**字面量路径例外** |
 | `app/assets/` 里的资源 | 交给构建器 | **可以变**（官方明说可换名） | 走构建器解析 |
 
-public 那页还给了一个引用示例，说明这些文件在代码里就是按根路径写的：
+public 那一节还给了一个引用示例，说明这些文件在代码里就是按根路径写的：
 
 ```vue [app/app.vue]
 <script setup lang="ts">

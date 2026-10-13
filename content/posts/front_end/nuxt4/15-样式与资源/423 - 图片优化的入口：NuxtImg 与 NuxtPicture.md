@@ -1,6 +1,6 @@
 ---
 url: /posts/042bd18201da43ea40b4ff75d9c81742/
-title: 图片优化的入口：NuxtImg 与 NuxtPicture
+title: 423 - 图片优化的入口：NuxtImg 与 NuxtPicture
 date: 2027-03-02T09:00:00+08:00
 updated: 2027-03-02T09:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 先装模块
 
-两页的 Setup 段是同一句、同一条命令：
+两节的 Setup 段是同一句、同一条命令：
 
 > In order to use `<NuxtImg>` you should install and enable the Nuxt Image module:
 
@@ -58,7 +58,7 @@ npx nuxt module add image
 | 提供 `sizes` 就生成响应式尺寸 | 响应式是 `sizes` 触发的，不是自动猜 |
 | 支持原生懒加载和其它 `<img>` 属性 | `<img>` 能写的它基本能写 |
 
-performance 那页把这五条又复述了一遍，并额外说明 Image 模块"allows resizing and transforming your images using built-in optimizer or your favorite images CDN"——**内置优化器或你自己的图片 CDN** 两条路。
+performance 那一节把这五条又复述了一遍，并额外说明 Image 模块"allows resizing and transforming your images using built-in optimizer or your favorite images CDN"——**内置优化器或你自己的图片 CDN** 两条路。
 
 ## 输出形态：就是一个 img
 
@@ -86,12 +86,12 @@ performance 那页把这五条又复述了一遍，并额外说明 Image 模块"
 
 一句概括差别：**用法几乎相同，多的是能在可能时提供 `webp` 这类现代格式**。要 `<picture>` 元素本身的语义细节，官方指向 MDN。
 
-## 属性细节不在这两页
+## 属性细节不在这两节
 
-这两页都是**概要级**：各自末尾一条 `::read-more` 指向 Image 模块文档（`image.nuxt.com/usage/nuxt-img`、`.../nuxt-picture`）。所以：
+这两节都是**概要级**：各自末尾一条 `::read-more` 指向 Image 模块文档（`image.nuxt.com/usage/nuxt-img`、`.../nuxt-picture`）。所以：
 
-- **不要指望在 nuxt.com 的 4.x 参考里找到 `<NuxtImg>` 的完整属性表**——这两页没有表格，只有上面那五条能力清单。
-- 页面属性行为（`format`、`preload`、`fetchpriority` 等）在 performance 那页的示例里出现过零散用法，但成体系的参数说明归 Image 模块文档。
+- **不要指望在 nuxt.com 的 4.x 参考里找到 `<NuxtImg>` 的完整属性表**——这两节没有表格，只有上面那五条能力清单。
+- 页面属性行为（`format`、`preload`、`fetchpriority` 等）在 performance 那一节的示例里出现过零散用法，但成体系的参数说明归 Image 模块文档。
 
 这个边界很重要：写方案时按"模块文档为准"，而不是拿 Nuxt 核心参考页当属性清单。
 
@@ -101,7 +101,7 @@ performance 那页把这五条又复述了一遍，并额外说明 Image 模块"
 - NuxtImg 官方五条能力：内置 provider 优化本地/远程图、`src` 转成优化后 URL、按 `width`/`height` 自动缩放、给 `sizes` 才生成响应式尺寸、支持原生懒加载与其它 `<img>` 属性。
 - 输出**原生 `img` 标签、无 wrapper**，像用 `<img>` 一样用。
 - NuxtPicture 用法与 NuxtImg 几乎一致，额外能在可能时提供 `webp` 等现代格式。
-- 这两页是概要级，**没有属性表**；逐属性细节在 Image 模块自己的文档里。
+- 这两节是概要级，**没有属性表**；逐属性细节在 Image 模块自己的文档里。
 
 ## 下一篇
 

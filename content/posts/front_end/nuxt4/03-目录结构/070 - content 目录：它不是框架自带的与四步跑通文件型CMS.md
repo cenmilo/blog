@@ -1,12 +1,12 @@
 ---
 url: /posts/fe5d1b847a5ddd0b16e573dcfe8c9622/
-title: content 目录：它不是框架自带的，四步跑通一个文件型 CMS
+title: 070 - content 目录：它不是框架自带的，四步跑通一个文件型 CMS
 date: 2026-11-04T10:00:00+08:00
 updated: 2026-11-04T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：content/ 目录用来为你的应用创建一个基于文件的 CMS，但要点是它由 Nuxt Content 模块驱动而不是框架自带——官方在这一页写的是 Nuxt Content 读取你项目里的 content/ 目录并解析 .md、.yml、.csv 与 .json 文件来创建基于文件的 CMS，并给了四项能力：用内置组件渲染内容、用类 MongoDB 的 API 查询内容、用 MDC 语法在 Markdown 文件里使用你的 Vue 组件、自动生成导航。启用方式官方给的是"一条命令同时安装 @nuxt/content 模块并把它加进 nuxt.config.ts"：npx nuxt module add content。渲染内容的做法官方写得很具体：添加一个 catch-all 路由，在里面用 useAsyncData(route.path, () => queryCollection('content').path(route.path).first()) 按当前路径取到那条内容，再用 <ContentRenderer v-if="page" :value="page" /> 渲染出来——这意味着"为什么我的 markdown 放进 content/ 却不显示"通常不是目录问题，而是你还没有这条 catch-all 页面。
+  摘要：content/ 目录用来为你的应用创建一个基于文件的 CMS，但要点是它由 Nuxt Content 模块驱动而不是框架自带——官方在这一节写的是 Nuxt Content 读取你项目里的 content/ 目录并解析 .md、.yml、.csv 与 .json 文件来创建基于文件的 CMS，并给了四项能力：用内置组件渲染内容、用类 MongoDB 的 API 查询内容、用 MDC 语法在 Markdown 文件里使用你的 Vue 组件、自动生成导航。启用方式官方给的是"一条命令同时安装 @nuxt/content 模块并把它加进 nuxt.config.ts"：npx nuxt module add content。渲染内容的做法官方写得很具体：添加一个 catch-all 路由，在里面用 useAsyncData(route.path, () => queryCollection('content').path(route.path).first()) 按当前路径取到那条内容，再用 <ContentRenderer v-if="page" :value="page" /> 渲染出来——这意味着"为什么我的 markdown 放进 content/ 却不显示"通常不是目录问题，而是你还没有这条 catch-all 页面。
 
 categories:
   - 前端开发
@@ -110,13 +110,13 @@ const { data: page } = await useAsyncData(route.path, () => {
 
 **`useAsyncData(route.path, ...)` 这个写法值得多看一眼**：键就是路径，所以**换页面路径 = 换缓存键**（210-249 那段会展开键与复用的规则）。
 
-**这段代码也回答了一个高频疑问："我的 markdown 放进 `content/` 了，为什么浏览器打开 `/about` 是 404？"** 因为**这条 catch-all 页面是你必须自己写的**——官方在这页给的就是它，而不是"模块自动生成了路由"。
+**这段代码也回答了一个高频疑问："我的 markdown 放进 `content/` 了，为什么浏览器打开 `/about` 是 404？"** 因为**这条 catch-all 页面是你必须自己写的**——官方在这一节给的就是它，而不是"模块自动生成了路由"。
 
 ## 更深的内容能力：官方指向站外
 
 > （tip）前往 content.nuxt.com 以了解更多 Content 模块的特性，例如**如何构建查询**，以及**如何用 MDC 语法在你的 Markdown 文件里使用 Vue 组件**。
 
-**官方在这一页只到"能查、能用组件"这一层，具体 API 归 `content.nuxt.com`。** 所以这一系列里关于 `content/` 就讲到这里——**别指望在 Nuxt 主文档里找到 `queryCollection` 的全部方法列表。**
+**官方在这一节只到"能查、能用组件"这一层，具体 API 归 `content.nuxt.com`。** 所以这一系列里关于 `content/` 就讲到这里——**别指望在 Nuxt 主文档里找到 `queryCollection` 的全部方法列表。**
 
 ## 自查
 
@@ -128,7 +128,7 @@ const { data: page } = await useAsyncData(route.path, () => {
 
 ## 下一篇
 
-071 讲 `node_modules/`：官方在这一页只写了两句——它由包管理器创建、应加进 `.gitignore`。真正值得读的是它引出的两条：`modulesDir` 这个配置项与"自动导入不会为 `node_modules` 里的文件启用"这条性能取舍。
+071 讲 `node_modules/`：官方在这一节只写了两句——它由包管理器创建、应加进 `.gitignore`。真正值得读的是它引出的两条：`modulesDir` 这个配置项与"自动导入不会为 `node_modules` 里的文件启用"这条性能取舍。
 
 ## 本文依据
 

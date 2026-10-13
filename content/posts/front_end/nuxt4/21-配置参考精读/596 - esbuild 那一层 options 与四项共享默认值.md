@@ -1,6 +1,6 @@
 ---
 url: /posts/32d518cd5e364282ff00a1b525c59e85/
-title: esbuild 那一层 options 与四项共享默认值
+title: 596 - esbuild 那一层 options 与四项共享默认值
 date: 2027-04-28T11:00:00+08:00
 updated: 2027-04-28T11:00:00+08:00
 author: cmdragon

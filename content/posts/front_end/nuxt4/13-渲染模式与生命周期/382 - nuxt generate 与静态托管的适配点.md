@@ -1,6 +1,6 @@
 ---
 url: /posts/7d6b0542bc71bda9d5b1b9bd2e2b0db9/
-title: nuxt generate 与静态托管的适配点
+title: 382 - nuxt generate 与静态托管的适配点
 date: 2027-02-16T10:00:00+08:00
 updated: 2027-02-16T10:00:00+08:00
 author: cmdragon

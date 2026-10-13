@@ -1,6 +1,6 @@
 ---
 url: /posts/9820eb1e2257bf93b4ecb26c3bcdbb2d/
-title: 换布局时页面过渡不跑：layoutTransition 的两处入口与单根要求
+title: 208 - 换布局时页面过渡不跑：layoutTransition 的两处入口与单根要求
 date: 2026-12-20T10:00:00+08:00
 updated: 2026-12-20T10:00:00+08:00
 author: cmdragon
@@ -53,7 +53,7 @@ tags:
 
 三个层次都在里面：
 
-1. 要求对象**同时**是 page 和 layout（不是我以为的只管页面）。
+1. 要求对象**同时**是 page 和 layout（不只是管页面）。
 2. 违反以后先"动画不跑"，再"导航可能报错"。
 3. 提示只在开发环境出现——生产构建里你可能只剩下"点了没反应"。
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/668d9f2dbd15d4f55e9340725dbee726/
-title: preset 与 target：一份构建适配多个平台
+title: 515 - preset 与 target：一份构建适配多个平台
 date: 2027-04-01T11:00:00+08:00
 updated: 2027-04-01T11:00:00+08:00
 author: cmdragon
@@ -69,7 +69,7 @@ NITRO_PRESET=node-server nuxt build
 
 ## 4.x 的配置参考里几乎没有 preset
 
-这是最让人找不到东西的地方。`api/nuxt-config` 那一页对 `nitro` 这个顶层节的记载只有两句：**"Configuration for Nitro."** 与一个指向 **Nitro configuration docs** 的链接，展开的子项只有 `routeRules`（类型 `object`）与 `runtimeConfig`（类型 `object`，默认值那份 JSON 里是 `public: {}`、`app` 下四个键、`nitro.envPrefix: "NUXT_"`）。
+这是最让人找不到东西的地方。`api/nuxt-config` 那条配置条目对 `nitro` 这个顶层节的记载只有两句：**"Configuration for Nitro."** 与一个指向 **Nitro configuration docs** 的链接，展开的子项只有 `routeRules`（类型 `object`）与 `runtimeConfig`（类型 `object`，默认值那份 JSON 里是 `public: {}`、`app` 下四个键、`nitro.envPrefix: "NUXT_"`）。
 
 也就是说：**`preset` 这个键不在 Nuxt 的配置参考里列着，它是 Nitro 的配置项，经 `nitro` 节透传。** 完整清单在 Nitro 那边——部署页那句 "Check the Nitro deployment for all possible deployment presets and providers." 指向 `nitro.build/deploy`。
 
@@ -85,7 +85,7 @@ NITRO_PRESET=node-server nuxt build
 
 **部署平台的原生规则。** 混合渲染那段有一句：**"Whenever possible, route rules will be automatically applied to the deployment platform's native rules for optimal performances (Netlify and Vercel are currently supported)."** 也就是说选了这两个平台的预设，你的路由规则会尽量翻译给平台自己的机制，而不是只在 Nuxt 服务器里执行。
 
-**预览这一环会跟着变。** `nuxt preview` 那页写明：**"Some Nitro presets do not produce a server that can be run locally. For those, the preset's own preview command is run instead, and the command tells you what it is running."** 换个角度读这句：**本地预览能不能起来，是预设的属性，不是你的配置错了**。而命令会打印它到底在跑什么，这是官方唯一让你从输出里读出"这份产物按哪种方式起"的地方。
+**预览这一环会跟着变。** `nuxt preview` 那一节写明：**"Some Nitro presets do not produce a server that can be run locally. For those, the preset's own preview command is run instead, and the command tells you what it is running."** 换个角度读这句：**本地预览能不能起来，是预设的属性，不是你的配置错了**。而命令会打印它到底在跑什么，这是官方唯一让你从输出里读出"这份产物按哪种方式起"的地方。
 
 还有一类是进程模型的预设：`NITRO_PRESET=node_cluster` 用来用 Node 的 cluster 模块做多进程，官方说负载默认按 round robin 分给 worker。它在部署形态上仍属 Node 托管，差别只在起几个进程。
 

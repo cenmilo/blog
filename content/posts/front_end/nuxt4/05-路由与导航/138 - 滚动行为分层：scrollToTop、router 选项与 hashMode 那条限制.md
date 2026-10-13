@@ -1,6 +1,6 @@
 ---
 url: /posts/65a5bda851b78b3a0804c3ddfa58f03d/
-title: 滚动行为分层：scrollToTop、router 选项与 hashMode 那条限制
+title: 138 - 滚动行为分层：scrollToTop、router 选项与 hashMode 那条限制
 date: 2026-11-27T09:00:00+08:00
 updated: 2026-11-27T09:00:00+08:00
 author: cmdragon
@@ -141,7 +141,7 @@ export default defineNuxtConfig({
 
 ### `scrollBehaviorType`：只管 hash 链接
 
-配置参考里它的定义是"**自定义 hash 链接的滚动行为**"，类型 `string`、**默认 `"auto"`**。自定义路由那一页给了唯一被点名的另一种取值：
+配置参考里它的定义是"**自定义 hash 链接的滚动行为**"，类型 `string`、**默认 `"auto"`**。自定义路由那一节给了唯一被点名的另一种取值：
 
 > 你可以可选择地自定义 hash 链接的滚动行为。当你把配置设为 `smooth`，并且你加载一个带 hash 链接的页面（例如 `https://example.com/blog/my-article#comments`），你会看到浏览器**平滑滚动到这个锚点**。
 

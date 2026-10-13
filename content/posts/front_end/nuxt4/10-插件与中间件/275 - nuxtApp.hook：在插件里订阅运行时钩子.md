@@ -1,6 +1,6 @@
 ---
 url: /posts/43d634f3ab12024e5549d334ae23e17a/
-title: nuxtApp.hook：在插件里订阅运行时钩子
+title: 275 - nuxtApp.hook：在插件里订阅运行时钩子
 date: 2027-01-11T11:00:00+08:00
 updated: 2027-01-11T11:00:00+08:00
 author: cmdragon

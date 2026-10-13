@@ -1,12 +1,12 @@
 ---
 url: /posts/a5a126a21401e197f60ff0cc7af89e61/
-title: Node 服务器方式部署：入口文件与三处配置
+title: 514 - Node 服务器方式部署：入口文件与三处配置
 date: 2027-04-01T10:00:00+08:00
 updated: 2027-04-01T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：Node 托管这一路的重点不是命令，而是**这份产物是自包含的**：官方在 Server Engine 那页写明 Nitro 产出的是 "a standalone server dist that is independent of `node_modules`"，Nuxt 在 `nuxt build` 时把它生成到 `.output` 目录，里面同时包含"在任何环境跑 Nuxt 服务端的运行时代码"与静态文件的提供。对照证据是 `nuxt preview` 那条：官方特意注明它**要求依赖装在包目录里**——也就是说预览命令要用 `node_modules`，而生产的 `.output/server/index.mjs` 不要。配置侧只有三处：入口命令、端口与主机的环境变量对（`NITRO_PORT`/`PORT`、`NITRO_HOST`/`HOST`）、以及 SSL 那一对（官方只建议测试用）。
+  摘要：Node 托管这一路的重点不是命令，而是**这份产物是自包含的**：官方在 Server Engine 那一节写明 Nitro 产出的是 "a standalone server dist that is independent of `node_modules`"，Nuxt 在 `nuxt build` 时把它生成到 `.output` 目录，里面同时包含"在任何环境跑 Nuxt 服务端的运行时代码"与静态文件的提供。对照证据是 `nuxt preview` 那条：官方特意注明它**要求依赖装在包目录里**——也就是说预览命令要用 `node_modules`，而生产的 `.output/server/index.mjs` 不要。配置侧只有三处：入口命令、端口与主机的环境变量对（`NITRO_PORT`/`PORT`、`NITRO_HOST`/`HOST`）、以及 SSL 那一对（官方只建议测试用）。
 
 categories:
   - 前端开发
@@ -28,7 +28,7 @@ tags:
 
 ## 为什么说这份产物是自包含的
 
-Server Engine 那页有一节标题就是 Standalone Server，第一句是定性：
+Server Engine 那一节里有个标题就是 Standalone Server，第一句是定性：
 
 > Nitro produces a standalone server dist that is independent of `node_modules`.
 
@@ -44,7 +44,7 @@ Server Engine 那页有一节标题就是 Standalone Server，第一句是定性
 
 ## 一条对照证据：preview 要依赖，生产入口不要
 
-`nuxt preview` 那页在讲生产环境的替代做法时，有一句限定：**"Note that this command requires dependencies to be installed in the package directory."**（这句在 `.env` 页的生产预览段里也写了同一遍。）
+`nuxt preview` 那一节在讲生产环境的替代做法时，有一句限定：**"Note that this command requires dependencies to be installed in the package directory."**（这句在 `.env` 页的生产预览段里也写了同一遍。）
 
 把它和 Standalone Server 那句放在一起看，就得到一个具体的操作结论：
 

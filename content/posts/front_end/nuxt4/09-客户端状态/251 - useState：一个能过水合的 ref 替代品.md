@@ -1,12 +1,12 @@
 ---
 url: /posts/295218c3985a6eefb7b5acf29c4f984d/
-title: useState：一个能过水合的 ref 替代品
+title: 251 - useState：一个能过水合的 ref 替代品
 date: 2027-01-03T11:00:00+08:00
 updated: 2027-01-03T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一篇只看 `useState` 这一页写了什么。**签名两条重载**：`useState<T> (init?: () => T | Ref<T>): Ref<T>` 与 `useState<T> (key: string, init?: () => T | Ref<T>): Ref<T>`——**返回值永远是一个 `Ref`**，所以 `counter.value` 才是值。两个参数的官方说明我逐字抄：`key` 是 "A unique key ensuring that data fetching is properly de-duplicated across requests. If you do not provide a key, then a key that is unique to the file and line number of the instance of `useState` will be generated for you."（注意这句用的是**取数那套"去重"措辞**）；`init` 是 "A function that provides initial value for the state when not initiated. **This function can also return a `Ref`.**"；`T` 标了 "(typescript only) Specify the type of state"。最短用法是 `const count = useState('counter', () => Math.round(Math.random() * 100))`。三条限制：important——"Because the data inside `useState` will be serialized to JSON, it is important that it does not contain anything that cannot be serialized, such as classes, functions or symbols."；warning——"`useState` is a reserved function name transformed by the compiler, so you should not name your own function `useState`."；以及一个可选优化：**"If you don't need your state to be deeply reactive, you can combine `useState` with `shallowRef`. This can improve performance when your state contains large objects and arrays."**，官方还给了判据注释 `// isShallow(state) === true`。
+  摘要：这一篇只看 `useState` 这一节写了什么。**签名两条重载**：`useState<T> (init?: () => T | Ref<T>): Ref<T>` 与 `useState<T> (key: string, init?: () => T | Ref<T>): Ref<T>`——**返回值永远是一个 `Ref`**，所以 `counter.value` 才是值。两个参数的官方说明我逐字抄：`key` 是 "A unique key ensuring that data fetching is properly de-duplicated across requests. If you do not provide a key, then a key that is unique to the file and line number of the instance of `useState` will be generated for you."（注意这句用的是**取数那套"去重"措辞**）；`init` 是 "A function that provides initial value for the state when not initiated. **This function can also return a `Ref`.**"；`T` 标了 "(typescript only) Specify the type of state"。最短用法是 `const count = useState('counter', () => Math.round(Math.random() * 100))`。三条限制：important——"Because the data inside `useState` will be serialized to JSON, it is important that it does not contain anything that cannot be serialized, such as classes, functions or symbols."；warning——"`useState` is a reserved function name transformed by the compiler, so you should not name your own function `useState`."；以及一个可选优化：**"If you don't need your state to be deeply reactive, you can combine `useState` with `shallowRef`. This can improve performance when your state contains large objects and arrays."**，官方还给了判据注释 `// isShallow(state) === true`。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-250 讲了"为什么需要它"，这一篇讲"它到底是什么形状"。先记一句定性：官方在状态管理那页写的是 **"`useState` is an SSR-friendly `ref` replacement"**——它是 `ref` 的替换品，不是 store。
+250 讲了"为什么需要它"，这一篇讲"它到底是什么形状"。先记一句定性：官方在状态管理那一节写的是 **"`useState` is an SSR-friendly `ref` replacement"**——它是 `ref` 的替换品，不是 store。
 
 ## 两条重载与它给的两样东西
 
@@ -35,7 +35,7 @@ export function useState<T> (init?: () => T | Ref<T>): Ref<T>
 export function useState<T> (key: string, init?: () => T | Ref<T>): Ref<T>
 ```
 
-**两条的返回都是 `Ref<T>`**。这是本页最容易忘的事：`useState` 给你的不是值，是一个 ref，所以模板里能直接用、`<script setup>` 里要 `.value`（和 214 讲的取数返回值同一套规则）。
+**两条的返回都是 `Ref<T>`**。这是最容易忘的事：`useState` 给你的不是值，是一个 ref，所以模板里能直接用、`<script setup>` 里要 `.value`（和 214 讲的取数返回值同一套规则）。
 
 最短示例（官方 Usage）：
 
@@ -135,7 +135,7 @@ const state = useState('my-shallow-state', () => shallowRef({ deep: 'not reactiv
 | `useNuxtData` | `useAsyncData`、`useLazyAsyncData`、`useFetch`、`useLazyFetch`（**四个取数 composable**） |
 | `clearNuxtData` | "cached data, error status and pending promises of useAsyncData and useFetch" |
 
-也就是说：**状态用 `useState` + `clearNuxtState` 这一对，取数用另一对**。我见过有人拿 `clearNuxtData()` 想清 `useState` 的值——按这两页的文字，它管的不是同一个东西（252 细说清理）。
+也就是说：**状态用 `useState` + `clearNuxtState` 这一对，取数用另一对**。常见的一种误用是拿 `clearNuxtData()` 想清 `useState` 的值——按这两节的文字，它管的不是同一个东西（252 细说清理）。
 
 ## 自查
 

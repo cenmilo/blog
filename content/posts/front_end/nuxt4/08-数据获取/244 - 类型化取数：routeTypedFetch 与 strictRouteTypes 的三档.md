@@ -1,6 +1,6 @@
 ---
 url: /posts/eacf310b3191e1e19306b5e344d3ca5e/
-title: 类型化取数：routeTypedFetch 与 strictRouteTypes 的三档
+title: 244 - 类型化取数：routeTypedFetch 与 strictRouteTypes 的三档
 date: 2027-01-01T10:00:00+08:00
 updated: 2027-01-01T10:00:00+08:00
 author: cmdragon

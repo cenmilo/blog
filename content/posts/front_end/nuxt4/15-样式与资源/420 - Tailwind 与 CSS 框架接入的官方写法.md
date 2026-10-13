@@ -1,12 +1,12 @@
 ---
 url: /posts/e7dd82324d4258f8aae531c7aa23f61d/
-title: Tailwind 与 CSS 框架接入的官方写法
+title: 420 - Tailwind 与 CSS 框架接入的官方写法
 date: 2027-03-01T09:00:00+08:00
 updated: 2027-03-01T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：styling 那页对第三方样式工具的态度写在一句里："Nuxt isn't opinionated when it comes to styling and provides you with a wide variety of options. You can use any styling tool that you want, such as popular libraries like UnoCSS or Tailwind CSS."——也就是说**它不给某个框架官方钦定的安装步骤**，只给两条通用路径。① 用模块：官方列了六个入口（UnoCSS＝即时按需原子 CSS 引擎、Tailwind CSS＝utility-first 框架、Fontaine＝字体度量回退、Pinceau＝可适配样式框架、Nuxt UI＝现代 Web 应用的 UI 库、Panda CSS＝构建期生成原子 CSS 的 CSS-in-JS 引擎），更多在站点的 modules 页找。② 没有模块也能用：官方明写"it doesn't mean that you can't use it with Nuxt! You can configure it yourself"，可能需要一个 Nuxt 插件和/或自己做一个模块。另外加载网络字体有 Google Fonts 模块，UnoCSS 自带 web fonts presets。
+  摘要：styling 那一节对第三方样式工具的态度写在一句里："Nuxt isn't opinionated when it comes to styling and provides you with a wide variety of options. You can use any styling tool that you want, such as popular libraries like UnoCSS or Tailwind CSS."——也就是说**它不给某个框架官方钦定的安装步骤**，只给两条通用路径。① 用模块：官方列了六个入口（UnoCSS＝即时按需原子 CSS 引擎、Tailwind CSS＝utility-first 框架、Fontaine＝字体度量回退、Pinceau＝可适配样式框架、Nuxt UI＝现代 Web 应用的 UI 库、Panda CSS＝构建期生成原子 CSS 的 CSS-in-JS 引擎），更多在站点的 modules 页找。② 没有模块也能用：官方明写"it doesn't mean that you can't use it with Nuxt! You can configure it yourself"，可能需要一个 Nuxt 插件和/或自己做一个模块。另外加载网络字体有 Google Fonts 模块，UnoCSS 自带 web fonts presets。
 
 categories:
   - 前端开发
@@ -47,7 +47,7 @@ tags:
 | [Nuxt UI](https://ui.nuxt.com) | A UI Library for Modern Web Apps |
 | [Panda CSS](https://panda-css.com/docs/installation/nuxt) | CSS-in-JS engine that generates atomic CSS at build time |
 
-Tailwind 就是走这张表里的 `nuxt.com/modules/tailwindcss`。模块本身的具体配置不在 styling 页展开——这也是为什么本系列把模块机制放在 P10/P15 之外的模块分区讲（630 起是图层/模块作者向）。
+Tailwind 就是走这张表里的 `nuxt.com/modules/tailwindcss`。模块本身的具体配置不在 styling 页展开——这也是为什么本系列把模块机制放在 270-299 那几篇/415-434 之外的模块分区讲（630 起是图层/模块作者向）。
 
 ## 路径二：没有模块也能接
 

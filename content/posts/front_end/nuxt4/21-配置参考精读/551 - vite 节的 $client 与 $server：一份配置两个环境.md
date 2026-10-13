@@ -1,6 +1,6 @@
 ---
 url: /posts/d19da23a7dc955e40303fcde79619681/
-title: vite 节的 $client 与 $server：一份配置两个环境
+title: 551 - vite 节的 $client 与 $server：一份配置两个环境
 date: 2027-04-13T11:00:00+08:00
 updated: 2027-04-13T11:00:00+08:00
 author: cmdragon

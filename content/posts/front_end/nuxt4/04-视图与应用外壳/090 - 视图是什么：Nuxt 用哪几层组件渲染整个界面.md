@@ -1,6 +1,6 @@
 ---
 url: /posts/742dab4c59020b27a5656ec038f29f30/
-title: 视图是什么：Nuxt 用哪几层组件渲染整个界面
+title: 090 - 视图是什么：Nuxt 用哪几层组件渲染整个界面
 date: 2026-11-11T09:00:00+08:00
 updated: 2026-11-11T09:00:00+08:00
 author: cmdragon

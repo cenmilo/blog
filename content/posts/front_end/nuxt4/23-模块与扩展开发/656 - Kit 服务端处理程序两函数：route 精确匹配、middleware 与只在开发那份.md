@@ -1,12 +1,12 @@
 ---
 url: /posts/e6b715fb7e0d24e9545d9bdc04997251/
-title: Kit 服务端处理程序两函数：route 精确匹配、middleware 与只在开发那份
+title: 656 - Kit 服务端处理程序两函数：route 精确匹配、middleware 与只在开发那份
 date: 2027-05-18T11:00:00+08:00
 updated: 2027-05-18T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：往服务端加路由有两条路：**`addServerHandler` 加一份会进产物的 handler，`addDevServerHandler` 加只在开发期用、生产构建里被排除的那一份**。两者的字段都是五个，而 `route` 的语义是本页最要紧的一句：**"要精确匹配的路由；以 `/**` 结尾则同时匹配它下面的路径；给空字符串时这个 handler 被注册为 middleware"**。`/**` 那条还有一句补偿：**Nitro 2 宿主的路由只匹配基路径下面的部分，所以 Nuxt 会把基路径再注册一次，让同一次注册在两边表现一致**。开发版那一栏里，**`method`、`middleware`、`route` 三项在 `nitropack` v2 宿主上都会变规则**（method 被忽略、每个 dev handler 都当 middleware 跑、不带 `/**` 的路由也匹配其下路径）。
+  摘要：往服务端加路由有两条路：**`addServerHandler` 加一份会进产物的 handler，`addDevServerHandler` 加只在开发期用、生产构建里被排除的那一份**。两者的字段都是五个，而 `route` 的语义是那一节最要紧的一句：**"要精确匹配的路由；以 `/**` 结尾则同时匹配它下面的路径；给空字符串时这个 handler 被注册为 middleware"**。`/**` 那条还有一句补偿：**Nitro 2 宿主的路由只匹配基路径下面的部分，所以 Nuxt 会把基路径再注册一次，让同一次注册在两边表现一致**。开发版那一栏里，**`method`、`middleware`、`route` 三项在 `nitropack` v2 宿主上都会变规则**（method 被忽略、每个 dev handler 都当 middleware 跑、不带 `/**` 的路由也匹配其下路径）。
 
 categories:
   - 前端开发
@@ -30,7 +30,7 @@ tags:
 
 页面先交代 Nitro 是什么：**一个用于构建极快 Web 服务器的开源 TypeScript 框架，Nuxt 用它作为服务端引擎**。然后点名可用函数：**`useNitro` 取实例（如果你的模块在没有 Nitro 时也要工作就用 `tryUseNitro`）、`addServerHandler` 加服务端处理程序、`addDevServerHandler` 加只在开发模式使用的那一份、`addNitroPlugin` 加插件扩展 Nitro 的运行时行为、`addPrerenderRoutes` 加要被预渲染的路由**。
 
-**这句点了六个名字，而页上有九个条目**——`addServerImports`、`addServerImportsDir`、`addServerScanDir` 三个没在开场句里。本页讲前三个（两个 handler ＋ 预渲染），其余留到下一篇。
+**这句点了六个名字，而页上有九个条目**——`addServerImports`、`addServerImportsDir`、`addServerScanDir` 三个没在开场句里。这一篇讲前三个（两个 handler ＋ 预渲染），其余留到下一篇。
 
 ## `addServerHandler`：五个字段
 
@@ -176,7 +176,7 @@ export default defineNuxtModule({
 })
 ```
 
-**这一页没写它的时机要求**，也就是说没有说在哪个钩子之前调用才有效——这与 `useNitro` 那节明写的"只能在 `ready` 钩子之后调用"形成对照，所以**不要把两者的时机假设混用**。
+**这一节没写它的时机要求**，也就是说没有说在哪个钩子之前调用才有效——这与 `useNitro` 那节明写的"只能在 `ready` 钩子之后调用"形成对照，所以**不要把两者的时机假设混用**。
 
 ## 两者怎么选
 
@@ -190,6 +190,10 @@ export default defineNuxtModule({
 文档未记载的还有：`addServerHandler` 的同名 `route` 重复注册会怎样、`lazy` 与 `meta` 是否适用于生产 handler（`meta` 只在 dev 那张表里出现）、以及 dev handler 在 `server.builder` 不是 Nitro 时是否仍然注册。
 
 下一篇讲 Nitro 其余六个函数：两个取实例的、一个插件的，和三个扫描目录的。
+
+## 下一篇
+
+下一篇 657：Kit Nitro 其余六函数：拿实例的两个时机、服务端插件与三个扫描目录
 
 ## 本文依据
 

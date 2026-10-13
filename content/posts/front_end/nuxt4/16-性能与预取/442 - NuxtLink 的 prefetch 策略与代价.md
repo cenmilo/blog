@@ -1,6 +1,6 @@
 ---
 url: /posts/4d1442c9bc66bcffa114518c7f2990cc/
-title: NuxtLink 的 prefetch 策略与代价
+title: 442 - NuxtLink 的 prefetch 策略与代价
 date: 2027-03-08T10:00:00+08:00
 updated: 2027-03-08T10:00:00+08:00
 author: cmdragon
@@ -30,11 +30,11 @@ tags:
 
 ## 默认在做什么
 
-两页都写了这句：
+两节都写了这句：
 
 > Nuxt automatically includes smart prefetching. That means it detects when a link is visible (by default), either in the viewport or when scrolling and prefetches the JavaScript for those pages so that they are ready when the user clicks the link.
 
-紧接着组件那一页补了让步条件，这句经常被漏掉：
+紧接着组件那一节补了让步条件，这句经常被漏掉：
 
 > Nuxt only loads the resources when the browser isn't busy and skips prefetching if your connection is offline or if you only have 2g connection.
 
@@ -78,7 +78,7 @@ tags:
 
 > This configuration will observe when the element enters the viewport and also listen for `pointerenter` and `focus` events. This may result in unnecessary resource usage or redundant prefetching, as both triggers can prefetch the same resource under different conditions.
 
-两个触发器会在不同条件下取同一份资源，结果是**资源浪费或重复预取**。性能那一页给的"改成按交互预取"的配置，正是把另一个关掉：
+两个触发器会在不同条件下取同一份资源，结果是**资源浪费或重复预取**。性能那一节给的"改成按交互预取"的配置，正是把另一个关掉：
 
 ```ts
 export default defineNuxtConfig({

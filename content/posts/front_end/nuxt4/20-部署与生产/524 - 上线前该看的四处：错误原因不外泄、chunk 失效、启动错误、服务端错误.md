@@ -1,6 +1,6 @@
 ---
 url: /posts/9339b84f8c510d0f9c54f933d0e4cb97/
-title: 上线前该看的四处：错误原因不外泄、chunk 失效、启动错误、服务端错误
+title: 524 - 上线前该看的四处：错误原因不外泄、chunk 失效、启动错误、服务端错误
 date: 2027-04-04T11:00:00+08:00
 updated: 2027-04-04T11:00:00+08:00
 author: cmdragon
@@ -81,7 +81,7 @@ tags:
 
 ## 四：静态部署下错误页是空壳
 
-这一条属于部署侧与错误处理的交叉处，官方在两页都写了。渲染概念页：**"By default `404.html` is an empty shell, so your `error.vue` (and its layout and data) only appear once the client app has booted."**，要它带内容就设 `experimental.prerenderErrorPages`，Nuxt 会在构建期用一个合成的 404 错误渲 `error.vue` 写进 `404.html`；还能传 400-599 之间的状态码数组（示例 `[404, 500]`）多渲几页。
+这一条属于部署侧与错误处理的交叉处，官方在两节都写了。渲染概念页：**"By default `404.html` is an empty shell, so your `error.vue` (and its layout and data) only appear once the client app has booted."**，要它带内容就设 `experimental.prerenderErrorPages`，Nuxt 会在构建期用一个合成的 404 错误渲 `error.vue` 写进 `404.html`；还能传 400-599 之间的状态码数组（示例 `[404, 500]`）多渲几页。
 
 但那条随之而来的限制更要记住：同一个文件服务所有缺失路径，所以**错误页不能依赖请求**——`useRoute()`、`useRequestURL()` 以及按当前路径取的数据在预渲染的 HTML 里是构建期的值，水合时才纠正。官方给的两条应对是：请求相关的标记包进 `<ClientOnly>`，请求相关的数据用 `import.meta.prerender` 跳过。
 

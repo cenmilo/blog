@@ -1,6 +1,6 @@
 ---
 url: /posts/cd7ce788442be1bcf72aa3af4d4e64c6/
-title: 服务端中间件：server 下的 middleware 跑在每个请求且不许返回
+title: 291 - 服务端中间件：server 下的 middleware 跑在每个请求且不许返回
 date: 2027-01-17T09:00:00+08:00
 updated: 2027-01-17T09:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 它在哪、跑多勤
 
-server 那页 "Server Middleware" 一节：
+server 那一节 "Server Middleware" 一节：
 
 > Nuxt will automatically read in any file in the `~~/server/middleware` to create server middleware for your project.
 > Middleware handlers will run on every request before any other server route to add or check headers, log requests, or extend the event's request object.
@@ -42,7 +42,7 @@ server 那页 "Server Middleware" 一节：
 
 ## 最硬的规则：不该返回任何东西
 
-这条和前端中间件完全相反，单拎出来记。server 那页的 note：
+这条和前端中间件完全相反，单拎出来记。server 那一节的 note：
 
 > Middleware handlers should not return anything (nor close or respond to the request) and only inspect or extend the request context or throw an error.
 
@@ -79,7 +79,7 @@ export default defineEventHandler((event) => {
 
 ## 别和前端 Vue 代码混
 
-服务端中间件里不要 import 前端应用代码。server 那页开头那条 important 划的就是这条边界：
+服务端中间件里不要 import 前端应用代码。server 那一节开头那条 important 划的就是这条边界：
 
 > Do not import Vue app code (components, composables, or other app-only utilities) in your server routes or utilities, and do not import server-only code in your app.
 

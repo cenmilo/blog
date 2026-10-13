@@ -1,6 +1,6 @@
 ---
 url: /posts/2cb886f06113bd1b67f4021a848c4c12/
-title: vite 节的其他子项：那些默认值与两处不一致
+title: 552 - vite 节的其他子项：那些默认值与两处不一致
 date: 2027-04-14T09:00:00+08:00
 updated: 2027-04-14T09:00:00+08:00
 author: cmdragon
@@ -74,7 +74,7 @@ tags:
 
 四行是 `process.*`／`import.meta.*` 形态的**同名双写**（同一个标志在两种写法下都给值），第一行是 Vue 的编译标志。
 
-`__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` 这个名字直译是"生产环境水合不匹配的细节"。**Nuxt 文档在这里只给了默认 `false`，没有解释打开后会有什么输出**——它是 Vue 侧的标志，效果说明不在这一页。要用水合不匹配的详细信息，就得知道这个默认值是关着的。
+`__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` 这个名字直译是"生产环境水合不匹配的细节"。**Nuxt 文档在这里只给了默认 `false`，没有解释打开后会有什么输出**——它是 Vue 侧的标志，效果说明不在这一节。要用水合不匹配的详细信息，就得知道这个默认值是关着的。
 
 ## transformAssetUrls 那张表
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/77a4d6857029a698271a34c4511a5277/
-title: app 节剩下的八个键：root、spaLoader 与 teleport 三组定制
+title: 548 - app 节剩下的八个键：root、spaLoader 与 teleport 三组定制
 date: 2027-04-12T11:00:00+08:00
 updated: 2027-04-12T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`app` 节剩下的八个键都在改"挂在 DOM 上的那几个容器元素"：`rootAttrs`（`object`，默认 `{"id": "__nuxt"}`）、`rootId`（`string`，默认 `"__nuxt"`）、`rootTag`（默认 `"div"`）、`spaLoaderAttrs`（默认 `{"id": "__nuxt-loader"}`，下面还多一个 `id` 子项）、`spaLoaderTag`（默认 `"div"`）、`teleportAttrs`（默认 `{"id": "teleports"}`）、`teleportId`（默认 `"teleports"`）、`teleportTag`（默认 `"div"`）。**这一节有一处明显的复制痕迹：`rootAttrs` 与 `rootId` 的说明文字一模一样，都写 "Customize Nuxt root element id."**，尽管前者是对象、后者是字符串。第三组要小心：`<Teleport>` 那页写着 **Nuxt 目前只对 teleports 到 `#teleports` 提供 SSR 支持**，而 `#teleports` 正是 `teleportId` 的默认值。
+  摘要：`app` 节剩下的八个键都在改"挂在 DOM 上的那几个容器元素"：`rootAttrs`（`object`，默认 `{"id": "__nuxt"}`）、`rootId`（`string`，默认 `"__nuxt"`）、`rootTag`（默认 `"div"`）、`spaLoaderAttrs`（默认 `{"id": "__nuxt-loader"}`，下面还多一个 `id` 子项）、`spaLoaderTag`（默认 `"div"`）、`teleportAttrs`（默认 `{"id": "teleports"}`）、`teleportId`（默认 `"teleports"`）、`teleportTag`（默认 `"div"`）。**这一节有一处明显的复制痕迹：`rootAttrs` 与 `rootId` 的说明文字一模一样，都写 "Customize Nuxt root element id."**，尽管前者是对象、后者是字符串。第三组要小心：`<Teleport>` 那一节写着 **Nuxt 目前只对 teleports 到 `#teleports` 提供 SSR 支持**，而 `#teleports` 正是 `teleportId` 的默认值。
 
 categories:
   - 前端开发
@@ -60,7 +60,7 @@ tags:
 
 ## teleportId 这一项有配套约束
 
-`<Teleport>` 组件那页有一条 `::warning`，正好落在 `teleportId` 上：
+`<Teleport>` 组件那一节有一条 `::warning`，正好落在 `teleportId` 上：
 
 > The `to` target of `<Teleport>` expects a CSS selector string or an actual DOM node. Nuxt currently has SSR support for teleports to `#teleports` only, with client-side support for other targets using a `<ClientOnly>` wrapper.
 
@@ -93,7 +93,7 @@ tags:
 - 三组形状相同：Attrs（对象）＋ Id（字符串）＋ Tag（字符串），Tag 默认都是 `"div"`；默认 id 分别是 `__nuxt`、`__nuxt-loader`、`teleports`。
 - **`rootAttrs` 的说明句与 `rootId` 一字不差**（都写 "root element id"），按 `teleportAttrs`/`spaLoaderAttrs` 的措辞读，它其实是属性对象；Attrs 与 Id 重叠在 `id` 上，只改一组。
 - 标签名的可选范围、换标签的影响文档未给，改后要构建验证。
-- `teleportId` 有配套约束：`<Teleport>` 那页说 SSR 只支持 `#teleports`；改 id 后 SSR 支持是否跟随，官方没写——保持默认最稳。
+- `teleportId` 有配套约束：`<Teleport>` 那一节说 SSR 只支持 `#teleports`；改 id 后 SSR 支持是否跟随，官方没写——保持默认最稳。
 - `spaLoaderAttrs`/`spaLoaderTag` 改的是容器元素，占位内容本身在 `spaLoadingTemplate` 那节。
 
 ## 下一篇

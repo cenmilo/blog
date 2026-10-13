@@ -1,6 +1,6 @@
 ---
 url: /posts/f79b2328be55b168c03e14cdbea72c0f/
-title: Nuxt 自身的钩子顺序：从 app-created 到 app-rendered
+title: 371 - Nuxt 自身的钩子顺序：从 app-created 到 app-rendered
 date: 2027-02-12T11:00:00+08:00
 updated: 2027-02-12T11:00:00+08:00
 author: cmdragon

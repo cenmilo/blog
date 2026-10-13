@@ -1,6 +1,6 @@
 ---
 url: /posts/a340547181d0e4bfa66cfc688c67ea90/
-title: CLI 内幕：nuxt.lock、进程与端口占用
+title: 715 - CLI 内幕：nuxt.lock、进程与端口占用
 date: 2027-06-07T10:00:00+08:00
 updated: 2027-06-07T10:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 三个执行位置，对应两套调试端口
 
-`dev` 那一页把这件事写在 Debugging 一节的开头：`--inspect` 打开的是**你的服务端代码**的 Node.js inspector——服务端路由、中间件、服务端渲染，**它们跑在一个 Nitro 工作线程里**。它接受可选的 `[host:]port`，**默认 `127.0.0.1:9229`**，所以 Chrome DevTools（`chrome://inspect`）与多数编辑器不用配置就能找到；服务端重载时你的调试器会自动重连。
+`dev` 那一节把这件事写在 Debugging 一节的开头：`--inspect` 打开的是**你的服务端代码**的 Node.js inspector——服务端路由、中间件、服务端渲染，**它们跑在一个 Nitro 工作线程里**。它接受可选的 `[host:]port`，**默认 `127.0.0.1:9229`**，所以 Chrome DevTools（`chrome://inspect`）与多数编辑器不用配置就能找到；服务端重载时你的调试器会自动重连。
 
 而另外那部分代码在**另一个进程**：
 
@@ -52,7 +52,7 @@ tags:
 - `NUXT_IGNORE_LOCK=1`：仍然起第二个服务器，文档对这个选项的态度是 **unsupported**。
 - `--no-takeover`：**绝不停掉**这个项目上已在运行的开发服务器。
 
-这把锁还服务别的命令：**`nuxt curl` 与 `nuxt task` 就是靠同一个锁文件找到要对话的服务器的**，curl 那一页也重复了这一点并补了一句：因此这些命令只在 `nuxt dev` 正在为该项目运行时有效；传绝对 URL 才能去跟别的服务对话。
+这把锁还服务别的命令：**`nuxt curl` 与 `nuxt task` 就是靠同一个锁文件找到要对话的服务器的**，curl 那一节也重复了这一点并补了一句：因此这些命令只在 `nuxt dev` 正在为该项目运行时有效；传绝对 URL 才能去跟别的服务对话。
 
 构建目录默认是 `.nuxt`，但如果配置里的 `buildDir` 改了，锁文件跟着去别处。
 
@@ -62,7 +62,7 @@ tags:
 
 **默认行为是端口被占用时换一个**，因为 `--strictPort` 的默认是 `false`；把它设上，请求的端口不可用时就**直接退出而不是换一个**。这个差别对 CI 与脚本很重要：默认行为会让"端口被别的进程占了"表现成"服务起在了另一个端口上"。
 
-另外这一页还写了一句容易被忽略的事实：**这条命令会把 `process.env.NODE_ENV` 设成 `development`。**
+另外这一节还写了一句容易被忽略的事实：**这条命令会把 `process.env.NODE_ENV` 设成 `development`。**
 
 ## reload 与 restart 不是一回事
 
@@ -139,6 +139,10 @@ Restarts 那一节的区分很干脆：
 - "浏览器能访问但服务端 fetch 报证书错"：`NODE_EXTRA_CA_CERTS` 没设。
 
 下一篇讲 `nuxt docs` 这条命令与它的离线文档检索：它和 MCP、llms.txt 是三种不同的"从终端查文档"的路。
+
+## 下一篇
+
+下一篇 716：nuxt docs 命令与离线文档检索：查的是你项目那一个版本
 
 ## 本文依据
 

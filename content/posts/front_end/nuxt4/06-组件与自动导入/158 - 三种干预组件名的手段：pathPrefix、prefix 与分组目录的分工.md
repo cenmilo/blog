@@ -1,6 +1,6 @@
 ---
 url: /posts/b4d8d0f71f2e188f0f4cdb0bf30010e2/
-title: 三种干预组件名的手段：pathPrefix、prefix 与分组目录的分工
+title: 158 - 三种干预组件名的手段：pathPrefix、prefix 与分组目录的分工
 date: 2026-12-03T11:00:00+08:00
 updated: 2026-12-03T11:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/46127ff9a70346124b1623216d387479/
-title: 组织测试文件：官方 Organizing Your Tests 一节的四件事
+title: 504 - 组织测试文件：官方 Organizing Your Tests 一节的四件事
 date: 2027-03-29T09:00:00+08:00
 updated: 2027-03-29T09:00:00+08:00
 author: cmdragon
@@ -43,7 +43,7 @@ test/
 │   └── utils.test.ts
 ```
 
-四个示例文件的位置各对应一类被测对象：`ssr.test.ts` 在 `e2e/`、组件与组合式函数在 `nuxt/`、工具函数在 `unit/`。这份树与 `directory-structure/test` 那页给的三行目录是同一套，只是那页只列目录、这页填了文件。
+四个示例文件的位置各对应一类被测对象：`ssr.test.ts` 在 `e2e/`、组件与组合式函数在 `nuxt/`、工具函数在 `unit/`。这份树与 `directory-structure/test` 那一节给的三行目录是同一套，只是那一节只列目录、这份树把文件也列了出来。
 
 ## 二、唯一一句硬性理由
 

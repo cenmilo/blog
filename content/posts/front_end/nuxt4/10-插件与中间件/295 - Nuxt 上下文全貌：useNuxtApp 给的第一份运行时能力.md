@@ -1,12 +1,12 @@
 ---
 url: /posts/3bbe37248497026591efdcba8a006653/
-title: Nuxt 上下文全貌：useNuxtApp 给的第一份运行时能力
+title: 295 - Nuxt 上下文全貌：useNuxtApp 给的第一份运行时能力
 date: 2027-01-18T10:00:00+08:00
 updated: 2027-01-18T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：这半章讲的所有东西都挂在一个叫"Nuxt 上下文"的概念上，而 useNuxtApp() 就是拿到它的入口。这一篇把 nuxt-app 那页的口径收拢：上下文为什么"每个请求新建一个、不是到处都存在"、它只在插件、Nuxt 钩子、用 defineNuxtRouteMiddleware 包过的中间件、以及 setup 函数这四类位置可取；不在这些位置调用会报 E1001 那句错；要"试探有没有"用 tryUseNuxtApp、要"在丢了上下文的回调里临时套回去"用 nuxtApp.runWithContext。把这一篇当前面 useNuxtApp 各成员的总纲。
+  摘要：这半章讲的所有东西都挂在一个叫"Nuxt 上下文"的概念上，而 useNuxtApp() 就是拿到它的入口。这一篇把 nuxt-app 那一节的口径收拢：上下文为什么"每个请求新建一个、不是到处都存在"、它只在插件、Nuxt 钩子、用 defineNuxtRouteMiddleware 包过的中间件、以及 setup 函数这四类位置可取；不在这些位置调用会报 E1001 那句错；要"试探有没有"用 tryUseNuxtApp、要"在丢了上下文的回调里临时套回去"用 nuxtApp.runWithContext。把这一篇当前面 useNuxtApp 各成员的总纲。
 
 categories:
   - 前端开发
@@ -28,11 +28,11 @@ tags:
 
 ## 一句话定位
 
-nuxt-app 那页定位句：
+nuxt-app 那一节定位句：
 
 > In Nuxt, you can access runtime app context within composables, components and plugins.
 
-use-nuxt-app 那页把"它能装什么"说全了：
+use-nuxt-app 那一节把"它能装什么"说全了：
 
 > `useNuxtApp` is a built-in composable that provides a way to access shared runtime context of Nuxt ... It helps you access the Vue app instance, runtime hooks, runtime config variables and internal states, such as `ssrContext` and `payload`.
 
@@ -40,7 +40,7 @@ use-nuxt-app 那页把"它能装什么"说全了：
 
 ## 关键：它"不是到处都有"，因为每请求新建一个
 
-最容易被忽略、却最能解释很多现象的一条，nuxt-app 那页写得很清楚：
+最容易被忽略、却最能解释很多现象的一条，nuxt-app 那一节写得很清楚：
 
 > Many composables and utilities ... may require access to the Nuxt instance. This doesn't exist everywhere on your application, because a fresh instance is created on every request.
 
@@ -48,7 +48,7 @@ use-nuxt-app 那页把"它能装什么"说全了：
 
 ## 四类能取到上下文的位置
 
-官方把"在哪能拿到 nuxtApp"列成了封闭清单，nuxt-app 那页原话：
+官方把"在哪能拿到 nuxtApp"列成了封闭清单，nuxt-app 那一节原话：
 
 > Currently, the Nuxt context is only accessible in [plugins], [Nuxt hooks], [Nuxt middleware] (if wrapped in `defineNuxtRouteMiddleware`), and [setup functions] (in pages and components).
 
@@ -69,13 +69,13 @@ use-nuxt-app 那页把"它能装什么"说全了：
 
 拿到 `nuxtApp` 会"没有上下文就抛异常"。官方给两个应对：
 
-**试探有没有（不抛）**——use-nuxt-app 那页：
+**试探有没有（不抛）**——use-nuxt-app 那一节：
 
 > If runtime context is unavailable in your scope, `useNuxtApp` will throw an exception when called. You can use `tryUseNuxtApp` instead for composables that do not require `nuxtApp`, or to simply check if context is available or not without an exception.
 
 `tryUseNuxtApp()` 和 `useNuxtApp()` 行为完全一样，只是拿不到时返回 `null` 而不抛。适合"有就用、没有走别的分支"的组合式（官方示例：客户端在 nuxt 上下文里读 `useRuntimeConfig().public.STAND_TYPE`、不在就回退 `process.env.STAND_TYPE`）。
 
-**在丢了上下文的回调里临时套回去**——nuxt-app 那页点名：
+**在丢了上下文的回调里临时套回去**——nuxt-app 那一节点名：
 
 > In that case, you can also explicitly call functions within this context by using `nuxtApp.runWithContext`.
 

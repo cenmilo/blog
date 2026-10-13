@@ -1,12 +1,12 @@
 ---
 url: /posts/1f990feb12449d57be27a47b2e8dd26b/
-title: definePageMeta 是编译器宏：meta 被提到组件之外带来三条限制
+title: 117 - definePageMeta 是编译器宏：meta 被提到组件之外带来三条限制
 date: 2026-11-20T09:00:00+08:00
 updated: 2026-11-20T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：页面里被 Nuxt 读走的那部分内容，全都来自 `definePageMeta`，而它的实现方式决定了一堆"看起来能写、其实拿不到"的写法。官方先给了用途："你可能会想为应用里的每条路由定义元数据。**你可以用 `definePageMeta` 宏来做这件事，它在 `<script>` 与 `<script setup>` 里都能工作**"，写进去的数据"**可以在你应用的其余部分通过 `route.meta` 对象访问**"（官方示例：`definePageMeta({ title: 'My home page' })` 之后 `console.log(route.meta.title) // My home page`）。然后是嵌套时的合并规则：**"如果你使用嵌套路由，所有这些路由的页面元数据会被合并进一个单一的对象。"** 最关键的一段是宏的身份："**与 `defineEmits` 或 `defineProps` 很像，`definePageMeta` 是一个编译器宏。它会被编译掉，因此你无法在组件内部引用它。取而代之的是，传给它的元数据会被提升到组件之外。**"由此官方直接推出可用与不可用："**因此页面 meta 对象不能引用组件本身。不过它可以引用导入的绑定，以及局部定义的纯函数。**"，并挂了一条 warning："**务必不要引用任何响应式数据或会造成副作用的函数。这会导致意外的行为。**"官方的反例示例把踩法标注得最清楚：`const title = ref('')` 之后把 `title` 放进 `definePageMeta({ ..., title })`，注释原文是 `// do not do this, the ref will be hoisted out of the component`。特殊字段方面，`app/pages/` 那一页列了九项（`alias`、`keepalive`、`key`、`layout`、`layoutTransition` 与 `pageTransition`、`middleware`、`name`、`path`、`props`），其中 `middleware` 有一条合并口径："**它会与任何匹配的父/子路由里用到的所有其他中间件合并。**"；`keepalive` 则给出父路由保状态的专用写法 `<NuxtPage keepalive />` 与"可以在你的 nuxt.config 里为这个属性设置默认值"。自定义字段官方鼓励类型增强，示例是 `declare module '#app' { interface PageMeta { pageType?: string } }`，并且必须带上那句注释所说的事：**"当你增强一个类型时，务必确保导入了或导出了某些内容"**（示例末尾就是 `export {}`）。
+  摘要：页面里被 Nuxt 读走的那部分内容，全都来自 `definePageMeta`，而它的实现方式决定了一堆"看起来能写、其实拿不到"的写法。官方先给了用途："你可能会想为应用里的每条路由定义元数据。**你可以用 `definePageMeta` 宏来做这件事，它在 `<script>` 与 `<script setup>` 里都能工作**"，写进去的数据"**可以在你应用的其余部分通过 `route.meta` 对象访问**"（官方示例：`definePageMeta({ title: 'My home page' })` 之后 `console.log(route.meta.title) // My home page`）。然后是嵌套时的合并规则：**"如果你使用嵌套路由，所有这些路由的页面元数据会被合并进一个单一的对象。"** 最关键的一段是宏的身份："**与 `defineEmits` 或 `defineProps` 很像，`definePageMeta` 是一个编译器宏。它会被编译掉，因此你无法在组件内部引用它。取而代之的是，传给它的元数据会被提升到组件之外。**"由此官方直接推出可用与不可用："**因此页面 meta 对象不能引用组件本身。不过它可以引用导入的绑定，以及局部定义的纯函数。**"，并挂了一条 warning："**务必不要引用任何响应式数据或会造成副作用的函数。这会导致意外的行为。**"官方的反例示例把踩法标注得最清楚：`const title = ref('')` 之后把 `title` 放进 `definePageMeta({ ..., title })`，注释原文是 `// do not do this, the ref will be hoisted out of the component`。特殊字段方面，`app/pages/` 那一节列了九项（`alias`、`keepalive`、`key`、`layout`、`layoutTransition` 与 `pageTransition`、`middleware`、`name`、`path`、`props`），其中 `middleware` 有一条合并口径："**它会与任何匹配的父/子路由里用到的所有其他中间件合并。**"；`keepalive` 则给出父路由保状态的专用写法 `<NuxtPage keepalive />` 与"可以在你的 nuxt.config 里为这个属性设置默认值"。自定义字段官方鼓励类型增强，示例是 `declare module '#app' { interface PageMeta { pageType?: string } }`，并且必须带上那句注释所说的事：**"当你增强一个类型时，务必确保导入了或导出了某些内容"**（示例末尾就是 `export {}`）。
 
 categories:
   - 前端开发
@@ -108,7 +108,7 @@ definePageMeta({
 
 ## 被 Nuxt 特殊对待的字段
 
-官方在 `app/pages/` 那一页列了"特殊元数据"（Special Metadata）九项，并说明"**你当然可以为自己的用途随意定义元数据。但用 `definePageMeta` 定义的某些元数据有特定用途**"：
+官方在 `app/pages/` 那一节列了"特殊元数据"（Special Metadata）九项，并说明"**你当然可以为自己的用途随意定义元数据。但用 `definePageMeta` 定义的某些元数据有特定用途**"：
 
 | 字段 | 官方的特殊用途说明 |
 | --- | --- |
@@ -122,7 +122,7 @@ definePageMeta({
 | `path` | 定义 path 匹配器（比文件名更复杂的模式） |
 | `props` | 允许把路由 `params` 作为 props 传给页面组件 |
 
-**两处清单不完全一致，要以更全的那份为准。** `definePageMeta` 的参数表里还有 `validate`、`redirect`、`scrollToTop`、`viewTransition`、`groups`，而 `app/pages/` 那一页的"特殊元数据"列表只到 `props`。写这些字段时查参数表更可靠。
+**两处清单不完全一致，要以更全的那份为准。** `definePageMeta` 的参数表里还有 `validate`、`redirect`、`scrollToTop`、`viewTransition`、`groups`，而 `app/pages/` 那一节的"特殊元数据"列表只到 `props`。写这些字段时查参数表更可靠。
 
 顺带一条与 `scrollToTop` 有关的口径（它常被误认成"重渲染才有滚动"）：官方的说法是"**导航独立于渲染，所以即使页面不重新渲染（例如使用了固定 `key` 时），滚动行为也总会触发。在这种情形下设 `scrollToTop: false` 来禁用滚动。**"——这正是 116 里那个 `key` 控制重建、与滚动无关的连线。
 

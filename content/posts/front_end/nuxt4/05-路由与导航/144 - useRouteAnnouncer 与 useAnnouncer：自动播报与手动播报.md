@@ -1,6 +1,6 @@
 ---
 url: /posts/c745af455cdf1286b147024440524734/
-title: useRouteAnnouncer 与 useAnnouncer：自动播报与手动播报
+title: 144 - useRouteAnnouncer 与 useAnnouncer：自动播报与手动播报
 date: 2026-11-29T09:00:00+08:00
 updated: 2026-11-29T09:00:00+08:00
 author: cmdragon
@@ -147,7 +147,7 @@ watch(results, (results) => {
 </template>
 ```
 
-形状与 `useRouteAnnouncer` 完全同构（参数 `politeness`、属性 `message`/`politeness`、方法 `set`/`polite`/`assertive`），只有一处类型写法不同：`useAnnouncer` 的 `politeness` 属性是 `Ref<'polite' | 'assertive' | 'off'>`，而 `useRouteAnnouncer` 那一页写的是 `Ref<string>`。另外 `useAnnouncer` 页给两个便捷方法补了使用判断：
+形状与 `useRouteAnnouncer` 完全同构（参数 `politeness`、属性 `message`/`politeness`、方法 `set`/`polite`/`assertive`），只有一处类型写法不同：`useAnnouncer` 的 `politeness` 属性是 `Ref<'polite' | 'assertive' | 'off'>`，而 `useRouteAnnouncer` 那一节写的是 `Ref<string>`。另外 `useAnnouncer` 页给两个便捷方法补了使用判断：
 
 - `polite(message)`：**"Use for non-urgent updates that can wait for the screen reader to finish its current task."**
 - `assertive(message)`：**"Use for urgent updates that should interrupt the screen reader immediately."**
@@ -216,7 +216,7 @@ watch(status, (newStatus) => {
 | **Message source** | Page `<title>` | Developer-provided |
 | **atomic default** | `false` | `true` |
 
-`atomic` 的语义两页写得一致："Controls if screen readers announce only changes or the entire content. Set to true for full content readouts on updates, false for changes only."
+`atomic` 的语义两节写得一致："Controls if screen readers announce only changes or the entire content. Set to true for full content readouts on updates, false for changes only."
 
 - `false`：只播**变化的部分**。
 - `true`：每次更新都把**整段内容**读一遍。
@@ -227,7 +227,7 @@ watch(status, (newStatus) => {
 
 两个 composable 都提供 `politeness` 参数（官方称其为 "default urgency" / "the urgency"），而 `set` 的签名是 `set(message, politeness = "polite")`。文档只给了签名与默认值，**没有说明当你用 `useAnnouncer({ politeness: 'assertive' })` 改了默认、又只调用 `set(msg)` 时，实际生效的是哪一个**。这不是我该替你猜的：如果你依赖这个组合，实测一次——把 `:politeness` 显式传给 `set` 是最省心的写法，它绕开了这个歧义。
 
-## 想换掉组件：两页都说是可选的
+## 想换掉组件：两节都说是可选的
 
 `<NuxtRouteAnnouncer>` 与 `<NuxtAnnouncer>` 页面都挂了同样的两条 callout：
 
@@ -235,7 +235,7 @@ watch(status, (newStatus) => {
 
 > You can hook into the underlying announcer instance using the [corresponding] composable, which allows you to set custom announcement message(s).
 
-同时两页都提供默认插槽来自渲染内容：
+同时两节都提供默认插槽来自渲染内容：
 
 ```vue
 <template>

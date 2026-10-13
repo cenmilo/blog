@@ -1,6 +1,6 @@
 ---
 url: /posts/8328b8acbd98500584c175efb7feefed/
-title: useRequestHeader 与 useRequestHeaders：读一个头和读全部头
+title: 315 - useRequestHeader 与 useRequestHeaders：读一个头和读全部头
 date: 2027-01-25T09:00:00+08:00
 updated: 2027-01-25T09:00:00+08:00
 author: cmdragon
@@ -91,7 +91,7 @@ const { data } = await useFetch('/api/confidential', {
 </script>
 ```
 
-这解决的是 P08 讲过的一个具体问题（211、222）：SSR 阶段服务端用 `$fetch` 打自家接口时，**不会自动带上浏览器这次请求的头**（安全考虑）。所以要在服务端内部请求里保住登录态，就手动把 `authorization` 头塞进去——`headers: useRequestHeaders(['authorization'])` 正是干这个。
+这解决的是 210-249 讲过的一个具体问题（211、222）：SSR 阶段服务端用 `$fetch` 打自家接口时，**不会自动带上浏览器这次请求的头**（安全考虑）。所以要在服务端内部请求里保住登录态，就手动把 `authorization` 头塞进去——`headers: useRequestHeaders(['authorization'])` 正是干这个。
 
 这条和下一篇（318）的 `useRequestFetch` 是同一需求的两种解法：`useRequestHeaders([...])` 是"手动挑几个头转发"，`useRequestFetch()` 是"整体自动转发上下文和头"。要精细控制用前者、要省事用后者。
 

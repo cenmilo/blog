@@ -1,12 +1,12 @@
 ---
 url: /posts/eeb89cb0c68b8d1d17c03f82b68d6d42/
-title: 类型化 provide：declare NuxtApp 要放对类型上下文
+title: 289 - 类型化 provide：declare NuxtApp 要放对类型上下文
 date: 2027-01-16T10:00:00+08:00
 updated: 2027-01-16T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：插件 provide 出去的 helper，返回值写法下 Nuxt 会自动带类型；但要手动声明、或在别处也能拿到准确类型，靠的是 declare module '#app' 里扩展 NuxtApp、declare module 'vue' 里扩展 ComponentCustomProperties。这一篇的重点是 typescript 那页补上的一条容易忽略的规则：Nuxt 把类型分成 app/server/shared/node 多个上下文，增补必须放在"对应上下文会被扫到的目录"里（要 app 生效就放 app/），放错位置类型不生效。外加 augment 文件必须带 import/export 这条通用要求。
+  摘要：插件 provide 出去的 helper，返回值写法下 Nuxt 会自动带类型；但要手动声明、或在别处也能拿到准确类型，靠的是 declare module '#app' 里扩展 NuxtApp、declare module 'vue' 里扩展 ComponentCustomProperties。这一篇的重点是 typescript 那一节补上的一条容易忽略的规则：Nuxt 把类型分成 app/server/shared/node 多个上下文，增补必须放在"对应上下文会被扫到的目录"里（要 app 生效就放 app/），放错位置类型不生效。外加 augment 文件必须带 import/export 这条通用要求。
 
 categories:
   - 前端开发
@@ -28,7 +28,7 @@ tags:
 
 ## 先看默认：自动类型
 
-plugins 那页 "Typing Plugins" 第一句给了好消息：
+plugins 那一节 "Typing Plugins" 第一句给了好消息：
 
 > If you return your helpers from the plugin, they will be typed automatically; you'll find them typed for the return of `useNuxtApp()` and within your templates.
 
@@ -39,7 +39,7 @@ plugins 那页 "Typing Plugins" 第一句给了好消息：
 
 ## 手写增补：两个接口都要 declare
 
-plugins 那页给的形状是**两个模块、两个接口**：
+plugins 那一节给的形状是**两个模块、两个接口**：
 
 ```ts [index.d.ts]
 declare module '#app' {
@@ -66,7 +66,7 @@ export {}
 
 ## 真正的坑：增补要放对"类型上下文"
 
-类型写法对、却不生效——八成是文件放错目录。typescript 那页 "Augmenting Types with Project References" 给了规则：
+类型写法对、却不生效——八成是文件放错目录。typescript 那一节 "Augmenting Types with Project References" 给了规则：
 
 > Since the project is divided into multiple type contexts, it's important to augment types within the correct context to ensure they're properly recognized. TypeScript will not recognize augmentations placed outside these directories unless they are explicitly included in the appropriate context.
 

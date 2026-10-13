@@ -1,12 +1,12 @@
 ---
 url: /posts/53bdbabb2db0c11506c88402de83fb29/
-title: nuxt prepare 与 nuxt typecheck：让类型先就绪
+title: 035 - nuxt prepare 与 nuxt typecheck：让类型先就绪
 date: 2026-10-23T11:00:00+08:00
 updated: 2026-10-23T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这两个命令管的是两件不同的事，很容易混。nuxt prepare 创建 .nuxt 目录并生成类型，官方明确它"在 CI 环境里或作为 package.json 的 postinstall 命令时很有用"，它只有五个选项（--cwd、--dotenv、--logLevel、--envName、-e/--extends）且把 process.env.NODE_ENV 设为 production。nuxt typecheck 才真正检查类型，它跑 vue-tsc 或 Golar，两者都没装时会给出你所用包管理器的安装命令；--checker 可指定用哪个检查器，项目里存在 golar.config.* 文件会让 Golar 成为默认（缺文件时会自动写一份）；只列 references 的 solution-style 根 tsconfig 会自动以 build mode 类型检查，--build 强制开启、--no-build 关闭，它同样把 NODE_ENV 设为 production。而官方在 TypeScript 那一页开头就说：默认情况下 nuxt dev 与 nuxt build 出于性能原因不做类型检查，要开启要么装 vue-tsc 与 typescript 后跑 nuxt typecheck，要么设 typescript.typeCheck: true。
+  摘要：这两个命令管的是两件不同的事，很容易混。nuxt prepare 创建 .nuxt 目录并生成类型，官方明确它"在 CI 环境里或作为 package.json 的 postinstall 命令时很有用"，它只有五个选项（--cwd、--dotenv、--logLevel、--envName、-e/--extends）且把 process.env.NODE_ENV 设为 production。nuxt typecheck 才真正检查类型，它跑 vue-tsc 或 Golar，两者都没装时会给出你所用包管理器的安装命令；--checker 可指定用哪个检查器，项目里存在 golar.config.* 文件会让 Golar 成为默认（缺文件时会自动写一份）；只列 references 的 solution-style 根 tsconfig 会自动以 build mode 类型检查，--build 强制开启、--no-build 关闭，它同样把 NODE_ENV 设为 production。而官方在 TypeScript 那一节开头就说：默认情况下 nuxt dev 与 nuxt build 出于性能原因不做类型检查，要开启要么装 vue-tsc 与 typescript 后跑 nuxt typecheck，要么设 typescript.typeCheck: true。
 
 categories:
   - 前端开发

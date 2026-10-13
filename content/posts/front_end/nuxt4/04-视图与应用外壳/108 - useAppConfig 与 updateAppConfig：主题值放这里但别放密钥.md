@@ -1,6 +1,6 @@
 ---
 url: /posts/c21ae105a1bf2591d7d5ba3e1b87cbad/
-title: useAppConfig 与 updateAppConfig：主题值放这里但别放密钥
+title: 108 - useAppConfig 与 updateAppConfig：主题值放这里但别放密钥
 date: 2026-11-17T09:00:00+08:00
 updated: 2026-11-17T09:00:00+08:00
 author: cmdragon

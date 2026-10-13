@@ -1,12 +1,12 @@
 ---
 url: /posts/b3a8fd83de8fc6b2132587440b434649/
-title: Teleport：Nuxt 里唯一有服务端支持的挂载点是哪一个
+title: 098 - Teleport：Nuxt 里唯一有服务端支持的挂载点是哪一个
 date: 2026-11-13T11:00:00+08:00
 updated: 2026-11-13T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`<Teleport>` 的作用官方写成一句——"把一个组件传送到 DOM 中的另一个位置"，它是 Vue 的内置组件，Nuxt 这一页要处理的是**服务端渲染带来的限制**。官方用一条 warning 把两件事放在一起说清：`<Teleport>` 的 `to` 目标**期望一个 CSS 选择器字符串或一个真实的 DOM 节点**；而 **"Nuxt 目前只对传送到 `#teleports` 有 SSR 支持，其他目标则需要用 `<ClientOnly>` 包裹以获得客户端支持。"** 官方因此只给了两个写法：名为 Body Teleport 的例子把弹层写进 `<Teleport to="#teleports">`（内部是 `<div v-if="open" class="modal">`，由一个按钮把 `open` 置真、另一个置假）；名为 Client-side Teleport 的例子则是 `<ClientOnly>` 里套 `<Teleport to="#some-selector">`。这两个例子背后的差别值得记住：**同一个组件在模板树里的位置可以不变，但它在真实 DOM 里落到哪、什么时候落进去，是被这一条约束决定的**；而包 `<ClientOnly>` 不是无害的包装——按 096 引的官方 note，被包住的默认插槽内容会被 tree-shake 出服务端构建，所以那一块不会出现在初始 HTML 里。
+  摘要：`<Teleport>` 的作用官方写成一句——"把一个组件传送到 DOM 中的另一个位置"，它是 Vue 的内置组件，Nuxt 这一节要处理的是**服务端渲染带来的限制**。官方用一条 warning 把两件事放在一起说清：`<Teleport>` 的 `to` 目标**期望一个 CSS 选择器字符串或一个真实的 DOM 节点**；而 **"Nuxt 目前只对传送到 `#teleports` 有 SSR 支持，其他目标则需要用 `<ClientOnly>` 包裹以获得客户端支持。"** 官方因此只给了两个写法：名为 Body Teleport 的例子把弹层写进 `<Teleport to="#teleports">`（内部是 `<div v-if="open" class="modal">`，由一个按钮把 `open` 置真、另一个置假）；名为 Client-side Teleport 的例子则是 `<ClientOnly>` 里套 `<Teleport to="#some-selector">`。这两个例子背后的差别值得记住：**同一个组件在模板树里的位置可以不变，但它在真实 DOM 里落到哪、什么时候落进去，是被这一条约束决定的**；而包 `<ClientOnly>` 不是无害的包装——按 096 引的官方 note，被包住的默认插槽内容会被 tree-shake 出服务端构建，所以那一块不会出现在初始 HTML 里。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-弹层要放到 DOM 顶层去，不然会被父容器的 `overflow`、`transform` 或层叠上下文困住。Vue 用 `<Teleport>` 解决这件事。Nuxt 只在这一页上加了一条硬约束，而这条约束决定了两种写法该在什么时候各用哪一个。
+弹层要放到 DOM 顶层去，不然会被父容器的 `overflow`、`transform` 或层叠上下文困住。Vue 用 `<Teleport>` 解决这件事。Nuxt 只在这一节上加了一条硬约束，而这条约束决定了两种写法该在什么时候各用哪一个。
 
 ## 组件树的位置，不等于 DOM 里的位置
 
@@ -63,7 +63,7 @@ tags:
 
 - `<Teleport>` 写在组件模板里，位置由你决定；但里面的 `<div class="modal">` 在真实 DOM 里落在 `#teleports` 那个目标处，而不是紧跟在触发按钮后面。
 - 是否显示用的是 `v-if="open"`——**传送的内容仍然受组件自己的状态控制**，`Teleport` 只改落点。
-- `to="#teleports"` 是官方在这一页给的**唯一**带 SSR 支持的写法。这一节官方就把它命名为 "Body Teleport"。
+- `to="#teleports"` 是官方在这一节给的**唯一**带 SSR 支持的写法。这一节官方就把它命名为 "Body Teleport"。
 
 ## 写法二：官方给的 Client-side Teleport
 
@@ -94,7 +94,7 @@ tags:
 
 这是包了 `<ClientOnly>` 之后最容易出错的一点。服务端那一次渲染里 `<ClientOnly>` 内的内容根本不存在，于是这个分支的传送发生在浏览器侧——而 `to` 要的是一个**已经存在的** CSS 选择器或 DOM 节点。
 
-官方在这一页没有替你保证目标存在，它只给了那句约束（其他目标要靠 `<ClientOnly>` 才有客户端支持）。落到自己代码里，可操作的要求就一句话：**那个挂载点必须在你自己的模板里渲染出来**（例如页面结构里确实有 `id="some-selector"` 的那个元素），否则传送的目标是空的。
+官方在这一节没有替你保证目标存在，它只给了那句约束（其他目标要靠 `<ClientOnly>` 才有客户端支持）。落到自己代码里，可操作的要求就一句话：**那个挂载点必须在你自己的模板里渲染出来**（例如页面结构里确实有 `id="some-selector"` 的那个元素），否则传送的目标是空的。
 
 判断方式很直接，两种都能定位问题：
 
@@ -138,7 +138,7 @@ tags:
   - 原文（Body Teleport 示例）：`<button @click="open = true">Open Modal</button>`、`<Teleport to="#teleports">`、`<div v-if="open" class="modal">`、`<p>Hello from the modal!</p>`、`<button @click="open = false">Close</button>`
   - 原文（Client-side Teleport 示例）：`<ClientOnly><Teleport to="#some-selector"><!-- content --></Teleport></ClientOnly>`
   - 原文 link-example 指向 `https://nuxt.com/docs/examples/advanced/teleport`
-  - 说明：本页 `to` 的链接指向 Vue 文档 `<Teleport>` 一节，即这一组件本身来自 Vue，Nuxt 这一页处理的是 SSR 支持范围
+  - 说明：这一节 `to` 的链接指向 Vue 文档 `<Teleport>` 一节，即这一组件本身来自 Vue，Nuxt 这一节处理的是 SSR 支持范围
 - `https://nuxt.com/docs/4.x/api/components/client-only`
   - 对照用（见 096）："The `<ClientOnly>` component is used for purposely rendering a component only on client side."
   - 原文（note）："The content of the default slot will be tree-shaken out of the server build. (This does mean that any CSS used by components within it may not be inlined when rendering the initial HTML.)"

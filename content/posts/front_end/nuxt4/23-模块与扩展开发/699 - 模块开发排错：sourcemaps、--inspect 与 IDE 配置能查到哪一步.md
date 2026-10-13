@@ -1,12 +1,12 @@
 ---
 url: /posts/31d6305d1d8f9b537a19ef3914dc4b55/
-title: 模块开发排错：sourcemaps、--inspect 与 IDE 配置能查到哪一步
+title: 699 - 模块开发排错：sourcemaps、--inspect 与 IDE 配置能查到哪一步
 date: 2027-06-02T09:00:00+08:00
 updated: 2027-06-02T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：调试那一页只给了四样东西：sourcemaps 的默认状态（**服务端构建默认开、客户端只在开发模式开**）、`nuxt dev --inspect`、一份 VS Code 配置、一份 JetBrains 配置。它对模块作者最有用的是那份 VS Code 配置里的第二项——`program` 指向 `node_modules/nuxt/bin/nuxt.mjs`、`args` 是 `["dev"]`，也就是说它启动的正是跑着你模块 `setup` 的那个进程。而 `--inspect` 有一条硬限制：Node.js 与 Chrome 必须在同一平台，**Docker 里不行**。
+  摘要：调试那一节只给了四样东西：sourcemaps 的默认状态（**服务端构建默认开、客户端只在开发模式开**）、`nuxt dev --inspect`、一份 VS Code 配置、一份 JetBrains 配置。它对模块作者最有用的是那份 VS Code 配置里的第二项——`program` 指向 `node_modules/nuxt/bin/nuxt.mjs`、`args` 是 `["dev"]`，也就是说它启动的正是跑着你模块 `setup` 的那个进程。而 `--inspect` 有一条硬限制：Node.js 与 Chrome 必须在同一平台，**Docker 里不行**。
 
 categories:
   - 前端开发
@@ -32,7 +32,7 @@ tags:
 - 服务端运行时（接口返回不对、SSR 报错）
 - 构建期的模块进程（`setup` 没生效、注册的资产不见了、类型没生成）
 
-调试那一页写的是前两段的手段，但第三段其实也顺带覆盖了——原因在下面那份 IDE 配置里。
+调试那一节写的是前两段的手段，但第三段其实也顺带覆盖了——原因在下面那份 IDE 配置里。
 
 ## sourcemaps：默认值分两侧
 
@@ -119,7 +119,7 @@ nuxt dev --inspect
 
 官方给的名字是 `nuxt.run.xml`，位置在项目根目录，做法是新建文件再粘进去。三段分别对应：`client: chrome` 用 `JavascriptDebugType`、`uri` 是 `http://localhost:3000`、带 `useFirstLineBreakpoints="true"`；`server: nuxt` 用 `NodeJSConfigurationType`、`application-parameters="dev"`、`path-to-js-file` 指向 `$PROJECT_DIR$/node_modules/nuxt/bin/nuxt.mjs`；`fullstack: nuxt` 用 `CompoundRunConfigurationType` 把前两个 `toRun` 起来。
 
-页面最后一节是 Other IDEs：如果你用别的 IDE 并愿意贡献示例配置，可以开一个 PR。**也就是说 4.x 的这一页只有 VS Code 与 JetBrains 两份现成配置。**
+页面最后一节是 Other IDEs：如果你用别的 IDE 并愿意贡献示例配置，可以开一个 PR。**也就是说 4.x 的这一节只有 VS Code 与 JetBrains 两份现成配置。**
 
 ## 模块专属的排错手段，其实在钩子和日志里
 
@@ -148,6 +148,10 @@ nuxt dev --inspect
 5. 最后才怀疑注册没生效：Kit 侧的名字、路径 resolver、以及有没有把 `@nuxt/kit` 放进 `dependencies`。
 
 到这里，模块与扩展开发这一段的正文全部结束。下一篇进入实验特性：那 57 个开关的默认值、"提前启用"到底意味着什么，以及官方对风险的声明。
+
+## 下一篇
+
+下一篇 700：实验特性机制：默认开、默认关与那句“可能被移除或修改”
 
 ## 本文依据
 

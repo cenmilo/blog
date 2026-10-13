@@ -1,12 +1,12 @@
 ---
 url: /posts/5d0214150e507843061b351c4f07c313/
-title: package.json：五个脚本、一个 postinstall，以及版本可能不住在这里
+title: 075 - package.json：五个脚本、一个 postinstall，以及版本可能不住在这里
 date: 2026-11-06T09:00:00+08:00
 updated: 2026-11-06T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：官方给 package.json 的定位是"包含你应用的所有依赖与脚本"，并给出一份最小形态：name 为 nuxt-app、private 为 true、type 为 module，scripts 里恰好五项——build 是 "nuxt build"、dev 是 "nuxt dev"、generate 是 "nuxt generate"、preview 是 "nuxt preview"、postinstall 是 "nuxt prepare"，dependencies 里显式列出 nuxt、vue 与 vue-router 三项。这份文件解释了两件常见困惑：第一，`npm run dev -- -o` 里没有 nuxt 这个词，是因为它调用的是脚本、脚本内容才是 nuxt dev；第二，为什么刚 clone 完项目编辑器就已经认识自动导入——postinstall 会在装完依赖后自动执行 nuxt prepare，而 prepare 的动作正是创建 .nuxt 并生成类型。另外版本号不一定住在这里：官方在升级那页明确，被钉在 pnpm catalog 里的依赖（形如 "nuxt": "catalog:"）是在 pnpm-workspace.yaml 里升级的，因为版本实际住在那儿；而切版本频道时官方要求的动作是删除锁文件并重装依赖，锁文件名按包管理器分别是 package-lock.json、yarn.lock、pnpm-lock.yaml、bun.lock 或 bun.lockb。
+  摘要：官方给 package.json 的定位是"包含你应用的所有依赖与脚本"，并给出一份最小形态：name 为 nuxt-app、private 为 true、type 为 module，scripts 里恰好五项——build 是 "nuxt build"、dev 是 "nuxt dev"、generate 是 "nuxt generate"、preview 是 "nuxt preview"、postinstall 是 "nuxt prepare"，dependencies 里显式列出 nuxt、vue 与 vue-router 三项。这份文件解释了两件常见困惑：第一，`npm run dev -- -o` 里没有 nuxt 这个词，是因为它调用的是脚本、脚本内容才是 nuxt dev；第二，为什么刚 clone 完项目编辑器就已经认识自动导入——postinstall 会在装完依赖后自动执行 nuxt prepare，而 prepare 的动作正是创建 .nuxt 并生成类型。另外版本号不一定住在这里：官方在升级那一节明确，被钉在 pnpm catalog 里的依赖（形如 "nuxt": "catalog:"）是在 pnpm-workspace.yaml 里升级的，因为版本实际住在那儿；而切版本频道时官方要求的动作是删除锁文件并重装依赖，锁文件名按包管理器分别是 package-lock.json、yarn.lock、pnpm-lock.yaml、bun.lock 或 bun.lockb。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-`package.json` 每个前端都认识。但这一页官方只给了**一份最小文件**，而它恰好解释了三件你八成遇到过的事：**命令为什么"找不到 nuxt"、类型为什么装完就好了、版本号为什么"我改了没生效"。**
+`package.json` 每个前端都认识。但这一节官方只给了**一份最小文件**，而它恰好解释了三件你八成遇到过的事：**命令为什么"找不到 nuxt"、类型为什么装完就好了、版本号为什么"我改了没生效"。**
 
 ## 官方给的最小形态
 
@@ -54,7 +54,7 @@ tags:
 }
 ```
 
-**这一页到此结束**——官方没逐字段解释。所以下面我分两栏写：**能从这份文件直接读出的事实**，和**需要引用别的页才能确认的事实**。
+**这一节到此结束**——官方没逐字段解释。所以下面分两栏写：**能从这份文件直接读出的事实**，和**需要引用别的节才能确认的事实**。
 
 ## 五个脚本：命令表其实藏在这里
 
@@ -87,23 +87,23 @@ tags:
 
 ## `type: "module"` 那一行不是装饰
 
-015 抄过官方在 ESM 那一页写的规则：
+015 抄过官方在 ESM 那一节写的规则：
 
 > 以 `.js` 结尾的文件——**这些文件会被当作 CJS 处理，除非它的 `package.json` 里有 `"type": "module"`**。
 
 **所以脚手架从一开始就写好这一行，是在替你决定整个项目的模块语义**：`.js` 直接按 ESM 解析，032 那份 dev container 的 `FROM node:lts` 里才不会有 CJS/ESM 混用的额外配置。
 
-`private: true` 这一行官方在这页没解释含义，**我不替它补。**
+`private: true` 这一行官方在这一节没解释含义，**文档到这一句就断了。**
 
 ## 版本可能不住在这里：两个例外
 
-**例外一：pnpm catalog。** 044 抄过官方在升级那页写的一段：
+**例外一：pnpm catalog。** 044 抄过官方在升级那一节写的一段：
 
 > 一个被钉在 pnpm catalog 里的依赖（`"nuxt": "catalog:"`）**会在 `pnpm-workspace.yaml` 里升级——版本实际住在那里，而不是在 `package.json` 里。**
 
 **所以：如果你的 `package.json` 里 `nuxt` 的值是 `catalog:`，你去这里找版本号是找不到的。** 032 那份 dev container 的 `COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./` 三个文件并列，也印证了 workspace 项目里这三者是配套存在的。
 
-**例外二：真正决定"装到哪个版本"的是锁文件。** 030 抄过 nightly 那页两处重复的同一句要求：
+**例外二：真正决定"装到哪个版本"的是锁文件。** 030 抄过 nightly 那一节两处重复的同一句要求：
 
 > 删除锁文件（`package-lock.json`、`yarn.lock`、`pnpm-lock.yaml`、`bun.lock` 或 `bun.lockb`）并重装依赖。
 

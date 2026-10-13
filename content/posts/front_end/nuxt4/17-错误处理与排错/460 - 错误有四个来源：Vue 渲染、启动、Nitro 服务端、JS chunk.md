@@ -1,6 +1,6 @@
 ---
 url: /posts/124addee2f72b4d48ee63716feffa8f6/
-title: 错误有四个来源：Vue 渲染、启动、Nitro 服务端、JS chunk
+title: 460 - 错误有四个来源：Vue 渲染、启动、Nitro 服务端、JS chunk
 date: 2027-03-14T10:00:00+08:00
 updated: 2027-03-14T10:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 
 同一个"报错了"，在 Nuxt 里可能是四件不同的事。你把它们用同一个 `try/catch` 兜，结果有的能兜住、有的根本到不了你的代码。
 
-官方这一页第一句就给了解释的前提：
+官方这一节第一句就给了解释的前提：
 
 > Nuxt is a full-stack framework, which means there are several sources of unpreventable user runtime errors that can happen in different contexts:
 

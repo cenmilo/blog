@@ -1,6 +1,6 @@
 ---
 url: /posts/63f1ce202e8717e2720014b8b72501aa/
-title: 从环境变量到 runtimeConfig：一整条链路
+title: 335 - 从环境变量到 runtimeConfig：一整条链路
 date: 2027-01-31T11:00:00+08:00
 updated: 2027-01-31T11:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 第一段：.env 只在 dev/build/generate 被读
 
-官方 env 那页：
+官方 env 那一节：
 
 > Nuxt CLI has built-in `.env` support via c12 in development mode and when running `nuxt build` and `nuxt generate`.
 
@@ -42,7 +42,7 @@ tags:
 
 ## 第二段：值进 runtimeConfig，不在应用代码裸读 process.env
 
-env 那页有一条 important，直接定应用代码该怎么读：
+env 那一节有一条 important，直接定应用代码该怎么读：
 
 > In your application code, you should use Runtime Config instead of plain env variables.
 
@@ -70,7 +70,7 @@ env 那页有一条 important，直接定应用代码该怎么读：
 
 ## 第四段：NUXT_ 前缀在运行时覆盖 runtimeConfig
 
-runtime-config 那页：
+runtime-config 那一节：
 
 > Runtime config values are **automatically replaced by matching environment variables at runtime**.
 
@@ -83,7 +83,7 @@ runtime-config 那页：
 
 ## 一段特例：本地生产预览
 
-env 那页给的例外（Production Preview）：
+env 那一节给的例外（Production Preview）：
 
 > For local production preview purpose, we recommend using `nuxt preview` since using this command, the `.env` file will be loaded into `process.env` for convenience. Note that this command requires dependencies to be installed in the package directory.
 

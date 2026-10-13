@@ -1,12 +1,12 @@
 ---
 url: /posts/59c9b3b201c16f612f94d49ef4bf0f62/
-title: Nitro 是什么：Nuxt 背后的服务端引擎
+title: 300 - Nitro 是什么：Nuxt 背后的服务端引擎
 date: 2027-01-20T09:00:00+08:00
 updated: 2027-01-20T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：从这里起进入服务端这一层。Nuxt 的服务端不是自己随手写的 HTTP 逻辑，而是构建在一个独立引擎 Nitro 上。这一篇按官方 server-engine 那页把 Nitro 交代清楚：它自带跨平台运行、开箱 serverless、API 路由、自动代码分割、静态+服务端的混合模式、带 HMR 的开发服务器这六项能力；服务端 API 与中间件底层用 h3；$fetch 在服务端会直调函数省一次网络往返；构建产物是一个不依赖 node_modules 的独立 dist（.output）。先建立"应用层 vs 服务端引擎层"的分界。
+  摘要：从这里起进入服务端这一层。Nuxt 的服务端不是自己随手写的 HTTP 逻辑，而是构建在一个独立引擎 Nitro 上。这一篇按官方 server-engine 那一节把 Nitro 交代清楚：它自带跨平台运行、开箱 serverless、API 路由、自动代码分割、静态+服务端的混合模式、带 HMR 的开发服务器这六项能力；服务端 API 与中间件底层用 h3；$fetch 在服务端会直调函数省一次网络往返；构建产物是一个不依赖 node_modules 的独立 dist（.output）。先建立"应用层 vs 服务端引擎层"的分界。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-P10 讲完插件与中间件，进入 P11：服务端引擎与 API 层。第一篇先把地基概念立起来——你项目里那些 `server/api/*.ts`、SSR、部署到 serverless，背后都是同一个引擎在管，它叫 **Nitro**。
+270-299 讲完插件与中间件，进入 300-339 那几篇：服务端引擎与 API 层。第一篇先把地基概念立起来——你项目里那些 `server/api/*.ts`、SSR、部署到 serverless，背后都是同一个引擎在管，它叫 **Nitro**。
 
 ## Nitro 是什么
 
@@ -47,7 +47,7 @@ P10 讲完插件与中间件，进入 P11：服务端引擎与 API 层。第一�
 2. **开箱 serverless**：不用自己配一长串东西，就能部署到 serverless 平台（这是前面提过"部署只有 `getting-started/deployment` 一页、厂商差异走站点 `/deploy`"能成立的技术底座）。
 3. **API 路由支持**：`server/api/` 那种放文件就有接口，是 Nitro 提供的。
 4. **自动代码分割 + 异步 chunk**：按需加载小块 JS（chunk 就是打包后拆出的小文件）。
-5. **混合模式（静态 + 服务端）**：一个站可以一部分预渲染成静态、一部分按需服务端渲染——这条正是 P08 讲的 `swr`/`isr`/`prerender` 路由规则能混用的引擎基础。
+5. **混合模式（静态 + 服务端）**：一个站可以一部分预渲染成静态、一部分按需服务端渲染——这条正是 210-249 讲的 `swr`/`isr`/`prerender` 路由规则能混用的引擎基础。
 6. **带 HMR 的开发服务器**：开发时热更新。
 
 这六项是"引擎白送的能力"，理解它有助于你后面明白 `server/` 里为什么这么设计。
@@ -58,7 +58,7 @@ P10 讲完插件与中间件，进入 P11：服务端引擎与 API 层。第一�
 
 > Server API endpoints and Middleware are added by Nitro that internally uses h3.
 
-关键联系：P10 结尾（291）讲的服务端中间件、P05 讲的服务端路由，用的都是 h3 这套 handler 模型。官方列的 h3 关键特性：
+关键联系：270-299 结尾（291）讲的服务端中间件、110-149 讲的服务端路由，用的都是 h3 这套 handler 模型。官方列的 h3 关键特性：
 
 > - Handlers can directly return objects/arrays for an automatically-handled JSON response
 > - Handlers can return promises, which will be awaited (`res.end()` and `next()` are also supported)
@@ -72,7 +72,7 @@ P10 讲完插件与中间件，进入 P11：服务端引擎与 API 层。第一�
 
 > Nitro allows 'direct' calling of routes via the globally-available `$fetch` helper. This will make an API call to the server if run on the browser, but will directly call the relevant function if run on the server, **saving an additional API call**.
 
-这句把 P08（211）那条"SSR 阶段 `$fetch('/api/...')` 是直调函数、不是发 HTTP 请求"从机制上讲圆了：**浏览器里 `$fetch` 真的走网络打到服务端；服务端里 `$fetch` 直接调用那个 handler 函数、省掉一次自环网络请求。** `$fetch` 本身基于 ofetch（自动解析 JSON、自动带正确的 `Content-Type`）。
+这句把 210-249 那几篇（211）那条"SSR 阶段 `$fetch('/api/...')` 是直调函数、不是发 HTTP 请求"从机制上讲圆了：**浏览器里 `$fetch` 真的走网络打到服务端；服务端里 `$fetch` 直接调用那个 handler 函数、省掉一次自环网络请求。** `$fetch` 本身基于 ofetch（自动解析 JSON、自动带正确的 `Content-Type`）。
 
 ## Typed API Routes：接口类型怎么来的
 

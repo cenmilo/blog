@@ -1,6 +1,6 @@
 ---
 url: /posts/e183ecf37d0f84ba6a1d23986e691c61/
-title: esbuild 节：一份共享选项，三个落点
+title: 556 - esbuild 节：一份共享选项，三个落点
 date: 2027-04-15T10:00:00+08:00
 updated: 2027-04-15T10:00:00+08:00
 author: cmdragon

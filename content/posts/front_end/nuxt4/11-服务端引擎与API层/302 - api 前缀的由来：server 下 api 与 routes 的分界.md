@@ -1,6 +1,6 @@
 ---
 url: /posts/02e7ca954e096ce0eeab2d1075c2dc18/
-title: api 前缀的由来：server 下 api 与 routes 的分界
+title: 302 - api 前缀的由来：server 下 api 与 routes 的分界
 date: 2027-01-20T11:00:00+08:00
 updated: 2027-01-20T11:00:00+08:00
 author: cmdragon
@@ -128,7 +128,7 @@ const { data } = await useFetch('/api/hello')
 
 ## 下一篇
 
-下一篇 303 继续服务端这一层：讲 Nitro 的服务端路由怎么组织、以及 API 与页面路由的分界（依据索引下一号）。
+下一篇 303 继续服务端这一层：讲 Nitro 的服务端路由怎么组织、以及 API 与页面路由的分界。
 
 ## 本文依据
 

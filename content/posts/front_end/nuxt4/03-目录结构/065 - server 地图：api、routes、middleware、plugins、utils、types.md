@@ -1,12 +1,12 @@
 ---
 url: /posts/423ccc41a05d53dd02945bf7909e000b/
-title: server 地图：api、routes、middleware、plugins、utils、types
+title: 065 - server 地图：api、routes、middleware、plugins、utils、types
 date: 2026-11-02T11:00:00+08:00
 updated: 2026-11-02T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：server/ 目录用来给你的应用注册 API 与服务端处理器，Nuxt 会自动扫描这些目录里的文件并以 HMR 支持注册，官方给的树把三件事一次说清：server/api/hello.ts 对应 /api/hello、server/routes/bonjour.ts 对应 /bonjour、server/middleware/log.ts 记录所有请求。每个文件应导出一个用 defineEventHandler() 或它的别名 eventHandler() 定义的默认函数，处理器可以直接返回 JSON 数据、一个 Promise，或用 event.node.res.end() 发送响应。这一页有一条 important 级别的边界：不要在你的服务端路由或工具函数里导入 Vue 应用侧代码（组件、组合式函数或其它 app-only 工具），也不要在应用里导入服务端专用代码。另外三条规则各管一个子目录：api 里的文件路径会自动加 /api 前缀而 routes 不加，服务端中间件会在任何其它服务端路由之前对每个请求运行但官方要求它不应返回任何东西（也不关闭或响应请求）、只能检查或扩展请求上下文或抛出错误，server/plugins 里的文件被注册为 Nitro 插件以便扩展运行时行为并挂钩生命周期事件。v4.3 起还有 #server 别名可以从 server/ 内任意位置导入，但官方明确它只能在 server/ 目录内使用，在客户端代码里从 #server 导入会导致一个错误。
+  摘要：server/ 目录用来给你的应用注册 API 与服务端处理器，Nuxt 会自动扫描这些目录里的文件并以 HMR 支持注册，官方给的树把三件事一次说清：server/api/hello.ts 对应 /api/hello、server/routes/bonjour.ts 对应 /bonjour、server/middleware/log.ts 记录所有请求。每个文件应导出一个用 defineEventHandler() 或它的别名 eventHandler() 定义的默认函数，处理器可以直接返回 JSON 数据、一个 Promise，或用 event.node.res.end() 发送响应。这一节有一条 important 级别的边界：不要在你的服务端路由或工具函数里导入 Vue 应用侧代码（组件、组合式函数或其它 app-only 工具），也不要在应用里导入服务端专用代码。另外三条规则各管一个子目录：api 里的文件路径会自动加 /api 前缀而 routes 不加，服务端中间件会在任何其它服务端路由之前对每个请求运行但官方要求它不应返回任何东西（也不关闭或响应请求）、只能检查或扩展请求上下文或抛出错误，server/plugins 里的文件被注册为 Nitro 插件以便扩展运行时行为并挂钩生命周期事件。v4.3 起还有 #server 别名可以从 server/ 内任意位置导入，但官方明确它只能在 server/ 目录内使用，在客户端代码里从 #server 导入会导致一个错误。
 
 categories:
   - 前端开发
@@ -76,7 +76,7 @@ const { data } = await useFetch('/api/hello')
 
 ## 那条 important：两侧代码不许互引
 
-这一页用 important 给了一条硬边界，原文：
+那一节用 important 给了一条硬边界，原文：
 
 > **不要在你的服务端路由或工具函数里导入 Vue 应用侧代码（组件、组合式函数或其它 app-only 工具），也不要在你的应用里导入服务端专用代码。**
 
@@ -109,7 +109,7 @@ export default defineEventHandler(() => 'Hello World!')
 
 > （note）请注意，**目前服务端路由并不支持像[页面]那样完整的动态路由功能。**
 
-**这句是"我照 058 那套方括号语法写服务端路由，结果不对"的官方解释**——页面的那套动态段规则不整套适用于这里。**支持到什么程度，这一页没给清单。**
+**这句是"我照 058 那套方括号语法写服务端路由，结果不对"的官方解释**——页面的那套动态段规则不整套适用于这里。**支持到什么程度，这一节没给清单。**
 
 ## `middleware/`：跑在所有请求之前，但不许返回东西
 
@@ -137,7 +137,7 @@ export default defineEventHandler((event) => {
 
 **第二个例子是这条链的关键：往 `event.context` 上挂东西，后面的处理器再读它。** 这就是"服务端中间件怎么把信息交给路由"的官方写法。
 
-**注意它与 060 讲的路由中间件是两套完全不同的东西**（那页 note 已经明说"尽管名字相似，它们完全不同"）：这里在**每个请求**上跑、不许返回值；那里在**导航到某个路由之前**跑、**靠返回值**控制重定向与取消。
+**注意它与 060 讲的路由中间件是两套完全不同的东西**（那一节 note 已经明说"尽管名字相似，它们完全不同"）：这里在**每个请求**上跑、不许返回值；那里在**导航到某个路由之前**跑、**靠返回值**控制重定向与取消。
 
 ## `plugins/`：这里注册的是 Nitro 插件
 
@@ -230,7 +230,7 @@ import { formatUser } from '#server/utils/formatUser'
 
 > （note）**`#server` 别名只能在 `server/` 目录内使用。在客户端代码里从 `#server` 导入会导致一个错误。**
 
-**这三段连读很顺：** 051 那张默认别名表里 `#server` 就指向 `<rootDir>/server`；而这一页的 note 说的是"客户端里用它会报错"——**这正是 065 开头那条 important 禁令在导入路径层面的表现。**
+**这三段连读很顺：** 051 那张默认别名表里 `#server` 就指向 `<rootDir>/server`；而这一节的 note 说的是"客户端里用它会报错"——**这正是 065 开头那条 important 禁令在导入路径层面的表现。**
 
 ## 文件名后缀：`.get` / `.post` 这些是真的生效
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/1d4619e80160d3a57b962699361491a1/
-title: Vitest Browser Mode：配置四行与 render 的八个返回项
+title: 508 - Vitest Browser Mode：配置四行与 render 的八个返回项
 date: 2027-03-30T10:00:00+08:00
 updated: 2027-03-30T10:00:00+08:00
 author: cmdragon

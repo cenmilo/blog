@@ -1,6 +1,6 @@
 ---
 url: /posts/ed9dd2eaccd9edd0f814601727e725d1/
-title: useFetch 选项表逐条：23 个键与多出来的那批请求选项
+title: 220 - useFetch 选项表逐条：23 个键与多出来的那批请求选项
 date: 2026-12-24T10:00:00+08:00
 updated: 2026-12-24T10:00:00+08:00
 author: cmdragon
@@ -45,7 +45,7 @@ tags:
 
 - **几乎每个请求选项的类型都是 `MaybeRefOrGetter<...>`**，也就是值本身可以是 ref 或 getter。这和表后那条 note 合起来才完整：**给成响应式的选项会被监听，值一变就重发请求**。
 - `query` 与 `params` 互为别名。同时给两个会怎样，文档没写；`body` 那句"Objects are automatically stringified"（以及 `query` 那段说明里的同一句话）是官方对序列化行为唯一的交代。
-- `cache` 是唯一一个类型写成 `false | string` 的：布尔用来关掉，字符串取的是 Fetch API 那套值（官方点名 `default`、`no-store`，其余用 "etc." 带过——**完整清单在浏览器标准的 `Request.cache` 里，不在这一页**）。
+- `cache` 是唯一一个类型写成 `false | string` 的：布尔用来关掉，字符串取的是 Fetch API 那套值（官方点名 `default`、`no-store`，其余用 "etc." 带过——**完整清单在浏览器标准的 `Request.cache` 里，不在这一节**）。
 - `$fetch` 那行是"换实现"的口子，官方直接指向自定义 useFetch 那篇配方（222 会用到它）。
 
 ## 数据那一组（15 行，与 useAsyncData 同源）
@@ -77,7 +77,7 @@ tags:
 | `immediate` | "prevents **request** from firing immediately" | "prevents **function** from being called immediately" |
 | `middleware` | "Functions wrapping the execution of the **request**" | "... execution of the **handler**" |
 
-这些差异我的读法是：**用词跟着各自的模型走**（`useFetch` 眼里是一次 request，`useAsyncData` 眼里是一个 handler 函数），**行为描述没有因此改变**。真正有语义差的第一行——只有 `useFetch` 那页写明可以用 `watch: false` 关掉自动重取。
+这些差异的读法是：**用词跟着各自的模型走**（`useFetch` 眼里是一次 request，`useAsyncData` 眼里是一个 handler 函数），**行为描述没有因此改变**。真正有语义差的第一行——只有 `useFetch` 那一节写明可以用 `watch: false` 关掉自动重取。
 
 ## 表后那条 note 多了半句
 
@@ -97,12 +97,12 @@ const getDefaultCachedData = (key, nuxtApp, ctx) => nuxtApp.isHydrating
 
 > This only caches data when `experimental.payloadExtraction` in `nuxt.config` is enabled.
 
-两页的这块内容完全相同，包括那句限定。**所以我现在把"缓存能不能命中"当成配置层问题而不是取数函数选择问题**（213 里那条与 `ssr: false` 的连带关系同样适用于这里）。
+两节的这块内容完全相同，包括那句限定。**"缓存能不能命中"因此是配置层问题，不是取数函数选择问题**（213 里那条与 `ssr: false` 的连带关系同样适用于这里）。
 
 ## 自查
 
 1. `useFetch` 比 `useAsyncData` 多出的八个键分别是什么？（答：`method`、`query`、`params`、`body`、`headers`、`baseURL`、`cache`、`$fetch`。）
-2. 关掉自动重取这个开关在哪个组合式的文档里写明了？（答：`useFetch` 的 `watch: false`；`useAsyncData` 那页的 `watch` 类型没有 `false`。）
+2. 关掉自动重取这个开关在哪个组合式的文档里写明了？（答：`useFetch` 的 `watch: false`；`useAsyncData` 那一节的 `watch` 类型没有 `false`。）
 3. `query` 与 `params` 的关系是什么，文档留了什么空白？（答：互为别名；同时给两个会怎样没写。）
 
 ## 下一篇

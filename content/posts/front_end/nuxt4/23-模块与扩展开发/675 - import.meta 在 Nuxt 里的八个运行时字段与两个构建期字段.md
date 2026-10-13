@@ -1,12 +1,12 @@
 ---
 url: /posts/d50fd6e2ac71f9eebaac9a27de2ac9a3/
-title: import.meta 在 Nuxt 里的八个运行时字段与两个构建期字段
+title: 675 - import.meta 在 Nuxt 里的八个运行时字段与两个构建期字段
 date: 2027-05-25T09:00:00+08:00
 updated: 2027-05-25T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：这一页把 `import.meta` 上 Nuxt 注入的字段分成两组，**两组的性质完全不同**。运行期（App）那组有**八个**：`client`、`browser`、`server`、`nitro`、`dev`、`envName`、`test`、`prerender`，页面给的关键句是**"这些值是静态注入的，可以用来对运行时代码做 tree-shaking"**；构建期那组只有**两个**：`import.meta.env`（**等于 `process.env`**）与 `import.meta.url`（**当前文件的可解析路径**），并且明确写"**这两项在模块里和 `nuxt.config` 里都可用**"。读表时注意两对同义描述：**`client` 与 `browser` 的描述逐字相同、`server` 与 `nitro` 也逐字相同**；`envName` 带 v4.5 标记且包含通过 `--envName` 传入的自定义值。
+  摘要：这一节把 `import.meta` 上 Nuxt 注入的字段分成两组，**两组的性质完全不同**。运行期（App）那组有**八个**：`client`、`browser`、`server`、`nitro`、`dev`、`envName`、`test`、`prerender`，页面给的关键句是**"这些值是静态注入的，可以用来对运行时代码做 tree-shaking"**；构建期那组只有**两个**：`import.meta.env`（**等于 `process.env`**）与 `import.meta.url`（**当前文件的可解析路径**），并且明确写"**这两项在模块里和 `nuxt.config` 里都可用**"。读表时注意两对同义描述：**`client` 与 `browser` 的描述逐字相同、`server` 与 `nitro` 也逐字相同**；`envName` 带 v4.5 标记且包含通过 `--envName` 传入的自定义值。
 
 categories:
   - 前端开发
@@ -24,15 +24,15 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-`if (import.meta.server)` 这行你在组件里见过很多次。这一页讲它的来历：**哪些字段是构建时替换掉的、哪些只在配置阶段存在**，这决定了同一段代码在打包后是什么形状。
+`if (import.meta.server)` 这行你在组件里见过很多次。这一节讲它的来历：**哪些字段是构建时替换掉的、哪些只在配置阶段存在**，这决定了同一段代码在打包后是什么形状。
 
-## 这页先给的定位
+## 这一节先给的定位
 
 **用 ES 模块时，你可以从"导入或编译你的 ES 模块的那段代码"那里拿到一些元信息，这件事通过 `import.meta` 完成——它是一个为你的代码提供这些信息的对象**。
 
 然后一句解释了为什么文档到处在用它：**整份 Nuxt 文档里你会看到用它的片段，用来判断代码此刻是跑在客户端还是服务端**。
 
-这页把字段切成两组，**分组依据不是功能而是"谁能拿到"**。
+这一节把字段切成两组，**分组依据不是功能而是"谁能拿到"**。
 
 ## 运行期八个：静态注入
 
@@ -94,17 +94,17 @@ export default defineNuxtModule({
 
 这段里有三处与前面章节直接对上：
 
-**第一，导入面写的是 `nuxt/kit`**（本地模块可以直接用这个助手子路径导入），**这意味着"不必把 `@nuxt/kit` 加进项目依赖"**——这句解释就在 `modules/` 目录那一页的示例注释里。
+**第一，导入面写的是 `nuxt/kit`**（本地模块可以直接用这个助手子路径导入），**这意味着"不必把 `@nuxt/kit` 加进项目依赖"**——这句解释就在 `modules/` 目录那一节的示例注释里。
 
-**第二，`createResolver(import.meta.url)` 的作用被注释点明**："相对当前文件解析"。**结果路径也写死了**：`./components/MyModuleComponent.vue` → `/modules/my-module/components/MyModuleComponent.vue`。**这就是"本地模块里的相对路径以自己的文件为基准"的具体证据**，与图层那页"层里的相对路径按用户项目解析"正好相反。
+**第二，`createResolver(import.meta.url)` 的作用被注释点明**："相对当前文件解析"。**结果路径也写死了**：`./components/MyModuleComponent.vue` → `/modules/my-module/components/MyModuleComponent.vue`。**这就是"本地模块里的相对路径以自己的文件为基准"的具体证据**，与图层那一节"层里的相对路径按用户项目解析"正好相反。
 
 **第三，`meta: { name: 'myModule' }`**——最小模块定义只需要 `meta` 加 `setup`。
 
 ## 这些字段与别的判断方式的关系
 
-这一页**只讲 `import.meta`，没有比较其他写法**。能确定关联的有三处：
+这一节**只讲 `import.meta`，没有比较其他写法**。能确定关联的有三处：
 
-| 判断需求 | 这一页给的 | 页面之外的对应事实 |
+| 判断需求 | 这一节给的 | 页面之外的对应事实 |
 | --- | --- | --- |
 | 哪一侧 | `client`／`browser`／`server`／`nitro` | 服务端运行时另有钩子表（Nitro 那九行），两者不是一个层面的东西 |
 | 是否开发期 | `import.meta.dev` | 配置项 `dev` 与 CLI 的 `--dev`；`builder:watch` 也只在开发期触发 |
@@ -117,11 +117,15 @@ export default defineNuxtModule({
 
 **判断"只预渲染时做一件事"，用 `prerender`**，它是八个里唯一带阶段限定的。
 
-**别把 `import.meta.env` 当运行时的环境读取通道**：这页把它归在构建期组，且它的定义就是 `process.env`——**服务端进程的环境变量**。要给浏览器用，走 runtime config 的 `public` 一侧（并且**不要把私有 API key 放进去，它会进公开 bundle**）。
+**别把 `import.meta.env` 当运行时的环境读取通道**：这一节把它归在构建期组，且它的定义就是 `process.env`——**服务端进程的环境变量**。要给浏览器用，走 runtime config 的 `public` 一侧（并且**不要把私有 API key 放进去，它会进公开 bundle**）。
 
-这一页未记载的还有：这些字段在 Nitro 服务端代码里是否同样注入（**运行期那组的措辞是 "Runtime (App)"，指向应用侧**）、`envName` 的确切取值集合与默认值、以及 `nitro` 与 `server` 是否存在任何时点上的差别（描述相同但名字不同）。
+这一节未记载的还有：这些字段在 Nitro 服务端代码里是否同样注入（**运行期那组的措辞是 "Runtime (App)"，指向应用侧**）、`envName` 的确切取值集合与默认值、以及 `nitro` 与 `server` 是否存在任何时点上的差别（描述相同但名字不同）。
 
 下一篇进入图层：先看它的定义与用途清单。
+
+## 下一篇
+
+下一篇 676：图层概念：七种用途、两个版本下限与那两处清单差别
 
 ## 本文依据
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/52cd5db953d719110e34510f7daf9edd/
-title: 两个 addRouteMiddleware：插件里注册函数、模块里登记文件
+title: 131 - 两个 addRouteMiddleware：插件里注册函数、模块里登记文件
 date: 2026-11-24T11:00:00+08:00
 updated: 2026-11-24T11:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-搜索 `addRouteMiddleware` 会出来两页文档，签名却对不上——一个是 `(name, 函数, 选项)`，一个是 `({ name, path })`。这不是笔误，是**两个不同的函数**。
+搜索 `addRouteMiddleware` 会出来两节文档，签名却对不上——一个是 `(name, 函数, 选项)`，一个是 `({ name, path })`。这不是笔误，是**两个不同的函数**。
 
 ## 一张表先分清
 
@@ -40,7 +40,7 @@ tags:
 | 顺序控制 | 无（只有"同名覆盖"这一条规则） | `override` 与 `prepend` 两个开关 |
 | 构建期文档里怎么提到它 | —— | 官方补了一句："**路由中间件也可以通过插件里的 `addRouteMiddleware` 组合式函数来定义。**" |
 
-最后一行就是官方给这两页互相指认的方式。
+最后一行就是官方给这两节互相指认的方式。
 
 ## 运行时：插件里注册一个函数
 
@@ -105,7 +105,7 @@ export default defineNuxtPlugin(() => {
 })
 ```
 
-中间件那一页给的插件示例，正是这两条的并排演示（一条 `global-test` 带 `{ global: true }`、一条 `named-test`，后者注释写着"会覆盖任何同名既有中间件"，见 129）。
+中间件那一节给的插件示例，正是这两条的并排演示（一条 `global-test` 带 `{ global: true }`、一条 `named-test`，后者注释写着"会覆盖任何同名既有中间件"，见 129）。
 
 ## 构建期：模块里登记一个文件
 
@@ -161,7 +161,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
 ## 还有第三种：构建期改页面元数据
 
-如果目标不是"注册一个中间件"，而是"给某些页面挂上中间件"，官方在中间件那一页给的是 `pages:extend` 钩子里改 `page.meta.middleware`，并且注了一句它会**覆盖**页面里 `definePageMeta` 的设置（129）。
+如果目标不是"注册一个中间件"，而是"给某些页面挂上中间件"，官方在中间件那一节给的是 `pages:extend` 钩子里改 `page.meta.middleware`，并且注了一句它会**覆盖**页面里 `definePageMeta` 的设置（129）。
 
 Kit 的 `extendPages` 也能改这一层——它的 `meta` 属性官方说明是"**路由的自定义元数据。可以用在布局、中间件或导航守卫里。**"类型是 `NuxtPageMeta`。要给自定义字段类型安全，官方给的是增强 `@nuxt/schema` 里的 `NuxtPageMeta`，示例末尾同样带 `export {}`：
 

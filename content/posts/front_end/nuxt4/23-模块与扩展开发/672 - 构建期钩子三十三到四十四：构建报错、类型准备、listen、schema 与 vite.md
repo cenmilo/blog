@@ -1,6 +1,6 @@
 ---
 url: /posts/4888c5e722898655f5d0edfee364466b/
-title: 构建期钩子三十三到四十四：构建报错、类型准备、listen、schema 与 vite
+title: 672 - 构建期钩子三十三到四十四：构建报错、类型准备、listen、schema 与 vite
 date: 2027-05-24T09:00:00+08:00
 updated: 2027-05-24T09:00:00+08:00
 author: cmdragon
@@ -99,7 +99,7 @@ tags:
 | `vite:serverCreated` | Vite 服务器被创建时（参数 `viteServer, env`） |
 | `vite:compiled` | Vite 服务器编译之后（**无参数**） |
 
-**`vite:extend` 是 Kit 唯一示例页那段代码用的钩子**——那页用它把配置取出来，然后靠抛错叫停构建。**这正好说明为什么它还活着：它拿的是上下文，不是"某一侧的配置"**。
+**`vite:extend` 是 Kit 唯一示例页那段代码用的钩子**——那一节用它把配置取出来，然后靠抛错叫停构建。**这正好说明为什么它还活着：它拿的是上下文，不是"某一侧的配置"**。
 
 另外四个 Vite 钩子的参数里都有 `env`（`vite:extendConfig`、`vite:configResolved`、`vite:serverCreated`），**`env` 具体是什么，表里没写**——只能从"它区分 client/server"这个上下文推出来，而这恰是 Nuxt 5 要取消的东西。
 
@@ -117,6 +117,10 @@ tags:
 这一组未记载的还有：`prepare:types` 与 `nitro:prepare:types` 的先后、`listen` 两个参数各自类型、`schema:written` 之后配置类型文件是否会再写一次、以及 `vite:compiled` 与 `webpack:compiled` 是否共用同一套完成语义（webpack 那八行在下一组）。
 
 下一组读四十五到五十二行，全是 webpack；再往后是 Nitro 运行时那九行。
+
+## 下一篇
+
+下一篇 673：构建期钩子四十五到五十二：webpack 八行与那三条 WebpackBar 事件
 
 ## 本文依据
 

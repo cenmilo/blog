@@ -1,6 +1,6 @@
 ---
 url: /posts/e687704ea2dad8c52e7f54d8c33be20d/
-title: script setup 是推荐写法：零配置 SFC、未使用不打包与 Vapor 岔路
+title: 164 - script setup 是推荐写法：零配置 SFC、未使用不打包与 Vapor 岔路
 date: 2026-12-05T11:00:00+08:00
 updated: 2026-12-05T11:00:00+08:00
 author: cmdragon
@@ -30,11 +30,11 @@ tags:
 
 ## 官方推荐句出现在三个地方
 
-同一条推荐，措辞在三页里各写了一次：
+同一条推荐，措辞在三节里各写了一次：
 
 > Using `<script setup lang="ts">` is the recommended way of declaring Vue components in Nuxt.
 
-这句话我在 `defineNuxtComponent` 那页见过一次（162），在数据获取页的 Options API 一节又见一次，只是那里写成 "Using `<script setup>` **or** `<script setup lang="ts">` are the recommended way..."。**三处重复说明这不是顺带一提**——框架把 `<script setup>` 当默认答案，其他写法是兼容路径。
+这句话在 `defineNuxtComponent` 那一节出现过一次（162），在数据获取页的 Options API 一节又见一次，只是那里写成 "Using `<script setup>` **or** `<script setup lang="ts">` are the recommended way..."。**三处重复说明这不是顺带一提**——框架把 `<script setup>` 当默认答案，其他写法是兼容路径。
 
 配套的还有那句目标陈述：
 

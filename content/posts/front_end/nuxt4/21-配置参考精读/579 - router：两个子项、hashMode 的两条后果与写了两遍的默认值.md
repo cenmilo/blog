@@ -1,6 +1,6 @@
 ---
 url: /posts/46bafd6c48f20d476b887280b9fb7a0f/
-title: router：两个子项、hashMode 的两条后果与写了两遍的默认值
+title: 579 - router：两个子项、hashMode 的两条后果与写了两遍的默认值
 date: 2027-04-23T09:00:00+08:00
 updated: 2027-04-23T09:00:00+08:00
 author: cmdragon
@@ -87,7 +87,7 @@ export default defineNuxtConfig({
 })
 ```
 
-还有两个实验开关会被它连带影响，两处都写在实验特性那一页：
+还有两个实验开关会被它连带影响，两处都写在实验特性那一节：
 
 - `experimental.serverPathFallback`：原文一句 "**The option has no effect when `hashMode` is enabled.**"
 - `experimental.early404`：自动关闭的条件之一就是这个——"The option is disabled automatically in development, **when `hashMode` is enabled**, when a root-level catch-all page … and when a custom `app/router.options` file may modify `routes`"。
@@ -104,7 +104,7 @@ export default defineNuxtConfig({
 
 **这一项没有列出可选值。** 唯一的第二个取值线索在配方页：把这一项设成 `smooth`，然后访问带锚点的地址（例如 `https://example.com/blog/my-article#comments`）时浏览器会平滑滚到那个锚点。加上默认的那个 `auto`，文档里**实际出现过的取值只有这两个**，其他值能不能传、传了会怎样没有记载。
 
-Nuxt 默认的滚动行为在无障碍那一页有交代：新路由滚到顶部、用户后退时恢复上次位置、滚到 hash 目标。那一页接着说，**要平滑滚动或不同的偏移**，就配 `scrollBehaviorType` 或在 `router.options.ts` 里写自己的 `scrollBehavior`，并提醒平滑滚动应当尊重用户的 `prefers-reduced-motion` 设置。
+Nuxt 默认的滚动行为在无障碍那一节有交代：新路由滚到顶部、用户后退时恢复上次位置、滚到 hash 目标。那一节接着说，**要平滑滚动或不同的偏移**，就配 `scrollBehaviorType` 或在 `router.options.ts` 里写自己的 `scrollBehavior`，并提醒平滑滚动应当尊重用户的 `prefers-reduced-motion` 设置。
 
 这里要抠一下字眼：**"偏移量"在配置参考这一节没有对应键**——那件事只能靠 `scrollBehavior` 函数，也就是文件那侧，`scrollBehaviorType` 管的是 hash 链接的滚动类型。
 
@@ -139,7 +139,7 @@ export default {
 
 ## 下一篇
 
-下一篇 580 看 `## components`：它有类型行、有一份两元素的默认 `dirs` 表（**其中一项带 `global: true`**），但**一个 `###` 子项都没有**——`dirs` 里能写哪些字段、`pathPrefix` 和 `global` 怎么设，全在组件目录那一页。
+下一篇 580 看 `## components`：它有类型行、有一份两元素的默认 `dirs` 表（**其中一项带 `global: true`**），但**一个 `###` 子项都没有**——`dirs` 里能写哪些字段、`pathPrefix` 和 `global` 怎么设，全在组件目录那一节。
 
 ## 本文依据
 

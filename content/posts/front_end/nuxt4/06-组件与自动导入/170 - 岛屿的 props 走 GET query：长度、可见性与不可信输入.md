@@ -1,12 +1,12 @@
 ---
 url: /posts/9d6118f911540048c31d574dcd06fde2/
-title: 岛屿的 props 走 GET query：长度、可见性与不可信输入
+title: 170 - 岛屿的 props 走 GET query：长度、可见性与不可信输入
 date: 2026-12-07T11:00:00+08:00
 updated: 2026-12-07T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：169 说"可缓存"与"看不见路由"是同一件事的两面，这一篇讲这件实现细节本身——"**Props are serialized and sent as GET query parameters.**"，官方接着写："**This makes island responses cacheable, but it also means: props must be JSON-serializable；props are limited by URL length, so avoid passing large amounts of data；props may be visible in server access logs, CDN caches and `Referer` headers**"。`<NuxtIsland>` 那页把可见性三处再列了一遍："**Component props and context are sent as GET query parameters to enable caching. Query parameters may be visible in server access logs, CDN caches, and HTTP `Referer` headers.**"。由这条机制推出的一段安全指引是官方写得最具体的一处："**Because props come from the request (URL query or body), treat them as untrusted input. Nuxt rejects the props most likely to leak through unintentionally: a top-level `as` that the island does not declare (an undeclared prop falls through as an attribute onto the island's root), and, with `vue.runtimeCompiler` enabled, a `template` anywhere in the props. Beyond that, avoid feeding props you have not validated into dynamic component resolution (`<component :is>`, `h()`, `resolveDynamicComponent()`, or a polymorphic `as` / `asChild` prop), since a string can resolve to any registered component or HTML element.**" 还有一条属性穿透的具体形状值得单独记："**Props a component does not declare fall through as attributes onto its single root element, so an island whose root is a polymorphic component (e.g. from `reka-ui` / `@nuxt/ui`) can receive attributes you did not bind. Set `defineOptions({ inheritAttrs: false })` on such islands, or declare the props you accept.**"官方给的替代写法是把判别值过一遍**白名单**再映射到已导入组件（`const allowed: Record<string, Component> = { a: CardA, b: CardB }` + `const component = allowed[props.variant] ?? CardA`）。
+  摘要：169 说"可缓存"与"看不见路由"是同一件事的两面，这一篇讲这件实现细节本身——"**Props are serialized and sent as GET query parameters.**"，官方接着写："**This makes island responses cacheable, but it also means: props must be JSON-serializable；props are limited by URL length, so avoid passing large amounts of data；props may be visible in server access logs, CDN caches and `Referer` headers**"。`<NuxtIsland>` 那一节把可见性三处再列了一遍："**Component props and context are sent as GET query parameters to enable caching. Query parameters may be visible in server access logs, CDN caches, and HTTP `Referer` headers.**"。由这条机制推出的一段安全指引是官方写得最具体的一处："**Because props come from the request (URL query or body), treat them as untrusted input. Nuxt rejects the props most likely to leak through unintentionally: a top-level `as` that the island does not declare (an undeclared prop falls through as an attribute onto the island's root), and, with `vue.runtimeCompiler` enabled, a `template` anywhere in the props. Beyond that, avoid feeding props you have not validated into dynamic component resolution (`<component :is>`, `h()`, `resolveDynamicComponent()`, or a polymorphic `as` / `asChild` prop), since a string can resolve to any registered component or HTML element.**" 还有一条属性穿透的具体形状值得单独记："**Props a component does not declare fall through as attributes onto its single root element, so an island whose root is a polymorphic component (e.g. from `reka-ui` / `@nuxt/ui`) can receive attributes you did not bind. Set `defineOptions({ inheritAttrs: false })` on such islands, or declare the props you accept.**"官方给的替代写法是把判别值过一遍**白名单**再映射到已导入组件（`const allowed: Record<string, Component> = { a: CardA, b: CardB }` + `const component = allowed[props.variant] ?? CardA`）。
 
 categories:
   - 前端开发
@@ -44,7 +44,7 @@ tags:
 | 受 URL 长度限制 | 把整个列表或富文本原样塞进 props | "avoid passing large amounts of data" |
 | 会出现在日志与缓存里 | 传 token、用户邮箱、内部 ID 之类 | 三处暴露点：server access logs、CDN caches、`Referer` headers |
 
-`<NuxtIsland>` 那页把第三点又列了一遍，范围词多了一个 `context`：
+`<NuxtIsland>` 那一节把第三点又列了一遍，范围词多了一个 `context`：
 
 > Component props **and context** are sent as GET query parameters to enable caching. Query parameters may be visible in server access logs, CDN caches, and HTTP `Referer` headers.
 
@@ -102,11 +102,11 @@ const component = allowed[props.variant] ?? CardA
 
 这一例同时满足了 161 那条对 `<component :is>` 的要求：不依赖 `resolveComponent` 的字面量分析，因为交给 `:is` 的是**组件对象**。
 
-## 一处两页不一致：`context` 这个 prop
+## 一处两节不一致：`context` 这个 prop
 
 169 引过这句——岛屿要拿路由信息时"**pass it in explicitly, either as props or via the `context` prop on `<NuxtIsland>`**"；缓存键也写作 "name, props and context"。
 
-但 `<NuxtIsland>` 那页的 Props 清单只有五项：`name`（required）、`lazy`、`props`、`source`、`dangerouslyLoadClientComponents`——**没有 `context`**。
+但 `<NuxtIsland>` 那一节的 Props 清单只有五项：`name`（required）、`lazy`、`props`、`source`、`dangerouslyLoadClientComponents`——**没有 `context`**。
 
 **我不替文档补结论**。可用的处理办法：`context` 按官方那句话写（它有明确的语义描述与读取路径 `nuxtApp.ssrContext.islandContext`），并**在自己的项目里验证一次**：岛屿内读 `nuxtApp.ssrContext?.islandContext`，看传入的 context 是否出现、以及换掉 context 值时响应是否重新请求（缓存键的证据）。验证成本很低：一次请求面板就能看出来。
 
@@ -127,12 +127,12 @@ const component = allowed[props.variant] ?? CardA
 
 1. props 为什么走 GET query？官方用哪个词点出这份收益？
 2. 三条后果分别禁止了什么写法？`Referer` 这一项的实际暴露路径是什么？
-3. props 与 context 都被序列化进 query，这句分别出现在哪两页？
+3. props 与 context 都被序列化进 query，这句分别出现在哪两节？
 4. 框架已经拦掉的是哪两种 props？各自的触发条件是什么（第二个要开什么）？
 5. 四种"动态解析"是哪四种？官方的理由句是什么？
 6. 未声明的 props 会落到哪里？官方点名的两类库是什么？两个解法你按什么顺序选？
 7. 白名单示例的三个可照抄要点分别是什么？它为什么避开了 `resolveComponent` 的字面量限制？
-8. `context` prop 这件事两页哪里对不上？你会怎么验证而不是猜？
+8. `context` prop 这件事两节哪里对不上？你会怎么验证而不是猜？
 
 ## 下一篇
 

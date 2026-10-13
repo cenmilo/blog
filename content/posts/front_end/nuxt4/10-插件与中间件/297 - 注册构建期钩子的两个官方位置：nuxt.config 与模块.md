@@ -1,6 +1,6 @@
 ---
 url: /posts/1e6c1e7b8b794e496db6801fe971b749/
-title: 注册构建期钩子的两个官方位置：nuxt.config 与模块
+title: 297 - 注册构建期钩子的两个官方位置：nuxt.config 与模块
 date: 2027-01-19T09:00:00+08:00
 updated: 2027-01-19T09:00:00+08:00
 author: cmdragon

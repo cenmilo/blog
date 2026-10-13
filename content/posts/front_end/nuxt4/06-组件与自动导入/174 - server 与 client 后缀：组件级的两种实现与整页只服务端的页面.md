@@ -1,6 +1,6 @@
 ---
 url: /posts/5358a3ed428120d38f76ac7c493c1250/
-title: server 与 client 后缀：组件级的两种实现与整页只服务端的页面
+title: 174 - server 与 client 后缀：组件级的两种实现与整页只服务端的页面
 date: 2026-12-09T09:00:00+08:00
 updated: 2026-12-09T09:00:00+08:00
 author: cmdragon

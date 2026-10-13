@@ -1,12 +1,12 @@
 ---
 url: /posts/501ae02abf4a68d635a5f8e3896f6cd6/
-title: getLayerDirectories：十个目录字段、优先级顺序与那两条 note
+title: 662 - getLayerDirectories：十个目录字段、优先级顺序与那两条 note
 date: 2027-05-20T11:00:00+08:00
 updated: 2027-05-20T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：图层这一页只有一个函数，但它把一件不好查的事标准化了：**`getLayerDirectories` 返回应用里每一层的十个已解析目录，并且数组顺序就是优先级顺序——第一个是用户/项目层（最高优先级），前面的层覆盖后面的，基础层排在最后**。页面明说它的价值在于**不必直接访问私有的 `nuxt.options._layers`**。返回值一张表十个字段（`root`、`server`、`modules`、`shared`、`app`、`public`、`appLayouts`、`appMiddleware`、`appPages`、`appPlugins`），**每个的默认形态在接口注释里给出**（例如 `app` 是 Nuxt 的 `srcDir`，默认 `/app/`；`appPages` 默认 `/app/pages`）。两条 `::note` 是常被忽略的细节：**结果用 WeakMap 缓存，反复调用不会重复计算**；**返回的路径一律带结尾斜杠**。
+  摘要：图层这一节只有一个函数，但它把一件不好查的事标准化了：**`getLayerDirectories` 返回应用里每一层的十个已解析目录，并且数组顺序就是优先级顺序——第一个是用户/项目层（最高优先级），前面的层覆盖后面的，基础层排在最后**。页面明说它的价值在于**不必直接访问私有的 `nuxt.options._layers`**。返回值一张表十个字段（`root`、`server`、`modules`、`shared`、`app`、`public`、`appLayouts`、`appMiddleware`、`appPages`、`appPlugins`），**每个的默认形态在接口注释里给出**（例如 `app` 是 Nuxt 的 `srcDir`，默认 `/app/`；`appPages` 默认 `/app/pages`）。两条 `::note` 是常被忽略的细节：**结果用 WeakMap 缓存，反复调用不会重复计算**；**返回的路径一律带结尾斜杠**。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-模块一旦要处理"每一层都有同名目录"这件事，就需要一份按优先级排好的目录清单。这一页给的就是那份清单，而且它把私有属性藏了起来。
+模块一旦要处理"每一层都有同名目录"这件事，就需要一份按优先级排好的目录清单。这一节给的就是那份清单，而且它把私有属性藏了起来。
 
 ## 为什么要有这个函数
 
@@ -40,7 +40,7 @@ tags:
 function getLayerDirectories (nuxt?: Nuxt): LayerDirectories[]
 ```
 
-参数只有一个、可选：**要从中取图层的 Nuxt 实例；不提供时使用当前的 Nuxt 上下文**（与上下文那一页的取法一致）。
+参数只有一个、可选：**要从中取图层的 Nuxt 实例；不提供时使用当前的 Nuxt 上下文**（与上下文那一节的取法一致）。
 
 ## 十个字段与它们的默认形态
 
@@ -92,7 +92,7 @@ interface LayerDirectories {
 
 ## 顺序就是优先级
 
-这是这一页最该记住的一段。原文：**图层按优先级排序，其中**：
+这是这一节最该记住的一段。原文：**图层按优先级排序，其中**：
 
 - **第一个图层是用户/项目图层**（最高优先级）
 - **数组里靠前的图层覆盖靠后的图层**
@@ -232,9 +232,13 @@ export default defineNuxtModule({
 - **它不合并文件**：函数只给路径，"同名谁赢"由你的循环策略决定（上一节那两种）。
 - **它不告诉你哪层是哪个模块**：返回值里没有图层的名字或来源，只有 `root`；**要识别层得靠 `basename(dirs.root)` 这类自己拼的办法**。
 
-这一页没写的还有：`getLayerDirectories` 与 `extends` 的顺序是否严格一致、基础层没有 `app/` 目录时对应字段返回什么（路径仍然给出还是缺失）、以及 WeakMap 的键是什么。
+这一节没写的还有：`getLayerDirectories` 与 `extends` 的顺序是否严格一致、基础层没有 `app/` 目录时对应字段返回什么（路径仍然给出还是缺失）、以及 WeakMap 的键是什么。
 
 下一篇离开 Kit，进入模块开发流程的另一些环节。
+
+## 下一篇
+
+下一篇 663：Kit 依赖检查两函数：缺包时问用户装、CI 里只报不装
 
 ## 本文依据
 

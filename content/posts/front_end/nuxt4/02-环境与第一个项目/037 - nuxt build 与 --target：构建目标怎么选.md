@@ -1,6 +1,6 @@
 ---
 url: /posts/c0705b160198d1c3cfbee5e017f3636f/
-title: nuxt build 与 --target：构建目标怎么选
+title: 037 - nuxt build 与 --target：构建目标怎么选
 date: 2026-10-24T10:00:00+08:00
 updated: 2026-10-24T10:00:00+08:00
 author: cmdragon

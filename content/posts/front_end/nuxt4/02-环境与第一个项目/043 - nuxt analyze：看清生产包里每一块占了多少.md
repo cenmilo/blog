@@ -1,6 +1,6 @@
 ---
 url: /posts/406a489d9ece74f5c4867d22a061b45b/
-title: nuxt analyze：看清生产包里每一块占了多少
+title: 043 - nuxt analyze：看清生产包里每一块占了多少
 date: 2026-10-26T10:00:00+08:00
 updated: 2026-10-26T10:00:00+08:00
 author: cmdragon

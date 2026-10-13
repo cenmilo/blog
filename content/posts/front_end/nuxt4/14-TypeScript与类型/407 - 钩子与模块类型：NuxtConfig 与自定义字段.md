@@ -1,6 +1,6 @@
 ---
 url: /posts/85737d134124550978edc151ef2972e2/
-title: 钩子与模块类型：NuxtConfig 与自定义字段
+title: 407 - 钩子与模块类型：NuxtConfig 与自定义字段
 date: 2027-02-24T11:00:00+08:00
 updated: 2027-02-24T11:00:00+08:00
 author: cmdragon
@@ -118,7 +118,7 @@ export default defineNuxtModule({
 
 ## 模块侧的一条类型边界
 
-模块的 runtime 目录里不能用自动导入（`node_modules` 内出于性能不启用），必须显式从 `#imports` 引——官方在这页用 `::warning` 写了这条（404 已展开）。这一条对模块作者的类型影响最实际：在你项目里"免费"的那些名字，进了 `src/runtime/` 就得自己引。
+模块的 runtime 目录里不能用自动导入（`node_modules` 内出于性能不启用），必须显式从 `#imports` 引——官方在这一节用 `::warning` 写了这条（404 已展开）。这一条对模块作者的类型影响最实际：在你项目里"免费"的那些名字，进了 `src/runtime/` 就得自己引。
 
 ## 自查
 

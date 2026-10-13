@@ -1,12 +1,12 @@
 ---
 url: /posts/0ea7f64eb897f50a90786346e0b4fa08/
-title: 用 Vite 插件接入 Nuxt：一条配置数组、addVitePlugin 与那条替代建议
+title: 681 - 用 Vite 插件接入 Nuxt：一条配置数组、addVitePlugin 与那条替代建议
 date: 2027-05-27T09:00:00+08:00
 updated: 2027-05-27T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：这一页只解决一个问题：**当某个 Vite 插件正好满足需求时，怎么接进来而不必写模块**。项目侧的动作是两步——装包、把它放进 `nuxt.config.ts` 的 **`vite.plugins` 数组**；作者侧则要换成 **`addVitePlugin`**，并且**Nuxt 5+ 里要按环境生效的插件得用 `applyToEnvironment()` 方法**。页面用 `@rollup/plugin-yaml` 做例子，接完之后**就能直接 `import config from '~/data/hello.yaml'`**。最后那条 `::important` 是给进阶读者的方向指引：**要访问已解析的 Vite 配置，就应该写在 Vite 插件内部的 `config` 与 `configResolved` 钩子里，而不是用 Nuxt 的 `vite:extend`、`vite:extendConfig`、`vite:configResolved`**。
+  摘要：这一节只解决一个问题：**当某个 Vite 插件正好满足需求时，怎么接进来而不必写模块**。项目侧的动作是两步——装包、把它放进 `nuxt.config.ts` 的 **`vite.plugins` 数组**；作者侧则要换成 **`addVitePlugin`**，并且**Nuxt 5+ 里要按环境生效的插件得用 `applyToEnvironment()` 方法**。页面用 `@rollup/plugin-yaml` 做例子，接完之后**就能直接 `import config from '~/data/hello.yaml'`**。最后那条 `::important` 是给进阶读者的方向指引：**要访问已解析的 Vite 配置，就应该写在 Vite 插件内部的 `config` 与 `configResolved` 钩子里，而不是用 Nuxt 的 `vite:extend`、`vite:extendConfig`、`vite:configResolved`**。
 
 categories:
   - 前端开发
@@ -24,13 +24,13 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-"我就想让 `.yaml` 能被 import"——这种事不值得写一个模块。这一页给的就是最短路径：两行配置。
+"我就想让 `.yaml` 能被 import"——这种事不值得写一个模块。这一节给的就是最短路径：两行配置。
 
-## 这页的适用前提
+## 这一节的适用前提
 
 开场句已经把取舍说了：**模块提供了大量功能，但有时候某个具体的 Vite 插件能更直接地满足你的需求**。
 
-也就是说：**顺序是先看有没有现成 Vite 插件能直接解决，再考虑写模块**。这一页的存在就是把这条捷径写清楚。
+也就是说：**顺序是先看有没有现成 Vite 插件能直接解决，再考虑写模块**。这一节的存在就是把这条捷径写清楚。
 
 ## 第一步：装包
 
@@ -98,7 +98,7 @@ import config from '~/data/hello.yaml'
 
 **这正是插件的作用**：让 `.yaml` 变成一个可 import 的模块。页面也这么收尾："现在我们已经安装并配置了 Vite 插件，就可以在项目里直接使用 YAML 文件"。
 
-顺带一条值得注意的措辞：页面在配置与使用之间写的是 "**Now we installed and configured our Vite plugin, we can start using YAML files directly**"——**没有说明类型支持**（`.yaml` 导入的 TS 类型从哪来，这一页一个字没提）。要让 IDE 认这个导入，属于补类型声明那一类动作。
+顺带一条值得注意的措辞：那一节在配置与使用之间写的是 "**Now we installed and configured our Vite plugin, we can start using YAML files directly**"——**没有说明类型支持**（`.yaml` 导入的 TS 类型从哪来，这一节一个字没提）。要让 IDE 认这个导入，属于补类型声明那一类动作。
 
 ## 模块作者要换函数
 
@@ -157,11 +157,15 @@ export default defineNuxtModule({
 | 只给某一端加的插件 | 插件对象里写 `applyToEnvironment` |
 | 读或改已解析的 Vite 配置 | **在插件内部的 `config`／`configResolved` 钩子里做** |
 
-页面在末尾放了一个跳转指向 Kit 的 `addVitePlugin` 条目，**没有讲 webpack 侧的对应写法**（webpack 的等价物在 Kit builder 那一页，`addWebpackPlugin`）。
+那一节末尾放了一个跳转指向 Kit 的 `addVitePlugin` 条目，**没有讲 webpack 侧的对应写法**（webpack 的等价物在 Kit builder 那一节，`addWebpackPlugin`）。
 
-这一页未记载的还有：**为什么例子选了一个 rollup 插件**（`@rollup/plugin-yaml` 名字里就是 rollup，页面没有解释它在 Vite 下的可用性依据）、`.yaml` 导入的类型声明怎么补、以及 `vite.plugins` 数组与 `addVitePlugin` 同时使用时插件的先后顺序。
+这一节未记载的还有：**为什么例子选了一个 rollup 插件**（`@rollup/plugin-yaml` 名字里就是 rollup，而那一节没有解释它在 Vite 下的可用性依据）、`.yaml` 导入的类型声明怎么补、以及 `vite.plugins` 数组与 `addVitePlugin` 同时使用时插件的先后顺序。
 
 下一篇把模板那套函数串成一次完整实践：一个模块选项怎么变成可 import 的文件。
+
+## 下一篇
+
+下一篇 682：自定义模板生成实战：把模块选项变成一个可 import 的文件
 
 ## 本文依据
 

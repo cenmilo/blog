@@ -1,6 +1,6 @@
 ---
 url: /posts/efbfef1156457e630e26511007e7a766/
-title: Kit 日志两函数：useLogger 的 tag 与 level、useTerminal 的五项能力
+title: 659 - Kit 日志两函数：useLogger 的 tag 与 level、useTerminal 的五项能力
 date: 2027-05-19T11:00:00+08:00
 updated: 2027-05-19T11:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-模块在构建时往终端打字是常态，但 `console.log` 有两个问题：没有别人的前缀、也没法被静音。这一页给的两个函数各解决一半。
+模块在构建时往终端打字是常态，但 `console.log` 有两个问题：没有别人的前缀、也没法被静音。这一节给的两个函数各解决一半。
 
 ## `useLogger`：带 tag 的日志实例
 
@@ -40,7 +40,7 @@ function useLogger (tag?: string, options?: NuxtLoggerOptions): NuxtLogger
 
 **`tag`**：**一个作为所有日志消息后缀的标签，显示在时间戳右侧**——这就是为什么用户看到的一行里会有你的模块名，而不是满屏不知出处的输出。
 
-**`options`**：**日志器选项，例如 `level`、`reporters`、`defaults` 与 `formatOptions`**。注意这句用的是"such as"，**这一页没有给出 `NuxtLoggerOptions` 的字段表**，这四项之外还有什么、各自类型如何，要去看 consola。
+**`options`**：**日志器选项，例如 `level`、`reporters`、`defaults` 与 `formatOptions`**。注意这句用的是"such as"，**这一节没有给出 `NuxtLoggerOptions` 的字段表**，这四项之外还有什么、各自类型如何，要去看 consola。
 
 基础用法：
 
@@ -64,7 +64,7 @@ const logger = useLogger('my-module', { level: options.quiet ? 0 : 3 })
 logger.info('Hello from my module!')
 ```
 
-**`0` 与 `3` 各自对应什么，这一页一个字没提**。从写法能读出的是"quiet 时取 0、否则取 3"，也就是**数字越大越啰嗦**，但完整的级别表（哪些数字是 silent/fatal/error/warn/info/log/success/trace/debug）必须去 consola 的文档核对，**不要凭 0 和 3 这两个样本推断中间档**。
+**`0` 与 `3` 各自对应什么，这一节一个字没提**。从写法能读出的是"quiet 时取 0、否则取 3"，也就是**数字越大越啰嗦**，但完整的级别表（哪些数字是 silent/fatal/error/warn/info/log/success/trace/debug）必须去 consola 的文档核对，**不要凭 0 和 3 这两个样本推断中间档**。
 
 ## `useTerminal`：同一段代码在两种宿主里
 
@@ -138,11 +138,15 @@ export default defineNuxtModule({
 
 **logger 是"我说你听"，terminal 是"可能要你回应"**——这条分界决定了你的模块在 CI 里会不会卡住。
 
-这一页没写的还有：`level` 的数值含义与默认值、`NuxtLoggerOptions` 除点名的四项之外有什么、`notify` 的入参 `NuxtTerminalNotification` 有哪些字段、`prompt` 的返回类型（`Promise<any>`）在各种 `type` 下分别是什么形状、以及这两个函数是否受"Kit 只给模块用"那条限制（**按 Kit 总页的规则它们是构建期工具，运行时代码里不该出现**）。
+这一节没写的还有：`level` 的数值含义与默认值、`NuxtLoggerOptions` 除点名的四项之外有什么、`notify` 的入参 `NuxtTerminalNotification` 有哪些字段、`prompt` 的返回类型（`Promise<any>`）在各种 `type` 下分别是什么形状、以及这两个函数是否受"Kit 只给模块用"那条限制（**按 Kit 总页的规则它们是构建期工具，运行时代码里不该出现**）。
 
 另有一处衔接值得记：`useTerminal` 与 DevTools 或 `nuxt dev` 的终端 UI 有关，**而终端 UI 的行为由 CLI 侧提供**，所以同一段代码在 `nuxt build` 下走的就是那条"退化成日志"的分支。
 
-下一篇讲构建器那一页的四个函数，其中 `extendViteConfig` 已被标为弃用。
+下一篇讲构建器那一节的四个函数，其中 `extendViteConfig` 已被标为弃用。
+
+## 下一篇
+
+下一篇 660：Kit 构建器四函数：extendViteConfig 已弃用与两个加插件的函数
 
 ## 本文依据
 

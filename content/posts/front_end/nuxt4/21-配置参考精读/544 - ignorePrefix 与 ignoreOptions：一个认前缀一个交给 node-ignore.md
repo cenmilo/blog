@@ -1,12 +1,12 @@
 ---
 url: /posts/89607e2d93fcc9989f56c48b4e6d46f7/
-title: ignorePrefix 与 ignoreOptions：一个认前缀一个交给 node-ignore
+title: 544 - ignorePrefix 与 ignoreOptions：一个认前缀一个交给 node-ignore
 date: 2027-04-11T10:00:00+08:00
 updated: 2027-04-11T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`ignorePrefix` 的作用面被官方点名在**四个目录**：**"Any file in `app/pages/`, `app/layouts/`, `app/middleware/`, and `public/` directories will be ignored during the build process if its filename starts with the prefix specified by `ignorePrefix`."**，目的句是"防止某些文件被处理或被构建后的应用服务"，默认值 **`"-"`**（也就是以 `-` 开头的文件一律忽略）。`ignoreOptions` 则完全不同：**"Pass options directly to `node-ignore` (which is used by Nuxt to ignore files)."**——它是把选项原样交给 node-ignore 这个库，官方示例只有一个：`ignoreOptions: { ignorecase: false }`。第三个入口是项目根的 `.nuxtignore` 文件，官方在那一页直接把三者并列：你**也可以**在 `nuxt.config` 里配 `ignoreOptions`、`ignorePrefix` 和 `ignore`。
+  摘要：`ignorePrefix` 的作用面被官方点名在**四个目录**：**"Any file in `app/pages/`, `app/layouts/`, `app/middleware/`, and `public/` directories will be ignored during the build process if its filename starts with the prefix specified by `ignorePrefix`."**，目的句是"防止某些文件被处理或被构建后的应用服务"，默认值 **`"-"`**（也就是以 `-` 开头的文件一律忽略）。`ignoreOptions` 则完全不同：**"Pass options directly to `node-ignore` (which is used by Nuxt to ignore files)."**——它是把选项原样交给 node-ignore 这个库，官方示例只有一个：`ignoreOptions: { ignorecase: false }`。第三个入口是项目根的 `.nuxtignore` 文件，官方在那一节直接把三者并列：你**也可以**在 `nuxt.config` 里配 `ignoreOptions`、`ignorePrefix` 和 `ignore`。
 
 categories:
   - 前端开发
@@ -64,11 +64,11 @@ export default defineNuxtConfig({
 
 `ignorecase: false` 的效果是**关掉大小写不敏感**（默认行为是把它当 `.gitignore` 那样不区分大小写处理，库的这一项就叫 `ignorecase`）。
 
-两个信息缺口要说清：**这一节没有列 `**Type**`，也没有列默认值**（属于那份"约二十三个只有类型或什么都没有"的条目之一），而且**可用选项的完整清单官方不在这页给**——它只留了一个 **See** 指向 node-ignore 仓库。要设别的选项，得去那库的文档查，Nuxt 侧没有任何一个"已验证可用"的白名单。
+两个信息缺口要说清：**这一节没有列 `**Type**`，也没有列默认值**（属于那份"约二十三个只有类型或什么都没有"的条目之一），而且**可用选项的完整清单官方不在那一节给**——它只留了一个 **See** 指向 node-ignore 仓库。要设别的选项，得去那库的文档查，Nuxt 侧没有任何一个"已验证可用"的白名单。
 
 ## 第三个入口：`.nuxtignore`
 
-`.nuxtignore` 那一页把这三者并列：**"You can also configure `ignoreOptions`, `ignorePrefix` and `ignore` in your `nuxt.config` file."**
+`.nuxtignore` 那一节把这三者并列：**"You can also configure `ignoreOptions`, `ignorePrefix` and `ignore` in your `nuxt.config` file."**
 
 而文件本身是这么定义的：它告诉 Nuxt 在**构建阶段**忽略 `rootDir` 里的文件，**"It is subject to the same specification as `.gitignore` and `.eslintignore` files, in which each line is a glob pattern indicating which files should be ignored."**
 
@@ -103,7 +103,7 @@ app/middleware/foo/*.js
 | 改匹配行为本身（比如大小写敏感） | `ignoreOptions`（交给 node-ignore） |
 | 按 gitignore 语法逐行列、还要取反 | `.nuxtignore` 文件 |
 
-`.nuxtignore` 与 `ignore` 都在"匹配模式"这一层，**官方没有说明两者叠加时的优先或去重规则**；`!` 取反只在 `.nuxtignore` 那页作为 gitignore 规范提到，`ignore` 数组里能否用取反，文档没写。
+`.nuxtignore` 与 `ignore` 都在"匹配模式"这一层，**官方没有说明两者叠加时的优先或去重规则**；`!` 取反只在 `.nuxtignore` 那一节作为 gitignore 规范提到，`ignore` 数组里能否用取反，文档没写。
 
 ## 自查
 

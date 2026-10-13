@@ -1,12 +1,12 @@
 ---
 url: /posts/426178b3cb127fc85de386306d5a1221/
-title: Kit 官方示例页只有一例：借构建期钩子取出 Vite 配置
+title: 664 - Kit 官方示例页只有一例：借构建期钩子取出 Vite 配置
 date: 2027-05-21T10:00:00+08:00
 updated: 2027-05-21T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：Kit 有一页不列函数、只放例子，而**这一页目前只有一个示例**："如何拿到 Nuxt 正在用的 Vite（或 webpack）配置"。它值得逐行读，因为这段代码里塞了四个技巧：**`loadNuxt` 传 `{ dev: false, overrides: { ssr: false } }`**、**在 `vite:extend` 钩子里先 `resolve(config)` 再 `throw new Error('_stop_')` 打断构建**、**在 `buildNuxt(...).catch` 里用错误文本是否含 `_stop_` 来区分"自己停的"与"真失败了"**、**`finally` 里调 `nuxt.close()`**。页面还点了三个已经在这么做的上游项目，并说**同样的思路可以拿去取 webpack 配置**。
+  摘要：Kit 有一页不列函数、只放例子，而**这一节目前只有一个示例**："如何拿到 Nuxt 正在用的 Vite（或 webpack）配置"。它值得逐行读，因为这段代码里塞了四个技巧：**`loadNuxt` 传 `{ dev: false, overrides: { ssr: false } }`**、**在 `vite:extend` 钩子里先 `resolve(config)` 再 `throw new Error('_stop_')` 打断构建**、**在 `buildNuxt(...).catch` 里用错误文本是否含 `_stop_` 来区分"自己停的"与"真失败了"**、**`finally` 里调 `nuxt.close()`**。页面还点了三个已经在这么做的上游项目，并说**同样的思路可以拿去取 webpack 配置**。
 
 categories:
   - 前端开发
@@ -24,13 +24,13 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-工具函数那一套看完，官方留了一页"别人是怎么用的"。这一页只有一个例子，但它是全套文档里少见的完整程序——**从加载 Nuxt 到把它关掉，一段写完**。
+工具函数那一套看完，官方留了一个页面写"别人是怎么用的"。这一节只有一个例子，但它是全套文档里少见的完整程序——**从加载 Nuxt 到把它关掉，一段写完**。
 
-## 这一页的范围
+## 这一节的范围
 
 页标题：**Nuxt Kit 工具在用法上的示例**。
 
-**这一节标题是"Accessing Nuxt Vite Config"，也是整页唯一一节**（ Kit 其余每一页都在列函数签名，这页不讲签名，只给一段能跑的代码）。
+**这一节标题是"Accessing Nuxt Vite Config"，也是整页唯一一节**（ Kit 其余每一节都在列函数签名，这一节不讲签名，只给一段能跑的代码）。
 
 它的适用对象写得很具体：**如果你在做一个集成，需要访问 Nuxt 所使用的运行期 Vite 或 webpack 配置，那么可以用 Kit 的工具把它取出来**。
 
@@ -73,7 +73,7 @@ const nuxt = await loadNuxt({ cwd: process.cwd(), dev: false, overrides: { ssr: 
 
 这里能看到 `loadNuxt` 那条"底层是 c12，所以接受 `c12.loadConfig` 的同款选项"的用法：**`overrides` 正是那一族里的键，作用是压在所有层之上**（连项目自己的 `nuxt.config` 也被它盖住）。
 
-**为什么要关 SSR、为什么 `dev` 取 `false`，这一页没有解释**——它属于这段代码作者的取值选择，读者照抄前应该知道：**`dev: false` 会让它走生产形态的配置合并**，与开发服务器下拿到的配置可能不同。
+**为什么要关 SSR、为什么 `dev` 取 `false`，这一节没有解释**——它属于这段代码作者的取值选择，读者照抄前应该知道：**`dev: false` 会让它走生产形态的配置合并**，与开发服务器下拿到的配置可能不同。
 
 ## 第二步：在钩子里既交付配置、又叫停构建
 
@@ -124,11 +124,15 @@ buildNuxt(nuxt).catch((err) => {
 | webpack 配置 | **页面说用类似做法**，对应钩子是 `webpack:config`（"在配置 webpack 编译器之前调用"） |
 | 已经解析完的配置 | 读 resolved 的那两个钩子——**但它们在 Nuxt 5+ 已被标弃用** |
 
-第三行这个提醒有依据：这一页用的是 `vite:extend`（未被标弃用），而 `vite:extendConfig` 与 `vite:configResolved` 两个在构建器那一节里都挂着 "Deprecated in Nuxt 5+"。**同一个 Vite 一族里，有的钩子在退场、有的还在**，所以照抄时别把钩子名换成那两个。
+第三行这个提醒有依据：这一节用的是 `vite:extend`（未被标弃用），而 `vite:extendConfig` 与 `vite:configResolved` 两个在构建器那一节里都挂着 "Deprecated in Nuxt 5+"。**同一个 Vite 一族里，有的钩子在退场、有的还在**，所以照抄时别把钩子名换成那两个。
 
-这一页没有讲的：**`vite:extend` 回调参数对象的完整形状**（`config` 之外还有什么字段）、**取 webpack 配置的具体代码**（只说"类似做法"）、**这段代码该放在哪里运行**（脚本？测试？另一个插件里？）、以及**顶层 `await` 需要什么前提**（示例直接写 `const viteConfig = await getViteConfig()`，没提模块或 ESM 要求）。
+这一节没有讲的：**`vite:extend` 回调参数对象的完整形状**（`config` 之外还有什么字段）、**取 webpack 配置的具体代码**（只说"类似做法"）、**这段代码该放在哪里运行**（脚本？测试？另一个插件里？）、以及**顶层 `await` 需要什么前提**（示例直接写 `const viteConfig = await getViteConfig()`，没提模块或 ESM 要求）。
 
 下一篇开始讲钩子本身——三张表怎么分、挂法有几种、以及自定义钩子要动哪三个接口。
+
+## 下一篇
+
+下一篇 665：钩子总论：三张表的划分、两种挂法与自定义钩子的三个接口
 
 ## 本文依据
 

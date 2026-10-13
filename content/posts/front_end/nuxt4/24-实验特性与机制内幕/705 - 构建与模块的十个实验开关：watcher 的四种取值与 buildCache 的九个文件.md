@@ -1,6 +1,6 @@
 ---
 url: /posts/8e3139986ad354ef8a64c50eb41c5ac6/
-title: 构建与模块的十个实验开关：watcher 的四种取值与 buildCache 的九个文件
+title: 705 - 构建与模块的十个实验开关：watcher 的四种取值与 buildCache 的九个文件
 date: 2027-06-04T09:00:00+08:00
 updated: 2027-06-04T09:00:00+08:00
 author: cmdragon
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
 
 它做的事：构建时把 `vue`、`@vue/*` 和 `vue-router` 外置。默认开，可以关。
 
-要紧的是那条警告，原文只有一句：**这个特性很可能在不久的将来被移除。**这一页上很多开关都挂着"可能被移除或修改"的总说明，但**像这样单独对某个开关写"即将移除"的只有一处**。
+要紧的是那条警告，原文只有一句：**这个特性很可能在不久的将来被移除。**这一节上很多开关都挂着"可能被移除或修改"的总说明，但**像这样单独对某个开关写"即将移除"的只有一处**。
 
 ## `viteEnvironmentApi`：一改就动插件注册方式
 
@@ -142,6 +142,10 @@ const value = new SomeClass().someMethod()
 | `decorators` | 未声明 | 支持 TC39 而非 `experimentalDecorators`；要装两个 Babel 包 |
 
 下一篇把剩下的开关一次列完：`asyncContext`、`restoreState` 之外那十一条里没进前面几组的（`defaults`、`cookieStore`、`sharedPrerenderData`、`clientNodeCompat`、`early404`、`entryImportMap`、`browserDevtoolsTiming`、`debugModuleMutation` 等），以及它们各自属于哪一类。
+
+## 下一篇
+
+下一篇 706：其余十二个实验开关：early404 会在四种情况下自动停用
 
 ## 本文依据
 

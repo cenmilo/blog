@@ -1,6 +1,6 @@
 ---
 url: /posts/c0e282be35d9df4036fe954533c777ce/
-title: 代码分割与路由级分包：谁生成 chunk
+title: 439 - 代码分割与路由级分包：谁生成 chunk
 date: 2027-03-07T10:00:00+08:00
 updated: 2027-03-07T10:00:00+08:00
 author: cmdragon
@@ -30,11 +30,11 @@ tags:
 
 ## 第一刀是路由级的
 
-路由那一页开篇就把这刀说明了：
+路由那一节开篇就把这刀说明了：
 
 > Every Vue file inside the [`app/pages/`](https://nuxt.com/docs/4.x/directory-structure/app/pages) directory creates a corresponding URL (or route) that displays the contents of the file. By using dynamic imports for each page, Nuxt leverages code-splitting to ship the minimum amount of JavaScript for the requested route.
 
-关键词 **dynamic imports**：每个页面文件是一个动态导入，所以访问某条路由时只发这条路由需要的 JS。入门那一页把它列为框架自带能力之一（"Nuxt automatically splits your code into smaller chunks"），服务端引擎那一页也重复了一次（"Automatic code-splitting and async-loaded chunks"）。
+关键词 **dynamic imports**：每个页面文件是一个动态导入，所以访问某条路由时只发这条路由需要的 JS。入门那一节把它列为框架自带能力之一（"Nuxt automatically splits your code into smaller chunks"），服务端引擎那一节也重复了一次（"Automatic code-splitting and async-loaded chunks"）。
 
 这一刀是默认的，不用你写任何东西——**前提是你的内容真的分布在多个页面文件里**。全站的界面都堆在 `app.vue` 里，路由级分割就没有可切的东西。
 
@@ -53,7 +53,7 @@ tags:
 
 ## 切出 chunk 不等于少加载
 
-组件目录那一页写了一句很直接的提醒，位置就在"延迟水合"小节的开头：
+组件目录那一节写了一句很直接的提醒，位置就在"延迟水合"小节的开头：
 
 > Lazy components are great for controlling the chunk sizes in your app, but they don't always enhance runtime performance, as they still load eagerly unless conditionally rendered.
 

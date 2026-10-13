@@ -1,6 +1,6 @@
 ---
 url: /posts/4e4de8a0e4d40dce7467d43589d2c5ec/
-title: compatibilityDate：每个项目都该显式写的原因
+title: 351 - compatibilityDate：每个项目都该显式写的原因
 date: 2027-02-06T09:00:00+08:00
 updated: 2027-02-06T09:00:00+08:00
 author: cmdragon

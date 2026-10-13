@@ -1,6 +1,6 @@
 ---
 url: /posts/4d70a6fc5f7e9af804814ffff86f2288/
-title: NuxtLoadingIndicator：进度条的六个 prop 与自己触发
+title: 102 - NuxtLoadingIndicator：进度条的六个 prop 与自己触发
 date: 2026-11-15T09:00:00+08:00
 updated: 2026-11-15T09:00:00+08:00
 author: cmdragon

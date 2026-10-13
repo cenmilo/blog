@@ -1,6 +1,6 @@
 ---
 url: /posts/03f3dec15e8a4e96d3ef618fa59c1bee/
-title: 一个路由渲染到多个位置：命名视图、自定义 props 与那个 ref
+title: 177 - 一个路由渲染到多个位置：命名视图、自定义 props 与那个 ref
 date: 2026-12-10T09:00:00+08:00
 updated: 2026-12-10T09:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-092 那篇讲完了 `<NuxtPage>` 的五个 prop，我以为这块到头了。真做一个"主内容 + 侧栏"的布局时才发现，`name` 那个 prop 背后是一整套文件名约定，而它的元数据规则会让 `definePageMeta` 静默失效。
+092 那篇讲完了 `<NuxtPage>` 的五个 prop，看着像到头了。真做一个"主内容 + 侧栏"的布局时才发现，`name` 那个 prop 背后是一整套文件名约定，而它的元数据规则会让 `definePageMeta` 静默失效。
 
 ## 一个路由填多个出口
 

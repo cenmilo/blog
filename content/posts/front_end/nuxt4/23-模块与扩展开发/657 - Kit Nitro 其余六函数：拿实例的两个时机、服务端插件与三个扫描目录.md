@@ -1,12 +1,12 @@
 ---
 url: /posts/29645b0536ce926faea1a2716ce5e7f4/
-title: Kit Nitro 其余六函数：拿实例的两个时机、服务端插件与三个扫描目录
+title: 657 - Kit Nitro 其余六函数：拿实例的两个时机、服务端插件与三个扫描目录
 date: 2027-05-19T09:00:00+08:00
 updated: 2027-05-19T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：Nitro 那一页剩下六个函数分三组。**取实例**：`useNitro` **只能在 `ready` 钩子之后调用**，而且有一条 note 说**改动 Nitro 实例的配置不会生效**；`tryUseNitro` 返回 `undefined`，因为有两种情况确实没有实例——**`ready` 之前**，以及**配置的 `server.builder` 根本不用 Nitro（例如输出纯客户端 SPA 的 builder）**，那种情况下**服务端路由、路由规则与预渲染三样全都不存在**。**服务端插件** `addNitroPlugin` 在 v4.6 之前叫 `addServerPlugin`，并有一条警告要求**在插件文件里显式从 `nitropack/runtime` 导入 `defineNitroPlugin`**（`useRuntimeConfig` 这类助手同理）。**三个扫描类**：`addServerImports` 的八个字段与 `addImports` 逐字相同、`addServerImportsDir` 管自动导入目录、`addServerScanDir` 只按四个子目录注册（api、routes、middleware、utils）。
+  摘要：Nitro 那一节剩下六个函数分三组。**取实例**：`useNitro` **只能在 `ready` 钩子之后调用**，而且有一条 note 说**改动 Nitro 实例的配置不会生效**；`tryUseNitro` 返回 `undefined`，因为有两种情况确实没有实例——**`ready` 之前**，以及**配置的 `server.builder` 根本不用 Nitro（例如输出纯客户端 SPA 的 builder）**，那种情况下**服务端路由、路由规则与预渲染三样全都不存在**。**服务端插件** `addNitroPlugin` 在 v4.6 之前叫 `addServerPlugin`，并有一条警告要求**在插件文件里显式从 `nitropack/runtime` 导入 `defineNitroPlugin`**（`useRuntimeConfig` 这类助手同理）。**三个扫描类**：`addServerImports` 的八个字段与 `addImports` 逐字相同、`addServerImportsDir` 管自动导入目录、`addServerScanDir` 只按四个子目录注册（api、routes、middleware、utils）。
 
 categories:
   - 前端开发
@@ -60,7 +60,7 @@ export default defineNuxtModule({
 })
 ```
 
-第二条 note 的含义要说白：**拿到实例不等于能改它的配置**。要改配置得走 `nitro:config` 钩子那类时机（这一页没写，但把"改配置不生效"与"只能在 ready 后调用"并排放，就是在告诉读者这两条路不是同一条）。
+第二条 note 的含义要说白：**拿到实例不等于能改它的配置**。要改配置得走 `nitro:config` 钩子那类时机（这一节没写，但把"改配置不生效"与"只能在 ready 后调用"并排放，就是在告诉读者这两条路不是同一条）。
 
 ## `tryUseNitro`：两种"根本没有实例"
 
@@ -149,7 +149,7 @@ function addServerImports (dirs: NuxtImport | NuxtImport[]): void
 
 定性：**给服务端添加导入，让它们在 Nitro 里可用而不必手动 import**。
 
-八个字段与自动导入那一页的 `addImports` **逐字相同**（`name`、`from` 必填，`priority`、`disabled`、`meta`、`type`、`typeFrom`、`as` 可选）。用法也一样：
+八个字段与自动导入那一节的 `addImports` **逐字相同**（`name`、`from` 必填，`priority`、`disabled`、`meta`、`type`、`typeFrom`、`as` 可选）。用法也一样：
 
 ```ts
 const names = [
@@ -224,9 +224,13 @@ export function hello () {
 | 一个放工具/组合式函数的目录，整体进服务端自动导入 | `addServerImportsDir` |
 | 一整套服务端结构（API 路由、中间件、utils），按 `~~/server` 的规则注册 | `addServerScanDir` |
 
-这一页没写的还有：`useNitro` 之后哪些字段可读、`addServerScanDir` 与项目自己的 `server/` 目录同名路由冲突时谁赢、以及 `prepend` 对扫描顺序的实际影响（只有"加到扫描列表开头"一句，没有说这意味着什么优先级）。
+这一节没写的还有：`useNitro` 之后哪些字段可读、`addServerScanDir` 与项目自己的 `server/` 目录同名路由冲突时谁赢、以及 `prepend` 对扫描顺序的实际影响（只有"加到扫描列表开头"一句，没有说这意味着什么优先级）。
 
 下一篇讲路径解析那四个函数，先从那条"不查嵌套依赖"的限制说起。
+
+## 下一篇
+
+下一篇 658：Kit 路径解析四函数：resolvePath 的五选项与那条不查嵌套依赖
 
 ## 本文依据
 

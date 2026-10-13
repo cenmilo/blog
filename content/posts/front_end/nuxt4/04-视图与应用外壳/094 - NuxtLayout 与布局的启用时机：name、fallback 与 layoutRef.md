@@ -1,6 +1,6 @@
 ---
 url: /posts/6f7bbe86a3a512e0636e30d801385544/
-title: NuxtLayout 与布局的启用时机：name、fallback 与 layoutRef
+title: 094 - NuxtLayout 与布局的启用时机：name、fallback 与 layoutRef
 date: 2026-11-12T10:00:00+08:00
 updated: 2026-11-12T10:00:00+08:00
 author: cmdragon

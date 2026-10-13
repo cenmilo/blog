@@ -1,12 +1,12 @@
 ---
 url: /posts/68217de4dd8d40ed6249caf900211733/
-title: build.transpile 的四种登记写法
+title: 438 - build.transpile 的四种登记写法
 date: 2027-03-07T09:00:00+08:00
 updated: 2027-03-07T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`build.transpile` 是 Nuxt 里少数要手动登记依赖的配置，官方给的写法有四种：包名、函数、字符串、匹配依赖文件名的正则对象。需要登记它的场景文档写在别处——ESM 排错那一页让你把导入就报语法错的库加进来，错误码 E1006 让你把调用 `onPrehydrate()` 的库加进来，模块侧的 `addComponent` 有个 `transpile: 'auto'` 会自动判断路径里有没有 `node_modules/`。函数参数这一项文档只留了一个空括号，全文出现过的字段只有示例里的 `isLegacy`。
+  摘要：`build.transpile` 是 Nuxt 里少数要手动登记依赖的配置，官方给的写法有四种：包名、函数、字符串、匹配依赖文件名的正则对象。需要登记它的场景文档写在别处——ESM 排错那一节让你把导入就报语法错的库加进来，错误码 E1006 让你把调用 `onPrehydrate()` 的库加进来，模块侧的 `addComponent` 有个 `transpile: 'auto'` 会自动判断路径里有没有 `node_modules/`。函数参数这一项文档只留了一个空括号，全文出现过的字段只有示例里的 `isLegacy`。
 
 categories:
   - 前端开发

@@ -1,6 +1,6 @@
 ---
 url: /posts/b2d0248b9168ba8747cd8cf2c329bb5f/
-title: useAsyncData 选项表逐条：14 个键与它们的默认值
+title: 213 - useAsyncData 选项表逐条：14 个键与它们的默认值
 date: 2026-12-22T09:00:00+08:00
 updated: 2026-12-22T09:00:00+08:00
 author: cmdragon
@@ -56,7 +56,7 @@ tags:
 - 表前：**"All options can be a static value, a `ref`, or a computed value."**
 - 表后（note）："All options can be given a `computed` or `ref` value. **These will be watched and new requests made automatically with any new values if they are updated.**"
 
-也就是说：**选项给成响应式，值一变就自动重发请求**。216 会讲这条与 `watch` 的关系，以及官方在哪里给了关掉它的开关（`useFetch` 那页有 `watch: false`，`useAsyncData` 这页的 `watch` 行**类型里没有 `false`**——这个不对称我留到 216 单独说）。
+也就是说：**选项给成响应式，值一变就自动重发请求**。216 会讲这条与 `watch` 的关系，以及官方在哪里给了关掉它的开关（`useFetch` 那一节有 `watch: false`，`useAsyncData` 这一节的 `watch` 行**类型里没有 `false`**——这个不对称我留到 216 单独说）。
 
 ## 三条长说明，值得整段读
 
@@ -102,7 +102,7 @@ const getDefaultCachedData = (key, nuxtApp, ctx) => nuxtApp.isHydrating
 
 > Under the hood, `lazy: false` uses `<Suspense>` to block the loading of the route before the data has been fetched. Consider using `lazy: true` and implementing a loading state instead for a snappier user experience.
 
-同页 read-more 补了等价写法："You can use `useLazyAsyncData` to have the same behavior as `lazy: true` with `useAsyncData`."（224 会读那一页确认这句。）
+同页 read-more 补了等价写法："You can use `useLazyAsyncData` to have the same behavior as `lazy: true` with `useAsyncData`."（224 会读那一节确认这句。）
 
 也就是说默认的 `lazy: false` 换来的是"导航被阻塞、落地即满数据"，官方认为**带加载状态的体验更轻**（210 那句"Neither approach is universally better"是这个意思的另一半：不站队，但倾向说了）。
 

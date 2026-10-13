@@ -1,12 +1,12 @@
 ---
 url: /posts/563b713fbb9db646eb0652229a56ebd5/
-title: buildId 与过期构建检测：manifest 撑起来的两件事
+title: 517 - buildId 与过期构建检测：manifest 撑起来的两件事
 date: 2027-04-02T10:00:00+08:00
 updated: 2027-04-02T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`buildId` 的官方定义只有一句："A unique identifier matching the build. This may contain the hash of the current state of the project."，类型 `string`，文档给的默认值是一串 UUID 形状的样例（`4a2e2d30-418f-41df-8e58-ed5df06de7fd`）。它和 `baseURL`、`buildAssetsDir`、`cdnURL` 一起住在 `runtimeConfig.app` 这个**保留命名空间**里。真正决定"客户端知不知道线上换了新版本"的不是它，而是 `experimental.appManifest`——manifest 支撑的两项能力写在错误码 E5001 那页：**客户端的路由规则匹配**与**预渲染载荷探测**。`checkOutdatedBuildInterval`（检查新构建的时间间隔）在 `appManifest` 为 `false` 时**跟着一起被关掉**。
+  摘要：`buildId` 的官方定义只有一句："A unique identifier matching the build. This may contain the hash of the current state of the project."，类型 `string`，文档给的默认值是一串 UUID 形状的样例（`4a2e2d30-418f-41df-8e58-ed5df06de7fd`）。它和 `baseURL`、`buildAssetsDir`、`cdnURL` 一起住在 `runtimeConfig.app` 这个**保留命名空间**里。真正决定"客户端知不知道线上换了新版本"的不是它，而是 `experimental.appManifest`——manifest 支撑的两项能力写在错误码 E5001 那一节：**客户端的路由规则匹配**与**预渲染载荷探测**。`checkOutdatedBuildInterval`（检查新构建的时间间隔）在 `appManifest` 为 `false` 时**跟着一起被关掉**。
 
 categories:
   - 前端开发
@@ -62,7 +62,7 @@ tags:
 
 `experimental.appManifest` 那节只有一句定位加一句状态：**"Use app manifests to respect route rules on client-side."**，以及 "This flag is enabled by default, but you can disable this feature"（关闭示例是给 `appManifest: false`）。
 
-它到底支撑了什么，写在错误码 `NUXT_E5001` 那页。这页的触发条件与影响面一起给了：
+它到底支撑了什么，写在错误码 `NUXT_E5001` 那一节。它的触发条件与影响面一起给了：
 
 > Code that relies on the app manifest ran while `experimental.appManifest` is disabled. The manifest powers features such as route rules matching and prerendered-payload detection on the client, so it must be enabled for them to work.
 

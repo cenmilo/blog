@@ -1,12 +1,12 @@
 ---
 url: /posts/093c951eb43e7a0837ee608847a09873/
-title: Bridge 配置：四个显式开启项、七个默认项与两条旧选项的去向
+title: 618 - Bridge 配置：四个显式开启项、七个默认项与两条旧选项的去向
 date: 2027-05-06T09:00:00+08:00
 updated: 2027-05-06T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`bridge` 这个键下面挂着**十一项开关**，官方把它们分成两组：四个**要显式打开**的（`vite`、`meta`、`macros.pageMeta`、`typescript.esbuild`）与七个**默认就开着、可以关掉**的（`nitro`、`app`、`capi`（还能细到 `capi.legacy`）、`transpile`、`scriptSetup`、`imports`、`constraints`）。这一页的态度写得很明白：**"In normal circumstances, it is always best to stick with defaults!"**，并且让你去 `bridge/src/module.ts` 看最新默认值——**本页不给默认值表**。另一半内容更有用：**两条旧选项的确切去向**，`router.base` 搬进 `app.baseURL`、`build.publicPath` 搬进 `app.cdnURL`。
+  摘要：`bridge` 这个键下面挂着**十一项开关**，官方把它们分成两组：四个**要显式打开**的（`vite`、`meta`、`macros.pageMeta`、`typescript.esbuild`）与七个**默认就开着、可以关掉**的（`nitro`、`app`、`capi`（还能细到 `capi.legacy`）、`transpile`、`scriptSetup`、`imports`、`constraints`）。这一节的态度写得很明白：**"In normal circumstances, it is always best to stick with defaults!"**，并且让你去 `bridge/src/module.ts` 看最新默认值——**那一节不给默认值表**。另一半内容更有用：**两条旧选项的确切去向**，`router.base` 搬进 `app.baseURL`、`build.publicPath` 搬进 `app.cdnURL`。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-Bridge 装完之后 `bridge: false` 改成正文，接下来一堆开关名字开始出现：`nitro`、`capi`、`scriptSetup`、`meta`。这一页的作用就是把它们分成"你要主动开的"和"已经开着、除非必要别关的"两组。
+Bridge 装完之后 `bridge: false` 改成正文，接下来一堆开关名字开始出现：`nitro`、`capi`、`scriptSetup`、`meta`。这一节的作用就是把它们分成"你要主动开的"和"已经开着、除非必要别关的"两组。
 
 ## 官方态度先摆出来
 
@@ -32,7 +32,7 @@ Bridge 装完之后 `bridge: false` 改成正文，接下来一堆开关名字�
 >
 > You can check bridge/src/module.ts for latest defaults.
 
-两句合起来是一条重要提示：**这一页不给你权威默认值**，要准确值去看 `nuxt/bridge` 仓库里 `packages/bridge/src/module.ts`（页面给的就是这个源码链接）。所以**照注释块改配置之前，先确认你要动的那一项默认是什么**。
+两句合起来是一条重要提示：**这一节不给你权威默认值**，要准确值去看 `nuxt/bridge` 仓库里 `packages/bridge/src/module.ts`（页面给的就是这个源码链接）。所以**照注释块改配置之前，先确认你要动的那一项默认是什么**。
 
 ## 两组开关
 
@@ -159,7 +159,7 @@ export default defineNuxtConfig({
 ## 自查
 
 - 开关共**十一项**：四个 opt-in（`vite`、`meta`、`macros.pageMeta`、`typescript.esbuild`）＋七个默认开（`nitro`、`app`、`capi`（可细到 `capi.legacy`）、`transpile`、`scriptSetup`、`imports`、`constraints`）。
-- 官方态度是"默认最好别动"，**权威默认值在 `bridge/src/module.ts`，不在这一页**。
+- 官方态度是"默认最好别动"，**权威默认值在 `bridge/src/module.ts`，不在这一节**。
 - `vite` 与 `nitro` 是两条独立决定；`capi`、`scriptSetup`、`imports` 三者也各管一段，别当成一个开关。
 - `constraints: false` 只关警告。
 - Vite 的具体配置写在**顶层 `vite`** 键里，与 `bridge.vite` 分工不同。
@@ -167,7 +167,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 619 读 Bridge 的 TypeScript 那一页：**先删两个模块**（`@nuxt/typescript-build` 因为 Bridge 已提供同功能、`@nuxt/typescript-runtime` 与 `nuxt-ts` 因为 Nuxt 2 自带运行时支持），再设 `bridge.typescript: true`（同一块里常要带 `nitro: false`），然后把 `tsconfig.json` 改成 `extends: "./.nuxt/tsconfig.json"`——这一步有个具体后果：**该文件是生成的、不入库，所以跑测试前要先 `nuxi prepare`，否则会看到 `TS5083: Cannot read file '~/.nuxt/tsconfig.json'`**。
+下一篇 619 读 Bridge 的 TypeScript 那一节：**先删两个模块**（`@nuxt/typescript-build` 因为 Bridge 已提供同功能、`@nuxt/typescript-runtime` 与 `nuxt-ts` 因为 Nuxt 2 自带运行时支持），再设 `bridge.typescript: true`（同一块里常要带 `nitro: false`），然后把 `tsconfig.json` 改成 `extends: "./.nuxt/tsconfig.json"`——这一步有个具体后果：**该文件是生成的、不入库，所以跑测试前要先 `nuxi prepare`，否则会看到 `TS5083: Cannot read file '~/.nuxt/tsconfig.json'`**。
 
 ## 本文依据
 

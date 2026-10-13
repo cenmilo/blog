@@ -1,6 +1,6 @@
 ---
 url: /posts/85b8a88c532f2e4f783d4ce24816e0a0/
-title: 第一份 nuxt.config：默认值、环境覆盖与 runtimeConfig 的两条硬规则
+title: 018 - 第一份 nuxt.config：默认值、环境覆盖与 runtimeConfig 的两条硬规则
 date: 2026-10-18T09:00:00+08:00
 updated: 2026-10-18T09:00:00+08:00
 author: cmdragon

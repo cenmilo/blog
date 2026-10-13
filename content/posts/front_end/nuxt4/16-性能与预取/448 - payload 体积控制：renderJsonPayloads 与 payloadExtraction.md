@@ -1,6 +1,6 @@
 ---
 url: /posts/7938e6a6f4ca31d3bf5d99cf6b28f286/
-title: payload 体积控制：renderJsonPayloads 与 payloadExtraction
+title: 448 - payload 体积控制：renderJsonPayloads 与 payloadExtraction
 date: 2027-03-10T10:00:00+08:00
 updated: 2027-03-10T10:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 它是什么
 
-官方在预渲染那一页给了完整的定义：
+官方在预渲染那一节给了完整的定义：
 
 > When Nuxt renders a page on the server, it serializes the results of your data fetching (`useAsyncData` and `useFetch`) and app state (`useState`) into a payload so the client can hydrate without re-fetching.
 
@@ -40,7 +40,7 @@ tags:
 
 ## 第一处控制：留在 HTML 里还是抽成文件
 
-`experimental.payloadExtraction` 决定这件事。官方给的是三档，两页用词一致：
+`experimental.payloadExtraction` 决定这件事。官方给的是三档，两节用词一致：
 
 | 取值 | 官方原文要点 |
 | --- | --- |
@@ -98,7 +98,7 @@ export default defineNuxtConfig({
 
 ## 三档怎么选
 
-官方在这一页给了三条实际后果，正好是决策依据：
+官方在这一节给了三条实际后果，正好是决策依据：
 
 > - On a fully static site, client-side navigation reuses the data captured at build time, so data can be stale until the next rebuild.
 > - For ISR/SWR routes, CDNs can cache payload files alongside the HTML, improving client-side navigation performance for cached routes. Dynamic routes like `pages/[...slug].vue` can opt in with glob patterns such as `'/**': { isr: true }`.

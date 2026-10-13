@@ -1,6 +1,6 @@
 ---
 url: /posts/6e49892fed8860a6b174f66264ba3e7f/
-title: useError：读取当前错误对象
+title: 461 - useError：读取当前错误对象
 date: 2027-03-14T11:00:00+08:00
 updated: 2027-03-14T11:00:00+08:00
 author: cmdragon
@@ -72,7 +72,7 @@ export const useError: () => Ref<NuxtError | undefined>
 
 ## 最该用它的一处：中间件里
 
-这一句在错误处理那一页，是这一篇最实用的部分：
+这一句在错误处理那一节，是这一篇最实用的部分：
 
 > Rendering an error page is an entirely separate page load, meaning any registered middleware will run again. You can use `useError` in middleware to check if an error is being handled.
 
@@ -92,16 +92,16 @@ export const useError: () => Ref<NuxtError | undefined>
 
 | 出处 | 给的是 | 列出的字段 |
 | --- | --- | --- |
-| 错误处理页的 `useError` 签名 | `Ref<Error \| { url, status, statusText, message, description, data }>` | `url`、`status`、`statusText`、`message`、`description`、`data` |
-| `useError` 参考页的接口 | `interface NuxtError<DataT = unknown>` | `status: number`、`statusText?: string`、`message: string`、`data?: DataT`、`cause?: unknown`、`fatal: boolean` |
-| `error.vue` 那一页的接口 | `interface NuxtError`（错误页的 `error` prop） | `status`、`fatal`、**`unhandled`**、`statusText?`、`data?`、`cause?`、`statusCode`（注明是 `status` 的 legacy/deprecated 等价）、`statusMessage?`（同上，对应 `statusText`） |
+| 错误处理那一节的 `useError` 签名 | `Ref<Error \| { url, status, statusText, message, description, data }>` | `url`、`status`、`statusText`、`message`、`description`、`data` |
+| `useError` 参考条目里的接口 | `interface NuxtError<DataT = unknown>` | `status: number`、`statusText?: string`、`message: string`、`data?: DataT`、`cause?: unknown`、`fatal: boolean` |
+| `error.vue` 那一节的接口 | `interface NuxtError`（错误页的 `error` prop） | `status`、`fatal`、**`unhandled`**、`statusText?`、`data?`、`cause?`、`statusCode`（注明是 `status` 的 legacy/deprecated 等价）、`statusMessage?`（同上，对应 `statusText`） |
 
 三处的差异不是措辞不同，是**成员不同**：
 
-- `url`、`description` 只在错误处理页的签名里出现。
-- `message` 出现在前两处，**不在** `error.vue` 那一页的清单里。
-- `unhandled` 只在 `error.vue` 那一页出现。
-- `statusCode`/`statusMessage` 只在 `error.vue` 那一页出现，而且官方直接标了 legacy/deprecated 等价。
+- `url`、`description` 只在错误处理那一节的签名里出现。
+- `message` 出现在前两处，**不在** `error.vue` 那一节的清单里。
+- `unhandled` 只在 `error.vue` 那一节出现。
+- `statusCode`/`statusMessage` 只在 `error.vue` 那一节出现，而且官方直接标了 legacy/deprecated 等价。
 - `fatal` 与 `cause` 在第二、三处有，第一处没有。
 
 **这三份清单没有任何一处解释为什么会不一样**（文档未说明）。所以别把任何一份当权威。可靠做法是在你自己的项目里确认：
@@ -109,7 +109,7 @@ export const useError: () => Ref<NuxtError | undefined>
 1. 在 `error.vue` 或组件里打印一次：`console.log(Object.keys(useError().value))`，拿实际键清单。
 2. 看生成的类型：从 `#app` 导入的 `NuxtError` 才是你项目编译时真正用的那个（`error.vue` 的示例里就有 `import type { NuxtError } from '#app'` 这一行）。
 
-两条里第 2 条更硬：`error.vue` 那一页写"如果你有需要自定义字段的错误，它们会**丢失**，应该放进 `data`"——这条同时说明那个对象的键是按类型收敛的，**自定义字段不会自动带过去**。
+两条里第 2 条更硬：`error.vue` 那一节写"如果你有需要自定义字段的错误，它们会**丢失**，应该放进 `data`"——这条同时说明那个对象的键是按类型收敛的，**自定义字段不会自动带过去**。
 
 ```ts
 throw createError({
@@ -137,6 +137,6 @@ throw createError({
 
 ## 本文依据
 
-- `useError` 参考页：定位句（global Nuxt error、available on both client and server、reactive SSR-friendly error state）、`const error = useError()` 用法、"This composable does not take any parameters"、返回值段（`Ref`、无错误时 `undefined`、自动更新）、`NuxtError<DataT = unknown>` 六字段接口与 `() => Ref<NuxtError | undefined>` 签名、`console.error` 示例、指向错误处理页的 read-more、源文件 `composables/error.ts`（`api/composables/use-error`）
-- 错误处理页：`useError` 签名行（含 `url`、`description`）、两条 `::note`（错误页是独立页面加载所以中间件会再跑一遍、可在中间件里用 `useError`；Node 16 下在错误页设 cookie 会覆盖先前 cookie 且官方建议升级）、`::important` 关于依赖插件的内容要先检查、`clearError` 的可选 redirect（`getting-started/error-handling`）
-- `error.vue` 那一页：错误页只有 `error` 一个 prop、八字段 `NuxtError` 清单（含 `unhandled` 与两个标注 legacy/deprecated 的等价字段）、"自定义字段会丢失、应放进 `data`"及其 `createError({ data: {...} })` 示例、`import type { NuxtError } from '#app'`（`directory-structure/app/error`）
+- `useError` 那一节：定位句（global Nuxt error、available on both client and server、reactive SSR-friendly error state）、`const error = useError()` 用法、"This composable does not take any parameters"、返回值段（`Ref`、无错误时 `undefined`、自动更新）、`NuxtError<DataT = unknown>` 六字段接口与 `() => Ref<NuxtError | undefined>` 签名、`console.error` 示例、指向错误处理页的 read-more、源文件 `composables/error.ts`（`api/composables/use-error`）
+- 错误处理那一节：`useError` 签名行（含 `url`、`description`）、两条 `::note`（错误页是独立页面加载所以中间件会再跑一遍、可在中间件里用 `useError`；Node 16 下在错误页设 cookie 会覆盖先前 cookie 且官方建议升级）、`::important` 关于依赖插件的内容要先检查、`clearError` 的可选 redirect（`getting-started/error-handling`）
+- `error.vue` 那一节：错误页只有 `error` 一个 prop、八字段 `NuxtError` 清单（含 `unhandled` 与两个标注 legacy/deprecated 的等价字段）、"自定义字段会丢失、应放进 `data`"及其 `createError({ data: {...} })` 示例、`import type { NuxtError } from '#app'`（`directory-structure/app/error`）

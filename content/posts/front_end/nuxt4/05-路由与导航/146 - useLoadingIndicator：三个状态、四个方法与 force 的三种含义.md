@@ -1,12 +1,12 @@
 ---
 url: /posts/7b0ec7de2aacbaf521cf661b12ff5ec3/
-title: useLoadingIndicator：三个状态、四个方法与 force 的三种含义
+title: 146 - useLoadingIndicator：三个状态、四个方法与 force 的三种含义
 date: 2026-11-29T11:00:00+08:00
 updated: 2026-11-29T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：102 讲的那个组件只是壳，真正的控制器是这个 composable。官方定位句："**This composable gives you access to the loading state of the app page.**"，机制说明："A composable which returns the loading state of the page. **Used by `<NuxtLoadingIndicator>` and controllable. It hooks into `page:loading:start` and `page:loading:end` to change its state.**"。它暴露**三个状态**：`isLoading`、`error`、`progress`，类型全是 `Readonly<ShallowRef<…>>`（`boolean` / `boolean` / `number`，progress 官方注明 "From `0` to `100`"）；**四个方法**：`start()`、`set()`、`finish()`、`clear()`。`force` 这个选项在三个方法上含义不同，官方逐条写明：`start` 与 `set` 的 `{ force: true }` 是 "**to skip the interval and show the loading state immediately**"，而 `finish` 的 `{ force: true }` 是 "**to skip the interval before the state is reset**"，`finish` 还有 `{ error: true }`——"**to change the loading bar color and set the error property to true**"。`finish()` 的正常路径官方写成一句话："Set the `progress` value to `100`, stop all timers and intervals **then reset the loading state `500` ms later**."，而 `clear()` 是 "**Used by `finish()`.** Clear all timers and intervals used by the composable."。三个参数（`duration` 默认 2000、`throttle` 默认 200、`estimatedProgress`）与组件那一页的三个同名 prop 描述逐字一致；官方对退速那段还有一条 tip："The loading indicator's speed gradually decreases after reaching a specific point controlled by `estimatedProgress`. This adjustment provides a more accurate reflection of longer page loading times and prevents the indicator from **prematurely showing 100% completion**."。至于它凭什么自动动，官方钩子表里那两行是关键，其中 `page:loading:start` 还带了一句容易踩的说明："Called when a route navigation begins (before resolution) or when the page key changes. **May fire without the page component's `setup()` re-running if the page is reused (e.g. with a static `key` in `definePageMeta`).**"
+  摘要：102 讲的那个组件只是壳，真正的控制器是这个 composable。官方定位句："**This composable gives you access to the loading state of the app page.**"，机制说明："A composable which returns the loading state of the page. **Used by `<NuxtLoadingIndicator>` and controllable. It hooks into `page:loading:start` and `page:loading:end` to change its state.**"。它暴露**三个状态**：`isLoading`、`error`、`progress`，类型全是 `Readonly<ShallowRef<…>>`（`boolean` / `boolean` / `number`，progress 官方注明 "From `0` to `100`"）；**四个方法**：`start()`、`set()`、`finish()`、`clear()`。`force` 这个选项在三个方法上含义不同，官方逐条写明：`start` 与 `set` 的 `{ force: true }` 是 "**to skip the interval and show the loading state immediately**"，而 `finish` 的 `{ force: true }` 是 "**to skip the interval before the state is reset**"，`finish` 还有 `{ error: true }`——"**to change the loading bar color and set the error property to true**"。`finish()` 的正常路径官方写成一句话："Set the `progress` value to `100`, stop all timers and intervals **then reset the loading state `500` ms later**."，而 `clear()` 是 "**Used by `finish()`.** Clear all timers and intervals used by the composable."。三个参数（`duration` 默认 2000、`throttle` 默认 200、`estimatedProgress`）与组件那一节的三个同名 prop 描述逐字一致；官方对退速那段还有一条 tip："The loading indicator's speed gradually decreases after reaching a specific point controlled by `estimatedProgress`. This adjustment provides a more accurate reflection of longer page loading times and prevents the indicator from **prematurely showing 100% completion**."。至于它凭什么自动动，官方钩子表里那两行是关键，其中 `page:loading:start` 还带了一句容易踩的说明："Called when a route navigation begins (before resolution) or when the page key changes. **May fire without the page component's `setup()` re-running if the page is reused (e.g. with a static `key` in `definePageMeta`).**"
 
 categories:
   - 前端开发
@@ -30,7 +30,7 @@ tags:
 
 ## 关系先摆正：组件是壳，composable 是状态源
 
-官方两页把方向说得很清楚：
+官方两节把方向说得很清楚：
 
 - `useLoadingIndicator` 页："A composable which returns the loading state of the page. **Used by `<NuxtLoadingIndicator>` and controllable.**"
 - `<NuxtLoadingIndicator>` 页："You can hook into the underlying indicator instance using **the `useLoadingIndicator` composable**, which will allow you to **trigger start/finish events yourself**."
@@ -51,7 +51,7 @@ tags:
 
 类型是 `Readonly<…>`，意味着**你不能直接写它**——要改状态只能走方法。这一点很实用：想在别处显示"当前进度百分比"，读 `progress` 就行；想让它跳到某个值，必须 `set(...)`。
 
-`error` 这一格有个容易被误读的地方，需要和组件那一页对照：
+`error` 这一格有个容易被误读的地方，需要和组件那一节对照：
 
 - 组件侧的 prop 是 `errorColor`："The color of the loading bar **when `error` is set to `true`**."
 - composable 侧只有 `finish()` 的一个选项能设它：`{ error: true }` —— "**to change the loading bar color and set the error property to true**".
@@ -68,7 +68,7 @@ composable 的参数（官方原文）：
 | `throttle` | Throttle the appearing and hiding, in milliseconds (default `200`). |
 | `estimatedProgress` | By default Nuxt will back off as it approaches 100%. You can provide a custom function to customize the progress estimation, which is a function that receives the duration of the loading bar (above) and the elapsed time. **It should return a value between 0 and 100.** |
 
-这三行文字与组件那一页对应三个 prop 的描述**逐字相同**，`duration: 2000` / `throttle: 200` 两个默认值也一致。官方给的示例是"把三个参数都写出来 + 把默认曲线函数原样贴回来"：
+这三行文字与组件那一节对应三个 prop 的描述**逐字相同**，`duration: 2000` / `throttle: 200` 两个默认值也一致。官方给的示例是"把三个参数都写出来 + 把默认曲线函数原样贴回来"：
 
 ```vue
 <script setup lang="ts">
@@ -81,7 +81,7 @@ const { progress, isLoading, start, finish, clear } = useLoadingIndicator({
 </script>
 ```
 
-官方注释 "This is how progress is calculated by default" 就是那条默认曲线：入参是 `duration` 与 `elapsed`，返回 0-100 的一个数。为什么要这么绕？组件那一页的 tip 说了目的：
+官方注释 "This is how progress is calculated by default" 就是那条默认曲线：入参是 `duration` 与 `elapsed`，返回 0-100 的一个数。为什么要这么绕？组件那一节的 tip 说了目的：
 
 > The loading indicator's speed gradually decreases after reaching a specific point controlled by `estimatedProgress`. This adjustment provides a more accurate reflection of longer page loading times and prevents the indicator from prematurely showing 100% completion.
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/00458dc462b26041cc255951c9e840f1/
-title: 组件级守卫：onBeforeRouteLeave 与 onBeforeRouteUpdate 管哪一层
+title: 134 - 组件级守卫：onBeforeRouteLeave 与 onBeforeRouteUpdate 管哪一层
 date: 2026-11-25T11:00:00+08:00
 updated: 2026-11-25T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：导航控制这件事在 Nuxt 里分三层，而组件级这一层的两页文档短到只有定义句——**`onBeforeRouteLeave` 的官方说明是"这个组合式函数允许在一个组件内注册一个路由守卫"；`onBeforeRouteUpdate` 的官方说明是"这个组合式函数允许在一个组件内注册一个路由守卫"**（两句结构完全一致，只差函数名），两页都不写参数与返回语义，而是各挂一个 read-more 指向 Vue Router 的 `onbeforerouteleave` / `onbeforerouteupdate` 文档，并把语义交给那份文档；两页的 Source 都指向 **`packages/nuxt/src/app/composables/router.ts`**——与 `useRoute`、`useRouter`、`navigateTo`、`abortNavigation` 同一份实现文件，所以它们是 **Nuxt 提供**的组合式函数，而不是你去 `vue-router` 里自己导出的那两个。另外两层的官方依据分别是：实例级——"`useRouter` 组合式函数提供 `afterEach`、`beforeEach` 与 `beforeResolve` 这些 helper 方法，它们充当导航守卫。**然而，Nuxt 有一个叫路由中间件的概念，它简化了导航守卫的实现并提供了更好的开发体验。**"；路由级——"与 vue-router 的导航守卫不同，不会传入第三个 `next()` 参数，重定向或取消导航是由中间件的返回值来处理的"，且执行顺序是"1. 全局中间件 2. 页面定义的中间件顺序"。还有一条边界必须记住：**`abortNavigation` 只能在路由中间件处理器里使用**，官方错误码 E2003 的原文是"`abortNavigation()` was called outside a route middleware. It can only cancel navigation from within a middleware handler, so calling it from a component, plugin, composable, or a callback that lost the middleware context fails."，解决方式是"Move the `abortNavigation()` call into the body of a `defineNuxtRouteMiddleware()` handler."——**组件级守卫不是路由中间件处理器，所以那一层不能用它来取消导航**。
+  摘要：导航控制这件事在 Nuxt 里分三层，而组件级这一层的两节文档短到只有定义句——**`onBeforeRouteLeave` 的官方说明是"这个组合式函数允许在一个组件内注册一个路由守卫"；`onBeforeRouteUpdate` 的官方说明是"这个组合式函数允许在一个组件内注册一个路由守卫"**（两句结构完全一致，只差函数名），两节都不写参数与返回语义，而是各挂一个 read-more 指向 Vue Router 的 `onbeforerouteleave` / `onbeforerouteupdate` 文档，并把语义交给那份文档；两节的 Source 都指向 **`packages/nuxt/src/app/composables/router.ts`**——与 `useRoute`、`useRouter`、`navigateTo`、`abortNavigation` 同一份实现文件，所以它们是 **Nuxt 提供**的组合式函数，而不是你去 `vue-router` 里自己导出的那两个。另外两层的官方依据分别是：实例级——"`useRouter` 组合式函数提供 `afterEach`、`beforeEach` 与 `beforeResolve` 这些 helper 方法，它们充当导航守卫。**然而，Nuxt 有一个叫路由中间件的概念，它简化了导航守卫的实现并提供了更好的开发体验。**"；路由级——"与 vue-router 的导航守卫不同，不会传入第三个 `next()` 参数，重定向或取消导航是由中间件的返回值来处理的"，且执行顺序是"1. 全局中间件 2. 页面定义的中间件顺序"。还有一条边界必须记住：**`abortNavigation` 只能在路由中间件处理器里使用**，官方错误码 E2003 的原文是"`abortNavigation()` was called outside a route middleware. It can only cancel navigation from within a middleware handler, so calling it from a component, plugin, composable, or a callback that lost the middleware context fails."，解决方式是"Move the `abortNavigation()` call into the body of a `defineNuxtRouteMiddleware()` handler."——**组件级守卫不是路由中间件处理器，所以那一层不能用它来取消导航**。
 
 categories:
   - 前端开发
@@ -35,9 +35,9 @@ tags:
 | `onBeforeRouteLeave` | "这个组合式函数**允许在一个组件内注册一个路由守卫**。" | read-more 指向 Vue Router 的 `onbeforerouteleave` 文档 |
 | `onBeforeRouteUpdate` | "这个组合式函数**允许在一个组件内注册一个路由守卫**。" | read-more 指向 Vue Router 的 `onbeforerouteupdate` 文档 |
 
-两页的结构一模一样：**一句定义 + 一个指向 vue-router 的链接 + Source**。也就是说，**Nuxt 这一层不重新定义参数与返回语义**，参数形态、可返回值都以 Vue Router 那份文档为准。
+两节的结构一模一样：**一句定义 + 一个指向 vue-router 的链接 + Source**。也就是说，**Nuxt 这一层不重新定义参数与返回语义**，参数形态、可返回值都以 Vue Router 那份文档为准。
 
-但有一件事是 Nuxt 侧确定的——两页的 Source 都是：
+但有一件事是 Nuxt 侧确定的——两节的 Source 都是：
 
 ```
 packages/nuxt/src/app/composables/router.ts
@@ -57,7 +57,7 @@ packages/nuxt/src/app/composables/router.ts
 
 > 然而，**Nuxt 有一个叫路由中间件的概念，它简化了导航守卫的实现并提供了更好的开发体验。**
 
-也就是说：项目级的"进这一页之前先判一下"该走中间件（128-132）。组件级这两句官方文档留白，是因为它的位置天然特殊——**只有组件自己知道当下发生了什么**。
+也就是说：项目级的"进这个页面之前先判一下"该走中间件（128-132）。组件级这两句官方文档留白，是因为它的位置天然特殊——**只有组件自己知道当下发生了什么**。
 
 ## 什么时候只有组件级能做
 
@@ -101,7 +101,7 @@ packages/nuxt/src/app/composables/router.ts
 | --- | --- | --- |
 | `next()` 第三参数 | **明确不存在** | 以 Vue Router 文档为准 |
 | 表达"拦住" | 返回值 | 以 Vue Router 文档为准 |
-| 官方在本页的额外说明 | 五种返回值全列了出来 | **一句定义，不重复列** |
+| 官方在这一节的额外说明 | 五种返回值全列了出来 | **一句定义，不重复列** |
 
 **别把中间件那套"return 就是指令"直接搬进组件守卫**，也别反过来在中间件里找 `next()`——两层的规则各自成文，混用是白折腾。
 
@@ -110,7 +110,7 @@ packages/nuxt/src/app/composables/router.ts
 ## 自查
 
 1. 官方对这两个组件级守卫分别给了什么？参数与返回语义在官方页上写了吗？
-2. 两页的 Source 指向哪个文件？那个文件里还住着哪些 API？这说明什么？
+2. 两节的 Source 指向哪个文件？那个文件里还住着哪些 API？这说明什么？
 3. 三层导航控制分别是什么？官方对"实例级守卫"给了什么替代建议？
 4. 哪两类需求只有组件级能表达？为什么？
 5. 想在组件守卫里 `abortNavigation()`，官方错误码怎么说？正确做法是什么？

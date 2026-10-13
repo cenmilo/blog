@@ -1,6 +1,6 @@
 ---
 url: /posts/5c2e55ba8262f9f5cc4b074bd341d3d3/
-title: typescript：十一个子项与那份 17 项 hoist 默认表
+title: 576 - typescript：十一个子项与那份 17 项 hoist 默认表
 date: 2027-04-22T09:00:00+08:00
 updated: 2027-04-22T09:00:00+08:00
 author: cmdragon

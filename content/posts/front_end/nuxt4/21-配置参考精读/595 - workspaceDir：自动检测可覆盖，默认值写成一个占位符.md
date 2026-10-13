@@ -1,6 +1,6 @@
 ---
 url: /posts/c785f18461cfd721af6349b576ac4a7f/
-title: workspaceDir：自动检测可覆盖，默认值写成一个占位符
+title: 595 - workspaceDir：自动检测可覆盖，默认值写成一个占位符
 date: 2027-04-28T10:00:00+08:00
 updated: 2027-04-28T10:00:00+08:00
 author: cmdragon

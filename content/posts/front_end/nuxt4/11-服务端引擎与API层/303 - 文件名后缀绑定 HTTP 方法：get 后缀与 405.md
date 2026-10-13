@@ -1,6 +1,6 @@
 ---
 url: /posts/7e27407329fe4430712c5cff66ef0f3a/
-title: 文件名后缀绑定 HTTP 方法：get 后缀与 405
+title: 303 - 文件名后缀绑定 HTTP 方法：get 后缀与 405
 date: 2027-01-21T09:00:00+08:00
 updated: 2027-01-21T09:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-`server/api` 里的文件名，最后一段可以不是 `.ts` 而是一层"方法限定"。这是 Nitro 服务端的约定，官方在 server 那页 "Matching HTTP Method" 讲清了。
+`server/api` 里的文件名，最后一段可以不是 `.ts` 而是一层"方法限定"。这是 Nitro 服务端的约定，官方在 server 那一节 "Matching HTTP Method" 讲清了。
 
 ## 后缀绑方法
 

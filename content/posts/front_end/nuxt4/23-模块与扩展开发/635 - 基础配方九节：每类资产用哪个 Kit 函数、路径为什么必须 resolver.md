@@ -1,12 +1,12 @@
 ---
 url: /posts/c17157c69265d79bf4ca2e37418c4fec/
-title: 基础配方九节：每类资产用哪个 Kit 函数、路径为什么必须 resolver
+title: 635 - 基础配方九节：每类资产用哪个 Kit 函数、路径为什么必须 resolver
 date: 2027-05-11T11:00:00+08:00
 updated: 2027-05-11T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：模块注入东西的九种情况，官方在基础配方页一节一条：**改配置**直接写 `nuxt.options`、**暴露选项给运行时**用 `runtimeConfig.public`、**插件** `addPlugin`、**组件** `addComponent` 或 `addComponentsDir`、**组合式函数** `addImports` 或 `addImportsDir`、**带 key 的函数**推 `optimization.keyedComposables`、**路由中间件** `addRouteMiddleware`、**服务端路由** `addServerHandler`、**其他资产** `nuxt.options.css` 或 Nitro 的 `publicAssets`。除改配置外**每个示例都以 `createResolver(import.meta.url)` 开头**。这一页最容易出事的是带 key 函数那一节的两条警告：**它不跟 barrel 导出**（必须从 `source` 指定的那个文件导入）、**调用必须静态可分析**（重命名解构、当回调传、动态属性访问都不注入）。
+  摘要：模块注入东西的九种情况，官方在基础配方页一节一条：**改配置**直接写 `nuxt.options`、**暴露选项给运行时**用 `runtimeConfig.public`、**插件** `addPlugin`、**组件** `addComponent` 或 `addComponentsDir`、**组合式函数** `addImports` 或 `addImportsDir`、**带 key 的函数**推 `optimization.keyedComposables`、**路由中间件** `addRouteMiddleware`、**服务端路由** `addServerHandler`、**其他资产** `nuxt.options.css` 或 Nitro 的 `publicAssets`。除改配置外**每个示例都以 `createResolver(import.meta.url)` 开头**。这一节最容易出事的是带 key 函数那一节的两条警告：**它不跟 barrel 导出**（必须从 `source` 指定的那个文件导入）、**调用必须静态可分析**（重命名解构、当回调传、动态属性访问都不注入）。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-模块写完跑不起来，最常见的原因不是逻辑错，是**注入的那一行没生效**：路径算错了、名字撞了、或者用了自动导入。这一页九节，每一节都是"要注入什么 → 用哪个函数"的对应关系。
+模块写完跑不起来，最常见的原因不是逻辑错，是**注入的那一行没生效**：路径算错了、名字撞了、或者用了自动导入。这一节九节，每一节都是"要注入什么 → 用哪个函数"的对应关系。
 
 ## 九节对应表
 
@@ -41,7 +41,7 @@ tags:
 | Add Other Assets | 注入样式表或一堆静态资源 | `nuxt.options.css` / Nitro 的 `publicAssets` |
 | Use Other Modules | 依赖别的模块 | `moduleDependencies` |
 
-严格说页面上是 9 个 `##` 加 1 个 `###`，最后一节又跳回依赖那一页。
+严格说页面上是 9 个 `##` 加 1 个 `###`，最后一节又跳回依赖那一节。
 
 ## 起手两行是所有示例的共同点
 
@@ -88,9 +88,9 @@ import { useRuntimeConfig } from '@nuxt/kit'
 const options = useRuntimeConfig().public.myModule
 ```
 
-这一页有个 `::warning` 是安全线：**不要把敏感的模块配置放到 public runtime config 上，比如私有 API key，它们最终会出现在公开 bundle 里**。
+这一节有个 `::warning` 是安全线：**不要把敏感的模块配置放到 public runtime config 上，比如私有 API key，它们最终会出现在公开 bundle 里**。
 
-两处要留意：这节代码块上面留着一条未完成的注释 `<!-- TODO: Update after #18466 (or equivalent) -->`；示例把 `useRuntimeConfig` 从 `@nuxt/kit` 导入，**而本页没有解释这个导入面与运行时应从 `#imports` 之类显式导入之间的关系**（那条限制在模块结构页的警告里）。
+两处要留意：这节代码块上面留着一条未完成的注释 `<!-- TODO: Update after #18466 (or equivalent) -->`；示例把 `useRuntimeConfig` 从 `@nuxt/kit` 导入，**而这一节没有解释这个导入面与运行时应从 `#imports` 之类显式导入之间的关系**（那条限制在模块结构页的警告里）。
 
 ## 插件、组件、组合式函数
 
@@ -229,9 +229,13 @@ nuxt.hook('nitro:config', (nitroConfig) => {
 
 最后一节 Use Other Modules 只有一个空壳示例（`moduleDependencies: { '@nuxtjs/tailwindcss': {} }`）加一个跳转。
 
-这一页没写的：`addPlugin` 的注册顺序选项、`addComponent` 的 `transpile` 等其余键（参数表在 Kit 页）、以及 key 注入失败时有没有任何提示。
+这一节没写的：`addPlugin` 的注册顺序选项、`addComponent` 的 `transpile` 等其余键（参数表在 Kit 的对应小节）、以及 key 注入失败时有没有任何提示。
 
 下一篇讲高级配方：钩子、虚拟文件与类型注入。
+
+## 下一篇
+
+下一篇 636：高级配方六节：钩子表、自定义钩子、虚拟文件与类型注入
 
 ## 本文依据
 

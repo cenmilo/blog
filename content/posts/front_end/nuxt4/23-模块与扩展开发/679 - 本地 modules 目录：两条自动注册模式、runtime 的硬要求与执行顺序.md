@@ -1,12 +1,12 @@
 ---
 url: /posts/1c04f0a5619075535ffd5a4a8a7d8a83/
-title: 本地 modules 目录：两条自动注册模式、runtime 的硬要求与执行顺序
+title: 679 - 本地 modules 目录：两条自动注册模式、runtime 的硬要求与执行顺序
 date: 2027-05-26T10:00:00+08:00
 updated: 2027-05-26T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：项目根下的 `modules/` 目录是"给自己项目写私有模块"的位置，**它只认两种文件模式：`modules/*/index.ts` 与 `modules/*.ts`**，命中就被自动注册，**不需要你再写进 `nuxt.config.ts` 的 `modules` 数组**。这一页还给了一个常被忽略的便利：**本地模块里可以 `import ... from 'nuxt/kit'`，这是助手子路径导入，意味着不必把 `@nuxt/kit` 加进项目依赖**。硬性要求是一条 `::note`：**所有本来该放在 `app/` 下的文件（组件、页面、组合式函数等）必须放进 `modules/your-module/runtime/app/`，理由是能正确做类型检查**。执行顺序与配置那一节一致：**先 `nuxt.config.ts` 里声明的，再 `modules/` 目录里发现的，后者按字母序**，而**给目录名加数字前缀是官方给的唯一改序办法**。
+  摘要：项目根下的 `modules/` 目录是"给自己项目写私有模块"的位置，**它只认两种文件模式：`modules/*/index.ts` 与 `modules/*.ts`**，命中就被自动注册，**不需要你再写进 `nuxt.config.ts` 的 `modules` 数组**。这一节还给了一个常被忽略的便利：**本地模块里可以 `import ... from 'nuxt/kit'`，这是助手子路径导入，意味着不必把 `@nuxt/kit` 加进项目依赖**。硬性要求是一条 `::note`：**所有本来该放在 `app/` 下的文件（组件、页面、组合式函数等）必须放进 `modules/your-module/runtime/app/`，理由是能正确做类型检查**。执行顺序与配置那一节一致：**先 `nuxt.config.ts` 里声明的，再 `modules/` 目录里发现的，后者按字母序**，而**给目录名加数字前缀是官方给的唯一改序办法**。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-不是每个模块都要发成 npm 包。给一个项目自己写的东西，放进根目录 `modules/` 就够了——这一页讲它认哪些文件、以及放错位置会怎样。
+不是每个模块都要发成 npm 包。给一个项目自己写的东西，放进根目录 `modules/` 就够了——这一节讲它认哪些文件、以及放错位置会怎样。
 
 ## 两种被自动注册的文件模式
 
@@ -78,7 +78,7 @@ export default defineEventHandler(() => {
 
 **第一行讲的是导入面**：`nuxt/kit` 是本地模块定义时可以直接用的助手子路径导入，**所以不必把 `@nuxt/kit` 加进项目依赖**。这与 Kit 总页"请始终显式安装 `@nuxt/kit`"的要求并不冲突——**那条针对的是发布成 npm 包的模块**，而这里说的是项目内的本地模块。
 
-**`pathPrefix: true` 后面那句注释是最佳实践的落地**："给你的导出加前缀，以避免与用户代码或其他模块冲突"。**这个键在组件目录那一页的描述是"用组件所在路径作为名字前缀"**，两处指的是同一个开关。
+**`pathPrefix: true` 后面那句注释是最佳实践的落地**："给你的导出加前缀，以避免与用户代码或其他模块冲突"。**这个键在组件目录那一节的描述是"用组件所在路径作为名字前缀"**，两处指的是同一个开关。
 
 结果写得很直接：**启动 Nuxt 时 `hello` 模块会被注册，`/api/hello` 路由就可用了**。
 
@@ -94,15 +94,15 @@ export default defineEventHandler(() => {
 
 | 出处 | 原文列举的内容 | 要求的位置 |
 | --- | --- | --- |
-| 本页（`modules/` 目录） | components、pages、composables and other files | `modules/your-module/runtime/app/` |
+| 这一节（`modules/` 目录） | components、pages、composables and other files | `modules/your-module/runtime/app/` |
 | 基础配方页（组件与组合式函数两节，各重复一次） | components, pages, composables and other files | `runtime/app/` |
 | 模块结构页 | Vue 组件、Composables、Nuxt 插件；Nitro 侧 API 路由、中间件、Nitro 插件；以及其他资产 | `src/runtime/`（starter 场景） |
 
-三处一致的部分是"应用侧文件要进 `runtime/app/`"；差别在于**本页与配方页还点名了 pages**，而模块结构页那份清单里没有 pages——**它讲的是"能放哪些资产"而不是"必须放哪"**，所以这不算矛盾，但**要判断层里/模块里能不能放 pages，得看前两处**。
+三处一致的部分是"应用侧文件要进 `runtime/app/`"；差别在于**这一节与配方那一节还点名了 pages**，而模块结构那一节的清单里没有 pages——**它讲的是"能放哪些资产"而不是"必须放哪"**，所以这不算矛盾，但**要判断层里/模块里能不能放 pages，得看前两处**。
 
 ## 执行顺序与唯一改序办法
 
-这一页把顺序规则又写了一遍，与配置参考里 `modules` 那节的 callout **逐字同构**：
+这一节把顺序规则又写了一遍，与配置参考里 `modules` 那节的 callout **逐字同构**：
 
 - 先加载在 `nuxt.config.ts` 里定义的模块。
 - 然后执行在 `modules/` 目录里找到的模块，**它们按字母序加载**。
@@ -131,7 +131,7 @@ modules/
 | 有没有 playground | 你自己的项目就是运行环境 | **自带一个已配好的 Nuxt 应用** |
 | 构建产物 | 不需要构建 | `npm run prepack`（由 `@nuxt/module-builder` 提供，多数时候不必手动跑） |
 | 发布 | 不适用 | `npm run release`（会跑 lint、test、构建，再发 npm 并推 git tag） |
-| 改代码后 | 随项目正常热重载（**本页没有对本地模块的重载行为作任何说明**） | playground 的 dev **应在你改 `src` 时自动重载** |
+| 改代码后 | 随项目正常热重载（**这一节没有对本地模块的重载行为作任何说明**） | playground 的 dev **应在你改 `src` 时自动重载** |
 
 **判据其实是一句话：这个模块会不会被第二个项目用到**。只给一个项目用，就放在 `modules/` 下省掉工具链；要给多个项目或社区用，starter 那套（含类型生成、构建、发布脚本）才划算。
 
@@ -143,9 +143,13 @@ modules/
 2. 组件在模块里能渲染但类型检查报错，**检查是否放进了 `runtime/app/components` 而不是 `runtime/components`**。
 3. 想调两个本地模块的先后，**只有数字前缀这一条路**；要跨"数组 vs 目录"调序，**只能把其中一个改成数组声明**。
 
-文档未说明的还有：`modules/` 目录本身是否可被 `dir.modules` 改名（配置项那一节有 `dir.modules`，**本页没有引用它**）、本地模块能否带 `moduleDependencies`、以及自动注册是否读取模块的 `meta.compatibility`。
+文档未说明的还有：`modules/` 目录本身是否可被 `dir.modules` 改名（配置项那一节有 `dir.modules`，**这一节没有引用它**）、本地模块能否带 `moduleDependencies`、以及自动注册是否读取模块的 `meta.compatibility`。
 
 下一篇讲构建器：Nuxt 怎么把"打包"这件事交给可替换的一方。
+
+## 下一篇
+
+下一篇 680：构建器内幕：三个官方 builder、bundle 契约与六个 nuxt 子路径
 
 ## 本文依据
 

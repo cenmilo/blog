@@ -1,6 +1,6 @@
 ---
 url: /posts/3c807958a02931fc04b1270436c4600a/
-title: Nuxt 的版本规则：发布节奏、维护期限与 nightly 频道
+title: 016 - Nuxt 的版本规则：发布节奏、维护期限与 nightly 频道
 date: 2026-10-17T10:00:00+08:00
 updated: 2026-10-17T10:00:00+08:00
 author: cmdragon

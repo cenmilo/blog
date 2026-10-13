@@ -1,6 +1,6 @@
 ---
 url: /posts/68fa07acb077d9b7aba557acf5c27bf8/
-title: 渲染与首屏的十二个实验开关：ssrStreaming 排在最前
+title: 701 - 渲染与首屏的十二个实验开关：ssrStreaming 排在最前
 date: 2027-06-02T11:00:00+08:00
 updated: 2027-06-02T11:00:00+08:00
 author: cmdragon
@@ -111,6 +111,10 @@ CSP 那条单独有一处 note：流式渲染器会产出若干绕过 unhead 的
 这一组里**唯一把"会被丢弃"写成文档级风险的只有 `ssrStreaming`**；其余的代价都局部：一个属性不上 HTML、一个降级、一个闪动。
 
 下一篇看数据与缓存那一组九个：`payloadExtraction` 的三种取值、`granularCachedData` 与 `purgeCachedData` 各自管什么、以及 `sharedPrerenderData` 为什么对预渲染站点影响大。
+
+## 下一篇
+
+下一篇 702：数据与缓存的九个实验开关：payloadExtraction 的三种取值
 
 ## 本文依据
 

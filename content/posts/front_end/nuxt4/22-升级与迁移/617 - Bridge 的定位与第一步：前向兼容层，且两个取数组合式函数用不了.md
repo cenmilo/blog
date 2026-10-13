@@ -1,6 +1,6 @@
 ---
 url: /posts/6d63f79d9b78f6cb6e20022d025f2513/
-title: Bridge 的定位与第一步：前向兼容层，且两个取数组合式函数用不了
+title: 617 - Bridge 的定位与第一步：前向兼容层，且两个取数组合式函数用不了
 date: 2027-05-05T11:00:00+08:00
 updated: 2027-05-05T11:00:00+08:00
 author: cmdragon
@@ -30,12 +30,12 @@ tags:
 
 定性句：**"Bridge is a forward-compatibility layer that allows you to experience many of the new Nuxt 3 features by simply installing and enabling a Nuxt module."** 用途句：**"Using Nuxt Bridge, you can make sure your project is (almost) ready for Nuxt 3 and you can gradually proceed with the transition to Nuxt 3."** ——注意那个 `(almost)`，官方自己就没说"完全等价"。
 
-开头两条提示是这一页最该先读的：
+开头两条提示是这一节最该先读的：
 
 - `::note`：**如果你是要新开一个 Nuxt 3 项目，跳过这一节**，直接去看安装页。
 - `::warning`：**"Nuxt Bridge provides identical features to Nuxt 3 … but there are some limitations, notably that `useAsyncData` and `useFetch` composables are not available."**
 
-第二条是硬限制：**新架构里最核心的两个数据获取组合式函数，在 Bridge 下没有**。所以"用了 Bridge 就等于会用到 3 的取数写法"这个预期是不成立的；这一页让你去读后半部分了解细节，而这页之后各节也确实各自补了替代说法（Composition API 那页会讲到 `useFetch` 在旧包里的对应物 `$fetch`/`$fetchState` 换成 `fetch`/`fetchState`）。
+第二条是硬限制：**新架构里最核心的两个数据获取组合式函数，在 Bridge 下没有**。所以"用了 Bridge 就等于会用到 3 的取数写法"这个预期是不成立的；这一节让你去读后半部分了解细节，而这一节之后各节也确实各自补了替代说法（Composition API 那一节会讲到 `useFetch` 在旧包里的对应物 `$fetch`/`$fetchState` 换成 `fetch`/`fetchState`）。
 
 ## 第一步：先把 Nuxt 2 升到位
 
@@ -68,7 +68,7 @@ npm install -D @nuxt/bridge nuxi
 
 > Please make sure to avoid any CommonJS syntax such as `module.exports`, `require` or `require.resolve` in your config file. **It will soon be deprecated and unsupported.**
 
-替代写法是静态 `import`、动态 `import()` 与 `export default`；**并推荐顺手改名成 `nuxt.config.ts`**（链接指向配置文件那一页）。改完的形状是：
+替代写法是静态 `import`、动态 `import()` 与 `export default`；**并推荐顺手改名成 `nuxt.config.ts`**（链接指向配置文件那一节）。改完的形状是：
 
 ```ts [nuxt.config.ts]
 import { defineNuxtConfig } from '@nuxt/bridge'
@@ -109,11 +109,11 @@ export default defineNuxtConfig({
 
 TypeScript、Migrate Legacy Composition API、Plugins and Middleware、Migrate New Composition API、Meta Tags、Runtime Config、Nitro、Vite。
 
-这八条就是 Bridge 剩余文档的目录，也是它"渐进"的具体含义：**每一块单独打开、单独验证**。第三、第四两条都动到中间件与插件，所以中间件那一页的 `defineNuxtRouteMiddleware` 与 `definePageMeta` 各自属于不同阶段，别混着做。
+这八条就是 Bridge 剩余文档的目录，也是它"渐进"的具体含义：**每一块单独打开、单独验证**。第三、第四两条都动到中间件与插件，所以中间件那一节的 `defineNuxtRouteMiddleware` 与 `definePageMeta` 各自属于不同阶段，别混着做。
 
 ## Migrate from CommonJS to ESM
 
-最后一个小节与模块作者那一页给的是同一句话：**"Nuxt 3 natively supports TypeScript and ECMAScript Modules. Please check Native ES Modules for more info and upgrading."** ——**具体迁移动作不在这两页里**，只给指路。
+最后一个小节与模块作者那一节给的是同一句话：**"Nuxt 3 natively supports TypeScript and ECMAScript Modules. Please check Native ES Modules for more info and upgrading."** ——**具体迁移动作不在这两节里**，只给指路。
 
 ## 自查
 
@@ -126,7 +126,7 @@ TypeScript、Migrate Legacy Composition API、Plugins and Middleware、Migrate N
 
 ## 下一篇
 
-下一篇 618 读 Bridge 的配置页：**十二个特性开关分两组**——四个是"要显式打开"的（`vite`、`meta`、`macros.pageMeta`、`typescript.esbuild`），七个是"默认就开着、可以关掉"的（`nitro`、`app`、`capi`（含 `capi.legacy` 这种细粒度写法）、`transpile`、`scriptSetup`、`imports`、`constraints`）；官方建议是**"always best to stick with defaults!"**，而这一页还顺带给出**两条旧选项的确切去向：`router.base` → `app.baseURL`、`build.publicPath` → `app.cdnURL`**。
+下一篇 618 读 Bridge 的配置那一节：**十二个特性开关分两组**——四个是"要显式打开"的（`vite`、`meta`、`macros.pageMeta`、`typescript.esbuild`），七个是"默认就开着、可以关掉"的（`nitro`、`app`、`capi`（含 `capi.legacy` 这种细粒度写法）、`transpile`、`scriptSetup`、`imports`、`constraints`）；官方建议是**"always best to stick with defaults!"**，而这一节还顺带给出**两条旧选项的确切去向：`router.base` → `app.baseURL`、`build.publicPath` → `app.cdnURL`**。
 
 ## 本文依据
 

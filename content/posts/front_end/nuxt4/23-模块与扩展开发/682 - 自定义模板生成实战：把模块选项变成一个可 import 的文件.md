@@ -1,12 +1,12 @@
 ---
 url: /posts/b134beac720cdd8c0efbe0bb06deba71/
-title: 自定义模板生成实战：把模块选项变成一个可 import 的文件
+title: 682 - 自定义模板生成实战：把模块选项变成一个可 import 的文件
 date: 2027-05-27T10:00:00+08:00
 updated: 2027-05-27T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：把两页文档接到一起，就得到一条完整链路：**用 `addTemplate` 生成一个文件（`filename` ＋ `getContents`）→ 运行时从 `#build/那个文件名` import 它 → 用 `dependsOn` 告诉 Nuxt 它读什么，否则每次文件变化都会重算 → 需要类型时用 `addTypeTemplate`（不给 `context` 就只进 Nuxt 上下文，服务端要用得写 `{ nitro: true }`）→ 服务端版本换 `addServerTemplate`，它只有 `filename` 与 `getContents` 两个必填**。官方在模板那页给的插件示例里还留了一句很实用的注释：`// @ts-expect-error - virtual file`，**因为生成的文件不在类型系统视野内**；而布局那页的警告则说明另一类边界——**`@vitejs/plugin-vue` 不支持虚拟 `.vue` 文件，得靠 `write: true` 落盘**。
+  摘要：把两节文档接到一起，就得到一条完整链路：**用 `addTemplate` 生成一个文件（`filename` ＋ `getContents`）→ 运行时从 `#build/那个文件名` import 它 → 用 `dependsOn` 告诉 Nuxt 它读什么，否则每次文件变化都会重算 → 需要类型时用 `addTypeTemplate`（不给 `context` 就只进 Nuxt 上下文，服务端要用得写 `{ nitro: true }`）→ 服务端版本换 `addServerTemplate`，它只有 `filename` 与 `getContents` 两个必填**。官方在模板那一节给的插件示例里还留了一句很实用的注释：`// @ts-expect-error - virtual file`，**因为生成的文件不在类型系统视野内**；而布局那一节的警告则说明另一类边界——**`@vitejs/plugin-vue` 不支持虚拟 `.vue` 文件，得靠 `write: true` 落盘**。
 
 categories:
   - 前端开发
@@ -203,11 +203,11 @@ addServerTemplate({
 
 ## 两类东西不能留在虚拟文件系统
 
-**第一类是 `.vue`**：布局那页的警告写得很明确——**`@vitejs/plugin-vue` 不支持虚拟 `.vue` 文件，可以把 `write: true` 传给 `addLayout` 的第一个参数来绕过这个限制**。
+**第一类是 `.vue`**：布局那一节的警告写得很明确——**`@vitejs/plugin-vue` 不支持虚拟 `.vue` 文件，可以把 `write: true` 传给 `addLayout` 的第一个参数来绕过这个限制**。
 
 **第二类是你需要在磁盘上看到的东西**：`write` 的语义就是"为 `true` 时写入目标文件，否则只存在于虚拟文件系统"。排查"我生成的内容不对"这类问题，**先临时开 `write: true` 去 `buildDir` 里看生成结果**是最快的自检办法。
 
-`addTypeTemplate` 没有 `write` 字段——因为它本身就写到 buildDir；而它也没有 `dependsOn`，这两点在两页的字段表里是明确的差别。
+`addTypeTemplate` 没有 `write` 字段——因为它本身就写到 buildDir；而它也没有 `dependsOn`，这两点在两节的字段表里是明确的差别。
 
 ## 五步自检
 
@@ -220,6 +220,10 @@ addServerTemplate({
 这三处仍是文档缺口，做决定时不要当有依据：**同名 `filename` 被两个模块注册时的行为**（覆盖还是报错都没写）、**`dependsOn: ['plugins']` 具体指哪一类变化**、以及 `#build` 与 `filename` 的映射在带子目录时（示例里有 `my-module/config.mjs` 这种带路径的名字）如何解析。
 
 下一篇把"发布模块的 runtime 里自动导入会失效"这件事讲透：为什么必须写成 `#imports` 的显式导入。
+
+## 下一篇
+
+下一篇 683：模块里的自动导入陷阱：#imports 显式写法
 
 ## 本文依据
 

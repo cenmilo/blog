@@ -1,6 +1,6 @@
 ---
 url: /posts/be2f1603cbcc659d01454040f9748b67/
-title: hooks：冒号命名与层级对象，示例只演示了一层嵌套
+title: 586 - hooks：冒号命名与层级对象，示例只演示了一层嵌套
 date: 2027-04-25T10:00:00+08:00
 updated: 2027-04-25T10:00:00+08:00
 author: cmdragon
@@ -64,7 +64,7 @@ export default defineNuxtConfig({
 
 ## 两级冒号的名字怎么办：本节没答
 
-钩子清单在 `api/advanced/hooks` 那一页，分三张表：**App Hooks（runtime）**、**Nuxt Hooks（build time）**、**Nitro App Hooks（runtime, server-side）**。构建期那张表就是"能在 `nuxt.config` 里挂"的那一批，而官方给完整清单的方式是指向源码：
+钩子清单在 `api/advanced/hooks` 那一节，分三张表：**App Hooks（runtime）**、**Nuxt Hooks（build time）**、**Nitro App Hooks（runtime, server-side）**。构建期那张表就是"能在 `nuxt.config` 里挂"的那一批，而官方给完整清单的方式是指向源码：
 
 - App Hooks 那张表前写着 "Check the [app source code]" 去找所有可用钩子（指 `packages/nuxt/src/app/nuxt.ts`）。
 - Build Time 那张表前写着 "Check the [schema source code]"（指 `packages/schema/src/types/hooks.ts`）。

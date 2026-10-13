@@ -1,6 +1,6 @@
 ---
 url: /posts/f67639122f42898f6c8cf6f6a2d179d9/
-title: useRouteAnnouncer 返回什么：两个 Ref 与三个方法
+title: 197 - useRouteAnnouncer 返回什么：两个 Ref 与三个方法
 date: 2026-12-16T11:00:00+08:00
 updated: 2026-12-16T11:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-我加完 `<NuxtRouteAnnouncer />` 之后想改播报内容，就顺手去调 `useRouteAnnouncer()`，结果第一行就卡住了：它到底返回什么？文档这一页把返回面写得很规整，我照它的路子列一遍。
+加完 `<NuxtRouteAnnouncer />` 想改播报内容，很自然会去调 `useRouteAnnouncer()`，然后卡在第一个问题上：它到底返回什么？官方那一节把返回面写得很规整，下面照它的路子列一遍。
 
 ## 它自己是怎么描述的
 
@@ -35,7 +35,7 @@ tags:
 > A composable which observes the page title changes and updates the announcer message accordingly. Used by `<NuxtRouteAnnouncer>` and controllable.
 > It hooks into Unhead's `dom:rendered` hook to read the page's title and set it as the announcer message.
 
-页首的定位句是 "This composable observes the page title changes and updates the announcer message accordingly."，两处都在强调**观察的是标题**。第二句 "and controllable" 是这页存在的理由：组件是被动消费方，组合式函数才是控制口。
+那一节开头的定位句是 "This composable observes the page title changes and updates the announcer message accordingly."，两处都在强调**观察的是标题**。第二句 "and controllable" 是这一节存在的理由：组件是被动消费方，组合式函数才是控制口。
 
 版本要求是一条 important：**"This composable is available in Nuxt v3.12+."**
 
@@ -85,7 +85,7 @@ const { message, politeness, set, polite, assertive } = useRouteAnnouncer({
 > To achieve full customization, you can implement your own one based on its source code.
 > You can hook into the underlying announcer instance using the `useRouteAnnouncer` composable, which allows you to set a custom announcement message.
 
-第三条是这页与那页之间的正式桥梁：**"hook into the underlying announcer instance"** ——它证实组件和 composable 用的是同一个实例，而不是各建一套。第一条 "This component is optional." 我也抄了下来，因为很多人以为不加组件就不能播报；组件只是那个隐藏 live region 的载体。
+第三条是这一节与那一节之间的正式桥梁：**"hook into the underlying announcer instance"** ——它证实组件和 composable 用的是同一个实例，而不是各建一套。第一条 "This component is optional." 我也抄了下来，因为很多人以为不加组件就不能播报；组件只是那个隐藏 live region 的载体。
 
 还有一条要记住的分工（组件页最后一个 callout）：
 

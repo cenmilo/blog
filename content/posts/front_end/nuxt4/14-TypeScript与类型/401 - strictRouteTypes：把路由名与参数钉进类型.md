@@ -1,6 +1,6 @@
 ---
 url: /posts/303ff7db95f80742b18b165cf39f4bc7/
-title: strictRouteTypes：把路由名与参数钉进类型
+title: 401 - strictRouteTypes：把路由名与参数钉进类型
 date: 2027-02-22T11:00:00+08:00
 updated: 2027-02-22T11:00:00+08:00
 author: cmdragon

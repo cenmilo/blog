@@ -1,6 +1,6 @@
 ---
 url: /posts/aeb975542df31879c95cd5e29c9adb60/
-title: buildDir：把 .nuxt 换成不隐藏的名字
+title: 538 - buildDir：把 .nuxt 换成不隐藏的名字
 date: 2027-04-09T10:00:00+08:00
 updated: 2027-04-09T10:00:00+08:00
 author: cmdragon

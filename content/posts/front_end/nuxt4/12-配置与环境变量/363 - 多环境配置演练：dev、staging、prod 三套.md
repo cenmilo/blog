@@ -1,6 +1,6 @@
 ---
 url: /posts/91e256d9c4f612b72514efa19403d702/
-title: 多环境配置演练：dev、staging、prod 三套
+title: 363 - 多环境配置演练：dev、staging、prod 三套
 date: 2027-02-10T09:00:00+08:00
 updated: 2027-02-10T09:00:00+08:00
 author: cmdragon
@@ -139,7 +139,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 364 收 P12：一份配置排错清单，值没生效时按顺序检查哪几处（键写错、优先级、外部文件、runtimeConfig 映射、生效时机、`--envName` 没选）。
+下一篇 364 收 340-364 那几篇：一份配置排错清单，值没生效时按顺序检查哪几处（键写错、优先级、外部文件、runtimeConfig 映射、生效时机、`--envName` 没选）。
 
 ## 本文依据
 

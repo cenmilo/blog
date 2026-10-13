@@ -1,6 +1,6 @@
 ---
 url: /posts/bbef452595b34d69b22faf69bbfb150d/
-title: SSR 期间 onMounted 不执行：文档明示的那条提示
+title: 369 - SSR 期间 onMounted 不执行：文档明示的那条提示
 date: 2027-02-12T09:00:00+08:00
 updated: 2027-02-12T09:00:00+08:00
 author: cmdragon
@@ -75,7 +75,7 @@ There is no reactivity on the server side because Vue SSR renders the app top-do
 
 ## 首屏数据改放哪
 
-既然要靠服务端把数据拼进 HTML，就别用 `onMounted` + `$fetch`，改用 SSR 友好的取数组合式——它们就是为这个设计的：`useFetch` / `useAsyncData`（在 setup 里 `await`，服务端那一步会等它们 resolve 再序列化页面）。这是取数分区的主线，本系列 210 起详讲。这一页要记住的只有一句：**首屏要出现在 HTML 里的数据，不能靠 `onMounted` 取。**
+既然要靠服务端把数据拼进 HTML，就别用 `onMounted` + `$fetch`，改用 SSR 友好的取数组合式——它们就是为这个设计的：`useFetch` / `useAsyncData`（在 setup 里 `await`，服务端那一步会等它们 resolve 再序列化页面）。这是取数分区的主线，本系列 210 起详讲。这一节要记住的只有一句：**首屏要出现在 HTML 里的数据，不能靠 `onMounted` 取。**
 
 ## 自查
 

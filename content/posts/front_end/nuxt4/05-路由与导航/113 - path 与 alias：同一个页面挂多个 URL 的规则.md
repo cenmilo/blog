@@ -1,12 +1,12 @@
 ---
 url: /posts/38fd669b5ee9ab0915eec4339776673e/
-title: path 与 alias：同一个页面挂多个 URL 的规则
+title: 113 - path 与 alias：同一个页面挂多个 URL 的规则
 date: 2026-11-18T11:00:00+08:00
 updated: 2026-11-18T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：文件名能表达的匹配形状是有限的，官方为此给了两个不同的键，分工不能混。**`path`** 是改这条记录匹配什么：`definePageMeta` 里的说明是"**如果你有一个比用文件名所能表达的更复杂的模式，你可以定义一个自定义正则表达式**"，`app/pages/` 那一页的对应说法是"你可以定义一个 path 匹配器，如果你有一个比用文件名所能表达更复杂的模式"，并指向 vue-router 的 Custom regex in params。官方给的实战动机是重叠冲突：**"自定义正则表达式是解决重叠路由之间冲突的一个好办法，例如：`/test-category` 与 `/1234-post` 这两条路由会同时匹配 `[postId]-[postSlug].vue` 与 `[categorySlug].vue` 两个页面路由"**，解法是**"为了确保 `[postId]-[postSlug]` 路由里的 `postId` 只匹配数字（`\d+`）"**，在该页面里写 `definePageMeta({ path: '/:postId(\\d+)-:postSlug' })`。**`alias`** 则是同一个页面的额外路径：官方定义为"你可以定义页面别名。**它们允许你从不同的路径访问同一个页面。它可以是一个字符串或字符串数组**，如 vue-router 文档所定义"，而参数表里那句把语义与硬约束一起给了——"**Aliases for the record. Allows defining extra paths that will behave like a copy of the record. Allows having paths shorthands like `/users/:id` and `/u/:id`. 所有 `alias` 与 `path` 值必须共享同样的 params。**"（类型 `string | string[]`）。第三个容易混进来的键是 **`redirect`**："如果在路由被直接匹配到时要把用户重定向到别处"，官方写明**"重定向发生在任何导航守卫之前，并会用新的目标位置触发一次新的导航"**——也就是说 alias 是"多条路径共用一条记录"，redirect 是"命中后立刻换成另一次导航"，两者对守卫的影响完全不同。
+  摘要：文件名能表达的匹配形状是有限的，官方为此给了两个不同的键，分工不能混。**`path`** 是改这条记录匹配什么：`definePageMeta` 里的说明是"**如果你有一个比用文件名所能表达的更复杂的模式，你可以定义一个自定义正则表达式**"，`app/pages/` 那一节的对应说法是"你可以定义一个 path 匹配器，如果你有一个比用文件名所能表达更复杂的模式"，并指向 vue-router 的 Custom regex in params。官方给的实战动机是重叠冲突：**"自定义正则表达式是解决重叠路由之间冲突的一个好办法，例如：`/test-category` 与 `/1234-post` 这两条路由会同时匹配 `[postId]-[postSlug].vue` 与 `[categorySlug].vue` 两个页面路由"**，解法是**"为了确保 `[postId]-[postSlug]` 路由里的 `postId` 只匹配数字（`\d+`）"**，在该页面里写 `definePageMeta({ path: '/:postId(\\d+)-:postSlug' })`。**`alias`** 则是同一个页面的额外路径：官方定义为"你可以定义页面别名。**它们允许你从不同的路径访问同一个页面。它可以是一个字符串或字符串数组**，如 vue-router 文档所定义"，而参数表里那句把语义与硬约束一起给了——"**Aliases for the record. Allows defining extra paths that will behave like a copy of the record. Allows having paths shorthands like `/users/:id` and `/u/:id`. 所有 `alias` 与 `path` 值必须共享同样的 params。**"（类型 `string | string[]`）。第三个容易混进来的键是 **`redirect`**："如果在路由被直接匹配到时要把用户重定向到别处"，官方写明**"重定向发生在任何导航守卫之前，并会用新的目标位置触发一次新的导航"**——也就是说 alias 是"多条路径共用一条记录"，redirect 是"命中后立刻换成另一次导航"，两者对守卫的影响完全不同。
 
 categories:
   - 前端开发
@@ -57,7 +57,7 @@ definePageMeta({
 </script>
 ```
 
-官方随后指向 Vue Router 的 Matching Syntax 要更多例子；`app/pages/` 那一页对应条目指的是同一份文档里的 **Custom regex in params**。
+官方随后指向 Vue Router 的 Matching Syntax 要更多例子；`app/pages/` 那一节对应条目指的是同一份文档里的 **Custom regex in params**。
 
 拆开这段写法看：
 
@@ -72,7 +72,7 @@ definePageMeta({
 
 ## `alias`：同一页面的第二个入口
 
-官方定义（`app/pages/` 那一页）：**"你可以定义页面别名。它们允许你从不同的路径访问同一个页面。它可以是一个字符串或字符串数组，如 vue-router 文档所定义。"**
+官方定义（`app/pages/` 那一节）：**"你可以定义页面别名。它们允许你从不同的路径访问同一个页面。它可以是一个字符串或字符串数组，如 vue-router 文档所定义。"**
 
 参数表里的写法更完整，而且带一条硬约束：
 

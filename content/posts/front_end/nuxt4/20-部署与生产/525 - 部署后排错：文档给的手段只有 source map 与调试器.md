@@ -1,12 +1,12 @@
 ---
 url: /posts/4659e9155a4259f9899becf1a34ff992/
-title: 部署后排错：文档给的手段只有 source map 与调试器
+title: 525 - 部署后排错：文档给的手段只有 source map 与调试器
 date: 2027-04-05T09:00:00+08:00
 updated: 2027-04-05T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：官方调试那一页只有四节：Sourcemaps、Debugging with Node Inspector、Debugging in Your IDE（VS Code 与 JetBrains 两份配置）、Other IDEs（一句欢迎开 PR）。**它没有症状对照表，也没有任何生产排错章节**。更要紧的是这节的可用范围：source map 的官方默认是"服务端构建默认开、客户端只在 dev 开"，`nuxt dev --inspect` 那句明写它是以 **dev 模式**启动调试器，而 `::important` 要求 Node 与 Chrome 跑在同一平台、并直接说**这在 Docker 里不成立**。也就是说，线上环境基本用不到这一页——生产可查的东西在日志级别、`nuxt info`、错误钩子和"能不能在 dev 复现"这几处。
+  摘要：官方调试那一节只有四节：Sourcemaps、Debugging with Node Inspector、Debugging in Your IDE（VS Code 与 JetBrains 两份配置）、Other IDEs（一句欢迎开 PR）。**它没有症状对照表，也没有任何生产排错章节**。更要紧的是这节的可用范围：source map 的官方默认是"服务端构建默认开、客户端只在 dev 开"，`nuxt dev --inspect` 那句明写它是以 **dev 模式**启动调试器，而 `::important` 要求 Node 与 Chrome 跑在同一平台、并直接说**这在 Docker 里不成立**。也就是说，线上环境基本用不到这一节——生产可查的东西在日志级别、`nuxt info`、错误钩子和"能不能在 dev 复现"这几处。
 
 categories:
   - 前端开发
@@ -24,11 +24,11 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-线上出问题，你打开官方调试那一页，希望它按症状告诉你查什么——白屏查哪、404 查哪、内存涨查哪。
+线上出问题，你打开官方调试那一节，希望它按症状告诉你查什么——白屏查哪、404 查哪、内存涨查哪。
 
-那一页没有这种东西。它有四节，而且每一节都是为开发环境写的。
+那一节没有这种东西。它有四节，而且每一节都是为开发环境写的。
 
-## 这一页只有四节
+## 这一节只有四节
 
 整页结构与关键句：
 
@@ -88,11 +88,11 @@ nuxt dev --inspect
 | 客户端错误出口 | `vueApp.config.errorHandler`／`vue:error`／`app:error` 钩子 | 上报入口；注意生产错误载荷里没有 `cause` |
 | CPU 剖析 | `nuxt build --profile`／`--profile=verbose`，写 `nuxt-build.cpuprofile`；构建计时与 `perf-report.json`/`perf-trace.json` 需 Nuxt v4.4+ | 构建期与命令执行期的 CPU profile |
 
-`nuxt info` 那条在排错顺序上很值钱：报的是**解析到的**版本，能直接排除"我以为是这个版本"这类误判——线上表现与本地不一致时先看它。
+`nuxt info` 那条在排错顺序上很值钱：报的是**解析到的**版本，能直接排除"以为是这个版本"这类误判——线上表现与本地不一致时先看它。
 
 ## 四类症状，文档各能给到哪
 
-按症状找的话，能对应上的三条如下（都是别处记载的机制，不是这一页给的流程）：
+按症状找的话，能对应上的三条如下（都是别处记载的机制，不是这一节给的流程）：
 
 - **打开页面白屏、点某页才报错**：新部署会让旧的带 hash 的 chunk 地址失效，官方为此提供内置硬重载，取值有四种（`automatic`、`automatic-immediate`、`false`、`manual`）。
 - **硬刷新某个路径 404、点击却正常**：这是 SPA 兜底页与主机配置的问题，两条路都写在文档里（`200.html`/`404.html` 与宿主指向，以及 `experimental.serverPathFallback`）。

@@ -1,6 +1,6 @@
 ---
 url: /posts/a7b2062e8c038c63aa0800fd20413848/
-title: Moving to nuxt-server：一张 17 行的对照表与一个 500 报错码
+title: 627 - Moving to nuxt-server：一张 17 行的对照表与一个 500 报错码
 date: 2027-05-09T09:00:00+08:00
 updated: 2027-05-09T09:00:00+08:00
 author: cmdragon
@@ -113,10 +113,10 @@ export default defineEventHandler(async (event) => {
 
 ## 下一篇
 
-下一篇 628 读 nightly 渠道那一页：**合进 `main` 且通过全部测试后由 GitHub Actions 自动发布**；进出都要改 `package.json` 里的 `nuxt` 值（`npm:nuxt-nightly@latest`）并**删掉锁文件**——官方列了 5 个锁文件名；那条 `::warning` 现在特别要读：**`latest` 渠道正追 Nuxt v4 分支，因此此刻很可能有破坏性变更**，想留在 3.x 要用 `"nuxt": "npm:nuxt-nightly@3x"`；CLI 另有 `npx @nuxt/cli-nightly@latest [command]`。
+下一篇 628 读 nightly 渠道那一节：**合进 `main` 且通过全部测试后由 GitHub Actions 自动发布**；进出都要改 `package.json` 里的 `nuxt` 值（`npm:nuxt-nightly@latest`）并**删掉锁文件**——官方列了 5 个锁文件名；那条 `::warning` 现在特别要读：**`latest` 渠道正追 Nuxt v4 分支，因此此刻很可能有破坏性变更**，想留在 3.x 要用 `"nuxt": "npm:nuxt-nightly@3x"`；CLI 另有 `npx @nuxt/cli-nightly@latest [command]`。
 
 ## 本文依据
 
 - https://nuxt.com/docs/4.x/getting-started/upgrade（"Moving to `nuxt/server`" 整节：4.6 起可改导入源的理由句、"the auto-imported names of the same spelling are h3 v1's…" 句、`server/api/hello.ts` diff 示例、Nuxt 5 上改为自动导入那句；`### Differences From h3 v1` 的 17 行对照表全文；`### Helpers Outside nuxt/server` 段与四个被点名助手、`server/api/upload.post.ts` 示例；`### NUXT_E8012` 整段；`### Application Secret` 整段含 `NUXT_APP_SECRET` 与数字密钥被解析的说明）
-- https://nuxt.com/docs/4.x/guide/going-further/server-imports（`nuxt/server` 导入面本身，本页只按升级视角引用）
+- https://nuxt.com/docs/4.x/guide/going-further/server-imports（`nuxt/server` 导入面本身，这一篇只按升级视角引用）
 - https://nuxt.com/docs/4.x/guide/going-further/runtime-config#application-secret（应用密钥一节，被本节链接指向，用于查数字密钥的具体避法）

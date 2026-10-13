@@ -1,12 +1,12 @@
 ---
 url: /posts/63ce81f6aa1baa1107f40751a72186e3/
-title: CSS Modules 与 scoped：文档记载的支持范围
+title: 417 - CSS Modules 与 scoped：文档记载的支持范围
 date: 2027-02-28T09:00:00+08:00
 updated: 2027-02-28T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：组件级样式隔离有两个正写在不同文档层面的手段（Vue SFC 提供、Nuxt styling 页原文复述），加上 class/style 绑定与 `v-bind` 共四条。① `scoped` 属性："The scoped attribute allows you to style components in isolation. The styles declared with this attribute will only apply to this component."；② CSS Modules 用 `module` 属性，通过注入的 `$style` 变量访问（`<p :class="$style.red">` 配 `<style module>.red{color:red}</style>`）；③ class 与 style 绑定直接吃 Vue 的四种形态（ref/reactive、computed、数组、对象）；④ 样式块里用 `v-bind(color)` 引用 JS 变量，官方强调这个绑定是**动态**的——变量值变了样式会更新。这一页还有一句定位：SFC 让你在组件文件里直接写 CSS 或预处理器代码，因此**不需要为了好用而采用 CSS-in-JS**；真要用的话社区有 pinceau 这类库。
+  摘要：组件级样式隔离有两个正写在不同文档层面的手段（Vue SFC 提供、Nuxt styling 页原文复述），加上 class/style 绑定与 `v-bind` 共四条。① `scoped` 属性："The scoped attribute allows you to style components in isolation. The styles declared with this attribute will only apply to this component."；② CSS Modules 用 `module` 属性，通过注入的 `$style` 变量访问（`<p :class="$style.red">` 配 `<style module>.red{color:red}</style>`）；③ class 与 style 绑定直接吃 Vue 的四种形态（ref/reactive、computed、数组、对象）；④ 样式块里用 `v-bind(color)` 引用 JS 变量，官方强调这个绑定是**动态**的——变量值变了样式会更新。这一节还有一句定位：SFC 让你在组件文件里直接写 CSS 或预处理器代码，因此**不需要为了好用而采用 CSS-in-JS**；真要用的话社区有 pinceau 这类库。
 
 categories:
   - 前端开发

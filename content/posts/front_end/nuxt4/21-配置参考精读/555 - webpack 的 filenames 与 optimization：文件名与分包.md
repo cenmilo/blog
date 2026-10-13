@@ -1,6 +1,6 @@
 ---
 url: /posts/a6fbbae63cc68575728d477c29690857/
-title: webpack 的 filenames 与 optimization：文件名与分包
+title: 555 - webpack 的 filenames 与 optimization：文件名与分包
 date: 2027-04-15T09:00:00+08:00
 updated: 2027-04-15T09:00:00+08:00
 author: cmdragon

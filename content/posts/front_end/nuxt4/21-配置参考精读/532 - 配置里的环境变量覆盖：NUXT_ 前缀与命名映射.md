@@ -1,6 +1,6 @@
 ---
 url: /posts/370d9c90ee50c60cfa77bd63940e96ca/
-title: 配置里的环境变量覆盖：NUXT_ 前缀与命名映射
+title: 532 - 配置里的环境变量覆盖：NUXT_ 前缀与命名映射
 date: 2027-04-07T10:00:00+08:00
 updated: 2027-04-07T10:00:00+08:00
 author: cmdragon
@@ -30,7 +30,7 @@ tags:
 
 ## 两条硬要求
 
-Runtime Config 那页先给定性：**"Runtime config values are automatically replaced by matching environment variables at runtime."** 然后是两个要求，原文：
+Runtime Config 那一节先给定性：**"Runtime config values are automatically replaced by matching environment variables at runtime."** 然后是两个要求，原文：
 
 1. Custom runtime config variables must be defined in your `nuxt.config`. **This ensures that arbitrary environment variables are not exposed to your application code.**
 2. Only a specially-named environment variable can override a runtime config property. That is, **an uppercase environment variable starting with `NUXT_` which uses `_` to separate keys and case changes.**
@@ -64,7 +64,7 @@ export default defineNuxtConfig({
 | `apiSecret` | `NUXT_API_SECRET` | camelCase 的两个词在变量里变成 `API_SECRET`，前面加 `NUXT_` |
 | `public.apiBase` | `NUXT_PUBLIC_API_BASE` | **嵌套段各占一段**：`public` → `PUBLIC`、`apiBase` → `API_BASE` |
 
-**注意文档没有给出完整算法**：连续大写缩写（比如 `apiURL`）、含数字的键名会被映射成什么，这页没写。撞上时别猜，用下面那条读实际值的方法验证。
+**注意文档没有给出完整算法**：连续大写缩写（比如 `apiURL`）、含数字的键名会被映射成什么，这一节没写。撞上时别猜，用下面那条读实际值的方法验证。
 
 ## 例外：NUXT_APP_SECRET 不用声明
 
@@ -76,7 +76,7 @@ export default defineNuxtConfig({
 
 同一个作用域里还有两个官方点名的可覆盖项，都在 `runtimeConfig.app` 下：`app.baseURL` 与 `app.cdnURL`，对应 `NUXT_APP_BASE_URL` 与 `NUXT_APP_CDN_URL`，两者都写在启动命令前（属于运行时注入）。
 
-**所以命名习惯上有一处陷阱**：`NUXT_APP_*` 这一段是保留给 Nuxt 内部值的。想给自己的配置加环境变量，别起名成 `runtimeConfig.app.xxx`，否则按 `NUXT_B5003` 那页的说法，你的键会与框架自己的值撞在同一命名空间里。
+**所以命名习惯上有一处陷阱**：`NUXT_APP_*` 这一段是保留给 Nuxt 内部值的。想给自己的配置加环境变量，别起名成 `runtimeConfig.app.xxx`，否则按 `NUXT_B5003` 那一节的说法，你的键会与框架自己的值撞在同一命名空间里。
 
 ## 前缀本身可以改，但默认就是 NUXT_
 
@@ -90,11 +90,11 @@ export default defineNuxtConfig({
 }
 ```
 
-也就是说 `NUXT_` 这个前缀是 Nitro 侧的一个配置项，默认值就是它。**这一页没有说明改这个前缀是否同步影响 `runtimeConfig.app.*` 那几个官方变量**，所以真要改前缀，先按下一节的方法把两边的实际行为测出来。
+也就是说 `NUXT_` 这个前缀是 Nitro 侧的一个配置项，默认值就是它。**这一节没有说明改这个前缀是否同步影响 `runtimeConfig.app.*` 那几个官方变量**，所以真要改前缀，先按下一节的方法把两边的实际行为测出来。
 
 ## 值会被转型，密钥最容易出事
 
-两个地方写了同一类风险。Runtime Config 那页的 `::warning`：环境变量值会用 destr 自动转成对应的 JS 类型，**`NUXT_MY_VAR=4848e0` 会变成数字 `4848`**；要保持字符串，值里必须真的含双引号——`.env` 里写 `NUXT_MY_VAR='"4848e0"'`，直接设变量时（shell、Dockerfile、平台面板）要确认引号是值的一部分、没被 shell 剥掉。
+两个地方写了同一类风险。Runtime Config 那一节的 `::warning`：环境变量值会用 destr 自动转成对应的 JS 类型，**`NUXT_MY_VAR=4848e0` 会变成数字 `4848`**；要保持字符串，值里必须真的含双引号——`.env` 里写 `NUXT_MY_VAR='"4848e0"'`，直接设变量时（shell、Dockerfile、平台面板）要确认引号是值的一部分、没被 shell 剥掉。
 
 Application Secret 那节把同一件事讲得更具体：**"Nitro parses environment overrides, so a secret made only of digits or one that looks like JSON arrives as a number, boolean or object rather than a string."** 官方给的两条应对是包引号（`NUXT_APP_SECRET='"12345..."'`），或者干脆把 `runtimeConfig.appSecret` 写在 `nuxt.config` 里。
 

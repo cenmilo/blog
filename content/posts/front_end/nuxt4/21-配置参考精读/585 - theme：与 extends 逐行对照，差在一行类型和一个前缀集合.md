@@ -1,12 +1,12 @@
 ---
 url: /posts/39c89fd4f9627715a338db0b8810c778/
-title: theme：与 extends 逐行对照，差在一行类型和一个前缀集合
+title: 585 - theme：与 extends 逐行对照，差在一行类型和一个前缀集合
 date: 2027-04-25T09:00:00+08:00
 updated: 2027-04-25T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`## theme` 的三句说明与 `## extends` 几乎同形，差别可以逐行数出来：**`theme` 有 `**Type**: string` 而 `extends` 连类型行都没有**、**`theme` 的前缀集合是 `github:`/`gitlab:`/`bitbucket:`/`https://`（没有 `gh:`）而 `extends` 是 `github:`/`gh:`/`gitlab:`/`bitbucket:`（没有 `https://`）**、**`theme` 一条 See 都没有**、值的形状一个是单个字符串一个是"字符串或字符串数组"。两节都没有默认值行。而整套 4.x 文档里**没有任何一处把 `theme` 当 `nuxt.config` 顶层键写过的示例**（搜到的 `theme:` 都是 `app.config.ts` 里的对象键），图层那一页通篇只讲 `extends`——所以这一键与图层机制的确切关系、以及它与 `extends` 同时出现时谁生效，**文档没有裁决**。
+  摘要：`## theme` 的三句说明与 `## extends` 几乎同形，差别可以逐行数出来：**`theme` 有 `**Type**: string` 而 `extends` 连类型行都没有**、**`theme` 的前缀集合是 `github:`/`gitlab:`/`bitbucket:`/`https://`（没有 `gh:`）而 `extends` 是 `github:`/`gh:`/`gitlab:`/`bitbucket:`（没有 `https://`）**、**`theme` 一条 See 都没有**、值的形状一个是单个字符串一个是"字符串或字符串数组"。两节都没有默认值行。而整套 4.x 文档里**没有任何一处把 `theme` 当 `nuxt.config` 顶层键写过的示例**（搜到的 `theme:` 都是 `app.config.ts` 里的对象键），图层那一节通篇只讲 `extends`——所以这一键与图层机制的确切关系、以及它与 `extends` 同时出现时谁生效，**文档没有裁决**。
 
 categories:
   - 前端开发
@@ -60,7 +60,7 @@ tags:
 
 **`theme` 到底"只换主题"吗？** 说明句里没有任何关于范围的限定——它讲的和 `extends` 是同一件事（从一个源扩展项目），没有出现"只合并样式""不改逻辑"之类的措辞。把这一键读成"继承主题用的"是没有依据的推断。
 
-**`theme` 与图层机制是什么关系？** 图层那一页从头到尾只写 `extends`：十项自动扫描的内容、Layer Priority 的三级阶梯、`#layers/*` 别名、相对路径的两个坑、关层里模块的方法、以及 c12／defu／giget 的实现归属，**没有一处提到 `theme` 这个键**。所以"用 `theme` 引入的源算不算图层、它在优先级阶梯上排在哪一级"，**没有记载**。
+**`theme` 与图层机制是什么关系？** 图层那一节从头到尾只写 `extends`：十项自动扫描的内容、Layer Priority 的三级阶梯、`#layers/*` 别名、相对路径的两个坑、关层里模块的方法、以及 c12／defu／giget 的实现归属，**没有一处提到 `theme` 这个键**。所以"用 `theme` 引入的源算不算图层、它在优先级阶梯上排在哪一级"，**没有记载**。
 
 **两个键同时写会怎样？** 也没有记载。按两句说明的字面读法，`theme` 是"单个源"、`extends` 是"多个源"，**谁先谁后、谁覆盖谁，文档没有给答案**。要用的话，实测是唯一可靠的办法。
 
@@ -84,4 +84,4 @@ tags:
 ## 本文依据
 
 - https://nuxt.com/docs/4.x/api/nuxt-config（`## theme` 四句原文、`**Type**: string`、无 Default/Example/See 的事实；`## extends` 三句原文与两条 See 用于逐行对照）
-- https://nuxt.com/docs/4.x/guide/going-further/layers（该页正面内容全部围绕 `extends`：十项自动扫描、Layer Priority、`#layers/*` 别名与 `$meta.name`、相对路径两个坑、v4.3 关模块、c12/defu/giget 归属——可作为"该页未提 `theme`"的核对对象）
+- https://nuxt.com/docs/4.x/guide/going-further/layers（那一节正面内容全部围绕 `extends`：十项自动扫描、Layer Priority、`#layers/*` 别名与 `$meta.name`、相对路径两个坑、v4.3 关模块、c12/defu/giget 归属——可作为"那一节未提 `theme`"的核对对象）

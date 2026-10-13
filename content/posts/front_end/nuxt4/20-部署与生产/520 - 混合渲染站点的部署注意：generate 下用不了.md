@@ -1,6 +1,6 @@
 ---
 url: /posts/faa42bafabed0c2da324d48c40022f98/
-title: 混合渲染站点的部署注意：generate 下用不了
+title: 520 - 混合渲染站点的部署注意：generate 下用不了
 date: 2027-04-03T10:00:00+08:00
 updated: 2027-04-03T10:00:00+08:00
 author: cmdragon
@@ -80,7 +80,7 @@ export default defineNuxtConfig({
 
 > Note that Hybrid Rendering is not available when using `nuxt generate`.
 
-原因不必猜，两页合起来就是：**`nuxt generate` 产出的是纯静态文件，而 route rules 里的 `swr`/`isr`/`ssr:false`/`redirect` 要靠"服务器自动注册中间件与缓存包装"来执行**——没有服务器，就没有执行者。
+原因不必猜，两节合起来就是：**`nuxt generate` 产出的是纯静态文件，而 route rules 里的 `swr`/`isr`/`ssr:false`/`redirect` 要靠"服务器自动注册中间件与缓存包装"来执行**——没有服务器，就没有执行者。
 
 所以选型顺序是这样：**先决定生产形态有没有进程在跑**。有服务器才谈得上混合渲染；只有文件服务，可选项就退回到构建期预渲染，加上线上流量的差别处理（`routeRules` 里的 `prerender` 仍然有效，因为那是构建期语义）。
 

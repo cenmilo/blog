@@ -1,12 +1,12 @@
 ---
 url: /posts/7a0a0f73ff403726f9b6d1f18b240a2a/
-title: Kit 构建器四函数：extendViteConfig 已弃用与两个加插件的函数
+title: 660 - Kit 构建器四函数：extendViteConfig 已弃用与两个加插件的函数
 date: 2027-05-20T09:00:00+08:00
 updated: 2027-05-20T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：构建器这一页六个函数里，**Vite 那一侧正在换写法**：`extendViteConfig` 被一条 `::warning` 标为**已弃用**，官方建议改用带 `config` 钩子的 Vite 插件，**环境相关的配置则用 `applyToEnvironment` 钩子**。同一页还有第二条警告点明顺序：**`config` 钩子在 `applyToEnvironment` 之前运行，改的是全局配置；要按环境改就用 `configEnvironment`**。选项表里 **`server` 与 `client` 两项在 Vite 侧被标 "Deprecated in Nuxt 5+"，而 webpack 那两节的同名选项没有任何弃用标记**。`addVitePlugin` 与 `addWebpackPlugin` 都接受"实例、数组，或一个可返回实例/数组的函数"，**函数还可以是 async 或返回 Promise，用来懒加载插件**。
+  摘要：构建器这一节六个函数里，**Vite 那一侧正在换写法**：`extendViteConfig` 被一条 `::warning` 标为**已弃用**，官方建议改用带 `config` 钩子的 Vite 插件，**环境相关的配置则用 `applyToEnvironment` 钩子**。同一页还有第二条警告点明顺序：**`config` 钩子在 `applyToEnvironment` 之前运行，改的是全局配置；要按环境改就用 `configEnvironment`**。选项表里 **`server` 与 `client` 两项在 Vite 侧被标 "Deprecated in Nuxt 5+"，而 webpack 那两节的同名选项没有任何弃用标记**。`addVitePlugin` 与 `addWebpackPlugin` 都接受"实例、数组，或一个可返回实例/数组的函数"，**函数还可以是 async 或返回 Promise，用来懒加载插件**。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-模块要动打包配置，以前就是 `extendViteConfig` 一行。这一页现在的写法是：**那一行本身已经被标弃用，替代方案是写一个 Vite 插件**。这一篇把四函数的分工与两条弃用线说清。
+模块要动打包配置，以前就是 `extendViteConfig` 一行。这一节现在的写法是：**那一行本身已经被标弃用，替代方案是写一个 Vite 插件**。这一篇把四函数的分工与两条弃用线说清。
 
 ## 页面给的两种 builder
 
@@ -49,7 +49,7 @@ function extendViteConfig (callback: ((config: ViteConfig) => void), options?: E
 
 定性：**扩展 Vite 配置；当同时作用于客户端与服务端构建时，回调函数会被调用多次**。
 
-紧接着的警告是本页的方向盘：
+紧接着的警告是那一节的方向盘：
 
 > This hook is now deprecated, and we recommend using a Vite plugin instead with a `config` hook, or — for environment-specific configuration — the `applyToEnvironment` hook.
 
@@ -242,9 +242,13 @@ export default defineNuxtModule({
 | 改 webpack 配置或加 webpack 插件 | `extendWebpackConfig`／`addWebpackPlugin`，`server`/`client` 仍可用 |
 | 一份代码同时给两个 builder | 用 `addBuildPlugin`（下一篇） |
 
-这一页没写的：`ExtendViteConfigOptions` 与 `ExtendWebpackConfigOptions` 两个类型各自的完整字段（表里只给了五项）、`config` 与 `configEnvironment` 的调用次序细节（只说了 `config` 更早）、以及 Nuxt 5 环境 API 本身的行为（在实验特性那章）。
+这一节没写的：`ExtendViteConfigOptions` 与 `ExtendWebpackConfigOptions` 两个类型各自的完整字段（表里只给了五项）、`config` 与 `configEnvironment` 的调用次序细节（只说了 `config` 更早）、以及 Nuxt 5 环境 API 本身的行为（在实验特性那章）。
 
-下一篇讲这一页剩下两个函数：跨 builder 的 `addBuildPlugin` 与给自定义 builder 用的 `setBuildOutput`。
+下一篇讲这一节剩下两个函数：跨 builder 的 `addBuildPlugin` 与给自定义 builder 用的 `setBuildOutput`。
+
+## 下一篇
+
+下一篇 661：Kit 构建器其余两函数：addBuildPlugin 的三键工厂与 setBuildOutput 的六个键
 
 ## 本文依据
 

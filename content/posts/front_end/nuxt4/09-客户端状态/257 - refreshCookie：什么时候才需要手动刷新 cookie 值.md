@@ -1,12 +1,12 @@
 ---
 url: /posts/795bdd5c17e622b4f6bacba3883b212d/
-title: refreshCookie：什么时候才需要手动刷新 cookie 值
+title: 257 - refreshCookie：什么时候才需要手动刷新 cookie 值
 date: 2027-01-05T11:00:00+08:00
 updated: 2027-01-05T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`refreshCookie` 解决一个很窄但很难自己想到的问题：**cookie 已经在浏览器里变了，但 `useCookie` 那个 ref 还是旧值**。官方定位句 "Refresh useCookie values manually when a cookie has changed"（v3.10 起可用），Purpose 两句是 "The `refreshCookie` function is designed to refresh cookie value returned by `useCookie`. **This is useful for updating the `useCookie` ref when we know the new cookie value has been set in the browser.**"；签名只有一行 `refreshCookie (name: string): void`——**传的是 cookie 名字，不是 ref**。官方示例给的是登录后刷新：`const tokenCookie = useCookie('token')`，在 `login` 里 `await $fetch('/api/token', {...}) // Sets token cookie on response` 之后 `refreshCookie('token')`，再配 `const loggedIn = computed(() => !!tokenCookie.value)`。**而这一页最重要的一句其实是那条 note**："Since Nuxt v3.12.0, the experimental `cookieStore` option is **enabled by default**. It automatically refreshes the `useCookie` value when cookies change in the browser."——也就是说默认配置下这件事是自动的，`refreshCookie` 属于兜底；而 `useCookie` 的选项表里 `watch` 那行还挂着同一句提醒："Note: Refresh `useCookie` values manually when a cookie has changed with `refreshCookie`."
+  摘要：`refreshCookie` 解决一个很窄但很难自己想到的问题：**cookie 已经在浏览器里变了，但 `useCookie` 那个 ref 还是旧值**。官方定位句 "Refresh useCookie values manually when a cookie has changed"（v3.10 起可用），Purpose 两句是 "The `refreshCookie` function is designed to refresh cookie value returned by `useCookie`. **This is useful for updating the `useCookie` ref when we know the new cookie value has been set in the browser.**"；签名只有一行 `refreshCookie (name: string): void`——**传的是 cookie 名字，不是 ref**。官方示例给的是登录后刷新：`const tokenCookie = useCookie('token')`，在 `login` 里 `await $fetch('/api/token', {...}) // Sets token cookie on response` 之后 `refreshCookie('token')`，再配 `const loggedIn = computed(() => !!tokenCookie.value)`。**而那一节最重要的一句其实是那条 note**："Since Nuxt v3.12.0, the experimental `cookieStore` option is **enabled by default**. It automatically refreshes the `useCookie` value when cookies change in the browser."——也就是说默认配置下这件事是自动的，`refreshCookie` 属于兜底；而 `useCookie` 的选项表里 `watch` 那行还挂着同一句提醒："Note: Refresh `useCookie` values manually when a cookie has changed with `refreshCookie`."
 
 categories:
   - 前端开发
@@ -92,7 +92,7 @@ const loggedIn = computed(() => !!tokenCookie.value)
 | 刷新与 `default` 的先后 | 未写。我只确认参数表里 `default` 是 "returning the default value **if the cookie does not exist**"（256） |
 | 它会不会触发 `watch` | 未写。但官方示例正是靠 `computed` 读它，说明 ref 变化能被响应式系统看到 |
 
-还有一个我踩过的方向性错误值得写出来：**`refreshCookie` 不写 cookie，也不删 cookie**——它只让 `useCookie` 重新读一次。删除要按 255 那样赋值 `null`（并且"是否真的清掉浏览器里的 cookie"文档未写，需要自己验），过期要按 256 的 `maxAge`/`expires`。**这三件事在中文里都叫"清 cookie"，在文档里是三个不同的动作。**
+还有一个方向性错误值得写出来：**`refreshCookie` 不写 cookie，也不删 cookie**——它只让 `useCookie` 重新读一次。删除要按 255 那样赋值 `null`（并且"是否真的清掉浏览器里的 cookie"文档未写，需要自己验），过期要按 256 的 `maxAge`/`expires`。**这三件事在中文里都叫"清 cookie"，在文档里是三个不同的动作。**
 
 ## 自查
 

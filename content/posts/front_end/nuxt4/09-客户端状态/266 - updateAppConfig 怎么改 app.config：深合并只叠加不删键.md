@@ -1,6 +1,6 @@
 ---
 url: /posts/363aeac2106409de7be00b9e97a03f3f/
-title: updateAppConfig 怎么改 app.config：深合并只叠加不删键
+title: 266 - updateAppConfig 怎么改 app.config：深合并只叠加不删键
 date: 2027-01-08T11:00:00+08:00
 updated: 2027-01-08T11:00:00+08:00
 author: cmdragon
@@ -28,14 +28,14 @@ tags:
 
 ## 读和写这一对
 
-useAppConfig 那一页很短，就是把当前 app.config 拿出来：
+useAppConfig 那一节很短，就是把当前 app.config 拿出来：
 
 ```ts
 const appConfig = useAppConfig()
 console.log(appConfig)
 ```
 
-updateAppConfig 那一页给的完整示例，正好演示"写完能立刻在同对象上读到新值"：
+updateAppConfig 那一节给的完整示例，正好演示"写完能立刻在同对象上读到新值"：
 
 ```js
 import { updateAppConfig, useAppConfig } from '#imports'
@@ -48,7 +48,7 @@ updateAppConfig(newAppConfig)
 console.log(appConfig) // { foo: 'baz' }
 ```
 
-注意最后一行：`updateAppConfig` 没有返回值让你去接收，它是**就地更新** `useAppConfig()` 拿到的那个响应式对象。这也是 app.config 那页 usage 示例的写法——`appConfig` 先拿到 `{ foo: 'bar' }`，`updateAppConfig({ foo: 'baz' })` 之后，同一个 `appConfig` 变量打印出来就是 `{ foo: 'baz' }`。因为是响应式的，模板里用到它的地方会跟着重渲染。
+注意最后一行：`updateAppConfig` 没有返回值让你去接收，它是**就地更新** `useAppConfig()` 拿到的那个响应式对象。这也是 app.config 那一节 usage 示例的写法——`appConfig` 先拿到 `{ foo: 'bar' }`，`updateAppConfig({ foo: 'baz' })` 之后，同一个 `appConfig` 变量打印出来就是 `{ foo: 'baz' }`。因为是响应式的，模板里用到它的地方会跟着重渲染。
 
 ## 它的更新方式是"深合并"
 
@@ -83,7 +83,7 @@ updateAppConfig({ theme: { primaryColor: '#ff0000' } })
 
 ## 什么时候用
 
-app.config 那一页把可更新的时机写清楚了——"at runtime within lifecycle or using a nuxt plugin and editing it with HMR (hot-module-replacement)"。翻译成人话，`updateAppConfig` 的典型落点是：
+app.config 那一节把可更新的时机写清楚了——"at runtime within lifecycle or using a nuxt plugin and editing it with HMR (hot-module-replacement)"。翻译成人话，`updateAppConfig` 的典型落点是：
 
 - 在**生命周期**里响应某个事件改配置；
 - 在**插件**里初始化或改配置；
@@ -93,7 +93,7 @@ app.config 那一页把可更新的时机写清楚了——"at runtime within li
 
 ## 三个类型名别混
 
-app.config 那页的"Typing"部分出现三个接口名，容易看花，理一下：
+app.config 那一节的"Typing"部分出现三个接口名，容易看花，理一下：
 
 | 类型名 | 用在哪 | 作用 |
 | --- | --- | --- |

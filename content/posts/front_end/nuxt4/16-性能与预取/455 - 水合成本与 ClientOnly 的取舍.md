@@ -1,6 +1,6 @@
 ---
 url: /posts/e77b3f9ed62e01dcb3fa363d12a7e0dc/
-title: 水合成本与 ClientOnly 的取舍
+title: 455 - 水合成本与 ClientOnly 的取舍
 date: 2027-03-12T11:00:00+08:00
 updated: 2027-03-12T11:00:00+08:00
 author: cmdragon
@@ -126,7 +126,7 @@ onMounted(async () => {
 
 ## 占位样式还有一处开关
 
-`experimental.clientNodePlaceholder` 这一节把 `.client.vue` 组件与服务端占位的实现说了清楚：开启后用注释节点（`<!--placeholder-->`）代替 `<div>` 作为客户端组件的服务端占位，修的是"占位 `<div>` 与组件根元素同名时 scoped 样式可能应用不上"这个 Vue 水合问题。
+`experimental.clientNodePlaceholder` 这一节把 `.client.vue` 组件、以及 `createClientOnly()` 包出来的客户端组件与服务端占位的实现说了清楚：开启后两者都用注释节点（`<!--placeholder-->`）代替 `<div>` 作为客户端组件的服务端占位，修的是"占位 `<div>` 与组件根元素同名时 scoped 样式可能应用不上"这个 Vue 水合问题。
 
 但它自己带一条 `::warning`，正好是性能与外观的取舍：
 

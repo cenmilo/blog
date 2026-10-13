@@ -1,6 +1,6 @@
 ---
 url: /posts/3c1723de6b5ff50f42b78a1f70cc7a7c/
-title: shared：唯一能被两侧同时导入的位置，以及它的禁令
+title: 066 - shared：唯一能被两侧同时导入的位置，以及它的禁令
 date: 2026-11-03T09:00:00+08:00
 updated: 2026-11-03T09:00:00+08:00
 author: cmdragon

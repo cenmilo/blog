@@ -1,12 +1,12 @@
 ---
 url: /posts/77546685d844efcf6e22d51233c316d1/
-title: 写进 nitro 节的东西，记载全在别的页
+title: 564 - 写进 nitro 节的东西，记载全在别的页
 date: 2027-04-18T09:00:00+08:00
 updated: 2027-04-18T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`nitro` 在配置参考里不列清单，但**确实有几个键是 Nuxt 文档在别处教过怎么写的**：**`nitro.prerender`**——预渲染那页明写"顶层 `prerender` 选项对任何 `server.builder` 都生效；Nitro 专属的选项（官方举 **`concurrency`** 与 **`failOnError`**）要写在 `nitro.prerender`"；**`nitro.storage`**——服务端目录那页给的是"要加存储挂载点，用 `nitro.storage` 或 server plugins"，并附一整份 Redis 示例（`driver`/`port`/`host`/`username`/`password`/`db`/`tls`）与 `useStorage('redis')` 的三个方法。还有一条容易挑错的：**`routeRules` 有顶层节，`nitro.routeRules` 也有一个子项**，两处都只写 `object`。这一篇把"能照文档写的 nitro 键"和"文档没写、只能自己试的"分开。
+  摘要：`nitro` 在配置参考里不列清单，但**确实有几个键是 Nuxt 文档在别处教过怎么写的**：**`nitro.prerender`**——预渲染那一节明写"顶层 `prerender` 选项对任何 `server.builder` 都生效；Nitro 专属的选项（官方举 **`concurrency`** 与 **`failOnError`**）要写在 `nitro.prerender`"；**`nitro.storage`**——服务端目录那一节给的是"要加存储挂载点，用 `nitro.storage` 或 server plugins"，并附一整份 Redis 示例（`driver`/`port`/`host`/`username`/`password`/`db`/`tls`）与 `useStorage('redis')` 的三个方法。还有一条容易挑错的：**`routeRules` 有顶层节，`nitro.routeRules` 也有一个子项**，两处都只写 `object`。这一篇把"能照文档写的 nitro 键"和"文档没写、只能自己试的"分开。
 
 categories:
   - 前端开发
@@ -28,7 +28,7 @@ tags:
 
 ## 一、nitro.prerender：两个例子官方点了名
 
-预渲染那页在讲完顶层 `prerender` 之后，专门补了一句分工：**"The top-level `prerender` option applies whichever `server.builder` you use. Builder-specific options, such as Nitro's `concurrency` or `failOnError`, can be set in `nitro.prerender`."**
+预渲染那一节在讲完顶层 `prerender` 之后，专门补了一句分工：**"The top-level `prerender` option applies whichever `server.builder` you use. Builder-specific options, such as Nitro's `concurrency` or `failOnError`, can be set in `nitro.prerender`."**
 
 于是这条边界是清楚的：
 
@@ -37,11 +37,11 @@ tags:
 | `routes`、`ignore`、`crawlLinks` 这类跨构建器的选项 | 顶层 `prerender` |
 | Nitro 专属的 `concurrency`、`failOnError` | `nitro.prerender` |
 
-官方点名的这两项**只出现在这一句里，没有任何示例**——所以能确证的只有"它们是 Nitro 侧的、写在这个位置"，参数类型与取值范围得去 Nitro 文档查（那页末尾留的正是 `nitro.build/config#prerender` 的 read-more）。
+官方点名的这两项**只出现在这一句里，没有任何示例**——所以能确证的只有"它们是 Nitro 侧的、写在这个位置"，参数类型与取值范围得去 Nitro 文档查（那一节末尾留的正是 `nitro.build/config#prerender` 的 read-more）。
 
 一个容易犯的错：把 `failOnError` 写进顶层 `prerender`。按上面那句的分工它属于 builder-specific，位置错了不会报错，只会静默不生效——**这正是"顶层透传"型配置最难查的地方**。
 
-## 二、nitro.storage：一整份示例都在服务端那页
+## 二、nitro.storage：一整份示例都在服务端那一节
 
 Server Storage 小节给的是定性加两条入口：**"Nitro provides a cross-platform storage layer."**、**"In order to configure additional storage mount points, you can use `nitro.storage`, or server plugins."**
 

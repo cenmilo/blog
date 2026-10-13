@@ -1,6 +1,6 @@
 ---
 url: /posts/c5ad66d79c5fc1edde87ceec6c080415/
-title: routeRules 的服务端选项：redirect、headers、cache 与 proxy
+title: 325 - routeRules 的服务端选项：redirect、headers、cache 与 proxy
 date: 2027-01-28T10:00:00+08:00
 updated: 2027-01-28T10:00:00+08:00
 author: cmdragon
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
 
 拆开：
 
-- `cache`（getting-started/server 示例 `'/api/*': { cache: { maxAge: 60 * 60 } }`）：缓存整个响应、命中直接回，TTL 由 maxAge 定。experimental 那页也确认"cache route rule 覆盖路径时，GET/HEAD miss 会把 maxAge 当 Cache-Control 播报，让 CDN 吸收重复请求"。
+- `cache`（getting-started/server 示例 `'/api/*': { cache: { maxAge: 60 * 60 } }`）：缓存整个响应、命中直接回，TTL 由 maxAge 定。experimental 那一节也确认"cache route rule 覆盖路径时，GET/HEAD miss 会把 maxAge 当 Cache-Control 播报，让 CDN 吸收重复请求"。
 - `swr`：stale-while-revalidate，服务端/反代缓存、过 TTL 先回旧的再后台重生成。
 - `isr`：和 swr 一样，但能进 **CDN** 缓存（目前 Netlify/Vercel），`isr: true` 内容留到下次部署。
 
@@ -91,7 +91,7 @@ export default defineNuxtConfig({
 
 ## 还有 proxy
 
-experimental 那页提到 routeRules 的 `proxy`（"routeRules proxy or a catch-all handler"）。它把某路径代理转发到别处，属于 routeRules 的一个能力，但**渲染那页的 Route Rules 列表里没有单列它**，官方对它的完整字段没有在这批文档里逐项写开，我不替它编参数表。要精确用法去查 Nitro 文档。
+experimental 那一节提到 routeRules 的 `proxy`（"routeRules proxy or a catch-all handler"）。它把某路径代理转发到别处，属于 routeRules 的一个能力，但**渲染那一节的 Route Rules 列表里没有单列它**，官方对它的完整字段没有在这批文档里逐项写开，我不替它编参数表。要精确用法去查 Nitro 文档。
 
 ## 三处入口与一条限制
 

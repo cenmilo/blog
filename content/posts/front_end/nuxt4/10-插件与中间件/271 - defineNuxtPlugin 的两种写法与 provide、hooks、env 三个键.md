@@ -1,6 +1,6 @@
 ---
 url: /posts/d7b10eabc99250da8dec79bb893c1888/
-title: defineNuxtPlugin 的两种写法与 provide、hooks、env 三个键
+title: 271 - defineNuxtPlugin 的两种写法与 provide、hooks、env 三个键
 date: 2027-01-10T10:00:00+08:00
 updated: 2027-01-10T10:00:00+08:00
 author: cmdragon
@@ -139,7 +139,7 @@ hooks: {
 
 > Set this value to `false` if you don't want the plugin to run when rendering server-only or island components.
 
-先解释一下"岛屿"（第 106-109 篇 P04/P05 里已经铺过基础）：`.server.vue` 组件、或者 `components/islands/` 里的组件，会被 Nuxt 用**一个隔离的 Vue 应用**单独渲染——那个隔离应用**默认也会把插件再跑一遍**。有些插件（比如做埋点、做浏览器副作用、做全局 fetch 缓存的）在渲染一个"只展示、只有小段 HTML"的岛屿时不该跑，那就在 `env.islands` 设 `false`。设完之后，服务端渲染岛屿时这个插件被跳过，其他时机照常跑。
+先解释一下"岛屿"（第 106-109 篇 90-109 那几篇/110-149 里已经铺过基础）：`.server.vue` 组件、或者 `components/islands/` 里的组件，会被 Nuxt 用**一个隔离的 Vue 应用**单独渲染——那个隔离应用**默认也会把插件再跑一遍**。有些插件（比如做埋点、做浏览器副作用、做全局 fetch 缓存的）在渲染一个"只展示、只有小段 HTML"的岛屿时不该跑，那就在 `env.islands` 设 `false`。设完之后，服务端渲染岛屿时这个插件被跳过，其他时机照常跑。
 
 官方那一句 important 直接把它放在 plugins 页的对象写法示例里、并配了一句解释性说明："Set this value to `false` if you don't want the plugin to run when rendering server-only or island components."，`env` 类型就一个键 `islands?: boolean`。
 

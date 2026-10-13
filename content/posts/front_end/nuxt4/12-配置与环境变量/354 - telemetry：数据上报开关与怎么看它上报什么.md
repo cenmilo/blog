@@ -1,12 +1,12 @@
 ---
 url: /posts/9c1a49ff804a4169b3a451a6c435fd94/
-title: telemetry：数据上报开关与怎么看它上报什么
+title: 354 - telemetry：数据上报开关与怎么看它上报什么
 date: 2027-02-07T09:00:00+08:00
 updated: 2027-02-07T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：nuxt.config 有个 telemetry 配置节。这一篇要老实说清它的文档边界：nuxt-config 里这一节只有一句 "Manually disable nuxt telemetry."（手动关闭 Nuxt 的匿名使用数据上报）加一个指向 Nuxt Telemetry 仓库的链接——它**不在 nuxt-config 文档里逐项列出上报内容**。所以想知道具体收集了什么、怎么控制，权威来源是那个 telemetry 仓库，而不是这页配置参考。这一篇据此讲三件事：这个键是干嘛的、"关"的方向、以及"要查上报明细该去哪看"，避免凭印象编出一份其实文档没写的字段清单。
+  摘要：nuxt.config 有个 telemetry 配置节。这一篇要老实说清它的文档边界：nuxt-config 里这一节只有一句 "Manually disable nuxt telemetry."（手动关闭 Nuxt 的匿名使用数据上报）加一个指向 Nuxt Telemetry 仓库的链接——它**不在 nuxt-config 文档里逐项列出上报内容**。所以想知道具体收集了什么、怎么控制，权威来源是那个 telemetry 仓库，而不是配置参考那一节。这一篇据此讲三件事：这个键是干嘛的、"关"的方向、以及"要查上报明细该去哪看"，避免凭印象编出一份其实文档没写的字段清单。
 
 categories:
   - 前端开发

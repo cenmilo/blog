@@ -1,6 +1,6 @@
 ---
 url: /posts/c19761b30593a1493ea09aff3a8f5064/
-title: nuxt dev 的全部开关：端口、HTTPS、调试与终端面板
+title: 034 - nuxt dev 的全部开关：端口、HTTPS、调试与终端面板
 date: 2026-10-23T10:00:00+08:00
 updated: 2026-10-23T10:00:00+08:00
 author: cmdragon

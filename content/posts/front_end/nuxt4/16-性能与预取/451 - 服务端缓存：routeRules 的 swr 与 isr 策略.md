@@ -1,6 +1,6 @@
 ---
 url: /posts/fa7bba73e51dd2b67623f64265fb4042/
-title: 服务端缓存：routeRules 的 swr 与 isr 策略
+title: 451 - 服务端缓存：routeRules 的 swr 与 isr 策略
 date: 2027-03-11T10:00:00+08:00
 updated: 2027-03-11T10:00:00+08:00
 author: cmdragon

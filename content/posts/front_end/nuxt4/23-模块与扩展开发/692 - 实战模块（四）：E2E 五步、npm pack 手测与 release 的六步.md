@@ -1,6 +1,6 @@
 ---
 url: /posts/1f311fcf423529bbc5396a872c9caf3c/
-title: 实战模块（四）：E2E 五步、npm pack 手测与 release 的六步
+title: 692 - 实战模块（四）：E2E 五步、npm pack 手测与 release 的六步
 date: 2027-05-30T11:00:00+08:00
 updated: 2027-05-30T11:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 
 ## 第一段：仓库内的端到端测试
 
-测试这一页给的路线只有端到端是完整的：用 Nuxt Test Utils，五步走——在 `test/fixtures/*` 里建一个作为 fixture 的 Nuxt 应用、在测试文件里用这个 fixture 启动 Nuxt、用 `@nuxt/test-utils` 的工具与 fixture 交互（例如抓一个页面）、针对这个 fixture 做断言（例如某段 HTML 是否出现）、然后重复。
+测试这一节给的路线只有端到端是完整的：用 Nuxt Test Utils，五步走——在 `test/fixtures/*` 里建一个作为 fixture 的 Nuxt 应用、在测试文件里用这个 fixture 启动 Nuxt、用 `@nuxt/test-utils` 的工具与 fixture 交互（例如抓一个页面）、针对这个 fixture 做断言（例如某段 HTML 是否出现）、然后重复。
 
 fixture 的配置文件和测试文件的完整写法在讲模块测试那两篇里逐行给过，这里只提三个会在发布前咬人的点：
 
@@ -103,6 +103,10 @@ npx nuxt build-module [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|ver
 如果只做了第一步就发，你发出去的是一个从没被真正构建过的东西。
 
 到这里，模块这一段的正文就结束了。下一篇转向另一件事：实验特性机制——那 57 个开关的默认值、"提前启用"意味着什么，以及官方对风险的那句声明。
+
+## 下一篇
+
+下一篇 693：Kit 速查表：59 个函数分布在 20 页与四种查找入口
 
 ## 本文依据
 

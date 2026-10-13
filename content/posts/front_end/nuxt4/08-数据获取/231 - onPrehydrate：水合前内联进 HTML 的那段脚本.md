@@ -1,6 +1,6 @@
 ---
 url: /posts/ee71d9711ed0c2cf39c2621c90a46645/
-title: onPrehydrate：水合前内联进 HTML 的那段脚本
+title: 231 - onPrehydrate：水合前内联进 HTML 的那段脚本
 date: 2026-12-28T09:00:00+08:00
 updated: 2026-12-28T09:00:00+08:00
 author: cmdragon

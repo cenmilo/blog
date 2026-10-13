@@ -1,6 +1,6 @@
 ---
 url: /posts/86c0f22786099f101b89f9d49c952096/
-title: defineCachedEventHandler 在服务端的落点
+title: 452 - defineCachedEventHandler 在服务端的落点
 date: 2027-03-11T11:00:00+08:00
 updated: 2027-03-11T11:00:00+08:00
 author: cmdragon
@@ -40,7 +40,7 @@ tags:
 
 ## 官方把它归进"不可移植"
 
-服务端导入那一页有两句关键的话。第一句给来源：
+服务端导入那一节有两句关键的话。第一句给来源：
 
 > Nitro's own APIs mostly take no event at all: `defineCachedEventHandler()`, `useStorage()`, `useDatabase()` and tasks. Import them from `nitropack/runtime`.
 
@@ -56,7 +56,7 @@ tags:
 
 ## 换个 Nitro 版本，导入路径就变
 
-模块兼容那一页给的是两列对照：
+模块兼容那一节给的是两列对照：
 
 | 区域 | 在 `nitro2` 文件里 | 在 `nitro3` 文件里 |
 | --- | --- | --- |
@@ -66,7 +66,7 @@ tags:
 | Nitro 自己的 runtime 钩子（`request`、`error`） | `useNitroApp().hooks` from `nitropack/runtime` | `useNitroHooks()` from `nitro/app` |
 | Lazy handlers：`lazyEventHandler()` | `h3` | `nitro/h3` |
 
-升级那一页再补了一句提醒，语气是"以后要回来改"：
+升级那一节再补了一句提醒，语气是"以后要回来改"：
 
 > For a handler that needs h3 or Nitro helpers that `nuxt/server` does not provide, such as `readMultipartFormData`, `proxyRequest`, `useStorage` or `defineCachedEventHandler`, keep importing `defineEventHandler` and those helpers from `h3` (or `nitropack/runtime`) for that handler. Code that does this is tied to the server runtime and needs revisiting on Nuxt 5.
 
@@ -102,7 +102,7 @@ tags:
 
 ## 下一篇
 
-下一篇 453 回到用户能看见的两个指标：图片与字体。官方在这一页把 LCP 挂在未优化的图片上、把 CLS 挂在字体的度量回退上，并给了图片按重要性分两组加载的写法；第三方脚本那一节则点名它同时拖累 INP 与 LCP。
+下一篇 453 回到用户能看见的两个指标：图片与字体。官方在这一节把 LCP 挂在未优化的图片上、把 CLS 挂在字体的度量回退上，并给了图片按重要性分两组加载的写法；第三方脚本那一节则点名它同时拖累 INP 与 LCP。
 
 ## 本文依据
 

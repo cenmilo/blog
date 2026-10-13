@@ -1,6 +1,6 @@
 ---
 url: /posts/3069492d9bde6340327d53fbdc013d7f/
-title: robots 的两处记载：meta 里那个字段与一个要保名的文件
+title: 205 - robots 的两处记载：meta 里那个字段与一个要保名的文件
 date: 2026-12-19T10:00:00+08:00
 updated: 2026-12-19T10:00:00+08:00
 author: cmdragon
@@ -35,7 +35,7 @@ tags:
 
 ## 第一条线：meta 里的 robots
 
-语料里它的完整证据就是这两个块。`useSeoMeta` 页性能一节的原文示例：
+官方那一节给的就是这两个块。`useSeoMeta` 那一节里性能小节的原文示例：
 
 ```vue [app/app.vue]
 <script setup lang="ts">
@@ -51,7 +51,7 @@ if (import.meta.server) {
 </script>
 ```
 
-`useServerSeoMeta` 页（已废弃那一页）给的替代写法是同一块代码。也就是说，**文档只在这一种上下文里写过 `robots`，而那种上下文是"给静态 meta 省掉客户端开销"**，不是在讲索引控制。它的配套理由句：
+`useServerSeoMeta` 那一节（已废弃的那个组件）给的替代写法是同一块代码。也就是说，**文档只在这一种上下文里写过 `robots`，而那种上下文是"给静态 meta 省掉客户端开销"**，不是在讲索引控制。它的配套理由句：
 
 > In most instances, SEO meta tags don't need to be reactive as search engine robots primarily scan the initial page load.
 
@@ -128,7 +128,7 @@ export default defineNuxtConfig({
 
 ## 三个词的空白
 
-我把 `X-Robots-Tag`、`noindex`、`nofollow` 在整套语料里检索过，**零命中**。含义说清楚：
+我把 `X-Robots-Tag`、`noindex`、`nofollow` 在官方文档里检索过，**零命中**。含义说清楚：
 
 - 文档没有提过用 HTTP 响应头来控制索引（`routeRules` 的 `headers` 能设任意头，但 Nuxt 文档没有把它和 robots 连起来写过一句）。
 - 文档没有给过 robots 的具体取值语义。

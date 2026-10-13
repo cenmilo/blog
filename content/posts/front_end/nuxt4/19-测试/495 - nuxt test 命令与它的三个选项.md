@@ -1,6 +1,6 @@
 ---
 url: /posts/1d845bdfb066cc88cf7b291cd04f3a0e/
-title: nuxt test 命令与它的三个选项
+title: 495 - nuxt test 命令与它的三个选项
 date: 2027-03-26T09:00:00+08:00
 updated: 2027-03-26T09:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 
 配好 vitest 之后，跑测试你打的是 `npx vitest`。但 CLI 里还有一条 `nuxt test`，脚本里写哪一条、它能带什么，是两回事。
 
-这一页很短，正好可以一次说完。
+这一节很短，正好可以一次说完。
 
 ## 命令形状
 
@@ -47,13 +47,13 @@ npx nuxt test [ROOTDIR] [--cwd=<directory>] [--dev] [--watch]
 | `--dev` | 开关 | Run in dev mode | 表中留空 |
 | `--watch` | 开关 | Watch mode | 表中留空 |
 
-四行里没有第五行。这页没列全局选项（`--log-level` 之类在这一页的表里不出现），要确认得用 `npx nuxt test --help` 在你自己的机器上看。
+四行里没有第五行。这一节没列全局选项（`--log-level` 之类在这一节的表里不出现），要确认得用 `npx nuxt test --help` 在你自己的机器上看。
 
 有一处描述重复值得留意：`ROOTDIR` 和 `--cwd` 的官方说明文字是同一句"你的 Nuxt 项目根目录"。**同时给出哪一个、以谁为准，文档未说明。** 实际项目里只写一个就好，别指望顺序规则。
 
 ## 它对环境变量做的那件事
 
-这句话在这一页出现了两次——正文里一次，结尾的 `::note` 里又一次：
+这句话在这一节出现了两次——正文里一次，结尾的 `::note` 里又一次：
 
 > This command sets `process.env.NODE_ENV` to `test` if not already set.
 
@@ -79,17 +79,17 @@ npx vitest --project nuxt
 npx vitest --watch
 ```
 
-对照上一条命令页，能确认的只有这些：`--watch` 这件事两边都能表达（`nuxt test --watch` 与 `npx vitest --watch`）；按测试种类分别跑，只有 `npx vitest --project <name>` 这一种写法有记载，`nuxt test` 那页里没有对应选项。
+对照上一条命令那一节，能确认的只有这些：`--watch` 这件事两边都能表达（`nuxt test --watch` 与 `npx vitest --watch`）；按测试种类分别跑，只有 `npx vitest --project <name>` 这一种写法有记载，`nuxt test` 那一节里没有对应选项。
 
 **`nuxt test` 与 `vitest.config.ts` 里三个 project 之间具体怎么协作，文档没有记载**——它只说这条命令"用 `@nuxt/test-utils` 跑测试"。要判断它是否读你那份 project 配置，唯一的办法是自己跑一次看输出：`npx nuxt test --dev` 与 `npx vitest --project nuxt` 分别跑同一批测试，对比被执行的文件数。
 
 ## 自查
 
-- `nuxt test` 的定位一句话：跑测试用的是 `@nuxt/test-utils`；这一页不提 vitest，也没有 `--project`。
+- `nuxt test` 的定位一句话：跑测试用的是 `@nuxt/test-utils`；这一节不提 vitest，也没有 `--project`。
 - 只有 1 个位置参数加 3 个选项，全表四行；`--cwd` 与 `ROOTDIR` 描述相同，优先级文档未说明。
 - `NODE_ENV` 是「未设置时才设为 `test`」，外部已经设过就不覆盖——这是 `nuxt test` 与裸 `npx vitest` 最容易产生的差异。
 - 分项目跑测试只在 `npx vitest --project unit` 这类写法里有记载。
-- 全局选项这一页没列，用 `--help` 在本地确认，别照别的命令页类推。
+- 全局选项这一节没列，用 `--help` 在本地确认，别照其它命令那一节类推。
 
 ## 下一篇
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/b4f2d18c9f1f48715dab202a88c1231e/
-title: serverDir：服务端目录改名
+title: 536 - serverDir：服务端目录改名
 date: 2027-04-08T11:00:00+08:00
 updated: 2027-04-08T11:00:00+08:00
 author: cmdragon

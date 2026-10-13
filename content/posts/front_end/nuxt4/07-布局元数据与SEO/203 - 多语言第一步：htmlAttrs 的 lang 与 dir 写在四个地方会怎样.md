@@ -1,6 +1,6 @@
 ---
 url: /posts/7d5a244f7e4a1ca8a225042b53922053/
-title: 多语言第一步：htmlAttrs 的 lang 与 dir 写在四个地方会怎样
+title: 203 - 多语言第一步：htmlAttrs 的 lang 与 dir 写在四个地方会怎样
 date: 2026-12-18T11:00:00+08:00
 updated: 2026-12-18T11:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/87ba115df65308e6ada38d24d45b6494/
-title: 服务端排错：sourcemaps、inspect 与 DevTools
+title: 338 - 服务端排错：sourcemaps、inspect 与 DevTools
 date: 2027-02-01T11:00:00+08:00
 updated: 2027-02-01T11:00:00+08:00
 author: cmdragon
@@ -113,7 +113,7 @@ nuxt-config 的 `debug` 选项（默认 false）：
 
 ## 下一篇
 
-下一篇 339 给服务端这层收尾：一张 Nitro 能力地图，把 P11 讲过的路由、中间件、插件、runtimeConfig、routeRules、预渲染、部署串成索引。
+下一篇 339 给服务端这层收尾：一张 Nitro 能力地图，把 300-339 讲过的路由、中间件、插件、runtimeConfig、routeRules、预渲染、部署串成索引。
 
 ## 本文依据
 

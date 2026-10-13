@@ -1,6 +1,6 @@
 ---
 url: /posts/e3fb70bf061f39c3a88b881f9cd32e06/
-title: 只在客户端渲染组件的三条路：ClientOnly、client 后缀与整页关 SSR
+title: 165 - 只在客户端渲染组件的三条路：ClientOnly、client 后缀与整页关 SSR
 date: 2026-12-06T09:00:00+08:00
 updated: 2026-12-06T09:00:00+08:00
 author: cmdragon
@@ -141,7 +141,7 @@ watch(nuxtWelcomeRef, () => {
 
 第二条与 `<ClientOnly>` 的挂载时机是同一件事，只是解法不同：`<ClientOnly>` 里用 `watch(ref, ..., { once: true })`，`.client` 组件里官方建议 `onMounted` + `await nextTick()`。
 
-官方也在 `<ClientOnly>` 那页留了互指句："You can also achieve a similar result with the `<ClientOnly>` component."（反向从 096 那页也指回来过）。
+官方也在 `<ClientOnly>` 那一节留了互指句："You can also achieve a similar result with the `<ClientOnly>` component."（反向从 096 那一节也指回来过）。
 
 ### 成对写法：服务端一份、客户端一份
 

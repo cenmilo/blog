@@ -1,12 +1,12 @@
 ---
 url: /posts/753f00d317a3ee7e31738049e91e21cd/
-title: 中间件的返回值就是指令：五种返回、两种状态码与忘记 return
+title: 132 - 中间件的返回值就是指令：五种返回、两种状态码与忘记 return
 date: 2026-11-25T09:00:00+08:00
 updated: 2026-11-25T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一篇把中间件的输出面收口。第一条是结构差异：**"与 vue-router 的导航守卫不同，不会传入第三个 `next()` 参数，**重定向或取消导航是由中间件的返回值来处理的**。**"第二条是那张五种返回值的官方清单：什么都不返回（**简单 `return` 或干脆不返回**）——"**不阻塞导航，会走向下一个中间件函数（如果有），或完成这次路由导航**"；`return navigateTo('/')`——"**重定向到给定路径，如果重定向发生在服务端会把重定向码设为 `302 Found`**"；`return navigateTo('/', { redirectCode: 301 })`——"**重定向到给定路径，如果重定向发生在服务端会把重定向码设为 `301 Moved Permanently`**"；`return abortNavigation()`——"**停止当前导航**"；`return abortNavigation(error)`——"**用一个错误拒绝当前导航**"。第三条是官方那条 important：**"我们建议使用上面的 helper 函数来执行重定向或停止导航。vue-router 文档里描述的其他可能返回值也许有效，但未来可能会有破坏性变更。"** 第四条与调用姿势有关，官方在 `navigateTo` 那一页给了一个 ❌ 反例：在中间件里只写 `navigateTo('/search', { redirectCode: 301 })` 然后 `return`，官方的判定是"**这种情况下 `navigateTo` 会被执行但不会被返回，这可能导致意外的行为**"，并把规则写成"**在路由中间件里使用 `navigateTo` 时，你必须返回它的结果，以确保中间件执行流程正确工作**"。第五条是状态码的作用域：`redirectCode` 官方明确限定在"**当重定向发生在服务端时**"才生效，默认 `302`，"`301 Moved Permanently` 可以用于永久重定向"；而 `defineNuxtRouteMiddleware` 的返回类型正是 `ReturnType<NavigationGuard>`，所以"返回什么"在类型层面就已经是导航守卫的语义。另外两个输出动作不在返回值里：**抛错误页**（官方示例 `throw createError({ status: 404, statusText: 'Page Not Found' })`，"上面的路由中间件会把用户重定向到在 `~/error.vue` 文件里定义的自定义错误页，并把从中间件传过去的错误信息与状态码暴露出来"）与**在中间件里做条件判断时的 `useError`**（官方 note："渲染错误页是一次完全独立的页面加载，这意味着任何已注册的中间件都会再运行一次。你可以在中间件里使用 `useError` 来检查是否正在处理一个错误。"）。最后一条顺序前提：中间件先跑全局（全局之间默认按文件名字母序），再按页面 `middleware` 数组声明的顺序跑，而父子路由的 middleware 是**合并**关系。
+  摘要：这一篇把中间件的输出面收口。第一条是结构差异：**"与 vue-router 的导航守卫不同，不会传入第三个 `next()` 参数，**重定向或取消导航是由中间件的返回值来处理的**。**"第二条是那张五种返回值的官方清单：什么都不返回（**简单 `return` 或干脆不返回**）——"**不阻塞导航，会走向下一个中间件函数（如果有），或完成这次路由导航**"；`return navigateTo('/')`——"**重定向到给定路径，如果重定向发生在服务端会把重定向码设为 `302 Found`**"；`return navigateTo('/', { redirectCode: 301 })`——"**重定向到给定路径，如果重定向发生在服务端会把重定向码设为 `301 Moved Permanently`**"；`return abortNavigation()`——"**停止当前导航**"；`return abortNavigation(error)`——"**用一个错误拒绝当前导航**"。第三条是官方那条 important：**"我们建议使用上面的 helper 函数来执行重定向或停止导航。vue-router 文档里描述的其他可能返回值也许有效，但未来可能会有破坏性变更。"** 第四条与调用姿势有关，官方在 `navigateTo` 那一节给了一个 ❌ 反例：在中间件里只写 `navigateTo('/search', { redirectCode: 301 })` 然后 `return`，官方的判定是"**这种情况下 `navigateTo` 会被执行但不会被返回，这可能导致意外的行为**"，并把规则写成"**在路由中间件里使用 `navigateTo` 时，你必须返回它的结果，以确保中间件执行流程正确工作**"。第五条是状态码的作用域：`redirectCode` 官方明确限定在"**当重定向发生在服务端时**"才生效，默认 `302`，"`301 Moved Permanently` 可以用于永久重定向"；而 `defineNuxtRouteMiddleware` 的返回类型正是 `ReturnType<NavigationGuard>`，所以"返回什么"在类型层面就已经是导航守卫的语义。另外两个输出动作不在返回值里：**抛错误页**（官方示例 `throw createError({ status: 404, statusText: 'Page Not Found' })`，"上面的路由中间件会把用户重定向到在 `~/error.vue` 文件里定义的自定义错误页，并把从中间件传过去的错误信息与状态码暴露出来"）与**在中间件里做条件判断时的 `useError`**（官方 note："渲染错误页是一次完全独立的页面加载，这意味着任何已注册的中间件都会再运行一次。你可以在中间件里使用 `useError` 来检查是否正在处理一个错误。"）。最后一条顺序前提：中间件先跑全局（全局之间默认按文件名字母序），再按页面 `middleware` 数组声明的顺序跑，而父子路由的 middleware 是**合并**关系。
 
 categories:
   - 前端开发
@@ -39,7 +39,7 @@ tags:
 export default defineNuxtRouteMiddleware((to, from, next) => { next() }) // ❌
 ```
 
-对应到类型上，官方在 `defineNuxtRouteMiddleware` 那页写的接口就是：
+对应到类型上，官方在 `defineNuxtRouteMiddleware` 那一节写的接口就是：
 
 ```ts
 interface RouteMiddleware {
@@ -67,7 +67,7 @@ interface RouteMiddleware {
 
 ## 最重要的那条：必须 return
 
-官方在 `navigateTo` 那一页把规则与反例都写全了。
+官方在 `navigateTo` 那一节把规则与反例都写全了。
 
 规则句：**"在路由中间件里使用 `navigateTo` 时，你必须返回它的结果，以确保中间件执行流程正确工作。"**
 

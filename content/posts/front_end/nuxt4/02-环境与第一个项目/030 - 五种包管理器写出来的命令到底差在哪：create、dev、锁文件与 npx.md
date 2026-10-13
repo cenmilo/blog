@@ -1,6 +1,6 @@
 ---
 url: /posts/7963c93deb844605a73243584c326c98/
-title: 五种包管理器写出来的命令到底差在哪：create、dev、锁文件与 npx
+title: 030 - 五种包管理器写出来的命令到底差在哪：create、dev、锁文件与 npx
 date: 2026-10-22T09:00:00+08:00
 updated: 2026-10-22T09:00:00+08:00
 author: cmdragon

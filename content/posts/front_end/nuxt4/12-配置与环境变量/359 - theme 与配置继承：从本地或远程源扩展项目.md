@@ -1,6 +1,6 @@
 ---
 url: /posts/ed697836620e3a24cce6d1595601631c/
-title: theme 与配置继承：从本地或远程源扩展项目
+title: 359 - theme 与配置继承：从本地或远程源扩展项目
 date: 2027-02-08T11:00:00+08:00
 updated: 2027-02-08T11:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/6dd5fefb26a72aff5c47ea89485ee907/
-title: 编辑器与语言服务：VS Code、JetBrains、Neovim 各要配什么
+title: 031 - 编辑器与语言服务：VS Code、JetBrains、Neovim 各要配什么
 date: 2026-10-22T10:00:00+08:00
 updated: 2026-10-22T10:00:00+08:00
 author: cmdragon

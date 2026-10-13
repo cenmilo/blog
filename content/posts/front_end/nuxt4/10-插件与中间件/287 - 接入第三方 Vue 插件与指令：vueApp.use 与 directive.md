@@ -1,12 +1,12 @@
 ---
 url: /posts/31238240f04cba5ae74e738a1d6b7eb1/
-title: 接入第三方 Vue 插件与指令：vueApp.use 与 directive
+title: 287 - 接入第三方 Vue 插件与指令：vueApp.use 与 directive
 date: 2027-01-15T11:00:00+08:00
 updated: 2027-01-15T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：这一篇把"往应用里接第三方能力"的几种官方路子摆在一起：接 Vue 插件走 Nuxt 插件里的 nuxtApp.vueApp.use()（Nuxt 没有 main.js，这就是替代）；接全局自定义指令走 directive()，并要求两端都注册；改整页 HTML 输出则是另一类插件——Nitro 服务端插件订阅 render:html 钩子，views 那页给了向 head 推 meta 的完整例子。最后用最佳实践那页的口径收一句：能写成 composable 的就别都塞插件。
+  摘要：这一篇把"往应用里接第三方能力"的几种官方路子摆在一起：接 Vue 插件走 Nuxt 插件里的 nuxtApp.vueApp.use()（Nuxt 没有 main.js，这就是替代）；接全局自定义指令走 directive()，并要求两端都注册；改整页 HTML 输出则是另一类插件——Nitro 服务端插件订阅 render:html 钩子，views 那一节给了向 head 推 meta 的完整例子。最后用最佳实践那一节的口径收一句：能写成 composable 的就别都塞插件。
 
 categories:
   - 前端开发
@@ -28,7 +28,7 @@ tags:
 
 ## 为什么 Vue 插件要套一层 Nuxt 插件
 
-先补一个背景。写纯 Vue 时你会在 `main.js` 里 `app.use(第三方VuePlugin)`。views 那页点明了 Nuxt 没这个文件：
+先补一个背景。写纯 Vue 时你会在 `main.js` 里 `app.use(第三方VuePlugin)`。views 那一节点明了 Nuxt 没这个文件：
 
 > If you are familiar with Vue, you might wonder where `main.js` is (the file that normally creates a Vue app). Nuxt does this behind the scene.
 
@@ -79,7 +79,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 ## 另一类插件：Nitro 服务端插件改整页 HTML
 
-上面两类是"应用侧（Vue 层）"的插件。还有一类完全不同的——**服务端 Nitro 插件**，它跑在 Nitro 那一侧，能在水合之前就动整页 HTML。views 那页的 "Advanced: Extending the HTML Template" 给的就是它：
+上面两类是"应用侧（Vue 层）"的插件。还有一类完全不同的——**服务端 Nitro 插件**，它跑在 Nitro 那一侧，能在水合之前就动整页 HTML。views 那一节的 "Advanced: Extending the HTML Template" 给的就是它：
 
 > You can have full control over the HTML template by adding a Nitro plugin that registers a hook. The callback function of the `render:html` hook allows you to mutate the HTML before it is sent to the client.
 
@@ -104,7 +104,7 @@ export default defineNitroPlugin((nitroApp) => {
 | 跑在哪 | 应用创建期（客户端/服务端各按后缀） | Nitro 服务端渲染期 |
 | 典型用途 | 装 Vue 插件、注册指令 | 直接改要发出去的 HTML（往 head 推标签等） |
 
-server 那页 "Server Plugins" 一节也对得上：
+server 那一节 "Server Plugins" 一节也对得上：
 
 > Nuxt will automatically read any files in the `~~/server/plugins` directory and register them as Nitro plugins. This allows extending Nitro's runtime behavior and hooking into lifecycle events.
 
@@ -112,7 +112,7 @@ server 那页 "Server Plugins" 一节也对得上：
 
 ## 收一句：别什么都塞插件
 
-best-practices 那页的口径（286 已展开）在这里当总闸：**能写成 composable 的共享逻辑就别用插件**，因为插件跑在水合期、每次都跑。本篇这三类是"确实需要插件"的场景——装 Vue 插件、注册应用级指令、改服务端 HTML——除此之外优先考虑组合式。
+best-practices 那一节的口径（286 已展开）在这里当总闸：**能写成 composable 的共享逻辑就别用插件**，因为插件跑在水合期、每次都跑。本篇这三类是"确实需要插件"的场景——装 Vue 插件、注册应用级指令、改服务端 HTML——除此之外优先考虑组合式。
 
 ## 自查
 

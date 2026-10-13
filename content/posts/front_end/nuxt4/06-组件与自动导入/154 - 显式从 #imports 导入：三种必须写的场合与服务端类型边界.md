@@ -1,12 +1,12 @@
 ---
 url: /posts/41da0dc442457f300392bece62b5c1c7/
-title: 显式从 #imports 导入：三种必须写的场合与服务端类型边界
+title: 154 - 显式从 #imports 导入：三种必须写的场合与服务端类型边界
 date: 2026-12-02T10:00:00+08:00
 updated: 2026-12-02T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：官方给显式导入开的口子只有一句定义："**Nuxt exposes every auto-import with the `#imports` alias that can be used to make the import explicit if needed**"，注意范围词是 **every**。但有三类场合这不是风格选择，而是必须写。**其一，发布出去的模块**：模块结构那一页用 `::warning` 写着"**Published modules cannot leverage auto-imports for assets within their runtime directory. Instead, they have to import them explicitly from `#imports` or alike.**"，给出的原因是"**Auto-imports are not enabled for files within `node_modules` (the location where a published module will eventually live) for performance reasons.**"——所以官方自己的模块示例里出现的是 `import { defineNuxtPlugin } from '#imports'`。**其二，把自动导入关掉的应用**：`imports.autoImport: false` 之后"**This will disable auto-imports completely but it's still possible to use explicit imports from `#imports`.**"。**其三，服务端代码要用 app 侧的实现**：模块服务端兼容指南里那对 legacy 文件写着 `// @ts-expect-error \`#imports\` is typed for the app, not the server build` + `import { useRuntimeConfig } from '#imports'`，并在同一页的表里把 `nitro2` 变体的导入面定义为"`h3`, `nitropack/runtime`, **`#imports`**"——这一条同时给出**类型边界**：`#imports` 的类型是为 app 上下文生成的。相关的另一句硬事实是"**In playgrounds and test fixtures on Nuxt 5, h3's auto-imported `defineEventHandler` is not available: import it from `nuxt/server`.**"。而类型这套东西能成立，靠的是生成的 tsconfig 引用了"references to auto-imports, API route types, path aliases like `#imports`, `~/file`, or `#build/file`"。
+  摘要：官方给显式导入开的口子只有一句定义："**Nuxt exposes every auto-import with the `#imports` alias that can be used to make the import explicit if needed**"，注意范围词是 **every**。但有三类场合这不是风格选择，而是必须写。**其一，发布出去的模块**：模块结构那一节用 `::warning` 写着"**Published modules cannot leverage auto-imports for assets within their runtime directory. Instead, they have to import them explicitly from `#imports` or alike.**"，给出的原因是"**Auto-imports are not enabled for files within `node_modules` (the location where a published module will eventually live) for performance reasons.**"——所以官方自己的模块示例里出现的是 `import { defineNuxtPlugin } from '#imports'`。**其二，把自动导入关掉的应用**：`imports.autoImport: false` 之后"**This will disable auto-imports completely but it's still possible to use explicit imports from `#imports`.**"。**其三，服务端代码要用 app 侧的实现**：模块服务端兼容指南里那对 legacy 文件写着 `// @ts-expect-error \`#imports\` is typed for the app, not the server build` + `import { useRuntimeConfig } from '#imports'`，并在同一页的表里把 `nitro2` 变体的导入面定义为"`h3`, `nitropack/runtime`, **`#imports`**"——这一条同时给出**类型边界**：`#imports` 的类型是为 app 上下文生成的。相关的另一句硬事实是"**In playgrounds and test fixtures on Nuxt 5, h3's auto-imported `defineEventHandler` is not available: import it from `nuxt/server`.**"。而类型这套东西能成立，靠的是生成的 tsconfig 引用了"references to auto-imports, API route types, path aliases like `#imports`, `~/file`, or `#build/file`"。
 
 categories:
   - 前端开发
@@ -47,7 +47,7 @@ const double = computed(() => count.value * 2)
 
 ## 场合一：发布的模块必须显式导入
 
-模块结构那一页给的警告，是这一篇最硬的依据：
+模块结构那一节给的警告，是这一篇最硬的依据：
 
 > **Published modules cannot leverage auto-imports for assets within their runtime directory. Instead, they have to import them explicitly from `#imports` or alike.**
 >
@@ -125,7 +125,7 @@ export default defineEventHandler(event => ({
 | 那行 `@ts-expect-error` 的原文 | **"`#imports` is typed for the app, not the server build"** ——类型上下文是分开的（155 那四个 tsconfig 就是这件事的具体形状） |
 | `useRuntimeConfig(event)` 带了参数 | 与可移植版 `useRuntimeConfig()` 不同；这正是 151 那句"服务端同名函数行为在若干处不同"的一个实例 |
 
-官方那页把三种变体的导入面列成表，`#imports` 明确只属于 `nitro2`：
+官方那一节把三种变体的导入面列成表，`#imports` 明确只属于 `nitro2`：
 
 | Key | The file imports | Where it runs |
 | --- | --- | --- |
@@ -141,7 +141,7 @@ export default defineEventHandler(event => ({
 
 ## 为什么这些别名有类型
 
-`typescript` 那页解释了生成的 tsconfig 里都有什么：
+`typescript` 那一节解释了生成的 tsconfig 里都有什么：
 
 > The generated `tsconfig.json` files inside the `.nuxt` directory include **recommended basic TypeScript configuration** for your project, **references to auto-imports, API route types**, path aliases like **`#imports`**, `~/file`, or `#build/file`, and more.
 

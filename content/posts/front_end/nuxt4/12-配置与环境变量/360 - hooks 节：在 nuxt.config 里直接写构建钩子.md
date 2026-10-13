@@ -1,6 +1,6 @@
 ---
 url: /posts/914e2e4bc0b4cf712bd3d0855a47bcde/
-title: hooks 节：在 nuxt.config 里直接写构建钩子
+title: 360 - hooks 节：在 nuxt.config 里直接写构建钩子
 date: 2027-02-09T09:00:00+08:00
 updated: 2027-02-09T09:00:00+08:00
 author: cmdragon

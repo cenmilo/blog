@@ -1,6 +1,6 @@
 ---
 url: /posts/cecc5a49f0aab428d63953345abfc9ec/
-title: abortNavigation：只在中间件里可用、签名返回 false 的三种写法
+title: 127 - abortNavigation：只在中间件里可用、签名返回 false 的三种写法
 date: 2026-11-23T10:00:00+08:00
 updated: 2026-11-23T10:00:00+08:00
 author: cmdragon

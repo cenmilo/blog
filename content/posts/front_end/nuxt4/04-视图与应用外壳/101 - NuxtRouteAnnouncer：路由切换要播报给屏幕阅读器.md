@@ -1,6 +1,6 @@
 ---
 url: /posts/cb215d178b9400162afcb93ca61e24db/
-title: NuxtRouteAnnouncer：路由切换要播报给屏幕阅读器
+title: 101 - NuxtRouteAnnouncer：路由切换要播报给屏幕阅读器
 date: 2026-11-14T11:00:00+08:00
 updated: 2026-11-14T11:00:00+08:00
 author: cmdragon

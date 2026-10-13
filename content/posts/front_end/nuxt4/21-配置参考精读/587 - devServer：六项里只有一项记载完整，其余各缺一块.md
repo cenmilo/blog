@@ -1,6 +1,6 @@
 ---
 url: /posts/7b1dfb2aa0c9f7c1a77caabf9d93a964/
-title: devServer：六项里只有一项记载完整，其余各缺一块
+title: 587 - devServer：六项里只有一项记载完整，其余各缺一块
 date: 2027-04-25T11:00:00+08:00
 updated: 2027-04-25T11:00:00+08:00
 author: cmdragon

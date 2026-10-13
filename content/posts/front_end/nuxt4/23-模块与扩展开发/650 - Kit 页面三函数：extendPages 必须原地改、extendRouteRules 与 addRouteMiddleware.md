@@ -1,12 +1,12 @@
 ---
 url: /posts/89c1fcd66e4d2e0a3695d9de85d143ca/
-title: Kit 页面三函数：extendPages 必须原地改、extendRouteRules 与 addRouteMiddleware
+title: 650 - Kit 页面三函数：extendPages 必须原地改、extendRouteRules 与 addRouteMiddleware
 date: 2027-05-16T11:00:00+08:00
 updated: 2027-05-16T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：pages 这一页的**三个函数分别改三样东西**：`extendPages` 改路由表、`extendRouteRules` 给某个路由挂 Nitro 的路由规则、`addRouteMiddleware` 注册路由中间件。最关键的一句在 `extendPages` 的参数说明里：**你应该直接修改传给你的那个 pages 数组，改动一份复制出来的数组不会反映到配置里**。路由条目本身有**七个字段**且**全部可选**（`name`、`path`、`file`、`meta`、`alias`、`redirect`、`children`），其中 `path` 不给时由 Nuxt 从文件位置推断。`extendRouteRules` 的选项只有一个 `override`（默认 `false`），`addRouteMiddleware` 的选项有两个：`override`（**同名则替换**）与 `prepend`（排到已有中间件之前）。
+  摘要：pages 这一节的**三个函数分别改三样东西**：`extendPages` 改路由表、`extendRouteRules` 给某个路由挂 Nitro 的路由规则、`addRouteMiddleware` 注册路由中间件。最关键的一句在 `extendPages` 的参数说明里：**你应该直接修改传给你的那个 pages 数组，改动一份复制出来的数组不会反映到配置里**。路由条目本身有**七个字段**且**全部可选**（`name`、`path`、`file`、`meta`、`alias`、`redirect`、`children`），其中 `path` 不给时由 Nuxt 从文件位置推断。`extendRouteRules` 的选项只有一个 `override`（默认 `false`），`addRouteMiddleware` 的选项有两个：`override`（**同名则替换**）与 `prepend`（排到已有中间件之前）。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-路由是由文件结构生成这件事，模块要插手就得在生成之后改。这一页三个函数对应三个插手点：**路由表、路由规则、路由中间件**。
+路由是由文件结构生成这件事，模块要插手就得在生成之后改。这一节三个函数对应三个插手点：**路由表、路由规则、路由中间件**。
 
 ## `extendPages`：改路由表
 
@@ -34,7 +34,7 @@ tags:
 function extendPages (callback: (pages: NuxtPage[]) => void): void
 ```
 
-参数说明里那句是这一页最容易造成"我明明改了却没生效"的话：
+参数说明里那句是这一节最容易造成"我明明改了却没生效"的话：
 
 > Note: You should modify the provided pages array directly, as changes made to a copied array will not be reflected in the configuration.
 
@@ -148,7 +148,7 @@ extendRouteRules('/preview-new', {
 
 **`statusCode: 302` 是显式写的**（不是默认），**`maxAge` 用秒数表达式**，`60 * 60 * 24 * 7` 就是七天。
 
-页面在 `rule` 下面挂了两条提示，一处指向 Nitro 文档的路由规则章节，一处指向**混合渲染那一章的 Route Rules 小节**——也就是说**能写进 `rule` 的键清单不在这页**，要按那两处去查。
+那一节在 `rule` 下面挂了两条提示，一处指向 Nitro 文档的路由规则章节，一处指向**混合渲染那一章的 Route Rules 小节**——也就是说**能写进 `rule` 的键清单不在这一节**，要按那两处去查。
 
 ## `addRouteMiddleware`：注册中间件
 
@@ -156,7 +156,7 @@ extendRouteRules('/preview-new', {
 
 > Route middlewares can also be defined in plugins via the `addRouteMiddleware` composable.
 
-**同名但不是一个东西**：这一页的是 Kit 函数（构建期），插件里那个是 composable（运行时）。两者指向不同页，文档给了链接但**没有说同一份中间件用两种方式注册会怎样**。
+**同名但不是一个东西**：这一节的是 Kit 函数（构建期），插件里那个是 composable（运行时）。两者指向不同小节，文档给了链接但**没有说同一份中间件用两种方式注册会怎样**。
 
 ```ts
 function addRouteMiddleware (input: NuxtMiddleware | NuxtMiddleware[], options?: AddRouteMiddlewareOptions): void
@@ -175,7 +175,7 @@ function addRouteMiddleware (input: NuxtMiddleware | NuxtMiddleware[], options?:
 | `override` | `boolean` | `false` | **为 `true` 时替换同名的中间件** |
 | `prepend` | `boolean` | `false` | **为 `true` 时把中间件排在已有中间件之前** |
 
-`override` 在这里的语义比路由规则那处更具体：**它管的是"同名怎么办"**——不打开时，同名中间件的行为这一页没有说明。
+`override` 在这里的语义比路由规则那处更具体：**它管的是"同名怎么办"**——不打开时，同名中间件的行为这一节没有说明。
 
 官方示例是**一个全局登录中间件**，两份文件一起给：
 
@@ -216,9 +216,13 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
 顺序上有个隐含关系：示例里**先 `extendPages` 加路由、再对新旧两条路径挂规则**，但**文档没有规定这三者之间的调用先后是否影响结果**（除 `prepend`、`order` 这类显式排序项）。
 
-这一页未记载的还有：`pages:extend` 钩子与 `extendPages` 的执行时机差异、`extendRouteRules` 在多模块给同一路由挂规则时的合并规则、`override: false` 时同名中间件到底谁生效。
+这一节未记载的还有：`pages:extend` 钩子与 `extendPages` 的执行时机差异、`extendRouteRules` 在多模块给同一路由挂规则时的合并规则、`override: false` 时同名中间件到底谁生效。
 
 下一篇讲 layout 与 head 那两个函数，其中一个要靠 `write: true` 绕开虚拟 `.vue` 文件的限制。
+
+## 下一篇
+
+下一篇 651：Kit 布局与 head 两函数：addLayout 的 write 绕法与 setGlobalHead 的十一项
 
 ## 本文依据
 

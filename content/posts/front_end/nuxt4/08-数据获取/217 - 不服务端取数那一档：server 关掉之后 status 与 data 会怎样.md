@@ -1,12 +1,12 @@
 ---
 url: /posts/f69ef581eeb0f28ca7e2cdc64cf990ac/
-title: 不服务端取数那一档：server 关掉之后 status 与 data 会怎样
+title: 217 - 不服务端取数那一档：server 关掉之后 status 与 data 会怎样
 date: 2026-12-23T10:00:00+08:00
 updated: 2026-12-23T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`server` 这一档我一开始理解成"要不要在服务端渲染这块内容"，其实它管的只有一件事，官方两页的措辞都是"要不要在服务器侧调用/发起这次取数"：`useAsyncData` 写 "Whether to call the function on the server."，`useFetch` 写 "Whether to fetch on the server."，**默认都是 `true`**。把它设成 `false` 之后，文档给的症状描述非常具体，两页各有一模一样的 note：「If you have not fetched data on the server (for example, with `server: false`), then the data *will not* be fetched until hydration completes. This means **even if you await** `useAsyncData` on the client side, `data` will remain `undefined` within `<script setup>`.」——**await 也救不回来**，因为水合完成之前那次请求根本没开始。另一个可见后果写在 `status` 的定义里：`idle` 是 "Function has not been called yet (e.g. `{ immediate: false }` or `{ server: false }` on server render)"，也就是服务端那一趟读到的是 `idle`。这一篇把 `server`、`lazy`、`immediate` 三个布尔放在一起对齐：哪些组合文档写明了、哪些没写；顺便把它和 `serialize: false` 的区别分开——**`server: false` 是"服务端不取"，`serialize: false` 是"服务端取了但不塞进 payload"**，两者都会让客户端多发一次请求，但原因完全不同。
+  摘要：`server` 这一档我一开始理解成"要不要在服务端渲染这块内容"，其实它管的只有一件事，官方两节的措辞都是"要不要在服务器侧调用/发起这次取数"：`useAsyncData` 写 "Whether to call the function on the server."，`useFetch` 写 "Whether to fetch on the server."，**默认都是 `true`**。把它设成 `false` 之后，文档给的症状描述非常具体，两节各有一模一样的 note：「If you have not fetched data on the server (for example, with `server: false`), then the data *will not* be fetched until hydration completes. This means **even if you await** `useAsyncData` on the client side, `data` will remain `undefined` within `<script setup>`.」——**await 也救不回来**，因为水合完成之前那次请求根本没开始。另一个可见后果写在 `status` 的定义里：`idle` 是 "Function has not been called yet (e.g. `{ immediate: false }` or `{ server: false }` on server render)"，也就是服务端那一趟读到的是 `idle`。这一篇把 `server`、`lazy`、`immediate` 三个布尔放在一起对齐：哪些组合文档写明了、哪些没写；顺便把它和 `serialize: false` 的区别分开——**`server: false` 是"服务端不取"，`serialize: false` 是"服务端取了但不塞进 payload"**，两者都会让客户端多发一次请求，但原因完全不同。
 
 categories:
   - 前端开发
@@ -51,7 +51,7 @@ tags:
 2. 客户端这一次要等到**水合完成**才发起。
 3. 所以 `await` 无效：等待的目标（那次请求）在你的代码执行时还不存在。
 
-**症状就是"await 了但 `data` 还是 undefined"**。这是我见过的最容易被误报成"框架 bug"的一类写法问题。
+**症状就是"await 了但 `data` 还是 undefined"**。这是最容易被误报成"框架 bug"的一类写法问题。
 
 后果二写在 `status` 的取值定义里：
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/57cf4b9c2a5bc6c6db8aa9d4ef0fc9b4/
-title: error.vue：它不是路由页，error 对象里有八个字段
+title: 056 - error.vue：它不是路由页，error 对象里有八个字段
 date: 2026-10-30T11:00:00+08:00
 updated: 2026-10-30T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：error.vue 用来覆盖默认的出错页并把错误漂亮地显示出来；官方给它的唯一 prop 是 error，而那个对象的字段在文档里被完整列出：status（number）、fatal（boolean）、unhandled（boolean）、可选的 statusText、data、cause，外加两个被标注为 legacy/deprecated 的等价字段 statusCode（等价于 status）与 statusMessage（等价于 statusText）。这一页最重要的一条是 note：虽然它被叫做"错误页"，但它不是一条路由，也不该放进你的 pages 目录；出于同样的原因，你不该在这个文件里使用 definePageMeta——话虽如此，你仍然可以在错误文件里使用布局，方法是借助 NuxtLayout 组件并指定布局的名字。还有一条容易踩的规则：如果你抛出的错误带有自定义字段，它们会丢失，应当把这些字段放进 data。官方给的抛出示例是 createError({ status: 404, statusText: 'Page Not Found', data: { myCustomField: true } })。
+  摘要：error.vue 用来覆盖默认的出错页并把错误漂亮地显示出来；官方给它的唯一 prop 是 error，而那个对象的字段在文档里被完整列出：status（number）、fatal（boolean）、unhandled（boolean）、可选的 statusText、data、cause，外加两个被标注为 legacy/deprecated 的等价字段 statusCode（等价于 status）与 statusMessage（等价于 statusText）。这一节最重要的一条是 note：虽然它被叫做"错误页"，但它不是一条路由，也不该放进你的 pages 目录；出于同样的原因，你不该在这个文件里使用 definePageMeta——话虽如此，你仍然可以在错误文件里使用布局，方法是借助 NuxtLayout 组件并指定布局的名字。还有一条容易踩的规则：如果你抛出的错误带有自定义字段，它们会丢失，应当把这些字段放进 data。官方给的抛出示例是 createError({ status: 404, statusText: 'Page Not Found', data: { myCustomField: true } })。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-出错页是最容易被做坏的一类文件：**你以为它是页面，它其实不是路由。** 这一页官方给的话不多，但每一条都能避免一类线上事故。
+出错页是最容易被做坏的一类文件：**你以为它是页面，它其实不是路由。** 这一节官方给的话不多，但每一条都能避免一类线上事故。
 
 ## 它的定位与最小写法
 
@@ -55,7 +55,7 @@ const props = defineProps<{ error: NuxtError }>()
 
 ## 那条 note：它不是路由
 
-这一页最重要的约束，官方用 note 写了三件事：
+这一节最重要的约束，官方用 note 写了三件事：
 
 > 虽然它被叫做一个"错误页"，**但它不是一条路由，也不应该放进你的 `~/pages` 目录**。出于同样的原因，**你不应该在这个文件里使用 `definePageMeta`**。话虽如此，**你仍然可以在这个错误文件里使用布局，方法是利用 `NuxtLayout` 组件并指定布局的名字。**
 
@@ -73,7 +73,7 @@ const props = defineProps<{ error: NuxtError }>()
 
 ## `error` 对象的八个字段
 
-官方把这份接口整个列了出来，这是这一页信息密度最高的部分：
+官方把这份接口整个列了出来，这是这一节信息密度最高的部分：
 
 ```ts
 interface NuxtError {

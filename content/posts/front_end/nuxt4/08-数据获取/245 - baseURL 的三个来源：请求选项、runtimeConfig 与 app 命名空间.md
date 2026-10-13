@@ -1,6 +1,6 @@
 ---
 url: /posts/b8da883859492ea0e2ead1cabccdb583/
-title: baseURL 的三个来源：请求选项、runtimeConfig 与 app 命名空间
+title: 245 - baseURL 的三个来源：请求选项、runtimeConfig 与 app 命名空间
 date: 2027-01-01T11:00:00+08:00
 updated: 2027-01-01T11:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/b46d653e6e78fb977196f8b366213d1a/
-title: future 节：提前启用未来默认行为的开关
+title: 352 - future 节：提前启用未来默认行为的开关
 date: 2027-02-06T10:00:00+08:00
 updated: 2027-02-06T10:00:00+08:00
 author: cmdragon
@@ -98,8 +98,7 @@ future: { multiApp: true }
 - future 是"未来会变默认"、experimental 是"不保证会留"，两个命名空间别当成一个。
 
 ## 下一篇
-
-P12 配置与环境变量继续按索引推进（353 起）。编号连续，日期从下一篇 +30 分钟续。
+下一篇 353：features 节：文档里那几个可选特性开关
 
 ## 本文依据
 

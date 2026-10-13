@@ -1,12 +1,12 @@
 ---
 url: /posts/8997f22e52e5cbbbd5fdc21c7456216e/
-title: unhead 配置节：legacy 与 renderSSRHeadOptions 两个键
+title: 196 - unhead 配置节：legacy 与 renderSSRHeadOptions 两个键
 date: 2026-12-16T10:00:00+08:00
 updated: 2026-12-16T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`nuxt.config.ts` 里有一个顶层 `unhead` 节，定位句是 "An object that allows us to configure the `unhead` nuxt module."，而它下面**只列了两个键**。第一个是 `unhead.legacy`（`boolean`，**默认 `false`**），三条变更逐字照抄："This applies the following changes: - Disables Capo.js sorting - Adds the `DeprecationsPlugin`: supports `hid`, `vmid`, `children`, `body` - Adds the `PromisesPlugin`: supports promises as input"，并指向 unhead 的 migration 文档；第二个是 `unhead.renderSSRHeadOptions`（"An object that will be passed to `renderSSRHead` to customize the output."），默认值官方写成 JSON 一块：`{ "omitLineBreaks": false }`。这一篇我要解决两件自己被绕晕过的事：一是**开了 legacy 会影响标签顺序**（因为它关掉的是 Capo.js 排序，不只是"兼容旧键"），二是 `@unhead/vue` 这个名字在 `typescript.hoist` 的默认数组里也出现过一次，那是**类型深别名**，跟 head 行为无关，两处不能混。至于 `renderSSRHead` 自己还有哪些可传的选项，这一页没有列，得去 unhead 那边查。
+  摘要：`nuxt.config.ts` 里有一个顶层 `unhead` 节，定位句是 "An object that allows us to configure the `unhead` nuxt module."，而它下面**只列了两个键**。第一个是 `unhead.legacy`（`boolean`，**默认 `false`**），三条变更逐字照抄："This applies the following changes: - Disables Capo.js sorting - Adds the `DeprecationsPlugin`: supports `hid`, `vmid`, `children`, `body` - Adds the `PromisesPlugin`: supports promises as input"，并指向 unhead 的 migration 文档；第二个是 `unhead.renderSSRHeadOptions`（"An object that will be passed to `renderSSRHead` to customize the output."），默认值官方写成 JSON 一块：`{ "omitLineBreaks": false }`。这一篇我要解决两件自己被绕晕过的事：一是**开了 legacy 会影响标签顺序**（因为它关掉的是 Capo.js 排序，不只是"兼容旧键"），二是 `@unhead/vue` 这个名字在 `typescript.hoist` 的默认数组里也出现过一次，那是**类型深别名**，跟 head 行为无关，两处不能混。至于 `renderSSRHead` 自己还有哪些可传的选项，那一节没有列，得去 unhead 那边查。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-我在把老项目往 4.x 挪的时候，想找"head 相关的配置总入口"，结果发现 `nuxt-config` 这一页的 `unhead` 节短得出奇：两个键，各带一个示例。短是短，但里面有一句信息量很大。
+如果你把老项目往 4.x 挪，想找"head 相关的配置总入口"，结果发现 `nuxt-config` 那一节的 `unhead` 节短得出奇：两个键，各带一个示例。短是短，但里面有一句信息量很大。
 
 ## 节的位置与全貌
 
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
 - `DeprecationsPlugin` 认 `hid`、`vmid`、`children`、`body` 这四个键。反过来说，**默认模式（`legacy: false`）下这四个键不在支持列表里**——这就是 195 末尾我说"老写法在 4.x 默认配置下是无效键"的依据，这里补上出处。
 - `PromisesPlugin` 认"promises as input"，即把 Promise 直接当输入值。文档只写了这一句，没有例子，也没有说哪些字段接受 Promise，我不猜。
 
-最后它挂了一个外部链接：**See:** [`unhead` migration documentation](https://unhead.unjs.io/docs/typescript/head/guides/get-started/migration)——想搞清 legacy 到底兼容了什么，这一页没有答案，得去那份迁移文档。
+最后它挂了一个外部链接：**See:** [`unhead` migration documentation](https://unhead.unjs.io/docs/typescript/head/guides/get-started/migration)——想搞清 legacy 到底兼容了什么，那一节没有答案，得去那份迁移文档。
 
 ## renderSSRHeadOptions 只管输出形状
 
@@ -84,7 +84,7 @@ export default defineNuxtConfig({
 
 示例里把它设成 `true`。从键名看是"省略换行"，但文档没有写它省略之后 HTML 长什么样、影响不影响 SEO 抓取（换行本来就不影响解析），所以我把它记成一条**输出美化/压缩**性质的配置：想让服务端 HTML 里的 head 少几行换行，就开它；除此之外我不给它加戏。
 
-`renderSSRHead` 的其他可选项这一页没列。这里有个我踩过的坑值得说一句：不要因为它是 unhead 的方法就顺手把 unhead 文档里的选项全抄进来——Nuxt 侧只保证这个对象会被透传，具体哪些键被接受，取决于你装的 unhead 版本。做法是 `nuxt preview` 之后看构建有没有告警、再看 HTML 有没有变化。
+`renderSSRHead` 的其他可选项那一节没列。这里有一句容易做错的地方：不要因为它是 unhead 的方法就顺手把 unhead 文档里的选项全抄进来——Nuxt 侧只保证这个对象会被透传，具体哪些键被接受，取决于你装的 unhead 版本。做法是 `nuxt preview` 之后看构建有没有告警、再看 HTML 有没有变化。
 
 ## 别和 typescript.hoist 里的同名项搞混
 

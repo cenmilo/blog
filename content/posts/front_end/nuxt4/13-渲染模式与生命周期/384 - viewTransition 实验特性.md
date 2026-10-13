@@ -1,6 +1,6 @@
 ---
 url: /posts/85f85a38cd98a3036f8486907ddd747b/
-title: viewTransition 实验特性
+title: 384 - viewTransition 实验特性
 date: 2027-02-17T09:00:00+08:00
 updated: 2027-02-17T09:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/74dc2ae2a12b44f7015be2fa262350c8/
-title: 组件 props 与 emits：Nuxt 文档实际覆盖到哪一层
+title: 405 - 组件 props 与 emits：Nuxt 文档实际覆盖到哪一层
 date: 2027-02-24T09:00:00+08:00
 updated: 2027-02-24T09:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 先划边界：props/emits 本身是 Vue 的事
 
-Nuxt 文档里唯一把 `defineProps`/`defineEmits` 一起提到的地方，是拿它们做**类比**（pages 那页讲 `definePageMeta` 时）：
+Nuxt 文档里唯一把 `defineProps`/`defineEmits` 一起提到的地方，是拿它们做**类比**（pages 那一节讲 `definePageMeta` 时）：
 
 > Much like `defineEmits` or `defineProps` (see Vue docs), `definePageMeta` is a **compiler macro**. It will be compiled away so you cannot reference it within your component. Instead, the metadata passed to it will be hoisted out of the component.
 
@@ -58,7 +58,7 @@ definePageMeta({
 </script>
 ```
 
-**② 页面接收 `<NuxtPage>` 透传的自定义 prop。** nuxt-page 那页给的就是类型化写法：
+**② 页面接收 `<NuxtPage>` 透传的自定义 prop。** nuxt-page 那一节给的就是类型化写法：
 
 ```vue [app/pages/page.vue]
 <script setup lang="ts">
@@ -71,7 +71,7 @@ console.log(props.foobar) // Outputs: 123
 
 **③ `error.vue` 的 prop。** 官方示例就是类型化形式：`const props = defineProps<{ error: NuxtError }>()`（`directory-structure/app/error`，另见 056/328）。
 
-**④ 服务端组件的 props。** server-components 那页给的也是 `const props = defineProps<{ variant: string }>()`（见 008 相关）。
+**④ 服务端组件的 props。** server-components 那一节给的也是 `const props = defineProps<{ variant: string }>()`（见 008 相关）。
 
 ## 一个会改变行为的开关：`vue.propsDestructure`
 

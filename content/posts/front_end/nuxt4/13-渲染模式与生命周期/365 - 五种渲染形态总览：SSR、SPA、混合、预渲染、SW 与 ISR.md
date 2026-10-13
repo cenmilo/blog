@@ -1,6 +1,6 @@
 ---
 url: /posts/8d5272edfdd3aeea57445f0f760a3b0a/
-title: 五种渲染形态总览：SSR、SPA、混合、预渲染、SW 与 ISR
+title: 365 - 五种渲染形态总览：SSR、SPA、混合、预渲染、SW 与 ISR
 date: 2027-02-10T11:00:00+08:00
 updated: 2027-02-10T11:00:00+08:00
 author: cmdragon

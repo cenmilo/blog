@@ -1,12 +1,12 @@
 ---
 url: /posts/d7a3af622ec7dec3c0510457394c587b/
-title: app 节的 head：默认五个数组与那句很可能会变的注释
+title: 546 - app 节的 head：默认五个数组与那句很可能会变的注释
 date: 2027-04-12T09:00:00+08:00
 updated: 2027-04-12T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`app.head` 的定位是**"Set default configuration for `<head>` on every page."**（为每个页面设 `<head>` 的默认配置），类型 `object`。官方默认值里 `meta` 已经有两条——**viewport 与 charset**，另外 `link`、`style`、`script`、`noscript` 四个数组默认都是空的。SEO 那一页补了两件关键事：**`app.head` 是"静态地"定制整个应用的 head**，并且用 `::important` 明写 **"This method does not allow you to provide reactive data. We recommend using `useHead()` in `app.vue`."**；同一页还把这三处（`useHead`、`app.head`、组件）用的类型统称为 **non-reactive types**。官方示例里 `style` 那一栏上方还留着一句注释：**"please note that this is an area that is likely to change"**。
+  摘要：`app.head` 的定位是**"Set default configuration for `<head>` on every page."**（为每个页面设 `<head>` 的默认配置），类型 `object`。官方默认值里 `meta` 已经有两条——**viewport 与 charset**，另外 `link`、`style`、`script`、`noscript` 四个数组默认都是空的。SEO 那一节补了两件关键事：**`app.head` 是"静态地"定制整个应用的 head**，并且用 `::important` 明写 **"This method does not allow you to provide reactive data. We recommend using `useHead()` in `app.vue`."**；同一页还把这三处（`useHead`、`app.head`、组件）用的类型统称为 **non-reactive types**。官方示例里 `style` 那一栏上方还留着一句注释：**"please note that this is an area that is likely to change"**。
 
 categories:
   - 前端开发
@@ -59,7 +59,7 @@ tags:
 
 **四个空数组是"可写清单"。** `link`、`style`、`script`、`noscript` 默认是空的，但结构已经给定——这一节能放哪几类东西，就按这五个键来。
 
-**没有 `title`。** 默认 JSON 里没有标题相关的键；站点标题与页面标题走的是另一套（SEO 那一页的 `titleTemplate` 与各页的 `title`），不在这份默认值里。
+**没有 `title`。** 默认 JSON 里没有标题相关的键；站点标题与页面标题走的是另一套（SEO 那一节的 `titleTemplate` 与各页的 `title`），不在这份默认值里。
 
 ## 官方示例与那句"很可能会变"
 
@@ -101,7 +101,7 @@ export default defineNuxtConfig({
 
 ## 边界：这一节不能放响应式数据
 
-SEO 那一页先给定位：**"Providing an `app.head` property in your `nuxt.config.ts` allows you to statically customize the head for your entire app."**——注意用词是 **statically**。
+SEO 那一节先给定位：**"Providing an `app.head` property in your `nuxt.config.ts` allows you to statically customize the head for your entire app."**——注意用词是 **statically**。
 
 紧接的 `::important` 把限制写明：
 
@@ -116,7 +116,7 @@ SEO 那一页先给定位：**"Providing an `app.head` property in your `nuxt.co
 
 ## 一处迁移痕迹
 
-从 Nuxt 2 迁过来的配置要改名：bridge 那页写的动作是 **"In your `nuxt.config`, rename `head` to `app.head`."**，并当场附了一条：**"Note that objects no longer have a `hid` key for deduplication."**
+从 Nuxt 2 迁过来的配置要改名：bridge 那一节写的动作是 **"In your `nuxt.config`, rename `head` to `app.head`."**，并当场附了一条：**"Note that objects no longer have a `hid` key for deduplication."**
 
 也就是说：**旧配置里那个用于去重的 `hid` 键在 4.x 已经不是 head 对象的成员了**——迁移时如果还留着 `hid`，它不再起去重作用。这一条在 `api/nuxt-config` 的 `head` 小节里没有写，只在迁移文档里。
 

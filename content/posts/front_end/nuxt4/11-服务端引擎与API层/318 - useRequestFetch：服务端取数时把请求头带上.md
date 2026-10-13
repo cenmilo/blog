@@ -1,6 +1,6 @@
 ---
 url: /posts/406c3b9694823dbb1e9aa145e8468152/
-title: useRequestFetch：服务端取数时把请求头带上
+title: 318 - useRequestFetch：服务端取数时把请求头带上
 date: 2027-01-26T09:00:00+08:00
 updated: 2027-01-26T09:00:00+08:00
 author: cmdragon
@@ -37,7 +37,7 @@ tags:
 - **浏览器里发请求**：cookie、authorization 这些头浏览器自动带上。
 - **SSR 阶段服务端发请求**：出于安全考虑（"due to security considerations"），**不会自动转发**这些头，得手动转。
 
-这就是 P08（211）那条"SSR 里 `$fetch('/api/...')` 不带 cookie"的根因。`useRequestFetch` 就是把"手动转发"这件事包成一个现成的 fetch 实例。
+这就是 210-249 那几篇（211）那条"SSR 里 `$fetch('/api/...')` 不带 cookie"的根因。`useRequestFetch` 就是把"手动转发"这件事包成一个现成的 fetch 实例。
 
 ## 它是什么
 
@@ -85,7 +85,7 @@ export default defineEventHandler((event) => {
 
 ## 一条 tip：useFetch 底层就是它
 
-官方 tip 点破了 P08 那条"为什么 useFetch 能自动带上下文"：
+官方 tip 点破了 210-249 那条"为什么 useFetch 能自动带上下文"：
 
 > The `useFetch` composable uses `useRequestFetch` under the hood to automatically forward the request context and headers.
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/73d3b014d07c14f9e18cb52e09bf07f4/
-title: useServerSeoMeta 已废弃：替代写法、摇树语义与自动导入被移除的条件
+title: 191 - useServerSeoMeta 已废弃：替代写法、摇树语义与自动导入被移除的条件
 date: 2026-12-14T11:00:00+08:00
 updated: 2026-12-14T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一页开头第一条就是废弃通知，措辞很短但含三个信息："> **`useServerSeoMeta` is deprecated. Wrap `useSeoMeta` in an `if (import.meta.server)` block instead. The auto-import is removed under `future.compatibilityVersion: 5`.**"。它的原语义是这一句："`useServerSeoMeta` lets you define your site's SEO meta tags as a flat object with full TypeScript support, **exactly like `useSeoMeta`, but it only runs server-side and is tree-shaken from the client bundle.**"，参数关系是"**Parameters are exactly the same as with `useSeoMeta`.**"，替代写法官方直接给了代码：`if (import.meta.server) { useSeoMeta({ robots: 'index, follow' }) }`。`useSeoMeta` 那一页也指认同一次替换："This previously used the `useServerSeoMeta` composable, **but it has been deprecated in favor of this approach**."。**三条信息里最容易读错的是第三条**：官方写的是"自动导入在 `future.compatibilityVersion: 5` 下被移除"，**字面对象是自动导入**，没有说这个函数本身是否在该版本被删除——所以老项目升级时最先炸的是"不写 import 的地方找不到这个名字"。我因此在文中把"要改什么"列成清单，并把"替代写法是否保住摇树收益"标成需要用构建产物核对的一项（原文只说旧 API "is tree-shaken from the client bundle"，新写法那句没有重复这个承诺）。
+  摘要：这一节开头第一条就是废弃通知，措辞很短但含三个信息："> **`useServerSeoMeta` is deprecated. Wrap `useSeoMeta` in an `if (import.meta.server)` block instead. The auto-import is removed under `future.compatibilityVersion: 5`.**"。它的原语义是这一句："`useServerSeoMeta` lets you define your site's SEO meta tags as a flat object with full TypeScript support, **exactly like `useSeoMeta`, but it only runs server-side and is tree-shaken from the client bundle.**"，参数关系是"**Parameters are exactly the same as with `useSeoMeta`.**"，替代写法官方直接给了代码：`if (import.meta.server) { useSeoMeta({ robots: 'index, follow' }) }`。`useSeoMeta` 那一节也指认同一次替换："This previously used the `useServerSeoMeta` composable, **but it has been deprecated in favor of this approach**."。**三条信息里最容易读错的是第三条**：官方写的是"自动导入在 `future.compatibilityVersion: 5` 下被移除"，**字面对象是自动导入**，没有说这个函数本身是否在该版本被删除——所以老项目升级时最先炸的是"不写 import 的地方找不到这个名字"。我因此在文中把"要改什么"列成清单，并把"替代写法是否保住摇树收益"标成需要用构建产物核对的一项（原文只说旧 API "is tree-shaken from the client bundle"，新写法那句没有重复这个承诺）。
 
 categories:
   - 前端开发

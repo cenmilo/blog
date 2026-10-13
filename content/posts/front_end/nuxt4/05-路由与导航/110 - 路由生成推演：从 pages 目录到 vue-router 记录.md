@@ -1,6 +1,6 @@
 ---
 url: /posts/0fd5f48299eceafc47bc662070825fa1/
-title: 路由生成推演：从 pages 目录到 vue-router 记录
+title: 110 - 路由生成推演：从 pages 目录到 vue-router 记录
 date: 2026-11-17T11:00:00+08:00
 updated: 2026-11-17T11:00:00+08:00
 author: cmdragon

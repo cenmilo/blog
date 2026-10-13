@@ -1,6 +1,6 @@
 ---
 url: /posts/981761cd98dfa9f5d2514b736d9b7f43/
-title: 往自动导入里加东西：imports dirs、presets 与 kit 三个函数
+title: 153 - 往自动导入里加东西：imports dirs、presets 与 kit 三个函数
 date: 2026-12-02T09:00:00+08:00
 updated: 2026-12-02T09:00:00+08:00
 author: cmdragon
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
 
 ## 入口二：`imports.presets`
 
-guide 那页给的形状只有一个，但足够用：
+guide 那一节给的形状只有一个，但足够用：
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -89,7 +89,7 @@ export default defineNuxtConfig({
 
 > If you are using the Nuxt module for that package, it is likely that the module has already configured auto-imports for that package.
 
-**一个我核实过的事实**：`api/nuxt-config` 那一页的 `imports` 节**只列了 `dirs`、`global`、`scan` 三个子项，没有 `presets` 的独立条目**——`presets` 这个键只在 guide 的示例里出现（kit 侧则有对应的 `NuxtImportPreset` 类型）。所以写 `presets` 时，我能依据的形状是示例本身（`from` + `imports` 数组），而不是配置参考页里的一行定义。这类"文档两处不对称"我记在正文里，是为了让读到这里的你不用再去猜是不是自己漏看了。
+**一条容易记错的记载**：`api/nuxt-config` 那一节的 `imports` 节**只列了 `dirs`、`global`、`scan` 三个子项，没有 `presets` 的独立条目**——`presets` 这个键只在 guide 的示例里出现（kit 侧则有对应的 `NuxtImportPreset` 类型）。所以写 `presets` 时，我能依据的形状是示例本身（`from` + `imports` 数组），而不是配置参考页里的一行定义。这类"文档两处不对称"我记在正文里，是为了让读到这里的你不用再去猜是不是自己漏看了。
 
 ## 入口三：kit 的三个函数
 
@@ -270,7 +270,7 @@ export default defineNuxtModule({
   - 原文（Source）：`packages/kit/src/imports.ts`
 - `https://nuxt.com/docs/4.x/api/nuxt-config`
   - 原文（`imports` 节）："Configure how Nuxt auto-imports composables into your application."；`dirs` — "An array of custom directories that will be auto-imported. Note that this option will not override the default directories (`~/composables`, `~/utils`)." + 示例 `dirs: ['stores']` 与注释 "Auto-import pinia stores defined in `~/stores`"；`global` — 仅 Type `boolean`、Default `false`；`scan` — "Whether to scan your `app/composables/` and `app/utils/` directories for composables to auto-import. Auto-imports registered by Nuxt or other modules, such as imports from `vue` or `nuxt`, will still be enabled."
-  - 事实核对：该页 `imports` 节只有 `dirs`、`global`、`scan` 三个子项，**没有 `presets` 条目**
+  - 事实核对：那一节 `imports` 节只有 `dirs`、`global`、`scan` 三个子项，**没有 `presets` 条目**
 - `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`
   - 原文（第三方包）："Nuxt also allows auto-importing from third-party packages."；tip "If you are using the Nuxt module for that package, it is likely that the module has already configured auto-imports for that package."；示例 `imports: { presets: [{ from: 'vue-i18n', imports: ['useI18n'] }] }`；note "You can also auto-import functions exported from custom folders or third-party packages by configuring the `imports` section of your `nuxt.config` file."
 - `https://nuxt.com/docs/4.x/api/advanced/hooks`

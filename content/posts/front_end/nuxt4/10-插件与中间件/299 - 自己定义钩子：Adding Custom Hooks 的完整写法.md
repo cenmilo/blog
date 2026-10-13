@@ -1,6 +1,6 @@
 ---
 url: /posts/dc69c3b6017dcf62740be853483cb40f/
-title: 自己定义钩子：Adding Custom Hooks 的完整写法
+title: 299 - 自己定义钩子：Adding Custom Hooks 的完整写法
 date: 2027-01-19T11:00:00+08:00
 updated: 2027-01-19T11:00:00+08:00
 author: cmdragon
@@ -115,7 +115,7 @@ declare module '#app' {
 
 ## 下一篇
 
-P10 插件与中间件到此收尾。下一篇 300 开 P11 服务端引擎与 API 层：先讲 Nitro 是什么、它自带哪些能力（跨平台、serverless、API 路由、混合模式、独立产物）。
+270-299 插件与中间件到此收尾。下一篇 300 开 300-339 服务端引擎与 API 层：先讲 Nitro 是什么、它自带哪些能力（跨平台、serverless、API 路由、混合模式、独立产物）。
 
 ## 本文依据
 

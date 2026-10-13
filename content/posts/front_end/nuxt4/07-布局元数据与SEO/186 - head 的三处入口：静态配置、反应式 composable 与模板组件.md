@@ -1,6 +1,6 @@
 ---
 url: /posts/51529ab0d0e03903f1f803f040ea0828/
-title: head 的三处入口：静态配置、反应式 composable 与模板组件
+title: 186 - head 的三处入口：静态配置、反应式 composable 与模板组件
 date: 2026-12-13T09:00:00+08:00
 updated: 2026-12-13T09:00:00+08:00
 author: cmdragon
@@ -131,7 +131,7 @@ useHead({
 </script>
 ```
 
-官方在这一页直接指了两条后续："We recommend taking a look at the `useHead` and **`useHeadSafe`** composables."——把"用户输入"这件事单独拎出来，说明它不是可选优化（189 展开）。字段全表在 188。
+官方在这一节直接指了两条后续："We recommend taking a look at the `useHead` and **`useHeadSafe`** composables."——把"用户输入"这件事单独拎出来，说明它不是可选优化（189 展开）。字段全表在 188。
 
 ## 入口三：九个组件，以及"位置是假的"
 

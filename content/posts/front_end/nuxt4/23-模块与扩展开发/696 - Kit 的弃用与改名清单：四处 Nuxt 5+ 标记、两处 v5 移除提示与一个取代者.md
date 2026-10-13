@@ -1,6 +1,6 @@
 ---
 url: /posts/5fc541006ddd1dec97297deef20bd552/
-title: Kit 的弃用与改名清单：四处 Nuxt 5+ 标记、两处 v5 移除提示与一个取代者
+title: 696 - Kit 的弃用与改名清单：四处 Nuxt 5+ 标记、两处 v5 移除提示与一个取代者
 date: 2027-06-01T09:00:00+08:00
 updated: 2027-06-01T09:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-## 先给结论：这些标记集中在两页
+## 先给结论：这些标记集中在两节
 
 翻遍 `api/kit/*` 二十页，带弃用或移除字样的只有四个页面：**builder**（四处）、**compatibility**（两处）、**modules**（一处，而且是"将被移除"的硬话）、**nitro**（一处改名史）。剩下的十六页没有任何弃用标记。
 
@@ -52,7 +52,7 @@ tags:
 
 ## webpack 侧为什么没有这些标记
 
-`extendWebpackConfig` 与 `addWebpackPlugin` 两节的选项表**都没有 Deprecated 字样**（`extendWebpackConfig` 的表同样是 `dev`/`build`/`server`/`client`/`prepend` 五行）。文档给出的理由是机制性的：Nuxt 5 改用共享配置，环境分流由 Vite 侧的 `applyToEnvironment()` 承担，而 webpack 路径没有对应说法。**这一页没有解释 webpack 侧在 Nuxt 5+ 会怎样**，要迁就不了只能自己验证。
+`extendWebpackConfig` 与 `addWebpackPlugin` 两节的选项表**都没有 Deprecated 字样**（`extendWebpackConfig` 的表同样是 `dev`/`build`/`server`/`client`/`prepend` 五行）。文档给出的理由是机制性的：Nuxt 5 改用共享配置，环境分流由 Vite 侧的 `applyToEnvironment()` 承担，而 webpack 路径没有对应说法。**这一节没有解释 webpack 侧在 Nuxt 5+ 会怎样**，要迁就不了只能自己验证。
 
 另外，跨构建器的路子还在：`addBuildPlugin` 的描述是"`addVitePlugin` 与 `addWebpackPlugin` 的构建器无关版本，如果两者存在就都加上"。
 
@@ -80,7 +80,7 @@ tags:
 
 ## 一个跨页的口径冲突，值得再记一次
 
-`extendViteConfig` 在这里被整条标为已弃用；但讲构建器那一页把 `extendViteConfig`／`extendWebpackConfig` 列为"模块影响打包的正常通道"，**没有提任何弃用**。同一个函数在两个位置的口径不同，本系列按各页原文分别记录、不替它们做合并推断——这意味着你读构建器那一章时看到的"推荐做法"，在 Kit 页已经变成"已弃用"。
+`extendViteConfig` 在这里被整条标为已弃用；但讲构建器那一节把 `extendViteConfig`／`extendWebpackConfig` 列为"模块影响打包的正常通道"，**没有提任何弃用**。同一个函数在两个位置的口径不同，本系列按各页原文分别记录、不替它们做合并推断——这意味着你读构建器那一章时看到的"推荐做法"，在 Kit 页已经变成"已弃用"。
 
 ## 迁移时的动手顺序
 
@@ -91,7 +91,11 @@ tags:
 - 把 `isNuxt2`／`isNuxt3` 换成 `isNuxtMajorVersion`。
 - 老代码里的 `addServerPlugin` 改成 `addNitroPlugin`，注意它需要 v4.6 起的 Kit。
 
-下一篇讲图层与模块怎么选：可复用的东西放在哪一层，官方的两页各给了什么依据。
+下一篇讲图层与模块怎么选：可复用的东西放在哪一层，官方的两节各给了什么依据。
+
+## 下一篇
+
+下一篇 697：图层还是模块：官方两节给出的分工与四条判断
 
 ## 本文依据
 

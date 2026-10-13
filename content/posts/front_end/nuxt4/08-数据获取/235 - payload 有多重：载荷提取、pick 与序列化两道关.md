@@ -1,6 +1,6 @@
 ---
 url: /posts/e705a320aa7292998016bdef50d2ec39/
-title: payload 有多重：载荷提取、pick 与序列化两道关
+title: 235 - payload 有多重：载荷提取、pick 与序列化两道关
 date: 2026-12-29T10:00:00+08:00
 updated: 2026-12-29T10:00:00+08:00
 author: cmdragon
@@ -48,7 +48,7 @@ const { data } = await useFetch('/api/foo')
 </script>
 ```
 
-那句注释是我见过最省事的一句提醒：**类型是 `string`，不是你返回的 `Date`**。所以"日期不能 `.getTime()`"多半不是 Nuxt 的 bug，而是第一道只走 JSON。
+那句注释是最省事的一句提醒：**类型是 `string`，不是你返回的 `Date`**。所以"日期不能 `.getTime()`"多半不是 Nuxt 的 bug，而是第一道只走 JSON。
 
 ## 第一道的两个出口
 

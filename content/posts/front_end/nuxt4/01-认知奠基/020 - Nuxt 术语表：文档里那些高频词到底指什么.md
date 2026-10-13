@@ -1,6 +1,6 @@
 ---
 url: /posts/e5fcd9d314b60e4b17f7c47bc2325b75/
-title: Nuxt 术语表：文档里那些高频词到底指什么
+title: 020 - Nuxt 术语表：文档里那些高频词到底指什么
 date: 2026-10-18T11:00:00+08:00
 updated: 2026-10-18T11:00:00+08:00
 author: cmdragon

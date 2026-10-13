@@ -1,12 +1,12 @@
 ---
 url: /posts/4a26f000e16a68b0e105e8c6abf99915/
-title: nuxt add 与 nuxt module：装模块、加 layer、搜索与卸载
+title: 045 - nuxt add 与 nuxt module：装模块、加 layer、搜索与卸载
 date: 2026-10-27T09:00:00+08:00
 updated: 2026-10-27T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：官方说得很直白：nuxt add 就是 nuxt module add 的同一条命令，只是它把图层也一起接了（"It is the same command as nuxt module add, with layers included"）。跑一次 add 会发生三件事——用你的包管理器把包装成依赖（除非传 --skipInstall）、把它写进 package.json、并在 nuxt.config 里登记：模块写进 modules，图层写进 extends（除非传 --skipConfig）。模块与图层的登记位置不同，是这两页文档里唯一必须记住的分岔。搜索用 nuxt module search <QUERY>，它只列与你 Nuxt 版本兼容的模块并把命中的文字高亮，--nuxtVersion 可以显式过滤（默认自动检测）；卸载用 nuxt module remove，它会卸载包并从 nuxt.config 的 modules 数组里删掉；三个子命令都可以不带名字运行，此时变成交互式选择——add 从不兼容你版本的模块里挑、remove 从项目当前在用的模块里挑。另外官方明确：nuxt add <template> <name> 已废弃，脚手架文件要用 nuxt add-template。
+  摘要：官方说得很直白：nuxt add 就是 nuxt module add 的同一条命令，只是它把图层也一起接了（"It is the same command as nuxt module add, with layers included"）。跑一次 add 会发生三件事——用你的包管理器把包装成依赖（除非传 --skipInstall）、把它写进 package.json、并在 nuxt.config 里登记：模块写进 modules，图层写进 extends（除非传 --skipConfig）。模块与图层的登记位置不同，是这两节文档里唯一必须记住的分岔。搜索用 nuxt module search <QUERY>，它只列与你 Nuxt 版本兼容的模块并把命中的文字高亮，--nuxtVersion 可以显式过滤（默认自动检测）；卸载用 nuxt module remove，它会卸载包并从 nuxt.config 的 modules 数组里删掉；三个子命令都可以不带名字运行，此时变成交互式选择——add 从不兼容你版本的模块里挑、remove 从项目当前在用的模块里挑。另外官方明确：nuxt add <template> <name> 已废弃，脚手架文件要用 nuxt add-template。
 
 categories:
   - 前端开发
@@ -137,7 +137,7 @@ npx nuxt module remove pinia
 - **remove 没有 `--dev`、也没有 `--packageManager`**（对照 add 的选项表）。
 - **`--skipInstall` 在 remove 页的措辞变了**：add 页写"Skip npm install"，remove 页写"**Skip dependency uninstall**"。同一个开关名，在两条命令里指的是装与卸两个方向。
 
-还有一点值得注意：remove 的说明里**只提到 `modules` 数组**，没提图层的 `extends`。**官方在这一页没写卸载图层要怎么做**——我就不替它编做法。
+还有一点值得注意：remove 的说明里**只提到 `modules` 数组**，没提图层的 `extends`。**官方在这一节没写卸载图层要怎么做**——我就不替它编做法。
 
 ## 但别再用 `nuxt add <template> <name>`
 

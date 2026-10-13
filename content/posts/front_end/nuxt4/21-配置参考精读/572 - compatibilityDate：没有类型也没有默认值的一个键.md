@@ -1,6 +1,6 @@
 ---
 url: /posts/e5b402e51a13ff007d6b713c416c76c5/
-title: compatibilityDate：没有类型也没有默认值的一个键
+title: 572 - compatibilityDate：没有类型也没有默认值的一个键
 date: 2027-04-20T11:00:00+08:00
 updated: 2027-04-20T11:00:00+08:00
 author: cmdragon
@@ -64,7 +64,7 @@ export default defineNuxtConfig({
 - 日期的用途被换了一种说法：**决定套用哪一套 behaviour defaults**，效果是项目"在 Nuxt 与 Nitro 更新之间保持稳定，而不是**静默地捡到新默认值**"。这一句是"不填会怎样"的唯一答案：**会静默采用新默认值**。
 - `'YYYY-MM-DD'` 在示例里是**占位符**，不是要你照抄的字面值；注释要求填"你加这一行那天的日期"。
 
-B5001 页尾有个指向 `getting-started/upgrade` 的 read-more，但升级那一页的正文里没有出现这个键名——**照名字去搜，能找到的还是只有上面两处**。
+B5001 页尾有个指向 `getting-started/upgrade` 的 read-more，但升级那一节的正文里没有出现这个键名——**照名字去搜，能找到的还是只有上面两处**。
 
 ## 关于日期本身，文档没答的有几项
 
@@ -94,10 +94,10 @@ B5001 页尾有个指向 `getting-started/upgrade` 的 read-more，但升级那�
 
 ## 下一篇
 
-下一篇 573 看 `future`：这一节比 `compatibilityDate` 还薄——配置参考里它**一句正文都没有**，只有一个 read-more 指向特性那一页。真正有内容的是那个命名空间里的键 `future.compatibilityVersion`：官方在升级页写着从 Nuxt 4.2 起，把它设成 `5` 就能提前测试 Nuxt 5 的许多破坏性变更。
+下一篇 573 看 `future`：这一节比 `compatibilityDate` 还薄——配置参考里它**一句正文都没有**，只有一个 read-more 指向特性那一节。真正有内容的是那个命名空间里的键 `future.compatibilityVersion`：官方在升级页写着从 Nuxt 4.2 起，把它设成 `5` 就能提前测试 Nuxt 5 的许多破坏性变更。
 
 ## 本文依据
 
 - https://nuxt.com/docs/4.x/api/nuxt-config（`## compatibilityDate` 两句原文；该节无 Type / Default / Example 的事实）
 - https://nuxt.com/docs/4.x/errors/b5001（报错描述原文、Resolution 与 `compatibilityDate: 'YYYY-MM-DD'` 示例及其注释、指向 getting-started/upgrade 的 read-more）
-- https://nuxt.com/docs/4.x/getting-started/upgrade（该页没有出现 `compatibilityDate` 这个键名，B5001 的 read-more 指向它；该页另有 "From Nuxt 4.2+ you can test many of its breaking changes by setting `future.compatibilityVersion` to `5`" 一句）
+- https://nuxt.com/docs/4.x/getting-started/upgrade（那一节没有出现 `compatibilityDate` 这个键名，B5001 的 read-more 指向它；那一节另有 "From Nuxt 4.2+ you can test many of its breaking changes by setting `future.compatibilityVersion` to `5`" 一句）

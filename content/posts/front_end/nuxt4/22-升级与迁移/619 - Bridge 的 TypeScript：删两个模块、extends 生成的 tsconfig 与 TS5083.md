@@ -1,6 +1,6 @@
 ---
 url: /posts/e20324ece94e195d028f02fa7cc5fa84/
-title: Bridge 的 TypeScript：删两个模块、extends 生成的 tsconfig 与 TS5083
+title: 619 - Bridge 的 TypeScript：删两个模块、extends 生成的 tsconfig 与 TS5083
 date: 2027-05-06T10:00:00+08:00
 updated: 2027-05-06T10:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-Bridge 项目里改类型配置，最常出现的症状是：编辑器忽然认不出 `#imports`，或者 CI 里报一句 `TS5083`。这一页两处提示正好对应这两个症状。
+Bridge 项目里改类型配置，最常出现的症状是：编辑器忽然认不出 `#imports`，或者 CI 里报一句 `TS5083`。这一节两处提示正好对应这两个症状。
 
 ## 第一步是删，不是加
 
@@ -48,7 +48,7 @@ export default defineNuxtConfig({
 })
 ```
 
-注释那句 **"If migration to Nitro is complete, set to true"** 是这一页与 Bridge 其它小节共用的写法：**`nitro` 的状态是"迁移进度指示器"**，Bridge 的 TypeScript、Composition API、meta 各节示例都带着这一行。
+注释那句 **"If migration to Nitro is complete, set to true"** 是这一节与 Bridge 其它小节共用的写法：**`nitro` 的状态是"迁移进度指示器"**，Bridge 的 TypeScript、Composition API、meta 各节示例都带着这一行。
 
 ## 第二步：让 tsconfig 去 extends 生成的那份
 
@@ -63,7 +63,7 @@ export default defineNuxtConfig({
 }
 ```
 
-改法只有一行。两条 `::note` 才是这页真正要读的部分。
+改法只有一行。两条 `::note` 才是这一节真正要读的部分。
 
 ## 第一条 note：不入库的文件会让测试挂掉
 
@@ -73,7 +73,7 @@ export default defineNuxtConfig({
 
 官方给的修法是把 **`nuxi prepare`** 作为测试前的一个步骤——**不是让你把 `tsconfig.json` 提交进仓库**。
 
-这条 note 还有后半句，指向 4.x 的做法：**"For modern Nuxt projects, we recommend using TypeScript project references instead of directly extending `.nuxt/tsconfig.json`."** ——**Bridge 这页教的 `extends` 是旧写法**，新做法（也是迁移文档那三步用的）是指向四份生成的配置：
+这条 note 还有后半句，指向 4.x 的做法：**"For modern Nuxt projects, we recommend using TypeScript project references instead of directly extending `.nuxt/tsconfig.json`."** ——**Bridge 这一节教的 `extends` 是旧写法**，新做法（也是迁移文档那三步用的）是指向四份生成的配置：
 
 ```json
 {
@@ -110,9 +110,9 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 620 读 Bridge 的 Composition API 那一页：它先要求**删掉 `@vue/composition-api` 与 `@nuxtjs/composition-api`**，再分两条路走——只用过 `@vue/composition-api` 的只要**删掉手动注册那一步**；从 `@nuxtjs/composition-api` 迁的要注意 **Bridge 会提供一个 shim 覆盖"大多数"导入，但**三个例外**没有替代：`withContext`、`useStatic`（无替代）、以及早已废弃的 `reqRef`/`reqSsrRef`。
+下一篇 620 读 Bridge 的 Composition API 那一节：它先要求**删掉 `@vue/composition-api` 与 `@nuxtjs/composition-api`**，再分两条路走——只用过 `@vue/composition-api` 的只要**删掉手动注册那一步**；从 `@nuxtjs/composition-api` 迁的要注意 **Bridge 会提供一个 shim 覆盖"大多数"导入，但**三个例外**没有替代：`withContext`、`useStatic`（无替代）、以及早已废弃的 `reqRef`/`reqSsrRef`。
 
 ## 本文依据
 
-- https://nuxt.com/docs/4.x/bridge/typescript（`## Remove Modules` 两条及其括号理由；`### Set bridge.typescript` 代码块与 `nitro: false` 注释；`## Update tsconfig.json` 的引导句与 diff；第一条 `::note`（生成不入库、测试前 `nuxi prepare`、`TS5083: Cannot read file '~/.nuxt/tsconfig.json'`、现代项目建议 project references 并链接到 tsconfig 那一页）；第二条 `::note`（extends 的选项被本地覆盖、覆盖 `compilerOptions.paths` 导致 `#imports` 认不出、改用 `nuxt.config` 的 `alias` 由 nuxi 合并进生成文件））
+- https://nuxt.com/docs/4.x/bridge/typescript（`## Remove Modules` 两条及其括号理由；`### Set bridge.typescript` 代码块与 `nitro: false` 注释；`## Update tsconfig.json` 的引导句与 diff；第一条 `::note`（生成不入库、测试前 `nuxi prepare`、`TS5083: Cannot read file '~/.nuxt/tsconfig.json'`、现代项目建议 project references 并链接到 tsconfig 那一节）；第二条 `::note`（extends 的选项被本地覆盖、覆盖 `compilerOptions.paths` 导致 `#imports` 认不出、改用 `nuxt.config` 的 `alias` 由 nuxi 合并进生成文件））
 - https://nuxt.com/docs/4.x/migration/configuration（四份 project references 的 `tsconfig.json` 完整示例与"改 `tsconfig.json` 不等于要把应用写成 TS"那句，用于对照两种写法）

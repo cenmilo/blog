@@ -1,12 +1,12 @@
 ---
 url: /posts/651f3b78b0bbaceeef74a5c57891788a/
-title: postcss 节只有两项：order 与 plugins
+title: 550 - postcss 节只有两项：order 与 plugins
 date: 2027-04-13T10:00:00+08:00
 updated: 2027-04-13T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`postcss` 这一节**连一句定性都没有**——`## postcss` 下面直接就是两个子项：`order`（"A strategy for ordering PostCSS plugins."，类型 `function`，**没有默认值**）与 `plugins`（"Options for configuring PostCSS plugins."，只有一个指向 PostCSS 文档的 See，**连 Type 都没写**）；`plugins` 下面点名两项：**`autoprefixer`**（"Plugin to parse CSS and add vendor prefixes to CSS rules."）与 **`cssnano`**（类型 `object`，指向它的配置文件选项文档）。真正有用的信息在样式那一页：**Nuxt 内置 postcss**，默认已经预配好四个插件——**postcss-import（改进 `@import`）、postcss-url（转换 `url()`）、autoprefixer（自动加厂商前缀）、cssnano（压缩与 purge）**，而且 `plugins` 是以**包名为键**来配的。
+  摘要：`postcss` 这一节**连一句定性都没有**——`## postcss` 下面直接就是两个子项：`order`（"A strategy for ordering PostCSS plugins."，类型 `function`，**没有默认值**）与 `plugins`（"Options for configuring PostCSS plugins."，只有一个指向 PostCSS 文档的 See，**连 Type 都没写**）；`plugins` 下面点名两项：**`autoprefixer`**（"Plugin to parse CSS and add vendor prefixes to CSS rules."）与 **`cssnano`**（类型 `object`，指向它的配置文件选项文档）。真正有用的信息在样式那一节：**Nuxt 内置 postcss**，默认已经预配好四个插件——**postcss-import（改进 `@import`）、postcss-url（转换 `url()`）、autoprefixer（自动加厂商前缀）、cssnano（压缩与 purge）**，而且 `plugins` 是以**包名为键**来配的。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 
 想给 PostCSS 加一个嵌套语法插件，翻到配置参考的 `postcss` 那节——只有两行，什么都没解释。
 
-这一节的真实内容，一大半写在样式那一页。
+这一节的真实内容，一大半写在样式那一节。
 
 ## 这一节的完整记载
 
@@ -99,7 +99,7 @@ export default defineNuxtConfig({
 
 ## 自查
 
-- `## postcss` 没有定性句，只有 `order`（`function`，无默认）与 `plugins`（无 Type、无默认，下面点名 `autoprefixer` 与 `cssnano`）两项；信息量集中在样式那一页。
+- `## postcss` 没有定性句，只有 `order`（`function`，无默认）与 `plugins`（无 Type、无默认，下面点名 `autoprefixer` 与 `cssnano`）两项；信息量集中在样式那一节。
 - Nuxt **内置 postcss**；`plugins` 以**包名为键**、值是该插件自己的选项。
 - 默认已预配四个插件：**postcss-import**（改进 `@import`）、**postcss-url**（转换 `url()`）、**autoprefixer**（加厂商前缀）、**cssnano**（压缩与 purge）——这四件事不用你配。
 - `order` 排的是**插件顺序**，不是 `css` 数组里样式表的先后；它的函数签名文档没给。

@@ -1,12 +1,12 @@
 ---
 url: /posts/aa4705a26ec82e0423a173f3ee1b1574/
-title: 装之前先确认三件事：Node 版本、编辑器、终端
+title: 023 - 装之前先确认三件事：Node 版本、编辑器、终端
 date: 2026-10-19T11:00:00+08:00
 updated: 2026-10-19T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：官方在 Installation 这一页把"开始之前需要什么"缩成了三项：Node.js 22.x 或更新版本（推荐用 active LTS）、一个文本编辑器（没有强制要求的 IDE，但推荐 VS Code 加官方 Vue 扩展，也就是原来的 Volar，或者 WebStorm 等 JetBrains 系 IDE；用 Neovim 这类编辑器要自己按 Vue Language Tools 的指南配 Vue 语言服务器）、一个终端（用来跑 Nuxt 命令）。另外还附了四条"最优配置"的补充说明：Node 要用偶数版本（22、24 这类）；Neovim 配 Vue TypeScript 插件时 `location` 要指向 `@vue/language-server` 的包目录而不是它的二进制；Windows 上 HMR 很慢可以试试 WSL；Windows 本地开发别用 `localhost:3000`，改用 `127.0.0.1` 打开会快很多。这一页还留了一条退路：暂时不想装任何环境，可以直接用官方给的在线沙箱。
+  摘要：官方在 Installation 这一节把"开始之前需要什么"缩成了三项：Node.js 22.x 或更新版本（推荐用 active LTS）、一个文本编辑器（没有强制要求的 IDE，但推荐 VS Code 加官方 Vue 扩展，也就是原来的 Volar，或者 WebStorm 等 JetBrains 系 IDE；用 Neovim 这类编辑器要自己按 Vue Language Tools 的指南配 Vue 语言服务器）、一个终端（用来跑 Nuxt 命令）。另外还附了四条"最优配置"的补充说明：Node 要用偶数版本（22、24 这类）；Neovim 配 Vue TypeScript 插件时 `location` 要指向 `@vue/language-server` 的包目录而不是它的二进制；Windows 上 HMR 很慢可以试试 WSL；Windows 本地开发别用 `localhost:3000`，改用 `127.0.0.1` 打开会快很多。这一节还留了一条退路：暂时不想装任何环境，可以直接用官方给的在线沙箱。
 
 categories:
   - 前端开发

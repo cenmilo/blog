@@ -1,12 +1,12 @@
 ---
 url: /posts/1f7e8c6ce9c2d6aafa3a0aac6f67e0dd/
-title: 关闭自动导入的三个开关：autoImport、scan 与 components dirs
+title: 152 - 关闭自动导入的三个开关：autoImport、scan 与 components dirs
 date: 2026-12-01T11:00:00+08:00
 updated: 2026-12-01T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：想把自动导入关掉，官方给的其实是**三个不同层级的开关**，各关各的范围。**第一个是 `imports.autoImport: false`**，官方标题就叫 "Disabling Auto-imports"："If you want to disable auto-importing composables and utilities, you can set `imports.autoImport` to `false` in the `nuxt.config` file."，后果句是"**This will disable auto-imports completely but it's still possible to use explicit imports from `#imports`.**"。**第二个是 `imports.scan: false`**，标题是 "Partially Disabling Auto-imports"："If you want framework-specific functions like `ref` to remain auto-imported but wish to disable auto-imports for your own code (e.g., custom composables), you can set the `imports.scan` option to `false`"，两条后果是"Framework functions like `ref`, `computed`, or `watch` will still work without needing manual imports." 与 "**Custom code, such as composables, will need to be manually imported in your files.**"；`nuxt-config` 那一页给的正面定义更精确："**Whether to scan your `app/composables/` and `app/utils/` directories for composables to auto-import. Auto-imports registered by Nuxt or other modules, such as imports from `vue` or `nuxt`, will still be enabled.**"（类型 `boolean`，默认 `true`）。这一项挂着一条官方 `::warning`，两条副作用必须知道："**If you structure your project with layers, you will need to explicitly import the composables from each layer, rather than relying on auto-imports.**" 与 "**This breaks the layer system's override feature.** If you use `imports.scan: false`, ensure you understand this side-effect and adjust your architecture accordingly."。**第三个在组件那一侧**："Nuxt also automatically imports components from your `~/components` directory, **although this is configured separately** from auto-importing composables and utility functions."，关法是 `components: { dirs: [] }`，并附一句"though **note that this will not affect components added by modules**"；而 `components` 的官方默认值是两项——`{ path: '~/components/global', global: true }` 与 `'~/components'`，也就是说**清空时这两个一起没了**。顺带一条常被误用的边界：`imports.dirs` 是"加"不是"换"——"**Note that this option will not override the default directories (`~/composables`, `~/utils`)**.**"
+  摘要：想把自动导入关掉，官方给的其实是**三个不同层级的开关**，各关各的范围。**第一个是 `imports.autoImport: false`**，官方标题就叫 "Disabling Auto-imports"："If you want to disable auto-importing composables and utilities, you can set `imports.autoImport` to `false` in the `nuxt.config` file."，后果句是"**This will disable auto-imports completely but it's still possible to use explicit imports from `#imports`.**"。**第二个是 `imports.scan: false`**，标题是 "Partially Disabling Auto-imports"："If you want framework-specific functions like `ref` to remain auto-imported but wish to disable auto-imports for your own code (e.g., custom composables), you can set the `imports.scan` option to `false`"，两条后果是"Framework functions like `ref`, `computed`, or `watch` will still work without needing manual imports." 与 "**Custom code, such as composables, will need to be manually imported in your files.**"；`nuxt-config` 那一节给的正面定义更精确："**Whether to scan your `app/composables/` and `app/utils/` directories for composables to auto-import. Auto-imports registered by Nuxt or other modules, such as imports from `vue` or `nuxt`, will still be enabled.**"（类型 `boolean`，默认 `true`）。这一项挂着一条官方 `::warning`，两条副作用必须知道："**If you structure your project with layers, you will need to explicitly import the composables from each layer, rather than relying on auto-imports.**" 与 "**This breaks the layer system's override feature.** If you use `imports.scan: false`, ensure you understand this side-effect and adjust your architecture accordingly."。**第三个在组件那一侧**："Nuxt also automatically imports components from your `~/components` directory, **although this is configured separately** from auto-importing composables and utility functions."，关法是 `components: { dirs: [] }`，并附一句"though **note that this will not affect components added by modules**"；而 `components` 的官方默认值是两项——`{ path: '~/components/global', global: true }` 与 `'~/components'`，也就是说**清空时这两个一起没了**。顺带一条常被误用的边界：`imports.dirs` 是"加"不是"换"——"**Note that this option will not override the default directories (`~/composables`, `~/utils`)**.**"
 
 categories:
   - 前端开发
@@ -84,14 +84,14 @@ export default defineNuxtConfig({
 > - Framework functions like `ref`, `computed`, or `watch` will still work without needing manual imports.
 > - Custom code, such as composables, will need to be manually imported in your files.
 
-`nuxt-config` 那一页对同一个键给的定义更精确，值得并排读：
+`nuxt-config` 那一节对同一个键给的定义更精确，值得并排读：
 
 > Whether to scan your `app/composables/` and `app/utils/` directories for composables to auto-import. **Auto-imports registered by Nuxt or other modules, such as imports from `vue` or `nuxt`, will still be enabled.**
 
 - **Type**: `boolean`
 - **Default:** `true`
 
-两页合起来能读出这个键的准确边界：**它管"扫你的目录"，不管"框架与模块注册的名字"**。所以 `ref`、`useFetch` 这类仍然免写 import——这与官方"framework functions still work"那句是一致的。
+两节合起来能读出这个键的准确边界：**它管"扫你的目录"，不管"框架与模块注册的名字"**。所以 `ref`、`useFetch` 这类仍然免写 import——这与官方"framework functions still work"那句是一致的。
 
 ### 但它的两条副作用很重
 
@@ -172,7 +172,7 @@ export default defineNuxtConfig({
 
 所以：**`dirs` 是加法**。想让某个默认目录不再被扫，靠 `dirs` 做不到；能停掉这条扫描的是 `imports.scan`（它同时停掉 `app/composables/` 与 `app/utils/` 两个，不能只停一个——官方定义里这两个目录是一起写的）。
 
-`imports` 节里还有一个 `global` 键，官方那页**只给了类型与默认值**：
+`imports` 节里还有一个 `global` 键，官方那一节**只给了类型与默认值**：
 
 - **Type**: `boolean`
 - **Default:** `false`
@@ -207,7 +207,7 @@ export default defineNuxtConfig({
 
 1. 三个开关分别关掉什么？其中哪一条官方写的是"完全关闭"？
 2. `imports.autoImport: false` 之后，`#imports` 显式导入还能用吗？依据是哪句？
-3. `imports.scan` 的正面定义（`nuxt-config` 那页）怎么说？它的类型与默认值是什么？
+3. `imports.scan` 的正面定义（`nuxt-config` 那一节）怎么说？它的类型与默认值是什么？
 4. `scan: false` 之后，`ref` 与你自己写的 composable 分别是什么状态？官方那两行 bullet 怎么写的？
 5. `scan: false` 对 layers 项目造成哪两条后果？其中"破坏覆盖"那一句的原文是什么？
 6. `components.dirs: []` 与模块添加的组件之间是什么关系？

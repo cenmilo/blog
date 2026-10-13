@@ -1,6 +1,6 @@
 ---
 url: /posts/3f15b4f0ecfb075322da93157c2ae358/
-title: Bridge 的 Composition API：shim 不覆盖的三个 composable 与两处 wrapper 移除
+title: 620 - Bridge 的 Composition API：shim 不覆盖的三个 composable 与两处 wrapper 移除
 date: 2027-05-06T11:00:00+08:00
 updated: 2027-05-06T11:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-在 Nuxt 2 里用过 Composition API 的项目，装 Bridge 之后不是"直接就能跑"，而是要先把旧的 API 层拆掉。这一页拆成两种情况，破坏性集中在第二种。
+在 Nuxt 2 里用过 Composition API 的项目，装 Bridge 之后不是"直接就能跑"，而是要先把旧的 API 层拆掉。这一节拆成两种情况，破坏性集中在第二种。
 
 ## 前提：Bridge 的实现是照 Nuxt 3 写的
 
@@ -68,9 +68,9 @@ tags:
 
 | 例外 | 官方说明 | 去处 |
 | --- | --- | --- |
-| `withContext` | has been removed | 见 nuxt3-compatible 那页的 "useContext and withContext" 一节 |
+| `withContext` | has been removed | 见 nuxt3-compatible 那一节的 "useContext and withContext" 一节 |
 | `useStatic` | has been removed，**"There is no current replacement."** | 有实际需求可以自己开讨论 |
-| `reqRef`／`reqSsrRef` | **which were deprecated, have now been removed entirely** | 按 nuxt3-compatible 那页的 "ssrRef and shallowSsrRef" 一节替换 |
+| `reqRef`／`reqSsrRef` | **which were deprecated, have now been removed entirely** | 按 nuxt3-compatible 那一节的 "ssrRef and shallowSsrRef" 一节替换 |
 
 这三行是 shim 帮不了你的地方——**装了 Bridge 之后仍报某个 composable 不存在，先回来对这张表**。措辞上还能读出一层信息：`reqRef`/`reqSsrRef` 是"先废弃、如今彻底移除"，说明它们跨了两个阶段；而 `useStatic` 是"移除且目前没有替代"。
 
@@ -147,4 +147,4 @@ const {
 
 ## 本文依据
 
-- https://nuxt.com/docs/4.x/bridge/bridge-composition-api（页标题 "Legacy Composition API" 与"与 Nuxt 3 对齐所以要额外几步"的开场段；`## Remove Modules` 两条（含"以及 `nuxt.config` 里的 modules"）；`## Using @vue/composition-api` 的 "very straightforward"、删手动注册的 diff、"there is nothing you need to do"与可选改用自动导入那句；`## Migrating from @nuxtjs/composition-api` 两句定性；`### Remove @nuxtjs/composition-api/module from your buildModules` 的 shim 段与三个例外（`withContext`、`useStatic` 无替代、`reqRef`/`reqSsrRef` 废弃后彻底移除）及两处指向 nuxt3-compatible 那页的链接；`### Set bridge.capi` 代码块与"按你在用的 composable 逐条处理"句；`### useFetch` 的 diff；`### defineNuxtMiddleware` 与 `### defineNuxtPlugin` 两段"桩函数已移除"、两处 diff、`@nuxt/types` 的 `<Middleware>`／`<Plugin>` 写法与那条 `::warning`；`### useRouter and useRoute` 段与 `route.value.path`→`route.path` 的 diff）
+- https://nuxt.com/docs/4.x/bridge/bridge-composition-api（页标题 "Legacy Composition API" 与"与 Nuxt 3 对齐所以要额外几步"的开场段；`## Remove Modules` 两条（含"以及 `nuxt.config` 里的 modules"）；`## Using @vue/composition-api` 的 "very straightforward"、删手动注册的 diff、"there is nothing you need to do"与可选改用自动导入那句；`## Migrating from @nuxtjs/composition-api` 两句定性；`### Remove @nuxtjs/composition-api/module from your buildModules` 的 shim 段与三个例外（`withContext`、`useStatic` 无替代、`reqRef`/`reqSsrRef` 废弃后彻底移除）及两处指向 nuxt3-compatible 那一节的链接；`### Set bridge.capi` 代码块与"按你在用的 composable 逐条处理"句；`### useFetch` 的 diff；`### defineNuxtMiddleware` 与 `### defineNuxtPlugin` 两段"桩函数已移除"、两处 diff、`@nuxt/types` 的 `<Middleware>`／`<Plugin>` 写法与那条 `::warning`；`### useRouter and useRoute` 段与 `route.value.path`→`route.path` 的 diff）

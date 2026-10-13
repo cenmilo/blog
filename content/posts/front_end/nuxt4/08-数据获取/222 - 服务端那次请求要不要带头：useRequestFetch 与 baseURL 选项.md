@@ -1,6 +1,6 @@
 ---
 url: /posts/1befab184398b8f0c78369847014956c/
-title: 服务端那次请求要不要带头：useRequestFetch 与 baseURL 选项
+title: 222 - 服务端那次请求要不要带头：useRequestFetch 与 baseURL 选项
 date: 2026-12-25T09:00:00+08:00
 updated: 2026-12-25T09:00:00+08:00
 author: cmdragon
@@ -39,7 +39,7 @@ tags:
 
 > When making a client-side fetch request, the browser automatically sends the necessary headers. However, when making a request during server-side rendering, due to security considerations, we need to forward the headers manually.
 
-"security considerations" 是官方的说法，`$fetch` 那页给了更具体的两个名词：**Server-Side Request Forgery (SSRF)** 与 **Authentication Misuse**（211 抄过）。所以默认不转是刻意的安全选择，不是遗漏。
+"security considerations" 是官方的说法，`$fetch` 那一节给了更具体的两个名词：**Server-Side Request Forgery (SSRF)** 与 **Authentication Misuse**（211 抄过）。所以默认不转是刻意的安全选择，不是遗漏。
 
 `useRequestFetch` 就是那个"手转"的官方工具，它返回一个可用的取数函数：
 
@@ -66,7 +66,7 @@ export default defineEventHandler((event) => {
 })
 ```
 
-**注意官方把结果值都写出来了**：转发的那次拿到 `{ cookies: { foo: 'bar' } }`，没转发的拿到 `{ cookies: {} }`。这个对照是我见过最省事的判据——照着搭一个 `/api/cookies`，两端读数立刻能确认你的调用走的是哪条路。
+**注意官方把结果值都写出来了**：转发的那次拿到 `{ cookies: { foo: 'bar' } }`，没转发的拿到 `{ cookies: {} }`。这个对照是最省事的判据——照着搭一个 `/api/cookies`，两端读数立刻能确认你的调用走的是哪条路。
 
 ## 两条 tip：谁默认在用，以及浏览器侧它是谁
 
@@ -109,7 +109,7 @@ note 原文与清单：
 NUXT_APP_BASE_URL=/prefix/ node .output/server/index.mjs
 ```
 
-**两者的关系文档没有写**——也就是说，我不能从这两页推出"设了 `app.baseURL` 之后，`useFetch` 里相对路径会自动带上这个前缀"。这个空白很实际：把应用挂在子路径下（示例用的 `/prefix/`）时，内部接口到底拼成 `/prefix/api/...` 还是 `/api/...`，必须实测。我的测法：设上 `NUXT_APP_BASE_URL=/prefix/`，服务端渲染时打印 `useRequestURL().pathname` 与实际请求出去的 URL，两边对一次。
+**两者的关系文档没有写**——也就是说，从这两节也推不出"设了 `app.baseURL` 之后，`useFetch` 里相对路径会自动带上这个前缀"。这个空白很实际：把应用挂在子路径下（示例用的 `/prefix/`）时，内部接口到底拼成 `/prefix/api/...` 还是 `/api/...`，必须实测。我的测法：设上 `NUXT_APP_BASE_URL=/prefix/`，服务端渲染时打印 `useRequestURL().pathname` 与实际请求出去的 URL，两边对一次。
 
 要固定给某类请求挂 baseURL 或鉴权头，官方给的出口不是每次传选项，而是做自己的变体：
 
@@ -119,7 +119,7 @@ NUXT_APP_BASE_URL=/prefix/ node .output/server/index.mjs
 
 ## 自查
 
-1. 为什么服务端那一趟默认不带 cookie？（答：官方说是安全考量，`$fetch` 那页点名 SSRF 与 Authentication Misuse。）
+1. 为什么服务端那一趟默认不带 cookie？（答：官方说是安全考量，`$fetch` 那一节点名 SSRF 与 Authentication Misuse。）
 2. `useFetch` 与"包 `useAsyncData` 的裸 `$fetch`"在请求头上有什么不同？（答：前者内部用 `useRequestFetch` 自动转发上下文与头，后者不转——官方示例的读数分别是 `{ cookies: { foo: 'bar' } }` 与 `{ cookies: {} }`。）
 3. `useFetch` 的 `baseURL` 和 `app.baseURL` 是什么关系？（答：文档没写；一个是单次请求的 base，一个是应用的基础路径，需实测。）
 

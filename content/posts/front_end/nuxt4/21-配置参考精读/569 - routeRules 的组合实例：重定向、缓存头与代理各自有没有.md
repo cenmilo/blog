@@ -1,6 +1,6 @@
 ---
 url: /posts/ab3cec563a05a364b061e29c2d39da81/
-title: routeRules 的组合实例：重定向、缓存头与代理各自有没有
+title: 569 - routeRules 的组合实例：重定向、缓存头与代理各自有没有
 date: 2027-04-19T11:00:00+08:00
 updated: 2027-04-19T11:00:00+08:00
 author: cmdragon

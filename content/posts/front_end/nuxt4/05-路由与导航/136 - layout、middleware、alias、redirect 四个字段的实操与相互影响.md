@@ -1,12 +1,12 @@
 ---
 url: /posts/d8f5bc38247720a396efee1e8813cc77/
-title: layout、middleware、alias、redirect 四个字段的实操与相互影响
+title: 136 - layout、middleware、alias、redirect 四个字段的实操与相互影响
 date: 2026-11-26T10:00:00+08:00
 updated: 2026-11-26T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一篇把 `definePageMeta` 里最常一起用的四个字段拉到一起做实操，并说明它们互相牵动的地方。**`layout` 有四种设置途径**（官方在布局那一页列了前三条，第四条给的是 route rules）："在你的页面里用 `definePageMeta` 设置一个 `layout` 属性"、"设置 `<NuxtLayout>` 的 `name` prop"、"在 route rules 里设置 `appLayout` 属性"，而"如果没有指定布局，将使用 `app/layouts/default.vue`"。三条官方硬约束同时生效：**布局名会被规范化为 kebab-case（`someLayout` 变成 `some-layout`）**、"**如果你的应用只有一个布局，我们建议改用 `app.vue`**"、"**与其他组件不同，你的布局必须有单个根元素，以便 Nuxt 在布局变化之间应用过渡——并且这个根元素不能是一个 `<slot />`**"。字段类型本身支持四种取值：`false | LayoutKey | Ref<LayoutKey> | ComputedRef<LayoutKey> | { name?, props? }`，官方说明是"**为每条路由设置静态或动态的布局名。如果需要禁用默认布局，可以把它设为 `false`**"、"**你也可以传一个带 `name` 与 `props` 的对象，把带类型的 props 传给布局组件。当你的布局用 `defineProps` 定义 props 时，它们在 `definePageMeta` 里会被完整推断类型**"。route rules 那一条是 v4.3 加的：`'/admin': { appLayout: 'admin' }`、`'/dashboard/**': { appLayout: 'dashboard' }`、`'/landing': { appLayout: false }`，官方给的使用理由是"**当你想在配置里集中管理布局而不是在每个页面文件里管理，或者你需要把布局应用到那些没有对应页面组件的路由（例如可能匹配许多路径的 catchall 页面）**"。**`middleware` 的官方类型是 `MiddlewareKey | NavigationGuard | Array<...>`**，示例给出三种写法（函数、字符串、多个字符串），而它与父/子路由的关系是**合并**："它会与任何匹配的父/子路由里用到的所有其他中间件合并。"**`alias` 与 `redirect` 是最容易互换的一对**：`alias` 是"**额外的路径将表现如同这条记录的一份复制**"、且"**所有 `alias` 与 `path` 值必须共享同样的 params**"；`redirect` 是"**如果在路由被直接匹配到时要把用户重定向到别处。重定向发生在任何导航守卫之前，并会用新的目标位置触发一次新的导航。**"——前者用户停在原 URL、后者 URL 会变，而且后者会**跳过你写在 middleware 与组件守卫里的所有逻辑**。
+  摘要：这一篇把 `definePageMeta` 里最常一起用的四个字段拉到一起做实操，并说明它们互相牵动的地方。**`layout` 有四种设置途径**（官方在布局那一节列了前三条，第四条给的是 route rules）："在你的页面里用 `definePageMeta` 设置一个 `layout` 属性"、"设置 `<NuxtLayout>` 的 `name` prop"、"在 route rules 里设置 `appLayout` 属性"，而"如果没有指定布局，将使用 `app/layouts/default.vue`"。三条官方硬约束同时生效：**布局名会被规范化为 kebab-case（`someLayout` 变成 `some-layout`）**、"**如果你的应用只有一个布局，我们建议改用 `app.vue`**"、"**与其他组件不同，你的布局必须有单个根元素，以便 Nuxt 在布局变化之间应用过渡——并且这个根元素不能是一个 `<slot />`**"。字段类型本身支持四种取值：`false | LayoutKey | Ref<LayoutKey> | ComputedRef<LayoutKey> | { name?, props? }`，官方说明是"**为每条路由设置静态或动态的布局名。如果需要禁用默认布局，可以把它设为 `false`**"、"**你也可以传一个带 `name` 与 `props` 的对象，把带类型的 props 传给布局组件。当你的布局用 `defineProps` 定义 props 时，它们在 `definePageMeta` 里会被完整推断类型**"。route rules 那一条是 v4.3 加的：`'/admin': { appLayout: 'admin' }`、`'/dashboard/**': { appLayout: 'dashboard' }`、`'/landing': { appLayout: false }`，官方给的使用理由是"**当你想在配置里集中管理布局而不是在每个页面文件里管理，或者你需要把布局应用到那些没有对应页面组件的路由（例如可能匹配许多路径的 catchall 页面）**"。**`middleware` 的官方类型是 `MiddlewareKey | NavigationGuard | Array<...>`**，示例给出三种写法（函数、字符串、多个字符串），而它与父/子路由的关系是**合并**："它会与任何匹配的父/子路由里用到的所有其他中间件合并。"**`alias` 与 `redirect` 是最容易互换的一对**：`alias` 是"**额外的路径将表现如同这条记录的一份复制**"、且"**所有 `alias` 与 `path` 值必须共享同样的 params**"；`redirect` 是"**如果在路由被直接匹配到时要把用户重定向到别处。重定向发生在任何导航守卫之前，并会用新的目标位置触发一次新的导航。**"——前者用户停在原 URL、后者 URL 会变，而且后者会**跳过你写在 middleware 与组件守卫里的所有逻辑**。
 
 categories:
   - 前端开发
@@ -30,7 +30,7 @@ tags:
 
 ## `layout`：四条入口，一处兜底
 
-官方在布局那一页列了三条设置途径，第四条藏在 route rules 里：
+官方在布局那一节列了三条设置途径，第四条藏在 route rules 里：
 
 | 途径 | 官方原话 |
 | --- | --- |

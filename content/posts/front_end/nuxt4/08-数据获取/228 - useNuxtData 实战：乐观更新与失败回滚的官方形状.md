@@ -1,6 +1,6 @@
 ---
 url: /posts/508484c14bcc22fc30a90307737d5375/
-title: useNuxtData 实战：乐观更新与失败回滚的官方形状
+title: 228 - useNuxtData 实战：乐观更新与失败回滚的官方形状
 date: 2026-12-27T09:00:00+08:00
 updated: 2026-12-27T09:00:00+08:00
 author: cmdragon

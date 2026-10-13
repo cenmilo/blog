@@ -1,6 +1,6 @@
 ---
 url: /posts/5cf7d5094c9eca53c204cf2f54382e24/
-title: 第一次取数：把数据显示出来，并分清 useFetch 与 $fetch
+title: 028 - 第一次取数：把数据显示出来，并分清 useFetch 与 $fetch
 date: 2026-10-21T10:00:00+08:00
 updated: 2026-10-21T10:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/e2d3ef524ace23359c17ded40916b2ce/
-title: componentIslands 开关的两种形态与 selectiveClient 的深浅之别
+title: 171 - componentIslands 开关的两种形态与 selectiveClient 的深浅之别
 date: 2026-12-08T09:00:00+08:00
 updated: 2026-12-08T09:00:00+08:00
 author: cmdragon
@@ -51,17 +51,17 @@ export default defineNuxtConfig({
 })
 ```
 
-### 两页的措辞对不上，我按哪一处读
+### 两节的措辞对不上，我按哪一处读
 
 | 页面 | 它给的形态 |
 | --- | --- |
 | `guide/concepts/server-components`（上一段） | 默认 `'auto'`；对象形态两个键 `selectiveClient`、`remoteIsland` |
 | `guide/going-further/experimental-features` | "Enables experimental component islands support **with `<NuxtIsland>` and `.island.vue` files**." + `componentIslands: true, // false or 'local+remote'` |
-| `api/nuxt-config` | **没有 `componentIslands` 条目**（我核对过该页 `experimental` 相关清单里没有它） |
+| `api/nuxt-config` | **没有 `componentIslands` 条目**（那一节的 `experimental` 相关清单里没有它） |
 
 三处的差异不是文字风格：**布尔写法那一版没有 `'auto'`，也没有对象形态；而 `'local+remote'` 只出现在那一版里**。我的处理是：
 - 以"特性页"（server-components）为主读默认值与对象形态，因为它给的说明最完整；
-- `'local+remote'` 这个字符串值照采信，因为远程岛屿那页也用同一个值提了要求（下面第五节）；
+- `'local+remote'` 这个字符串值照采信，因为远程岛屿那一节也用同一个值提了要求（下面第五节）；
 - **`.island.vue` 文件后缀这个说法只出现在实验特性页**，而目录页与特性页讲岛屿注册时用的是 `~/components/islands/` 目录——所以我不把 `.island.vue` 当成有两条来源支持的写法。
 
 这种"同一开关两处文档不同"的情况，我只按"能验证的那部分"写代码，验证方法见最后。
@@ -211,6 +211,6 @@ CSP 那一条对自写脚本策略的人有用：
 - `https://nuxt.com/docs/4.x/directory-structure/app/components`
   - 对照用（见 161、170）：岛屿默认扫描目录 `~/components/islands/`、`.server.vue` 与单根要求
 - `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 事实核对：该页未提供 `experimental.componentIslands` 条目
+  - 事实核对：那一节未提供 `experimental.componentIslands` 条目
 - `https://nuxt.com/docs/4.x/guide/going-further/features`
   - 对照用（见 141、172）：`noScripts` 定义与"components hydrated with `nuxt-client` and interactive island slots rely on an inline script to relocate teleported content"

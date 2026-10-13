@@ -1,6 +1,6 @@
 ---
 url: /posts/9d3e1c11879a48a8e03d543e9b0df182/
-title: server 节只有一个键：服务端构建器与两种简写
+title: 565 - server 节只有一个键：服务端构建器与两种简写
 date: 2027-04-18T10:00:00+08:00
 updated: 2027-04-18T10:00:00+08:00
 author: cmdragon

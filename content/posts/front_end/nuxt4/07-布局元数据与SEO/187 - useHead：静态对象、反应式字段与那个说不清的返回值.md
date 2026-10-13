@@ -1,12 +1,12 @@
 ---
 url: /posts/08c68f0046570fb7bc352a578ec50f52/
-title: useHead：静态对象、反应式字段与那个说不清的返回值
+title: 187 - useHead：静态对象、反应式字段与那个说不清的返回值
 date: 2026-12-13T10:00:00+08:00
 updated: 2026-12-13T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`useHead` 我用了很久都没注意一件事：**官方同一页里对返回值给了两种说法**。这一篇先把入参形状定清，再处理这个矛盾。定性句是："The `useHead` composable allows you to manage your head tags in a programmatic and reactive way, powered by Unhead. It lets you customize the meta tags, links, scripts, and other elements in the `<head>` section of your HTML document."，参数与反应式的范围由一条 note 说全："**The properties of `useHead` can be dynamic, accepting `ref`, `computed` and `reactive` properties. The `meta` parameter can also accept a function returning an object to make the entire object reactive.**"，Parameters 一节再补一句："All properties support reactive values (`ref`, `computed`, `reactive`) **or can be a function returning the metadata object**."；SEO 那页的措辞是三种："Reactivity is supported on all properties, by providing **a computed value, a getter, or a reactive object**."。**矛盾在返回值**：类型签名写的是 `export function useHead (meta: MaybeComputedRef<MetaObject>): ActiveHeadEntry<UseHeadInput>`，那个 `ActiveHeadEntry` 带两个方法——`patch: (input: Input) => void`（注释 "Updates the entry with new input. **Will first clear any side effects for previous input.**"）与 `dispose: () => void`（注释 "Dispose the entry, removing it from the active head. **Will queue side effects for removal.**"）；可下面的 "Return Values" 一节写的是"**This composable does not return any value. It registers the head metadata with Unhead, which manages the actual DOM updates.**"。我的处理是**按"不返回东西"来写代码**，需要 dispose/patch 时先在项目里确认能拿到实例。**还有一条别忘**："> If the data comes from a user or other untrusted source, we recommend you check out `useHeadSafe`."
+  摘要：`useHead` 我用了很久都没注意一件事：**官方同一页里对返回值给了两种说法**。这一篇先把入参形状定清，再处理这个矛盾。定性句是："The `useHead` composable allows you to manage your head tags in a programmatic and reactive way, powered by Unhead. It lets you customize the meta tags, links, scripts, and other elements in the `<head>` section of your HTML document."，参数与反应式的范围由一条 note 说全："**The properties of `useHead` can be dynamic, accepting `ref`, `computed` and `reactive` properties. The `meta` parameter can also accept a function returning an object to make the entire object reactive.**"，Parameters 一节再补一句："All properties support reactive values (`ref`, `computed`, `reactive`) **or can be a function returning the metadata object**."；SEO 那一节的措辞是三种："Reactivity is supported on all properties, by providing **a computed value, a getter, or a reactive object**."。**矛盾在返回值**：类型签名写的是 `export function useHead (meta: MaybeComputedRef<MetaObject>): ActiveHeadEntry<UseHeadInput>`，那个 `ActiveHeadEntry` 带两个方法——`patch: (input: Input) => void`（注释 "Updates the entry with new input. **Will first clear any side effects for previous input.**"）与 `dispose: () => void`（注释 "Dispose the entry, removing it from the active head. **Will queue side effects for removal.**"）；可下面的 "Return Values" 一节写的是"**This composable does not return any value. It registers the head metadata with Unhead, which manages the actual DOM updates.**"。我的处理是**按"不返回东西"来写代码**，需要 dispose/patch 时先在项目里确认能拿到实例。**还有一条别忘**："> If the data comes from a user or other untrusted source, we recommend you check out `useHeadSafe`."
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-我以为 `useHead` 只是"把 meta 数组传进去"。直到要在一个组件卸载时手动清掉它写进去的标签，才去翻返回值那一节——然后发现**同一页里两处说法不一致**。这一篇把入参形状、反应式的三种写法和这个矛盾一次处理掉。
+很容易把 `useHead` 当成"把 meta 数组传进去"。直到要在一个组件卸载时手动清掉它写进去的标签，才去翻返回值那一节——然后发现**同一页里两处说法不一致**。这一篇把入参形状、反应式的三种写法和这个矛盾一次处理掉。
 
 ## 定性：反应式是它的第一属性
 
@@ -61,7 +61,7 @@ useHead({
 
 > All properties support reactive values (`ref`, `computed`, `reactive`) or can be a function returning the metadata object.
 
-SEO 那页给的三分法措辞略有不同，一并记着："Reactivity is supported on all properties, by providing **a computed value, a getter, or a reactive object**."
+SEO 那一节给的三分法措辞略有不同，一并记着："Reactivity is supported on all properties, by providing **a computed value, a getter, or a reactive object**."
 
 对到代码上是四种可写形状：
 
@@ -149,7 +149,7 @@ interface ActiveHeadEntry<Input> {
 | 组件卸载后自动清理 | 什么都不做 | "It registers the head metadata with Unhead" —— 生命周期由管理器接管（这也是 `useHead` 必须在 setup 同步调用的原因，151） |
 | **手动改一份已注册的 head 输入 / 提前销毁它** | 先测：`const entry = useHead({...)}; console.log(entry)` | 签名说能拿到 `patch`/`dispose`，正文说拿不到；我不能替文档保证哪个是现状 |
 
-我给它定的默认姿势是**按"不返回东西"写代码**：真需要 `patch`/`dispose` 时，先验证再依赖，并把这段依赖当作可能随版本变的东西。（对照：`useHeadSafe` 那一页的 "Return Values" 只有一句 "This composable does not return any value."，**没有**对应的 entry 签名——两页不同步，说明这一处需要以实测为准。）
+稳妥的默认姿势是**按"不返回东西"写代码**：真需要 `patch`/`dispose` 时，先验证再依赖，并把这段依赖当作可能随版本变的东西。（对照：`useHeadSafe` 那一节的 "Return Values" 只有一句 "This composable does not return any value."，**没有**对应的 entry 签名——两节不同步，说明这一处需要以实测为准。）
 
 ## 别忘那条安全警告
 

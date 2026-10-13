@@ -1,6 +1,6 @@
 ---
 url: /posts/6c0a3e6daff40cbeba83e2853449e491/
-title: canonical 链接：文档只提过一次，可用的工具是 useRequestURL
+title: 204 - canonical 链接：文档只提过一次，可用的工具是 useRequestURL
 date: 2026-12-19T09:00:00+08:00
 updated: 2026-12-19T09:00:00+08:00
 author: cmdragon
@@ -88,7 +88,7 @@ const url = useRequestURL()
 <p>Path is: /about</p>
 ```
 
-它返回的是 URL 对象（`pathname` 之外还有 MDN 那份实例属性清单，官方在这一页直接指向 MDN），示例给出的形态正是我要的绝对地址。要注意这是**开发环境**的结果：值里带 `localhost:3000`，说明它读的是进来的那个请求，而不是某个配置项。
+它返回的是 URL 对象（`pathname` 之外还有 MDN 那份实例属性清单，官方在这一节直接指向 MDN），示例给出的形态正是我要的绝对地址。要注意这是**开发环境**的结果：值里带 `localhost:3000`，说明它读的是进来的那个请求，而不是某个配置项。
 
 ## 真正的坑：命中缓存时 host 会变成 localhost
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/bbde1d2dbc3164aed3db8c7d503aa74b/
-title: head 标签的去重与清理：key、patch 与 dispose 三处原文
+title: 195 - head 标签的去重与清理：key、patch 与 dispose 三处原文
 date: 2026-12-16T09:00:00+08:00
 updated: 2026-12-16T09:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/a2a9fc29c9c8210e2108cbe717f470d2/
-title: 共享类型的作用域：shared 目录谁能看见
+title: 413 - 共享类型的作用域：shared 目录谁能看见
 date: 2027-02-26T11:00:00+08:00
 updated: 2027-02-26T11:00:00+08:00
 author: cmdragon
@@ -126,7 +126,7 @@ export default defineEventHandler((event) => {
 
 ## 下一篇
 
-下一篇 414 收 P14：把 `typescript` 那一节从"键清单"转成"取舍决策"——`typeCheck` 三档怎么选、`shim` 什么时候才该开、`strict` 何时关。
+下一篇 414 收 395-414 那几篇：把 `typescript` 那一节从"键清单"转成"取舍决策"——`typeCheck` 三档怎么选、`shim` 什么时候才该开、`strict` 何时关。
 
 ## 本文依据
 

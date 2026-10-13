@@ -1,6 +1,6 @@
 ---
 url: /posts/00dcf4c1c49cb237176334202de17da8/
-title: typescript 节逐条：typeCheck 与 shim 的取舍
+title: 414 - typescript 节逐条：typeCheck 与 shim 的取舍
 date: 2027-02-27T09:00:00+08:00
 updated: 2027-02-27T09:00:00+08:00
 author: cmdragon
@@ -105,7 +105,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 415 起进入 P15 样式与资源：样式接入的三条路——`css` 数组全局注入、组件内 import 或 `@import`、以及外部样式表通过 head 挂进来。
+下一篇 415 起进入 415-434 样式与资源：样式接入的三条路——`css` 数组全局注入、组件内 import 或 `@import`、以及外部样式表通过 head 挂进来。
 
 ## 本文依据
 

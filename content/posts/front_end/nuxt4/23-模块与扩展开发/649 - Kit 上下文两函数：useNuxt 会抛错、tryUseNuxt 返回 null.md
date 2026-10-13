@@ -1,6 +1,6 @@
 ---
 url: /posts/bca9f3135ac626e8f12306dc8b307c44/
-title: Kit 上下文两函数：useNuxt 会抛错、tryUseNuxt 返回 null
+title: 649 - Kit 上下文两函数：useNuxt 会抛错、tryUseNuxt 返回 null
 date: 2027-05-16T10:00:00+08:00
 updated: 2027-05-16T10:00:00+08:00
 author: cmdragon
@@ -167,11 +167,15 @@ export default defineNuxtModule({
 
 判断依据其实是**抛错对你是不是有效信号**：在模块流程里，没有实例＝编程错误，越早炸越好；在共享工具里，没有实例＝正常情况之一。
 
-这一页没写的：**"从上下文取"的机制是什么**（没有提到 async context 或作用域如何建立），以及**在 `hooks` map 注册的回调里 `useNuxt()` 是否可用**——这两点决定了很多拆法的可行性，但页面没有给出答案，只能实测。
+这一节没写的：**"从上下文取"的机制是什么**（没有提到 async context 或作用域如何建立），以及**在 `hooks` map 注册的回调里 `useNuxt()` 是否可用**——这两点决定了很多拆法的可行性，但页面没有给出答案，只能实测。
 
 另外记得 Kit 的总前提：**这两个函数只给模块用，运行时那五种位置（组件、组合式函数、页面、插件、服务端路由）都不该导入它们**。
 
 下一篇讲 pages 那三个函数，其中 `extendPages` 有一条"必须原地改数组"的硬要求。
+
+## 下一篇
+
+下一篇 650：Kit 页面三函数：extendPages 必须原地改、extendRouteRules 与 addRouteMiddleware
 
 ## 本文依据
 

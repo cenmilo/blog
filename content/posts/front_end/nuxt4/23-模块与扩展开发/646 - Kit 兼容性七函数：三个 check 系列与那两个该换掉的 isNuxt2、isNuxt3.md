@@ -1,12 +1,12 @@
 ---
 url: /posts/d2745a9467b6a25dbb3a91c74832441f/
-title: Kit 兼容性七函数：三个 check 系列与那两个该换掉的 isNuxt2、isNuxt3
+title: 646 - Kit 兼容性七函数：三个 check 系列与那两个该换掉的 isNuxt2、isNuxt3
 date: 2027-05-15T10:00:00+08:00
 updated: 2027-05-15T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：判断"当前这套 Nuxt 能不能跑我这个模块"，这一页给了**七个函数**，分三档：`checkNuxtCompatibility` **返回问题列表**（不合适时数组里是消息）、`assertNuxtCompatibility` **直接抛错**、`hasNuxtCompatibility` **返回布尔**。约束对象只有两项：`nuxt`（semver，也可以写成 Node.js 那种 `>=2.15.0 <3.0.0`）与 `bridge`（**一个 `Record<string, string \| false>`，管的是 vite、webpack、rspack 这些构建器的版本约束或直接用 `false` 关掉**）。另外四个是细粒度判断：`isNuxtMajorVersion`、`isNuxt3`、`isNuxt2`、`getNuxtVersion`。**后两个官方让你换成 `isNuxtMajorVersion`，并说可能在 v5 或将来某个大版本移除**；而 `isNuxt3` 那一节给的重定向建议**写的却是 `isNuxtMajorVersion(2, nuxt)`**，与它自己检查的 3.x 不符。
+  摘要：判断"当前这套 Nuxt 能不能跑我这个模块"，这一节给了**七个函数**，分三档：`checkNuxtCompatibility` **返回问题列表**（不合适时数组里是消息）、`assertNuxtCompatibility` **直接抛错**、`hasNuxtCompatibility` **返回布尔**。约束对象只有两项：`nuxt`（semver，也可以写成 Node.js 那种 `>=2.15.0 <3.0.0`）与 `bridge`（**一个 `Record<string, string \| false>`，管的是 vite、webpack、rspack 这些构建器的版本约束或直接用 `false` 关掉**）。另外四个是细粒度判断：`isNuxtMajorVersion`、`isNuxt3`、`isNuxt2`、`getNuxtVersion`。**后两个官方让你换成 `isNuxtMajorVersion`，并说可能在 v5 或将来某个大版本移除**；而 `isNuxt3` 那一节给的重定向建议**写的却是 `isNuxtMajorVersion(2, nuxt)`**，与它自己检查的 3.x 不符。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-一份模块要同时伺候好几代 Nuxt。判断版本这件事如果靠字符串比较，很容易在 pre-release 或者 Bridge 那种半新半旧的形态上判错——这一页的七个函数就是为它准备的。
+一份模块要同时伺候好几代 Nuxt。判断版本这件事如果靠字符串比较，很容易在 pre-release 或者 Bridge 那种半新半旧的形态上判错——这一节的七个函数就是为它准备的。
 
 ## 先确认这套工具覆盖哪些代
 
@@ -72,7 +72,7 @@ if (usingNewPostcss) {
 }
 ```
 
-**要分支执行选 `has`，要把原因说给用户听选 `check`，要让构建停下来选 `assert`**。这三个动词的差别就是这页的全部设计。
+**要分支执行选 `has`，要把原因说给用户听选 `check`，要让构建停下来选 `assert`**。这三个动词的差别就是这一节的全部设计。
 
 ## 约束对象只有两项
 
@@ -111,7 +111,7 @@ export default defineNuxtModule({
 })
 ```
 
-它是这页**唯一接收 `major: number` 的判断函数**，也就是把"哪一代"当参数而不是当函数名——这正是它被推荐给前两个的原因。
+它是这一节**唯一接收 `major: number` 的判断函数**，也就是把"哪一代"当参数而不是当函数名——这正是它被推荐给前两个的原因。
 
 **`isNuxt3`** 与 **`isNuxt2`** 各自只有一句定性（检查当前版本是不是 3.x / 2.x），然后挂同一条 `::note`：
 
@@ -134,7 +134,7 @@ export default defineNuxtModule({
 | 方式 | 生效时机 | 不满足时的表现 |
 | --- | --- | --- |
 | `meta.compatibility` | 模块加载阶段由 wrapper **自动检查** | 控制台 **WARN，并且整个模块被禁用** |
-| 这一页的函数 | 你在 `setup` 里主动调用 | **由你决定**：警告、分支、或抛错停下 |
+| 这一节的函数 | 你在 `setup` 里主动调用 | **由你决定**：警告、分支、或抛错停下 |
 
 所以判据很清楚：**整个模块在新版本才有意义 → 写声明**（用户什么也不用做）；**模块里某一段功能要按版本换实现 → 用函数**（模块照常装，只是走不同分支）。
 
@@ -144,7 +144,11 @@ export default defineNuxtModule({
 - 用了 `assertNuxtCompatibility`？**它在 `setup` 里抛错会让构建停下来**，这通常是库不该做的决定。
 - `constraints` 里到底要不要管构建器？**只有当某功能只在某个 builder 下可用（或明确不可用）时才写 `bridge`**，值是构建器名加 `false` 或 semver。
 
-下一篇讲自动导入那一页的三个函数：`addImports` 的八个字段、`addImportsDir` 与 `addImportsSources`。
+下一篇讲自动导入那一节的三个函数：`addImports` 的八个字段、`addImportsDir` 与 `addImportsSources`。
+
+## 下一篇
+
+下一篇 647：Kit 自动导入三函数：addImports 的八字段、Dir 与 Sources
 
 ## 本文依据
 

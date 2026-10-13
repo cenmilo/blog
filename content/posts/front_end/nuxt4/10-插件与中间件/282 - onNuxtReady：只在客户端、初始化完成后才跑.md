@@ -1,6 +1,6 @@
 ---
 url: /posts/4bb422cbaa5aec3023f6b0cd7267dd0b/
-title: onNuxtReady：只在客户端、初始化完成后才跑
+title: 282 - onNuxtReady：只在客户端、初始化完成后才跑
 date: 2027-01-14T09:00:00+08:00
 updated: 2027-01-14T09:00:00+08:00
 author: cmdragon
@@ -94,7 +94,7 @@ export default defineNuxtPlugin(() => {
 
 ## 下一篇
 
-P10 插件这一段先到这里。下一篇 283 讲 `useRuntimeHook`：在组件（不只是插件）里订阅运行时钩子的组合式。
+270-299 插件这一段先到这里。下一篇 283 讲 `useRuntimeHook`：在组件（不只是插件）里订阅运行时钩子的组合式。
 
 ## 本文依据
 

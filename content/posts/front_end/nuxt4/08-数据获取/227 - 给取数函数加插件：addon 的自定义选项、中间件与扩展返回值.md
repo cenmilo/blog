@@ -1,6 +1,6 @@
 ---
 url: /posts/1b6c0524f35a56d19ae9243b2e941df5/
-title: 给取数函数加插件：addon 的自定义选项、中间件与扩展返回值
+title: 227 - 给取数函数加插件：addon 的自定义选项、中间件与扩展返回值
 date: 2026-12-26T11:00:00+08:00
 updated: 2026-12-26T11:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-先给一句人话定位：addon 就是**把"每个页面都要重复写的那点取数逻辑"做成一个可复用的小插件**，插进 226 造出来的组合式上。两页规则相同，`useAsyncData` 那侧的说明甚至直接写"Addons for useAsyncData work the same way as useFetch addons."。
+先给一句人话定位：addon 就是**把"每个页面都要重复写的那点取数逻辑"做成一个可复用的小插件**，插进 226 造出来的组合式上。两节规则相同，`useAsyncData` 那侧的说明甚至直接写"Addons for useAsyncData work the same way as useFetch addons."。
 
 ## 最小骨架：一个开关式的 addon
 
@@ -139,7 +139,7 @@ const minDuration = defineUseFetchAddon({
 
 这个用途很妙：**保证请求至少花 300 毫秒**，这样加载状态不会一闪而过。它靠的就是 218 讲的 `middleware` 链（`next()` 放行、throw 中止），addon 只是把"往链上加东西"变成了可复用单元。
 
-`useAsyncData` 那页给的例子是另一种常见需求：`pollEvery` 选项（`UseAsyncDataAddonOptions<{ pollEvery?: number }>`）按间隔刷新。
+`useAsyncData` 那一节给的例子是另一种常见需求：`pollEvery` 选项（`UseAsyncDataAddonOptions<{ pollEvery?: number }>`）按间隔刷新。
 
 ## 扩展返回值
 
@@ -199,7 +199,7 @@ const scoped = defineUseFetchAddon({
 
 这条我只当"知道有这回事"用——它对应的是 214 那个 `AsyncData & Promise` 交叉类型（`then`/`catch`/`finally` 本来就来自 Promise 那一半）。
 
-## 两页签名对照
+## 两节签名对照
 
 ```ts
 function defineUseFetchAddon<Opts extends Record<string, any> = {}, Ext = {}> (addon: {

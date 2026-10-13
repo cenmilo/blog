@@ -1,6 +1,6 @@
 ---
 url: /posts/1e7fa37ac64a0647d0de90a09d0c1d63/
-title: runtimeConfig：默认四键与只给服务端的私密层
+title: 570 - runtimeConfig：默认四键与只给服务端的私密层
 date: 2027-04-20T09:00:00+08:00
 updated: 2027-04-20T09:00:00+08:00
 author: cmdragon
@@ -99,7 +99,7 @@ export default defineNuxtConfig({
 | --- | --- | --- |
 | `NUXT_API_KEY=my-api-key` | `apiKey` | 本节的例子 |
 | `NUXT_PUBLIC_BASE_URL=/foo/` | `public.baseURL` | 本节的例子 |
-| `NUXT_APP_CDN_URL` | `app.cdnURL` | useRuntimeConfig 那页 |
+| `NUXT_APP_CDN_URL` | `app.cdnURL` | useRuntimeConfig 那一节 |
 
 能确定的只有这些：**前缀是 `NUXT_`**、**下划线对应点号层级**（`PUBLIC_BASE_URL` → `public.baseURL`，`APP_CDN_URL` → `app.cdnURL`）、**发生在运行时**。
 
@@ -114,7 +114,7 @@ export default defineNuxtConfig({
 
 ## 三个容易写错的地方
 
-**把密钥放进 `public`。** 表现是前端能读到了、接口也通了，但密钥在浏览器可见——`public` 下面的键就是设计成前端要读的，`api/composables/use-runtime-config` 那页对私密键的说法是 "only accessible on the server"，反过来 `public` 里的值前后端都能拿到。按第四句的规则，`public` 与 `app` 之下的内容一律发到前端，没有例外开关。
+**把密钥放进 `public`。** 表现是前端能读到了、接口也通了，但密钥在浏览器可见——`public` 下面的键就是设计成前端要读的，`api/composables/use-runtime-config` 那一节对私密键的说法是 "only accessible on the server"，反过来 `public` 里的值前后端都能拿到。按第四句的规则，`public` 与 `app` 之下的内容一律发到前端，没有例外开关。
 
 **以为私密键在客户端读得到。** 在服务端路由里 `useRuntimeConfig()` 能读到全部；这一节写的就是"from server only"。客户端读私密键的返回值不要靠猜——真要确认，在页面里读一次打印出来看。
 
@@ -130,7 +130,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 571 看 `appConfig`：这一节只有两句和一个**完全空的 `### nuxt` 子项**，真正的内容全在 `app/app.config.ts` 那一页——包括一句和这一节直接相关的：**写在 `nuxt.config` 里的 `appConfig` 键，在所有上下文里都有类型，而文件里定义的键在服务端只被推成 `unknown`**。
+下一篇 571 看 `appConfig`：这一节只有两句和一个**完全空的 `### nuxt` 子项**，真正的内容全在 `app/app.config.ts` 那一节——包括一句和这一节直接相关的：**写在 `nuxt.config` 里的 `appConfig` 键，在所有上下文里都有类型，而文件里定义的键在服务端只被推成 `unknown`**。
 
 ## 本文依据
 

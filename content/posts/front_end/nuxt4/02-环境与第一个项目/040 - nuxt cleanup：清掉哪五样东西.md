@@ -1,6 +1,6 @@
 ---
 url: /posts/ef9de6db005e96355cdcc0d79712b324/
-title: nuxt cleanup：清掉哪五样东西
+title: 040 - nuxt cleanup：清掉哪五样东西
 date: 2026-10-25T10:00:00+08:00
 updated: 2026-10-25T10:00:00+08:00
 author: cmdragon

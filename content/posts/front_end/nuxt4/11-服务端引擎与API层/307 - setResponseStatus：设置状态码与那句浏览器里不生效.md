@@ -1,6 +1,6 @@
 ---
 url: /posts/089383a6f229450b8cc8d32b5795bc6d/
-title: setResponseStatus：设置状态码与那句浏览器里不生效
+title: 307 - setResponseStatus：设置状态码与那句浏览器里不生效
 date: 2027-01-22T10:00:00+08:00
 updated: 2027-01-22T10:00:00+08:00
 author: cmdragon
@@ -77,7 +77,7 @@ if (event) {
 - 你**正常返回内容、只是想给它标个状态码**（比如返回一个自定义 404 页但状态码要是 404、或返回 202 Accepted）→ `setResponseStatus(event, code)` + 正常 return 内容。
 - 你要**抛一个错误**（让错误处理/错误页接管）→ `createError({ status })`（308 讲）。
 
-官方 server 那页 "Status Codes" 给的正是第一条路的典型用法：
+官方 server 那一节 "Status Codes" 给的正是第一条路的典型用法：
 
 ```ts [server/api/validation/[id].ts]
 export default defineEventHandler((event) => {

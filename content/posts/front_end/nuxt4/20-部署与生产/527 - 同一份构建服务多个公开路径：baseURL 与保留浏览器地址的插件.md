@@ -1,6 +1,6 @@
 ---
 url: /posts/3446ec6137bbb012fe6e8e0cb8d8358c/
-title: 同一份构建服务多个公开路径：baseURL 与保留浏览器地址的插件
+title: 527 - 同一份构建服务多个公开路径：baseURL 与保留浏览器地址的插件
 date: 2027-04-05T11:00:00+08:00
 updated: 2027-04-05T11:00:00+08:00
 author: cmdragon
@@ -52,7 +52,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 - **`defineNuxtPlugin((nuxtApp) => ...)` 的形态**：在插件函数体里同步取 `nuxtApp`，这是官方给的合法上下文位置之一。
 - **删的是 `payload.path`**：载荷是从服务端传给客户端的数据，浏览器接手后按它对齐地址栏；把它删掉，就没有可用来替换的值。
 
-有一处缺口要说明：`useNuxtApp` 那页对 `payload` 的键清单只列了 **`serverRendered`、`data`、`state`** 三项，**`path` 并不在那份清单里**。也就是说 `payload.path` 这个键**只在部署页这一处出现**，它的类型、由谁填、什么时候有值，文档没有单独定义。用之前建议先打印确认：
+有一处缺口要说明：`useNuxtApp` 那一节对 `payload` 的键清单只列了 **`serverRendered`、`data`、`state`** 三项，**`path` 并不在那份清单里**。也就是说 `payload.path` 这个键**只在部署页这一处出现**，它的类型、由谁填、什么时候有值，文档没有单独定义。用之前建议先打印确认：
 
 ```ts
 export default defineNuxtPlugin((nuxtApp) => {

@@ -1,6 +1,6 @@
 ---
 url: /posts/d57e1544c0abfdf004adfaa7b3b8bc6a/
-title: runtimeConfig 的类型增强
+title: 406 - runtimeConfig 的类型增强
 date: 2027-02-24T10:00:00+08:00
 updated: 2027-02-24T10:00:00+08:00
 author: cmdragon

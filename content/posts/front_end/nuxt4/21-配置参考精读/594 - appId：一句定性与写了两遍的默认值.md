@@ -1,6 +1,6 @@
 ---
 url: /posts/5667313ac9ad864f5bd229829939deb9/
-title: appId：一句定性与写了两遍的默认值
+title: 594 - appId：一句定性与写了两遍的默认值
 date: 2027-04-28T09:00:00+08:00
 updated: 2027-04-28T09:00:00+08:00
 author: cmdragon
@@ -67,7 +67,7 @@ tags:
 
 ## 一处会走错路的同名
 
-搜 `nuxt-app` 会先撞上一批**和这一节无关**的东西：`guide/going-further/nuxt-app` 那一页（讲 Nuxt 应用与运行时上下文）、`useNuxtApp()`、以及很多页面里指向"Nuxt context"的链接路径都写成 `.../nuxt-app#the-nuxt-context`。
+搜 `nuxt-app` 会先撞上一批**和这一节无关**的东西：`guide/going-further/nuxt-app` 那一节（讲 Nuxt 应用与运行时上下文）、`useNuxtApp()`、以及很多页面里指向"Nuxt context"的链接路径都写成 `.../nuxt-app#the-nuxt-context`。
 
 **那些是"Nuxt 应用"这个概念的名字，不是 `appId` 的默认值。** 别把两处混起来读，否则容易以为改了 `appId` 会影响运行时上下文——文档没有任何一句支持这个推断。
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/2954f46ced949e2ebebabad8c600049b/
-title: 服务端组件与岛屿：为什么有些组件不该把 JavaScript 带进浏览器
+title: 106 - 服务端组件与岛屿：为什么有些组件不该把 JavaScript 带进浏览器
 date: 2026-11-16T10:00:00+08:00
 updated: 2026-11-16T10:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/7bf52afc0cb2b09dd719b43a8d2f2fad/
-title: serverHandlers 与 devServerHandlers：五个选项与自动注册那句
+title: 566 - serverHandlers 与 devServerHandlers：五个选项与自动注册那句
 date: 2027-04-18T11:00:00+08:00
 updated: 2027-04-18T11:00:00+08:00
 author: cmdragon
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
 1. **注册 `server/` 之外的文件**（模块 `runtime/server/...`、图层里的处理函数）。
 2. **给出目录约定表达不了的形状**（例如你想让一个已有文件挂到另一个 `route` 上）。
 
-而服务端目录那一页给的对应事实是：`~~/server/api` 下的文件自动带 `/api` 前缀、不要前缀就放 `~~/server/routes`，中间件放 `~~/server/middleware`；那句 `::note` 还有一条限制值得放在旁边：**服务端路由目前不支持 pages 那样完整的动态路由功能**。
+而服务端目录那一节给的对应事实是：`~~/server/api` 下的文件自动带 `/api` 前缀、不要前缀就放 `~~/server/routes`，中间件放 `~~/server/middleware`；那句 `::note` 还有一条限制值得放在旁边：**服务端路由目前不支持 pages 那样完整的动态路由功能**。
 
 ## devServerHandlers：只有两句
 
@@ -81,9 +81,9 @@ export default defineNuxtConfig({
 - **类型**：`array`
 - **See**：Nitro server routes 文档
 
-**没有选项清单、没有示例、没有默认值。** 与 `serverHandlers` 并列放在这一页，能确证的差别只有一件事——**它只在开发期生效**（"development-only"）。
+**没有选项清单、没有示例、没有默认值。** 与 `serverHandlers` 并列放在这一节，能确证的差别只有一件事——**它只在开发期生效**（"development-only"）。
 
-这处缺口对模块作者正好有用。`directory-structure/server` 与 `guide/modules/server-compatibility` 那两处提到"在模块里写一个开发服务器处理函数"的路径，而配置参考里这一节不给细节；服务端导入那页还专门警告过：**跑在 Nuxt 进程里的代码（`nuxt.config.ts`、模块的 `setup`、传给 `addDevServerHandler` 的函数）没有服务端运行时那套东西**，`useRuntimeConfig()`、`useAppConfig()` 会返回空对象——**"Read `nuxt.options` instead"**。
+这处缺口对模块作者正好有用。`directory-structure/server` 与 `guide/modules/server-compatibility` 那两处提到"在模块里写一个开发服务器处理函数"的路径，而配置参考里这一节不给细节；服务端导入那一节还专门警告过：**跑在 Nuxt 进程里的代码（`nuxt.config.ts`、模块的 `setup`、传给 `addDevServerHandler` 的函数）没有服务端运行时那套东西**，`useRuntimeConfig()`、`useAppConfig()` 会返回空对象——**"Read `nuxt.options` instead"**。
 
 也就是说：**dev 侧的处理函数与生产侧处理函数能用的 API 不是一套**，这一点在两个节里都是靠"换个地方读配置"这句话透露的。
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/c5e954ad45ca6846bcef0d93800e6977/
-title: nuxtApp.callHook：触发钩子并等它跑完
+title: 276 - nuxtApp.callHook：触发钩子并等它跑完
 date: 2027-01-12T09:00:00+08:00
 updated: 2027-01-12T09:00:00+08:00
 author: cmdragon
@@ -46,7 +46,7 @@ await nuxtApp.callHook('my-plugin:init')
 
 ## 纠正一个不存在的名字：callAsync
 
-网上教程里常看到 `nuxtApp.callAsync(...)` 这个写法，但**当前 4.x 文档里没有它**。我把 use-nuxt-app 这一页的方法逐个核过：官方列出的方法是 `provide (name, value)`、`hook (name, cb)`、`callHook (name, ...args)` 三个，没有 `callAsync`；整个 4.x 文档语料里搜 `callAsync` 也是零命中。
+网上教程里常看到 `nuxtApp.callAsync(...)` 这个写法，但**当前 4.x 文档里没有它**。我把 use-nuxt-app 这一页的方法逐个核过：官方列出的方法是 `provide (name, value)`、`hook (name, cb)`、`callHook (name, ...args)` 三个，没有 `callAsync`；整个 4.x 文档里搜 `callAsync` 也是零命中。
 
 所以要"触发钩子并等待"，用的就是 `callHook`（它本来就返回 Promise）。如果你是从旧教程带着 `callAsync` 的印象来查，可以把它换成 `callHook`。文档没写的方法，我不会给你编一个签名出来。
 
@@ -74,7 +74,7 @@ await nuxtApp.callHook('my-plugin:init')
 ## 自查
 
 - 需要"触发一个钩子并等回调跑完" → `await nuxtApp.callHook(name, ...args)`，它返回 Promise。
-- 别再写 `nuxtApp.callAsync`：4.x 文档没有这个方法（全语料零命中），是旧教程的误写。
+- 别再写 `nuxtApp.callAsync`：4.x 文档没有这个方法（整套文档零命中），是旧教程的误写。
 - "插件 await 会不会挡后面"是加载顺序问题（默认顺序加载 / parallel / dependsOn，272），不归 callHook 管。
 - 自定义钩子名随便起，但要触发（callHook）才有人订阅得到；光 hook 不 call 那个名字，回调永远不跑。
 
@@ -85,6 +85,6 @@ await nuxtApp.callHook('my-plugin:init')
 ## 本文依据
 
 - useNuxtApp（`api/composables/use-nuxt-app`）`callHook (name, ...args)` 一节："`callHook` returns a promise when called with any of the existing hooks." 与 `await nuxtApp.callHook('my-plugin:init')` 示例；Methods 一节官方只列 `provide`/`hook`/`callHook` 三个（无 callAsync）。
-- 全语料核对：`callAsync` 在 `_research/pages` 全部 270 页里零命中。
+- 整套文档核对：`callAsync` 在 `_research/pages` 全部 270 页里零命中。
 - plugins 目录（`directory-structure/app/plugins`）Loading Strategy："By default, Nuxt loads plugins sequentially."、parallel 段 "Nuxt won't wait until the end of the plugin's execution before loading the next plugin."、dependsOn 段（`dependsOn: ['my-plugin']`，"this plugin will wait for the end of `my-plugin`'s execution before it runs"）。
 - defineNuxtPlugin（`api/utils/define-nuxt-plugin`）：Object Syntax Plugin 示例里 `async setup` 中 `await $fetch('/api/config')`。

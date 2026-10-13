@@ -1,6 +1,6 @@
 ---
 url: /posts/ba0baa4a3c82e56d8e60408c3da3c92f/
-title: helper 全表：五个入口的参数、返回与不能混用
+title: 506 - helper 全表：五个入口的参数、返回与不能混用
 date: 2027-03-29T11:00:00+08:00
 updated: 2027-03-29T11:00:00+08:00
 author: cmdragon

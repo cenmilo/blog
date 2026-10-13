@@ -1,6 +1,6 @@
 ---
 url: /posts/3ad86b19db9ddce43e05fb30b8e40665/
-title: 状态与导航：restoreState 这个实验开关恢复什么
+title: 263 - 状态与导航：restoreState 这个实验开关恢复什么
 date: 2027-01-07T11:00:00+08:00
 updated: 2027-01-07T11:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 它是什么：把状态塞进 sessionStorage，重载后找回
 
-官方在实验特性那一页给 `restoreState` 的定位句写得很具体：
+官方在实验特性那一节给 `restoreState` 的定位句写得很具体：
 
 > Allows Nuxt app state to be restored from `sessionStorage` when reloading the page after a chunk error or manual `reloadNuxtApp()` call.
 

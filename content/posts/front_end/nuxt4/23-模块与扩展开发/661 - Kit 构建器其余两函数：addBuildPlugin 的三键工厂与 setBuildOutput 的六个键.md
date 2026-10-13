@@ -1,6 +1,6 @@
 ---
 url: /posts/fe05bc55f994835f6fdec40f722955a6/
-title: Kit 构建器其余两函数：addBuildPlugin 的三键工厂与 setBuildOutput 的六个键
+title: 661 - Kit 构建器其余两函数：addBuildPlugin 的三键工厂与 setBuildOutput 的六个键
 date: 2027-05-20T10:00:00+08:00
 updated: 2027-05-20T10:00:00+08:00
 author: cmdragon
@@ -57,7 +57,7 @@ interface AddBuildPluginFactory {
 
 **类型里有 `rspack`，而参数说明的文字漏了它**：原文只写"**返回一个带有 `vite` 和/或 `webpack` 属性的工厂函数**，这些属性必须是返回 Vite 插件实例/数组、和/或 webpack 插件实例/数组的函数"——**没有提到 `rspack`**，但它就在同一个接口里，类型来自 `@rspack/core` 的 `RspackPluginInstance`。**这是文档自身的缺口，按类型写而不是按那句话写**。
 
-这也解释了一件前面的事：兼容性那一页的 `bridge` 约束可以点名 `rspack` 这个 builder，**说明 rspack 在这套体系里是被承认的构建器之一**，但**本系列所读的 4.x 页面里，除了这一处类型与 `setBuildOutput` 的那句列举，几乎没有讲到 rspack 怎么用**。
+这也解释了一件前面的事：兼容性那一节的 `bridge` 约束可以点名 `rspack` 这个 builder，**说明 rspack 在这套体系里是被承认的构建器之一**，但**本系列所读的 4.x 页面里，除了这一处类型与 `setBuildOutput` 的那句列举，几乎没有讲到 rspack 怎么用**。
 
 选项表与那两个 `add*Plugin` 完全同形（五项：`dev`、`build`、`server`、`client`、`prepend`），**且没有任何一项标弃用**。
 
@@ -97,7 +97,7 @@ function setBuildOutput<K extends keyof NuxtBuildOutputs> (key: K, provider: Nux
 | `entryChunkName` | 入口 chunk 名 |
 | `entryIds` | 入口 id |
 
-**这行右侧的"用途"是从示例与键名推出来的，文档没有逐项解释**——`clientPrecomputed`、`entryChunkName`、`entryIds` 三个键**在本页没有任何示例**，只有名字。
+**这行右侧的"用途"是从示例与键名推出来的，文档没有逐项解释**——`clientPrecomputed`、`entryChunkName`、`entryIds` 三个键**在那一节没有任何示例**，只有名字。
 
 `provider` 的说明是一句很有用的话：**该键对应的值，一个（可能是 async 的）函数，返回作为字符串的模块体**。
 
@@ -120,7 +120,7 @@ setBuildOutput('ssrStyles', () => `export { default } from ${JSON.stringify(path
 
 **`JSON.stringify` 出现在两处**：把路径变成字符串字面量，避免拼出来的源码里出现未加引号的值。
 
-页面在这节末尾挂了一条 read-more，指向自定义构建器那一章的"构建产物契约"小节——**六个键各自的完整语义在那里，本页只给了形状**。
+页面在这节末尾挂了一条 read-more，指向自定义构建器那一章的"构建产物契约"小节——**六个键各自的完整语义在那里，那一节只给了形状**。
 
 ## 什么情况下真的会用到它们
 
@@ -138,6 +138,10 @@ setBuildOutput('ssrStyles', () => `export { default } from ${JSON.stringify(path
 `setBuildOutput` 的存在解释了为什么"构建器"这件事在文档里被反复单独对待：**Nuxt 把 builder 与 Nitro 之间的关系收成一份用 `nuxt/*` 表达的契约**，所以插件、路由规则、服务端 handler 这些模块动作才能在不同 builder 下保持同一套 API。服务端兼容性那一章讲 `nuxt/server` 时说的"其他 server builder 也能跑"，根子就在这里。
 
 下一篇讲图层目录那一个函数：`getLayerDirectories` 与它的十个目录字段。
+
+## 下一篇
+
+下一篇 662：getLayerDirectories：十个目录字段、优先级顺序与那两条 note
 
 ## 本文依据
 

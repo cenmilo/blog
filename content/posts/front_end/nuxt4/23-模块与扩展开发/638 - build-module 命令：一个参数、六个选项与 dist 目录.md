@@ -1,6 +1,6 @@
 ---
 url: /posts/246cec03dccb69b0b343f811a3980e1b/
-title: build-module 命令：一个参数、六个选项与 dist 目录
+title: 638 - build-module 命令：一个参数、六个选项与 dist 目录
 date: 2027-05-12T11:00:00+08:00
 updated: 2027-05-12T11:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-模块项目里 `dist` 目录经常是空的或者干脆不存在，直到你把它发到 npm，用户装下来的包才发现入口文件找不到。这一页讲的就是生成它的那条命令。
+模块项目里 `dist` 目录经常是空的或者干脆不存在，直到你把它发到 npm，用户装下来的包才发现入口文件找不到。这一节讲的就是生成它的那条命令。
 
 ## 命令全貌
 
@@ -81,9 +81,9 @@ npx nuxt build-module [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|ver
 
 ## 与 starter 脚本的对应关系
 
-starter 那一页给的是脚本名，不是命令：`npm run dev:prepare` 准备本地开发文件、`npm run prepack` 构建模块、`npm run dev` 起 playground、`npm run dev:build` 构建 playground，另外 `release` 脚本里会再构建。**这些脚本与上面六个选项之间的映射，两页都没有写**——它们由 module-builder 侧的约定决定。
+starter 那一节给的是脚本名，不是命令：`npm run dev:prepare` 准备本地开发文件、`npm run prepack` 构建模块、`npm run dev` 起 playground、`npm run dev:build` 构建 playground，另外 `release` 脚本里会再构建。**这些脚本与上面六个选项之间的映射，两节都没有写**——它们由 module-builder 侧的约定决定。
 
-要确认自己项目里的实际映射，最直接的地方是 `package.json` 的 `scripts` 字段：**把每个脚本展开看它最终调用的命令与选项**，而不是猜。这一页能确定的只有两件事：`dist` 由 `build-module` 生成，**playground 的构建不等于模块的构建**。
+要确认自己项目里的实际映射，最直接的地方是 `package.json` 的 `scripts` 字段：**把每个脚本展开看它最终调用的命令与选项**，而不是猜。这一节能确定的只有两件事：`dist` 由 `build-module` 生成，**playground 的构建不等于模块的构建**。
 
 ## 什么时候必须跑它
 
@@ -102,6 +102,10 @@ starter 那一页给的是脚本名，不是命令：`npm run dev:prepare` 准�
 3. 检查 `main`／`exports` 指向的路径是否落在 `dist` 里——**这是"用户装完找不到入口"最常见的原因**。
 
 下一篇讲模块测试：单测那一节其实只有一个 RFC 链接。
+
+## 下一篇
+
+下一篇 639：模块测试：单测那一节只有一个 RFC、E2E 五步与 npm pack 手工验
 
 ## 本文依据
 

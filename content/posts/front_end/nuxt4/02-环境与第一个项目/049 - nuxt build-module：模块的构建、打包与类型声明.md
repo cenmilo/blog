@@ -1,12 +1,12 @@
 ---
 url: /posts/5c6aa340242590d30986636e2000b4db/
-title: nuxt build-module：模块的构建、打包与类型声明
+title: 049 - nuxt build-module：模块的构建、打包与类型声明
 date: 2026-10-28T10:00:00+08:00
 updated: 2026-10-28T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：nuxt build-module 与前四十多篇那些命令有一个本质区别——它不是 @nuxt/cli 自带的命令。官方的 CLI 总览页写明：CLI 不提供的命令会按项目里的 nuxt-<command> 二进制查找，而 nuxt build-module 就是这么工作的，它运行的是 @nuxt/module-builder 安装的那个 nuxt-build-module 二进制。命令页自己的定义是"运行 @nuxt/module-builder，在你的 rootDir 里生成一个 dist 目录，其中装着你的 nuxt-module 的完整构建"，用途标注为"发布你的 Nuxt 模块之前构建它"。它只有四个功能开关，默认值全是 false：--build 表示为分发构建模块、--stub 表示为开发而把 dist 做成存根而不是真的构建、--sourcemap 表示生成 sourcemap、--prepare 表示为本地开发准备模块；另外官方明确 --cwd 比 ROOTDIR 优先。而模块起步那一页给的日常动作其实是包里的脚本：npm run dev 启动 playground 的开发服务器、npm run dev:build 构建它、npm run dev:prepare 为本地开发准备文件。
+  摘要：nuxt build-module 与前四十多篇那些命令有一个本质区别——它不是 @nuxt/cli 自带的命令。官方的 CLI 总览页写明：CLI 不提供的命令会按项目里的 nuxt-<command> 二进制查找，而 nuxt build-module 就是这么工作的，它运行的是 @nuxt/module-builder 安装的那个 nuxt-build-module 二进制。命令页自己的定义是"运行 @nuxt/module-builder，在你的 rootDir 里生成一个 dist 目录，其中装着你的 nuxt-module 的完整构建"，用途标注为"发布你的 Nuxt 模块之前构建它"。它只有四个功能开关，默认值全是 false：--build 表示为分发构建模块、--stub 表示为开发而把 dist 做成存根而不是真的构建、--sourcemap 表示生成 sourcemap、--prepare 表示为本地开发准备模块；另外官方明确 --cwd 比 ROOTDIR 优先。而模块起步那一节给的日常动作其实是包里的脚本：npm run dev 启动 playground 的开发服务器、npm run dev:build 构建它、npm run dev:prepare 为本地开发准备文件。
 
 categories:
   - 前端开发
@@ -38,7 +38,7 @@ CLI 这一段（034-048）讲的都是"构建你的**应用**"。这一篇是它
 
 1. **它要求项目里装了 `@nuxt/module-builder`。** 你不可能在一个普通应用项目里"顺手跑一次 `nuxt build-module`"。
 2. **`nuxt build --target` 那套 preset 逻辑与它无关**（037）——因为跑的是别人的二进制。
-3. **想知道它的行为细节，权威来源是 module-builder 那份仓库**，官方这一页也正是这么处理的：页末只留了一条"read more about `@nuxt/module-builder`"的链接，把源码位置指向 `module-builder` 仓库而不是 `nuxt/cli`。
+3. **想知道它的行为细节，权威来源是 module-builder 那份仓库**，官方这一节也正是这么处理的：页末只留了一条"read more about `@nuxt/module-builder`"的链接，把源码位置指向 `module-builder` 仓库而不是 `nuxt/cli`。
 
 ## 命令页的定义：它生成什么、在哪
 
@@ -50,9 +50,9 @@ CLI 这一段（034-048）讲的都是"构建你的**应用**"。这一篇是它
 
 > 在你**发布** Nuxt 模块之前构建它。
 
-**"在 `rootDir` 里生成 `dist`"这一句，顺便解掉了 040 的一个悬案。** 那一篇我列 cleanup 的五处清单时，第三条 `dist` 我写了"官方在这里没说明它是谁的产物，我不替它编解释"。现在两份文档可以对上了：**至少有一个官方记载的 `dist` 来源，就是模块构建产物**（`build-module` 页的这句）。
+**"在 `rootDir` 里生成 `dist`"这一句，顺便解掉了 040 的一个悬案。** 那一篇列 cleanup 的五处清单时，第三条 `dist` 只能标注"官方在这里没说明它是谁的产物"。现在两份文档可以对上了：**至少有一个官方记载的 `dist` 来源，就是模块构建产物**（`build-module` 页的这句）。
 
-**也就是说：在模块项目里跑 `nuxt cleanup`，会把你的模块构建产物一起删掉。**（这个因果是我把两页清单对上的结论；cleanup 页本身仍然没解释 `dist`。）
+**也就是说：在模块项目里跑 `nuxt cleanup`，会把你的模块构建产物一起删掉。**（这个因果是把两份清单对上才看得出来的；cleanup 页本身仍然没解释 `dist`。）
 
 ## 四个功能开关，默认全是 `false`
 
@@ -76,13 +76,13 @@ npx nuxt build-module [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|ver
 | 第一次把本地开发环境准备好 | `--prepare` | "Prepare module for local development" |
 | 想在产物里带上 sourcemap | `--sourcemap` | "Generate sourcemaps" |
 
-**注意这一页没有 `--prerender`、也没有 `--target`**（对照 037 的 build）——**因为模块不是一个可运行的站点**，那套 preset/预渲染概念在这儿不适用（这是我从选项表差集给出的判断）。
+**注意这一节没有 `--prerender`、也没有 `--target`**（对照 037 的 build）——**因为模块不是一个可运行的站点**，那套 preset/预渲染概念在这儿不适用（这是选项表差集比对出来的判断）。
 
-同样要记一句：这一页**没有** "本命令把 NODE_ENV 设为 …" 那条 note（034-043 里 dev/build/preview/prepare/typecheck/analyze 都有各自的说明，而这一条命令官方没写）。
+同样要记一句：这一节**没有** "本命令把 NODE_ENV 设为 …" 那条 note（034-043 里 dev/build/preview/prepare/typecheck/analyze 都有各自的说明，而这一条命令官方没写）。
 
 ## `--cwd` 在这里被明确写在前面
 
-这一页的参数表有一处和其它命令不同的措辞：
+这一节的参数表有一处和其它命令不同的措辞：
 
 | 参数 | 官方说明 |
 | --- | --- |
@@ -95,7 +95,7 @@ npx nuxt build-module [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|ver
 
 ## 模块项目里日常用的其实是脚本
 
-`guide/modules/getting-started` 那一页给的官方起步流程，跟 `build-module` 这条命令的关系值得单独说清。
+`guide/modules/getting-started` 那一节给的官方起步流程，跟 `build-module` 这条命令的关系值得单独说清。
 
 官方的模块起步命令（npm 写法）：
 
@@ -132,19 +132,19 @@ npm create nuxt -- -t module my-module
 - 照抄那份 dev container 配置到**应用项目**时，`dev:prepare` 这一步会失败——**要改成你项目里真实存在的脚本**（应用项目里对应的是 `postinstall` 用的 `nuxt prepare`，035）。
 - 那份配置演示的环境更像 pnpm + 带 `dev:*` 脚本的项目（官方在模块页也说了"随意声明更多 `dev:*` 脚本"）。
 
-**官方两处文档没有互相引用，这是我把两份文档对起来得到的结论**，不是我猜某处写错了。
+**官方两处文档没有互相引用，这是把两份文档对起来才得出的结论**，不是哪里写错了。
 
 ## 自查
 
 - [ ] `nuxt build-module` 是靠哪个包安装的二进制运行的？它属于 CLI 自带命令吗？
 - [ ] 它在哪个目录里生成什么？这件事对 `nuxt cleanup` 意味着什么？
 - [ ] `--build`、`--stub`、`--prepare` 分别对应"发布/开发存根/本地准备"哪一种？
-- [ ] 这一页里 `--cwd` 与 `ROOTDIR` 的优先级，官方是怎么写的？
+- [ ] 这一节里 `--cwd` 与 `ROOTDIR` 的优先级，官方是怎么写的？
 - [ ] 在模块项目里，官方让你为本地开发准备文件用的命令是什么？它和 `nuxt prepare` 是同一个东西吗？
 
 ## 下一篇
 
-从 050 起进入目录结构这一段：先看整棵树——官方在 directory-structure 那一页给每个目录都留了一句话定义，而"谁规定这个名字、谁规定这个位置"就是后面几十篇的总纲。
+从 050 起进入目录结构这一段：先看整棵树——官方在 directory-structure 那一节给每个目录都留了一句话定义，而"谁规定这个名字、谁规定这个位置"就是后面几十篇的总纲。
 
 ## 本文依据
 

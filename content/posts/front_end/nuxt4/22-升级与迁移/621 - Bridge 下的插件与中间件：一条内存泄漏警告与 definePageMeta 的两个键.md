@@ -1,6 +1,6 @@
 ---
 url: /posts/168f373f77e6fc79122dc480a66abfd7/
-title: Bridge 下的插件与中间件：一条内存泄漏警告与 definePageMeta 的两个键
+title: 621 - Bridge 下的插件与中间件：一条内存泄漏警告与 definePageMeta 的两个键
 date: 2027-05-07T09:00:00+08:00
 updated: 2027-05-07T09:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-Bridge 项目里最费解的一种现象是：本地跑得好好的，内存却一点点涨；或者某个中间件在某处就是不生效。这一页的两条警告正好各解释一种。
+Bridge 项目里最费解的一种现象是：本地跑得好好的，内存却一点点涨；或者某个中间件在某处就是不生效。这一节的两条警告正好各解释一种。
 
 ## 插件：换形状，也换注册方式
 
@@ -51,7 +51,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 然后就是这一节最重的一条 `::warning`，原话要点是：**"Although a compatibility interface is provided via `nuxtApp.vueApp` you should avoid registering plugins, directives, mixins or components this way without adding your own logic to ensure they are not installed more than once, or this may cause a memory leak."**
 
-拆开读是三件事：`nuxtApp.vueApp` 是**存在的**、它是**兼容通道**、**默认用法有风险**。重复安装是泄漏的成因，所以"要不要自己加一次性守卫"这件事，官方明确留给你。至于哪些注册必须走这条路，这一页没说。
+拆开读是三件事：`nuxtApp.vueApp` 是**存在的**、它是**兼容通道**、**默认用法有风险**。重复安装是泄漏的成因，所以"要不要自己加一次性守卫"这件事，官方明确留给你。至于哪些注册必须走这条路，这一节没说。
 
 ## 中间件：两个参数，一条目录限制
 
@@ -75,7 +75,7 @@ export default defineNuxtRouteMiddleware((to) => {
 
 这条能解释一种很具体的现象：**把中间件写在别处（例如随组件放的文件里、或从插件里引用一个非 `app/middleware` 下的文件）时它不生效**——不是注册问题，是**目录外的这种写法在 Bridge 下不被支持**。
 
-与迁移文档那一页对照着记更清楚：**`defineNuxtRouteMiddleware` 是新版写法**、全局中间件在 Bridge 之后仍靠 `.global` 这类约定，而**引用它的方式**从组件选项变成了 `definePageMeta`。
+与迁移文档那一节对照着记更清楚：**`defineNuxtRouteMiddleware` 是新版写法**、全局中间件在 Bridge 之后仍靠 `.global` 这类约定，而**引用它的方式**从组件选项变成了 `definePageMeta`。
 
 ## definePageMeta：先开宏，只有两个键可用
 
@@ -99,7 +99,7 @@ export default defineNuxtConfig({
 
 > But only for `middleware` and `layout`.
 
-**在 Bridge 阶段，`definePageMeta` 只有这两个键有效。** 所以不要指望 `key`、`transition`、`keepalive`、`validate` 这些在这个阶段就能用——那批要等到真正上 3 之后（`definePageMeta` 的完整键集在 API 那一页，而迁移文档里 `key`/`transition`/`keepalive` 各另有去处）。
+**在 Bridge 阶段，`definePageMeta` 只有这两个键有效。** 所以不要指望 `key`、`transition`、`keepalive`、`validate` 这些在这个阶段就能用——那批要等到真正上 3 之后（`definePageMeta` 的完整键集在 API 那一节，而迁移文档里 `key`/`transition`/`keepalive` 各另有去处）。
 
 `bridge.macros.pageMeta` 与 Bridge 配置页里那一项是同一个开关：**它属于"要显式打开"的那四个之一**，不开就用不了宏。
 
@@ -113,7 +113,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 622 把 Bridge 剩下的两页并起来读：meta 那页要求把配置里的 `head` 改名成 **`app.head`**（对象不再有 `hid` 去重键）、`useHead` 底层走的是 `@unhead/vue` 而不是 `vue-meta`、**不建议与 Nuxt 2 原生 `head()` 混用**，函数版 `titleTemplate` 则要挪到布局里；runtime config 那页只有一条前置警告——**用 `runtimeConfig` 之前 `nitro` 必须已经配好**，然后把 `publicRuntimeConfig`/`privateRuntimeConfig` 合成一个 `runtimeConfig`，读的时候要走 `$config.public.xxx`。
+下一篇 622 把 Bridge 剩下的两节并起来读：meta 那一节要求把配置里的 `head` 改名成 **`app.head`**（对象不再有 `hid` 去重键）、`useHead` 底层走的是 `@unhead/vue` 而不是 `vue-meta`、**不建议与 Nuxt 2 原生 `head()` 混用**，函数版 `titleTemplate` 则要挪到布局里；runtime config 那一节只有一条前置警告——**用 `runtimeConfig` 之前 `nitro` 必须已经配好**，然后把 `publicRuntimeConfig`/`privateRuntimeConfig` 合成一个 `runtimeConfig`，读的时候要走 `$config.public.xxx`。
 
 ## 本文依据
 

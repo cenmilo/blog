@@ -1,12 +1,12 @@
 ---
 url: /posts/67bafeb005a00e571b2065ae3eeceeb3/
-title: pages：说明句还写着 Nuxt 3，且没有类型没有默认值
+title: 582 - pages：说明句还写着 Nuxt 3，且没有类型没有默认值
 date: 2027-04-24T09:00:00+08:00
 updated: 2027-04-24T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`## pages` 的说明句是 "Whether to use the vue-router integration **in Nuxt 3**."——4.x 的配置参考里这一行还留着上个大版本的措辞。这一节**没有 `**Type**` 行、没有 `**Default**` 行**，只给了两句规则和一个示例：不填值时**按 `app/pages/` 目录是否存在**决定启用，另外可以传一个 glob 或 glob 数组去只扫部分文件（示例是 `pattern: ['**/*/*.vue', '!**/*.spec.*']`）。布尔写法的依据不在本节，而在页面目录那一页那句 "To force the pages system, set `pages: true`"；**`pages: false` 这个写法在整套 4.x 文档里一次都没出现过。**
+  摘要：`## pages` 的说明句是 "Whether to use the vue-router integration **in Nuxt 3**."——4.x 的配置参考里这一行还留着上个大版本的措辞。这一节**没有 `**Type**` 行、没有 `**Default**` 行**，只给了两句规则和一个示例：不填值时**按 `app/pages/` 目录是否存在**决定启用，另外可以传一个 glob 或 glob 数组去只扫部分文件（示例是 `pattern: ['**/*/*.vue', '!**/*.spec.*']`）。布尔写法的依据不在本节，而在页面目录那一节那句 "To force the pages system, set `pages: true`"；**`pages: false` 这个写法在整套 4.x 文档里一次都没出现过。**
 
 categories:
   - 前端开发
@@ -46,13 +46,13 @@ export default defineNuxtConfig({
 })
 ```
 
-两处措辞痕迹要指出：**说明句里的 "in Nuxt 3"** 是 4.x 文档里没清理干净的旧版本措辞（这一页别处都写 Nuxt 4 或版本号徽标）；另一处是句子里把目录写成 `app/pages/`，而**这个目录名本身是可改的**——`dir.pages` 那一节的类型是 `string`、默认值正是 `"app/pages"`，说明句是 "The directory which will be processed to auto-generate your application page routes."。**如果你改过 `dir.pages`，本节那句"有 `app/pages/` 目录就启用"里的路径名就不再是你的实际目录**，两节之间没有互指。
+两处措辞痕迹要指出：**说明句里的 "in Nuxt 3"** 是 4.x 文档里没清理干净的旧版本措辞（这一节别处都写 Nuxt 4 或版本号徽标）；另一处是句子里把目录写成 `app/pages/`，而**这个目录名本身是可改的**——`dir.pages` 那一节的类型是 `string`、默认值正是 `"app/pages"`，说明句是 "The directory which will be processed to auto-generate your application page routes."。**如果你改过 `dir.pages`，本节那句"有 `app/pages/` 目录就启用"里的路径名就不再是你的实际目录**，两节之间没有互指。
 
 ## 省略时的判定，和强制启用它的两条路
 
-本节给的唯一规则是："**如果你不提供值**，那么只要源码目录里有 `app/pages/` 就启用。"这条规则的出处是页面目录那一页的那句 `::note`：为了减小包体积，这个目录是**可选的**——只写 `app.vue` 时 `vue-router` 不会被打进包里。
+本节给的唯一规则是："**如果你不提供值**，那么只要源码目录里有 `app/pages/` 就启用。"这条规则的出处是页面目录那一节的那句 `::note`：为了减小包体积，这个目录是**可选的**——只写 `app.vue` 时 `vue-router` 不会被打进包里。
 
-想反过来强制启用，那一页给的是两条路，本节一条都没写：
+想反过来强制启用，那一节给的是两条路，本节一条都没写：
 
 > To force the pages system, set `pages: true` in `nuxt.config` or have a `router.options.ts`.
 
@@ -69,12 +69,12 @@ export default defineNuxtConfig({
 
 第二句里"可以传**一个 glob 或 glob 数组**"是唯一关于取值形状的线索，示例只演示了数组那种。
 
-顺带一个衔接点：页面文件能有哪些扩展名，本节不讲，由 `## extensions` 那节决定（类型 `array`，默认六项 `.js`、`.jsx`、`.mjs`、`.ts`、`.tsx`、`.vue`），页面目录那一页也把"合法扩展名"链到了那一节。**注意示例里的 pattern 只匹配 `.vue`**，照它写会把 `.ts`、`.tsx` 写的页面排除掉——这是示例本身的取舍，不是默认行为。
+顺带一个衔接点：页面文件能有哪些扩展名，本节不讲，由 `## extensions` 那节决定（类型 `array`，默认六项 `.js`、`.jsx`、`.mjs`、`.ts`、`.tsx`、`.vue`），页面目录那一节也把"合法扩展名"链到了那一节。**注意示例里的 pattern 只匹配 `.vue`**，照它写会把 `.ts`、`.tsx` 写的页面排除掉——这是示例本身的取舍，不是默认行为。
 
 ## 自查
 
 - `## pages`：**无 Type、无 Default**；两句规则 ＋ 一个 `pattern` 示例，说明句里还留着 "in Nuxt 3"。
-- 省略不写时的判定条件是"源码里有 `app/pages/` 目录"，而这条规则的完整表述在页面目录那一页（目录可选、只写 `app.vue` 时不含 `vue-router`）。
+- 省略不写时的判定条件是"源码里有 `app/pages/` 目录"，而这条规则的完整表述在页面目录那一节（目录可选、只写 `app.vue` 时不含 `vue-router`）。
 - 确证过的写法只有两种：`pages: { pattern: [...] }` 与 **`pages: true`**（强制启用，另一条路是存在 `router.options.ts`）。
 - **`pages: false` 无任何文档依据**；要"没有路由系统"，官方给的写法是让页面目录不存在。
 - `pattern` 的默认行为、`!` 取反语法的依据、模式求值的基准目录：**三处均无记载**，要实测。

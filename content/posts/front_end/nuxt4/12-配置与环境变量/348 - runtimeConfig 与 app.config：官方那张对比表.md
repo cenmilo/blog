@@ -1,6 +1,6 @@
 ---
 url: /posts/a02eb23905b93638b041a116c14c1f05/
-title: runtimeConfig 与 app.config：官方那张对比表
+title: 348 - runtimeConfig 与 app.config：官方那张对比表
 date: 2027-02-05T09:00:00+08:00
 updated: 2027-02-05T09:00:00+08:00
 author: cmdragon
@@ -55,7 +55,7 @@ configuration 页的表原文：
 2. **Environment variables**：runtimeConfig 能被 `NUXT_` 变量覆盖（342）；app.config **不能**（构建期定死，345）。
 3. **Reactive**：两者都响应式（app.config 用 `updateAppConfig` 改，266；runtimeConfig 客户端 public 那份可写且响应式，341）。
 4. **Types support**：runtimeConfig 类型是**部分**（Partial），app.config 是**完整**。这是 runtimeConfig 的一个已知短板（344 的类型化就是在补它）。
-5. **Configuration per request**：runtimeConfig 不行（它是进程/构建级 + 环境变量级），app.config 能**按请求**给不同配置——官方 app-config 那页说 `useAppConfig()` 在服务端"as a copy per request when passed the event"（265/313 那条，app.config 随请求可不同）。
+5. **Configuration per request**：runtimeConfig 不行（它是进程/构建级 + 环境变量级），app.config 能**按请求**给不同配置——官方 app-config 那一节说 `useAppConfig()` 在服务端"as a copy per request when passed the event"（265/313 那条，app.config 随请求可不同）。
 6. **Hot module replacement**：runtimeConfig 改了要重启进程（335 dev 改 .env 触发 restart），app.config 支持 HMR 热改（266 那句 "editing it with HMR"）。
 7. **Non-primitive JS types**：runtimeConfig 因为要序列化进 payload（264），只能放可序列化值、放不下函数/类实例等；app.config 能放非基本 JS 类型（它进客户端包、不走 payload 序列化那套约束）。
 

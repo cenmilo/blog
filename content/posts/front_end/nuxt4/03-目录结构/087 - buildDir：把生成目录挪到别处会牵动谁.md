@@ -1,6 +1,6 @@
 ---
 url: /posts/5552c8846d2a0f6d6fcd6bb842c8a2d4/
-title: buildDir：把生成目录挪到别处会牵动谁
+title: 087 - buildDir：把生成目录挪到别处会牵动谁
 date: 2026-11-10T09:00:00+08:00
 updated: 2026-11-10T09:00:00+08:00
 author: cmdragon

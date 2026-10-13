@@ -1,6 +1,6 @@
 ---
 url: /posts/bbcd4f0ed79c054258641988555e7aab/
-title: spa-loading-template：关掉 SSR 后白屏期的那份 HTML
+title: 104 - spa-loading-template：关掉 SSR 后白屏期的那份 HTML
 date: 2026-11-15T11:00:00+08:00
 updated: 2026-11-15T11:00:00+08:00
 author: cmdragon

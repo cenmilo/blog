@@ -1,6 +1,6 @@
 ---
 url: /posts/dd3e1cafe3bf954ae2d0f7331c51847b/
-title: name 与关闭：布局的四种不套外壳写法与错误页那一层
+title: 181 - name 与关闭：布局的四种不套外壳写法与错误页那一层
 date: 2026-12-11T10:00:00+08:00
 updated: 2026-12-11T10:00:00+08:00
 author: cmdragon

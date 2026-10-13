@@ -1,6 +1,6 @@
 ---
 url: /posts/9ab5a7fec357dd2c10c7c1215d11515d/
-title: DevTools 深入：命令与 devtools 配置的各节
+title: 712 - DevTools 深入：命令与 devtools 配置的各节
 date: 2027-06-06T10:00:00+08:00
 updated: 2027-06-06T10:00:00+08:00
 author: cmdragon
@@ -43,7 +43,7 @@ npx nuxt devtools <COMMAND> [ROOTDIR] [--cwd=<directory>]
 | --- | --- | --- |
 | `--cwd=<directory>` | | 指定 Nuxt 项目的根目录 |
 
-**`COMMAND` 是尖括号写法，也就是必填**——只有 `enable` 与 `disable` 两个合法值；`ROOTDIR` 用方括号，可省，默认当前目录。选项表里 `--cwd` 与 `ROOTDIR` 描述的是同一件事，**这一页没有说明两者同时给出时谁优先**（别的命令页会明写"优先于 ROOTDIR"，这一页没有那句话）。
+**`COMMAND` 是尖括号写法，也就是必填**——只有 `enable` 与 `disable` 两个合法值；`ROOTDIR` 用方括号，可省，默认当前目录。选项表里 `--cwd` 与 `ROOTDIR` 描述的是同一件事，**这一节没有说明两者同时给出时谁优先**（别的命令页会明写"优先于 ROOTDIR"，这一节没有那句话）。
 
 ## `enable` 做两件事，偏好存在用户级文件里
 
@@ -71,13 +71,13 @@ npx nuxt devtools <COMMAND> [ROOTDIR] [--cwd=<directory>]
 
 **一、这一节既没有 `Type` 行，也没有 `Default` 行。**相邻的那些节（比如上一节 `devServerHandlers`）都规规矩矩给了类型，而 devtools 这一节没有。**所以文档在这里没有告诉你这一节能传哪些字段、布尔还是对象、默认是开还是关**——要确认得去它指向的 devtools 站点。
 
-**二、那句版本号豁免是分量的**。Nuxt 对稳定版的承诺写在发布节奏那一页：主版本与次版本**不应包含破坏性变更，除非是在明确标记为 experimental 的选项范围内**。而 devtools 这一节直接说了另一套规则：**它的破坏性变更可能不反映在 Nuxt 版本号上**，意味着**升级 Nuxt 的小版本也可能带来 devtools 的行为变化**。这一句与 `externalVue` 那句"很可能不久被移除"是同类的局部免责。
+**二、那句版本号豁免是分量的**。Nuxt 对稳定版的承诺写在发布节奏那一节：补丁版本与次版本**不应包含破坏性变更，除非是在明确标记为 `experimental` 的选项里**。而 devtools 这一节直接说了另一套规则：**它的破坏性变更可能不反映在 Nuxt 版本号上**，意味着**升级 Nuxt 的小版本也可能带来 devtools 的行为变化**。这一句与 `externalVue` 那句"很可能不久被移除"是同类的局部免责。
 
 ## DevTools 在类型链路上也有一份存在感
 
-配置参考的 `typescript.deepModules` 那一节，默认列表有 14 项，`@nuxt/devtools` 是其中之一。该节对这份列表的说明是：**为这些模块在 `compilerOptions.paths` 里生成深层别名，还不支持子路径；在 pnpm monorepo 里用 `shamefully-hoist=false` 时可能需要它**。
+配置参考的 `typescript.hoist` 那一节，默认列表有 17 项，`@nuxt/devtools` 是其中之一。该节对这份列表的说明是：**为这些模块在 `compilerOptions.paths` 里生成深层别名，还不支持子路径；在 pnpm monorepo 里用 `shamefully-hoist=false` 时可能需要它**。
 
-所以 devtools 不只是面板，它也参与了类型解析。如果你的 monorepo 里出现 devtools 相关的类型解析问题，`typescript.deepModules` 是这一页上唯一给了入口的地方。
+所以 devtools 不只是面板，它也参与了类型解析。如果你的 monorepo 里出现 devtools 相关的类型解析问题，`typescript.hoist` 是这一节上唯一给了入口的地方。
 
 ## 与 IDE 调试的分工
 
@@ -94,10 +94,14 @@ npx nuxt devtools <COMMAND> [ROOTDIR] [--cwd=<directory>]
 
 1. `enable` 是"全局安装＋项目启用"，不是只装依赖；换机器要重新执行。
 2. 偏好落在用户级 `.nuxtrc`，而这个文件会让构建缓存整体失效——批量操作前后要留意构建时间变化。
-3. `COMMAND` 必填，只有 `enable`、`disable` 两个值；`--cwd` 与 `ROOTDIR` 的优先级本页未说明。
+3. `COMMAND` 必填，只有 `enable`、`disable` 两个值；`--cwd` 与 `ROOTDIR` 的优先级这一节未说明。
 4. 依赖 devtools 行为的项目要接受一件事：**它的破坏性变更不受 Nuxt 版本号约束**。
 
 下一篇离开框架内部，看一个具体的接入方式：官方文档的 MCP 服务，把文档站接进支持 MCP 的编辑器。
+
+## 下一篇
+
+下一篇 713：用 MCP 把官方文档接进编辑器：三个资源、十个工具与十三种接法
 
 ## 本文依据
 

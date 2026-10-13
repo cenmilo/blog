@@ -1,6 +1,6 @@
 ---
 url: /posts/25ce752c40cd9195989d540dd8632569/
-title: 静态为主的站点配方：预渲染、noScripts、岛屿与延迟水合
+title: 381 - 静态为主的站点配方：预渲染、noScripts、岛屿与延迟水合
 date: 2027-02-16T09:00:00+08:00
 updated: 2027-02-16T09:00:00+08:00
 author: cmdragon

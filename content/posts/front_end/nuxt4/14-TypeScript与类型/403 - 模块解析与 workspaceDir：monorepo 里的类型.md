@@ -1,6 +1,6 @@
 ---
 url: /posts/6c7a58c37cbb16e5f7cfed581a6529a7/
-title: 模块解析与 workspaceDir：monorepo 里的类型
+title: 403 - 模块解析与 workspaceDir：monorepo 里的类型
 date: 2027-02-23T10:00:00+08:00
 updated: 2027-02-23T10:00:00+08:00
 author: cmdragon

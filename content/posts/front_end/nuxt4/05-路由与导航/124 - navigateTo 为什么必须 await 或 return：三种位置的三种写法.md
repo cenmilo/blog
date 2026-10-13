@@ -1,6 +1,6 @@
 ---
 url: /posts/221bb4f7f269ee85a79bd9194f120f04/
-title: navigateTo 为什么必须 await 或 return：三种位置的三种写法
+title: 124 - navigateTo 为什么必须 await 或 return：三种位置的三种写法
 date: 2026-11-22T10:00:00+08:00
 updated: 2026-11-22T10:00:00+08:00
 author: cmdragon

@@ -1,12 +1,12 @@
 ---
 url: /posts/fce9fcc83bed0dcbefca1abf95242c1d/
-title: Kit 插件两函数：addPlugin 的 order 区间与 addPluginTemplate 的八字段
+title: 652 - Kit 插件两函数：addPlugin 的 order 区间与 addPluginTemplate 的八字段
 date: 2027-05-17T10:00:00+08:00
 updated: 2027-05-17T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：模块带插件有两个函数：**`addPlugin` 注册一个已有的插件文件，`addPluginTemplate` 先生成代码再把它注册成插件**（后者用于**需要在构建期生成代码**的情况，Nuxt 内部就用它来生成 Vue app 配置）。关于执行顺序，这一页给了整套数字：**数字小的先跑，用户插件默认 `0`；官方建议把 `order` 取在 `-20`（跑在 Nuxt 插件之前）到 `20`（跑在之后）之间**——同时两条 `::warning` 又说**非必要不要用 `order`，只是要排在 Nuxt 默认之后就用 `append`**，而 `append` **默认 `false`，也就是默认插到数组前面**。`mode` 有三个值（`all`/`server`/`client`），**也可以在 `src` 上用 `.client`、`.server` 后缀**达到同样效果。
+  摘要：模块带插件有两个函数：**`addPlugin` 注册一个已有的插件文件，`addPluginTemplate` 先生成代码再把它注册成插件**（后者用于**需要在构建期生成代码**的情况，Nuxt 内部就用它来生成 Vue app 配置）。关于执行顺序，这一节给了整套数字：**数字小的先跑，用户插件默认 `0`；官方建议把 `order` 取在 `-20`（跑在 Nuxt 插件之前）到 `20`（跑在之后）之间**——同时两条 `::warning` 又说**非必要不要用 `order`，只是要排在 Nuxt 默认之后就用 `append`**，而 `append` **默认 `false`，也就是默认插到数组前面**。`mode` 有三个值（`all`/`server`/`client`），**也可以在 `src` 上用 `.client`、`.server` 后缀**达到同样效果。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-插件的顺序问题比"能不能注入"更难查：跑早了拿不到别人提供的东西，跑晚了又来不及改配置。这一页把顺序的数字规则一次给全了。
+插件的顺序问题比"能不能注入"更难查：跑早了拿不到别人提供的东西，跑晚了又来不及改配置。这一节把顺序的数字规则一次给全了。
 
 ## 为什么模块要显式注册
 
@@ -93,7 +93,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 })
 ```
 
-这个 runtime 示例里 **`useColorMode()` 没有 import**，而模块结构那一页明确警告过：**发布出去的模块在 `node_modules` 里不启用自动导入，必须从 `#imports` 之类显式导入**。两处口径不一致——**照抄示例发到 npm 会出问题，实际写插件时要自己补上显式导入**。
+这个 runtime 示例里 **`useColorMode()` 没有 import**，而模块结构那一节明确警告过：**发布出去的模块在 `node_modules` 里不启用自动导入，必须从 `#imports` 之类显式导入**。两处口径不一致——**照抄示例发到 npm 会出问题，实际写插件时要自己补上显式导入**。
 
 另外注意 `mode: 'client'` 与那个只在 `app:mounted` 做的事是配套的：**客户端才有的动作，就别让它进服务端 bundle**。
 
@@ -209,20 +209,24 @@ export default defineNuxtPlugin({
 
 ## 顺序这件事的完整图
 
-把这一页散落的四处合起来：
+把这一节散落的四处合起来：
 
 | 机制 | 出处 | 效果 |
 | --- | --- | --- |
 | `order` 数字 | 两个插件对象的表 | **越小越先跑；用户插件默认 `0`；`-20` 是 pre、`20` 是 post** |
 | `append` | 两个函数的 `options` | **默认 `false`＝插到数组前面**；`true` 才追加 |
-| `enforce: 'pre'` | 生成代码里的插件本体属性 | 框架内部示例用它（含义在本页未解释） |
+| `enforce: 'pre'` | 生成代码里的插件本体属性 | 框架内部示例用它（含义在这一节未解释） |
 | 警告本身 | 两条 `::warning` | **非必要不要用 `order`**；要排在默认之后就用 `append` |
 
 结论是：**先考虑 `append`，再考虑 `order`，`enforce` 属于生成代码时的另一种写法**。
 
-这一页没记载的：`addPlugin` 返回的那个 `NuxtPlugin` 能拿来做什么、`append` 与 `order` 同时给出时的优先级、以及 Nuxt 自带插件分别占在哪个 `order` 上（只知道用户默认 0、边界建议 ±20）。
+这一节没记载的：`addPlugin` 返回的那个 `NuxtPlugin` 能拿来做什么、`append` 与 `order` 同时给出时的优先级、以及 Nuxt 自带插件分别占在哪个 `order` 上（只知道用户默认 0、边界建议 ±20）。
 
 下一篇继续 Kit 的其余分类。
+
+## 下一篇
+
+下一篇 653：构建期读写运行时配置：useRuntimeConfig 无参与 updateRuntimeConfig 的 HMR
 
 ## 本文依据
 

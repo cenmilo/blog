@@ -1,12 +1,12 @@
 ---
 url: /posts/47724474a20ef0c8f9c50a7ab0120ee9/
-title: spaLoadingTemplate：有默认值却没有类型行，位置开关在实验特性页
+title: 593 - spaLoadingTemplate：有默认值却没有类型行，位置开关在实验特性页
 date: 2027-04-27T11:00:00+08:00
 updated: 2027-04-27T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`## spaLoadingTemplate` 的类型说明写在定性句里——**"Boolean or a path to an HTML file with the contents of which will be inserted into any HTML page rendered with `ssr: false`."**——而这一节**有 `**Default:** null` 却没有 `**Type**` 行**。三条分支（不设／`false`／`true`）在原文里被挤成同一段。要决定这块加载屏渲染在哪，得翻到实验特性那一页的 `spaLoadingTemplateLocation`：`within` 渲染在 `<div id="__nuxt">` 内部，`body` 渲染在它旁边，官方说后者**"avoids a white flash when hydrating a client-only page"**。还有两个键在管这个元素本身——`app.spaLoaderTag`（默认 `"div"`）与 `app.spaLoaderAttrs.id`（默认 `"__nuxt-loader"`），**这四处分在两节，文档从没放在一起讲过。**
+  摘要：`## spaLoadingTemplate` 的类型说明写在定性句里——**"Boolean or a path to an HTML file with the contents of which will be inserted into any HTML page rendered with `ssr: false`."**——而这一节**有 `**Default:** null` 却没有 `**Type**` 行**。三条分支（不设／`false`／`true`）在原文里被挤成同一段。要决定这块加载屏渲染在哪，得翻到实验特性那一节的 `spaLoadingTemplateLocation`：`within` 渲染在 `<div id="__nuxt">` 内部，`body` 渲染在它旁边，官方说后者**"avoids a white flash when hydrating a client-only page"**。还有两个键在管这个元素本身——`app.spaLoaderTag`（默认 `"div"`）与 `app.spaLoaderAttrs.id`（默认 `"__nuxt-loader"`），**这四处分在两节，文档从没放在一起讲过。**
 
 categories:
   - 前端开发
@@ -53,9 +53,9 @@ tags:
 
 生效前提写在定性句末尾：**只进入"以 `ssr: false` 渲染的那些 HTML 页面"**。渲染概念页那句建议也对应这个前提——如果你要用 `ssr: false`，就应该在 `~/spa-loading-template.html` 放一份你想要的加载屏 HTML，它会一直渲染到应用完成水合。
 
-## 位置开关在实验特性那一页
+## 位置开关在实验特性那一节
 
-要决定这块 HTML 渲染在哪儿，配置参考这一节没有答案；`spaLoadingTemplateLocation` 是**实验特性**，条目在实验特性那一页。
+要决定这块 HTML 渲染在哪儿，配置参考这一节没有答案；`spaLoadingTemplateLocation` 是**实验特性**，条目在实验特性那一节。
 
 它的开头两句：
 

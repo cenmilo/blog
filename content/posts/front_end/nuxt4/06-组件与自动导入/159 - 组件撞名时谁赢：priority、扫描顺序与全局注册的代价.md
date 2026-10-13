@@ -1,6 +1,6 @@
 ---
 url: /posts/5d3f637e52a0e20a79dcccc1ed943211/
-title: 组件撞名时谁赢：priority、扫描顺序与全局注册的代价
+title: 159 - 组件撞名时谁赢：priority、扫描顺序与全局注册的代价
 date: 2026-12-04T09:00:00+08:00
 updated: 2026-12-04T09:00:00+08:00
 author: cmdragon

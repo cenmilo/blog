@@ -1,6 +1,6 @@
 ---
 url: /posts/79d69c672035b8454283848d6b69174e/
-title: NuxtPage 的五个 prop、pageKey 与子页面嵌套
+title: 092 - NuxtPage 的五个 prop、pageKey 与子页面嵌套
 date: 2026-11-11T11:00:00+08:00
 updated: 2026-11-11T11:00:00+08:00
 author: cmdragon

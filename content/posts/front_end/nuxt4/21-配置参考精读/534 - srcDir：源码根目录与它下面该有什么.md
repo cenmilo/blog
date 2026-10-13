@@ -1,6 +1,6 @@
 ---
 url: /posts/fc5a4b43674a01a9976afe30b11a1aaa/
-title: srcDir：源码根目录与它下面该有什么
+title: 534 - srcDir：源码根目录与它下面该有什么
 date: 2027-04-08T09:00:00+08:00
 updated: 2027-04-08T09:00:00+08:00
 author: cmdragon

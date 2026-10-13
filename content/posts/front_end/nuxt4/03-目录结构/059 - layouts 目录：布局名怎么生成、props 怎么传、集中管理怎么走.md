@@ -1,6 +1,6 @@
 ---
 url: /posts/95efea14eed378ee2e3842155bb5f093/
-title: layouts 目录：布局名怎么生成、props 怎么传、集中管理怎么走
+title: 059 - layouts 目录：布局名怎么生成、props 怎么传、集中管理怎么走
 date: 2026-10-31T11:00:00+08:00
 updated: 2026-10-31T11:00:00+08:00
 author: cmdragon
@@ -30,7 +30,7 @@ tags:
 
 ## 性能那条 tip：布局是异步导入的
 
-官方在这一页第一句就给了这个性质（很多人读布局文档会跳过它）：
+官方在这一节第一句就给了这个性质（很多人读布局文档会跳过它）：
 
 > **出于最佳性能，放置在此目录里的组件会在被使用时通过异步导入自动加载。**
 
@@ -74,7 +74,7 @@ tags:
 
 ## 三种指定方式：逐页、全局 prop、集中配置
 
-官方给的三种（这一页的 Enable Layouts 一节）：
+官方给的三种（这一节的 Enable Layouts 一节）：
 
 > - 在页面里用 `definePageMeta` 设置 `layout` 属性。
 > - 设置 `<NuxtLayout>` 的 `name` prop。
@@ -242,7 +242,7 @@ setPageLayout('panel', { sidebar: true, title: 'Dashboard' })
 
 ## 下一篇
 
-060 讲 `app/middleware/`：官方在这一页列了三种中间件、"只扫描顶层文件与子目录的 index"这条目录规则，以及那条最容易被撞的禁令——中间件里不能用 `useRoute()`，要用函数参数或 `useRouter()` 的 `currentRoute` 代替。
+060 讲 `app/middleware/`：官方在这一节列了三种中间件、"只扫描顶层文件与子目录的 index"这条目录规则，以及那条最容易被撞的禁令——中间件里不能用 `useRoute()`，要用函数参数或 `useRouter()` 的 `currentRoute` 代替。
 
 ## 本文依据
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/b06cb7849e987189aefd6b3020da069b/
-title: nuxtApp.provide 与 useNuxtApp 取 $xxx 的规则
+title: 274 - nuxtApp.provide 与 useNuxtApp 取 $xxx 的规则
 date: 2027-01-11T10:00:00+08:00
 updated: 2027-01-11T10:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/5c33f8224970e04f45a7f9b5d2b8795d/
-title: typescript 配置节：typeCheck、shim、strict 与四份 tsconfig
+title: 397 - typescript 配置节：typeCheck、shim、strict 与四份 tsconfig
 date: 2027-02-21T10:00:00+08:00
 updated: 2027-02-21T10:00:00+08:00
 author: cmdragon

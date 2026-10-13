@@ -1,6 +1,6 @@
 ---
 url: /posts/89a6e85688a343138c92d90c6565caf0/
-title: vue：五个子项、transformAssetUrls 的五个默认数组与一句警告
+title: 577 - vue：五个子项、transformAssetUrls 的五个默认数组与一句警告
 date: 2027-04-22T10:00:00+08:00
 updated: 2027-04-22T10:00:00+08:00
 author: cmdragon
@@ -42,13 +42,13 @@ tags:
 
 **`config` 那条的限制是可执行的判据**：原句 "Only serializable options may be set in your `nuxt.config`. All other options should be set at runtime in a Nuxt plugin."——Vue 应用配置里那些函数型、实例型的选项（例如自定义错误处理、组件解析相关的钩子）**不能写在配置文件里**，要写就写到插件里。
 
-**`compilerOptions` 是"建时传入"**："will be passed at build time" 这句定了它的时机，具体能传哪些项由 Vue 文档那侧决定，Nuxt 这页不列。
+**`compilerOptions` 是"建时传入"**："will be passed at build time" 这句定了它的时机，具体能传哪些项由 Vue 文档那侧决定，Nuxt 这一节不列。
 
 ## propsDestructure：默认已经开着，示例却在教怎么开
 
 `propsDestructure` 的类型行写 `boolean`，默认值 `true`——**响应式解构（reactive destructure，即 `const { foo } = defineProps()` 之后 `foo` 仍是响应式的，不必每次写 `props.foo`）在 Nuxt 里默认就是开的。**
 
-而入门配置那一页讲它时的说法是另一套：
+而入门配置那一节讲它时的说法是另一套：
 
 > You may need to enable experimental features in Vue, such as `propsDestructure`. Nuxt provides an easy way to do that in `nuxt.config.ts`, no matter which builder you are using:
 
@@ -79,7 +79,7 @@ export default defineNuxtConfig({
 
 翻成动作就是：**模板字符串来自用户输入的场景，不能靠打开这一项来实现**（XSS 与远程代码执行）。Vue 安全指南的链接在同一句里给出来了。
 
-服务端组件那一页还补了一条与它相关的行为：island 的 props 来自请求（URL 查询或 body），要当不可信输入处理，Nuxt 会拒掉最容易漏的那两类——**未声明的顶层 `as`**，以及**`vue.runtimeCompiler` 打开时 props 里任何位置的 `template`**。也就是说这一项开了之后，官方在服务端组件入口上确实按"它可能被滥用"来做了拦截；除此之外的动态组件解析（`<component :is>`、`h()`、`resolveDynamicComponent()`、多态 `as`/`asChild`）仍要你自己校验传进去的值。
+服务端组件那一节还补了一条与它相关的行为：island 的 props 来自请求（URL 查询或 body），要当不可信输入处理，Nuxt 会拒掉最容易漏的那两类——**未声明的顶层 `as`**，以及**`vue.runtimeCompiler` 打开时 props 里任何位置的 `template`**。也就是说这一项开了之后，官方在服务端组件入口上确实按"它可能被滥用"来做了拦截；除此之外的动态组件解析（`<component :is>`、`h()`、`resolveDynamicComponent()`、多态 `as`/`asChild`）仍要你自己校验传进去的值。
 
 ## transformAssetUrls：五个默认数组，零句解释
 
@@ -101,7 +101,7 @@ export default defineNuxtConfig({
 
 - `## vue` 定性句只有 "Vue.js config"，五个子项的类型/默认行分布很不齐：只有 `propsDestructure` 与 `runtimeCompiler` 两条是完整的 `boolean` ＋ 默认值。
 - `config` 那条限制照做：**可序列化的才写进配置文件**，函数型的进插件。
-- `propsDestructure` 默认 `true`；入门页那段"可能要打开它"与它口径不同，且那页承诺这条路径与构建器无关。
+- `propsDestructure` 默认 `true`；入门那一节那段"可能要打开它"与它口径不同，且那一节承诺这条路径与构建器无关。
 - `runtimeCompiler` 默认 `false`；打开后模板按 JavaScript 执行，**等价 `eval`**，不要编译不可信输入；服务端组件入口会拒掉带 `template` 的 island props。
 - `transformAssetUrls`：**零说明、零外链**，只有五个默认数组；合并行为未记载。
 - `vue.reactivityTransform` 这个键已经不存在（自 Nuxt 3.9／Vue 3.4 移入 Vue Macros）。

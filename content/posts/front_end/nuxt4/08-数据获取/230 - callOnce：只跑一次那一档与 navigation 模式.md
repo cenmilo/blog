@@ -1,6 +1,6 @@
 ---
 url: /posts/e42b7ddab6016469e4a18a2d32629e30/
-title: callOnce：只跑一次那一档与 navigation 模式
+title: 230 - callOnce：只跑一次那一档与 navigation 模式
 date: 2026-12-27T11:00:00+08:00
 updated: 2026-12-27T11:00:00+08:00
 author: cmdragon

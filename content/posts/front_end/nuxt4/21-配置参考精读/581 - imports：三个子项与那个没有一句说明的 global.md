@@ -1,6 +1,6 @@
 ---
 url: /posts/cea7a00e72ac97a4e4903c49a5d5f144/
-title: imports：三个子项与那个没有一句说明的 global
+title: 581 - imports：三个子项与那个没有一句说明的 global
 date: 2027-04-23T11:00:00+08:00
 updated: 2027-04-23T11:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 节本身与三个子项
 
-`## imports` 只有一句定性：**"Configure how Nuxt auto-imports composables into your application."**，加一条 See 指向组合式函数目录那一页。**这一节自己没有 Type 行、没有 Default 行。**
+`## imports` 只有一句定性：**"Configure how Nuxt auto-imports composables into your application."**，加一条 See 指向组合式函数目录那一节。**这一节自己没有 Type 行、没有 Default 行。**
 
 | 子项 | Type | Default | 说明句 |
 | --- | --- | --- | --- |
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
 })
 ```
 
-组合式函数目录那一页还补了**条目可以写 glob**，并给了三种形状：
+组合式函数目录那一节还补了**条目可以写 glob**，并给了三种形状：
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
 })
 ```
 
-这三行分别对应：**只扫顶层**、**扫嵌套一层的特定入口文件**（名字与扩展名都要对上）、**扫该目录下全部**。那一页同时给了官方更推荐的做法——**在 `app/composables/index.ts` 里再导出（re-export）需要的东西**，示例是 `export { utils } from './nested/utils.ts'`，注释写着"Enables auto import for this export"。**配置里加 glob 是第二条路，不是第一条。**
+这三行分别对应：**只扫顶层**、**扫嵌套一层的特定入口文件**（名字与扩展名都要对上）、**扫该目录下全部**。那一节同时给了官方更推荐的做法——**在 `app/composables/index.ts` 里再导出（re-export）需要的东西**，示例是 `export { utils } from './nested/utils.ts'`，注释写着"Enables auto import for this export"。**配置里加 glob 是第二条路，不是第一条。**
 
 顺带记一处口径差：`dirs` 那句把默认目录写成 **`~/composables`、`~/utils`**（`~` 别名视角），而 `scan` 那句写的是 **`app/composables/`、`app/utils/`**（srcDir 视角）。两处说的是同一批目录，只是写法不同——**如果你的 `srcDir` 不是默认的 `app`，这两句给你的指向并不一样清楚**，要以 `srcDir` 为准去核对实际路径。
 
@@ -81,7 +81,7 @@ export default defineNuxtConfig({
 - 停止扫描的是 **`app/composables/` 与 `app/utils/`**。
 - **"Auto-imports registered by Nuxt or other modules, such as imports from `vue` or `nuxt`, will still be enabled."** —— 框架自己注册的、模块注册的自动导入**不受影响**。
 
-所以 `scan: false` 不是"关掉自动导入"，而是"不再从你自己的这两个目录里收集名字"。真要完全关掉自动导入，文档里出现的写法是另一个键：`imports: { autoImport: false }`（这句来自 Nuxt 3 兼容 API 那一页，配套说明是"这会完全禁用自动导入，但显式 import 仍然可用"）。
+所以 `scan: false` 不是"关掉自动导入"，而是"不再从你自己的这两个目录里收集名字"。真要完全关掉自动导入，文档里出现的写法是另一个键：`imports: { autoImport: false }`（这句来自 Nuxt 3 兼容 API 那一节，配套说明是"这会完全禁用自动导入，但显式 import 仍然可用"）。
 
 **而 `autoImport` 在配置参考这一节里没有条目**——三个子项之外，它和 `presets` 都属于"别处在用、这节不载"的键。
 

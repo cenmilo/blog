@@ -1,6 +1,6 @@
 ---
 url: /posts/026fe017d7c50a5bf4c6691e2dc0d7de/
-title: stripNeverHydratedData：不水合的组件别把数据塞进 payload
+title: 267 - stripNeverHydratedData：不水合的组件别把数据塞进 payload
 date: 2027-01-09T09:00:00+08:00
 updated: 2027-01-09T09:00:00+08:00
 author: cmdragon
@@ -89,7 +89,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-到这里 P09 客户端状态的具体机制基本讲完。下一篇 268 把 useState / useCookie / app.config / runtimeConfig / payload 这几种"状态该放哪儿"的选择，收进一张决策表。
+到这里 250-269 客户端状态的具体机制基本讲完。下一篇 268 把 useState / useCookie / app.config / runtimeConfig / payload 这几种"状态该放哪儿"的选择，收进一张决策表。
 
 ## 本文依据
 

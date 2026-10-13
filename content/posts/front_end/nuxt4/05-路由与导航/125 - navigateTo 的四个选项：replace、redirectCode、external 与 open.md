@@ -1,6 +1,6 @@
 ---
 url: /posts/bd34d34e40e61e153a55059b50fe0b1f/
-title: navigateTo 的四个选项：replace、redirectCode、external 与 open
+title: 125 - navigateTo 的四个选项：replace、redirectCode、external 与 open
 date: 2026-11-22T11:00:00+08:00
 updated: 2026-11-22T11:00:00+08:00
 author: cmdragon

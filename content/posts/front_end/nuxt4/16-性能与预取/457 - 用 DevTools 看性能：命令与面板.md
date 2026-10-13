@@ -1,6 +1,6 @@
 ---
 url: /posts/92ba04a8825182081d69d9f514804015/
-title: 用 DevTools 看性能：命令与面板
+title: 457 - 用 DevTools 看性能：命令与面板
 date: 2027-03-13T10:00:00+08:00
 updated: 2027-03-13T10:00:00+08:00
 author: cmdragon
@@ -127,7 +127,7 @@ nuxt dev --inspect
 
 ## 下一篇
 
-下一篇 458 讲一件文档里其实没有的事：性能回归防线。官方测试那一页对 Lighthouse、指标、预算**零记载**，unit 环境只支持 vitest；能接上的只有 `nuxt analyze` 那条与 `CI` 有关的行为，和 Playwright 那条能跑真实浏览器的路。
+下一篇 458 讲一件文档里其实没有的事：性能回归防线。官方测试那一节对 Lighthouse、指标、预算**零记载**，unit 环境只支持 vitest；能接上的只有 `nuxt analyze` 那条与 `CI` 有关的行为，和 Playwright 那条能跑真实浏览器的路。
 
 ## 本文依据
 

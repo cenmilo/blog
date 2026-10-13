@@ -1,12 +1,12 @@
 ---
 url: /posts/84288c819ccf4ed05c52da2133ae645e/
-title: 迁移与 Bridge 两批页面的结构清点：谁写了步骤、谁只有一句话
+title: 625 - 迁移与 Bridge 两批页面的结构清点：谁写了步骤、谁只有一句话
 date: 2027-05-08T10:00:00+08:00
 updated: 2027-05-08T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：迁移与 Bridge 两批文档一共 **21 页**（`migration/` 11 页 ＋ `bridge/` 10 页），但**篇幅差了两个数量级**。按标题层级逐页数下来：**migration 侧除去每页末尾的 `## Sitemap`，实质有 31 个 `##` 小节、25 个 `###`、5 个 `####`；bridge 侧是 33 个 `##`、22 个 `###`、`####` 一个都没有**。最厚的是 `migration/component-options`（11 个 `##`）与 `migration/configuration`（7 个），最薄的是四页只写着"一个步骤小节 ＋ Sitemap"的页面（`auto-imports`、`runtime-config`、`server`、`bundling`）。**顺带纠正一件被反复引用的事：官方从没给过"迁移一共多少条变更"这个总数**——任何"×× 条"的数都得自己写明是按什么数的，本页给的就是按标题层的计数口径与结果。
+  摘要：迁移与 Bridge 两批文档一共 **21 页**（`migration/` 11 页 ＋ `bridge/` 10 页），但**篇幅差了两个数量级**。按标题层级逐页数下来：**migration 侧除去每页末尾的 `## Sitemap`，实质有 31 个 `##` 小节、25 个 `###`、5 个 `####`；bridge 侧是 33 个 `##`、22 个 `###`、`####` 一个都没有**。最厚的是 `migration/component-options`（11 个 `##`）与 `migration/configuration`（7 个），最薄的是四页只写着"一个步骤小节 ＋ Sitemap"的页面（`auto-imports`、`runtime-config`、`server`、`bundling`）。**顺带纠正一件被反复引用的事：官方从没给过"迁移一共多少条变更"这个总数**——任何"×× 条"的数都得自己写明是按什么数的，这一篇给的就是按标题层的计数口径与结果。
 
 categories:
   - 前端开发
@@ -50,7 +50,7 @@ tags:
 
 从这张表能读出三件事：
 
-- **两页承担了主要篇幅**：`component-options`（11 个 `##`，十个组件选项一人一节，另加一个 `## Sitemap`）与 `configuration`（7 个 `##`，且是唯一有 `####` 的页之一）。
+- **两节承担了主要篇幅**：`component-options`（11 个 `##`，十个组件选项一人一节，另加一个 `## Sitemap`）与 `configuration`（7 个 `##`，且是唯一有 `####` 的页之一）。
 - **四页薄到只有一步**：`auto-imports`、`runtime-config`、`server`、`bundling` 的 `##` 都是 2，也就是"一个内容小节 ＋ Sitemap"——**这几页就是标题党式的一页一句话**（比如 auto-imports 的迁移只有一条编号）。
 - **结构层级不统一**：`configuration` 用了 `####`（三条禁用规则挂在 `### Migration` 下），`meta` 用 `###`（useHead、Meta-components、Options API），`pages-and-layouts` 三种层级都有。**同一批文档没有统一的层级规范，所以按标题深度做导航会翻车。**
 
@@ -74,7 +74,7 @@ tags:
 三点观察：
 
 - **最厚的是 `nuxt3-compatible-api`（8 个 `##`）**——因为它一个旧 API 一节；其次是 `nitro`（6 个，全是操作步骤小节）。
-- **`vite`、`runtime-config`、`plugins-and-middleware` 三页最短**，`vite` 只有 3 个内容小节 ＋ 一条前置警告。
+- **`vite`、`runtime-config`、`plugins-and-middleware` 三节最短**，`vite` 只有 3 个内容小节 ＋ 一条前置警告。
 - **Bridge 的层级比 migration 规整**：全部只用两层（`##` 与 `###`），没有 `####`；**它的"目录"作用在 overview 的八条 Upgrade Steps 清单上**（那八条链接顺序就是阅读顺序）。
 
 ## 为什么别引用"总条数"
@@ -86,14 +86,14 @@ tags:
 ## 自查
 
 - 21 页：migration 11、bridge 10；**实质 `##` 64 个（31 ＋ 33）、`###` 47、`####` 5（全在 migration 侧）**。
-- 最厚两页：`migration/component-options`（11 个 `##`）、`bridge/nuxt3-compatible-api`（8 个）。
+- 最厚两节：`migration/component-options`（11 个 `##`）、`bridge/nuxt3-compatible-api`（8 个）。
 - 最薄若干页只有一步或一段：migration 的 `auto-imports`/`runtime-config`/`server`/`bundling`，bridge 的 `vite`/`runtime-config`。
 - **官方从未给出变更总条数**；引用任何"×× 条"时先写明口径。
 - 层级规范两批不一致，**别用标题深度做自动导航**。
 
 ## 下一篇
 
-下一篇 626 把"升级后该跑什么"这件事按出处收齐：`nuxi dev` 与 `nuxi build`/`nuxi generate` 的试跑要求写在 Bridge 的 Nitro 页、dev 与 build **双验**写在 Bridge 的 overview、**测试前必须 `nuxi prepare`**（否则 `TS5083`）写在 Bridge 的 TypeScript 页、`nuxt typecheck`（走 `vue-tsc`）写在迁移的配置页、跑测试的命令与依赖写在测试那一页——**文档没有集中的"升级验收清单"，这一篇只做归拢，不补没有的步骤**。
+下一篇 626 把"升级后该跑什么"这件事按出处收齐：`nuxi dev` 与 `nuxi build`/`nuxi generate` 的试跑要求写在 Bridge 的 Nitro 页、dev 与 build **双验**写在 Bridge 的 overview、**测试前必须 `nuxi prepare`**（否则 `TS5083`）写在 Bridge 的 TypeScript 页、`nuxt typecheck`（走 `vue-tsc`）写在迁移的配置页、跑测试的命令与依赖写在测试那一节——**文档没有集中的"升级验收清单"，这一篇只做归拢，不补没有的步骤**。
 
 ## 本文依据
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/0f4a828ceb2d76a030de51e71bb0f2dd/
-title: Kit 路径解析四函数：resolvePath 的五选项与那条不查嵌套依赖
+title: 658 - Kit 路径解析四函数：resolvePath 的五选项与那条不查嵌套依赖
 date: 2027-05-19T10:00:00+08:00
 updated: 2027-05-19T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：模块里到处是 `resolver.resolve('./runtime/...')`，但**要解析一个第三方包的入口文件，得换成 `resolvePath`**。这一页四个函数的分工是：**`resolvePath` 默认从 Nuxt rootDir 解析、`resolveAlias` 只应用配置好的别名、`findPath` 在一组路径里找第一个存在的文件、`createResolver` 造一个相对某个基准的解析器**。三条行为最容易记错：**`resolvePath` 解析不到时返回的是"规范化后的输入路径"，既不抛错也不返回 null**（`findPath` 才返回 `null`）；**它遵循标准模块解析，不会去搜嵌套在别的包里的依赖——要解析你自己模块声明的依赖，得用 `createResolver(import.meta.url).resolvePath()`，这样就不受包管理器是否提升依赖的影响**；`findPath` 的签名里有第三个参数 `pathType: 'file' | 'dir'`，但**参数说明里完全没写它**。
+  摘要：模块里到处是 `resolver.resolve('./runtime/...')`，但**要解析一个第三方包的入口文件，得换成 `resolvePath`**。这一节四个函数的分工是：**`resolvePath` 默认从 Nuxt rootDir 解析、`resolveAlias` 只应用配置好的别名、`findPath` 在一组路径里找第一个存在的文件、`createResolver` 造一个相对某个基准的解析器**。三条行为最容易记错：**`resolvePath` 解析不到时返回的是"规范化后的输入路径"，既不抛错也不返回 null**（`findPath` 才返回 `null`）；**它遵循标准模块解析，不会去搜嵌套在别的包里的依赖——要解析你自己模块声明的依赖，得用 `createResolver(import.meta.url).resolvePath()`，这样就不受包管理器是否提升依赖的影响**；`findPath` 的签名里有第三个参数 `pathType: 'file' | 'dir'`，但**参数说明里完全没写它**。
 
 categories:
   - 前端开发
@@ -24,9 +24,9 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-`resolve` 与 `resolvePath` 只差两个字，选错的表现是**本地能跑、装进别人项目里就找不到文件**。这一页讲清楚了区别在哪。
+`resolve` 与 `resolvePath` 只差两个字，选错的表现是**本地能跑、装进别人项目里就找不到文件**。这一节讲清楚了区别在哪。
 
-## 这页给的问题
+## 这一节给的问题
 
 开场把动机说了：**有时你需要解析一个路径，但并不知道它的名字或扩展名。例如你可能想添加一个与模块位于同一目录的插件**。为此 Nuxt 提供一组路径解析工具，四个各自的职责一句话：
 
@@ -147,7 +147,7 @@ function findPath (paths: string | string[], options?: ResolvePathOptions, pathT
 
 定性：**尝试解析给定的一组路径里第一个存在的文件**。参数：**`paths` 可以是单个路径或路径数组**、**`options` 是同一张五项表**（`cwd`、`alias`、`extensions`、`virtual`、`fallbackToOriginal`，说明文字与 `resolvePath` 那节逐字相同）。
 
-返回类型是 `Promise<string | null>`——**这是这一页唯一会返回 null 的函数**，所以"文件在不在"这个问题应该用它而不是 `resolvePath`。
+返回类型是 `Promise<string | null>`——**这是这一节唯一会返回 null 的函数**，所以"文件在不在"这个问题应该用它而不是 `resolvePath`。
 
 示例是解析应用主组件时的"两个候选名"：
 
@@ -219,7 +219,7 @@ export default defineNuxtModule({
 
 三处值得抄：**注册时机放在 `modules:done`**、**同一位置放两份实现按版本选**（`.vue2`/`.vue3` 后缀）、**用的是 `resolver.resolve` 而不是裸相对路径**。
 
-（这一页用的仍是 `isNuxt2()`，而兼容性那一页明确说它**应换成 `isNuxtMajorVersion(2, nuxt)` 并可能在将来移除**——示例是旧写法。）
+（这一节用的仍是 `isNuxt2()`，而兼容性那一节明确说它**应换成 `isNuxtMajorVersion(2, nuxt)` 并可能在将来移除**——示例是旧写法。）
 
 ## 四个怎么选
 
@@ -233,6 +233,10 @@ export default defineNuxtModule({
 文档未记载的：`resolvePath` 返回"规范化输入路径"时的具体形态（相对还是绝对）、`findPath` 的 `pathType` 默认值、`virtual` 为 `true` 时能否解析到 `addTemplate` 刚注册还没落盘的模板。
 
 下一篇讲日志那两个函数：`useLogger` 的 level 数字与 `useTerminal` 的五项能力。
+
+## 下一篇
+
+下一篇 659：Kit 日志两函数：useLogger 的 tag 与 level、useTerminal 的五项能力
 
 ## 本文依据
 

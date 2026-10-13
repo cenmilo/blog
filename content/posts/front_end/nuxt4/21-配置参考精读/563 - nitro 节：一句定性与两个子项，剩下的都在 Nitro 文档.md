@@ -1,6 +1,6 @@
 ---
 url: /posts/2f30a9469696654ebb92735874b83aae/
-title: nitro 节：一句定性与两个子项，剩下的都在 Nitro 文档
+title: 563 - nitro 节：一句定性与两个子项，剩下的都在 Nitro 文档
 date: 2027-04-17T11:00:00+08:00
 updated: 2027-04-17T11:00:00+08:00
 author: cmdragon
@@ -76,7 +76,7 @@ tags:
 
 ## 唯一的透传警告在哪
 
-Nuxt 侧对"往 `nitro` 里写东西"这件事，只有一句风险提示，而它不写在配置参考，写在服务端目录那一页的 Nitro Config 小节：
+Nuxt 侧对"往 `nitro` 里写东西"这件事，只有一句风险提示，而它不写在配置参考，写在服务端目录那一节的 Nitro Config 小节：
 
 > This is an advanced option. Custom config can affect production deployments, as the configuration interface might change over time when Nitro is upgraded in semver-minor versions of Nuxt.
 

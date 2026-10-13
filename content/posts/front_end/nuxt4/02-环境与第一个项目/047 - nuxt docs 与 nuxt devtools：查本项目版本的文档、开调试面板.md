@@ -1,6 +1,6 @@
 ---
 url: /posts/2eb58201ffb9733b618fa35061a36ba3/
-title: nuxt docs 与 nuxt devtools：查本项目版本的文档、开调试面板
+title: 047 - nuxt docs 与 nuxt devtools：查本项目版本的文档、开调试面板
 date: 2026-10-27T11:00:00+08:00
 updated: 2026-10-27T11:00:00+08:00
 author: cmdragon
@@ -112,7 +112,7 @@ npx nuxt devtools <COMMAND> [ROOTDIR] [--cwd=<directory>]
 
 `devtools.nuxt.com` 是官方给的进一步阅读入口。在这一系列里，DevTools 已经被我当工具用了两处：
 
-- 028 用它看取数结果：官方在那一页写的是"用 Nuxt DevTools 查看这些数据，位置在 **Payload tab**"。
+- 028 用它看取数结果：官方在那一节写的是"用 Nuxt DevTools 查看这些数据，位置在 **Payload tab**"。
 - 052 会用它看生成物：官方在 `.nuxt` 页写的是"**打开 Nuxt DevTools 并切到 Virtual Files tab**"。
 
 **也就是说这个面板不是"装了好看"，它至少有两个具体用途：核对同构渲染下服务端把什么交给了浏览器，以及看清框架在你的项目结构上生成了哪些文件。**

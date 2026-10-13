@@ -1,6 +1,6 @@
 ---
 url: /posts/a8ba220f5a8c870fba34e79cfde648a9/
-title: analyzeDir：分析报告写到哪、由谁读
+title: 562 - analyzeDir：分析报告写到哪、由谁读
 date: 2027-04-17T10:00:00+08:00
 updated: 2027-04-17T10:00:00+08:00
 author: cmdragon
@@ -67,7 +67,7 @@ tags:
 
 ## 命令侧两条会影响"看不看得到"
 
-`nuxt analyze` 那页有两句正好落在这节的使用场景上：
+`nuxt analyze` 那一节有两句正好落在这节的使用场景上：
 
 > The `analyze` command builds Nuxt and analyzes the production bundle (experimental). The results are served on a local server when the build finishes, unless you pass `--no-serve` or `CI` is set in the environment.
 >
@@ -97,7 +97,7 @@ tags:
 
 ## 下一篇
 
-P21 继续。下一篇 563 读 `nitro` 节的上半：它在配置参考里只有两句加两个子项，真正的可配范围在 Nitro 自己的文档里——这一节是"边界"而不是"清单"。
+530-599 继续。下一篇 563 读 `nitro` 节的上半：它在配置参考里只有两句加两个子项，真正的可配范围在 Nitro 自己的文档里——这一节是"边界"而不是"清单"。
 
 ## 本文依据
 

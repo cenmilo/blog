@@ -1,12 +1,12 @@
 ---
 url: /posts/640b3af3157ad9dcdd2263d7b1e7df11/
-title: 编程式五函数：loadNuxt 两项、loadNuxtConfig 十一项与 diff 的五字段
+title: 645 - 编程式五函数：loadNuxt 两项、loadNuxtConfig 十一项与 diff 的五字段
 date: 2027-05-15T09:00:00+08:00
 updated: 2027-05-15T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：不敲命令、用代码把 Nuxt 跑起来，靠的是这一页的**五个函数**：`loadNuxt`、`buildNuxt`、`loadNuxtConfig`、`diffNuxtConfig`、`writeTypes`。两处细节最容易被漏：**`loadNuxt` 的 `ready` 默认是 `true`，设成 `false` 之后必须自己调 `nuxt.ready()`**；**`loadNuxt` 底层用的是 c12，所以它接受 `c12.loadConfig` 的同款选项**。`loadNuxtConfig` 的参数表有**十一项**（`cwd`、`configFile`、`rcFile`、`globalRc`、`overrides`、`defaults`、`dotenv`、`envName`、`resolve`、`import`、`onConfigResolved`），而 `diffNuxtConfig` 比的正是 `onConfigResolved` 给你的那份 `rawConfig` 快照——**这份快照刻意排掉了 schema 默认值、`overrides`、`defaults` 与 `defaultConfig`，为的是"项目没变时快照也不变"**，diff 出来的每条带**五个字段**，其中 `path` 是数组、`label` 是可展示的访问器字符串。
+  摘要：不敲命令、用代码把 Nuxt 跑起来，靠的是这一节的**五个函数**：`loadNuxt`、`buildNuxt`、`loadNuxtConfig`、`diffNuxtConfig`、`writeTypes`。两处细节最容易被漏：**`loadNuxt` 的 `ready` 默认是 `true`，设成 `false` 之后必须自己调 `nuxt.ready()`**；**`loadNuxt` 底层用的是 c12，所以它接受 `c12.loadConfig` 的同款选项**。`loadNuxtConfig` 的参数表有**十一项**（`cwd`、`configFile`、`rcFile`、`globalRc`、`overrides`、`defaults`、`dotenv`、`envName`、`resolve`、`import`、`onConfigResolved`），而 `diffNuxtConfig` 比的正是 `onConfigResolved` 给你的那份 `rawConfig` 快照——**这份快照刻意排掉了 schema 默认值、`overrides`、`defaults` 与 `defaultConfig`，为的是"项目没变时快照也不变"**，diff 出来的每条带**五个字段**，其中 `path` 是数组、`label` 是可展示的访问器字符串。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 
 写 CLI、写测试工具、或者只想在脚本里拿一份最终的 Nuxt 配置——这些都需要绕开命令行。官方把这条路叫做编程式用法，工具一共五个。
 
-## 这一页给的场景
+## 这一节给的场景
 
 页面开场两句：**这些函数允许你加载 Nuxt、构建 Nuxt、加载 Nuxt 配置**；**编程式用法有用的场合，例如构建 CLI 工具或测试工具**（两处各给了一个仓库链接：nuxt/cli 与 nuxt/test-utils）。
 
@@ -53,7 +53,7 @@ function loadNuxt (loadOptions?: LoadNuxtOptions): Promise<Nuxt>
 | `dev` | `boolean` | `false` | 设为 `true` 时，Nuxt 以开发模式加载 |
 | `ready` | `boolean` | **`true`** | 为 `true` 时调用完 `loadNuxt` 就可使用；**为 `false` 时你需要自己调 `nuxt.ready()` 才能确认它可用** |
 
-`ready` 是这一页唯一一个**默认值为 `true`** 的开关，而它的文档写法是"Required: `true`"，实际含义是**默认就 true、可以显式关掉**。关掉它的收益是启动更早返回；代价是**忘了调 `nuxt.ready()` 时，后面所有依赖实例的动作都在一个还没准备好的对象上跑**。
+`ready` 是这一节唯一一个**默认值为 `true`** 的开关，而它的文档写法是"Required: `true`"，实际含义是**默认就 true、可以显式关掉**。关掉它的收益是启动更早返回；代价是**忘了调 `nuxt.ready()` 时，后面所有依赖实例的动作都在一个还没准备好的对象上跑**。
 
 ## `buildNuxt`：一句话和一句限定
 
@@ -63,7 +63,7 @@ function buildNuxt (nuxt: Nuxt): Promise<any>
 
 描述里有一句版本信息：**它会调用构建器（目前是 `@nuxt/vite-builder` 或 `@nuxt/webpack-builder`）来打包应用**。参数只有一个 `nuxt` 实例，并且补了一句来源：**可以通过 `useNuxt()` 从上下文取得**。
 
-**"目前"这两个字值得留意**：这一页只列了 vite 与 webpack 两种构建器，而兼容性那一页的约束表里把 `rspack` 也当成一个可指名的 builder——**两处口径不一致，本系列按各自原文记录，不合并推断**。
+**"目前"这两个字值得留意**：这一节只列了 vite 与 webpack 两种构建器，而兼容性那一节的约束表里把 `rspack` 也当成一个可指名的 builder——**两处口径不一致，本系列按各自原文记录，不合并推断**。
 
 ## `loadNuxtConfig`：十一项，逐项有默认值
 
@@ -168,9 +168,13 @@ function writeTypes (nuxt?: Nuxt): void
 | 只要一份最终配置 | `loadNuxtConfig({ cwd, ... })`，**不实例化 Nuxt** |
 | 监听配置、决定要不要重启 | `loadNuxtConfig` 里挂 `onConfigResolved`，把 `rawConfig` 存下来，下次进来先 `diffNuxtConfig` |
 
-这一页没写的：`loadNuxt` 那份 c12 选项清单具体还有哪些、`dev: true` 时实例与 `nuxt dev` 起的服务器差别、以及 `diffNuxtConfig` 在函数源码**变了**时会不会报 `changed`（只写了"源码没变不报"）。
+这一节没写的：`loadNuxt` 那份 c12 选项清单具体还有哪些、`dev: true` 时实例与 `nuxt dev` 起的服务器差别、以及 `diffNuxtConfig` 在函数源码**变了**时会不会报 `changed`（只写了"源码没变不报"）。
 
-下一篇讲兼容性判断那一页，七个函数，其中两个官方让你别用。
+下一篇讲兼容性判断那一节，七个函数，其中两个官方让你别用。
+
+## 下一篇
+
+下一篇 646：Kit 兼容性七函数：三个 check 系列与那两个该换掉的 isNuxt2、isNuxt3
 
 ## 本文依据
 

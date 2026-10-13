@@ -1,6 +1,6 @@
 ---
 url: /posts/9a6ddcd2b8842b276a9e52183c14a3d1/
-title: nuxt prepare 与 nuxt typecheck 的分工
+title: 399 - nuxt prepare 与 nuxt typecheck 的分工
 date: 2027-02-22T09:00:00+08:00
 updated: 2027-02-22T09:00:00+08:00
 author: cmdragon

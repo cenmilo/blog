@@ -1,6 +1,6 @@
 ---
 url: /posts/3dbc9c2ea97341dba28d8b4b2ec083e8/
-title: 组件与水合的七个实验开关：componentIslands 的三种取值
+title: 704 - 组件与水合的七个实验开关：componentIslands 的三种取值
 date: 2027-06-03T11:00:00+08:00
 updated: 2027-06-03T11:00:00+08:00
 author: cmdragon
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
 })
 ```
 
-文档没有在这一节解释 `'local+remote'` 与 `true` 的差别，只把细节指向服务端组件那一页。**这一节还有一条容易忽略的 note：在非 SFC 组件（例如 `<NuxtLink>`）上要跳过 `nuxt-client`**，选择性水合那条规则在概念页的 selective hydration with `nuxt-client` 小节里。
+文档没有在这一节解释 `'local+remote'` 与 `true` 的差别，只把细节指向服务端组件那一节。**这一节还有一条容易忽略的 note：在非 SFC 组件（例如 `<NuxtLink>`）上要跳过 `nuxt-client`**，选择性水合那条规则在概念页的 selective hydration with `nuxt-client` 小节里。
 
 它与流式渲染的交互已经写在渲染那篇：岛屿槽内容本来靠渲染后一次缝合，流式下改成在文档末尾发一个惰性 `<template>`、用水合前运行的内联脚本挪位；**同时用 `features.noScripts` 与岛屿的应用会退回缓冲渲染器**。
 
@@ -44,7 +44,7 @@ export default defineNuxtConfig({
 
 ## `lazyHydration` 与 `clientFallback`：一个默认开、一个没写默认值
 
-`lazyHydration` 的原文是"为 `<Lazy>` 组件启用水合策略，通过把组件的水合推迟到真正需要时来提升性能"，并且明确写着**懒水合默认开启**，可以关。要理解它的边界得回到组件目录那一页的 delayed/lazy hydration 小节，这一节只给了入口。
+`lazyHydration` 的原文是"为 `<Lazy>` 组件启用水合策略，通过把组件的水合推迟到真正需要时来提升性能"，并且明确写着**懒水合默认开启**，可以关。要理解它的边界得回到组件目录那一节的 delayed/lazy hydration 小节，这一节只给了入口。
 
 `clientFallback` 则**整节没有声明默认值**，只说它启用 `<NuxtClientFallback>` 组件，用于"在 SSR 出错时在客户端渲染内容"。文档没有列出它适用哪类错误——从描述读，它是给 SSR 抛错准备的兜底渲染，不是性能开关。
 
@@ -95,6 +95,10 @@ export default defineNuxtConfig({
 这一组里四条的默认值是"开"，两条整节没写默认值，`componentIslands` 的三种取值里也只有一种是默认——**这三类信息在同一页上的写法完全不统一，读的时候必须逐节确认**，不能推断。
 
 下一篇是构建与模块那一组十个：`buildCache` 的九个一动就全量重建的文件、`watcher` 的取值、`enforceModuleCompatibility` 什么时候该开、`viteEnvironmentApi` 与 `compatibilityVersion` 的联动。
+
+## 下一篇
+
+下一篇 705：构建与模块的十个实验开关：watcher 的四种取值与 buildCache 的九个文件
 
 ## 本文依据
 

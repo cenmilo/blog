@@ -1,12 +1,12 @@
 ---
 url: /posts/3daa5b0cb66155dd5445948ef2a8ecc2/
-title: isHydrating：判断现在是不是在水合
+title: 278 - isHydrating：判断现在是不是在水合
 date: 2027-01-12T11:00:00+08:00
 updated: 2027-01-12T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：水合（hydration）是浏览器接手服务端 HTML、Vue 挂上交互的那一段。nuxtApp.isHydrating 是一个布尔，专门告诉你客户端此刻是否正处于这个阶段——官方给的用法是在 onErrorCaptured 里区分"水合期的错误"和"水合完成后的错误"。这一篇讲清 isHydrating 是什么、那个官方示例的判据，再顺带把 hydration 那页的五类成因与对策收进来：因为 isHydrating 常和水合不匹配问题一起出现，判断处于水合期本身不能替你修好不匹配，真正要改的是让服务端和客户端渲染出一致的内容。
+  摘要：水合（hydration）是浏览器接手服务端 HTML、Vue 挂上交互的那一段。nuxtApp.isHydrating 是一个布尔，专门告诉你客户端此刻是否正处于这个阶段——官方给的用法是在 onErrorCaptured 里区分"水合期的错误"和"水合完成后的错误"。这一篇讲清 isHydrating 是什么、那个官方示例的判据，再顺带把 hydration 那一节的五类成因与对策收进来：因为 isHydrating 常和水合不匹配问题一起出现，判断处于水合期本身不能替你修好不匹配，真正要改的是让服务端和客户端渲染出一致的内容。
 
 categories:
   - 前端开发

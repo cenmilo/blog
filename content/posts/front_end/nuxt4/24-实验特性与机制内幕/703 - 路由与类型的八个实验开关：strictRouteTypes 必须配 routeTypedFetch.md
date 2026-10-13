@@ -1,6 +1,6 @@
 ---
 url: /posts/39e988cc831b4a53fa4a81f74a19f9cb/
-title: 路由与类型的八个实验开关：strictRouteTypes 必须配 routeTypedFetch
+title: 703 - 路由与类型的八个实验开关：strictRouteTypes 必须配 routeTypedFetch
 date: 2027-06-03T10:00:00+08:00
 updated: 2027-06-03T10:00:00+08:00
 author: cmdragon
@@ -139,9 +139,13 @@ export default defineNuxtConfig({
 | `normalizePageNames` | `compatibilityVersion: 5` 时启用 |
 | `typedPages` | 页面内类型化参数用 `useRoute('route-name')` |
 
-这一页里**没有任何一处说明 `typedPages` 与 `routeTypedFetch` 之间的关系**，一个管导航类型、一个管 fetch 类型，能不能同开文档未说明。
+这一节里**没有任何一处说明 `typedPages` 与 `routeTypedFetch` 之间的关系**，一个管导航类型、一个管 fetch 类型，能不能同开文档未说明。
 
 下一篇看组件与水合那一组七个：`componentIslands`、`clientFallback`、`lazyHydration`、`asyncEntry`，以及 `templateImportResolution` 那条"关掉以后可能修好解析问题"的用法。
+
+## 下一篇
+
+下一篇 704：组件与水合的七个实验开关：componentIslands 的三种取值
 
 ## 本文依据
 

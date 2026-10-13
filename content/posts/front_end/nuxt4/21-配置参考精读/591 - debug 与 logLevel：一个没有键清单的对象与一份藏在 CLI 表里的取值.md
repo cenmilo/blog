@@ -1,6 +1,6 @@
 ---
 url: /posts/f15dad0f2fb6478cd13b11a1e4503ff8/
-title: debug 与 logLevel：一个没有键清单的对象与一份藏在 CLI 表里的取值
+title: 591 - debug 与 logLevel：一个没有键清单的对象与一份藏在 CLI 表里的取值
 date: 2027-04-27T09:00:00+08:00
 updated: 2027-04-27T09:00:00+08:00
 author: cmdragon

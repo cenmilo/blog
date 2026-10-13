@@ -1,12 +1,12 @@
 ---
 url: /posts/4e2ee21e7c1df5709b9d28b7d2cf73af/
-title: layers 目录：自动注册、每层都要有 nuxt.config 与那条优先级阶梯
+title: 068 - layers 目录：自动注册、每层都要有 nuxt.config 与那条优先级阶梯
 date: 2026-11-03T11:00:00+08:00
 updated: 2026-11-03T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：layers/ 目录用来在你的应用里组织并自动注册本地图层，官方列出的这一层能装的东西几乎覆盖整个应用结构——nuxt.config.ts（会与主配置合并）、app.config.ts、app/components/、app/composables/、app/utils/、app/pages/、app/layouts/、app/middleware/、app/plugins/、server/、shared/，而自动注册这条能力在 Nuxt v3.12.0+ 才可用、命名图层别名 #layers/[name] 指向每一层的 srcDir 则是 v3.16.0 引入。有一条 important 级别的硬要求：每个图层都必须有一个 nuxt.config.ts 文件才会被识别为有效图层，即使它是空的。优先级这一节是本页最实用的部分，官方给的阶梯从高到低是三条：你的项目文件永远最高、~~/layers 目录里自动扫描到的图层按字母序排（Z 的优先级高于 A）、写在 extends 配置里的图层（第一项优先级高于第二项）；要控制顺序可以给目录加数字前缀（1.base/、2.features/、3.admin/），也可以不改目录名而把它们写进 extends，此时列出的第一项优先级最高，而任何你没有在 extends 里列出的 ~~/layers 图层会保持自己的字母序扫描位置、排在你在 extends 里列出的那些图层之下。
+  摘要：layers/ 目录用来在你的应用里组织并自动注册本地图层，官方列出的这一层能装的东西几乎覆盖整个应用结构——nuxt.config.ts（会与主配置合并）、app.config.ts、app/components/、app/composables/、app/utils/、app/pages/、app/layouts/、app/middleware/、app/plugins/、server/、shared/，而自动注册这条能力在 Nuxt v3.12.0+ 才可用、命名图层别名 #layers/[name] 指向每一层的 srcDir 则是 v3.16.0 引入。有一条 important 级别的硬要求：每个图层都必须有一个 nuxt.config.ts 文件才会被识别为有效图层，即使它是空的。优先级这一节是这一节最实用的部分，官方给的阶梯从高到低是三条：你的项目文件永远最高、~~/layers 目录里自动扫描到的图层按字母序排（Z 的优先级高于 A）、写在 extends 配置里的图层（第一项优先级高于第二项）；要控制顺序可以给目录加数字前缀（1.base/、2.features/、3.admin/），也可以不改目录名而把它们写进 extends，此时列出的第一项优先级最高，而任何你没有在 extends 里列出的 ~~/layers 图层会保持自己的字母序扫描位置、排在你在 extends 里列出的那些图层之下。
 
 categories:
   - 前端开发

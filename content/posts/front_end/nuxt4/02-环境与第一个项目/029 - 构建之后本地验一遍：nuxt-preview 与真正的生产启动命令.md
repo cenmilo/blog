@@ -1,6 +1,6 @@
 ---
 url: /posts/00389f09960c2884e292eb402c849895/
-title: 构建之后本地验一遍：nuxt preview 与真正的生产启动命令
+title: 029 - 构建之后本地验一遍：nuxt preview 与真正的生产启动命令
 date: 2026-10-21T11:00:00+08:00
 updated: 2026-10-21T11:00:00+08:00
 author: cmdragon

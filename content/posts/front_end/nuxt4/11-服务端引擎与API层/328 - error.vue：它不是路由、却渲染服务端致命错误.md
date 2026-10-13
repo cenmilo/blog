@@ -1,6 +1,6 @@
 ---
 url: /posts/f01791267de5812698fb8a7043d5ea65/
-title: error.vue：它不是路由、却渲染服务端致命错误
+title: 328 - error.vue：它不是路由、却渲染服务端致命错误
 date: 2027-01-29T10:00:00+08:00
 updated: 2027-01-29T10:00:00+08:00
 author: cmdragon
@@ -32,7 +32,7 @@ tags:
 
 > During the lifespan of your application, some errors may appear unexpectedly at runtime. In such case, we can use the `error.vue` file to override the default error files and display the error nicely.
 
-它在**致命错误**时被渲染。什么算致命、会渲染它还是回 JSON，error-handling 那页定了规则：
+它在**致命错误**时被渲染。什么算致命、会渲染它还是回 JSON，error-handling 那一节定了规则：
 
 > When Nuxt encounters a fatal error (any unhandled error on the server, or an error created with `fatal: true` on the client) it will either render a JSON response (if requested with `Accept: application/json` header) or trigger a full-screen error page. With `future.compatibilityVersion: 5`, a page error always triggers the error page, and an error thrown in a server route or server middleware returns a JSON response.
 
@@ -110,7 +110,7 @@ NuxtError 只有上面那张表里列的字段。你直接在错误对象上挂�
 
 ## 清掉错误页
 
-error-handling 那页：错误页 ready 移除时调用 `clearError`，它接受一个可选的跳转路径：
+error-handling 那一节：错误页 ready 移除时调用 `clearError`，它接受一个可选的跳转路径：
 
 > When you are ready to remove the error page, you can call the `clearError` helper function, which takes an optional path to redirect to (for example, if you want to navigate to a 'safe' page).
 

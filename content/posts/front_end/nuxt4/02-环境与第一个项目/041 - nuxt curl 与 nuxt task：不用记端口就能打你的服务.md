@@ -1,6 +1,6 @@
 ---
 url: /posts/87a4f11f085b03c8d674b231c65e16a8/
-title: nuxt curl 与 nuxt task：不用记端口就能打你的服务
+title: 041 - nuxt curl 与 nuxt task：不用记端口就能打你的服务
 date: 2026-10-25T11:00:00+08:00
 updated: 2026-10-25T11:00:00+08:00
 author: cmdragon

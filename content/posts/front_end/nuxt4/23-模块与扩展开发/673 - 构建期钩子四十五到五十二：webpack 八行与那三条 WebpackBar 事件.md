@@ -1,6 +1,6 @@
 ---
 url: /posts/33f756e7e2896884bf7277f6b8e687ef/
-title: 构建期钩子四十五到五十二：webpack 八行与那三条 WebpackBar 事件
+title: 673 - 构建期钩子四十五到五十二：webpack 八行与那三条 WebpackBar 事件
 date: 2027-05-24T10:00:00+08:00
 updated: 2027-05-24T10:00:00+08:00
 author: cmdragon
@@ -113,6 +113,10 @@ Vite 那一族的五行依次是 `vite:extend`、`vite:extendConfig`、`vite:con
 这一组未记载的还有：`webpack:config` 被调用几次（客户端与服务端各一次还是合并一次）、`options` 在 `compile`／`compiled` 两行里分别有什么字段、`statesArray` 的形状、以及这些钩子在换用 Rspack 时是否存在对应行（**表里没有任何 rspack 钩子**）。
 
 下一篇读第三张表：Nitro 运行时那九行。
+
+## 下一篇
+
+下一篇 674：Nitro 运行时钩子九个：请求、两个响应阶段、错误与渲染三钩子
 
 ## 本文依据
 

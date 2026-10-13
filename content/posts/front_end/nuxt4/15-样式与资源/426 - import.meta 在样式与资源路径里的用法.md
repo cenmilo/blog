@@ -1,6 +1,6 @@
 ---
 url: /posts/e6859a028b7638657ef0d2ec895288b8/
-title: import.meta 在样式与资源路径里的用法
+title: 426 - import.meta 在样式与资源路径里的用法
 date: 2027-03-03T09:00:00+08:00
 updated: 2027-03-03T09:00:00+08:00
 author: cmdragon
@@ -82,11 +82,11 @@ export default defineNuxtModule({
 })
 ```
 
-为什么必须这样：模块的相对路径不能相对"运行时的 cwd"解析，只能相对模块自身文件；`import.meta.url` 给的正是后者。Kit 那页注册插件也是同一招（`const { resolve } = createResolver(import.meta.url)` 再 `addPlugin({ src: resolve('runtime/plugin.js'), mode: 'client' })`）——注册组件、注册插件、指运行时文件，都走它。
+为什么必须这样：模块的相对路径不能相对"运行时的 cwd"解析，只能相对模块自身文件；`import.meta.url` 给的正是后者。Kit 那一节注册插件也是同一招（`const { resolve } = createResolver(import.meta.url)` 再 `addPlugin({ src: resolve('runtime/plugin.js'), mode: 'client' })`）——注册组件、注册插件、指运行时文件，都走它。
 
 ## 用法二：预渲染阶段跳过按请求的东西
 
-421 提到过 `import.meta.prerender` 用于样式/资源场景，它的官方出处是渲染那页的错误页示例：
+421 提到过 `import.meta.prerender` 用于样式/资源场景，它的官方出处是渲染那一节的错误页示例：
 
 ```vue
 const { data: suggestions } = await useAsyncData(

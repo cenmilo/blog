@@ -1,6 +1,6 @@
 ---
 url: /posts/6ec3d01739eff967d00f918600217aa4/
-title: 查询参数三种写法：query 与 params、响应式 URL 与四个拦截器
+title: 221 - 查询参数三种写法：query 与 params、响应式 URL 与四个拦截器
 date: 2026-12-24T11:00:00+08:00
 updated: 2026-12-24T11:00:00+08:00
 author: cmdragon
@@ -132,8 +132,8 @@ const { data, status, error, refresh, clear } = await useFetch('/api/auth/login'
 
 `onResponse` 那行写的是 `localStorage.setItem('token', response._data.token)`。问题在于**服务端渲染那一趟同样会跑这次请求**，而浏览器存储在服务端不存在。官方文档在别处对这件事的态度很统一：
 
-- 取 DOM 或浏览器 API 的时机，`client-only` 那页的说法是组件"rendered only after being mounted"（198 抄过）。
-- hydration 那页把"服务端使用浏览器 API"列为第一类成因，示例正是 `localStorage.getItem('theme')` 直接写在 `<script setup>` 里会错配（199 抄过），并点名 `localStorage` 不存在于服务端。
+- 取 DOM 或浏览器 API 的时机，`client-only` 那一节的说法是组件"rendered only after being mounted"（198 抄过）。
+- hydration 那一节把"服务端使用浏览器 API"列为第一类成因，示例正是 `localStorage.getItem('theme')` 直接写在 `<script setup>` 里会错配（199 抄过），并点名 `localStorage` 不存在于服务端。
 
 **所以我不会把这个 `localStorage` 调用原样放进拦截器**——文档在这里给的是拦截器形状，不是"在服务端也能写 localStorage"的保证。要落这个例子，我会把它挪到只在客户端跑的位置（例如点击处理函数里、或者 `import.meta.client` 分支中），并用一次服务端渲染实测确认没有报错。这一步属于我按文档其他页的规则做的修正，不是官方这段代码本身的意思。
 
@@ -141,7 +141,7 @@ const { data, status, error, refresh, clear } = await useFetch('/api/auth/login'
 
 1. `query: { param1 }` 里放的是 ref，要不要写 `.value`？（答：不要，官方示例直接把 ref 放进对象，并说明"Objects are automatically stringified."）
 2. 输入框里每改一个字符都会打接口，文档给的开关是什么？（答：`watch: false`；防抖方案文档没有写。）
-3. 官方拦截器示例里那行 `localStorage.setItem` 为什么不能照抄？（答：服务端那一趟也会执行拦截器，而 `localStorage` 在服务器不存在——hydration 那页正是把它列为第一类成因。）
+3. 官方拦截器示例里那行 `localStorage.setItem` 为什么不能照抄？（答：服务端那一趟也会执行拦截器，而 `localStorage` 在服务器不存在——hydration 那一节正是把它列为第一类成因。）
 
 ## 下一篇
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/1efabe7832c8f08e572dd92a76115137/
-title: 手动挑头转发：useRequestHeaders 与浏览器里那个空对象
+title: 223 - 手动挑头转发：useRequestHeaders 与浏览器里那个空对象
 date: 2026-12-25T10:00:00+08:00
 updated: 2026-12-25T10:00:00+08:00
 author: cmdragon

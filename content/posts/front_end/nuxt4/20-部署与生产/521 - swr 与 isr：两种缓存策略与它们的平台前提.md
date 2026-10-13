@@ -1,6 +1,6 @@
 ---
 url: /posts/362255a81a99fe167fc4a55033388277/
-title: swr 与 isr：两种缓存策略与它们的平台前提
+title: 521 - swr 与 isr：两种缓存策略与它们的平台前提
 date: 2027-04-03T11:00:00+08:00
 updated: 2027-04-03T11:00:00+08:00
 author: cmdragon
@@ -64,7 +64,7 @@ Route Rules 小节给的可用属性一共九个，原文照列：
 
 ## 动态路由怎么开：官方给的 glob 写法
 
-预渲染那页讲载荷提取时，专门给了动态路由的开启方式：**"Dynamic routes like `pages/[...slug].vue` can opt in with glob patterns such as `'/**': { isr: true }`."**
+预渲染那一节讲载荷提取时，专门给了动态路由的开启方式：**"Dynamic routes like `pages/[...slug].vue` can opt in with glob patterns such as `'/**': { isr: true }`."**
 
 这行的重点是**glob 匹配的是 URL，不是文件路径**：`'/**'` 覆盖全站所有路由，包括 catch-all 那种动态段。而示例里 `'/products/**': { swr: 3600 }`、`'/blog/**': { isr: true }` 是按 URL 前缀分组——这与混合渲染那节"给一组路由定义规则"的说法一致。
 
@@ -74,13 +74,13 @@ Route Rules 小节给的可用属性一共九个，原文照列：
 
 > Routes using `isr` or `swr` also generate `_payload.json` files alongside HTML. Client-side navigation loads these cached payloads instead of re-fetching data.
 
-预渲染那页补得更细：**首次渲染时就生成**（"Routes using ISR or SWR caching generate their payload file when the route is first rendered, even on a hybrid (non-static) site"），并且**CDN 可以把载荷文件和 HTML 一起缓存**，从而提升已缓存路由的客户端导航性能。
+预渲染那一节补得更细：**首次渲染时就生成**（"Routes using ISR or SWR caching generate their payload file when the route is first rendered, even on a hybrid (non-static) site"），并且**CDN 可以把载荷文件和 HTML 一起缓存**，从而提升已缓存路由的客户端导航性能。
 
 对部署的含义：**你缓存的不止 HTML，还有一份数据**。所以"改了内容但页面没变"这类问题，要看两层缓存；另外载荷是用 devalue 序列化的，自定义类型（比如类实例）需要载荷插件的 reducer 与 reviver 才能往返——这条在讲预渲染那篇有原文。
 
 ## 一个反面提醒：`noScripts` 也在同一张表里
 
-`noScripts` 与缓存同在 routeRules，容易被当成"给静态页省 JS"的顺手配置。但它在特性那页还有一句默认值说明（官方给的默认是 `'production'`），而错误码 `e8007` 讲的正是这个默认造成的开发期差异：**dev 里有 JS、生产剥掉 JS**，两类会静默坏掉的能力是延迟水合与服务端组件里的 `nuxt-client`。给某个区块设 `noScripts` 之前，先确认那页没有依赖水合的交互。
+`noScripts` 与缓存同在 routeRules，容易被当成"给静态页省 JS"的顺手配置。但它在特性那一节还有一句默认值说明（官方给的默认是 `'production'`），而错误码 `e8007` 讲的正是这个默认造成的开发期差异：**dev 里有 JS、生产剥掉 JS**，两类会静默坏掉的能力是延迟水合与服务端组件里的 `nuxt-client`。给某个区块设 `noScripts` 之前，先确认那一节没有依赖水合的交互。
 
 ## 自查
 

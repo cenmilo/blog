@@ -1,6 +1,6 @@
 ---
 url: /posts/0308c61568410075c9e62491c48f1ea0/
-title: navigationRepaint 与 ssrStreaming：导航体验相关开关
+title: 385 - navigationRepaint 与 ssrStreaming：导航体验相关开关
 date: 2027-02-17T10:00:00+08:00
 updated: 2027-02-17T10:00:00+08:00
 author: cmdragon

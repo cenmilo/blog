@@ -1,12 +1,12 @@
 ---
 url: /posts/928edf1259835cd70e77a16c14e750b0/
-title: key 与 pageKey：什么时候重建页面、重建与滚动和保活的分工
+title: 137 - key 与 pageKey：什么时候重建页面、重建与滚动和保活的分工
 date: 2026-11-26T11:00:00+08:00
 updated: 2026-11-26T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一格管的是"**同一条路由换了参数时，页面组件要不要重来一遍**"。官方在两个地方给了同一个能力：`definePageMeta` 的 `key`（类型 `false | string | ((route: RouteLocationNormalizedLoaded) => string)`，说明为"**当你需要更多地控制 `<NuxtPage>` 组件何时被重新渲染时，设置一个 `key` 值**"）与 `<NuxtPage>` 的 `pageKey` prop（类型 `string` 或 `function`，说明为"**控制 `NuxtPage` 组件何时被重新渲染**"）。页面目录那一页把两者的等价关系写得很明确："**如果你想要更多地控制 `<NuxtPage>` 组件何时被重新渲染（例如为了过渡），你可以通过 `pageKey` prop 传入一个字符串或函数，或者通过 `definePageMeta` 定义一个 `key` 值。**"——官方随后并列给出两种写法：父页面出口上 `<NuxtPage :page-key="route => route.fullPath" />`，或子页面里 `definePageMeta({ key: route => route.fullPath })`。两条极端情况的官方说法是：「如果你传入一个从不改变的 key，`<NuxtPage>` 组件将只被渲染一次——在它首次挂载时」，示例写作 `<NuxtPage page-key="static" />`；而动态 key 的官方写法是 `<NuxtPage :page-key="route => route.fullPath" />`，紧跟一条 warning：**"不要在这里使用 `$route` 对象，因为它会给 `<NuxtPage>` 用 `<Suspense>` 渲染页面的方式造成问题。"** 另外三件与它相连的事：① 官方把 `key` 的动机之一写成"例如为了过渡"——**不重建就没有可过渡的新元素**（091 的 `<Transition>` 结构）；② `scrollToTop` 官方明确它是独立的："**导航独立于渲染，所以即使页面不重新渲染（例如使用固定的 `key` 时），滚动行为也总会触发。在这种情形下设 `scrollToTop: false` 来禁用滚动。**"；③ 状态保留归 `keepalive`——官方的场景说明正是"**例如在一个拥有动态子路由的父路由里，如果你想跨路由变化保留页面状态**"，并给出父路由专用写法 `<NuxtPage keepalive />`。
+  摘要：这一格管的是"**同一条路由换了参数时，页面组件要不要重来一遍**"。官方在两个地方给了同一个能力：`definePageMeta` 的 `key`（类型 `false | string | ((route: RouteLocationNormalizedLoaded) => string)`，说明为"**当你需要更多地控制 `<NuxtPage>` 组件何时被重新渲染时，设置一个 `key` 值**"）与 `<NuxtPage>` 的 `pageKey` prop（类型 `string` 或 `function`，说明为"**控制 `NuxtPage` 组件何时被重新渲染**"）。页面目录那一节把两者的等价关系写得很明确："**如果你想要更多地控制 `<NuxtPage>` 组件何时被重新渲染（例如为了过渡），你可以通过 `pageKey` prop 传入一个字符串或函数，或者通过 `definePageMeta` 定义一个 `key` 值。**"——官方随后并列给出两种写法：父页面出口上 `<NuxtPage :page-key="route => route.fullPath" />`，或子页面里 `definePageMeta({ key: route => route.fullPath })`。两条极端情况的官方说法是：「如果你传入一个从不改变的 key，`<NuxtPage>` 组件将只被渲染一次——在它首次挂载时」，示例写作 `<NuxtPage page-key="static" />`；而动态 key 的官方写法是 `<NuxtPage :page-key="route => route.fullPath" />`，紧跟一条 warning：**"不要在这里使用 `$route` 对象，因为它会给 `<NuxtPage>` 用 `<Suspense>` 渲染页面的方式造成问题。"** 另外三件与它相连的事：① 官方把 `key` 的动机之一写成"例如为了过渡"——**不重建就没有可过渡的新元素**（091 的 `<Transition>` 结构）；② `scrollToTop` 官方明确它是独立的："**导航独立于渲染，所以即使页面不重新渲染（例如使用固定的 `key` 时），滚动行为也总会触发。在这种情形下设 `scrollToTop: false` 来禁用滚动。**"；③ 状态保留归 `keepalive`——官方的场景说明正是"**例如在一个拥有动态子路由的父路由里，如果你想跨路由变化保留页面状态**"，并给出父路由专用写法 `<NuxtPage keepalive />`。
 
 categories:
   - 前端开发
@@ -35,7 +35,7 @@ tags:
 | `definePageMeta` 的 `key` | "**当你需要更多地控制 `<NuxtPage>` 组件何时被重新渲染时，设置一个 `key` 值。**"类型 `false \| string \| ((route: RouteLocationNormalizedLoaded) => string)` |
 | `<NuxtPage>` 的 `pageKey` prop | "**控制 `NuxtPage` 组件何时被重新渲染。**"类型 `string` 或 `function` |
 
-页面目录那一页把等价关系写成一整句：
+页面目录那一节把等价关系写成一整句：
 
 > 如果你想要更多地控制 `<NuxtPage>` 组件何时被重新渲染（**例如为了过渡**），你可以通过 `pageKey` prop 传入一个字符串或函数，**或者**通过 `definePageMeta` 定义一个 `key` 值。
 

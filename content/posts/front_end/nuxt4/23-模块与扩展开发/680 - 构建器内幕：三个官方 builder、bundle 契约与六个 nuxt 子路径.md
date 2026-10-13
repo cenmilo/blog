@@ -1,12 +1,12 @@
 ---
 url: /posts/7c84a14503d1d80796582ed39fe97c92/
-title: 构建器内幕：三个官方 builder、bundle 契约与六个 nuxt 子路径
+title: 680 - 构建器内幕：三个官方 builder、bundle 契约与六个 nuxt 子路径
 date: 2027-05-26T11:00:00+08:00
 updated: 2027-05-26T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：这一页把"打包"从 Nuxt 里拆出来讲：**builder 是负责打包你应用的那一部分，Nuxt 自带三个官方 builder——Vite（默认）、webpack、Rspack**，用 `builder` 选项选，也可以自己提供一个。**分工是一句"要构建什么"归 Nuxt 核心与模块，"怎么构建"归 builder**：核心与模块生成虚拟应用（入口、路由表、插件、组件注册表以及 `#build` 下的虚拟文件系统），builder 把它变成真实的 JS 与 CSS。两条容易记错的边界：**可部署的服务端本身由 Nitro 通过 `@nuxt/nitro-server` 产出，不是 builder**；**builder 与其余部分之间靠一份 typed 契约传递产物**。契约就是那份 **六个键的 `NuxtBuildOutputs`**，每个键映射到一个 `nuxt/*` 子路径，**服务端运行时通过 `nuxt/entry`、`nuxt/manifest` 这些稳定子路径来 import 产物**。
+  摘要：这一节把"打包"从 Nuxt 里拆出来讲：**builder 是负责打包你应用的那一部分，Nuxt 自带三个官方 builder——Vite（默认）、webpack、Rspack**，用 `builder` 选项选，也可以自己提供一个。**分工是一句"要构建什么"归 Nuxt 核心与模块，"怎么构建"归 builder**：核心与模块生成虚拟应用（入口、路由表、插件、组件注册表以及 `#build` 下的虚拟文件系统），builder 把它变成真实的 JS 与 CSS。两条容易记错的边界：**可部署的服务端本身由 Nitro 通过 `@nuxt/nitro-server` 产出，不是 builder**；**builder 与其余部分之间靠一份 typed 契约传递产物**。契约就是那份 **六个键的 `NuxtBuildOutputs`**，每个键映射到一个 `nuxt/*` 子路径，**服务端运行时通过 `nuxt/entry`、`nuxt/manifest` 这些稳定子路径来 import 产物**。
 
 categories:
   - 前端开发
@@ -24,13 +24,13 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-为什么换了打包器，服务端那侧不用改？这一页回答的就是这个——它把 Nuxt 的构建拆成"生成虚拟应用"和"把虚拟应用变成产物"两段，并给出两段之间那份契约的全部键。
+为什么换了打包器，服务端那侧不用改？这一节回答的就是这个——它把 Nuxt 的构建拆成"生成虚拟应用"和"把虚拟应用变成产物"两段，并给出两段之间那份契约的全部键。
 
 ## 先确认有几个 builder
 
 第一句给的是范围：**builder 是 Nuxt 中负责打包你应用的部分。Nuxt 自带三个官方 builder——Vite（默认）、webpack 与 Rspack——你可以用 `builder` 选项选一个，也可以提供自己的**。
 
-这条信息与本系列前几处出现过的表述并不完全一致：**Kit 的 `buildNuxt` 那一节说"目前调用 @nuxt/vite-builder 或 @nuxt/webpack-builder"**，**而钩子表里只有 vite 与 webpack 两族钩子、没有任何 rspack 行**。这一页是全套文档里唯一把三个 builder 并列写明的地方。
+这条信息与本系列前几处出现过的表述并不完全一致：**Kit 的 `buildNuxt` 那一节说"目前调用 @nuxt/vite-builder 或 @nuxt/webpack-builder"**，**而钩子表里只有 vite 与 webpack 两族钩子、没有任何 rspack 行**。这一节是全套文档里唯一把三个 builder 并列写明的地方。
 
 页面还先划了一条门槛（`::note`）：**编写 builder 是一个进阶话题。大多数应用永远不需要自定义 builder；如果你只想影响产物，一个注册了打包器插件的模块通常是正确的工具**。
 
@@ -124,7 +124,7 @@ export default defineNuxtConfig({
 
 页面并补了一句：**官方 builder 也会发出它们自己的钩子**（举例 `vite:extendConfig`、`vite:serverCreated`、`webpack:config`），以便模块与 Nitro 参与构建。**自定义 builder 可以发出自己的钩子，但下面那份构建产物契约才是让它与 Nuxt 服务端运行时互操作的东西**。
 
-**注意这份清单里把 `extendViteConfig` 列为正常通道，而 Kit 那一页已把它标为弃用**——两处状态不一致，本系列按各自原文记录，**实际写代码以 Kit 页的弃用标记为准**。
+**注意这份清单里把 `extendViteConfig` 列为正常通道，而 Kit 那一节已把它标为弃用**——两处状态不一致，本系列按各自原文记录，**实际写代码以 Kit 那一节的弃用标记为准**。
 
 ## 六个键的契约
 
@@ -240,11 +240,15 @@ build.output.publicDir() // the deployable static assets within it
 
 ## 一句话取用
 
-**这一页对多数人的用处是判断"该写模块还是该写 builder"**：**能靠钩子与 Kit 四通道解决的就不要写 builder**；真要写，**要落的只有 `bundle` 一个方法，其余全在这份六键契约里**。
+**这一节对多数人的用处是判断"该写模块还是该写 builder"**：**能靠钩子与 Kit 四通道解决的就不要写 builder**；真要写，**要落的只有 `bundle` 一个方法，其余全在这份六键契约里**。
 
-本页未记载的：`nuxt.buildOutputs` 里 stub 的具体实现位置、`experimental.watcher: 'builder'` 的默认值与副作用、自定义 builder 如何注册 dev 的 handler 之外的接口、以及 `entryChunkName` 与 import map 的使用条件（**只有表格里一句括号说明**）。
+这一节未记载的：`nuxt.buildOutputs` 里 stub 的具体实现位置、`experimental.watcher: 'builder'` 的默认值与副作用、自定义 builder 如何注册 dev 的 handler 之外的接口、以及 `entryChunkName` 与 import map 的使用条件（**只有表格里一句括号说明**）。
 
 下一篇是一篇短配方：把现成的 Vite 插件接进 Nuxt。
+
+## 下一篇
+
+下一篇 681：用 Vite 插件接入 Nuxt：一条配置数组、addVitePlugin 与那条替代建议
 
 ## 本文依据
 

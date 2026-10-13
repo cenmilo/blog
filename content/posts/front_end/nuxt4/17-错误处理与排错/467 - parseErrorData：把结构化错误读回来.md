@@ -1,6 +1,6 @@
 ---
 url: /posts/403c20342d0a2f00c33f08ae6bf581da/
-title: parseErrorData：把结构化错误读回来
+title: 467 - parseErrorData：把结构化错误读回来
 date: 2027-03-16T11:00:00+08:00
 updated: 2027-03-16T11:00:00+08:00
 author: cmdragon
@@ -46,7 +46,7 @@ export default defineNuxtConfig({
 
 三句话，能确定的只有两点：
 
-- **默认开启**（官方用的是这一页里那句标准的"This flag is enabled by default"）。
+- **默认开启**（官方用的是这一节里那句标准的"This flag is enabled by default"）。
 - **作用时机被限定在"服务端渲染错误页"这一件事上**。
 
 而关掉之后 `error.data` 呈现成什么（原始字符串？`undefined`？）、什么场景该关、它和客户端读到的那份 `data` 是不是同一套解析——**这三项文档一个字都没写**。所以这一篇剩下的部分只讲能查证的东西：`data` 这条链的其他几环。
@@ -68,7 +68,7 @@ export default defineNuxtConfig({
 
 ## 一条相邻的形态差异
 
-`data` 能不能安全地放东西，还要看 payload 那侧的序列化规则。官方在预渲染那一页写的是"Payloads are serialized with devalue, so custom types (such as class instances) need payload plugins with custom reducers and revivers to survive the round trip"（448）——那条讲的是取数结果与应用状态；**错误数据的序列化走不走同一套，文档没有写**（文档未说明）。
+`data` 能不能安全地放东西，还要看 payload 那侧的序列化规则。官方在预渲染那一节写的是"Payloads are serialized with devalue, so custom types (such as class instances) need payload plugins with custom reducers and revivers to survive the round trip"（448）——那条讲的是取数结果与应用状态；**错误数据的序列化走不走同一套，文档没有写**（文档未说明）。
 
 稳妥的判断方式是把 `data` 限制在可 JSON 化的形状里：字符串、数字、布尔、数组、普通对象。类别实例、`Map`/`Set`、`Date` 这类放进来之前，先用下面这组观察确认它们能过。
 
@@ -103,7 +103,7 @@ export default eventHandler(() => {
 
 ## 下一篇
 
-下一篇 468 进入错误码页：官方对 `NUXT_E1001`（组合式函数在 Nuxt 上下文外调用）、`NUXT_E1006`（`onPrehydrate()` 没被构建流水线转换）与 `NUXT_E1007`（编译期宏在运行时执行）三页各写了两段——一段说清是什么触发的，一段给出修法，三处都落在"编译期处理"与"上下文"这两个概念上。
+下一篇 468 进入错误码页：官方对 `NUXT_E1001`（组合式函数在 Nuxt 上下文外调用）、`NUXT_E1006`（`onPrehydrate()` 没被构建流水线转换）与 `NUXT_E1007`（编译期宏在运行时执行）三节各写了两段——一段说清是什么触发的，一段给出修法，三处都落在"编译期处理"与"上下文"这两个概念上。
 
 ## 本文依据
 

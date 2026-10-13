@@ -1,6 +1,6 @@
 ---
 url: /posts/6a63d3eceba380bfc1900cba7c88d458/
-title: 按路由选模式：ssr=false 与 routeRules 的组合
+title: 367 - 按路由选模式：ssr=false 与 routeRules 的组合
 date: 2027-02-11T10:00:00+08:00
 updated: 2027-02-11T10:00:00+08:00
 author: cmdragon

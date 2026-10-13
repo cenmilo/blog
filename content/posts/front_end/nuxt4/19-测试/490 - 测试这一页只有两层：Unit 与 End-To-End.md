@@ -1,12 +1,12 @@
 ---
 url: /posts/11925e279cfbfb3983628a54ceb60227/
-title: 测试这一页只有两层：Unit 与 End-To-End
+title: 490 - 测试这一页只有两层：Unit 与 End-To-End
 date: 2027-03-24T10:00:00+08:00
 updated: 2027-03-24T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：官方测试这一页的结构是**三节**：Installation、Unit Testing、End-To-End Testing——没有"集成测试"这一层，"组件测试"与"组合式函数测试"在 4.x 文档里只是 Unit Testing 下的子话题。它给的能力边界也很具体：`@nuxt/test-utils` 提供**可选的对等依赖**，运行时环境在 `happy-dom` 与 `jsdom` 之间选、端到端 runner 在 `vitest`/`cucumber`/`jest`/`playwright` 之间选、`playwright-core` 只在你想用内置浏览器测试工具且不拿 `@playwright/test` 当 runner 时才需要；而**单元测试环境目前只支持 `vitest`**（官方括注"欢迎贡献其他 runtime"）。这一篇先把分层与选择讲清，配置细节留给 491。
+  摘要：官方测试这一节的结构是**三节**：Installation、Unit Testing、End-To-End Testing——没有"集成测试"这一层，"组件测试"与"组合式函数测试"在 4.x 文档里只是 Unit Testing 下的子话题。它给的能力边界也很具体：`@nuxt/test-utils` 提供**可选的对等依赖**，运行时环境在 `happy-dom` 与 `jsdom` 之间选、端到端 runner 在 `vitest`/`cucumber`/`jest`/`playwright` 之间选、`playwright-core` 只在你想用内置浏览器测试工具且不拿 `@playwright/test` 当 runner 时才需要；而**单元测试环境目前只支持 `vitest`**（官方括注"欢迎贡献其他 runtime"）。这一篇先把分层与选择讲清，配置细节留给 491。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-你按"单元、组件、集成、端到端"四层规划测试目录，翻到官方文档发现对不上——那一页只有两大类，而且**其中一类的 runner 只支持一个**。
+你按"单元、组件、集成、端到端"四层规划测试目录，翻到官方文档发现对不上——那一节只有两大类，而且**其中一类的 runner 只支持一个**。
 
 这一篇先把官方给的分层与可选依赖列清楚，避免目录结构定完才发现落不了地。
 

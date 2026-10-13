@@ -1,12 +1,12 @@
 ---
 url: /posts/b5904ba8d60c85c40a3e4ff82ad217e9/
-title: 监听路由变化：响应式取数、computed key 与 watch 选项
+title: 122 - 监听路由变化：响应式取数、computed key 与 watch 选项
 date: 2026-11-21T11:00:00+08:00
 updated: 2026-11-21T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要："路由变了要重新取数"这件事，官方给的正解不是 `watch(route, ...)`，而是**把路由值做成响应式来源交给取数接口**。`useFetch` 那一页的原文是："**取数选项可以是响应式的，支持 `computed`、`ref` 与 computed getters。当一个响应式取数选项被更新时，它会使用更新后解析出的响应式值触发一次重新取数（refetch）。**"官方示例把这条写成最直观的形式：`useFetch('/api/search', { query: { q: searchQuery } })`，然后 `searchQuery.value = 'new search'` 后面注释写着 **`// triggers a refetch: /api/search?q=new%20search`**；反过来"**如果需要的话，你可以使用 `watch: false` 退出这一行为**"，示例里同样的赋值配上是 `// does not trigger a refetch`。`useAsyncData` 那一页还给了一个内置选项："**内置的 `watch` 选项允许在检测到任何变化时自动重跑取数函数**"，示例是把 sources 显式列成数组 `watch: [page]`，参数表的定义是 `MultiWatchSources`、"**要监听并自动刷新的响应式来源数组**"。第三条路更巧妙，是**把 key 本身做成响应式**："你可以使用一个 computed ref、普通 ref 或 getter 函数作为 key，从而允许在 key 变化时自动更新的动态取数"，官方示例正是从路由参数派生：`const route = useRoute()`、`const userId = computed(() => \`user-${route.params.id}\`)`、注释写明 **"当路由变化且 userId 更新时，数据会被自动重新取回"**。这三种触发在数据层是可区分的——`AsyncDataRequestContext` 里那个 `cause` 字段的取值是 `'initial' | 'refresh:manual' | 'refresh:hook' | 'watch'`。要控制代价，官方给了三个开关：`dedupe` 类型 `'cancel' | 'defer'`、默认 **`'cancel'`**，定义是"**同一时刻触发多次执行时的策略**"；`handler` 第二参数里的 `signal` 可以让请求可取消，官方说"**这在请求不再需要时取消它很有用，例如用户从页面导航离开**"；`enabled` 官方描述是一道屏障，"**在为 `false` 期间每一次执行都会被阻塞（初次取数、`execute`/`refresh` 以及 watch 触发）**"。最后还有一条组件侧的守卫可用：`onBeforeRouteUpdate` 的官方定义是"**允许在一个组件内注册一个路由守卫**"，官方页只给这一句并把语义交给 vue-router 文档（它与 `useRoute` 的 source 同在 `packages/nuxt/src/app/composables/router.ts`）。
+  摘要："路由变了要重新取数"这件事，官方给的正解不是 `watch(route, ...)`，而是**把路由值做成响应式来源交给取数接口**。`useFetch` 那一节的原文是："**取数选项可以是响应式的，支持 `computed`、`ref` 与 computed getters。当一个响应式取数选项被更新时，它会使用更新后解析出的响应式值触发一次重新取数（refetch）。**"官方示例把这条写成最直观的形式：`useFetch('/api/search', { query: { q: searchQuery } })`，然后 `searchQuery.value = 'new search'` 后面注释写着 **`// triggers a refetch: /api/search?q=new%20search`**；反过来"**如果需要的话，你可以使用 `watch: false` 退出这一行为**"，示例里同样的赋值配上是 `// does not trigger a refetch`。`useAsyncData` 那一节还给了一个内置选项："**内置的 `watch` 选项允许在检测到任何变化时自动重跑取数函数**"，示例是把 sources 显式列成数组 `watch: [page]`，参数表的定义是 `MultiWatchSources`、"**要监听并自动刷新的响应式来源数组**"。第三条路更巧妙，是**把 key 本身做成响应式**："你可以使用一个 computed ref、普通 ref 或 getter 函数作为 key，从而允许在 key 变化时自动更新的动态取数"，官方示例正是从路由参数派生：`const route = useRoute()`、`const userId = computed(() => \`user-${route.params.id}\`)`、注释写明 **"当路由变化且 userId 更新时，数据会被自动重新取回"**。这三种触发在数据层是可区分的——`AsyncDataRequestContext` 里那个 `cause` 字段的取值是 `'initial' | 'refresh:manual' | 'refresh:hook' | 'watch'`。要控制代价，官方给了三个开关：`dedupe` 类型 `'cancel' | 'defer'`、默认 **`'cancel'`**，定义是"**同一时刻触发多次执行时的策略**"；`handler` 第二参数里的 `signal` 可以让请求可取消，官方说"**这在请求不再需要时取消它很有用，例如用户从页面导航离开**"；`enabled` 官方描述是一道屏障，"**在为 `false` 期间每一次执行都会被阻塞（初次取数、`execute`/`refresh` 以及 watch 触发）**"。最后还有一条组件侧的守卫可用：`onBeforeRouteUpdate` 的官方定义是"**允许在一个组件内注册一个路由守卫**"，官方页只给这一句并把语义交给 vue-router 文档（它与 `useRoute` 的 source 同在 `packages/nuxt/src/app/composables/router.ts`）。
 
 categories:
   - 前端开发
@@ -41,7 +41,7 @@ tags:
 
 ## 路径一：把 ref 直接塞进取数选项
 
-官方在 `useFetch` 那页写的规则：
+官方在 `useFetch` 那一节写的规则：
 
 > **取数选项可以是响应式的，支持 `computed`、`ref` 与 computed getters。当一个响应式取数选项被更新时，它会使用更新后解析出的响应式值触发一次重新取数。**
 
@@ -81,7 +81,7 @@ searchQuery.value = 'new search'
 
 ## 路径二：显式列出要监听的 sources
 
-`useAsyncData` 那页给的是同一个能力的另一种写法：
+`useAsyncData` 那一节给的是同一个能力的另一种写法：
 
 > **内置的 `watch` 选项允许在检测到任何变化时自动重跑取数函数。**
 
@@ -177,11 +177,11 @@ const { data, error } = await useAsyncData(
 
 ## 组件侧：注册一个路由守卫
 
-如果你要的不是"重新取数"而是"离开/更新前拦一道"，官方给的组件内接口是这两个（`onBeforeRouteLeave` 与 `onBeforeRouteUpdate`）。`onBeforeRouteUpdate` 那页的定义只有一句：
+如果你要的不是"重新取数"而是"离开/更新前拦一道"，官方给的组件内接口是这两个（`onBeforeRouteLeave` 与 `onBeforeRouteUpdate`）。`onBeforeRouteUpdate` 那一节的定义只有一句：
 
 > **`onBeforeRouteUpdate` 组合式函数允许在一个组件内注册一个路由守卫。**
 
-具体参数与语义官方直接交给 vue-router 文档（这一页只有一个 read-more 卡片，指向 `onbeforerouteupdate`）。值得注意的是它的 Source 与 `useRoute` **同在 `packages/nuxt/src/app/composables/router.ts`**——也就是说它是 Nuxt 提供、而非你从 `vue-router` 自己导入的那一份。
+具体参数与语义官方直接交给 vue-router 文档（这一节只有一个 read-more 卡片，指向 `onbeforerouteupdate`）。值得注意的是它的 Source 与 `useRoute` **同在 `packages/nuxt/src/app/composables/router.ts`**——也就是说它是 Nuxt 提供、而非你从 `vue-router` 自己导入的那一份。
 
 ## 官方从不这样写：几点提醒
 

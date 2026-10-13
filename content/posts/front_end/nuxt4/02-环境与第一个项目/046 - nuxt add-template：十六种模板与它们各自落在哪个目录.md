@@ -1,6 +1,6 @@
 ---
 url: /posts/e9cdd91827b673734b60063b10a33caf/
-title: nuxt add-template：十六种模板与它们各自落在哪个目录
+title: 046 - nuxt add-template：十六种模板与它们各自落在哪个目录
 date: 2026-10-27T10:00:00+08:00
 updated: 2026-10-27T10:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/ca06f64e9be4bc89a7c5821870777413/
-title: runtimeConfig 的双层结构：public 与非 public
+title: 340 - runtimeConfig 的双层结构：public 与非 public
 date: 2027-02-02T10:00:00+08:00
 updated: 2027-02-02T10:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-上一篇（339）用一句话带过"配置放 runtimeConfig"。P12 把这整块展开。第一篇先立结构：**runtimeConfig 不是一层，是"私有 + 公有"两层，外加一个 Nuxt 保留的 `app` 空间。**
+上一篇（339）用一句话带过"配置放 runtimeConfig"。340-364 把这整块展开。第一篇先立结构：**runtimeConfig 不是一层，是"私有 + 公有"两层，外加一个 Nuxt 保留的 `app` 空间。**
 
 ## 官方那个对比例子
 
@@ -96,6 +96,10 @@ nuxt-config 对 runtimeConfig 的定义句把分界说死（265、327 也引过�
 - 判断标准就一句：这值给用户看到有没有坏处。
 - `app` 是 Nuxt 保留命名空间，别往里加自己的键。
 - `public` 的值会进每一页 payload（318/264），所以也别往 public 塞敏感东西。
+
+## 下一篇
+
+下一篇 341：useRuntimeConfig 读写规则：客户端改不了私有键
 
 ## 本文依据
 

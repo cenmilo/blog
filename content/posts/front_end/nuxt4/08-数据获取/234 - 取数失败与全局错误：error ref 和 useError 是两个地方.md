@@ -1,12 +1,12 @@
 ---
 url: /posts/54c2ce7ae21b984ff1ed8a93f806c7ef/
-title: 取数失败与全局错误：error ref 和 useError 是两个地方
+title: 234 - 取数失败与全局错误：error ref 和 useError 是两个地方
 date: 2026-12-29T09:00:00+08:00
 updated: 2026-12-29T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一篇讲一件很容易做错的事：**取数失败默认不会跳到错误页**。`useFetch`/`useAsyncData` 返回的那个 `error` 是**局部的 ref**——官方说明是 "Error object if the asynchronous function threw an error."，你不读它，它就静静躺在那儿；而全站错误页要的是**抛出去**的错误，官方给的两个入口各有说法：`throw createError()`（"If you throw an error created with `createError`: on server-side, it will trigger a full-screen error page which you can clear with `clearError`. on client-side, it will throw a non-fatal error for you to handle. **If you need to trigger a full-screen error page, then you can do this by setting `fatal: true`.**"），以及 `showError`——它确实能触发全屏错误页（"You can call this function at any point on client-side, or (on server side) directly within middleware, plugins or `setup()` functions."），**但官方紧接着的建议是 "It is recommended instead to use `throw createError()`."**。读全局错误用 `useError()`，它返回 `Ref<NuxtError | undefined>`、"available on both client and server"、"reactive and will update automatically when the error state changes"。官方在文档里给的取数→404 组合就是一段：拿到 `data` 后判空再 `throw createError({ status: 404, statusText: 'Page Not Found' })`。最后要提醒一处文档内部不一致：**`useError` 的返回类型在两页写法不同**，`api/composables/use-error` 给的是 `{status, statusText?, message, data?, cause?, fatal}`，而错误处理页的签名是 `Ref<Error | { url, status, statusText, message, description, data }>`（多了 `url`/`description`、少了 `fatal`/`cause`）。
+  摘要：这一篇讲一件很容易做错的事：**取数失败默认不会跳到错误页**。`useFetch`/`useAsyncData` 返回的那个 `error` 是**局部的 ref**——官方说明是 "Error object if the asynchronous function threw an error."，你不读它，它就静静躺在那儿；而全站错误页要的是**抛出去**的错误，官方给的两个入口各有说法：`throw createError()`（"If you throw an error created with `createError`: on server-side, it will trigger a full-screen error page which you can clear with `clearError`. on client-side, it will throw a non-fatal error for you to handle. **If you need to trigger a full-screen error page, then you can do this by setting `fatal: true`.**"），以及 `showError`——它确实能触发全屏错误页（"You can call this function at any point on client-side, or (on server side) directly within middleware, plugins or `setup()` functions."），**但官方紧接着的建议是 "It is recommended instead to use `throw createError()`."**。读全局错误用 `useError()`，它返回 `Ref<NuxtError | undefined>`、"available on both client and server"、"reactive and will update automatically when the error state changes"。官方在文档里给的取数→404 组合就是一段：拿到 `data` 后判空再 `throw createError({ status: 404, statusText: 'Page Not Found' })`。最后要提醒一处文档内部不一致：**`useError` 的返回类型在两节写法不同**，`api/composables/use-error` 给的是 `{status, statusText?, message, data?, cause?, fatal}`，而错误处理页的签名是 `Ref<Error | { url, status, statusText, message, description, data }>`（多了 `url`/`description`、少了 `fatal`/`cause`）。
 
 categories:
   - 前端开发
@@ -89,7 +89,7 @@ if (!data.value) {
 
 ## 读全局错误：useError
 
-`api/composables/use-error` 那页给的是：
+`api/composables/use-error` 那一节给的是：
 
 ```ts
 export const useError: () => Ref<NuxtError | undefined>
@@ -131,7 +131,7 @@ if (error.value) {
 | `api/composables/use-error` | `() => Ref<NuxtError \| undefined>`，字段 `status`/`statusText?`/`message`/`data?`/`cause?`/`fatal` |
 | `getting-started/error-handling` | `function useError (): Ref<Error \| { url, status, statusText, message, description, data }>` |
 
-差异是实打实的：一边有 `url` 和 `description`，另一边有 `fatal` 与 `cause`。第三处（`app/error` 那页的 `NuxtError`，056 抄过）又是 8 个字段、带 `unhandled` 和两个 legacy 等价键、**没有 `message`**。
+差异是实打实的：一边有 `url` 和 `description`，另一边有 `fatal` 与 `cause`。第三处（`app/error` 那一节的 `NuxtError`，056 抄过）又是 8 个字段、带 `unhandled` 和两个 legacy 等价键、**没有 `message`**。
 
 **所以"错误对象上到底有什么"只能实测**：把 `useError().value` 打到控制台、以及从 `error.vue` 的 prop 里打一次，比较两边字段。别按任何一页的签名写死代码。
 
@@ -145,7 +145,7 @@ if (error.value) {
 
 1. 接口 500 之后默认会看到什么？（答：页面不跳错误页；只有那次取数返回的 `error` ref 有值、`status` 变成 `'error'`。）
 2. 客户端 `throw createError()` 会全屏吗？（答：默认 non-fatal；要全屏得设 `fatal: true`。）
-3. 三页给的错误对象字段一样吗？（答：不一样，`use-error` 页有 `message`/`fatal`/`cause`，错误处理页有 `url`/`description`，`app/error` 页有 `unhandled` 而无 `message`，必须实测。）
+3. 三节给的错误对象字段一样吗？（答：不一样，`use-error` 页有 `message`/`fatal`/`cause`，错误处理页有 `url`/`description`，`app/error` 页有 `unhandled` 而无 `message`，必须实测。）
 
 ## 下一篇
 

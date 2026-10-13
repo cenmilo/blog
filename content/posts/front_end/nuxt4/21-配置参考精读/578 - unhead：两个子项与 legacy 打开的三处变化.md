@@ -1,6 +1,6 @@
 ---
 url: /posts/7754e836780406334300805aff392da9/
-title: unhead：两个子项与 legacy 打开的三处变化
+title: 578 - unhead：两个子项与 legacy 打开的三处变化
 date: 2027-04-22T11:00:00+08:00
 updated: 2027-04-22T11:00:00+08:00
 author: cmdragon
@@ -30,7 +30,7 @@ tags:
 
 `## unhead` 的定性句："An object that allows us to configure the `unhead` nuxt module."
 
-unhead 是什么，配置页没说；入门讲元信息那一页给了定性——**"Nuxt head tag management is powered by Unhead"**，即 `<head>` 里那些标签由这一层管理。`useHead` 那一页补了同一句的另一半：它是"以编程式且响应式的方式管理 head 标签"的引擎。
+unhead 是什么，配置页没说；入门讲元信息那一节给了定性——**"Nuxt head tag management is powered by Unhead"**，即 `<head>` 里那些标签由这一层管理。`useHead` 那一节补了同一句的另一半：它是"以编程式且响应式的方式管理 head 标签"的引擎。
 
 **配置里能动的只有两个子项**：`legacy` 与 `renderSSRHeadOptions`。除此之外这一节什么都没有——没有开关去改标签排序策略、也没有键能配 Unhead 的其他行为。
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/9f38cd8799aee73e9f0ef2d12d34168a/
-title: useFetch 与 useAsyncData 的六处差异：自动 key、可响应式 URL 与错误类型
+title: 219 - useFetch 与 useAsyncData 的六处差异：自动 key、可响应式 URL 与错误类型
 date: 2026-12-24T09:00:00+08:00
 updated: 2026-12-24T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：官方对两者关系的原话只有一句："This composable provides a convenient wrapper around `useAsyncData` and `$fetch`."，后面紧跟三件 `useFetch` 自动做的事："It automatically generates a key for the request, provides type hints for request url based on server routes, and infers API response type."；data-fetching 那页又给了一个"近似等价"的展开式——"**`useFetch(url)` is nearly equivalent to `useAsyncData(url, () => event.$fetch(url))`**"，并说明它是"developer experience sugar for the most common use case"。**注意 "nearly"（近似）这个词是官方自己选的**，差异就在这六处：① 定位（包装 vs 被包装）与那三件自动事项；② 调用位置措辞不同——`useAsyncData` 写 "meant to be called directly in the Nuxt context"，`useFetch` 写 "meant to be called directly in a setup function, plugin, or route middleware"；③ 参数形状（`url` 可以是字符串、Request、ref 或返回它们的函数）；④ 自动 key 的生成规则不同（文件名+行号 对 URL+选项+调用位置）；⑤ 错误泛型的默认值不同（`DataE = unknown` 对 `ErrorT = NuxtError<unknown>`）；⑥ `useFetch` 多出八个请求侧选项（`method`、`query`、`params`、`body`、`headers`、`baseURL`、`cache`、`$fetch`），且它的 `watch` 类型多了 `| false`。**什么时候该退回 `useAsyncData`，官方只给了一类：CMS 或第三方自带查询层的时候。**
+  摘要：官方对两者关系的原话只有一句："This composable provides a convenient wrapper around `useAsyncData` and `$fetch`."，后面紧跟三件 `useFetch` 自动做的事："It automatically generates a key for the request, provides type hints for request url based on server routes, and infers API response type."；data-fetching 那一节又给了一个"近似等价"的展开式——"**`useFetch(url)` is nearly equivalent to `useAsyncData(url, () => event.$fetch(url))`**"，并说明它是"developer experience sugar for the most common use case"。**注意 "nearly"（近似）这个词是官方自己选的**，差异就在这六处：① 定位（包装 vs 被包装）与那三件自动事项；② 调用位置措辞不同——`useAsyncData` 写 "meant to be called directly in the Nuxt context"，`useFetch` 写 "meant to be called directly in a setup function, plugin, or route middleware"；③ 参数形状（`url` 可以是字符串、Request、ref 或返回它们的函数）；④ 自动 key 的生成规则不同（文件名+行号 对 URL+选项+调用位置）；⑤ 错误泛型的默认值不同（`DataE = unknown` 对 `ErrorT = NuxtError<unknown>`）；⑥ `useFetch` 多出八个请求侧选项（`method`、`query`、`params`、`body`、`headers`、`baseURL`、`cache`、`$fetch`），且它的 `watch` 类型多了 `| false`。**什么时候该退回 `useAsyncData`，官方只给了一类：CMS 或第三方自带查询层的时候。**
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-两页文档分开放，很容易只读一个就以为自己懂了。这一篇把差异逐条对齐，每条都引两边的原文。
+两节文档分开放，很容易只读一个就以为自己懂了。这一篇把差异逐条对齐，每条都引两边的原文。
 
 ## 官方给的关系式
 
@@ -34,7 +34,7 @@ tags:
 
 > This composable provides a convenient wrapper around `useAsyncData` and `$fetch`. It automatically generates a key for the request, provides type hints for request url based on server routes, and infers API response type.
 
-data-fetching 那页的展开式：
+data-fetching 那一节的展开式：
 
 > `useFetch(url)` is nearly equivalent to `useAsyncData(url, () => event.$fetch(url))`.
 > It's developer experience sugar for the most common use case.
@@ -93,7 +93,7 @@ const { data, error } = await useAsyncData(() => myGetFunction('users'))
 
 > `useFetch` is a reserved function name transformed by the compiler, so you should not name your own function `useFetch`. To create a custom variant with pre-defined options, use `createUseFetch` instead.
 
-（`useAsyncData` 那页有同款，只是没提 `createUseFetch`。）
+（`useAsyncData` 那一节有同款，只是没提 `createUseFetch`。）
 
 第二条是我真被咬过的：
 
@@ -118,4 +118,4 @@ const { data, error } = await useAsyncData(() => myGetFunction('users'))
 - `api/composables/use-fetch`：开头定位两句（wrapper、三件自动事项）；note（"meant to be called directly in a setup function, plugin, or route middleware"、payload 那句）；Usage 的 `pick` 示例；`createUseFetch` 的 tip；Type 一节签名与 `UseFetchOptions` 全部 23 键；Parameters 的 `URL` 与 `options` 两句（"Extends unjs/ofetch options and `AsyncDataOptions`"）；Reactive Keys and Shared State 一节；两条 warning（reserved name + @vueuse/core）；`AsyncData` 类型与 Status Values。
 - `api/composables/use-async-data`：note（"called directly in the Nuxt context"）；签名泛型 `<ResT, DataE = unknown, DataT = ResT>`；两个重载；`useAsyncData` 定位句 "responsible for wrapping async logic and returning the result once it is resolved"；reserved name 的 warning。
 - `getting-started/data-fetching`：useAsyncData 一节（"nearly equivalent" 那条 tip、"developer experience sugar"、CMS/第三方查询层的例外句、`'users'` 与省略 key 两段示例）。
-- `api/composables/use-request-fetch`：`event.fetch` / `event.$fetch` 指向的那页（222 详讲）。
+- `api/composables/use-request-fetch`：`event.fetch` / `event.$fetch` 指向的那一节（222 详讲）。

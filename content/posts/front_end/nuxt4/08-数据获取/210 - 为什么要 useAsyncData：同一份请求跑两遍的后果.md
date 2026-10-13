@@ -1,12 +1,12 @@
 ---
 url: /posts/a7efd584b6f57554e18f271b78a3160c/
-title: 为什么要 useAsyncData：同一份请求跑两遍的后果
+title: 210 - 为什么要 useAsyncData：同一份请求跑两遍的后果
 date: 2026-12-21T09:00:00+08:00
 updated: 2026-12-21T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：从 P08 开始讲取数。第一篇先把"为什么框架要再造一个取数函数"讲清楚，答案只有一句：**同一段代码会被跑两遍**——服务端渲染 HTML 时一次，浏览器接手这段 HTML 时又一次。官方在 "The Need for `useFetch` and `useAsyncData`" 一节把这条讲完了：「If the `$fetch` function is used to perform data fetching in the setup function of a Vue component, this may cause data to be fetched twice, once on the server (to render the HTML) and once again on the client (when the HTML is hydrated). **This can cause hydration issues, increase the time to interactivity and cause unpredictable behavior.**」解法是 `useFetch` 与 `useAsyncData`：「if an API call is made on the server, the data is forwarded to the client in the payload」，而 payload 是「a JavaScript object accessible through `useNuxtApp().payload`」，专门用来在水合时避免重复取数；`useAsyncData` 那一页的 note 也说得很直白——它把响应加进 Nuxt payload，**"without re-fetching the data on client side when the page hydrates"**。三个工具的定位是官方那三行：`$fetch` 最简单、`useFetch` 是包了一层 `$fetch` 并保证"fetches data only once in universal rendering"、`useAsyncData` 与 `useFetch` 类似但给更细的控制。最后一条容易被误解的是 `await`：**`await` 不改变服务端渲染出来的 HTML**（"the fully populated result is always sent to the browser"），它改的是你后面代码的执行时机与客户端导航要不要被阻塞。
+  摘要：从 P08 开始讲取数。第一篇先把"为什么框架要再造一个取数函数"讲清楚，答案只有一句：**同一段代码会被跑两遍**——服务端渲染 HTML 时一次，浏览器接手这段 HTML 时又一次。官方在 "The Need for `useFetch` and `useAsyncData`" 一节把这条讲完了：「If the `$fetch` function is used to perform data fetching in the setup function of a Vue component, this may cause data to be fetched twice, once on the server (to render the HTML) and once again on the client (when the HTML is hydrated). **This can cause hydration issues, increase the time to interactivity and cause unpredictable behavior.**」解法是 `useFetch` 与 `useAsyncData`：「if an API call is made on the server, the data is forwarded to the client in the payload」，而 payload 是「a JavaScript object accessible through `useNuxtApp().payload`」，专门用来在水合时避免重复取数；`useAsyncData` 那一节的 note 也说得很直白——它把响应加进 Nuxt payload，**"without re-fetching the data on client side when the page hydrates"**。三个工具的定位是官方那三行：`$fetch` 最简单、`useFetch` 是包了一层 `$fetch` 并保证"fetches data only once in universal rendering"、`useAsyncData` 与 `useFetch` 类似但给更细的控制。最后一条容易被误解的是 `await`：**`await` 不改变服务端渲染出来的 HTML**（"the fully populated result is always sent to the browser"），它改的是你后面代码的执行时机与客户端导航要不要被阻塞。
 
 categories:
   - 前端开发
@@ -57,7 +57,7 @@ tags:
 
 官方还给了看它的地方：**"Use the Nuxt DevTools to inspect this data in the Payload tab."** 我建议你今天就把这一条用起来——**它是唯一一个能让你亲眼确认"数据真的从服务端带过来了"的位置**，比读代码猜快得多。
 
-`useAsyncData` 那一页的 note 是同一定义的另一种写法，措辞更硬：
+`useAsyncData` 那一节的 note 是同一定义的另一种写法，措辞更硬：
 
 > `useAsyncData` is a composable meant to be called directly in the Nuxt context. It returns reactive composables and handles adding responses to the Nuxt payload so they can be passed from server to client **without re-fetching the data on client side** when the page hydrates.
 
@@ -127,8 +127,8 @@ async function handleFormSubmit () {
 
 ## 顺手记下与本篇相邻的两条
 
-- **服务端调用内部 API 时 `$fetch` 不真的发请求**：`api/utils/$fetch` 那页 tip 写 "During server-side rendering, calling `$fetch` to fetch your internal API routes will directly call the relevant function (emulating the request), **saving an additional API call**." 这是 211 的主线，这里只提一句免得你以为服务端那次一定是一次网络往返。
-- **取数函数是保留名**：`useAsyncData` 那页 warning 写 "`useAsyncData` is a reserved function name transformed by the compiler, so you should not name your own function `useAsyncData`." ——自己封的包装函数别叫这个名字。
+- **服务端调用内部 API 时 `$fetch` 不真的发请求**：`api/utils/$fetch` 那一节 tip 写 "During server-side rendering, calling `$fetch` to fetch your internal API routes will directly call the relevant function (emulating the request), **saving an additional API call**." 这是 211 的主线，这里只提一句免得你以为服务端那次一定是一次网络往返。
+- **取数函数是保留名**：`useAsyncData` 那一节 warning 写 "`useAsyncData` is a reserved function name transformed by the compiler, so you should not name your own function `useAsyncData`." ——自己封的包装函数别叫这个名字。
 
 ## 自查
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/1807d2a20861d6386d8defaad26617e6/
-title: preloadComponents 与 prefetchComponents：官方说两者实现目前一样
+title: 168 - preloadComponents 与 prefetchComponents：官方说两者实现目前一样
 date: 2026-12-07T09:00:00+08:00
 updated: 2026-12-07T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：这对函数名看着是"提前加载"与"预热"两种策略，但官方给了一句会让人改变用法的说明："**Current implementation behaves exactly the same as `preloadComponents` by preloading components instead of just prefetching we are working to improve this behavior.**"。两页各自的说法确实是两件事。`preloadComponents`："**Preloading components loads components that your page will need very soon, which you want to start loading early in rendering lifecycle. This ensures they are available earlier and are less likely to block the page's render, improving performance.**"；`prefetchComponents`："**Prefetching component downloads the code in the background, this is based on the assumption that the component will likely be used for rendering, enabling the component to load instantly if and when the user requests it. The component is downloaded and cached for anticipated future use without the user making an explicit request for it.**"——一个绑定"本页渲染早期"，一个绑定"未来可能用到"。可用范围两页写的是同一句："**Use `preloadComponents` to manually preload individual components **that have been registered globally** in your Nuxt app. **By default Nuxt registers these as async components. You must use the Pascal-cased version of the component name.**"，`prefetchComponents` 那段除动词外完全同构。写法都是 `await preloadComponents('MyGlobalComponent')` / `await preloadComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])`（prefetch 同款两行），服务端都无效果（"**On server, `preloadComponents` will have no effect.**" / "**On server, `prefetchComponents` will have no effect.**"），源码都在 `packages/nuxt/src/app/composables/preload.ts`。它和 145 的 `preloadRouteComponents`（"**loads the components of a given route**"）一起构成三个入口，而 `addComponent` 上的 `prefetch`/`preload` 是第四个、完全不同层的东西（"used **in production** to configure how components with **Lazy prefix** are handled by **webpack via its magic comments**"）。
+  摘要：这对函数名看着是"提前加载"与"预热"两种策略，但官方给了一句会让人改变用法的说明："**Current implementation behaves exactly the same as `preloadComponents` by preloading components instead of just prefetching we are working to improve this behavior.**"。两节各自的说法确实是两件事。`preloadComponents`："**Preloading components loads components that your page will need very soon, which you want to start loading early in rendering lifecycle. This ensures they are available earlier and are less likely to block the page's render, improving performance.**"；`prefetchComponents`："**Prefetching component downloads the code in the background, this is based on the assumption that the component will likely be used for rendering, enabling the component to load instantly if and when the user requests it. The component is downloaded and cached for anticipated future use without the user making an explicit request for it.**"——一个绑定"本页渲染早期"，一个绑定"未来可能用到"。可用范围两节写的是同一句："**Use `preloadComponents` to manually preload individual components **that have been registered globally** in your Nuxt app. **By default Nuxt registers these as async components. You must use the Pascal-cased version of the component name.**"，`prefetchComponents` 那段除动词外完全同构。写法都是 `await preloadComponents('MyGlobalComponent')` / `await preloadComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])`（prefetch 同款两行），服务端都无效果（"**On server, `preloadComponents` will have no effect.**" / "**On server, `prefetchComponents` will have no effect.**"），源码都在 `packages/nuxt/src/app/composables/preload.ts`。它和 145 的 `preloadRouteComponents`（"**loads the components of a given route**"）一起构成三个入口，而 `addComponent` 上的 `prefetch`/`preload` 是第四个、完全不同层的东西（"used **in production** to configure how components with **Lazy prefix** are handled by **webpack via its magic comments**"）。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-我按字面意思用过这两个：`preload` 当"马上要用"、`prefetch` 当"闲着预热"。读完第二页那条 note 才知道，**在当前的实现里这两种写法做的是同一件事**。这一篇把两页原文并排放，再把它和另外两个同名概念分干净。
+按字面意思很容易这么用这两个：`preload` 当"马上要用"、`prefetch` 当"闲着预热"。读完第二节的 note 才会发现，**在当前的实现里这两种写法做的是同一件事**。这一篇把两节原文并排放，再把它和另外两个同名概念分干净。
 
 ## 两个定义确实写的是两件事
 
@@ -63,7 +63,7 @@ tags:
 
 ## 共同前提：只对"已全局注册的组件"有效
 
-两页给的可用范围是同一句话（`preloadComponents` 版）：
+两节给的可用范围是同一句话（`preloadComponents` 版）：
 
 > Use `preloadComponents` to manually preload individual components **that have been registered globally** in your Nuxt app. By default Nuxt registers these as async components. **You must use the Pascal-cased version of the component name.**
 
@@ -92,9 +92,9 @@ await prefetchComponents('MyGlobalComponent')
 await prefetchComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])
 ```
 
-两页示例形状完全对称，且都带 `await`——**这一点和 145 的 `preloadRouteComponents` 是一组对照**：那个官方示例**故意不 await**（"we don't await this async function, to avoid blocking rendering this component's setup function"），而这两页的示例是 await 的。差别在意图上：`preloadComponents` 服务的正是"本页马上要用"，等它反而合理。
+两节示例形状完全对称，且都带 `await`——**这一点和 145 的 `preloadRouteComponents` 是一组对照**：那个官方示例**故意不 await**（"we don't await this async function, to avoid blocking rendering this component's setup function"），而这两页的示例是 await 的。差别在意图上：`preloadComponents` 服务的正是"本页马上要用"，等它反而合理。
 
-服务端行为两页也各写了一句，内容一致：
+服务端行为两节也各写了一句，内容一致：
 
 > On server, `preloadComponents` will have no effect.
 > On server, `prefetchComponents` will have no effect.
@@ -129,7 +129,7 @@ await prefetchComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])
 
 ## 自查
 
-1. 两页定义句里各自的时间参照词是什么？用一句话说清语义差别。
+1. 两节定义句里各自的时间参照词是什么？用一句话说清语义差别。
 2. 官方关于两者实现的那条 note 全文是什么？它包含哪两个信息，你分别怎么落地？
 3. 这两个函数只能操作哪一类组件？为什么这跟 159 的代价是配套出现的？
 4. 参数形态有什么硬要求？两处一致的地方还有哪些（服务端、示例形状、源文件）？

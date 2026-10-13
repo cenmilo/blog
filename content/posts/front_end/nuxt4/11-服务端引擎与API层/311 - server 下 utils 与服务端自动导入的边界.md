@@ -1,6 +1,6 @@
 ---
 url: /posts/eb5472dd095e07a1b050e37a58201d59/
-title: server 下 utils 与服务端自动导入的边界
+title: 311 - server 下 utils 与服务端自动导入的边界
 date: 2027-01-23T11:00:00+08:00
 updated: 2027-01-23T11:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## 默认自动可用的是 h3 那批
 
-server 那页对服务端工具的定位：
+server 那一节对服务端工具的定位：
 
 > Server routes are powered by h3js/h3 which comes with a handy set of helpers.
 > You can add more helpers yourself inside the `~~/server/utils` directory.
@@ -37,7 +37,7 @@ server 那页对服务端工具的定位：
 
 ## 坑：nuxt/server 的同名工具不自动导入
 
-问题来了。300 讲过 `nuxt/server` 是"跨服务端构建器可移植"的服务端工具面，它里面有一批和 h3 **同名**的东西。官方 server-imports 那页写得很直白：
+问题来了。300 讲过 `nuxt/server` 是"跨服务端构建器可移植"的服务端工具面，它里面有一批和 h3 **同名**的东西。官方 server-imports 那一节写得很直白：
 
 > These names are not auto-imported from `nuxt/server`. In server code, the [auto-imported] names of the same spelling are h3's own helpers, which take the h3 event and behave differently in places (`defineEventHandler`, `handleCors`, `getRouterParams` and `readValidatedBody` among them), so import from `nuxt/server` explicitly.
 
@@ -55,9 +55,13 @@ import { defineEventHandler, readValidatedBody } from 'nuxt/server'
 
 一句话记法：**要用 `nuxt/server` 的同名工具，就得自己 import；不 import 用到的同名是 h3 的。** 官方还专门提醒 `defineEventHandler` 要显式从 `nuxt/server` 导（因为 `nuxt/server` 的 helper 读的是它交给 handler 的那个 event）。
 
+还有一条写代码前就要知道的硬前提：`nuxt/server` **从 Nuxt 4.6 才开始提供**（原文 "`nuxt/server` ships from Nuxt 4.6"）。也就是说 4.5 及更早的项目里这个导入面根本不存在，照上面的写法 import 会解析不到；4.6 及以上才谈得上"一份文件同时跑 Nuxt 4 与 Nuxt 5"。这张可移植工具清单的逐项落地在 627。
+
+工具之外，同一批**类型也一起导出**，官方列的是这些：`RequestEvent`、`RequestEventContext`、`NuxtRequestEvent`、`EventHandler`、`AppRouteRules`、`ServerRoutes`、`CorsOptions`、`ValidateResult`、`NuxtError`、`NuxtErrorDetails`、`NuxtErrorJSON`、`NuxtErrorLike`、`Session`、`SessionConfig`、`SessionData`、`SessionEvent`、`SessionManager`、`SessionPassword`、`SessionUpdate`，以及声明服务端钩子的 `NuxtServerHooks`。要给自己的服务端函数标注入参和返回值时用它们，而不是去引 h3 或 Nitro 的同名类型。
+
 ## #server 别名：只在 server 目录内用
 
-深嵌套的服务端文件想引 `server/utils` 里的东西，官方给了别名（server 那页 "Server Alias" v4.3）：
+深嵌套的服务端文件想引 `server/utils` 里的东西，官方给了别名（server 那一节 "Server Alias" v4.3）：
 
 > You can use the `#server` alias to import files from anywhere within the `server/` directory, regardless of the importing file's location.
 

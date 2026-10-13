@@ -1,6 +1,6 @@
 ---
 url: /posts/628dcc755162f13f092f5d330f3f97a4/
-title: Suspense 与异步页面：谁在等谁
+title: 372 - Suspense 与异步页面：谁在等谁
 date: 2027-02-13T09:00:00+08:00
 updated: 2027-02-13T09:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## Nuxt 用 `<Suspense>` 挡导航
 
-官方在取数那页的 Suspense 小节给的定义：
+官方在取数那一节的 Suspense 小节给的定义：
 
 > Nuxt uses Vue's `<Suspense>` component under the hood to prevent navigation before every async data is available to the view. The data fetching composables can help you leverage this feature and use what suits best on a per-call basis.
 
@@ -91,4 +91,4 @@ tags:
 ## 本文依据
 
 - 取数页 Suspense 小节（"Nuxt uses Vue's `<Suspense>` component under the hood to prevent navigation before every async data is available"）、NuxtLoadingIndicator note、A note on `await` 的 "The `await` does not change the server-rendered HTML ... (`<Suspense>`, and `onServerPrefetch` under the hood)"、with/without await 两条、"Neither approach is universally better"、lazy 与不 await 的区别句、`::warning`（await+lazy 在客户端立即返回）（`getting-started/data-fetching`）。
-- 服务端第 6 步用 useFetch/useAsyncData 取数、客户端挂载水合、`app:suspense:resolve`/`page:start`/`page:finish` 位置（`guide/concepts/nuxt-lifecycle`，钩子见 371）。
+- 服务端第 6 步用 useFetch/useAsyncData 取数、客户端挂载水合（`guide/concepts/nuxt-lifecycle`）；`app:suspense:resolve`、`page:start`、`page:finish` 三个钩子名逐条列在 `api/advanced/hooks`（371 已展开，`directory-structure/app/app` 里也有 `app:suspense:resolve`）。

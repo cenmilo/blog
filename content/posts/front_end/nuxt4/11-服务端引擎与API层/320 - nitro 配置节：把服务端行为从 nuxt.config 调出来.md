@@ -1,12 +1,12 @@
 ---
 url: /posts/b2c2ecc1dbd57434b11d47894990d8c3/
-title: nitro 配置节：把服务端行为从 nuxt.config 调出来
+title: 320 - nitro 配置节：把服务端行为从 nuxt.config 调出来
 date: 2027-01-26T11:00:00+08:00
 updated: 2027-01-26T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：Nuxt 的服务端由 Nitro 管（300），很多服务端行为要调就得动 Nitro 的配置，而入口就是 nuxt.config.ts 里的 nitro 节。这一篇说清三件事：一、nitro 节本身在 nuxt-config 文档里只写了"Configuration for Nitro + 指向 Nitro 官方配置文档"，列了 routeRules 与 runtimeConfig 两个子键；二、它是个高级选项——server 那页明写自定义配置可能影响生产部署、Nitro 小版本升级时接口会变；三、举两个真在 nitro 节里写的例子（storage 挂 Redis、experimental.tasks 开任务），并强调独立 nitro.config 文件 4.x 已不读、必须写进 nuxt.config 的 nitro 节。
+  摘要：Nuxt 的服务端由 Nitro 管（300），很多服务端行为要调就得动 Nitro 的配置，而入口就是 nuxt.config.ts 里的 nitro 节。这一篇说清三件事：一、nitro 节本身在 nuxt-config 文档里只写了"Configuration for Nitro + 指向 Nitro 官方配置文档"，列了 routeRules 与 runtimeConfig 两个子键；二、它是个高级选项——server 那一节明写自定义配置可能影响生产部署、Nitro 小版本升级时接口会变；三、举两个真在 nitro 节里写的例子（storage 挂 Redis、experimental.tasks 开任务），并强调独立 nitro.config 文件 4.x 已不读、必须写进 nuxt.config 的 nitro 节。
 
 categories:
   - 前端开发
@@ -28,7 +28,7 @@ tags:
 
 ## nitro 节是什么
 
-官方 server 那页 "Nitro Config" 一节：
+官方 server 那一节 "Nitro Config" 一节：
 
 > You can use `nitro` key in `nuxt.config` to directly set Nitro configuration.
 
@@ -53,11 +53,11 @@ nitro: {
 
 ## 一条重要警告：它是高级选项
 
-官方 server 那页给 `nitro` 节的 warning：
+官方 server 那一节给 `nitro` 节的 warning：
 
 > This option is intended for internal use and the API is not finalized. Please open an issue before relying on the current implementation.
 
-server 那页的 Nitro Config 段还有一条同类的 warning：
+server 那一节的 Nitro Config 段还有一条同类的 warning：
 
 > Custom config can affect production deployments, as the configuration interface might change over time when Nitro is upgraded in semver-minor versions of Nuxt.
 
@@ -69,7 +69,7 @@ server 那页的 Nitro Config 段还有一条同类的 warning：
 
 ## 例一：挂存储 nitro.storage
 
-官方 server 那页 "Server Storage" 给了在 `nitro` 节配存储挂载点的写法（以 Redis 为例）：
+官方 server 那一节 "Server Storage" 给了在 `nitro` 节配存储挂载点的写法（以 Redis 为例）：
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({

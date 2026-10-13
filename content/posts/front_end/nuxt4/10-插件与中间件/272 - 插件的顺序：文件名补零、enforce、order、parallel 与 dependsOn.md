@@ -1,6 +1,6 @@
 ---
 url: /posts/455aa0452e6b971fda60a367e499b52c/
-title: 插件的顺序：文件名补零、enforce、order、parallel 与 dependsOn
+title: 272 - 插件的顺序：文件名补零、enforce、order、parallel 与 dependsOn
 date: 2027-01-10T11:00:00+08:00
 updated: 2027-01-10T11:00:00+08:00
 author: cmdragon
@@ -141,7 +141,7 @@ parallel 和 dependsOn 是能搭 together 用的：一组插件并行跑，其�
 
 ## 下一篇
 
-P10 从这里继续。下一篇 273 讲 `app:created`、`app:beforeMount`、`app:mounted`、`app:rendered` 这几个应用生命周期钩子在插件里的订阅时机。
+270-299 从这里继续。下一篇 273 讲 `app:created`、`app:beforeMount`、`app:mounted`、`app:rendered` 这几个应用生命周期钩子在插件里的订阅时机。
 
 ## 本文依据
 

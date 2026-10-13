@@ -1,6 +1,6 @@
 ---
 url: /posts/b7c9121203e087ad43337e065a163552/
-title: 项目从哪来：create nuxt 的模板、参数与非交互模式
+title: 021 - 项目从哪来：create nuxt 的模板、参数与非交互模式
 date: 2026-10-19T09:00:00+08:00
 updated: 2026-10-19T09:00:00+08:00
 author: cmdragon
@@ -30,7 +30,7 @@ tags:
 
 ## 先认一个词的迁移史
 
-官方在安装那页给的是：
+官方在安装那一节给的是：
 
 ```bash
 npm create nuxt@latest <project-name>
@@ -50,7 +50,7 @@ npm create nuxt@latest <project-name>
 
 ## 五种包管理器的官方写法
 
-安装那页给的对照（每种管理器的等价命令）：
+安装那一节给的对照（每种管理器的等价命令）：
 
 ```bash
 npm create nuxt@latest <project-name>
@@ -126,7 +126,7 @@ npm create nuxt@latest my-app -- --template minimal --packageManager pnpm --no-g
 
 ## 建完之后：官方给的下一步是什么
 
-安装那页在建项目之后的两步很直白：
+安装那一节在建项目之后的两步很直白：
 
 ```bash
 code <project-name>

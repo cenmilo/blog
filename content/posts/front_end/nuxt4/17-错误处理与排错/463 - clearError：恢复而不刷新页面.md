@@ -1,6 +1,6 @@
 ---
 url: /posts/1c678f2c544ab469a62733aed2fc7844/
-title: clearError：恢复而不刷新页面
+title: 463 - clearError：恢复而不刷新页面
 date: 2027-03-15T10:00:00+08:00
 updated: 2027-03-15T10:00:00+08:00
 author: cmdragon
@@ -62,7 +62,7 @@ clearError({ redirect: '/homepage' })
 
 **不带参数就是"只清错误、留在原处"；带 `redirect` 就是"清掉并且跳去某个路径"**。参考页里"safe page"这个说法点出了用意：错误状态下留在当前页通常没意义，跳到一个不依赖出错数据的地方才有意义。
 
-错误处理那一页给它的签名是 `function clearError (options?: { redirect?: string }): Promise<void>`——**它返回 Promise**，和 `redirect` 配合时官方在 `error.vue` 示例里的用法是这样：
+错误处理那一节给它的签名是 `function clearError (options?: { redirect?: string }): Promise<void>`——**它返回 Promise**，和 `redirect` 配合时官方在 `error.vue` 示例里的用法是这样：
 
 ```vue [error.vue]
 <script setup lang="ts">
@@ -100,7 +100,7 @@ const handleError = () => clearError({ redirect: '/' })
 | `app:error` | `err` | Server & Client | Called when a fatal error occurs. |
 | `app:error:cleared` | `{ redirect? }` | Server & Client | Called when a fatal error occurs. |
 
-这里要指出文档一处明显的问题：**`app:error:cleared` 那行的说明句和上一行 `app:error` 一字不差**，都在说"致命错误发生时调用"。而 clear-error 那一页写的是"**清掉错误时**调用"。**两处描述互相矛盾，文档没有解释哪个才是准的**——按函数页的描述更合理（那是它自己的实现说明），但要知道这一条在钩子表里没有对应的正确描述。两行的参数与环境列（`{ redirect? }`、Server & Client）与 clear-error 页的机制句是对得上的。
+这里要指出文档一处明显的问题：**`app:error:cleared` 那行的说明句和上一行 `app:error` 一字不差**，都在说"致命错误发生时调用"。而 clear-error 那一节写的是"**清掉错误时**调用"。**两处描述互相矛盾，文档没有解释哪个才是准的**——按函数页的描述更合理（那是它自己的实现说明），但要知道这一条在钩子表里没有对应的正确描述。两行的参数与环境列（`{ redirect? }`、Server & Client）与 clear-error 页的机制句是对得上的。
 
 顺带接上 462：`showError` 调的是 `app:error`，`clearError` 调的是 `app:error:cleared`——**一进一出两个钩子成对**，做错误上报时两边都要接。
 

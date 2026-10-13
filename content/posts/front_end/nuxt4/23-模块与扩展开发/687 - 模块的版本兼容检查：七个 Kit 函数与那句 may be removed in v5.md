@@ -1,6 +1,6 @@
 ---
 url: /posts/72dcf1804d3bff0adb3dedf0e2bcf452/
-title: 模块的版本兼容检查：七个 Kit 函数与那句 may be removed in v5
+title: 687 - 模块的版本兼容检查：七个 Kit 函数与那句 may be removed in v5
 date: 2027-05-29T09:00:00+08:00
 updated: 2027-05-29T09:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 
 ## 三种检查方式，差别只在失败时怎么告诉你
 
-这一页开头的分类是这样的：`checkNuxtCompatibility`、`assertNuxtCompatibility`、`hasNuxtCompatibility` 用来确认当前 Nuxt 版本是否满足你给的约束；`isNuxt2`、`isNuxt3`、`getNuxtVersion` 用来做更细的判断。页面后面还多了一个 `isNuxtMajorVersion`，一共七个。
+这一节开头的分类是这样的：`checkNuxtCompatibility`、`assertNuxtCompatibility`、`hasNuxtCompatibility` 用来确认当前 Nuxt 版本是否满足你给的约束；`isNuxt2`、`isNuxt3`、`getNuxtVersion` 用来做更细的判断。页面后面还多了一个 `isNuxtMajorVersion`，一共七个。
 
 | 函数 | 返回 | 失败时 | 文档原话要点 |
 | --- | --- | --- | --- |
@@ -103,11 +103,11 @@ export default defineNuxtModule({
 })
 ```
 
-文档的示例判断的是 3，注释写"否则给其他版本做别的事"。这一页没有任何一处示例判断 4。
+文档的示例判断的是 3，注释写"否则给其他版本做别的事"。这一节没有任何一处示例判断 4。
 
 ## 版本线本身：模块作者的依赖上限在哪
 
-兼容检查只能判断"现在跑的是什么"。要决定"我声明支持到哪"，得看发布节奏那一页的几条承诺：
+兼容检查只能判断"现在跑的是什么"。要决定"我声明支持到哪"，得看发布节奏那一节的几条承诺：
 
 - 从 2023 年 1 月起采用固定发布节奏，遵循 semver；目标是**每年一个大版本**，patch 大约每周、minor 大约每月。
 - 关键的那句：这些版本"**不应该包含破坏性变更，除非是在明确标记为 `experimental` 的选项范围内**"。
@@ -131,11 +131,15 @@ export default defineNuxtModule({
 
 ## 落地检查三件事
 
-- 版本要求写在 `meta.compatibility` 里，别只在 README 写一句"支持 Nuxt 3"。最佳实践那一页对措辞还有明确建议：用"X for Nuxt"而不是"X for Nuxt 3"，避免生态分裂。
+- 版本要求写在 `meta.compatibility` 里，别只在 README 写一句"支持 Nuxt 3"。最佳实践那一节对措辞还有明确建议：用"X for Nuxt"而不是"X for Nuxt 3"，避免生态分裂。
 - 需要按版本走不同分支时用 `isNuxtMajorVersion`，不要用挂着 removal 提示的 `isNuxt2` / `isNuxt3`。
 - 需要按构建器分情况时用 `bridge` 那个对象，并且清楚它的值既可以是版本约束也可以是 `false`；文档没有说明"某个构建器被禁用之后模块被拒绝"时用户看到的具体报错，要确认得实际跑一次。
 
 下一篇把散在几页里的发布要求合一份检查清单：十条最佳实践、四类测试、`npm run release` 里跑的六步。
+
+## 下一篇
+
+下一篇 688：模块发布检查清单：九条实践各自的验证动作与三类测试
 
 ## 本文依据
 

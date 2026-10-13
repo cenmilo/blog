@@ -1,6 +1,6 @@
 ---
 url: /posts/b6a05c358fadbe128458d51216f08642/
-title: routeTypedFetch：内部接口路径的类型化
+title: 402 - routeTypedFetch：内部接口路径的类型化
 date: 2027-02-23T09:00:00+08:00
 updated: 2027-02-23T09:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-401 的 `strictRouteTypes` 要先开 `routeTypedFetch` 才能用，这个前置开关本身就是 P14 里改动最大的一条——它换掉的是"接口类型从哪来"的地基。
+401 的 `strictRouteTypes` 要先开 `routeTypedFetch` 才能用，这个前置开关本身就是 395-414 里改动最大的一条——它换掉的是"接口类型从哪来"的地基。
 
 ## 换的是类型来源
 

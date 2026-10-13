@@ -1,6 +1,6 @@
 ---
 url: /posts/7172b7d09a7c9feaac08bff3805337d8/
-title: 服务端小结：Nitro 能力地图
+title: 339 - 服务端小结：Nitro 能力地图
 date: 2027-02-02T09:00:00+08:00
 updated: 2027-02-02T09:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-P11 从 Nitro 讲到了服务端排错，零件够了。这一篇把它们收成一张地图，日后遇到服务端的问题，先在这张图上找到那块，再翻对应篇。
+300-339 从 Nitro 讲到了服务端排错，零件够了。这一篇把它们收成一张地图，日后遇到服务端的问题，先在这张图上找到那块，再翻对应篇。
 
 ## 地基：一切跑在 Nitro 上
 
@@ -59,7 +59,7 @@ handler 一律 `defineEventHandler`、`return` 值即 JSON（304），方法用�
 
 ### 二、按路径定行为：routeRules
 
-声明式一张表，机制是"自动注册中间件 + 用 Nitro 缓存层包住路由"（325）。服务端侧选项：redirect、ssr、cors、headers、swr、isr、prerender、noScripts、appMiddleware（325），外加 cache（getting-started/server 示例）与 proxy（本页没逐项列）。`nuxt generate` 下混合渲染不可用。
+声明式一张表，机制是"自动注册中间件 + 用 Nitro 缓存层包住路由"（325）。服务端侧选项：redirect、ssr、cors、headers、swr、isr、prerender、noScripts、appMiddleware（325），外加 cache（getting-started/server 示例）与 proxy（这一节没逐项列）。`nuxt generate` 下混合渲染不可用。
 
 ### 三、配置与密钥：runtimeConfig + .env
 
@@ -75,7 +75,7 @@ SSR 服务端 `$fetch` 直调 handler、不自动带浏览器头（300、318）�
 
 ## 一句总纲
 
-把 P11 压成一句：**应用代码在 `app/`、服务端代码在 `server/`、两者不许互 import（313/312）；服务端跑在 Nitro/h3 上、按 routeRules 定行为、按 runtimeConfig 拿配置、产物 `.output` 靠 preset 部署。** 遇到服务端的事，先定它落在上面五块里的哪一块。
+把 300-339 压成一句：**应用代码在 `app/`、服务端代码在 `server/`、两者不许互 import（313/312）；服务端跑在 Nitro/h3 上、按 routeRules 定行为、按 runtimeConfig 拿配置、产物 `.output` 靠 preset 部署。** 遇到服务端的事，先定它落在上面五块里的哪一块。
 
 ## 自查（这层你该能答上的题）
 
@@ -85,11 +85,11 @@ SSR 服务端 `$fetch` 直调 handler、不自动带浏览器头（300、318）�
 - SSR 里取自家接口会不会重复请求、要不要手动带 cookie？（300/318）
 - 服务端代码报错，第一反应调什么工具？（338）
 
-能答上，服务端这层就通了。P12 从这里接上，专讲配置与环境变量的完整体系。
+能答上，服务端这层就通了。340-364 从这里接上，专讲配置与环境变量的完整体系。
 
 ## 下一篇
 
-下一篇 340（P12 配置与环境变量开局）讲 runtimeConfig 的双层结构：public 与非 public 各暴露给谁、为什么这么分。
+下一篇 340（340-364 配置与环境变量开局）讲 runtimeConfig 的双层结构：public 与非 public 各暴露给谁、为什么这么分。
 
 ## 本文依据
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/eed7df0f26a1719d48dad56cc803bb49/
-title: meta 标签迁移：三条步骤、十种可定制项与三种写法
+title: 607 - meta 标签迁移：三条步骤、十种可定制项与三种写法
 date: 2027-05-02T10:00:00+08:00
 updated: 2027-05-02T10:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-旧项目里那个 `head: { meta: [{ hid: 'description', … }] }` 搬过来之后不生效了。这一页讲的就是这件事：配置项改名、`hid` 没了、以及现在有三种位置可以写元信息。
+旧项目里那个 `head: { meta: [{ hid: 'description', … }] }` 搬过来之后不生效了。这一节讲的就是这件事：配置项改名、`hid` 没了、以及现在有三种位置可以写元信息。
 
 ## 三种写法与十种可定制项
 
@@ -42,7 +42,7 @@ tags:
 
 **第一步，改名并考虑搬家。** 原文三个动作挤在一句里："In your `nuxt.config`, **rename `head` to `meta`**. Consider moving this shared meta configuration into your `app.vue` instead. (**Note that objects no longer have a `hid` key for deduplication.**)"
 
-这句里的括号是最容易出问题的地方：**旧写法靠 `hid` 做去重，新版对象没有这个键。** 顺带一条 4.x 侧的对应记载：`unhead` 那一节的 `legacy` 开关打开后会加回 `DeprecationsPlugin`，支持的正是 `hid`、`vmid`、`children`、`body` 这四个 props——**也就是说本页说的"没有了"，在 4.x 里有一个明确的恢复开关**，但它默认是 `false`，且 `future.compatibilityVersion: 5` 会让这个开关被忽略。
+这句里的括号是最容易出问题的地方：**旧写法靠 `hid` 做去重，新版对象没有这个键。** 顺带一条 4.x 侧的对应记载：`unhead` 那一节的 `legacy` 开关打开后会加回 `DeprecationsPlugin`，支持的正是 `hid`、`vmid`、`children`、`body` 这四个 props——**也就是说这一篇说的"没有了"，在 4.x 里有一个明确的恢复开关**，但它默认是 `false`，且 `future.compatibilityVersion: 5` 会让这个开关被忽略。
 
 **第二步，读组件状态就换 `useHead`。** 原文："If you need to access the component state with `head`, you should migrate to using `useHead`. You might also consider using the built-in meta-components."
 
@@ -146,7 +146,7 @@ export default defineNuxtComponent({
 
 ## 下一篇
 
-下一篇 608 读插件与中间件那一页：四步迁移（插件两步、路由中间件两步），核心是两个形状变化——插件只接一个参数 `nuxtApp`、`inject(...)` 换成 `nuxtApp.provide(...)` 或 `return { provide: {...} }`；中间件从 `({ store, redirect })` 换成 `defineNuxtRouteMiddleware((to, from) => ...)` ＋ `navigateTo()`。另外两种文件名约定也在这页：`.client`／`.server` 后缀与 `.global` 后缀。
+下一篇 608 读插件与中间件那一节：四步迁移（插件两步、路由中间件两步），核心是两个形状变化——插件只接一个参数 `nuxtApp`、`inject(...)` 换成 `nuxtApp.provide(...)` 或 `return { provide: {...} }`；中间件从 `({ store, redirect })` 换成 `defineNuxtRouteMiddleware((to, from) => ...)` ＋ `navigateTo()`。另外两种文件名约定也在这一节：`.client`／`.server` 后缀与 `.global` 后缀。
 
 ## 本文依据
 

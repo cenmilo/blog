@@ -1,6 +1,6 @@
 ---
 url: /posts/9cec4048c47f7f5b85c170f041e005ae/
-title: ESM 与 CommonJS 互操作：库引进来就报语法错误的真实原因
+title: 015 - ESM 与 CommonJS 互操作：库引进来就报语法错误的真实原因
 date: 2026-10-17T09:00:00+08:00
 updated: 2026-10-17T09:00:00+08:00
 author: cmdragon
@@ -30,7 +30,7 @@ tags:
 
 ## 前提：Nuxt 用的是原生 ES 模块
 
-官方这一页的标题下就一句：
+官方这一节的标题下就一句：
 
 > Nuxt 使用原生 ES 模块。
 

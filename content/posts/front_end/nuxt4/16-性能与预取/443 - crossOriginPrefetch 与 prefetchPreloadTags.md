@@ -1,6 +1,6 @@
 ---
 url: /posts/e7ff51269571b58efde8b52a2ca99e57/
-title: crossOriginPrefetch 与 prefetchPreloadTags
+title: 443 - crossOriginPrefetch 与 prefetchPreloadTags
 date: 2027-03-08T11:00:00+08:00
 updated: 2027-03-08T11:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-442 那篇讲的是 Nuxt 自己那套预取。往实验开关那一页翻，还有两个名字里带 prefetch 的键，看起来像"更强的预取"，实际各管一件事：一个改**怎么预取**，一个改**预取的时候顺带带上什么**。
+442 那篇讲的是 Nuxt 自己那套预取。往实验开关那一节翻，还有两个名字里带 prefetch 的键，看起来像"更强的预取"，实际各管一件事：一个改**怎么预取**，一个改**预取的时候顺带带上什么**。
 
 ## crossOriginPrefetch：换的是机制
 
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
 })
 ```
 
-NuxtLink 那一页有对应的两句。一句是配置示例前的说明——"To enable cross-origin prefetching, you can set the `crossOriginPrefetch` option in your `nuxt.config`. This will enable cross-origin prefetching using the Speculation Rules API."；另一句藏在 `prefetch` 属性的定义里：**"Used by the experimental `crossOriginPrefetch` config."**
+NuxtLink 那一节有对应的两句。一句是配置示例前的说明——"To enable cross-origin prefetching, you can set the `crossOriginPrefetch` option in your `nuxt.config`. This will enable cross-origin prefetching using the Speculation Rules API."；另一句藏在 `prefetch` 属性的定义里：**"Used by the experimental `crossOriginPrefetch` config."**
 
 这半句很关键：这个开关不是独立工作的，它挂在 `prefetch` 这条链上。也就是说 442 里那些关预取的写法（`noPrefetch`、`prefetch: false`、全局 `defaults.nuxtLink.prefetch: false`）对它同样有效。
 
@@ -87,7 +87,7 @@ Speculation Rules API 是浏览器侧的能力，官方给了指向规范的 rea
 
 | 键名 | 官方定性 | 默认 | 前置条件 | 官方写明的代价 |
 | --- | --- | --- | --- | --- |
-| `experimental.crossOriginPrefetch` | 用 Speculation Rules API 启用跨域预取 | 该页未写"enabled by default"，即需显式开 | 走 `prefetch` 这条链 | 浏览器支持范围文档未说明 |
+| `experimental.crossOriginPrefetch` | 用 Speculation Rules API 启用跨域预取 | 那一节未写"enabled by default"，即需显式开 | 走 `prefetch` 这条链 | 浏览器支持范围文档未说明 |
 | `experimental.prefetchPreloadTags` | 转发目标页的 `<link rel="preload">` 提示 | **明写关闭** | 链接被预取 + 目标路由开 payload extraction | 未访问路由刷控制台警告；图片请求按普通流量计 CDN 配额 |
 
 ## 自查

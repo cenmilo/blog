@@ -1,6 +1,6 @@
 ---
 url: /posts/f94e079b87c1dd16b5e2326023aeac9f/
-title: 自定义路由三条路：router options、pages 钩子与模块
+title: 142 - 自定义路由三条路：router options、pages 钩子与模块
 date: 2026-11-28T10:00:00+08:00
 updated: 2026-11-28T10:00:00+08:00
 author: cmdragon

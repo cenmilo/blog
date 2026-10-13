@@ -1,6 +1,6 @@
 ---
 url: /posts/8678c2dc01af7d3542bf660e41bd77d3/
-title: 不用 test-utils 也能测：只用 Vue Test Utils 的六步配法
+title: 507 - 不用 test-utils 也能测：只用 Vue Test Utils 的六步配法
 date: 2027-03-30T09:00:00+08:00
 updated: 2027-03-30T09:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/f0d29139b9dce92c543bfbf1322e40d5/
-title: shared 目录：一份代码两端可用的规则
+title: 312 - shared 目录：一份代码两端可用的规则
 date: 2027-01-24T09:00:00+08:00
 updated: 2027-01-24T09:00:00+08:00
 author: cmdragon
@@ -134,7 +134,7 @@ import upper from '#shared/utils/formatters/upper'
 
 ## 下一篇
 
-P11 服务端引擎与 API 层继续。下一篇 313 讲服务端配置的下一环（见索引），编号与日期连续推进。
+300-339 服务端引擎与 API 层继续。下一篇 313 讲服务端配置的下一环（见索引），编号与日期连续推进。
 
 ## 本文依据
 

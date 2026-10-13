@@ -1,6 +1,6 @@
 ---
 url: /posts/93b91eb37624180a757067d518c59a90/
-title: 渲染模式与取数：什么数据一定进 payload
+title: 387 - 渲染模式与取数：什么数据一定进 payload
 date: 2027-02-18T09:00:00+08:00
 updated: 2027-02-18T09:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## payload 是什么
 
-取数那页给的定义：
+取数那一节给的定义：
 
 > The payload is a JavaScript object accessible through `useNuxtApp().payload`. It is used on the client to avoid refetching the same data when the code is executed in the browser during hydration.
 
@@ -36,7 +36,7 @@ tags:
 
 ## 什么一定进 payload
 
-预渲染那页的 Payload Extraction 开头一句最准确，它点名了三样：
+预渲染那一节的 Payload Extraction 开头一句最准确，它点名了三样：
 
 > When Nuxt renders a page on the server, it serializes the results of your data fetching ([`useAsyncData`] and [`useFetch`]) and app state ([`useState`]) into a payload so the client can hydrate without re-fetching.
 
@@ -45,7 +45,7 @@ tags:
 2. `useFetch` 的取数结果
 3. `useState` 的应用状态
 
-performance 那页从另一头印证 `useFetch`/`useAsyncData` 的存在意义：
+performance 那一节从另一头印证 `useFetch`/`useAsyncData` 的存在意义：
 
 > To avoid fetching same data twice (once on the server and once on client) Nuxt provides `useFetch` and `useAsyncData`. They ensure that if an API call is made on the server, the data is forwarded to the client in the payload instead of being fetched again.
 

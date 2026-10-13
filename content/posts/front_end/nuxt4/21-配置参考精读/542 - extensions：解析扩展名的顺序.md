@@ -1,6 +1,6 @@
 ---
 url: /posts/05d96cb5a1c6cc9dbd87a29beb56afeb/
-title: extensions：解析扩展名的顺序
+title: 542 - extensions：解析扩展名的顺序
 date: 2027-04-10T11:00:00+08:00
 updated: 2027-04-10T11:00:00+08:00
 author: cmdragon
@@ -56,7 +56,7 @@ tags:
 
 **页面文件。** `directory-structure/app/pages` 第一句：**"Pages are Vue components and can have any valid extension that Nuxt supports (by default `.vue`, `.js`, `.jsx`, `.mjs`, `.ts` or `.tsx`)."** 那句里的"有效扩展名"链接回的正是 `api/nuxt-config#extensions`。
 
-也就是说：**页面后缀的合法集合由这个键定义**。同一组扩展名在两页出现，顺序写法不同（这页是 `.js` 开头，pages 页把 `.vue` 列在首位），但成员一致——六项。
+也就是说：**页面后缀的合法集合由这个键定义**。同一组扩展名在两节里出现，顺序写法不同（这一处是 `.js` 开头，pages 那一节把 `.vue` 列在首位），但成员一致——六项。
 
 **组件目录。** `directory-structure/app/components` 里写得更直接：**"By default, any file with an extension specified in the extensions key of `nuxt.config.ts` is treated as a component."**，紧接着给收窄的办法：
 
@@ -73,7 +73,7 @@ export default defineNuxtConfig({
 
 同页还有一句相关的：**"If `pattern` is specified, the `extensions` option has no effect, so make sure your pattern matches the file extensions you want to scan."**——**一旦给目录声明写了 `pattern`，`extensions` 就被忽略**，扫描范围完全由那个 glob 决定。这是本节最容易踩的联动。
 
-**Kit 的路径解析。** `api/kit/resolving` 那页把这份清单当成解析器的默认配置：`resolvePath` 的描述是 **"A function that resolves a path relative to the base path and respects Nuxt alias and extensions options."**，其参数表里 `extensions` 一项写的是 `string[]`、可选（`false` 表示未传），说明列是 **"The file extensions to try. Default is Nuxt configured extensions."**
+**Kit 的路径解析。** `api/kit/resolving` 那一节把这份清单当成解析器的默认配置：`resolvePath` 的描述是 **"A function that resolves a path relative to the base path and respects Nuxt alias and extensions options."**，其参数表里 `extensions` 一项写的是 `string[]`、可选（`false` 表示未传），说明列是 **"The file extensions to try. Default is Nuxt configured extensions."**
 
 这句"Default is Nuxt configured extensions"是两处清单之间关系的唯一官方表述：**模块代码里做路径解析时，默认用的就是这个顶层键的值**；要临时改，就通过参数传，而**参数传的是"要试哪些扩展名"的完整列表**（表里没写它是追加还是替换）。
 

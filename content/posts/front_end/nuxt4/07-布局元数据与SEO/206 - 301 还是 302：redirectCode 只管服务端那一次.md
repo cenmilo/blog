@@ -1,12 +1,12 @@
 ---
 url: /posts/d74786866a2c77c31fe5442dfebdd02e/
-title: 301 还是 302：redirectCode 只管服务端那一次
+title: 206 - 301 还是 302：redirectCode 只管服务端那一次
 date: 2026-12-19T11:00:00+08:00
 updated: 2026-12-19T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：改地址的时候我以为"重定向就是重定向"，直到关心 SEO 才知道 301 与 302 是两回事（301 = 永久搬走，302 = 临时转一下；这两个词是 HTTP 状态码的含义，不在 Nuxt 文档里，文档只给了 MDN 链接）。Nuxt 侧能发起重定向的地方文档写了四处，**只有 `navigateTo` 的那个参数讲到了状态码语义**："navigateTo redirects to the given path and sets the redirect code to 302 Found **by default when the redirection takes place on the server side**. This default behavior can be modified by providing different redirectCode. Commonly, 301 Moved Permanently can be used for permanent redirections."——**默认 302，且这句话的前提是"发生在服务端"**。另三处各有键名与默认值：`routeRules` 用 `redirect: { to: '/new-page', statusCode: 302 }`（官方注释 "Redirection to avoid 404"）、模块侧 `extendRouteRules('/preview', { redirect: { to: '/preview-new', statusCode: 302 } })`、页面里 `definePageMeta({ redirect })`（类型是 `RouteRecordRedirectOption`，**它早于任何导航守卫执行**，文档没给它状态码参数）。另外 `navigateTo` 那一页专门给了中间件里的正反例：必须 **return**，"In this case, `navigateTo` will be executed but not returned, which may lead to unexpected behavior."
+  摘要：改地址时容易以为"重定向就是重定向"，直到关心 SEO 才知道 301 与 302 是两回事（301 = 永久搬走，302 = 临时转一下；这两个词是 HTTP 状态码的含义，不在 Nuxt 文档里，文档只给了 MDN 链接）。Nuxt 侧能发起重定向的地方文档写了四处，**只有 `navigateTo` 的那个参数讲到了状态码语义**："navigateTo redirects to the given path and sets the redirect code to 302 Found **by default when the redirection takes place on the server side**. This default behavior can be modified by providing different redirectCode. Commonly, 301 Moved Permanently can be used for permanent redirections."——**默认 302，且这句话的前提是"发生在服务端"**。另三处各有键名与默认值：`routeRules` 用 `redirect: { to: '/new-page', statusCode: 302 }`（官方注释 "Redirection to avoid 404"）、模块侧 `extendRouteRules('/preview', { redirect: { to: '/preview-new', statusCode: 302 } })`、页面里 `definePageMeta({ redirect })`（类型是 `RouteRecordRedirectOption`，**它早于任何导航守卫执行**，文档没给它状态码参数）。另外 `navigateTo` 那一节专门给了中间件里的正反例：必须 **return**，"In this case, `navigateTo` will be executed but not returned, which may lead to unexpected behavior."
 
 categories:
   - 前端开发

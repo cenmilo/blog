@@ -1,12 +1,12 @@
 ---
 url: /posts/d38d11e20bbe621d390acb7698da2e97/
-title: NuxtWelcome：新项目第一屏那块欢迎界面是什么
+title: 093 - NuxtWelcome：新项目第一屏那块欢迎界面是什么
 date: 2026-11-12T09:00:00+08:00
 updated: 2026-11-12T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：用脚手架新建项目、跑起开发服务器之后看到的那一屏，不是 Nuxt 的某个内置页面，而是一个组件：官方给 `<NuxtWelcome>` 的定义是"向用 starter 模板创建的新项目中的用户问好"，并说明**它包含指向 Nuxt 文档、源代码和社交媒体账号的链接**。用法只有一行——在 `app/app.vue` 的模板里写 `<NuxtWelcome />`。官方的定位说得更清楚：**这个组件属于 `@nuxt/ui-templates` 包**，源码位置在 `packages/ui-templates/templates/welcome/index.html`，也就是说它是一份 UI 模板而不是一个有配置项的组件——官方这一页没有给它任何 prop、事件或插槽。所以处理它的正确方式是替换而不是配置：把 `app/app.vue` 里那一行换成你自己的内容，`app.vue` 仍然是应用的入口点、仍然会为每一个路由渲染它的内容；如果你之后加了 `app/pages/` 目录，就要在里面改用 `<NuxtPage>` 显示当前页面，而没有 pages 目录时 Nuxt 根本不会引入 vue-router 依赖。另外官方在安装页写明了第一屏的来源：跑完开发命令后"浏览器窗口应当会自动为 http://localhost:3000 打开"，并给了 Windows 的一条提示——本地开发服务器不要用 `localhost:3000`，改用 `127.0.0.1` 加载会快得多（Windows 慢 DNS 解析）。
+  摘要：用脚手架新建项目、跑起开发服务器之后看到的那一屏，不是 Nuxt 的某个内置页面，而是一个组件：官方给 `<NuxtWelcome>` 的定义是"向用 starter 模板创建的新项目中的用户问好"，并说明**它包含指向 Nuxt 文档、源代码和社交媒体账号的链接**。用法只有一行——在 `app/app.vue` 的模板里写 `<NuxtWelcome />`。官方的定位说得更清楚：**这个组件属于 `@nuxt/ui-templates` 包**，源码位置在 `packages/ui-templates/templates/welcome/index.html`，也就是说它是一份 UI 模板而不是一个有配置项的组件——官方这一节没有给它任何 prop、事件或插槽。所以处理它的正确方式是替换而不是配置：把 `app/app.vue` 里那一行换成你自己的内容，`app.vue` 仍然是应用的入口点、仍然会为每一个路由渲染它的内容；如果你之后加了 `app/pages/` 目录，就要在里面改用 `<NuxtPage>` 显示当前页面，而没有 pages 目录时 Nuxt 根本不会引入 vue-router 依赖。另外官方在安装页写明了第一屏的来源：跑完开发命令后"浏览器窗口应当会自动为 http://localhost:3000 打开"，并给了 Windows 的一条提示——本地开发服务器不要用 `localhost:3000`，改用 `127.0.0.1` 加载会快得多（Windows 慢 DNS 解析）。
 
 categories:
   - 前端开发
@@ -87,7 +87,7 @@ tags:
 
 ## 自查
 
-1. `<NuxtWelcome>` 属于哪个包？官方在这一页给了它哪些配置项？
+1. `<NuxtWelcome>` 属于哪个包？官方在这一节给了它哪些配置项？
 2. 第一屏那几个链接分别指向什么？这是官方哪一句说的？
 3. 自动打开浏览器是组件行为还是开发服务器行为？
 4. 没有 `app/pages/` 目录时，Nuxt 少了哪个依赖？

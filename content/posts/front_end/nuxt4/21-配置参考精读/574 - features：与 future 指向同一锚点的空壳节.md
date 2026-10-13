@@ -1,6 +1,6 @@
 ---
 url: /posts/376ab34c41deb7820d37110380616eaa/
-title: features：与 future 指向同一锚点的空壳节
+title: 574 - features：与 future 指向同一锚点的空壳节
 date: 2027-04-21T10:00:00+08:00
 updated: 2027-04-21T10:00:00+08:00
 author: cmdragon
@@ -34,7 +34,7 @@ tags:
 
 **没有定性句、没有 `**Type**`、没有 `**Default**`、没有子项清单。** 而且它指向的地址是 `guide/going-further/features#features`——和上一节 `## future` 指向的是**同一个锚点**。落地页上 `## features` 在上、`## future` 在下，所以两条链接都只会把你带到 `features` 那一节，`future` 要自己往下翻。
 
-内容都在特性页。那一页的开场句给整个页面定性："Some features of Nuxt are available on an opt-in basis, or can be disabled based on your needs."
+内容都在特性页。那一节的开场句给整个页面定性："Some features of Nuxt are available on an opt-in basis, or can be disabled based on your needs."
 
 ## 三个开关，零个类型行
 
@@ -121,7 +121,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 575 看第三个同样只有链接的节 `## experimental`：它指向的那一页有 **57 个开关小节**，但**只有 17 条用了固定句式写明默认状态**（14 条 "enabled by default"、3 条 "disabled by default"），其余要读正文；而且那句"可以看 API 文档"的链接**指回它自己这一页**。
+下一篇 575 看第三个同样只有链接的节 `## experimental`：它指向的那一节有 **57 个开关小节**，但**只有 17 条用了固定句式写明默认状态**（14 条 "enabled by default"、3 条 "disabled by default"），其余要读正文；而且那句"可以看 API 文档"的链接**指回它自己这一节**。
 
 ## 本文依据
 

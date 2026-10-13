@@ -1,6 +1,6 @@
 ---
 url: /posts/ee956f303471aa0bbfa2ccb898213343/
-title: defineNuxtLink：用八个选项造一个自带默认值的链接组件
+title: 148 - defineNuxtLink：用八个选项造一个自带默认值的链接组件
 date: 2026-11-30T10:00:00+08:00
 updated: 2026-11-30T10:00:00+08:00
 author: cmdragon
@@ -45,7 +45,7 @@ export default defineNuxtLink({
 | --- | --- |
 | 文件放在 `app/components/` 下、扩展名 `.ts` | 官方代码块的文件标注就是 `app/components/MyNuxtLink.ts` |
 | 只写 `default export`，不用 `defineComponent` | 官方示例的整个文件体就是 `export default defineNuxtLink({...})` |
-| 不用写 import | 它出现在 `api/components/nuxt-link` 这一页的示例里、没有任何 import 语句；`defineNuxtLink` 属于自动导入范畴（自动导入的完整边界我从 150 起专门讲） |
+| 不用写 import | 它出现在 `api/components/nuxt-link` 这一节的示例里、没有任何 import 语句；`defineNuxtLink` 属于自动导入范畴（自动导入的完整边界我从 150 起专门讲） |
 
 ## 两个名字：模板名来自文件名，DevTools 名来自 componentName
 
@@ -115,7 +115,7 @@ function defineNuxtLink (options: NuxtLinkOptions): Component {}
 
 ## 能配到什么程度：官方没写的那部分
 
-这一页只给了 options 到 `Component` 的签名，**没有列出造出来的组件支持哪些 props**，也没有说明它与 `<NuxtLink>` 的 props 是否完全一致。官方唯一的表述是那句"you can use `<MyNuxtLink />` **as usual with your new defaults**"——"照常使用，只是默认值换了"。
+这一节只给了 options 到 `Component` 的签名，**没有列出造出来的组件支持哪些 props**，也没有说明它与 `<NuxtLink>` 的 props 是否完全一致。官方唯一的表述是那句"you can use `<MyNuxtLink />` **as usual with your new defaults**"——"照常使用，只是默认值换了"。
 
 我不敢替文档补一层"它继承了全部三组 props"的结论。实际做法：把新组件当 `<NuxtLink>` 用（`to`、`external`、`prefetch` 这些先按 147 的表写），然后**看编辑器给的类型提示与属性检查**是否通过；这条验证成本很低，一次就够。
 
@@ -144,7 +144,7 @@ function defineNuxtLink (options: NuxtLinkOptions): Component {}
 
 ## 下一篇
 
-149 给 P05 收尾：把一次导航经过的全部环节按顺序排出来——从 `<a href>` 被点下，到中间件、`validate`、布局与过渡、`page:loading:*` 钩子，再到 chunk 预取在哪一步发生。
+149 给 110-149 收尾：把一次导航经过的全部环节按顺序排出来——从 `<a href>` 被点下，到中间件、`validate`、布局与过渡、`page:loading:*` 钩子，再到 chunk 预取在哪一步发生。
 
 ## 本文依据
 

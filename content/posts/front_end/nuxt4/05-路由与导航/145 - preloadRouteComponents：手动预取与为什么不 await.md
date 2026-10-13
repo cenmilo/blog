@@ -1,12 +1,12 @@
 ---
 url: /posts/718999952499fc9d3a58bbcd20cc4096/
-title: preloadRouteComponents：手动预取与为什么不 await
+title: 145 - preloadRouteComponents：手动预取与为什么不 await
 date: 2026-11-29T10:00:00+08:00
 updated: 2026-11-29T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：官方给这一页的定位句是："**preloadRouteComponents allows you to manually preload individual pages in your Nuxt app.**"，紧接着是机制与收益："Preloading routes loads **the components of a given route that the user might navigate to in future**. This ensures that the components are available earlier and **less likely to block the navigation**, improving performance."。但官方同时挂了一条 tip 把它自己大部分使用场景取消掉了：**"Nuxt already automatically preloads the necessary routes if you're using the `NuxtLink` component."**——所以这个 API 服务对象是"**不用 `<NuxtLink>` 的那部分导航**"，官方示例正是这个：在 `navigateTo` 之前先预热。示例里最有信息量的是那两行注释："**// we don't await this async function, to avoid blocking rendering // this component's setup function**"——这与 124 里 `navigateTo` "**必须** await 或 return"形成一组对照：**跳转的调用不能不等，预取的调用不能等**。还有一条硬边界放在 note 里："**On server, `preloadRouteComponents` will have no effect.**"。同源的兄弟 API `preloadComponents` 形状不同：它预加载的是"**individual components that have been registered globally**"，且"**You must use the Pascal-cased version of the component name**"，官方示例用 `await preloadComponents('MyGlobalComponent')` 与数组形式 `await preloadComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])`，同样"On server, `preloadComponents` will have no effect."。至于 `<NuxtLink>` 的自动预取到底做了什么，官方在 props 里写得比这一页更宽：`prefetch` "**When enabled will prefetch middleware, layouts and payloads (when using payloadExtraction) of links in the viewport.**"——不止组件。
+  摘要：官方给这一节的定位句是："**preloadRouteComponents allows you to manually preload individual pages in your Nuxt app.**"，紧接着是机制与收益："Preloading routes loads **the components of a given route that the user might navigate to in future**. This ensures that the components are available earlier and **less likely to block the navigation**, improving performance."。但官方同时挂了一条 tip 把它自己大部分使用场景取消掉了：**"Nuxt already automatically preloads the necessary routes if you're using the `NuxtLink` component."**——所以这个 API 服务对象是"**不用 `<NuxtLink>` 的那部分导航**"，官方示例正是这个：在 `navigateTo` 之前先预热。示例里最有信息量的是那两行注释："**// we don't await this async function, to avoid blocking rendering // this component's setup function**"——这与 124 里 `navigateTo` "**必须** await 或 return"形成一组对照：**跳转的调用不能不等，预取的调用不能等**。还有一条硬边界放在 note 里："**On server, `preloadRouteComponents` will have no effect.**"。同源的兄弟 API `preloadComponents` 形状不同：它预加载的是"**individual components that have been registered globally**"，且"**You must use the Pascal-cased version of the component name**"，官方示例用 `await preloadComponents('MyGlobalComponent')` 与数组形式 `await preloadComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])`，同样"On server, `preloadComponents` will have no effect."。至于 `<NuxtLink>` 的自动预取到底做了什么，官方在 props 里写得比这一节更宽：`prefetch` "**When enabled will prefetch middleware, layouts and payloads (when using payloadExtraction) of links in the viewport.**"——不止组件。
 
 categories:
   - 前端开发
@@ -63,7 +63,7 @@ tags:
 | 靠 `navigateTo` 程序化跳转（登录、提交表单后） | **这就是官方示例的场景** |
 | 你自己用原生 `<a>` 或 `custom` 插槽渲染的链接 | `<a>` 完全不进这套机制；`custom` 见下一节 |
 
-`<NuxtLink>` 的自动预取具体做什么，官方在 `prefetch` 那条 prop 里写得比这一页宽：
+`<NuxtLink>` 的自动预取具体做什么，官方在 `prefetch` 那条 prop 里写得比这一节宽：
 
 > `prefetch`: When enabled will prefetch **middleware, layouts and payloads** (when using payloadExtraction) of links in the viewport.
 
@@ -85,7 +85,7 @@ const submit = async () => {
 }
 ```
 
-官方注释是这一页最重要的两行：
+官方注释是这一节最重要的两行：
 
 > we don't await this async function, to avoid blocking rendering this component's setup function
 
@@ -220,6 +220,6 @@ props 那节的 note 也补了一句：
 - `https://nuxt.com/docs/4.x/api/advanced/hooks`
   - 原文（App Hooks 表）："`link:prefetch` | `to` | Client | Called when a `<NuxtLink>` is observed to be prefetched."
 - `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 对照用（见 124）：`navigateTo` 必须 await 或 return 的规则；本页通过 read-more 指向它
+  - 对照用（见 124）：`navigateTo` 必须 await 或 return 的规则；这一节通过 read-more 指向它
 - `https://nuxt.com/docs/4.x/guide/going-further/experimental-features`
-  - 原文（`payloadExtraction` 与 `crossOriginPrefetch` 两处条目，被本页 props 定义引用）：`prefetch` 的定义里括号写明 "(when using payloadExtraction)"，并链接到 "the experimental crossOriginPrefetch config"
+  - 原文（`payloadExtraction` 与 `crossOriginPrefetch` 两处条目，被这一节的 props 定义引用）：`prefetch` 的定义里括号写明 "(when using payloadExtraction)"，并链接到 "the experimental crossOriginPrefetch config"

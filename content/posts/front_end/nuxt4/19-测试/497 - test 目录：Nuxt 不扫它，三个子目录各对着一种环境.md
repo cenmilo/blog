@@ -1,12 +1,12 @@
 ---
 url: /posts/9040f7732908581d7a84d967e13335b4/
-title: test 目录：Nuxt 不扫它，三个子目录各对着一种环境
+title: 497 - test 目录：Nuxt 不扫它，三个子目录各对着一种环境
 date: 2027-03-26T11:00:00+08:00
 updated: 2027-03-26T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`test/` 是官方推荐的放测试文件的目录，但它与 `app/`、`server/` 有本质区别：**Nuxt 不会扫描它**。原文是 "Nuxt does not scan it the way it does `app/` or `server/`; you choose the runner and layout yourself"。所以往这个目录扔文件不会自动发生任何事，文件名也只有一处官方约定——`.nuxt.spec.ts` 用来标记跑在 Nuxt 运行时的测试文件。这一页给的推荐布局是三个子目录：`test/unit/`（不需要 Nuxt 运行环境的快速 Node 测试）、`test/nuxt/`（需要 Nuxt 运行环境的测试）、`test/e2e/`（对着跑起来的应用做端到端测试）。测试文件名后缀在官方示例里本身就不统一，这篇一并列清楚。
+  摘要：`test/` 是官方推荐的放测试文件的目录，但它与 `app/`、`server/` 有本质区别：**Nuxt 不会扫描它**。原文是 "Nuxt does not scan it the way it does `app/` or `server/`; you choose the runner and layout yourself"。所以往这个目录扔文件不会自动发生任何事，文件名也只有一处官方约定——`.nuxt.spec.ts` 用来标记跑在 Nuxt 运行时的测试文件。这一节给的推荐布局是三个子目录：`test/unit/`（不需要 Nuxt 运行环境的快速 Node 测试）、`test/nuxt/`（需要 Nuxt 运行环境的测试）、`test/e2e/`（对着跑起来的应用做端到端测试）。测试文件名后缀在官方示例里本身就不统一，这篇一并列清楚。
 
 categories:
   - 前端开发
@@ -28,9 +28,9 @@ tags:
 
 因为这两个目录的机制完全不同。
 
-## 这一页最关键的一句
+## 这一节最关键的一句
 
-`directory-structure/test` 这一页正文不长，定性全在第一段：
+`directory-structure/test` 这一节正文不长，定性全在第一段：
 
 > The `test/` directory is the recommended place for your application tests. Nuxt does not scan it the way it does `app/` or `server/`; you choose the runner and layout yourself (typically with `@nuxt/test-utils`).
 
@@ -65,11 +65,11 @@ tags:
 
 分界线只有一条：**这段代码离开 Nuxt 环境还能不能跑**。纯函数、工具函数放 `unit/`；要用自动导入、要用 `useState` 这类组合式函数、要挂组件的放 `nuxt/`；要看服务器渲染出来的 HTML 或者要操作浏览器的放 `e2e/`。
 
-页面末尾留了一个跳转，指向测试文档里的 **Organizing Your Tests** 一节——那节讲怎么按这三类配 Vitest project、TypeScript 上下文怎么带上测试目录。这一页只负责说目录放哪，配置不在这页。
+那一节末尾留了一个跳转，指向测试文档里的 **Organizing Your Tests** 一节——那节讲怎么按这三类配 Vitest project、TypeScript 上下文怎么带上测试目录。这一节只负责说目录放哪，配置不在这一节。
 
 ## 文件后缀：一处真约定，其余是混用
 
-`directory-structure/test` 这一页确实没给文件名规则。但**测试页给了一条**——在讲 `/runtime` 与 `/e2e` 不能同文件那一节，官方把后缀当成选环境的手段：与其用 `// @vitest-environment nuxt` 注释，"or name your runtime unit test files with the `.nuxt.spec.ts` extension"，并给出配对的 `app.e2e.spec.ts`。所以后缀不是纯装饰，`.nuxt.spec.ts` 被官方用来标记"这个文件要跑在 Nuxt 运行时里"。
+`directory-structure/test` 这一节确实没给文件名规则。但**测试那一节给了一条**——在讲 `/runtime` 与 `/e2e` 不能同文件那一节，官方把后缀当成选环境的手段：与其用 `// @vitest-environment nuxt` 注释，"or name your runtime unit test files with the `.nuxt.spec.ts` extension"，并给出配对的 `app.e2e.spec.ts`。所以后缀不是纯装饰，`.nuxt.spec.ts` 被官方用来标记"这个文件要跑在 Nuxt 运行时里"。
 
 除此之外能看到的只有其他页的示例用了哪些名字：
 

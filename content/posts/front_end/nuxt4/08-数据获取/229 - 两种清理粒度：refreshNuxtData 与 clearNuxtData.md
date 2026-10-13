@@ -1,6 +1,6 @@
 ---
 url: /posts/41a7e96a7291a0145d2efcc6f38058b4/
-title: 两种清理粒度：refreshNuxtData 与 clearNuxtData
+title: 229 - 两种清理粒度：refreshNuxtData 与 clearNuxtData
 date: 2026-12-27T10:00:00+08:00
 updated: 2026-12-27T10:00:00+08:00
 author: cmdragon

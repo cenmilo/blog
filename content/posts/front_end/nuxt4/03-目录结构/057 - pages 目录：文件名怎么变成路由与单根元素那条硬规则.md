@@ -1,6 +1,6 @@
 ---
 url: /posts/813b7690007a7e0adf31a4de775ee56e/
-title: pages 目录：文件名怎么变成路由，以及单根元素那条硬规则
+title: 057 - pages 目录：文件名怎么变成路由，以及单根元素那条硬规则
 date: 2026-10-31T09:00:00+08:00
 updated: 2026-10-31T09:00:00+08:00
 author: cmdragon

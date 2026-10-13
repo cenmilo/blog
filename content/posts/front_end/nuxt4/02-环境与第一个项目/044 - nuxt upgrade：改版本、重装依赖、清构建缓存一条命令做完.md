@@ -1,6 +1,6 @@
 ---
 url: /posts/ecacebdf1aa928b1b4c99d6ae0e66467/
-title: nuxt upgrade：改版本、重装依赖、清构建缓存一条命令做完
+title: 044 - nuxt upgrade：改版本、重装依赖、清构建缓存一条命令做完
 date: 2026-10-26T11:00:00+08:00
 updated: 2026-10-26T11:00:00+08:00
 author: cmdragon

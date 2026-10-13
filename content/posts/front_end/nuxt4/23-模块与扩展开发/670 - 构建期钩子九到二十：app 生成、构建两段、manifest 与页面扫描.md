@@ -1,6 +1,6 @@
 ---
 url: /posts/5421245ddda9cc9312731901891c83f3/
-title: 构建期钩子九到二十：app 生成、构建两段、manifest 与页面扫描
+title: 670 - 构建期钩子九到二十：app 生成、构建两段、manifest 与页面扫描
 date: 2027-05-23T10:00:00+08:00
 updated: 2027-05-23T10:00:00+08:00
 author: cmdragon
@@ -38,7 +38,7 @@ tags:
 
 `app:templates` 是这三行里唯一写明"能做什么"的：**自定义、修改、添加新文件到构建目录**，而且**两种形态都支持——只存在于虚拟文件系统，或者真的写到 `.nuxt` 磁盘上**。
 
-`app:templatesGenerated` 那句把 vfs 说成一个明确概念，并链到目录结构里讲 `.nuxt` 的那一页。
+`app:templatesGenerated` 那句把 vfs 说成一个明确概念，并链到目录结构里讲 `.nuxt` 的那一节。
 
 **这一族与其他页的连接很直接**：`addTemplate` 这类注册动作发生在模块 setup 里，而**"注册之后什么时候被编译进 vfs"就是 `app:templatesGenerated`**。
 
@@ -88,7 +88,7 @@ tags:
 
 前两行的区别只在描述里那个阶段词：**先"扫出来"，后"补上元数据"**——这给出了一个可用判断：**要改路由结构用 `pages:extend`，要读元数据用 `pages:resolved`**。
 
-**`pages:extend` 是运行时那个 `extendPages` 的钩子版本**：Kit 函数那一页写的是"使用 `extendPages` 或使用 `pages:extend` 钩子时都可以增广 `NuxtPageMeta`"，两处等价；**而那条"必须原地修改数组"的硬要求是 Kit 函数那节给的**。
+**`pages:extend` 是运行时那个 `extendPages` 的钩子版本**：Kit 函数那一节写的是"使用 `extendPages` 或使用 `pages:extend` 钩子时都可以增广 `NuxtPageMeta`"，两处等价；**而那条"必须原地修改数组"的硬要求是 Kit 函数那节给的**。
 
 第三行有两个独特点：**参数形状是全表写得最完整的**（一个对象，里面是 `files` 数组，每项含 `path` 与可选 `optional`），**而且它给出了一条明确的覆盖规则：数组靠后的覆盖靠前的**。这条规则在 `addComponentsDir` 的 `prepend`、`addRouteMiddleware` 的 `prepend` 那里是以"插到前面"表达的，**这里是直接用"靠后覆盖靠前"说**——两处方向一致：**排在后面的赢**。
 
@@ -119,6 +119,10 @@ tags:
 这一组未记载的还有：`app:templates` 与 `app:templatesGenerated` 之间模板是否已可读取、`build:before`／`build:done` 与 `vite:compiled`／`webpack:compiled` 的关系、`pages:extend` 与 `pages:resolved` 各自被调用几次（多图层时是否每层一次）。
 
 下一篇读二十一到三十二行：自动导入那四组、组件那两组、以及 Nitro 那四组。
+
+## 下一篇
+
+下一篇 671：构建期钩子二十一到三十二：自动导入四组、组件两组与 nitro 四组
 
 ## 本文依据
 

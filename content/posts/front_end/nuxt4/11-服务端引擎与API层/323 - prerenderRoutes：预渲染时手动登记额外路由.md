@@ -1,6 +1,6 @@
 ---
 url: /posts/c36fb527e0307ef3bdf64f6474af5b2a/
-title: prerenderRoutes：预渲染时手动登记额外路由
+title: 323 - prerenderRoutes：预渲染时手动登记额外路由
 date: 2027-01-27T11:00:00+08:00
 updated: 2027-01-27T11:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-预渲染时，Nitro 的爬虫只会顺着页面里的 `<a href>` 链接一页页爬（200、P11 会再讲）。问题是：有些路径（比如某个 CMS 才有的文章接口、某个没被任何链接指向的页面）爬虫发现不了，就不会被预渲染。`prerenderRoutes` 就是让你手动把这些路径"报"上去。
+预渲染时，Nitro 的爬虫只会顺着页面里的 `<a href>` 链接一页页爬（200、300-339 会再讲）。问题是：有些路径（比如某个 CMS 才有的文章接口、某个没被任何链接指向的页面）爬虫发现不了，就不会被预渲染。`prerenderRoutes` 就是让你手动把这些路径"报"上去。
 
 ## 它是什么
 
@@ -69,7 +69,7 @@ prerenderRoutes(['/', '/about'])
 
 ## 页面里登记别的 URL
 
-官方在预渲染那页给的例子——一个页面被预渲染时，顺手登记别的要预渲染的 URL：
+官方在预渲染那一节给的例子——一个页面被预渲染时，顺手登记别的要预渲染的 URL：
 
 ```vue [app/pages/index.vue]
 <script setup>
@@ -105,7 +105,7 @@ const articleContent = await $fetch('/api/content/article/name-of-article', {
 
 ## 和别的"登记预渲染路由"的方式对齐
 
-登记要预渲染的路径，官方在预渲染那页一共给了几条路，`prerenderRoutes` 是"运行时报"的这一条，其余记一下坐标：
+登记要预渲染的路径，官方在预渲染那一节一共给了几条路，`prerenderRoutes` 是"运行时报"的这一条，其余记一下坐标：
 
 | 方式 | 时机 | 在哪写 |
 | --- | --- | --- |

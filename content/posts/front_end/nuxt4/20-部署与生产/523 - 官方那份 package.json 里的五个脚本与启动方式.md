@@ -1,12 +1,12 @@
 ---
 url: /posts/9f8a3c750e1412828064c85d6dfb9d36/
-title: 官方那份 package.json 里的五个脚本与启动方式
+title: 523 - 官方那份 package.json 里的五个脚本与启动方式
 date: 2027-04-04T10:00:00+08:00
 updated: 2027-04-04T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：官方 `directory-structure/package` 那页给的最小 `package.json` 里有五个脚本：`build: nuxt build`、`dev: nuxt dev`、`generate: nuxt generate`、`preview: nuxt preview`、**`postinstall: nuxt prepare`**，依赖只有 `nuxt`、`vue`、`vue-router` 三项，另有 `private: true` 与 `type: "module"`。最后那个脚本最要紧：`nuxt prepare` 创建 `.nuxt` 目录并生成类型，官方明说它适合 CI 或作为 `postinstall`。生产启动不走这些脚本——PM2 那份配置里 `script` 字段直接指向 `./.output/server/index.mjs`。要提醒一句：**整套 4.x 文档里没有任何"健康检查端点"的记载**，最接近的东西是服务端路由那套 `/api` 前缀规则，你得自己写那个文件。
+  摘要：官方 `directory-structure/package` 那一节给的最小 `package.json` 里有五个脚本：`build: nuxt build`、`dev: nuxt dev`、`generate: nuxt generate`、`preview: nuxt preview`、**`postinstall: nuxt prepare`**，依赖只有 `nuxt`、`vue`、`vue-router` 三项，另有 `private: true` 与 `type: "module"`。最后那个脚本最要紧：`nuxt prepare` 创建 `.nuxt` 目录并生成类型，官方明说它适合 CI 或作为 `postinstall`。生产启动不走这些脚本——PM2 那份配置里 `script` 字段直接指向 `./.output/server/index.mjs`。要提醒一句：**整套 4.x 文档里没有任何"健康检查端点"的记载**，最接近的东西是服务端路由那套 `/api` 前缀规则，你得自己写那个文件。
 
 categories:
   - 前端开发
@@ -28,7 +28,7 @@ tags:
 
 ## 官方那份最小 package.json，逐行
 
-那页的引导句是 **"The minimal `package.json` of your Nuxt application should looks like"**（原文如此），内容整份如下：
+那一节的引导句是 **"The minimal `package.json` of your Nuxt application should looks like"**（原文如此），内容整份如下：
 
 ```json [package.json]
 {
@@ -70,9 +70,9 @@ tags:
 
 也就是说这一行不是装饰：装完依赖就生成 `.nuxt` 与类型，编辑器与 `vue-tsc` 才认 `~/`、`#imports`、`#components`。流水线里如果没有 `npm install` 这一步（只复用缓存好的产物目录），这一行不会触发，类型检查就会失败——这是官方把它写成默认脚本的理由。
 
-另外两个字段官方只写不给解释：`private: true` 与 `type: "module"`。**这一页没有说明它们的作用**，所以本系列不替文档补语义。能确证的只有：`type: "module"` 与 ESM 那页对产物的描述在同一套语境里——Nitro 输出 `.output/server/index.mjs`，官方说"那会让 Node.js 把这个文件当原生 ES 模块处理"。
+另外两个字段官方只写不给解释：`private: true` 与 `type: "module"`。**这一节没有说明它们的作用**，所以本系列不替文档补语义。能确证的只有：`type: "module"` 与 ESM 那一节对产物的描述在同一套语境里——Nitro 输出 `.output/server/index.mjs`，官方说"那会让 Node.js 把这个文件当原生 ES 模块处理"。
 
-依赖那三项的版本写法官方示例里就是 `"latest"`，不是区间或精确版本号——这一页没讨论锁版本策略。
+依赖那三项的版本写法官方示例里就是 `"latest"`，不是区间或精确版本号——这一节没讨论锁版本策略。
 
 ## 生产启动不读这些脚本
 
@@ -113,7 +113,7 @@ module.exports = {
 export default defineEventHandler(() => ({ status: 'ok' }))
 ```
 
-**上面这段是本系列按上述规则给的写法示例，官方没有给健康检查示例。** 三点提醒：文件后缀 `.get` 属于 Nitro 的"按 HTTP 方法匹配路由"能力，不是 Nuxt 在这一页讲的；这个端点会走服务端渲染那条路径，纯静态部署（`nuxt generate`）下它不存在；如果给它加了缓存类路由规则，探测结果就不再反映进程状态。
+**上面这段是本系列按上述规则给的写法示例，官方没有给健康检查示例。** 三点提醒：文件后缀 `.get` 属于 Nitro 的"按 HTTP 方法匹配路由"能力，不是 Nuxt 在这一节讲的；这个端点会走服务端渲染那条路径，纯静态部署（`nuxt generate`）下它不存在；如果给它加了缓存类路由规则，探测结果就不再反映进程状态。
 
 平台侧要配探测地址时，你能确证的只有"这个路径由你自己定义"，官方没有默认值可指。
 
@@ -121,7 +121,7 @@ export default defineEventHandler(() => ({ status: 'ok' }))
 
 - 官方最小 `package.json` 只有五个脚本：`dev`/`build`/`generate`/`preview`/`postinstall: nuxt prepare`，**没有 `start`**。
 - `postinstall` 那行的作用是生成 `.nuxt` 与类型，官方明说 `prepare` 适合 CI 或作为 `postinstall`；跳过安装的流水线要自己补这一步。
-- `private` 与 `type: "module"` 的语义这一页没解释，别按推测写成结论。
+- `private` 与 `type: "module"` 的语义这一节没解释，别按推测写成结论。
 - 生产启动绕过脚本：`node .output/server/index.mjs`，或 PM2 的 `script` 指向同一个文件，`NODE_ENV` 在 `env` 块里显式给。
 - **健康检查端点没有任何官方记载**；要做就按 `server/api` 的 `/api` 前缀规则自己写一个，并注意静态部署下它不存在。
 

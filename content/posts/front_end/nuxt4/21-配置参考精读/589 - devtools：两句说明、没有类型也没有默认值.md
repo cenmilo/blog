@@ -1,6 +1,6 @@
 ---
 url: /posts/781ff51641a2a5859252f0b191b67300/
-title: devtools：两句说明、没有类型也没有默认值
+title: 589 - devtools：两句说明、没有类型也没有默认值
 date: 2027-04-26T10:00:00+08:00
 updated: 2027-04-26T10:00:00+08:00
 author: cmdragon
@@ -43,7 +43,7 @@ DevTools 面板某天多了个入口、或者某个面板换了位置，而你�
 
 ## 开关的另一半在命令与 `.nuxtrc` 里
 
-`nuxt devtools` 命令那一页把机制说清楚了：
+`nuxt devtools` 命令那一节把机制说清楚了：
 
 ```bash [Terminal]
 npx nuxt devtools <COMMAND> [ROOTDIR] [--cwd=<directory>]

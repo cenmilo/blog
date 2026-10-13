@@ -1,6 +1,6 @@
 ---
 url: /posts/5ad2eae0508fe8a6ba8a8b4434ef7cbc/
-title: 命名路由：name 默认按文件路径生成、以及用它导航
+title: 112 - 命名路由：name 默认按文件路径生成、以及用它导航
 date: 2026-11-18T10:00:00+08:00
 updated: 2026-11-18T10:00:00+08:00
 author: cmdragon

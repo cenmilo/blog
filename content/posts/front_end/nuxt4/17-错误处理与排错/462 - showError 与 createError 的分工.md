@@ -1,6 +1,6 @@
 ---
 url: /posts/c3c68ac41c7978d3a3d115410d7d1ef0/
-title: showError 与 createError 的分工
+title: 462 - showError 与 createError 的分工
 date: 2027-03-15T09:00:00+08:00
 updated: 2027-03-15T09:00:00+08:00
 author: cmdragon
@@ -141,7 +141,7 @@ try {
 3. 要带结构化的东西回来，用 `data`；用 `useFetch` 处理错误时，自定义数据在 **`error.value.data.data`** 这个位置。
 4. 无论如何**别把动态的用户输入塞进 message**，官方直接说是为了避免安全问题。
 
-第 3 条那个双 `.data` 很反直觉（外层是 h3 错误的 `data` 包装，内层才是你给的对象），写测试时容易漏一层。
+第 3 条那个双 `.data` 很反直觉，写测试时容易漏一层。官方只给了这个取值位置（`error.value.data.data`），**没有解释为什么是两层**，也没有说外层是谁的包装。
 
 官方的接口写法示例：
 

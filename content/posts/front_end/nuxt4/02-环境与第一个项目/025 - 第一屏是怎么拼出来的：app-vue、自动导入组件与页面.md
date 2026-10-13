@@ -1,6 +1,6 @@
 ---
 url: /posts/30d8bd3e2fce763c4850fd422111b35a/
-title: 第一屏是怎么拼出来的：app.vue、自动导入组件与页面
+title: 025 - 第一屏是怎么拼出来的：app.vue、自动导入组件与页面
 date: 2026-10-20T10:00:00+08:00
 updated: 2026-10-20T10:00:00+08:00
 author: cmdragon

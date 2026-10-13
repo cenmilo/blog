@@ -1,6 +1,6 @@
 ---
 url: /posts/09f831157b039e86736b2b35d53980d4/
-title: Nuxt 的 TS 支持从哪来：.nuxt 里的 tsconfig 与生成类型
+title: 395 - Nuxt 的 TS 支持从哪来：.nuxt 里的 tsconfig 与生成类型
 date: 2027-02-20T11:00:00+08:00
 updated: 2027-02-20T11:00:00+08:00
 author: cmdragon

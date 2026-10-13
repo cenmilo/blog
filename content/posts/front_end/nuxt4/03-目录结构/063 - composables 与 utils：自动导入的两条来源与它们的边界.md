@@ -1,6 +1,6 @@
 ---
 url: /posts/bf553efebbe003620aa9717c02c75376/
-title: composables 与 utils：自动导入的两条来源与它们的边界
+title: 063 - composables 与 utils：自动导入的两条来源与它们的边界
 date: 2026-11-02T09:00:00+08:00
 updated: 2026-11-02T09:00:00+08:00
 author: cmdragon
@@ -143,7 +143,7 @@ export default function (arr: Array<any>) {
 
 > 只有 `app/composables/index.ts` 与 `app/composables/useFoo.ts` 会被搜索以用于导入。
 
-**注意这里与 060/061 的措辞差异：** 中间件与插件那两页说的是"顶层文件**或子目录里的 index 文件**"；而这一页的树里 `nested/utils.ts` 明确标 **not scanned**，并且 `index.ts` 被扫描的位置是**顶层**。**别把三处的规则类推成完全一样。**
+**注意这里与 060/061 的措辞差异：** 中间件与插件那两节说的是"顶层文件**或子目录里的 index 文件**"；而这一节的树里 `nested/utils.ts` 明确标 **not scanned**，并且 `index.ts` 被扫描的位置是**顶层**。**别把三处的规则类推成完全一样。**
 
 要嵌套也能自动导入，官方给了两条路，并标了推荐顺序：
 
@@ -197,7 +197,7 @@ export const useHello = () => {
 }
 ```
 
-**这第二条正好把 061 那条建议落地了**：官方在插件页让你别到处 `provide`；而如果确实有一个注入项要读，**这一页给的做法是把它包进一个 composable**（`useHello()` 内部读 `nuxtApp.$hello`）——**调用侧见到的仍然是一个明确的函数。**
+**这第二条正好把 061 那条建议落地了**：官方在插件那一节让你别到处 `provide`；而如果确实有一个注入项要读，**这一节给的做法是把它包进一个 composable**（`useHello()` 内部读 `nuxtApp.$hello`）——**调用侧见到的仍然是一个明确的函数。**
 
 ## 边界那条 important：utils 只在 Vue 那一侧
 
@@ -242,5 +242,5 @@ utils 页最后那条 tip 我单独拎出来，因为它回答了一个非常具
 
 - `directory-structure/app/composables`（标题：使用 composables/ 目录自动导入你的 Vue 组合式函数进应用；两种用法——具名导出 export const useFoo = () => useState('foo', () => 'bar')、默认导出（文件名为 use-foo.ts 或 useFoo.ts，注释 It will be available as useFoo() (camelCase of file name without extension)）；Usage 现在可在 .js/.ts/.vue 文件里使用自动导入的 composable 并给出 app.vue 中 const foo = useFoo() 与模板示例；note：app/composables/ 目录在 Nuxt 中不提供任何额外的响应式能力，composables 内部的响应式是通过 Vue Composition API 机制（ref 与 reactive）实现的，且响应式代码不限于该目录边界、可在应用任何需要处使用响应式特性；Types：底层 Nuxt 自动生成 .nuxt/imports.d.ts 来声明类型、必须运行 nuxt prepare 或 nuxt dev 或 nuxt build 才能生成类型、note 若在未运行开发服务器时创建 composable TypeScript 会抛出例如 Cannot find name 'useBar'. 的错误；Example Nested Composables 组合式函数内部可用另一个组合式函数（useNuxtApp() 与 useBar()）；Access Plugin Injections 可从组合式函数访问插件注入（const nuxtApp = useNuxtApp(); return nuxtApp.$hello）；How Files Are Scanned：Nuxt 只扫描 app/composables/ 顶层文件，树例 index.ts scanned、useFoo.ts scanned、nested/utils.ts not scanned，只有 index.ts 与 useFoo.ts 会被搜索用于导入，要让嵌套模块自动导入可重新导出（recommended）或配置扫描器包含嵌套目录，示例 app/composables/index.ts 中 export { utils } from './nested/utils.ts' 注释 Enables auto import for this export，以及 imports.dirs 三种写法 ~/composables、~/composables/*/index.{ts,js,mjs,mts}、~/composables/**）
 - `directory-structure/app/utils`（标题：使用 utils/ 目录在整个应用里自动导入工具函数；app/utils/ 的主要目的是在你的 Vue 组合式函数与其它自动导入工具函数之间允许一个语义上的区分；两种用法——具名导出 export const { format: formatNumber } = Intl.NumberFormat(...)、默认导出（random-entry.ts 或 randomEntry.ts，注释 It will be available as randomEntry() (camelCase of file name without extension)）；可在 .js/.ts/.vue 中使用并给出模板 {{ formatNumber(1234) }}；tip：app/utils/ 的自动导入如何工作与如何扫描与 app/composables/ 目录完全相同；important：这些 utils 只在你的应用的 Vue 部分可用，只有 server/utils 会在 server/ 目录被自动导入；tip：类型可以同样自动导入，应用专用类型放 app/types/、服务端专用放 server/types/、两侧共享放 shared/types/）
-- `directory-structure/app/plugins`（对照用：important 强烈建议使用 composables 而非提供 helper；本页给出在组合式函数里读取 nuxtApp.$hello 的官方写法）
+- `directory-structure/app/plugins`（对照用：important 强烈建议使用 composables 而非提供 helper；这一节给出在组合式函数里读取 nuxtApp.$hello 的官方写法）
 - `directory-structure/app`（对照用：composables 与 utils 都是 app/ 目录下的子目录，定义分别是"添加你的 Vue 组合式函数"与"添加遍布你的应用、可在组件/组合式函数/页面中使用的函数"）

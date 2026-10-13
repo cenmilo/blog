@@ -1,6 +1,6 @@
 ---
 url: /posts/29fe2ecba921d34131f17448776b0cde/
-title: 动态段、可选段、catch-all 与命名父路由的优先级
+title: 058 - 动态段、可选段、catch-all 与命名父路由的优先级
 date: 2026-10-31T10:00:00+08:00
 updated: 2026-10-31T10:00:00+08:00
 author: cmdragon
@@ -284,4 +284,4 @@ console.log(route.meta.groups) // Output: ['marketing']
 
 - `directory-structure/app/pages`（Dynamic Routes：放进方括号的内容会变成动态路由参数、可在文件名或目录名里混用多个参数与非动态文本、目录结构示例 index.vue + users-[group]/[id].vue、访问 /users-admins/123 渲染 <p>admins - 123</p>、模板用 $route.params 与组合式 API 用全局 useRoute 像选项式 API 的 this.$route；If you want a parameter to be optional you must enclose it in double square brackets——~/pages/[[slug]]/index.vue 或 ~/pages/[[slug]].vue 同时匹配 / 与 /test；note 命名父路由优先于嵌套动态路由，对 /foo/hello 而言 ~/pages/foo.vue 优先于 ~/pages/foo/[slug].vue，应使用 ~/pages/foo/index.vue 与 ~/pages/foo/[slug].vue 以不同页面分别匹配 /foo 与 /foo/hello；Catch-all Route：用形如 [...slug].vue 的文件名创建、会匹配该路径下所有路由、访问 /hello/world 渲染 <p>["hello", "world"]</p>；Nested Routes：可用 <NuxtPage> 显示嵌套路由、目录 parent/child.vue + parent.vue 生成的路由对象为 path /parent name parent children path child component ~/pages/parent/child.vue name parent-child、要在 app/pages/parent.vue 中插入 <NuxtPage> 才能显示 child.vue、示例父页面 <NuxtPage :foobar="123" /> 与子页面 defineProps({foobar: String})；Child Route Keys：可通过 pageKey prop 传字符串或函数、或用 definePageMeta 定义 key 来控制 <NuxtPage> 何时重新渲染（示例 :page-key="route => route.fullPath" 与 definePageMeta({key: route => route.fullPath})）；Named Views 标注 v4.5：一条路由可渲染进父组件的多个 <NuxtPage> 出口，给每个出口一个 name 并为每个名字提供同级页面文件，使用 name@view.vue 文件名约定，目录 parent/child.vue 与 parent/child@sidebar.vue，父页面 <NuxtPage /> 与 <NuxtPage name="sidebar" />，导航到 /parent/child 时 child.vue 渲染进默认出口、child@sidebar.vue 渲染进 name="sidebar" 出口且无对应命名视图的出口保持为空，note definePageMeta 只从默认路由文件读取故 name@view.vue 同级文件里声明的元数据对该路由无影响；Route Groups：把文件放进用圆括号包起来的文件夹可归组而不影响基于文件的路由，目录 (marketing)/about.vue 与 contact.vue 会产生 /、/about、/contact 且 marketing 分组对 URL 结构被忽略；Accessing Route Groups 标注 v4.3：路由分组自动作为 route.meta.groups 出现在路由元数据中，示例 console.log(route.meta.groups) 输出 ['marketing'] 与模板中 route.meta.groups?.includes('marketing') 的条件渲染）
 - `directory-structure/app/pages#page-metadata`（definePageMeta 与 key 字段作为本篇引用的元数据入口）
-- `guide/concepts/server-components`（服务端组件与 .server.vue 的边界在 008 讲过——命名视图与服务器渲染的组合官方未在本页展开，故本篇不推断）
+- `guide/concepts/server-components`（服务端组件与 .server.vue 的边界在 008 讲过——命名视图与服务器渲染的组合官方未在这一节展开，故本篇不推断）

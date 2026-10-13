@@ -1,12 +1,12 @@
 ---
 url: /posts/f594f8695e7e80f9a3192733896ad6b0/
-title: moduleDependencies 的四个字段与相对路径从 rootDir 算起
+title: 637 - moduleDependencies 的四个字段与相对路径从 rootDir 算起
 date: 2027-05-12T10:00:00+08:00
 updated: 2027-05-12T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：模块要依赖别的模块，**不再调用 `installModule`**，而是在定义里写 `moduleDependencies`。这一页说清了三件被代理的事：**按正确顺序安装**、**校验你给的版本约束**、**合并你为它们提供的配置**。四个字段各有各的边界：`version` 是 semver 范围，不满足就**启动直接报错**，但它**只在依赖能解析到 `package.json` 时生效，对项目本地模块等于空操作**；`overrides` 压在 `nuxt.options` 之上、`defaults` 垫在 `nuxt.options` 之下；`optional: true` 表示缺失时不自动装，但**只要那个模块在别处装了，你给的 overrides 与 defaults 照样生效**。最狠的一条是路径：相对路径**从项目 `rootDir` 算起，不是从声明它的那个文件算起**。
+  摘要：模块要依赖别的模块，**不再调用 `installModule`**，而是在定义里写 `moduleDependencies`。这一节说清了三件被代理的事：**按正确顺序安装**、**校验你给的版本约束**、**合并你为它们提供的配置**。四个字段各有各的边界：`version` 是 semver 范围，不满足就**启动直接报错**，但它**只在依赖能解析到 `package.json` 时生效，对项目本地模块等于空操作**；`overrides` 压在 `nuxt.options` 之上、`defaults` 垫在 `nuxt.options` 之下；`optional: true` 表示缺失时不自动装，但**只要那个模块在别处装了，你给的 overrides 与 defaults 照样生效**。最狠的一条是路径：相对路径**从项目 `rootDir` 算起，不是从声明它的那个文件算起**。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-一个模块要用 Tailwind，你有两种做法：让每个用户自己去装、自己去配；或者在模块里声明依赖。**后者的坑集中在两处：路径怎么解析、版本约束什么时候不生效**。这一页讲的就是这两处。
+一个模块要用 Tailwind，你有两种做法：让每个用户自己去装、自己去配；或者在模块里声明依赖。**后者的坑集中在两处：路径怎么解析、版本约束什么时候不生效**。这一节讲的就是这两处。
 
 ## 声明依赖换来什么
 
@@ -71,7 +71,7 @@ export default defineNuxtModule<ModuleOptions>({
 })
 ```
 
-这一页有一条 `::callout` 直接做了新旧交接：**`moduleDependencies` 选项取代了被废弃的 `installModule` 函数**。
+这一节有一条 `::callout` 直接做了新旧交接：**`moduleDependencies` 选项取代了被废弃的 `installModule` 函数**。
 
 ## 键是什么
 
@@ -103,7 +103,7 @@ export default defineNuxtModule({
 
 > **Relative paths are resolved from your project's `rootDir`**, not from the file declaring the dependency. A module at `modules/foo.ts` referencing `modules/bar.ts` must use `'./modules/bar'`, not `'./bar'`.
 
-也就是：**`modules/foo.ts` 里想引用同目录的 `bar.ts`，要写 `'./modules/bar'`**。写成 `'./bar'` 会被当成从项目根算起，于是指向一个不存在的 `bar`。页面紧接着给的规避方法是**用别名 `~/modules/bar`**，它把歧义消掉了——这也是这一页自己的第二个示例采用的写法。
+也就是：**`modules/foo.ts` 里想引用同目录的 `bar.ts`，要写 `'./modules/bar'`**。写成 `'./bar'` 会被当成从项目根算起，于是指向一个不存在的 `bar`。页面紧接着给的规避方法是**用别名 `~/modules/bar`**，它把歧义消掉了——这也是这一节自己的第二个示例采用的写法。
 
 顺带对照一下：`overrides`/`defaults` 里的路径走的是 `resolver.resolve(...)`，那是**以当前模块文件为基准**的解析器。**同一个对象里两种基准并存**，这是最容易读漏的地方。
 
@@ -176,13 +176,17 @@ moduleDependencies (nuxt) {
 
 ## 一处口径差别，别当成保证
 
-这一页开头说 Nuxt 会**确保这些模块按正确的顺序安装**，而模块结构页里 `moduleDependencies` 的注释写的是另一回事：
+这一节开头说 Nuxt 会**确保这些模块按正确的顺序安装**，而模块结构页里 `moduleDependencies` 的注释写的是另一回事：
 
 > Configuration for other modules - this does not ensure the module runs before your module, but it allows you to change the other module's configuration before it runs
 
 两句并不完全同义：**前者说的是依赖被安装这件事的顺序，后者明确说它不保证那个模块跑在你的模块之前，只是让你在它运行前改它的配置**。所以"靠依赖声明来编排两个模块的执行先后"不能当成文档给过的保证；真要控制时序，得回到生命周期钩子那一侧（`modules:done`）。
 
 下一篇讲发布前的打包：`nuxt build-module` 那一个参数和六个选项。
+
+## 下一篇
+
+下一篇 638：build-module 命令：一个参数、六个选项与 dist 目录
 
 ## 本文依据
 

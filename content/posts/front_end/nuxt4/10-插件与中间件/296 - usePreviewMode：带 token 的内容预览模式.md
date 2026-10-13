@@ -1,6 +1,6 @@
 ---
 url: /posts/a255b5b7f2d5be2288a836aa558323f7/
-title: usePreviewMode：带 token 的内容预览模式
+title: 296 - usePreviewMode：带 token 的内容预览模式
 date: 2027-01-18T11:00:00+08:00
 updated: 2027-01-18T11:00:00+08:00
 author: cmdragon
@@ -148,7 +148,7 @@ const { enabled, state } = usePreviewMode({
 })
 ```
 
-`refreshNuxtData` 是 P08 那一路的东西（240 讲过全站重取），这里只是预览模式默认拿它来触发内容刷新。
+`refreshNuxtData` 是 210-249 那一路的东西（240 讲过全站重取），这里只是预览模式默认拿它来触发内容刷新。
 
 ## 测试口径：别用 nuxt dev
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/ba131175e4c5f77743e686f0ff57ea7f/
-title: Nitro 运行时钩子九个：请求、两个响应阶段、错误与渲染三钩子
+title: 674 - Nitro 运行时钩子九个：请求、两个响应阶段、错误与渲染三钩子
 date: 2027-05-24T11:00:00+08:00
 updated: 2027-05-24T11:00:00+08:00
 author: cmdragon
@@ -102,6 +102,10 @@ Types 一列给出的位置很具体：`response`、`html`、`islandResponse` �
 这一组未记载的还有：`html` 对象的完整形状、`islandContext` 有哪些字段、这些钩子能否被 `addServerHandler` 的中间件影响顺序，以及 `dev:ssr-logs` 那行错位是否意味着还有一个未列的 "Environment" 概念被漏掉。
 
 下一篇换一页：`import.meta` 上那些能判断"代码跑在哪"的字段。
+
+## 下一篇
+
+下一篇 675：import.meta 在 Nuxt 里的八个运行时字段与两个构建期字段
 
 ## 本文依据
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/6af724096529faaf242837b7e1dc0445/
-title: useAsyncData 两个重载：key 在前还是 handler 在前
+title: 212 - useAsyncData 两个重载：key 在前还是 handler 在前
 date: 2026-12-21T11:00:00+08:00
 updated: 2026-12-21T11:00:00+08:00
 author: cmdragon

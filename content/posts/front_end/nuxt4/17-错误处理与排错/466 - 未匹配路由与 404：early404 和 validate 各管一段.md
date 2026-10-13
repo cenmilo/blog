@@ -1,6 +1,6 @@
 ---
 url: /posts/cd37f255017a90e206a01867e9a65c6a/
-title: 未匹配路由与 404：early404 和 validate 各管一段
+title: 466 - 未匹配路由与 404：early404 和 validate 各管一段
 date: 2027-03-16T10:00:00+08:00
 updated: 2027-03-16T10:00:00+08:00
 author: cmdragon
@@ -32,7 +32,7 @@ tags:
 
 | 场景 | 由谁负责 | 默认状态 | 官方定义位置 |
 | --- | --- | --- | --- |
-| 路由匹配到了，但参数不合法 | `definePageMeta` 的 `validate` | 需自己在页面里写 | 路由那一页 Route Validation |
+| 路由匹配到了，但参数不合法 | `definePageMeta` 的 `validate` | 需自己在页面里写 | 路由那一节 Route Validation |
 | 客户端导航匹配不到任何页面 | `experimental.serverPathFallback` | **默认开** | 实验特性那一节 |
 | 服务端收到压根匹配不上的路径 | `experimental.early404` | **需显式开** | 实验特性那一节 |
 
@@ -139,7 +139,7 @@ interface NuxtError {
 
 ## 本文依据
 
-- 路由那一页 Route Validation 全节：`validate` 属于 `definePageMeta`、接受 `route` 作参数、返回布尔、返回 `false` 产生 404、可直接返回带 `status`/`statusText` 的对象自定义错误、复杂场景改用匿名路由中间件、`pages/posts/[id].vue` 示例原文（`getting-started/routing`）
+- 路由那一节 Route Validation 全节：`validate` 属于 `definePageMeta`、接受 `route` 作参数、返回布尔、返回 `false` 产生 404、可直接返回带 `status`/`statusText` 的对象自定义错误、复杂场景改用匿名路由中间件、`pages/posts/[id].vue` 示例原文（`getting-started/routing`）
 - `## serverPathFallback` 全节：定义句（匹配不到页面路由的客户端导航按整份文档加载，服务端可回应 `public/` 文件、服务端路由或其 404 页；`/brochure.pdf` 与 `/rss.xml` 点击与硬加载一致）、"A path is never reloaded if the current document was already served for it" 与 SPA fallback 主机渲客户端 404、默认开启与关闭写法、`hashMode` 下无效（`guide/going-further/experimental-features`）
 - `## early404` 全节：定义句（不加载 Vue 应用、插件与中间件）、构建期静态路由匹配器与 SSR 前检查、无 `Accept: text/html` 返回 JSON 且不加载应用（cv5 除外）、HTML 请求仍服务端渲错误页、`cache` 规则的 `maxAge` 在 GET/HEAD miss 上广播为 `Cache-Control` 供 CDN 吸收重复请求、`::warning` 两条打断项（`router.addRoute()` 与 `addRoute` 从 `useRouter` 类型移除；中间件重定向未知路径）、四种自动关闭情形与 router.options 兼容例外（`guide/going-further/experimental-features`）
 - 错误对象的 `status`/`statusText` 与 `statusCode`/`statusMessage` 的 legacy 标注（`directory-structure/app/error`）；`definePageMeta` 被静态提取的键含 `validate`（`api/nuxt-config` 的 `optimization.asyncTransforms`）

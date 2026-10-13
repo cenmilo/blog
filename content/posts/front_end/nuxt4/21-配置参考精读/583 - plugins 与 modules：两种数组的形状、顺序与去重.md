@@ -1,6 +1,6 @@
 ---
 url: /posts/adcb2c450adf4924171f0d880e4c2ab7/
-title: plugins 与 modules：两种数组的形状、顺序与去重
+title: 583 - plugins 与 modules：两种数组的形状、顺序与去重
 date: 2027-04-24T10:00:00+08:00
 updated: 2027-04-24T10:00:00+08:00
 author: cmdragon
@@ -40,7 +40,7 @@ tags:
 
 > **Note**: Plugins are also auto-registered from the `~/plugins` directory and these plugins do not need to be listed in `nuxt.config` unless you need to customize their order. All plugins are deduplicated by their src path.
 
-三件事在里面：目录里的插件**默认自动注册**；把它们再写进配置的唯一理由是**要定制顺序**；以及**按 src 路径去重**——这就是"同一文件写两遍只加载一次"的依据。See 指向 `app/plugins` 目录那一页。
+三件事在里面：目录里的插件**默认自动注册**；把它们再写进配置的唯一理由是**要定制顺序**；以及**按 src 路径去重**——这就是"同一文件写两遍只加载一次"的依据。See 指向 `app/plugins` 目录那一节。
 
 示例给了六条，覆盖两种形状与三种上下文：
 
@@ -124,7 +124,7 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-下一篇 584 看 `## extends`：这一节只有三行——多个来源、字符串或字符串数组、四种远程前缀——而真正的优先级阶梯写在图层那一页：**你的项目文件 > `~~/layers` 自动扫描的层（字母序，Z 高于 A）> `extends` 里的层（越靠前越高）**。
+下一篇 584 看 `## extends`：这一节只有三行——多个来源、字符串或字符串数组、四种远程前缀——而真正的优先级阶梯写在图层那一节：**你的项目文件 > `~~/layers` 自动扫描的层（字母序，Z 高于 A）> `extends` 里的层（越靠前越高）**。
 
 ## 本文依据
 

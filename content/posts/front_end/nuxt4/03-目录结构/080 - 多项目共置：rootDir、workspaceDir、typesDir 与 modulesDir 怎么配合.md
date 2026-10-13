@@ -1,6 +1,6 @@
 ---
 url: /posts/212c3053431a18d6fa79369760141c44/
-title: 多项目共置：rootDir、workspaceDir、typesDir 与 modulesDir 怎么配合
+title: 080 - 多项目共置：rootDir、workspaceDir、typesDir 与 modulesDir 怎么配合
 date: 2026-11-07T11:00:00+08:00
 updated: 2026-11-07T11:00:00+08:00
 author: cmdragon

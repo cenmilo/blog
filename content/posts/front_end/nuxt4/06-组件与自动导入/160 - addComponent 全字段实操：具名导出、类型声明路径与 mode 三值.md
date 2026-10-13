@@ -1,6 +1,6 @@
 ---
 url: /posts/a438e4b33c61f376a5ee18f3c69c76ae/
-title: addComponent 全字段实操：具名导出、类型声明路径与 mode 三值
+title: 160 - addComponent 全字段实操：具名导出、类型声明路径与 mode 三值
 date: 2026-12-04T10:00:00+08:00
 updated: 2026-12-04T10:00:00+08:00
 author: cmdragon

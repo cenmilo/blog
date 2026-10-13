@@ -1,6 +1,6 @@
 ---
 url: /posts/e7d96848be3ed1a462caa9c2326fc512/
-title: assets 里的样式：走打包器才有 hash
+title: 421 - assets 里的样式：走打包器才有 hash
 date: 2027-03-01T10:00:00+08:00
 updated: 2027-03-01T10:00:00+08:00
 author: cmdragon

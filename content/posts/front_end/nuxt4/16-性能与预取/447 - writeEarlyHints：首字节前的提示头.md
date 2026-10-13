@@ -1,6 +1,6 @@
 ---
 url: /posts/53aee09d7fb61697ce47df2789eef9a6/
-title: writeEarlyHints：首字节前的提示头
+title: 447 - writeEarlyHints：首字节前的提示头
 date: 2027-03-10T09:00:00+08:00
 updated: 2027-03-10T09:00:00+08:00
 author: cmdragon
@@ -44,7 +44,7 @@ export default defineNuxtConfig({
 
 这一句里唯一的限定条件是 **when using node server**。也就是说官方把启用条件写死在"跑的是 node 服务端"上。
 
-这一页没写默认值句（这一页里凡是默认打开的开关，都会明写一句"This flag is enabled by default, but you can disable this feature"），所以它的默认状态按"要显式开"处理。至于**具体哪些提示会被提前写出去、写到哪一层、在非 node 部署上是什么行为、和流式渲染或预渲染怎么相互作用，文档未说明**——这四项都没在这一节出现。
+这一节没写默认值句（这一节里凡是默认打开的开关，都会明写一句"This flag is enabled by default, but you can disable this feature"），所以它的默认状态按"要显式开"处理。至于**具体哪些提示会被提前写出去、写到哪一层、在非 node 部署上是什么行为、和流式渲染或预渲染怎么相互作用，文档未说明**——这四项都没在这一节出现。
 
 ## 别和 h3 的那个函数混了
 
@@ -106,6 +106,6 @@ export default defineEventHandler(async (event) => {
 
 ## 本文依据
 
-- `## writeEarlyHints` 整节：定义原文一句（含 "when using node server"）与配置示例；对照该页其他默认开启开关的 "This flag is enabled by default" 措辞（`guide/going-further/experimental-features`）
+- `## writeEarlyHints` 整节：定义原文一句（含 "when using node server"）与配置示例；对照那一节其他默认开启开关的 "This flag is enabled by default" 措辞（`guide/going-further/experimental-features`）
 - h3 helpers 清单中出现 `writeEarlyHints`、"import `defineEventHandler` from `h3` for that handler" 与 `server/api/upload.post.ts` 示例、"`nuxt/server` isn't a re-export of h3" 的理由句（`guide/going-further/server-imports`）
 - `noScripts` 生效时被省略的四类内容清单（入口 script、import map、内联 payload 与 payload preload link、给 JS chunk 的 preload/prefetch 资源提示）与"CSS is unaffected"（`guide/going-further/features`）

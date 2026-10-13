@@ -1,12 +1,12 @@
 ---
 url: /posts/d307203750fa5b629387cc5d52ff48ec/
-title: test：一个全库没被读过的布尔值
+title: 592 - test：一个全库没被读过的布尔值
 date: 2027-04-27T10:00:00+08:00
 updated: 2027-04-27T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`## test` 的记载是**一句 ＋ 类型 ＋ 默认值**："Whether your app is being unit tested."、`**Type**: boolean`、`**Default:** false`，**没有示例、没有 See、也没有第二句**。反常之处在于：**整套 4.x 文档里没有一处把这个键读出来用**——文档中找不到任何 `nuxt.options.test` 的写法，也没有任何一处说明"设成 `true` 会改变什么"。而唯一提到"测试模式"的第二处记载，是特性页里 `devLogs` 那句 "By default, this is enabled in development (**when test mode is not active**)"，可 `nuxt test` 命令那一页又说它设的是 **`process.env.NODE_ENV` 为 `test`**——**所以那句"test mode"到底指配置键还是指环境变量，文档没有区分。**
+  摘要：`## test` 的记载是**一句 ＋ 类型 ＋ 默认值**："Whether your app is being unit tested."、`**Type**: boolean`、`**Default:** false`，**没有示例、没有 See、也没有第二句**。反常之处在于：**整套 4.x 文档里没有一处把这个键读出来用**——文档中找不到任何 `nuxt.options.test` 的写法，也没有任何一处说明"设成 `true` 会改变什么"。而唯一提到"测试模式"的第二处记载，是特性页里 `devLogs` 那句 "By default, this is enabled in development (**when test mode is not active**)"，可 `nuxt test` 命令那一节又说它设的是 **`process.env.NODE_ENV` 为 `test`**——**所以那句"test mode"到底指配置键还是指环境变量，文档没有区分。**
 
 categories:
   - 前端开发
@@ -45,7 +45,7 @@ tags:
 
 - 设它有没有效果——**无依据**。
 - 它期望由谁来设（测试工具自动注入？还是用户写在配置里？）——**无记载**。
-- 它与 `@nuxt/test-utils` 的关系——`getting-started/testing` 那一页通篇讲 test-utils 的安装与用法，**没有提到这个配置键**。
+- 它与 `@nuxt/test-utils` 的关系——`getting-started/testing` 那一节通篇讲 test-utils 的安装与用法，**没有提到这个配置键**。
 
 ## 唯一相邻的那句"test mode"
 
@@ -55,7 +55,7 @@ tags:
 
 这是全库第二处涉及"测试模式"的表述，也是唯一一处**某个行为明确随测试模式改变**的记载。但紧接着的歧义是：
 
-`nuxt test` 命令那一页写的是："This command sets `process.env.NODE_ENV` to `test` **if not already set**."（同样的话在那页的 `::note` 里又重复了一次。）那页给的用法行是这样的：
+`nuxt test` 命令那一节写的是："This command sets `process.env.NODE_ENV` to `test` **if not already set**."（同样的话在那一节的 `::note` 里又重复了一次。）那一节给的用法行是这样的：
 
 ```bash [Terminal]
 npx nuxt test [ROOTDIR] [--cwd=<directory>] [--dev] [--watch]
@@ -88,5 +88,5 @@ npx nuxt test [ROOTDIR] [--cwd=<directory>] [--dev] [--watch]
 
 - https://nuxt.com/docs/4.x/api/nuxt-config（`## test` 一句原文、`**Type**: boolean` 与 `**Default:** false`，无 Example/See 的事实；`## dev` 的对照句式）
 - https://nuxt.com/docs/4.x/api/commands/test（命令用法行、"sets `process.env.NODE_ENV` to `test` if not already set" 正文与 `::note`、Arguments 一行与 Options 三行含 `--dev`/`--watch` 描述）
-- https://nuxt.com/docs/4.x/getting-started/testing（`@nuxt/test-utils` 定位句、可选依赖三行：`happy-dom`/`jsdom`、`vitest`/`cucumber`/`jest`/`playwright`、`playwright-core`；该页未提及 `test` 配置键）
+- https://nuxt.com/docs/4.x/getting-started/testing（`@nuxt/test-utils` 定位句、可选依赖三行：`happy-dom`/`jsdom`、`vitest`/`cucumber`/`jest`/`playwright`、`playwright-core`；那一节未提及 `test` 配置键）
 - https://nuxt.com/docs/4.x/guide/going-further/features（`devLogs`："By default, this is enabled in development (when test mode is not active)."）

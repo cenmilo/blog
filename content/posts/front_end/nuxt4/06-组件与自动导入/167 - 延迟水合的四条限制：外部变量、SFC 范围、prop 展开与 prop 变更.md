@@ -1,6 +1,6 @@
 ---
 url: /posts/67ce3ae8ab0a51c8cc6445d1fb41c4a4/
-title: 延迟水合的四条限制：外部变量、SFC 范围、prop 展开与 prop 变更
+title: 167 - 延迟水合的四条限制：外部变量、SFC 范围、prop 展开与 prop 变更
 date: 2026-12-06T11:00:00+08:00
 updated: 2026-12-06T11:00:00+08:00
 author: cmdragon

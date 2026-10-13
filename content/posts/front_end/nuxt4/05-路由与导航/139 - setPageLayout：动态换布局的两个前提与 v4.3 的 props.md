@@ -1,6 +1,6 @@
 ---
 url: /posts/823f7be26c740db5cf18dccdb990d7eb/
-title: setPageLayout：动态换布局的两个前提与 v4.3 的 props
+title: 139 - setPageLayout：动态换布局的两个前提与 v4.3 的 props
 date: 2026-11-27T10:00:00+08:00
 updated: 2026-11-27T10:00:00+08:00
 author: cmdragon
@@ -49,7 +49,7 @@ export default defineNuxtRouteMiddleware((to) => {
 
 ## 第二个前提：服务端必须赶在布局被渲染之前
 
-这一条是本页最要紧的一句话：
+这一条是官方那一节最要紧的一句话：
 
 > **如果你选择在服务端动态设置布局，你*必须*赶在布局被 Vue 渲染之前完成设置（也就是在一个插件或路由中间件里），以避免水合不匹配。**
 
@@ -122,7 +122,7 @@ const props = defineProps<{
 
 | 症状 | 先查什么 |
 | --- | --- |
-| 布局换了但**闪一下/水合报错** | `setPageLayout` 是不是没在插件或路由中间件里调用（本页 note） |
+| 布局换了但**闪一下/水合报错** | `setPageLayout` 是不是没在插件或路由中间件里调用（官方那一节的 note） |
 | 布局 props 拿到 `undefined` | 布局有没有声明 `defineProps`；第二参数的层级对不对（136） |
 | 布局名传对了却不生效 | 名字有没有被规范化成 kebab-case（136、094） |
 | 无效布局名导致外壳整个消失 | `fallback` 有没有配（094） |

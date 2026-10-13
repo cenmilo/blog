@@ -1,6 +1,6 @@
 ---
 url: /posts/5e4591a3a7ee944a1ff0099dbcc933f3/
-title: 为什么接口里的 message 不下发客户端：改用 statusText 或 data
+title: 309 - 为什么接口里的 message 不下发客户端：改用 statusText 或 data
 date: 2027-01-23T09:00:00+08:00
 updated: 2027-01-23T09:00:00+08:00
 author: cmdragon
@@ -83,4 +83,4 @@ tags:
 ## 本文依据
 
 - createError（`api/utils/create-error`）：In API Routes 一节原句——"using `createError` by passing an object with a short `statusText` is recommended because it can be accessed on the client side. Otherwise, a `message` passed to `createError` on an API route will not propagate to the client. Alternatively, you can use the `data` property to pass data back to the client. When handling the error with `useFetch`, the custom data is available at `error.value.data.data`."；安全句 "avoiding to put dynamic user input to the message to avoid potential security issues."；参数表 `{ cause, data, message, name, stack, status, statusText, fatal }`（NuxtError 字段，见 308）。
-- Error Handling（`getting-started/error-handling`）：NuxtError 结构（见 056/P04 记录，message/status/statusText/data 为错误对象字段）。
+- Error Handling（`getting-started/error-handling`）：NuxtError 结构（见 056/90-109 记录，message/status/statusText/data 为错误对象字段）。

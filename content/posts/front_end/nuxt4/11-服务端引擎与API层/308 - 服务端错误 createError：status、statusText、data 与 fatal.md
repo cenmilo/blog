@@ -1,6 +1,6 @@
 ---
 url: /posts/16348b4943365cf8c7931baab1872bc3/
-title: 服务端错误 createError：status、statusText、data 与 fatal
+title: 308 - 服务端错误 createError：status、statusText、data 与 fatal
 date: 2027-01-22T11:00:00+08:00
 updated: 2027-01-22T11:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/7f8dd712608660bd2c7715d968de1aa2/
-title: 插件里的错误：vue 错误钩子、errorHandler 与 app 错误
+title: 285 - 插件里的错误：vue 错误钩子、errorHandler 与 app 错误
 date: 2027-01-15T09:00:00+08:00
 updated: 2027-01-15T09:00:00+08:00
 author: cmdragon
@@ -124,7 +124,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 ## 下一篇
 
-下一篇 286 讲官方那页插件最佳实践：能组合就别用插件、插件别堆多（跑在水合期）、异步插件开 parallel。
+下一篇 286 讲官方那一节插件最佳实践：能组合就别用插件、插件别堆多（跑在水合期）、异步插件开 parallel。
 
 ## 本文依据
 

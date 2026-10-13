@@ -1,6 +1,6 @@
 ---
 url: /posts/011d93307c010507397017c618d4f51d/
-title: plugins 目录：自动注册、顺序控制与两种写法
+title: 061 - plugins 目录：自动注册、顺序控制与两种写法
 date: 2026-11-01T10:00:00+08:00
 updated: 2026-11-01T10:00:00+08:00
 author: cmdragon

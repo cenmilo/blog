@@ -1,6 +1,6 @@
 ---
 url: /posts/5b29f7f02c629718d210ccd666331214/
-title: 部署在子路径与换 CDN：app.baseURL、buildAssetsDir 与 cdnURL
+title: 361 - 部署在子路径与换 CDN：app.baseURL、buildAssetsDir 与 cdnURL
 date: 2027-02-09T10:00:00+08:00
 updated: 2027-02-09T10:00:00+08:00
 author: cmdragon

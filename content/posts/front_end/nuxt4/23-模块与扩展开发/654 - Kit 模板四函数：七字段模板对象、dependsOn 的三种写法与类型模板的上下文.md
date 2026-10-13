@@ -1,12 +1,12 @@
 ---
 url: /posts/f5ad431283b9cff323b2167cb5f74c63/
-title: Kit 模板四函数：七字段模板对象、dependsOn 的三种写法与类型模板的上下文
+title: 654 - Kit 模板四函数：七字段模板对象、dependsOn 的三种写法与类型模板的上下文
 date: 2027-05-18T09:00:00+08:00
 updated: 2027-05-18T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：模板就是"由模块生成的额外文件"，这一页有四个函数。**`addTemplate` 的模板对象七个字段**，其中最新、也最容易漏的是 `dependsOn`：**什么都不声明的模板会在每一次变化时重新生成**，所以要么给 `[]`（表示它不读被监听文件的内容，dev 下文件被编辑时可以跳过重编译）、要么列已知来源键（`'pages'`、`'plugins'`）、要么给一个按变化判断的函数。`addTypeTemplate` **只写进 buildDir 并登记为类型**，它的第二个参数 `context` 控制类型进哪个上下文——**省略时只进 Nuxt 上下文，要进服务端得显式 `{ nitro: true }`**。`addServerTemplate` 只有两个必填字段。**这一页有两处原文瑕疵值得防身**：`addTypeTemplate` 示例前的句子函数名是空的（写成"By default, －－ only adds..."），而 `addServerTemplate` 注册的 `filename` 是 `.mjs`、运行时示例却 import `.js`。
+  摘要：模板就是"由模块生成的额外文件"，这一节有四个函数。**`addTemplate` 的模板对象七个字段**，其中最新、也最容易漏的是 `dependsOn`：**什么都不声明的模板会在每一次变化时重新生成**，所以要么给 `[]`（表示它不读被监听文件的内容，dev 下文件被编辑时可以跳过重编译）、要么列已知来源键（`'pages'`、`'plugins'`）、要么给一个按变化判断的函数。`addTypeTemplate` **只写进 buildDir 并登记为类型**，它的第二个参数 `context` 控制类型进哪个上下文——**省略时只进 Nuxt 上下文，要进服务端得显式 `{ nitro: true }`**。`addServerTemplate` 只有两个必填字段。**这一节有两处原文瑕疵值得防身**：`addTypeTemplate` 示例前的句子函数名是空的（写成"By default, －－ only adds..."），而 `addServerTemplate` 注册的 `filename` 是 `.mjs`、运行时示例却 import `.js`。
 
 categories:
   - 前端开发
@@ -24,15 +24,15 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-`#build/` 下那些看起来凭空出现的文件，就是模块用这一页的函数生成的。四个函数分工不同，而**默认行为里藏着一个会让 dev 变慢的坑**。
+`#build/` 下那些看起来凭空出现的文件，就是模块用这一节的函数生成的。四个函数分工不同，而**默认行为里藏着一个会让 dev 变慢的坑**。
 
-## 这页怎么介绍四个函数
+## 这一节怎么介绍四个函数
 
 开场句：**模板让你在开发期与构建期生成额外的文件；这些文件会出现在虚拟文件系统里，可以在插件、布局、组件等处使用**。
 
 然后点名：**`addTemplate` 与 `addTypeTemplate` 用于给 Nuxt 应用添加模板；`updateTemplates` 用于重新生成匹配过滤条件的模板**。
 
-**注意这句只点了三个名字，而页上有四个 `##` 条目**——`addServerTemplate` 没在开场句里出现，只在它自己那一节被介绍（**添加一个可在 Nitro 服务端构建里使用的虚拟文件**）。查找时别以为它不属于这一页。
+**注意这句只点了三个名字，而页上有四个 `##` 条目**——`addServerTemplate` 没在开场句里出现，只在它自己那一节被介绍（**添加一个可在 Nitro 服务端构建里使用的虚拟文件**）。查找时别以为它不属于这一节。
 
 ## `addTemplate`：七个字段
 
@@ -279,9 +279,13 @@ export default defineNuxtModule({
 | 服务端能 import 的虚拟文件 | `addServerTemplate` | 只有 `filename`＋`getContents` 两个必填 |
 | 让已注册的模板重算 | `updateTemplates` | 不给 filter 就全部重算 |
 
-这一页没写的：`addTemplate` 返回的 `ResolvedNuxtTemplate` 有何用途、`dependsOn` 里 `'plugins'` 具体指哪一类变化、`addTypeTemplate` 为什么不接受 `write`（它本身就写进 buildDir）、以及模板注册了同名 `filename` 时会不会互相覆盖。
+这一节没写的：`addTemplate` 返回的 `ResolvedNuxtTemplate` 有何用途、`dependsOn` 里 `'plugins'` 具体指哪一类变化、`addTypeTemplate` 为什么不接受 `write`（它本身就写进 buildDir）、以及模板注册了同名 `filename` 时会不会互相覆盖。
 
 下一篇讲 app-config 那一个函数，顺带把四种合并方向摆成一张表。
+
+## 下一篇
+
+下一篇 655：updateAppConfig：一个函数与四种配置合并方向的对照
 
 ## 本文依据
 

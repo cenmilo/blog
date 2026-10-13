@@ -1,6 +1,6 @@
 ---
 url: /posts/d1c2cd0b5c4305a6686f9371bd10295d/
-title: NuxtLink props 全表：三组属性、internal 与 external 的判定
+title: 147 - NuxtLink props 全表：三组属性、internal 与 external 的判定
 date: 2026-11-30T09:00:00+08:00
 updated: 2026-11-30T09:00:00+08:00
 author: cmdragon
@@ -301,6 +301,6 @@ export default defineNuxtConfig({
   - 原文（Props / Anchor 组）：`target` — "A `target` attribute value to apply on the link"；`rel` — "A `rel` attribute value to apply on the link. Defaults to `"noopener noreferrer"` for external links."；tip "Defaults can be overwritten, see overwriting defaults if you want to change them."
   - 原文（Overwriting Defaults / In Nuxt Config）："You can overwrite some `<NuxtLink>` defaults in your `nuxt.config`"；important "These options will likely be moved elsewhere in the future, such as into `app.config` or into the `app/` directory."；完整配置块八个键与注释 `// default values`、`// can be any valid string class name`、`// can be 'append' or 'remove'`
 - `https://nuxt.com/docs/4.x/guide/going-further/experimental-features`
-  - 对照用（见 145、146）：`payloadExtraction` 与 `crossOriginPrefetch`、`defaults` 三个条目的位置（本页 `prefetch` prop 与 Overwriting Defaults 都以它们为链接目标）
+  - 对照用（见 145、146）：`payloadExtraction` 与 `crossOriginPrefetch`、`defaults` 三个条目的位置（这一节 `prefetch` prop 与 Overwriting Defaults 都以它们为链接目标）
 - `https://nuxt.com/docs/4.x/guide/recipes/custom-routing`
   - 对照用（见 142）：`router.options` 中"只有 JSON 可序列化"的七个选项，含 `linkActiveClass`、`linkExactActiveClass`

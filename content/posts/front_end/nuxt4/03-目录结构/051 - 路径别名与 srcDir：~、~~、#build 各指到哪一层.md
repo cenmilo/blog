@@ -1,6 +1,6 @@
 ---
 url: /posts/95318d75cddb231d8505d6ab129fa2ae/
-title: 路径别名与 srcDir：~、~~、#build 各指到哪一层
+title: 051 - 路径别名与 srcDir：~、~~、#build 各指到哪一层
 date: 2026-10-29T09:00:00+08:00
 updated: 2026-10-29T09:00:00+08:00
 author: cmdragon

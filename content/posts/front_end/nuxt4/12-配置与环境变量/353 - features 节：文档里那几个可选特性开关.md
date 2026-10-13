@@ -1,6 +1,6 @@
 ---
 url: /posts/1949c84f1bd522662482c1383ec4f8ef/
-title: features 节：文档里那几个可选特性开关
+title: 353 - features 节：文档里那几个可选特性开关
 date: 2027-02-06T11:00:00+08:00
 updated: 2027-02-06T11:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-配置里三个命名空间容易混：`future`（352，未来会变默认的）、`experimental`（263/267，不保证留）、还有这个 `features`。nuxt-config 的 `## features` 节本身就一句 read-more 指向 features 指南——真正的内容在那页，列了三个开关。这一篇讲它们。
+配置里三个命名空间容易混：`future`（352，未来会变默认的）、`experimental`（263/267，不保证留）、还有这个 `features`。nuxt-config 的 `## features` 节本身就一句 read-more 指向 features 指南——真正的内容在那一节，列了三个开关。这一篇讲它们。
 
 ## 开关一：devLogs
 

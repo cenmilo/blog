@@ -1,6 +1,6 @@
 ---
 url: /posts/2cb3a17cb04f1a4638dbc1a322418a16/
-title: typesDir：类型与 tsconfig 生成在哪
+title: 539 - typesDir：类型与 tsconfig 生成在哪
 date: 2027-04-09T11:00:00+08:00
 updated: 2027-04-09T11:00:00+08:00
 author: cmdragon

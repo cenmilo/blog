@@ -1,6 +1,6 @@
 ---
 url: /posts/c58f5b67fea197e1f9fde7c908878fc9/
-title: OG 与 Twitter 卡片字段映射：扁平字段名与 meta 属性怎么对上
+title: 192 - OG 与 Twitter 卡片字段映射：扁平字段名与 meta 属性怎么对上
 date: 2026-12-15T09:00:00+08:00
 updated: 2026-12-15T09:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-`ogTitle` 最终会变成 `<meta property="og:title">` 还是 `<meta name="og:title">`？这个问题官方文档没有一句直接回答，但把两页的示例并起来就能定死前一半答案——而后一半（Twitter 一族）我推不出来，只能验。这一篇把"文档写了的"和"要你确认的"分开列。
+`ogTitle` 最终会变成 `<meta property="og:title">` 还是 `<meta name="og:title">`？这个问题官方文档没有一句直接回答，但把两节的示例并起来就能定死前一半答案——而后一半（Twitter 一族）我推不出来，只能验。这一篇把"文档写了的"和"要你确认的"分开列。
 
 ## 官方写明了的四处
 
@@ -59,7 +59,7 @@ tags:
 | `robots` | `<meta name="robots">` | 未给渲染结果（190 的示例只写了 `robots: 'index, follow'`） |
 | `title` 与 OG 标题是否联动 | 不联动（需手写两遍） | 示例里 `ogTitle` 是**手写**的，看不出是否有联动 |
 
-**注意第二行**：Twitter 卡片的键名与前缀归属，两页示例都没出现渲染结果——我不把"肯定是 `name`"写成结论。
+**注意第二行**：Twitter 卡片的键名与前缀归属，两节示例都没出现渲染结果——不能把"肯定是 `name`"写成结论。
 
 ### 一次核对覆盖全表
 

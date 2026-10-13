@@ -1,12 +1,12 @@
 ---
 url: /posts/bebf349b10fc293170c23268ecf7df27/
-title: routeRules：配置页只给三行，九个属性在渲染页
+title: 568 - routeRules：配置页只给三行，九个属性在渲染页
 date: 2027-04-19T10:00:00+08:00
 updated: 2027-04-19T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`routeRules` 在 `api/nuxt-config` 里的全部记载是三行：**"Global route options applied to matching server routes."**、**"Experimental: This is an experimental feature and API may change in the future."**，以及一个指向 Nitro route rules 文档的 See；**没有类型行、没有默认值、没有示例**。能对照到的清单在别处：渲染概念页列出**九个属性**（`redirect: string`、`ssr: boolean`、`cors: boolean`、`headers: object`、`swr: number | boolean`、`isr: number | boolean`、`prerender: boolean`、`noScripts: boolean`、`appMiddleware: string | string[] | Record<string, boolean>`），并给了一份八条规则的配置示例；`defineRouteRules` 那页给的是"写在页面文件里的简写"与它的实验性前提（要开 `experimental.inlineRouteRules`）。也就是说：**被官方标为实验性的，是这个功能的 API 形状，而不是"能不能用"。**
+  摘要：`routeRules` 在 `api/nuxt-config` 里的全部记载是三行：**"Global route options applied to matching server routes."**、**"Experimental: This is an experimental feature and API may change in the future."**，以及一个指向 Nitro route rules 文档的 See；**没有类型行、没有默认值、没有示例**。能对照到的清单在别处：渲染概念页列出**九个属性**（`redirect: string`、`ssr: boolean`、`cors: boolean`、`headers: object`、`swr: number | boolean`、`isr: number | boolean`、`prerender: boolean`、`noScripts: boolean`、`appMiddleware: string | string[] | Record<string, boolean>`），并给了一份八条规则的配置示例；`defineRouteRules` 那一节给的是"写在页面文件里的简写"与它的实验性前提（要开 `experimental.inlineRouteRules`）。也就是说：**被官方标为实验性的，是这个功能的 API 形状，而不是"能不能用"。**
 
 categories:
   - 前端开发
@@ -74,7 +74,7 @@ tags:
 
 ## 简写：写在页面文件里的 defineRouteRules
 
-`api/utils/define-route-rules` 那页给的是同一条规则的另一半用法：
+`api/utils/define-route-rules` 那一节给的是同一条规则的另一半用法：
 
 > As a shorthand, you can also configure this in a page file using `defineRouteRules`.
 

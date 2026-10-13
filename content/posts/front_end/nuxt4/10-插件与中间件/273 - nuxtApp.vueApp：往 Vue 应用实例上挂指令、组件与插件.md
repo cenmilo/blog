@@ -1,6 +1,6 @@
 ---
 url: /posts/59da860f76e8679fa8247a7ec069f2ce/
-title: nuxtApp.vueApp：往 Vue 应用实例上挂指令、组件与插件
+title: 273 - nuxtApp.vueApp：往 Vue 应用实例上挂指令、组件与插件
 date: 2027-01-11T09:00:00+08:00
 updated: 2027-01-11T09:00:00+08:00
 author: cmdragon

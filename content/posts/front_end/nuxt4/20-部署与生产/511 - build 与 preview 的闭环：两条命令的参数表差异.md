@@ -1,6 +1,6 @@
 ---
 url: /posts/69ba9f0e3b9e7f02851ffd38ad66c77d/
-title: build 与 preview 的闭环：两条命令的参数表差异
+title: 511 - build 与 preview 的闭环：两条命令的参数表差异
 date: 2027-03-31T10:00:00+08:00
 updated: 2027-03-31T10:00:00+08:00
 author: cmdragon
@@ -36,7 +36,7 @@ tags:
 
 > The `preview` command starts a server to preview your Nuxt application after running the `build` command. `nuxt start` is the same command under another name. When running your application in production refer to the Deployment section.
 
-也就是说：**预览用的服务器与生产启动用的服务器，在官方口径里是两件事**——预览归这条命令，生产归部署那一页的 `node .output/server/index.mjs`。
+也就是说：**预览用的服务器与生产启动用的服务器，在官方口径里是两件事**——预览归这条命令，生产归部署那一节的 `node .output/server/index.mjs`。
 
 命令形状（原文照抄）：
 
@@ -100,7 +100,7 @@ npx nuxt preview [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|verbose>
 
 这一条能解释一整类"预览一切正常、上线白屏"：**preview 帮你读了 `.env`，生产环境没人读**。官方给的补法是用 Node 20+ 的 `--env-file`，或者由托管平台注入变量。
 
-至于 `NODE_ENV`，两条命令都会把它设成 `production`；`preview` 那页还补了覆盖方式——在 `.env` 里定义 `NODE_ENV`，或者作为命令行参数传。
+至于 `NODE_ENV`，两条命令都会把它设成 `production`；`preview` 那一节还补了覆盖方式——在 `.env` 里定义 `NODE_ENV`，或者作为命令行参数传。
 
 ## 自查
 
@@ -113,7 +113,7 @@ npx nuxt preview [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|verbose>
 
 ## 下一篇
 
-下一篇 512 讲 `.output` 这个目录：官方那一页只有四句话，三条硬警告；目录内部到底有什么，得从部署页、预渲染页和 ESM 那页拼出来。
+下一篇 512 讲 `.output` 这个目录：官方那一节只有四句话，三条硬警告；目录内部到底有什么，得从部署页、预渲染页和 ESM 那一节拼出来。
 
 ## 本文依据
 

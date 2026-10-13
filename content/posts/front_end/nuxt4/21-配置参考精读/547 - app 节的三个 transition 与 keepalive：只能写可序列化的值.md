@@ -1,6 +1,6 @@
 ---
 url: /posts/76ac9c237ebdcc099e839939fc7d8ccf/
-title: app 节的三个 transition 与 keepalive：只能写可序列化的值
+title: 547 - app 节的三个 transition 与 keepalive：只能写可序列化的值
 date: 2027-04-12T10:00:00+08:00
 updated: 2027-04-12T10:00:00+08:00
 author: cmdragon
@@ -61,7 +61,7 @@ export default defineNuxtConfig({
 
 **两个同名键分属两处**：`experimental.viewTransition` 是"要不要用这套实验实现"，`app.viewTransition` 是"整站默认开还是关这个效果"。所以只设 `app.viewTransition: true` 而没开 `experimental.viewTransition`，按官方那句 "only has an effect when ... enabled" 是不起作用的。
 
-transitions 那页还给了一条官方注释，正是"默认关、单页开"的用法：
+transitions 那一节还给了一条官方注释，正是"默认关、单页开"的用法：
 
 ```ts twoslash [nuxt.config.ts]
 export default defineNuxtConfig({

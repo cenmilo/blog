@@ -1,12 +1,12 @@
 ---
 url: /posts/abd199edff755d7c1d0561e3a92cd831/
-title: 刷新与导航：refreshNuxtData、key 与保活组件的竞态
+title: 246 - 刷新与导航：refreshNuxtData、key 与保活组件的竞态
 date: 2027-01-02T09:00:00+08:00
 updated: 2027-01-02T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：这一篇讲"刷新"和"导航"撞在一起时的三件已记载事实与一处空白。**第一件：全局刷新不认识"当前是否显示"**——官方 note 原话："If your component is cached by `<KeepAlive>` and enters a deactivated state, the `asyncData` inside the component will still be refetched until the component is unmounted."（**生效边界是卸载，不是激活**）。**第二件：不传 key 就是全部重取**——"All `useAsyncData` and `useFetch` keys are re-fetched when no `keys` are explicitly specified."，而它返回的 Promise 有明确含义："returns a promise, resolving when all or specific `asyncData` instances have been refreshed."。**第三件：导航本身会清缓存**——236 引过 `purgeCachedData` 的定位句 "Whether to clean up Nuxt static and asyncData caches on route navigation." 与解释句 "This helps prevent memory leaks and ensures fresh data is loaded when needed."；响应式 key 换掉时官方也写了清理条件："the old data will be cleaned up **if no other components use it**"。**并发的两条规则**：`refresh` 默认"上一次没跑完会被等住"（"By default, Nuxt waits until a `refresh` is finished before it can be executed again."），`dedupe` 默认 `'cancel'` 且 `'cancel'` 时新请求会 abort 旧请求（signal aborted 三条时机之一）。**空白处我也写出来：导航进行中调用 `refreshNuxtData()` 会不会被路由切换打断、以及被 purge 掉的缓存与已在飞的请求如何互相影响，两页都没有句子记载**，我按未记载处理并给实测法。
+  摘要：这一篇讲"刷新"和"导航"撞在一起时的三件已记载事实与一处空白。**第一件：全局刷新不认识"当前是否显示"**——官方 note 原话："If your component is cached by `<KeepAlive>` and enters a deactivated state, the `asyncData` inside the component will still be refetched until the component is unmounted."（**生效边界是卸载，不是激活**）。**第二件：不传 key 就是全部重取**——"All `useAsyncData` and `useFetch` keys are re-fetched when no `keys` are explicitly specified."，而它返回的 Promise 有明确含义："returns a promise, resolving when all or specific `asyncData` instances have been refreshed."。**第三件：导航本身会清缓存**——236 引过 `purgeCachedData` 的定位句 "Whether to clean up Nuxt static and asyncData caches on route navigation." 与解释句 "This helps prevent memory leaks and ensures fresh data is loaded when needed."；响应式 key 换掉时官方也写了清理条件："the old data will be cleaned up **if no other components use it**"。**并发的两条规则**：`refresh` 默认"上一次没跑完会被等住"（"By default, Nuxt waits until a `refresh` is finished before it can be executed again."），`dedupe` 默认 `'cancel'` 且 `'cancel'` 时新请求会 abort 旧请求（signal aborted 三条时机之一）。**空白处我也写出来：导航进行中调用 `refreshNuxtData()` 会不会被路由切换打断、以及被 purge 掉的缓存与已在飞的请求如何互相影响，两节都没有句子记载**，我按未记载处理并给实测法。
 
 categories:
   - 前端开发
@@ -42,7 +42,7 @@ tags:
 | deactivated（保活但隐藏） | 是 | **会**（官方明写） |
 | 已卸载 | 否 | 不会 |
 
-所以"我以为看不见的页面不会发请求"这个直觉在保活场景下不成立。**副作用同理**：如果那个隐藏页面的 handler 里有上报、写状态等动作，它也会再执行一次——尽管 212 的 warning 已经要求 handler 无副作用，这条 note 说明为什么必须遵守。
+所以"以为看不见的页面不会发请求"这个直觉在保活场景下不成立。**副作用同理**：如果那个隐藏页面的 handler 里有上报、写状态等动作，它也会再执行一次——尽管 212 的 warning 已经要求 handler 无副作用，这条 note 说明为什么必须遵守。
 
 要控制作用范围，办法只有一个：**显式给 key**。
 

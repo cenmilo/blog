@@ -1,6 +1,6 @@
 ---
 url: /posts/986288266d26f0d6a3d01f10a08d88e6/
-title: 构建期钩子一到八：兼容检查、ready、close、restart 与模块四个
+title: 669 - 构建期钩子一到八：兼容检查、ready、close、restart 与模块四个
 date: 2027-05-23T09:00:00+08:00
 updated: 2027-05-23T09:00:00+08:00
 author: cmdragon
@@ -61,7 +61,7 @@ tags:
 
 | 用法 | 出处 |
 | --- | --- |
-| **`useNitro()` 只能在 `ready` 之后调用** | Kit 的 Nitro 那一页的 `::warning` |
+| **`useNitro()` 只能在 `ready` 之后调用** | Kit 的 Nitro 那一节的 `::warning` |
 | **模块打开了、持有了或启动了 watcher，应在 Nuxt 生命周期结束时关掉——用 `close`** | 模块高级配方那条 Module cleanup |
 | 配置里 `hooks: { close: () => {} }` 与模块里 `nuxt.hook('close', ...)` | 钩子用法页给的两个最小示例 |
 
@@ -107,6 +107,10 @@ tags:
 **第二，Arguments 列是形状而不是类型。** 只有个别行写了 TS 形态（像 `{ hard?: boolean }`），其余是名字或逗号分隔的名字列表。**要知道参数具体是什么，得去那一节开头给的 schema 源码链接**。
 
 下一篇读九到二十行：`app` 一族、`build` 与 `builder` 一词之差、以及页面路由扫描的两段。
+
+## 下一篇
+
+下一篇 670：构建期钩子九到二十：app 生成、构建两段、manifest 与页面扫描
 
 ## 本文依据
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/8ad4fdb5ba9f608aa919453ce5142bb6/
-title: useHeadSafe：六组白名单、被剥掉的 innerHTML 与 http-equiv
+title: 189 - useHeadSafe：六组白名单、被剥掉的 innerHTML 与 http-equiv
 date: 2026-12-14T09:00:00+08:00
 updated: 2026-12-14T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：官方给这一页的定位句是"**The recommended way to provide head data with user input.**"，机制句是："The `useHeadSafe` composable is **a wrapper around the `useHead` composable that restricts the input to only allow safe values**. This is the recommended way to manage head data when working with user input, as it **prevents XSS attacks by sanitizing potentially dangerous attributes**."。被剥掉什么，官方点名列在 warning 里："> When using `useHeadSafe`, potentially dangerous attributes like **`innerHTML` in scripts** or **`http-equiv` in meta tags** are automatically stripped out to prevent XSS attacks. **Use this composable whenever you're working with user-generated content.**"。**放行范围是一张写死的白名单**（"The following attributes are whitelisted for each head element type"）：`htmlAttrs` 只允许 `['class','style','lang','dir']`、`bodyAttrs` 只允许 `['class','style']`、`meta` 只允许 `['name','property','charset','content','media']`、`noscript` 只有 `['textContent']`、`style` 是 `['media','textContent','nonce','title','blocking']`、`script` 是 `['type','textContent','nonce','blocking']`、`link` 一组最长：`['color','crossorigin','fetchpriority','href','hreflang','imagesrcset','imagesizes','integrity','media','referrerpolicy','rel','sizes','type']`。类型是 `export function useHeadSafe (input: MaybeComputedRef<HeadSafe>): void`，参数说明那句最关键："> **You can pass all the same values as `useHead`, but only safe attributes will be rendered.**"——**不在名单里的属性是被静默丢掉，不是报错**。
+  摘要：官方给这一节的定位句是"**The recommended way to provide head data with user input.**"，机制句是："The `useHeadSafe` composable is **a wrapper around the `useHead` composable that restricts the input to only allow safe values**. This is the recommended way to manage head data when working with user input, as it **prevents XSS attacks by sanitizing potentially dangerous attributes**."。被剥掉什么，官方点名列在 warning 里："> When using `useHeadSafe`, potentially dangerous attributes like **`innerHTML` in scripts** or **`http-equiv` in meta tags** are automatically stripped out to prevent XSS attacks. **Use this composable whenever you're working with user-generated content.**"。**放行范围是一张写死的白名单**（"The following attributes are whitelisted for each head element type"）：`htmlAttrs` 只允许 `['class','style','lang','dir']`、`bodyAttrs` 只允许 `['class','style']`、`meta` 只允许 `['name','property','charset','content','media']`、`noscript` 只有 `['textContent']`、`style` 是 `['media','textContent','nonce','title','blocking']`、`script` 是 `['type','textContent','nonce','blocking']`、`link` 一组最长：`['color','crossorigin','fetchpriority','href','hreflang','imagesrcset','imagesizes','integrity','media','referrerpolicy','rel','sizes','type']`。类型是 `export function useHeadSafe (input: MaybeComputedRef<HeadSafe>): void`，参数说明那句最关键："> **You can pass all the same values as `useHead`, but only safe attributes will be rendered.**"——**不在名单里的属性是被静默丢掉，不是报错**。
 
 categories:
   - 前端开发
@@ -148,7 +148,7 @@ useHeadSafe({
 
 ## 自查
 
-1. 官方给这一页的定位句与机制句分别是什么？它包装的是哪个函数？
+1. 官方给这一节的定位句与机制句分别是什么？它包装的是哪个函数？
 2. warning 点名剥掉的是哪两种属性？为什么正好是这两个（用白名单回答）。
 3. 默写六组白名单里 `htmlAttrs`、`bodyAttrs`、`meta`、`script` 四组。
 4. `style` 与 `script` 用哪个字段承载内容？这与 `innerHTML` 的差别是什么？

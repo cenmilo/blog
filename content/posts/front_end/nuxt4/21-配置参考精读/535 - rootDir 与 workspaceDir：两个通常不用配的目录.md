@@ -1,6 +1,6 @@
 ---
 url: /posts/feca38b07328cb7b1bd2268623def33c/
-title: rootDir 与 workspaceDir：两个通常不用配的目录
+title: 535 - rootDir 与 workspaceDir：两个通常不用配的目录
 date: 2027-04-08T10:00:00+08:00
 updated: 2027-04-08T10:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/cefab83c4066e3afd6497b326d680fbf/
-title: components 目录：组件名怎么从路径生成、扫描顺序与手动注册
+title: 062 - components 目录：组件名怎么从路径生成、扫描顺序与手动注册
 date: 2026-11-01T11:00:00+08:00
 updated: 2026-11-01T11:00:00+08:00
 author: cmdragon

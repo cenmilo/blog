@@ -1,6 +1,6 @@
 ---
 url: /posts/20e144e461ca188bb6a32bd15cd22e9b/
-title: 模块的服务端兼容性：三个 variant 键、优先级规则与那张五行对照表
+title: 642 - 模块的服务端兼容性：三个 variant 键、优先级规则与那张五行对照表
 date: 2027-05-14T09:00:00+08:00
 updated: 2027-05-14T09:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-模块的服务端代码是最容易被版本换代打断的部分：同一个 `defineEventHandler`，在两代 Nitro 里来自不同的包、给的 event 也不一样。这一页给的方案不是"二选一"，而是**同一件事注册两份实现，让框架按宿主挑**。
+模块的服务端代码是最容易被版本换代打断的部分：同一个 `defineEventHandler`，在两代 Nitro 里来自不同的包、给的 event 也不一样。这一节给的方案不是"二选一"，而是**同一件事注册两份实现，让框架按宿主挑**。
 
 ## 前提与一句豁免
 
@@ -237,7 +237,7 @@ builder 专有的类型——例如 `useRequestEvent()` 的 `H3Event`、`nitro:c
 | Nitro 自有的运行时钩子，例如 `request` 与 `error` | `useNitroApp().hooks`，来自 `nitropack/runtime` | `useNitroHooks()`，来自 `nitro/app` |
 | 懒加载处理器：`lazyEventHandler()` | `h3` | `nitro/h3` |
 
-最后关于 Nitro v3 的行为变化，这页只给了一句：**如果你只发 `nitro2` 那份文件，它会通过 Nitro v2 兼容层继续在 Nuxt 5 上运行**，而那些随 Nitro v3 改掉的行为记在 Nuxt 5 的模块服务端兼容性指南里——**这一页没有列出它们**。
+最后关于 Nitro v3 的行为变化，这一节只给了一句：**如果你只发 `nitro2` 那份文件，它会通过 Nitro v2 兼容层继续在 Nuxt 5 上运行**，而那些随 Nitro v3 改掉的行为记在 Nuxt 5 的模块服务端兼容性指南里——**这一节没有列出它们**。
 
 ## 动手顺序
 
@@ -248,6 +248,10 @@ builder 专有的类型——例如 `useRequestEvent()` 的 `H3Event`、`nitro:c
 5. 在 Nuxt 5 与一个非 Nitro 的 `server.builder` 下各跑一次，**否则你验的其实只是 `nitro2` 那份**。
 
 下一篇把模块这块收口，进入实验特性与机制内幕。
+
+## 下一篇
+
+下一篇 643：Nuxt Kit 定位：模块专用、esm-only、装它要注意的两条版本线
 
 ## 本文依据
 

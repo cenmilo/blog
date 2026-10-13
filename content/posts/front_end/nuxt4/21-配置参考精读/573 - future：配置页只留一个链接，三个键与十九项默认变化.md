@@ -1,6 +1,6 @@
 ---
 url: /posts/335063b21441f0e5961513ac357cd08c/
-title: future：配置页只留一个链接，三个键与十九项默认变化
+title: 573 - future：配置页只留一个链接，三个键与十九项默认变化
 date: 2027-04-21T09:00:00+08:00
 updated: 2027-04-21T09:00:00+08:00
 author: cmdragon

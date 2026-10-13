@@ -1,12 +1,12 @@
 ---
 url: /posts/7a7037124074770d4f3d2f2057457d34/
-title: 六个行为选项细讲：default、pick、transform、dedupe、enabled、serialize
+title: 218 - 六个行为选项细讲：default、pick、transform、dedupe、enabled、serialize
 date: 2026-12-23T11:00:00+08:00
 updated: 2026-12-23T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：213 那张表把 14 个键列全了，这一篇挑六个"会改变数据本身或改变请求节奏"的讲透，并且只讲文档写了的部分。`default` 是工厂函数（"Factory for default value of `data` before async resolves."），它还是 `clear()` 的复位目标——官方在 `clear` 那一行写的是 "Resets `data` to `undefined` (**or the value of `options.default()` if provided**)"。`pick` 一句到底："Only pick specified keys from the result."，用法是 `{ pick: ['title'] }`。`transform` 是 "Function to transform the result after resolving."，类型允许返回 Promise。**`dedupe` 官方只给了名字和一句话**：`'cancel' | 'defer'`、默认 `'cancel'`、说明是 "Policy when triggering an execution more than once at a time."（`useFetch` 那页换成 "Avoid fetching same key more than once at a time."）；能从别处推出来的只有半句——212 抄过的那条 abort 时机里点名 "A new request is made with `dedupe: 'cancel'`"，所以 `'cancel'` 会取消旧请求，**`'defer'` 具体推迟什么文档没写**。`enabled` 是三道门的总闸，`serialize` 决定要不要进 payload。最后一条属于"清理旧知识"：**4.x 文档里没有 `getPreviousData` 这个选项**，我在讲这一族选项时全文检索过它，零命中；旧文章里靠它做"翻页时先显示上一页"的写法，在 4.x 的替代是 215 那招——用 `useNuxtData` 读缓存 + `default()` 兜默认值。
+  摘要：213 那张表把 14 个键列全了，这一篇挑六个"会改变数据本身或改变请求节奏"的讲透，并且只讲文档写了的部分。`default` 是工厂函数（"Factory for default value of `data` before async resolves."），它还是 `clear()` 的复位目标——官方在 `clear` 那一行写的是 "Resets `data` to `undefined` (**or the value of `options.default()` if provided**)"。`pick` 一句到底："Only pick specified keys from the result."，用法是 `{ pick: ['title'] }`。`transform` 是 "Function to transform the result after resolving."，类型允许返回 Promise。**`dedupe` 官方只给了名字和一句话**：`'cancel' | 'defer'`、默认 `'cancel'`、说明是 "Policy when triggering an execution more than once at a time."（`useFetch` 那一节换成 "Avoid fetching same key more than once at a time."）；能从别处推出来的只有半句——212 抄过的那条 abort 时机里点名 "A new request is made with `dedupe: 'cancel'`"，所以 `'cancel'` 会取消旧请求，**`'defer'` 具体推迟什么文档没写**。`enabled` 是三道门的总闸，`serialize` 决定要不要进 payload。最后一条属于"清理旧知识"：**4.x 文档里没有 `getPreviousData` 这个选项**，我在讲这一族选项时全文检索过它，零命中；旧文章里靠它做"翻页时先显示上一页"的写法，在 4.x 的替代是 215 那招——用 `useNuxtData` 读缓存 + `default()` 兜默认值。
 
 categories:
   - 前端开发

@@ -1,6 +1,6 @@
 ---
 url: /posts/fe19a0767c96fc9a8b74ccb391b6de3a/
-title: createUseFetch 与 createUseAsyncData：默认值模式与覆盖模式
+title: 226 - createUseFetch 与 createUseAsyncData：默认值模式与覆盖模式
 date: 2026-12-26T10:00:00+08:00
 updated: 2026-12-26T10:00:00+08:00
 author: cmdragon
@@ -30,7 +30,7 @@ tags:
 
 ## 两个宏，约束一样
 
-定位句两页同形：
+定位句两节同形：
 
 > A factory function to create a custom useFetch composable with pre-defined default options.
 > A factory function to create a custom useAsyncData composable with pre-defined default options.
@@ -50,7 +50,7 @@ tags:
 3. 文件要落在 `composables/`（或任何被扫描目录）里——**这正好接上 151 讲的扫描范围**。
 4. 去重 key 由 Nuxt **在构建期注入**，所以我不必为它命名 key（但 215 那张共享表仍然适用：想跨组件共享还是要显式给）。
 
-## 默认用法两页各一例
+## 默认用法两节各一例
 
 ```ts [app/composables/useAPI.ts]
 export const useAPI = createUseFetch({
@@ -104,7 +104,7 @@ export const useAPI = createUseFetch(callerOptions => ({
 }))
 ```
 
-`createUseAsyncData` 那页的对应例子只强制一个布尔，读起来更直白："`deep` is always enforced as false"。
+`createUseAsyncData` 那一节的对应例子只强制一个布尔，读起来更直白："`deep` is always enforced as false"。
 
 官方对 Override Mode 的用途句是："This is useful for enforcing settings like authentication headers or a specific base URL that should not be changed by the caller." ——**"不该被调用方改"就是选它的唯一理由**。我一开始反过来用（传对象当"强制"），结果某个页面自己传了 baseURL，鉴权头还在但打到别的域名上，查了半天。
 
@@ -205,7 +205,7 @@ function createUseFetch<Routes> (
 
 返回类型是 `typeof useFetch`（或带 routes 时的 `DeclaredUseFetch<Routes>`）——**所以新组合式的参数与返回值和原来一模一样**，官方那句 "The resulting `useAPI` composable has the same signature and return type as `useFetch`, with all options available for the caller to use or override." 就是这个意思。`createUseAsyncData` 只有前两条重载（没有 routes）。
 
-addons 那部分留给下一篇，两页的说明句是同一句："Addons are reusable units of behavior defined with `defineUseFetchAddon` / `defineUseAsyncDataAddon`. They can declare custom call-site options, run middleware around the handler, extend the returned object, and attach custom logic to the composable."
+addons 那部分留给下一篇，两节的说明句是同一句："Addons are reusable units of behavior defined with `defineUseFetchAddon` / `defineUseAsyncDataAddon`. They can declare custom call-site options, run middleware around the handler, extend the returned object, and attach custom logic to the composable."
 
 ## 自查
 

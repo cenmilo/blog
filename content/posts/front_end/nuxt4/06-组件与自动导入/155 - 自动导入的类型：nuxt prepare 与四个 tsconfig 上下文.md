@@ -1,6 +1,6 @@
 ---
 url: /posts/5b0046a23aac588f4fd0a143339b0ebc/
-title: 自动导入的类型：nuxt prepare 与四个 tsconfig 上下文
+title: 155 - 自动导入的类型：nuxt prepare 与四个 tsconfig 上下文
 date: 2026-12-02T11:00:00+08:00
 updated: 2026-12-02T11:00:00+08:00
 author: cmdragon
@@ -34,7 +34,7 @@ tags:
 
 这三句决定了一件事：**没跑过 dev/build/prepare，类型就不存在**。刚 clone 的仓库直接开编辑器会满屏红线，不是配置错了，是那批文件还没生成。
 
-`prepare` 那一页给的场景与一句重要提醒：
+`prepare` 那一节给的场景与一句重要提醒：
 
 > The prepare command creates a `.nuxt` directory in your application and generates types. This can be useful in a CI environment or as a `postinstall` command in your `package.json`.
 
@@ -136,7 +136,7 @@ tags:
 
 ## 别手改，用 `typescript` 那五个键
 
-两页各有一条警告，方向一致：
+两节各有一条警告，方向一致：
 
 > Nuxt relies on this configuration, and Nuxt modules can extend it as well. For this reason, **it is not recommended to modify your `tsconfig.json` file directly**, as doing so could overwrite important settings. Instead, extend it via `nuxt.config.ts`.
 

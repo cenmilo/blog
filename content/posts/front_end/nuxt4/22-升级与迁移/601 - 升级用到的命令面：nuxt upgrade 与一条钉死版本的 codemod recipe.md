@@ -1,6 +1,6 @@
 ---
 url: /posts/69aebb56650cff29d3f52465dbce56a1/
-title: 升级用到的命令面：nuxt upgrade 与一条钉死版本的 codemod recipe
+title: 601 - 升级用到的命令面：nuxt upgrade 与一条钉死版本的 codemod recipe
 date: 2027-04-30T10:00:00+08:00
 updated: 2027-04-30T10:00:00+08:00
 author: cmdragon
@@ -38,7 +38,7 @@ bun x nuxt upgrade
 deno x nuxt upgrade
 ```
 
-同一节下面还有一条 **Nightly Release Channel**：想用最领先的构建、在正式发布前试功能，走 nightly 那一页的指引。**这条不属于升级路径**，它是"跟着主干跑"的另一套用法。
+同一节下面还有一条 **Nightly Release Channel**：想用最领先的构建、在正式发布前试功能，走 nightly 那一节的指引。**这条不属于升级路径**，它是"跟着主干跑"的另一套用法。
 
 Migrating to Nuxt 4 一节的开头给的是显式装版本，同样是五条：
 
@@ -50,7 +50,7 @@ bun add nuxt@^4.0.0
 deno add npm:nuxt@^4.0.0
 ```
 
-两组的差别不在覆盖的包管理器（**都是 npm／yarn／pnpm／bun／deno 五条**），而在形式：升级那一组里 npm 走的是 `npx nuxt upgrade`（npx 执行而不是一条 npm 子命令），安装那一组则是 `npm install nuxt@^4.0.0`；bun 与 deno 两边都用 `x`。**这一页没有解释这两组命令的先后关系**——按字面读，`nuxt upgrade` 是"升到最新"，`nuxt@^4.0.0` 是"显式钉到 4 这个大版本"。
+两组的差别不在覆盖的包管理器（**都是 npm／yarn／pnpm／bun／deno 五条**），而在形式：升级那一组里 npm 走的是 `npx nuxt upgrade`（npx 执行而不是一条 npm 子命令），安装那一组则是 `npm install nuxt@^4.0.0`；bun 与 deno 两边都用 `x`。**官方那一节没有解释这两组命令的先后关系**——按字面读，`nuxt upgrade` 是"升到最新"，`nuxt@^4.0.0` 是"显式钉到 4 这个大版本"。
 
 ## 第二类：试下一大版本，不是命令
 
@@ -87,6 +87,24 @@ npx codemod@0.18.7 nuxt/4/migration-recipe
 4. **每个 codemod 都能单独跑**："Each codemod is also listed below alongside its respective change and can be executed independently."，完整清单与详情在 Codemod Registry。
 
 出错时的反馈通道也给了：`::note` 写的是 "If you encounter any issues, please report them to the Codemod team with **`npx codemod feedback`**"——**报给 Codemod 团队，不是 Nuxt 仓库。**
+
+## 命令的两个表：一个位置参数与五个选项
+
+官方把 `nuxt upgrade` 的参数与选项各列了一张表，两张都只有几行，但**每一行的默认值都写明了**，抄命令前先对着看：
+
+| Argument | Description |
+| --- | --- |
+| `ROOTDIR` | 项目根目录（default: `.`） |
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `--cwd=<directory>` | | 指定 Nuxt 项目根目录 |
+| `--logLevel=<silent\|info\|verbose>` | | 指定构建期日志级别 |
+| `--dedupe` | | 升级之后做依赖去重 |
+| `-f, --force` | | 强制升级：把 lockfile 与 `node_modules` 从头重建 |
+| `-ch, --channel=<stable\|nightly\|v3\|v4\|v4-nightly\|v3-nightly>` | `stable` | 指定从哪个渠道装 |
+
+`ROOTDIR` 与 `--cwd` 是同一件事的两种写法（一个走位置参数、一个走选项），官方两张表都留着，所以你在示例里看到哪种都不意外。`--force` 的语义值得单独记：它**重建 lockfile 和 `node_modules`**，不是"跳过确认"那种 force。
 
 ## 用之前要想清楚的两件事
 

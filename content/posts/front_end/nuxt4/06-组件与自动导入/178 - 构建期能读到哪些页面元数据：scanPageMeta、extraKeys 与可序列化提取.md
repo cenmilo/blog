@@ -1,6 +1,6 @@
 ---
 url: /posts/9c588ffeee60b348234ea689af915e6d/
-title: 构建期能读到哪些页面元数据：scanPageMeta、extraKeys 与可序列化提取
+title: 178 - 构建期能读到哪些页面元数据：scanPageMeta、extraKeys 与可序列化提取
 date: 2026-12-10T10:00:00+08:00
 updated: 2026-12-10T10:00:00+08:00
 author: cmdragon
@@ -72,7 +72,7 @@ export default defineNuxtConfig({
 
 > This option allows passing additional keys to extract from the page metadata **when using `scanPageMeta`**.
 
-官方那一页把三样东西并成一个示例，很值得原样抄：
+官方那一节把三样东西并成一个示例，很值得原样抄：
 
 ```vue
 <script lang="ts" setup>
@@ -176,7 +176,7 @@ export default defineNuxtConfig({
 | `middleware: someVar` | ✅ | ❌ 拿不到 |
 | `validate: cond ? fnA : fnB` | ✅ | ❌ 条件赋值 |
 
-所以同一个值"能不能被模块看到"取决于它的**写法**，而不只是它的**名字**——这一层区分了我踩过的两次"明明写了却没生效"。
+所以同一个值"能不能被模块看到"取决于它的**写法**，而不只是它的**名字**——这一层区分的是两种情况"明明写了却没生效"。
 
 ## 自查
 

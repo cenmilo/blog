@@ -1,12 +1,12 @@
 ---
 url: /posts/0f80b036705b2827599bff219ec96cd3/
-title: tsconfig.json：根文件只有 references，剩下四份是生成的
+title: 076 - tsconfig.json：根文件只有 references，剩下四份是生成的
 date: 2026-11-06T10:00:00+08:00
 updated: 2026-11-06T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：官方对 tsconfig 这一页的安排很清楚：Nuxt 会自动生成多份 TypeScript 配置文件（.nuxt/tsconfig.app.json、.nuxt/tsconfig.server.json、.nuxt/tsconfig.node.json 与 .nuxt/tsconfig.shared.json），里面包含推荐的基础 TypeScript 配置、对自动导入与 API 路由类型的引用、路径别名等；而你的项目根应当只有一份 tsconfig.json，标准形态是 files 为空数组加上指向那四份生成配置的 references。官方在这份根文件下面直接用 warning 表态：不建议修改这个文件的内容，因为这样做可能覆盖 Nuxt 或其它模块依赖的重要设置，应改为通过 nuxt.config.ts 扩展。扩展入口在 typescript 这一节：typescript.tsConfig 为每一份生成配置设置共享的 compilerOptions，而 appTsConfig、sharedTsConfig、nodeTsConfig 与 serverTsConfig 分别定制对应那一份。官方还给了两类例外：lib、jsx 与 jsxImportSource 这类 DOM 与 Vue 专属选项只会应用到 tsconfig.app.json；而 types、paths 与 noEmit 由 Nuxt 按上下文管理（node、shared 与 server 三份刻意不产出任何内容也不扫描环境类型），写在 typescript.tsConfig 里不会改变它们。另一处已废弃：nitro.typescript.tsConfig 与 typescript.serverTsConfig 保持同步但已废弃，应改设后者。
+  摘要：官方对 tsconfig 这一节的安排很清楚：Nuxt 会自动生成多份 TypeScript 配置文件（.nuxt/tsconfig.app.json、.nuxt/tsconfig.server.json、.nuxt/tsconfig.node.json 与 .nuxt/tsconfig.shared.json），里面包含推荐的基础 TypeScript 配置、对自动导入与 API 路由类型的引用、路径别名等；而你的项目根应当只有一份 tsconfig.json，标准形态是 files 为空数组加上指向那四份生成配置的 references。官方在这份根文件下面直接用 warning 表态：不建议修改这个文件的内容，因为这样做可能覆盖 Nuxt 或其它模块依赖的重要设置，应改为通过 nuxt.config.ts 扩展。扩展入口在 typescript 这一节：typescript.tsConfig 为每一份生成配置设置共享的 compilerOptions，而 appTsConfig、sharedTsConfig、nodeTsConfig 与 serverTsConfig 分别定制对应那一份。官方还给了两类例外：lib、jsx 与 jsxImportSource 这类 DOM 与 Vue 专属选项只会应用到 tsconfig.app.json；而 types、paths 与 noEmit 由 Nuxt 按上下文管理（node、shared 与 server 三份刻意不产出任何内容也不扫描环境类型），写在 typescript.tsConfig 里不会改变它们。另一处已废弃：nitro.typescript.tsConfig 与 typescript.serverTsConfig 保持同步但已废弃，应改设后者。
 
 categories:
   - 前端开发
@@ -56,7 +56,7 @@ tags:
 
 **看仔细：这份文件的 `files` 是空数组，它自己什么都不配置，只做四件事——指向四份生成配置。**
 
-**这正是 035 那条 build mode 判定的依据**，官方在那页的原文是：
+**这正是 035 那条 build mode 判定的依据**，官方在那一节的原文是：
 
 > 一个 solution-style 的 `tsconfig.json`（**只列出 `references` 的那一份**）会自动以 build mode 进行类型检查。
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/9b0b6554377c3512966a1dff3dd662d9/
-title: Nuxt 的核心包各自负责什么，出问题该看哪个仓库
+title: 014 - Nuxt 的核心包各自负责什么，出问题该看哪个仓库
 date: 2026-10-16T11:00:00+08:00
 updated: 2026-10-16T11:00:00+08:00
 author: cmdragon

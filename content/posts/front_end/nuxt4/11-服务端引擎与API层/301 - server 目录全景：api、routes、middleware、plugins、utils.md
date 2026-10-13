@@ -1,12 +1,12 @@
 ---
 url: /posts/1ef8c79d7c59166b600f5bba4fa731ee/
-title: server 目录全景：api、routes、middleware、plugins、utils
+title: 301 - server 目录全景：api、routes、middleware、plugins、utils
 date: 2027-01-20T10:00:00+08:00
 updated: 2027-01-20T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：server/ 目录是 Nuxt 应用里所有服务端代码的家。这一篇把官方 server 那页的六个子目录一次铺开：api/（自动加 /api 前缀的接口）、routes/（不加前缀的服务端路由）、middleware/（每个请求都跑、不该返回的服务端中间件）、plugins/（注册成 Nitro 插件、订服务端生命周期）、utils/（自定义服务端 helper）、types/（只在服务端上下文自动导入的类型）。再点两条通用规则：每个 handler 文件 default 导出 defineEventHandler、以及 app 代码与 server 代码不许互相 import。
+  摘要：server/ 目录是 Nuxt 应用里所有服务端代码的家。这一篇把官方 server 那一节的六个子目录一次铺开：api/（自动加 /api 前缀的接口）、routes/（不加前缀的服务端路由）、middleware/（每个请求都跑、不该返回的服务端中间件）、plugins/（注册成 Nitro 插件、订服务端生命周期）、utils/（自定义服务端 helper）、types/（只在服务端上下文自动导入的类型）。再点两条通用规则：每个 handler 文件 default 导出 defineEventHandler、以及 app 代码与 server 代码不许互相 import。
 
 categories:
   - 前端开发
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-上一篇（300）说服务端跑在 Nitro 上。这一篇落到目录：**你在项目里写的服务端代码，几乎全在 `server/` 这个文件夹下，按子目录自动分类注册。** 官方 server 那页给了这张结构图：
+上一篇（300）说服务端跑在 Nitro 上。这一篇落到目录：**你在项目里写的服务端代码，几乎全在 `server/` 这个文件夹下，按子目录自动分类注册。** 官方 server 那一节给了这张结构图：
 
 ```bash [Directory Structure]
 -| server/
@@ -131,7 +131,7 @@ import { formatUser } from '#server/utils/formatUser'
 
 ## 关于 tasks：这一版文档没有
 
-有旧教程会让你建 `server/tasks/`。**但当前 4.x 的 server 那页没有 tasks 这一节**——它的子目录只到 api / routes / middleware / plugins / utils / types。别按旧结构写 `server/tasks`，那是 4.x 文档里没记载的东西。
+有旧教程会让你建 `server/tasks/`。**但当前 4.x 的 server 那一节没有 tasks 这一节**——它的子目录只到 api / routes / middleware / plugins / utils / types。别按旧结构写 `server/tasks`，那是 4.x 文档里没记载的东西。
 
 ## 自查
 

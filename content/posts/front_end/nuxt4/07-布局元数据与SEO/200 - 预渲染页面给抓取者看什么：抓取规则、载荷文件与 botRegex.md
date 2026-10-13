@@ -1,12 +1,12 @@
 ---
 url: /posts/250e5647bbb0cfca22882c1fee518b02/
-title: 预渲染页面给抓取者看什么：抓取规则、载荷文件与 botRegex
+title: 200 - 预渲染页面给抓取者看什么：抓取规则、载荷文件与 botRegex
 date: 2026-12-17T11:00:00+08:00
 updated: 2026-12-17T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一篇把"预渲染对抓取者意味着什么"落到文档写过的三件具体事上。第一件是**抓取器的发现规则**：`nuxt generate` "build your site, stand up a nuxt instance, and, by default, prerender the root page `/` along with any of your site's pages it links to, any of your site's pages they link to, and so on."，四步机制里第 3 步是 "Find all anchor tags (`<a href=\"...\">`) in the HTML to navigate to other routes."，紧接着那句要紧的结论："pages that are not linked to a discoverable page can't be pre-rendered automatically."——**没被链接指向的页面，抓取者也就拿不到**。第二件是载荷文件：预渲染路由在构建期生成 `_payload.json`，而 "On a fully static site, client-side navigation reuses the data captured at build time, so data can be stale until the next rebuild."。第三件是 `botRegex`（属于流式渲染那一节，不是预渲染页的内容）："A request whose `user-agent` header matches the pattern is **not** streamed: it receives the fully-rendered, buffered HTML."，且 "Setting `botRegex` replaces the default pattern rather than adding to it, so list every crawler you want to keep out of streaming"。顺带把预渲染这一页**没有**提 head、没提 meta、也没提 `robots.txt` 内容规则这件事说清楚——它只在目录结构那一页出现过一次文件名示例。
+  摘要：这一篇把"预渲染对抓取者意味着什么"落到文档写过的三件具体事上。第一件是**抓取器的发现规则**：`nuxt generate` "build your site, stand up a nuxt instance, and, by default, prerender the root page `/` along with any of your site's pages it links to, any of your site's pages they link to, and so on."，四步机制里第 3 步是 "Find all anchor tags (`<a href=\"...\">`) in the HTML to navigate to other routes."，紧接着那句要紧的结论："pages that are not linked to a discoverable page can't be pre-rendered automatically."——**没被链接指向的页面，抓取者也就拿不到**。第二件是载荷文件：预渲染路由在构建期生成 `_payload.json`，而 "On a fully static site, client-side navigation reuses the data captured at build time, so data can be stale until the next rebuild."。第三件是 `botRegex`（属于流式渲染那一节，不是预渲染页的内容）："A request whose `user-agent` header matches the pattern is **not** streamed: it receives the fully-rendered, buffered HTML."，且 "Setting `botRegex` replaces the default pattern rather than adding to it, so list every crawler you want to keep out of streaming"。顺带把预渲染这一节**没有**提 head、没提 meta、也没提 `robots.txt` 内容规则这件事说清楚——它只在目录结构那一节出现过一次文件名示例。
 
 categories:
   - 前端开发
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-我原来把"预渲染"当成性能优化词，直到有次一个页面在站点里存在但没被任何页面链接，抓取工具死活找不到它，才回去读这一页。这一页的定位句其实就说明了它服务两个目标：
+如果只把"预渲染"当成性能优化词，很容易漏掉一件事：一个页面在站点里存在、却没被任何页面链接，抓取工具就找不到它——要回头看的正是官方那一节。它的定位句其实就说明了它服务两个目标：
 
 > Nuxt allows pages to be statically rendered at build time to improve certain performance or SEO metrics
 
@@ -133,9 +133,9 @@ botRegex: /googlebot|bingbot|my-internal-crawler/i,
 
 所以"我这个路由要不要退出流式"在文档里给的是 `routeRules: { '/path': { streaming: false } }`（193 末尾也抄过）。
 
-## 这一页没写的几件事
+## 这一节没写的几件事
 
-我不替它补：`getting-started/prerendering` 整页**没有**出现 head、meta、SEO 标签相关的操作建议；`robots.txt` 只在两处出现——目录结构页把它当作"必须保名的文件"举例（`public/robots.txt`），本页把它当作"爬不到但要预渲染"的路径举例。**内容规则该怎么写不在 Nuxt 文档范围里**。同理，预渲染页也没提 sitemap 怎么生成：整套语料里 `sitemap` 作为功能出现的只有三处——本页的 `routes: ['/sitemap.xml', '/robots.txt']`、`directory-structure/server` 把 `/sitemap.xml` 当作动态服务端路由的例子、以及 Kit 那页一个名为 `nuxt-sitemap` 的模块示例（`name: 'nuxt-sitemap'`）。**没有 sitemap 模块的使用文档页**，要写得去模块自己的站点查。
+文档没写，就不补：`getting-started/prerendering` 整节**没有**出现 head、meta、SEO 标签相关的操作建议；`robots.txt` 只在两处出现——目录结构那一节把它当作"必须保名的文件"举例（`public/robots.txt`），本页把它当作"爬不到但要预渲染"的路径举例。**内容规则该怎么写不在 Nuxt 文档范围里**。同理，预渲染页也没提 sitemap 怎么生成：官方文档里 `sitemap` 作为功能出现的只有三处——本页的 `routes: ['/sitemap.xml', '/robots.txt']`、`directory-structure/server` 把 `/sitemap.xml` 当作动态服务端路由的例子、以及 Kit 那一节一个名为 `nuxt-sitemap` 的模块示例（`name: 'nuxt-sitemap'`）。**没有 sitemap 模块的使用文档页**，要写得去模块自己的站点查。
 
 ## 自查
 
@@ -151,4 +151,4 @@ botRegex: /googlebot|bingbot|my-internal-crawler/i,
 
 - `getting-started/prerendering`：页首定位句 "…to improve certain performance or SEO metrics"；"Nuxt will serve the prebuilt pages when requested instead of generating them on the fly."；`nuxt generate` 与 `nitro.static` / `nuxt build --prerender` 等价句；默认预渲染范围句；四步机制原文与 "pages that are not linked to a discoverable page can't be pre-rendered automatically."；`.output/public` 与 `npx serve .output/public`；`200.html` / `404.html` 兜底页一句；`prerender.routes` / `ignore` / `crawlLinks` 与 `routeRules.prerender` 三块配置示例（含 `'/blog/**'` 的注释）；"The top-level `prerender` option applies whichever `server.builder` you use. Builder-specific options, such as Nitro's `concurrency` or `failOnError`, can be set in `nitro.prerender`."；Payload Extraction 全段（含 "Prerendered routes generate their payload file at build time."、三条 `experimental.payloadExtraction` 取值、默认 `true` 与 cv5 下 `'client'`、`ssr: false` 强制 `false`、"data can be stale until the next rebuild"、devalue reducer/reviver 一句）；`prerenderRoutes`、`prerender:routes`、`prerender:generate`（`route.skip = true`）三个小节。
 - `guide/going-further/experimental-features`（streaming）：`botRegex` 两句原文与 `/googlebot|bingbot|my-internal-crawler/i` 示例；"Bot/crawler user agents, that is, requests whose `user-agent` matches `botRegex`"；"Anything else (a crawler your `botRegex` does not list, a link unfurler, `curl`) will not see those tags at all."；退出流式的 `routeRules: { '/path': { streaming: false } }`。
-- `directory-structure/public`：`robots.txt` 作为"必须保名文件"的例子（199/201 也引过这页）。
+- `directory-structure/public`：`robots.txt` 作为"必须保名文件"的例子（199/201 也引过那一节）。

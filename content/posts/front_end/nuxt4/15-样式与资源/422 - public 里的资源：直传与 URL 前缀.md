@@ -1,6 +1,6 @@
 ---
 url: /posts/a54221c6c3c0e3fcfbed6f9913d8d081/
-title: public 里的资源：直传与 URL 前缀
+title: 422 - public 里的资源：直传与 URL 前缀
 date: 2027-03-01T11:00:00+08:00
 updated: 2027-03-01T11:00:00+08:00
 author: cmdragon
@@ -79,7 +79,7 @@ useSeoMeta({
 
 ## cdnURL 这条也有坑
 
-361 讲的 `app.cdnURL` 与 `public/` 有一处联动，官方在 SEO 那页的 `::note` 里写得很具体：
+361 讲的 `app.cdnURL` 与 `public/` 有一处联动，官方在 SEO 那一节的 `::note` 里写得很具体：
 
 > When you set `app.cdnURL`, assets in your `public/` directory (including `favicon.ico`) are served from that CDN. Nuxt resolves public assets against `cdnURL`, falling back to `app.baseURL`. However, a static `app.head` link such as `href: '/favicon.ico'` above is a literal path and is **not** resolved against `cdnURL`. To point the favicon at the resolved location, build the `href` from runtime config with `useHead()` in `app.vue`.
 
@@ -95,7 +95,7 @@ useSeoMeta({
 
 ## 下一篇
 
-下一篇 423 起继续 P15：图片与字体的加载策略（`getting-started/assets` 与 Nuxt Image 那条线），把资源这一章的最后一块补齐。
+下一篇 423 起继续 415-434 那几篇：图片与字体的加载策略（`getting-started/assets` 与 Nuxt Image 那条线），把资源这一章的最后一块补齐。
 
 ## 本文依据
 

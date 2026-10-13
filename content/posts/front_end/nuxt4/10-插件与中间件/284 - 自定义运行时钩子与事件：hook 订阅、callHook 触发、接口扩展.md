@@ -1,6 +1,6 @@
 ---
 url: /posts/4ac382652a1068b0e8102f5855da3ba2/
-title: 自定义运行时钩子与事件：hook 订阅、callHook 触发、接口扩展
+title: 284 - 自定义运行时钩子与事件：hook 订阅、callHook 触发、接口扩展
 date: 2027-01-14T11:00:00+08:00
 updated: 2027-01-14T11:00:00+08:00
 author: cmdragon
@@ -24,7 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-前面几篇订阅的都是 Nuxt 内置的钩子时刻（app:created、page:start、vue:error）。这一篇把方向反过来：**你自己定一个事件名、自己触发、让别人订阅**——用它来解耦代码。官方 events 那页给的就是这套。
+前面几篇订阅的都是 Nuxt 内置的钩子时刻（app:created、page:start、vue:error）。这一篇把方向反过来：**你自己定一个事件名、自己触发、让别人订阅**——用它来解耦代码。官方 events 那一节给的就是这套。
 
 ## 为什么用它：解耦
 
@@ -103,7 +103,7 @@ await nuxtApp.callHook('app:user:registered', {
 
 ## 给自定义钩子补类型：扩展三个接口
 
-自己起的事件名默认没有类型。官方 hooks 那页的 "Adding Custom Hooks" 给了扩展口子——按用途 declare 三个不同接口：
+自己起的事件名默认没有类型。官方 hooks 那一节的 "Adding Custom Hooks" 给了扩展口子——按用途 declare 三个不同接口：
 
 ```ts
 import type { HookResult } from '@nuxt/schema'
@@ -134,7 +134,7 @@ declare module 'nitropack/types' {
 
 ## 三类钩子的位置（顺带对齐）
 
-官方 hooks 那页把钩子系统分成三层，本篇讲的是中间的"App Hooks (Runtime)"这一层的自定义用法。另两层留个坐标，别混：
+官方 hooks 那一节把钩子系统分成三层，本篇讲的是中间的"App Hooks (Runtime)"这一层的自定义用法。另两层留个坐标，别混：
 
 - **Nuxt Hooks (Build Time)**：给模块和构建上下文用，`nuxt.config.ts` 里 `hooks: { close: () => {} }` 或模块里 `nuxt.hook('close', ...)`。
 - **App Hooks (Runtime)**：插件/组合式用，`nuxtApp.hook('page:start', ...)`——本篇的事件就挂在这层。

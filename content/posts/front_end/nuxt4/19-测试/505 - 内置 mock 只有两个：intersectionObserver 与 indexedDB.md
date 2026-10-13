@@ -1,6 +1,6 @@
 ---
 url: /posts/d28b274ae90f03d9be3616f0c71fd7f0/
-title: 内置 mock 只有两个：intersectionObserver 与 indexedDB
+title: 505 - 内置 mock 只有两个：intersectionObserver 与 indexedDB
 date: 2027-03-29T10:00:00+08:00
 updated: 2027-03-29T10:00:00+08:00
 author: cmdragon
@@ -99,7 +99,7 @@ it('probe what the DOM environment actually gives us', () => {
 })
 ```
 
-**上面这段是我给的取证写法，官方在这一节没有任何示例代码。** 它解决的问题是：把"我以为 mock 会怎样"换成"我实测它怎样"，然后再决定这个测试要不要依赖可见性回调——真要测懒加载触发，得自己提供实现（在测试里覆盖 `IntersectionObserver`，或者走端到端在真浏览器里滚动）。
+**上面这段是补的取证写法，官方在这一节没有任何示例代码。** 它解决的问题是：把"以为 mock 会怎样"换成"实测它怎样"，然后再决定这个测试要不要依赖可见性回调——真要测懒加载触发，得自己提供实现（在测试里覆盖 `IntersectionObserver`，或者走端到端在真浏览器里滚动）。
 
 ## 自查
 

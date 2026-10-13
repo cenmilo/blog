@@ -1,12 +1,12 @@
 ---
 url: /posts/b6082cc3c686fcd3f9f3d484864857f9/
-title: 实战模块（三）：钩子挂在哪、什么时候能拿到 Nitro、退出时怎么清理
+title: 691 - 实战模块（三）：钩子挂在哪、什么时候能拿到 Nitro、退出时怎么清理
 date: 2027-05-30T10:00:00+08:00
 updated: 2027-05-30T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：模块跟框架的交互几乎全靠钩子，官方给的两页在这一块有四条硬规矩：钩子可以用定义对象里的 `hooks` 映射挂，也可以在 `setup` 里用 `nuxt.hook` 程序化地挂；如果你开了 watcher，Nuxt 生命周期结束时要靠 `close` 钩子把它关掉；想让别的模块订阅你的自定义钩子，触发点要放在 `modules:done` 里；`useNitro()` 只能在 `ready` 之后调用，而且改了它的配置也不会生效。
+  摘要：模块跟框架的交互几乎全靠钩子，官方给的两节在这一块有四条硬规矩：钩子可以用定义对象里的 `hooks` 映射挂，也可以在 `setup` 里用 `nuxt.hook` 程序化地挂；如果你开了 watcher，Nuxt 生命周期结束时要靠 `close` 钩子把它关掉；想让别的模块订阅你的自定义钩子，触发点要放在 `modules:done` 里；`useNitro()` 只能在 `ready` 之后调用，而且改了它的配置也不会生效。
 
 categories:
   - 前端开发
@@ -69,7 +69,7 @@ export default defineNuxtModule({
 })
 ```
 
-这条在开发时最容易漏：`nuxt dev` 反复重启，或者构建进程退出后残留句柄，通常就是模块没做这一步。讲构建器的那页也出现过同一个钩子——builder 如果被要求接管文件监听，应当注册一个 `close` 钩子来清理。
+这条在开发时最容易漏：`nuxt dev` 反复重启，或者构建进程退出后残留句柄，通常就是模块没做这一步。讲构建器的那一节也出现过同一个钩子——builder 如果被要求接管文件监听，应当注册一个 `close` 钩子来清理。
 
 ## 自定义钩子的触发时机是有讲究的
 
@@ -102,7 +102,7 @@ export default defineNuxtModule({
 
 ## Nitro 实例：两个时机问题加一个不存在的情况
 
-讲 Kit 服务端函数那一页把 Nitro 相关的函数集中在一起，`useNitro` 和 `tryUseNitro` 这两个取实例的函数各有一条时机限制，而且这两条经常写错。
+讲 Kit 服务端函数那一节把 Nitro 相关的函数集中在一起，`useNitro` 和 `tryUseNitro` 这两个取实例的函数各有一条时机限制，而且这两条经常写错。
 
 `useNitro` 返回 Nitro 实例，配两条提示：
 
@@ -186,6 +186,10 @@ export default defineNuxtModule({
 - runtime 的服务端插件文件顶部有显式 import。
 
 下一篇是最后一段：把测试和发布接上——E2E 的五个步骤、`npm pack` 的外部项目验证，以及 `nuxt build-module` 那六个开关各自改变什么。
+
+## 下一篇
+
+下一篇 692：实战模块（四）：E2E 五步、npm pack 手测与 release 的六步
 
 ## 本文依据
 

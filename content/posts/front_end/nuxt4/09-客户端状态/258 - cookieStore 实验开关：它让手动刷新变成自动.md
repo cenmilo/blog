@@ -1,12 +1,12 @@
 ---
 url: /posts/00161ab93a354998bbea2267462c895f/
-title: cookieStore 实验开关：它让手动刷新变成自动
+title: 258 - cookieStore 实验开关：它让手动刷新变成自动
 date: 2027-01-06T09:00:00+08:00
 updated: 2027-01-06T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：257 留了个疑问："自动刷新"是谁做的，答案是这一节。`experimental.cookieStore` 的整段原文只有三句："Enables CookieStore support to listen for cookie updates (**if supported by the browser**) and refresh `useCookie` ref values." + "This flag is **enabled by default**, but you can disable this feature:" + 一个 `cookieStore: false` 的配置块，末尾挂一条指向 MDN **CookieStore** 的 read-more。所以它做的是**把浏览器那个 CookieStore 事件源接到 `useCookie` 的 ref 上**：cookie 变了，ref 就更新，不需要再手写 `refreshCookie`。三个我必须讲清的边界：一，**"if supported by the browser" 是硬前提**，官方把这句放在第一行，说明这条通道不是无条件可用；二，**它虽然默认开启却仍留在 `experimental` 命名空间里**，`refreshCookie` 那页的时间戳是 "Since Nuxt v3.12.0, the experimental `cookieStore` option is enabled by default"——**默认开不等于不再是实验特性**；三，关掉它之后，257 那条"要手动刷新"的提醒就回到主线（`useCookie` 的 `watch` 行原话："Refresh `useCookie` values manually when a cookie has changed with `refreshCookie`."）。顺带把两个易混命名分开：`experimental.cookieStore` 是一个布尔开关，而 `experimental.defaults.useState.resetOnClear` 那种是**给某个 composable 设默认值**的命名空间，形状不同、职责不同。
+  摘要：257 留了个疑问："自动刷新"是谁做的，答案是这一节。`experimental.cookieStore` 的整段原文只有三句："Enables CookieStore support to listen for cookie updates (**if supported by the browser**) and refresh `useCookie` ref values." + "This flag is **enabled by default**, but you can disable this feature:" + 一个 `cookieStore: false` 的配置块，末尾挂一条指向 MDN **CookieStore** 的 read-more。所以它做的是**把浏览器那个 CookieStore 事件源接到 `useCookie` 的 ref 上**：cookie 变了，ref 就更新，不需要再手写 `refreshCookie`。三个我必须讲清的边界：一，**"if supported by the browser" 是硬前提**，官方把这句放在第一行，说明这条通道不是无条件可用；二，**它虽然默认开启却仍留在 `experimental` 命名空间里**，`refreshCookie` 那一节的时间戳是 "Since Nuxt v3.12.0, the experimental `cookieStore` option is enabled by default"——**默认开不等于不再是实验特性**；三，关掉它之后，257 那条"要手动刷新"的提醒就回到主线（`useCookie` 的 `watch` 行原话："Refresh `useCookie` values manually when a cookie has changed with `refreshCookie`."）。顺带把两个易混命名分开：`experimental.cookieStore` 是一个布尔开关，而 `experimental.defaults.useState.resetOnClear` 那种是**给某个 composable 设默认值**的命名空间，形状不同、职责不同。
 
 categories:
   - 前端开发

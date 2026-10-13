@@ -1,12 +1,12 @@
 ---
 url: /posts/c57825fd3f8d2fade194d7d53d2db6f7/
-title: .nuxtignore：构建阶段忽略文件，但每行都要从 app/ 写起
+title: 078 - .nuxtignore：构建阶段忽略文件，但每行都要从 app/ 写起
 date: 2026-11-07T09:00:00+08:00
 updated: 2026-11-07T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：.nuxtignore 告诉 Nuxt 在构建阶段忽略你项目根目录（rootDir）里的文件，它与 .gitignore 和 .eslintignore 遵循同一套规范——每一行是一个 glob 模式，指明哪些文件应当被忽略；官方还给了更细的三条替代入口，可以在 nuxt.config 里配置 ignoreOptions、ignorePrefix 与 ignore。这一页值得逐字读的是那份用法示例，因为官方写的每一条模式都以 app/ 开头：app/layouts/foo.vue 忽略某个布局、app/layouts/*-ignore.vue 忽略以 -ignore.vue 结尾的布局文件、app/pages/bar.vue 忽略某个页面、app/pages/ignore/*.vue 忽略某目录下的页面、app/middleware/foo/*.js 配一行 !app/middleware/foo/bar.js 表示"忽略 foo 目录下的中间件但除外 bar.js"。结合 051 抄过的 srcDir 默认值 "app"（相对路径以 rootDir 为基准），就能明白这里的 .nuxtignore 与 .gitignore 最大的实操差别：它按 Nuxt 实际看到的目录层级来写，所以要带着 app/ 这一段。至于示例里那个 ignore 目录，它只是一个普通文件夹名，被手写规则排除掉而已。
+  摘要：.nuxtignore 告诉 Nuxt 在构建阶段忽略你项目根目录（rootDir）里的文件，它与 .gitignore 和 .eslintignore 遵循同一套规范——每一行是一个 glob 模式，指明哪些文件应当被忽略；官方还给了更细的三条替代入口，可以在 nuxt.config 里配置 ignoreOptions、ignorePrefix 与 ignore。这一节值得逐字读的是那份用法示例，因为官方写的每一条模式都以 app/ 开头：app/layouts/foo.vue 忽略某个布局、app/layouts/*-ignore.vue 忽略以 -ignore.vue 结尾的布局文件、app/pages/bar.vue 忽略某个页面、app/pages/ignore/*.vue 忽略某目录下的页面、app/middleware/foo/*.js 配一行 !app/middleware/foo/bar.js 表示"忽略 foo 目录下的中间件但除外 bar.js"。结合 051 抄过的 srcDir 默认值 "app"（相对路径以 rootDir 为基准），就能明白这里的 .nuxtignore 与 .gitignore 最大的实操差别：它按 Nuxt 实际看到的目录层级来写，所以要带着 app/ 这一段。至于示例里那个 ignore 目录，它只是一个普通文件夹名，被手写规则排除掉而已。
 
 categories:
   - 前端开发

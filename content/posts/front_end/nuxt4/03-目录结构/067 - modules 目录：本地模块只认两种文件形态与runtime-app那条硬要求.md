@@ -1,12 +1,12 @@
 ---
 url: /posts/8831d4d6ce53a25cb230285136cb8c90/
-title: modules 目录：本地模块只认两种文件形态，以及 runtime/app 那条硬要求
+title: 067 - modules 目录：本地模块只认两种文件形态，以及 runtime/app 那条硬要求
 date: 2026-11-03T10:00:00+08:00
 updated: 2026-11-03T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：modules/ 目录用来在你的应用里自动注册本地模块，官方说它"是放置你在构建应用过程中开发的任何本地模块的好地方"，而自动注册只认两种文件形态：modules/*/index.ts 与 modules/*.ts，其它形态不会被自动注册，你也无需把这些本地模块另外加进 nuxt.config.ts。官方给的那段注释纠正了一个常见误会：nuxt/kit 是一个"辅助子路径导入"，在你定义本地模块时可以直接用，这意味着你不需要把 @nuxt/kit 加进项目的依赖。这一页最容易被忽略、也最该遵守的是那条 note：所有本来该放在你 app/ 目录里的组件、页面、组合式函数以及其它文件，都必须放在 modules/your-module/runtime/app/ 下面，因为这样才能保证它们被正确类型检查。执行顺序官方给的是两步——先加载在 nuxt.config.ts 里定义的模块，然后执行 modules/ 目录里找到的模块且它们按字母序加载；要改本地模块的顺序，就在每个目录名前面加一个数字（1.first-module/index.ts 与 2.second-module.ts）。
+  摘要：modules/ 目录用来在你的应用里自动注册本地模块，官方说它"是放置你在构建应用过程中开发的任何本地模块的好地方"，而自动注册只认两种文件形态：modules/*/index.ts 与 modules/*.ts，其它形态不会被自动注册，你也无需把这些本地模块另外加进 nuxt.config.ts。官方给的那段注释纠正了一个常见误会：nuxt/kit 是一个"辅助子路径导入"，在你定义本地模块时可以直接用，这意味着你不需要把 @nuxt/kit 加进项目的依赖。这一节最容易被忽略、也最该遵守的是那条 note：所有本来该放在你 app/ 目录里的组件、页面、组合式函数以及其它文件，都必须放在 modules/your-module/runtime/app/ 下面，因为这样才能保证它们被正确类型检查。执行顺序官方给的是两步——先加载在 nuxt.config.ts 里定义的模块，然后执行 modules/ 目录里找到的模块且它们按字母序加载；要改本地模块的顺序，就在每个目录名前面加一个数字（1.first-module/index.ts 与 2.second-module.ts）。
 
 categories:
   - 前端开发
@@ -86,11 +86,11 @@ export default defineEventHandler(() => {
 
 **这段里有四处值得学：**
 
-**一、导入源写的是 `nuxt/kit`，不是 `@nuxt/kit`。** 官方注释明说这是"一个辅助子路径导入（helper subpath import）"，并给出结论：**你不需要把 `@nuxt/kit` 加进项目依赖。**（对比 062 那节库作者示例里写的是 `@nuxt/kit`——**那是发布成 npm 包的情形**，两个导入源分别对应两种场合，官方这两页各写了一处。）
+**一、导入源写的是 `nuxt/kit`，不是 `@nuxt/kit`。** 官方注释明说这是"一个辅助子路径导入（helper subpath import）"，并给出结论：**你不需要把 `@nuxt/kit` 加进项目依赖。**（对比 062 那节库作者示例里写的是 `@nuxt/kit`——**那是发布成 npm 包的情形**，两个导入源分别对应两种场合，官方这两节各写了一处。）
 
-**二、`createResolver(import.meta.url)` + `resolver.resolve('./runtime/...')`。** 015 讲过 ESM 里没有 `__dirname`，051 的 alias 示例用的也是 `fileURLToPath(new URL(...))`——**这一页给的是模块内部的官方写法。**
+**二、`createResolver(import.meta.url)` + `resolver.resolve('./runtime/...')`。** 015 讲过 ESM 里没有 `__dirname`，051 的 alias 示例用的也是 `fileURLToPath(new URL(...))`——**这一节给的是模块内部的官方写法。**
 
-**三、`meta.name`。** 模块要有名字（对照 044 里 `.nuxtrc` 那套 `setups` 记账需要 `meta.name` 与 `meta.version` 的机制，P23 会展开）。
+**三、`meta.name`。** 模块要有名字（对照 044 里 `.nuxtrc` 那套 `setups` 记账需要 `meta.name` 与 `meta.version` 的机制，630-699 会展开）。
 
 **四、`addComponentsDir` 里那行注释：**
 
@@ -100,7 +100,7 @@ export default defineEventHandler(() => {
 
 ## 那条 note：应用侧文件必须住进 `runtime/app/`
 
-这一页最容易被忽略、也最该守的硬要求：
+这一节最容易被忽略、也最该守的硬要求：
 
 > **请注意，所有组件、页面、组合式函数以及其它本来会放在你 `app/` 目录里的文件，都需要放在 `modules/your-module/runtime/app/` 下面。这保证了它们能够被正确地进行类型检查。**
 
@@ -137,7 +137,7 @@ modules/
   2.second-module.ts
 ```
 
-**注意官方这里给的编号是 `1.`、`2.`，没有补零。** 但 060 与 061 两处讲"字母序编号"时都同一条 note：**文件名按字符串排序，`10.` 会排在 `2.` 之前，官方给个位数加 `0` 正是为此。**（这一页自己没重复那条 note；本地模块一旦过十个，我会照 061 的建议补零——这是我的做法。）
+**注意官方这里给的编号是 `1.`、`2.`，没有补零。** 但 060 与 061 两处讲"字母序编号"时都同一条 note：**文件名按字符串排序，`10.` 会排在 `2.` 之前，官方给个位数加 `0` 正是为此。**（这一节自己没重复那条 note；本地模块一旦过十个，我会照 061 的建议补零——这是我的做法。）
 
 ## 三种"模块"的位置，别再混
 

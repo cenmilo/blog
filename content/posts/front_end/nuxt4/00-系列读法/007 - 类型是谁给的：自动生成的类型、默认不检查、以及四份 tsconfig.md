@@ -1,12 +1,12 @@
 ---
 url: /posts/e067dbe87fc3466d776d8d5d75c714ad/
-title: 类型是谁给的：自动生成的类型、默认不检查、以及四份 tsconfig
+title: 007 - 类型是谁给的：自动生成的类型、默认不检查、以及四份 tsconfig
 date: 2026-10-14T10:00:00+08:00
 updated: 2026-10-14T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：官方在配置那页承诺"零配置 TypeScript 支持：靠自动生成的类型与 tsconfig.json，不用学习 TypeScript 就能写类型安全的代码"；而概念页给出的两个关键事实常常被读漏。第一，默认情况下 Nuxt 不会在 nuxt dev 或 nuxt build 时检查类型，原因是性能；要检查需要装 vue-tsc 与 typescript 并运行 nuxt typecheck，或者设置 typescript.typeCheck: true。第二，类型是自动生成的，存在 .nuxt 目录里，在你运行 dev 服务器或构建时生成，也可以手动用 nuxt prepare 生成；生成的 tsconfig 里包含推荐的基础配置、对自动导入的引用、API 路由类型与 #imports、~/file、#build/file 这类路径别名。Nuxt 还用 TypeScript 项目引用把类型拆成 app、node、server、shared 四个上下文，因此类型增强必须写在对应目录里。
+  摘要：官方在配置那一节承诺"零配置 TypeScript 支持：靠自动生成的类型与 tsconfig.json，不用学习 TypeScript 就能写类型安全的代码"；而概念页给出的两个关键事实常常被读漏。第一，默认情况下 Nuxt 不会在 nuxt dev 或 nuxt build 时检查类型，原因是性能；要检查需要装 vue-tsc 与 typescript 并运行 nuxt typecheck，或者设置 typescript.typeCheck: true。第二，类型是自动生成的，存在 .nuxt 目录里，在你运行 dev 服务器或构建时生成，也可以手动用 nuxt prepare 生成；生成的 tsconfig 里包含推荐的基础配置、对自动导入的引用、API 路由类型与 #imports、~/file、#build/file 这类路径别名。Nuxt 还用 TypeScript 项目引用把类型拆成 app、node、server、shared 四个上下文，因此类型增强必须写在对应目录里。
 
 categories:
   - 前端开发

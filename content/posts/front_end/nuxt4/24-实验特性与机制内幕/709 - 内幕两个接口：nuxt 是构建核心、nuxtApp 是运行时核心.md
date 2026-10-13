@@ -1,6 +1,6 @@
 ---
 url: /posts/5d286c05e7ee77643ad3e071193daf95/
-title: 内幕两个接口：nuxt 是构建核心、nuxtApp 是运行时核心
+title: 709 - 内幕两个接口：nuxt 是构建核心、nuxtApp 是运行时核心
 date: 2027-06-05T10:00:00+08:00
 updated: 2027-06-05T10:00:00+08:00
 author: cmdragon
@@ -116,6 +116,10 @@ interface NuxtApp {
 - 需要拿上下文但可能拿不到吗？服务端别用全局取法；`useNuxtApp` 会抛错，条件性需求用 `tryUseNuxtApp`。
 
 下一篇讲 nightly 发布频道：什么情况下该把版本指到每夜构建，配置里那行 `npm:@nuxt/kit-nightly@latest` 式的写法从哪来。
+
+## 下一篇
+
+下一篇 710：nightly 频道：什么时候该用、怎么用
 
 ## 本文依据
 

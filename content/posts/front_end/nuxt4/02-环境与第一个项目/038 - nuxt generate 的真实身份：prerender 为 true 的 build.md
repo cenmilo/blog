@@ -1,6 +1,6 @@
 ---
 url: /posts/2bd98a990aa9032d79ef1bc9bb5fb206/
-title: nuxt generate 的真实身份：prerender 为 true 的 build
+title: 038 - nuxt generate 的真实身份：prerender 为 true 的 build
 date: 2026-10-24T11:00:00+08:00
 updated: 2026-10-24T11:00:00+08:00
 author: cmdragon
@@ -60,7 +60,7 @@ npx nuxt generate [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|verbose
 
 **generate 没有 `--prerender`，因为它自己就是 `prerender: true`。** 这张对照表的意义是：以后你在 build 上学到的规则（比如 037 规则二"`--prerender` 始终把 target 设为 `static`"）**自动适用于 generate**——因为走的正是那条路。
 
-顺带一条对 037 的补充核对：`build` 页明确说"本命令把 NODE_ENV 设为 production"，而 **`generate` 页没有给这条 note**。我在这一篇里不替它补结论；你要在构建期区分环境，用官方在两页都给了的 `--envName`（构建时默认 `production`）。
+顺带一条对 037 的补充核对：`build` 页明确说"本命令把 NODE_ENV 设为 production"，而 **`generate` 页没有给这条 note**。我在这一篇里不替它补结论；你要在构建期区分环境，用官方在两节都给了的 `--envName`（构建时默认 `production`）。
 
 ## 后果一：它会生成两个兜底页
 

@@ -1,12 +1,12 @@
 ---
 url: /posts/036f228b82516592ac69416fe688b9d6/
-title: nuxt task：定义并调用后台任务
+title: 321 - nuxt task：定义并调用后台任务
 date: 2027-01-27T09:00:00+08:00
 updated: 2027-01-27T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：Nitro 有"后台任务（tasks）"这个概念——可被调用的服务端作业，比如填种子数据。Nuxt 给的入口是 nuxt task 命令，两个子命令：nuxt task list 列出项目暴露的任务、nuxt task run <NAME> 跑一个并可用 --payload 传参。这一篇讲清楚它怎么和"正在跑的 nuxt dev 服务器"对话（也能 --url 指到别的服务器），最关键的一条前提是：Nitro 只有在你开了 nitro.experimental.tasks: true 之后才去扫 tasks 目录、才谈得上"有任务可列可跑"。还要点明：任务本身怎么定义属于 Nitro 的事，Nuxt 文档这页只讲 CLI 和那个开关。
+  摘要：Nitro 有"后台任务（tasks）"这个概念——可被调用的服务端作业，比如填种子数据。Nuxt 给的入口是 nuxt task 命令，两个子命令：nuxt task list 列出项目暴露的任务、nuxt task run <NAME> 跑一个并可用 --payload 传参。这一篇讲清楚它怎么和"正在跑的 nuxt dev 服务器"对话（也能 --url 指到别的服务器），最关键的一条前提是：Nitro 只有在你开了 nitro.experimental.tasks: true 之后才去扫 tasks 目录、才谈得上"有任务可列可跑"。还要点明：任务本身怎么定义属于 Nitro 的事，Nuxt 文档这一节只讲 CLI 和那个开关。
 
 categories:
   - 前端开发
@@ -101,7 +101,7 @@ npx nuxt task run db:seed --payload.count=10
 
 ## 任务本身怎么定义：那是 Nitro 的事
 
-要说清楚边界：**这页 Nuxt 文档只讲 CLI 和那个开关，没教你怎么写一个 task 文件**。任务定义属于 Nitro——官方给了 read-more 指向 Nitro 的 tasks 文档（"Read more about Nitro tasks"）。同理，4.x 的 `server/` 目录页也**没有** `server/tasks` 这一节（301 提过），别按旧教程凭空建一个再指望它自动生效——先确认你开了 `nitro.experimental.tasks`。
+要说清楚边界：**这一节 Nuxt 文档只讲 CLI 和那个开关，没教你怎么写一个 task 文件**。任务定义属于 Nitro——官方给了 read-more 指向 Nitro 的 tasks 文档（"Read more about Nitro tasks"）。同理，4.x 的 `server/` 目录页也**没有** `server/tasks` 这一节（301 提过），别按旧教程凭空建一个再指望它自动生效——先确认你开了 `nitro.experimental.tasks`。
 
 所以顺序是：开 `nitro.experimental.tasks: true` → 按 Nitro 文档在项目里定义任务 → `nuxt task list` 能看到、`nuxt task run <NAME>` 触发。
 
@@ -110,7 +110,7 @@ npx nuxt task run db:seed --payload.count=10
 - `nuxt task` 是"对话一个正在跑的服务器"来列/跑任务，默认那个 `nuxt dev`，别的用 `--url`。
 - 列出来是空的？先确认开了 `nitro.experimental.tasks: true`——任务默认关、不开不扫。
 - 传参用 `--payload`：一个 JSON 对象或 `--payload.key=value` 逐键；结果以 JSON 打印。
-- 任务定义本身查 Nitro tasks 文档，这页 Nuxt 文档只覆盖 CLI 与开关；别照旧教程乱建 `server/tasks` 而不开关。
+- 任务定义本身查 Nitro tasks 文档，这一节 Nuxt 文档只覆盖 CLI 与开关；别照旧教程乱建 `server/tasks` 而不开关。
 
 ## 下一篇
 

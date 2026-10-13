@@ -1,6 +1,6 @@
 ---
 url: /posts/eca694ab81a4c778e97f7a8391d0b755/
-title: 调试四把开关：debug、logLevel、sourcemap 与 inspector
+title: 083 - 调试四把开关：debug、logLevel、sourcemap 与 inspector
 date: 2026-11-08T11:00:00+08:00
 updated: 2026-11-08T11:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-P03 收尾这四篇讲"生成物"。**这一篇先讲怎么看清它们**：官方把调试拆成四把互相独立的开关，**用错一把就会白等一次构建。**
+50-89 收尾这四篇讲"生成物"。**这一篇先讲怎么看清它们**：官方把调试拆成四把互相独立的开关，**用错一把就会白等一次构建。**
 
 ## 第一把：`debug`（看钩子）
 

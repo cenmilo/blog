@@ -1,12 +1,12 @@
 ---
 url: /posts/c4a2e2fcca8cd2b6b3aaf361eec9dab7/
-title: gitignore：官方那份"至少包含"的清单，逐条对回生成物
+title: 077 - gitignore：官方那份"至少包含"的清单，逐条对回生成物
 date: 2026-11-06T11:00:00+08:00
 updated: 2026-11-06T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：.gitignore 用来指定那些有意不被 git 跟踪的文件，官方在这一页给的不是建议而是可以直接抄的清单——"我们建议有一个 .gitignore 文件，其中至少包含以下条目"，并按注释分成四组：Nuxt dev/build 输出那一组是 .output、.data、.nuxt、.nitro、.cache 与 dist；Node 依赖那一组只有 node_modules；日志那一组是 logs 与 *.log；杂项是 .DS_Store；本地环境变量那一组是 .env、.env.* 再补一行 !.env.example。这份清单与前面几篇正好互相印证：052 与 053 各用 important 要求把 .nuxt 与 .output 加进 .gitignore（前者说是避免把开发构建输出推上仓库、后者说是避免把构建输出推上仓库），071 那页也用 important 要求把 node_modules 加进去以免把依赖推进仓库，073 那页要求把 .env 加进去以免把密钥推进仓库；而 .env.* 之后那行以感叹号开头的写法，作用是把 .env.example 从忽略名单里排除出去，也就是"环境变量的键清单可以提交、值不要提交"。另有一处差别值得注意：这份 gitignore 清单比 nuxt cleanup 实际删除的五项更宽，它多列了 .data、.nitro 与根级 .cache，而这一页对这些额外条目没有给出解释。
+  摘要：.gitignore 用来指定那些有意不被 git 跟踪的文件，官方文档 .gitignore 那一节给的不是建议而是可以直接抄的清单——"我们建议有一个 .gitignore 文件，其中至少包含以下条目"，并按注释分成四组：Nuxt dev/build 输出那一组是 .output、.data、.nuxt、.nitro、.cache 与 dist；Node 依赖那一组只有 node_modules；日志那一组是 logs 与 *.log；杂项是 .DS_Store；本地环境变量那一组是 .env、.env.* 再补一行 !.env.example。这份清单与前面几篇正好互相印证：052 与 053 各用 important 要求把 .nuxt 与 .output 加进 .gitignore（前者说是避免把开发构建输出推上仓库、后者说是避免把构建输出推上仓库），071 那一节也用 important 要求把 node_modules 加进去以免把依赖推进仓库，073 那一节要求把 .env 加进去以免把密钥推进仓库；而 .env.* 之后那行以感叹号开头的写法，作用是把 .env.example 从忽略名单里排除出去，也就是"环境变量的键清单可以提交、值不要提交"。另有一处差别值得注意：这份 gitignore 清单比 nuxt cleanup 实际删除的五项更宽，它多列了 .data、.nitro 与根级 .cache，而这一节对这些额外条目没有给出解释。
 
 categories:
   - 前端开发
@@ -75,12 +75,12 @@ logs
 | --- | --- | --- |
 | `.output` | **为生产构建时创建的目录**，部署用它；跑 `nuxt build` 时整个重建 | 053 |
 | `.nuxt` | **开发时用来生成你的 Vue 应用**的目录；跑 `nuxt dev` 时整个重建 | 052 |
-| `dist` | 这一页没解释 | 见下面"官方没解释的那三个" |
-| `.data` | 这一页没解释 | 同上 |
-| `.nitro` | 这一页没解释 | 同上 |
-| `.cache` | 这一页没解释（注意它写的是根级 `.cache`） | 同上 |
+| `dist` | 官方那一节没解释 | 见下面"官方没解释的那三个" |
+| `.data` | 官方那一节没解释 | 同上 |
+| `.nitro` | 官方那一节没解释 | 同上 |
+| `.cache` | 官方那一节没解释（注意它写的是根级 `.cache`） | 同上 |
 
-**`.nuxt` 与 `.output` 那两页的 important 用词几乎一样，但各指一件事：**
+**`.nuxt` 与 `.output` 那两节的 important 用词几乎一样，但各指一件事：**
 
 - 052 那句："该目录应加入 `.gitignore`，**以避免把开发构建输出推送到仓库**"
 - 053 那句："该目录应加入 `.gitignore`，**以避免把构建输出推送到仓库**"
@@ -89,7 +89,7 @@ logs
 
 ### 官方没解释的那三个：`.data`、`.nitro`、`.cache`
 
-**这一页只把它们列进清单、没有说明各自是什么**，我不替官方编定义。**能确定的是两件事：**
+**官方那一节只把它们列进清单、没有说明各自是什么**（文档没给定义）。**能确定的是两件事：**
 
 1. **它们与 `.output`/`.nuxt` 同组**——官方把它们归在 "Nuxt dev/build outputs" 之下，**所以按"可再生的输出"对待**。
 2. **`nuxt cleanup` 并不清它们**：040 抄过的那份清单只有五项——构建目录（默认 `.nuxt`）、`.output`、`dist`、`node_modules/.vite`、`node_modules/.cache`。
@@ -98,13 +98,13 @@ logs
 
 ### `dist`：至少有一个已知来源
 
-049 抄过官方在 `nuxt build-module` 那页写的一句：
+049 引过官方在 `nuxt build-module` 那一节写的一句：
 
 > `build-module` 命令运行 `@nuxt/module-builder`，**在你的 `rootDir` 里生成一个 `dist` 目录**，其中装着你的 nuxt-module 的完整构建。
 
 **所以在模块项目里，`dist` 就是构建产物**（040 里 `cleanup` 也把它列进清单）。
 
-051 讲 `dir.public` 时又出现过一次这个词——官方那句是"在应用生成时被复制进你的 `dist` 文件夹"。**这页与那页用词一致，但各自都没把它定义清楚；我能给的确定结论只有一个：`dist` 是输出目录，不该进仓库。**
+051 讲 `dir.public` 时又出现过一次这个词——官方那句是"在应用生成时被复制进你的 `dist` 文件夹"。**两处用词一致，但都没有把它定义清楚；能确定的结论只有一个：`dist` 是输出目录，不该进仓库。**
 
 ## 第二组与第三组：依赖与日志
 
@@ -114,7 +114,7 @@ logs
 *.log
 ```
 
-**`node_modules` 那一行有自己那页的 important 撑着**（071 抄过）：
+**`node_modules` 那一行有它自己那一节的 important 撑着**（071 引过）：
 
 > 这个目录应当加入你的 `.gitignore`，**以避免把依赖推送进你的仓库。**
 

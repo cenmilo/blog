@@ -1,6 +1,6 @@
 ---
 url: /posts/30fcb9bdb1f15ee3b3a9ebd39db9c7b5/
-title: routeRules 九个属性逐个讲：swr 与 isr 的 TTL、noScripts 的连带后果
+title: 141 - routeRules 九个属性逐个讲：swr 与 isr 的 TTL、noScripts 的连带后果
 date: 2026-11-28T09:00:00+08:00
 updated: 2026-11-28T09:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/2afaa85590039e96acb856b460514de3/
-title: 模板里一个标签怎么找到组件：四个入口与 Lazy、island 的真实位置
+title: 161 - 模板里一个标签怎么找到组件：四个入口与 Lazy、island 的真实位置
 date: 2026-12-04T11:00:00+08:00
 updated: 2026-12-04T11:00:00+08:00
 author: cmdragon
@@ -121,7 +121,7 @@ const show = ref(false)
 
 > This flag indicates, component should be loaded async (**with a separate chunk**) **regardless of using Lazy prefix or not**.
 
-**这三个字段都出现在 `addComponentsDir` 与 `addComponent` 的参数表里**——也就是说它们是"注册时给组件打的构建期标记"，而不是模板上能写的东西。这一层我踩过理解上的坑：`prefetch` 与 147 里 `<NuxtLink>` 的 `prefetch` prop 完全不是一回事，一个是打包提示，一个是导航预取。
+**这三个字段都出现在 `addComponentsDir` 与 `addComponent` 的参数表里**——也就是说它们是"注册时给组件打的构建期标记"，而不是模板上能写的东西。这一层最容易理解错的是：`prefetch` 与 147 里 `<NuxtLink>` 的 `prefetch` prop 完全不是一回事，一个是打包提示，一个是导航预取。
 
 ## `island: true` 与 `.server.vue` 的真实位置
 

@@ -1,6 +1,6 @@
 ---
 url: /posts/7e940cf39a0de4e960f0b622e011f2f3/
-title: Nuxt 和 Vue 怎么分工：哪些能力是框架加的
+title: 011 - Nuxt 和 Vue 怎么分工：哪些能力是框架加的
 date: 2026-10-15T11:00:00+08:00
 updated: 2026-10-15T11:00:00+08:00
 author: cmdragon

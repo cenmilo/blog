@@ -1,6 +1,6 @@
 ---
 url: /posts/d2815035343ec26180b69770b0a9e1dc/
-title: 用 Dev Container 固定开发环境：两个文件与三种打开方式
+title: 032 - 用 Dev Container 固定开发环境：两个文件与三种打开方式
 date: 2026-10-22T11:00:00+08:00
 updated: 2026-10-22T11:00:00+08:00
 author: cmdragon

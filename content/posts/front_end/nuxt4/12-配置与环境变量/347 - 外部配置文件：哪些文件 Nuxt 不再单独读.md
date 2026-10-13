@@ -1,6 +1,6 @@
 ---
 url: /posts/6d428def94999d7086a476e50419823b/
-title: 外部配置文件：哪些文件 Nuxt 不再单独读
+title: 347 - 外部配置文件：哪些文件 Nuxt 不再单独读
 date: 2027-02-04T11:00:00+08:00
 updated: 2027-02-04T11:00:00+08:00
 author: cmdragon

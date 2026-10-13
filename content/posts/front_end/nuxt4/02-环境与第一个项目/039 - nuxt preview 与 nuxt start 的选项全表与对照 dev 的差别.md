@@ -1,6 +1,6 @@
 ---
 url: /posts/e015ac1cb712c9c6d0015b23de9a509a/
-title: nuxt preview 与 nuxt start 的选项全表，以及 dev 有而它没有的那些
+title: 039 - nuxt preview 与 nuxt start 的选项全表，以及 dev 有而它没有的那些
 date: 2026-10-25T09:00:00+08:00
 updated: 2026-10-25T09:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/7df9e4f3b8a96100bcfaa74a5de6f4b1/
-title: Kit 布局与 head 两函数：addLayout 的 write 绕法与 setGlobalHead 的十一项
+title: 651 - Kit 布局与 head 两函数：addLayout 的 write 绕法与 setGlobalHead 的十一项
 date: 2027-05-17T09:00:00+08:00
 updated: 2027-05-17T09:00:00+08:00
 author: cmdragon
@@ -24,11 +24,11 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-模块想给用户的项目加一个布局、或者往所有页面的 head 里塞一条 meta，各有一个函数。这两页都只列了一个条目，但都各有一条容易忽略的限制。
+模块想给用户的项目加一个布局、或者往所有页面的 head 里塞一条 meta，各有一个函数。这两节都只列了一个条目，但都各有一条容易忽略的限制。
 
 ## `addLayout`：把模板注册成布局
 
-这一页的开场句很短：**布局用来包裹你的页面，例如用页头页脚这些常见组件把页面包起来；布局可以用 `addLayout` 工具注册**。
+这一节的开场句很短：**布局用来包裹你的页面，例如用页头页脚这些常见组件把页面包起来；布局可以用 `addLayout` 工具注册**。
 
 函数定性：**把模板注册为布局并加入 layouts**。
 
@@ -203,13 +203,17 @@ setGlobalHead({
 | --- | --- | --- |
 | 提供一个可复用的布局 | `addLayout` | 内容是生成的 `.vue` 时**必须 `write: true`** |
 | 全局加一条 meta、外链样式表或脚本 | `setGlobalHead` | **你的值优先**，可能盖掉用户写的 |
-| 只给某几个页面换布局 | 不是这一页 | 页面侧用 `definePageMeta({ layout })` |
+| 只给某几个页面换布局 | 不用 `addLayout` | 页面侧用 `definePageMeta({ layout })` |
 
 关于第二行的"可能盖掉用户写的"，文档只陈述了优先级、**没有说这是推荐行为**：模块要注入的通常是新增项，而不是与用户争夺同一个键。
 
-这两页都没记载的：布局的 `name` 与用户 `app/layouts/` 里同名文件冲突时谁赢、`setGlobalHead` 在 SSR 与客户端 hydration 之间的产出差别、以及有没有"移除某条已注入 head"的对应函数。
+这两节都没记载的：布局的 `name` 与用户 `app/layouts/` 里同名文件冲突时谁赢、`setGlobalHead` 在 SSR 与客户端 hydration 之间的产出差别、以及有没有"移除某条已注入 head"的对应函数。
 
 下一篇讲插件那两个函数：`addPlugin` 与 `addPluginTemplate`，以及 `order` 那个 -20 到 20 的建议区间。
+
+## 下一篇
+
+下一篇 652：Kit 插件两函数：addPlugin 的 order 区间与 addPluginTemplate 的八字段
 
 ## 本文依据
 

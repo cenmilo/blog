@@ -1,6 +1,6 @@
 ---
 url: /posts/f1c46ae625a8c79c5d0eeadc6281eda6/
-title: features 与 experimental 的区别：一个已成定局、一个还在试
+title: 708 - features 与 experimental 的区别：一个已成定局、一个还在试
 date: 2027-06-05T09:00:00+08:00
 updated: 2027-06-05T09:00:00+08:00
 author: cmdragon
@@ -87,6 +87,10 @@ tags:
 一个容易忽略的事实：**这三节都是构建期读取的配置**。模块能改它们（`nuxt.options.experimental ||= {}` 那种写法），也能读它们，但用户在 `nuxt.config` 里的设置是这些默认值的最终来源。
 
 下一篇讲 Nuxt 的内部机制：构建管线与文件生成顺序，也就是 `.nuxt` 目录里那些东西是怎么被生成出来的。
+
+## 下一篇
+
+下一篇 709：内幕两个接口：nuxt 是构建核心、nuxtApp 是运行时核心
 
 ## 本文依据
 

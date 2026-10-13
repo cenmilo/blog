@@ -1,12 +1,12 @@
 ---
 url: /posts/525db1c84d2c890ade869c3aa6ab9663/
-title: appConfig：两句说明与一个空子项
+title: 571 - appConfig：两句说明与一个空子项
 date: 2027-04-20T10:00:00+08:00
 updated: 2027-04-20T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`## appConfig` 这一节的正文是两句——**"Additional app configuration"** 和 "For programmatic usage and type support, you can directly provide app config with this option. It will be merged with `app.config` file as default value"，**没有 Type、没有 Default、没有 Example**；下面挂的 `### nuxt` 子项**标题之下一行字都没有**。所有内容都在 `app/app.config.ts` 那一页。这一节真正值钱的是那句 "and type support"：官方在 app.config 页明写 **写在 `nuxt.config` 的 `appConfig` 里的键在所有上下文都有类型，而写在文件里的键在服务端路由、`shared/` 和 `nuxt.config` 里是 `unknown`**。
+  摘要：`## appConfig` 这一节的正文是两句——**"Additional app configuration"** 和 "For programmatic usage and type support, you can directly provide app config with this option. It will be merged with `app.config` file as default value"，**没有 Type、没有 Default、没有 Example**；下面挂的 `### nuxt` 子项**标题之下一行字都没有**。所有内容都在 `app/app.config.ts` 那一节。这一节真正值钱的是那句 "and type support"：官方在 app.config 页明写 **写在 `nuxt.config` 的 `appConfig` 里的键在所有上下文都有类型，而写在文件里的键在服务端路由、`shared/` 和 `nuxt.config` 里是 `unknown`**。
 
 categories:
   - 前端开发
@@ -57,7 +57,7 @@ tags:
 
 ## 类型：这是这一节最实用的信息
 
-`app/app.config.ts` 那页的 Typing 小节里有一句直接对着 `appConfig` 选项：
+`app/app.config.ts` 那一节的 Typing 小节里有一句直接对着 `appConfig` 选项：
 
 > Keys defined inline in the `appConfig` option of `nuxt.config` are typed everywhere.
 
@@ -80,17 +80,17 @@ tags:
 
 ## 与 runtimeConfig 分工：app.config 不吃环境变量
 
-`getting-started/configuration` 那页给了一条硬性差别：`app.config.ts` 用来暴露**构建期就能确定**的公开变量，**与 `runtimeConfig` 选项相反，这些不能用环境变量覆盖**。
+`getting-started/configuration` 那一节给了一条硬性差别：`app.config.ts` 用来暴露**构建期就能确定**的公开变量，**与 `runtimeConfig` 选项相反，这些不能用环境变量覆盖**。
 
 配合这一节的定位，选择依据是：运行期还要改的值（不同环境不同密钥、不同域名）只能走 `runtimeConfig`；构建期定下来、前后端都要读、还要能热更新的值走 app config。
 
-密钥不能放 app config 这件事，那一页用 `::caution` 提示块写得更直白：**"Do not put any secret values inside `app.config` file. It is exposed to the user client bundle."**
+密钥不能放 app config 这件事，那一节用 `::caution` 提示块写得更直白：**"Do not put any secret values inside `app.config` file. It is exposed to the user client bundle."**
 
 **注意那句说的是"进客户端包"**——app config 里的一切都会被打进用户下载的 bundle，不存在"只有服务端看得到"的选项。这正是它和 `runtimeConfig` 私密层的根本区别。
 
 ## 图层合并：函数合并器只作用于数组，且不能在主干用
 
-`app.config.ts` 那页的 Merging Strategy 说 Nuxt 对应用图层（layers）里的 `AppConfig` 用了自定义合并策略，实现方式是 defu 的 **Function Merger**，**可为 `app.config` 里每一个值为数组的键定义合并策略**。
+`app.config.ts` 那一节的 Merging Strategy 说 Nuxt 对应用图层（layers）里的 `AppConfig` 用了自定义合并策略，实现方式是 defu 的 **Function Merger**，**可为 `app.config` 里每一个值为数组的键定义合并策略**。
 
 官方示例是两份配置对照着看的：
 

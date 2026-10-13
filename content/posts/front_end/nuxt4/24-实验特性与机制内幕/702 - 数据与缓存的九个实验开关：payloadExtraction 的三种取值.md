@@ -1,6 +1,6 @@
 ---
 url: /posts/b8bd1ce45779e712c180f63f80a0f865/
-title: 数据与缓存的九个实验开关：payloadExtraction 的三种取值
+title: 702 - 数据与缓存的九个实验开关：payloadExtraction 的三种取值
 date: 2027-06-03T09:00:00+08:00
 updated: 2027-06-03T09:00:00+08:00
 author: cmdragon
@@ -40,7 +40,7 @@ tags:
 
 `purgeCachedData` 管的是"**导航时要不要清掉 Nuxt 的 static 与 asyncData 缓存**"。原文说明：Nuxt 会自动清除 `useAsyncData` 与 `nuxtApp.static.data` 里的缓存数据，这有助于**防止内存泄漏并确保按需加载新数据**，但可以关掉。默认开。
 
-两者各自挂了一条指向实现细节的 GitHub 链接（分别是 PR #31373 与 #31379）——**这一页没有给这两项的行为表或配置项**，要精确判断只能读那两个 PR。
+两者各自挂了一条指向实现细节的 GitHub 链接（分别是 PR #31373 与 #31379）——**这一节没有给这两项的行为表或配置项**，要精确判断只能读那两个 PR。
 
 ## `sharedPrerenderData`：收益大，但 key 必须唯一对应同一份数据
 
@@ -107,6 +107,10 @@ const { data } = await useAsyncData(route.params.slug, async (_nuxtApp, { signal
 同组的 `stripNeverHydratedData` 与水合策略联动（对 `hydrate-never` 懒水合的调用默认施加 `serialize: false`，把数据留在 `__NUXT_DATA__` 之外），`restoreState` 与 chunk 错误联动，这两条分别在组件篇与渲染篇里处理。
 
 下一篇看路由与类型那一组八个：`typedPages`、`strictRouteTypes` 为什么必须成对开、`scanPageMeta` 只能读静态值这件事。
+
+## 下一篇
+
+下一篇 703：路由与类型的八个实验开关：strictRouteTypes 必须配 routeTypedFetch
 
 ## 本文依据
 

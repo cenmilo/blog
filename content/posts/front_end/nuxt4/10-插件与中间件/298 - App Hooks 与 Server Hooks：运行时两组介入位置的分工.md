@@ -1,6 +1,6 @@
 ---
 url: /posts/5f7b0ec44db58cd3036e394685cf134f/
-title: App Hooks 与 Server Hooks：运行时两组介入位置的分工
+title: 298 - App Hooks 与 Server Hooks：运行时两组介入位置的分工
 date: 2027-01-19T10:00:00+08:00
 updated: 2027-01-19T10:00:00+08:00
 author: cmdragon

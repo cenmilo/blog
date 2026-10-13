@@ -1,6 +1,6 @@
 ---
 url: /posts/f4e583012ce13ab7bc61b58af1b153d9/
-title: pages extend 与 pages resolved 两个钩子：可改字段与覆盖关系
+title: 143 - pages extend 与 pages resolved 两个钩子：可改字段与覆盖关系
 date: 2026-11-28T11:00:00+08:00
 updated: 2026-11-28T11:00:00+08:00
 author: cmdragon

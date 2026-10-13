@@ -1,6 +1,6 @@
 ---
 url: /posts/e300bbe403fd30662d151c20daebfa83/
-title: useLazyAsyncData：它只是把 lazy 设成 true 的那层壳
+title: 224 - useLazyAsyncData：它只是把 lazy 设成 true 的那层壳
 date: 2026-12-25T11:00:00+08:00
 updated: 2026-12-25T11:00:00+08:00
 author: cmdragon
@@ -26,7 +26,7 @@ tags:
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
 
-我先入为主地以为 `useLazyAsyncData` 里有"延迟加载组件"或"分批取数"之类的机制，读完这一页发现它薄得只有两层：**一个壳，加一个必须自己处理的后果。**
+名字里的 "Lazy" 很容易让人以为 `useLazyAsyncData` 里有"延迟加载组件"或"分批取数"之类的机制，但官方那一节薄得只有两层：**一个壳，加一个必须自己处理的后果。**
 
 ## 官方定义就这一句
 
@@ -87,13 +87,13 @@ const { status, data: posts } = await useLazyAsyncData('posts', () => $fetch('/a
 </template>
 ```
 
-示例后面那句提醒是这一页的实操要点：
+示例后面那句提醒是这一节的实操要点：
 
 > `useLazyAsyncData` lets navigation continue while it fetches data. Check `status === 'pending'` and `status === 'error'` in your component's template before using the result.
 
 **两支都写了**：pending 与 error。我原来只补了 loading，错误那一支漏掉时表现是"转圈消失、内容空白、也不报错"——因为 `v-else` 把错误态当成"成功但没数据"渲染了。
 
-不过这里我要如实说一句：这个例子的 `v-else` 分支其实没区分 `success` 与 `idle`（214 那张表里 status 是四值：`idle`/`pending`/`success`/`error`），而且官方示例的 `<template>` 有两个并列根节点（外层 `<div>` 里再放三个 `<div>`——如果这块组件要参加页面过渡，118/208 的单根要求就会撞上）。**这两点我按其它页的规则处理，不当成这一页示例的推荐形状。**
+这里要如实说一句：这个例子的 `v-else` 分支其实没区分 `success` 与 `idle`（214 那张表里 status 是四值：`idle`/`pending`/`success`/`error`），而且官方示例的 `<template>` 有两个并列根节点（外层 `<div>` 里再放三个 `<div>`——如果这块组件要参加页面过渡，118/208 的单根要求就会撞上）。**这两点我按其它页的规则处理，不当成这一节示例的推荐形状。**
 
 ## 另一段示例里那句关于 null 的注释
 
@@ -113,7 +113,7 @@ watch(count, (newCount) => {
 </script>
 ```
 
-那句注释我觉得是官方在这一页最诚实的一句话：**刚开始它是空的，你拿不到内容，但你能监听它**。这跟 213 里 `default` 那一行是配套的——不想处理"空的第一帧"，就给 `default` 一个可渲染的初值；想处理，就用 `status` 分支或 `watch`。
+那句注释是官方在这一节写得最诚实的一句：**刚开始它是空的，你拿不到内容，但你能监听它**。这跟 213 里 `default` 那一行是配套的——不想处理"空的第一帧"，就给 `default` 一个可渲染的初值；想处理，就用 `status` 分支或 `watch`。
 
 这里也顺带说明一件事：`count` 是 ref，所以 `watch(count, ...)` 监听的是这个引用本身，不是 `.value`（214 那条"四个 ref 三个函数"的分界在这就用上了）。
 

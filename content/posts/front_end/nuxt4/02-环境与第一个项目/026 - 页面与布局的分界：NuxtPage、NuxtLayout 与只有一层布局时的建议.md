@@ -1,6 +1,6 @@
 ---
 url: /posts/772e2673cd54c0d2e214c19fa5bf7db4/
-title: 页面与布局的分界：NuxtPage、NuxtLayout 与只有一层布局时的建议
+title: 026 - 页面与布局的分界：NuxtPage、NuxtLayout 与只有一层布局时的建议
 date: 2026-10-20T11:00:00+08:00
 updated: 2026-10-20T11:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/af9e69fd5a0e36679ede0827256f8e3b/
-title: 实战模块（一）：starter 给的目录、四个脚本与开发循环
+title: 689 - 实战模块（一）：starter 给的目录、四个脚本与开发循环
 date: 2027-05-29T11:00:00+08:00
 updated: 2027-05-29T11:00:00+08:00
 author: cmdragon
@@ -74,7 +74,7 @@ bun create nuxt --template=module my-module
 
 ## 四个脚本各自做什么
 
-讲 starter 的那页按四类任务列了脚本，逐个落地：
+讲 starter 的那一节按四类任务列了脚本，逐个落地：
 
 **测试类。**starter 自带一套基础测试：ESLint 驱动的检查，跑 `npm run lint`；Vitest 驱动的运行器，跑 `npm run test` 或 `npm run test:watch`。文档留了一句：这套默认测试策略可以按你的需要加强。
 
@@ -110,6 +110,10 @@ bun create nuxt --template=module my-module
 - 发布前跑 `npm run release`，别自己 `npm publish`；前提是 `npm login` 已经做过。
 
 下一篇往这个骨架里放第一个运行时能力：组件、组合式函数和插件分别从哪几个函数注册、路径为什么要走 resolver。
+
+## 下一篇
+
+下一篇 690：实战模块（二）：往骨架里放组件、组合式函数和一个插件
 
 ## 本文依据
 

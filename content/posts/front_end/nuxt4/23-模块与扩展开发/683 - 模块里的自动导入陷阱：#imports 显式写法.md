@@ -1,6 +1,6 @@
 ---
 url: /posts/87c9bba9e52b6831addfe49afda6daad/
-title: 模块里的自动导入陷阱：#imports 显式写法
+title: 683 - 模块里的自动导入陷阱：#imports 显式写法
 date: 2027-05-27T11:00:00+08:00
 updated: 2027-05-27T11:00:00+08:00
 author: cmdragon
@@ -34,7 +34,7 @@ tags:
 
 ## `#imports` 是什么，为什么模块该用它
 
-官方那一页有个小节叫 Explicit Imports，就一句话加一段代码：Nuxt 把每一个自动导入的东西都暴露在 `#imports` 这个别名下面，需要的时候可以用它把导入写成显式的。
+官方那一节有个小节叫 Explicit Imports，就一句话加一段代码：Nuxt 把每一个自动导入的东西都暴露在 `#imports` 这个别名下面，需要的时候可以用它把导入写成显式的。
 
 ```vue
 <script setup lang="ts">
@@ -89,7 +89,7 @@ export default defineNuxtConfig({
 
 ## 前缀是另一道防线，跟开关无关
 
-模块开发的最佳实践那一页列了十条左右该遵守的规矩（异步 setup 超过 1 秒会警告、用生命周期钩子做一次性工作、TypeScript 友好、ESM、写文档、给 demo、别绑定版本号、跟 starter 的代码风格保持一致），其中专门有一条讲导出名字要加前缀，还给了对照表：
+模块开发的最佳实践那一节列了十条左右该遵守的规矩（异步 setup 超过 1 秒会警告、用生命周期钩子做一次性工作、TypeScript 友好、ESM、写文档、给 demo、别绑定版本号、跟 starter 的代码风格保持一致），其中专门有一条讲导出名字要加前缀，还给了对照表：
 
 | 类型 | ❌ 避免 | ✅ 建议 |
 | --- | --- | --- |
@@ -97,9 +97,9 @@ export default defineNuxtConfig({
 | 组合式函数 | `useData()`、`useModal()` | `useFooData()`、`useFooModal()` |
 | 服务端路由 | `/api/track`、`/api/data` | `/api/_foo/track`、`/api/_foo/data` |
 
-表里的 `nuxt-foo` 是举例的模块名，前缀取 `Foo` / `_foo`。这一页还特别指出服务端路由最需要加前缀，因为 `/api/auth`、`/api/login`、`/api/user` 这类路径**很可能已经被应用自己占用了**；给出的两种写法是 `/api/_foo/...`（带下划线前缀）和 `/_foo/...`（非 API 路由）。
+表里的 `nuxt-foo` 是举例的模块名，前缀取 `Foo` / `_foo`。这一节还特别指出服务端路由最需要加前缀，因为 `/api/auth`、`/api/login`、`/api/user` 这类路径**很可能已经被应用自己占用了**；给出的两种写法是 `/api/_foo/...`（带下划线前缀）和 `/_foo/...`（非 API 路由）。
 
-顺带一句：这一页通篇没有出现 `#imports` 这个别名，它属于自动导入那一页。两页讲的是同一件事的两面——一面是名字怎么被挂上去，一面是名字挂上去之后可能撞车。
+顺带一句：这一节通篇没有出现 `#imports` 这个别名，它属于自动导入那一节。两节讲的是同一件事的两面——一面是名字怎么被挂上去，一面是名字挂上去之后可能撞车。
 
 ## 两个不属于开关问题的报错
 
@@ -117,6 +117,10 @@ export default defineNuxtConfig({
 - 用户同时用图层和 `imports.scan: false` 时，你的模块的行为有没有一句说明。这一条官方没有给答案，只能自己在 playground 里测。
 
 下一篇写模块怎么往终端里打印信息：`useLogger` 的两个参数，和 `useTerminal` 那五个成员什么时候用得上。
+
+## 下一篇
+
+下一篇 684：模块的配置校验与错误提示：schema 那一行、defaults 的两种写法与三种提示位置
 
 ## 本文依据
 

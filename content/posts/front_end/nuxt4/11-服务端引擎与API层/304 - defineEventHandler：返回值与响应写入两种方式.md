@@ -1,6 +1,6 @@
 ---
 url: /posts/4fe272547a45dcd46c210101710a8624/
-title: defineEventHandler：返回值与响应写入两种方式
+title: 304 - defineEventHandler：返回值与响应写入两种方式
 date: 2027-01-21T10:00:00+08:00
 updated: 2027-01-21T10:00:00+08:00
 author: cmdragon
@@ -44,7 +44,7 @@ export default defineEventHandler((event) => {
 
 ## 路一：直接 return
 
-server 那页给了返回值语义，server-imports 那页把"handler 可以返回什么"列成了三类，合并看：
+server 那一节给了返回值语义，server-imports 那一节把"handler 可以返回什么"列成了三类，合并看：
 
 > A handler may return:
 > - A JSON-serializable value, sent as JSON with the status and headers set on `event.res`.
@@ -57,7 +57,7 @@ server 那页给了返回值语义，server-imports 那页把"handler 可以返�
 2. **`Response`**：你直接返回一个标准 `Response`，用它的状态码；`event.res.headers` 上设的头会一起发、两边的 `set-cookie` 都保留。
 3. **`ReadableStream`**：作为响应体流式发出。
 
-另外一条 server 那页的原文补充：
+另外一条 server 那一节的原文补充：
 
 > The handler can directly return JSON data, a `Promise`, or use `event.node.res.end()` to send a response.
 
@@ -73,19 +73,19 @@ export default defineEventHandler((event) => {
 })
 ```
 
-这是"我已经手动处理了响应，别再替我序列化返回值"的模式。h3 的 `res.end()`、`next()` 官方也声明支持（server 那页 "Handlers can return promises, which will be awaited (`res.end()` and `next()` are also supported)"）。
+这是"我已经手动处理了响应，别再替我序列化返回值"的模式。h3 的 `res.end()`、`next()` 官方也声明支持（server 那一节 "Handlers can return promises, which will be awaited (`res.end()` and `next()` are also supported)"）。
 
 两条路的取舍：**多数接口 return 值就行，简单、还能带类型（见下）；只有在要完全控制底层响应（自己写状态/流/头、或非 JSON 输出）时，才用 `event.node.res.end()`。**
 
 ## 一个类型层面的连带后果
 
-这条很重要，和 300 讲的"类型化接口"接上。官方 server-engine 那页：
+这条很重要，和 300 讲的"类型化接口"接上。官方 server-engine 那一节：
 
 > When using API routes (or middleware), Nitro will generate typings for these routes as long as you are returning a value instead of using `res.end()` to send a response.
 
 也就是说：**`return` 值 → Nitro 为这条路由生成返回类型**，你在前端 `useFetch('/api/hello')` / `$fetch('/api/hello')` 处能拿到准确的返回类型推断；**用 `res.end()` → 类型就丢了**。这是"我的接口在前端怎么没有类型、变成 unknown 了"的一个常见原因。所以只要不是非走原始 API 不可，尽量 `return` 值——既简单又保住类型。
 
-server-imports 那页还有个相关 tip：
+server-imports 那一节还有个相关 tip：
 
 > `defineEventHandler` preserves your handler's return type, which is what types `$fetch` and `useFetch` calls to the route. Annotate the value you return rather than the handler.
 
@@ -93,7 +93,7 @@ server-imports 那页还有个相关 tip：
 
 ## 别在 server 里 import 前端代码
 
-顺带把边界再钉一次（server 那页开头 important）：handler 里不要 import Vue 组件/组合式等 app-only 代码。服务端 handler 和前端是两个 bundle、两个上下文，跨界 import 会构建失败或报错（300、312 都展开过这道墙）。
+顺带把边界再钉一次（server 那一节开头 important）：handler 里不要 import Vue 组件/组合式等 app-only 代码。服务端 handler 和前端是两个 bundle、两个上下文，跨界 import 会构建失败或报错（300、312 都展开过这道墙）。
 
 ## 自查
 

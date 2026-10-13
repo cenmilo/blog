@@ -1,6 +1,6 @@
 ---
 url: /posts/6e34d5b8c20e14846dbf467bffd4335a/
-title: ignore：九条默认 glob 与 ignorePrefix 的分工
+title: 543 - ignore：九条默认 glob 与 ignorePrefix 的分工
 date: 2027-04-11T09:00:00+08:00
 updated: 2027-04-11T09:00:00+08:00
 author: cmdragon

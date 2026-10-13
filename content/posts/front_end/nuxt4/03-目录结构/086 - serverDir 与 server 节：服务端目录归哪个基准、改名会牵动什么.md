@@ -1,6 +1,6 @@
 ---
 url: /posts/146b5ac6fa1e2dbf2bfd799dcf5a182c/
-title: serverDir 与 server 节：服务端目录归哪个基准、改名会牵动什么
+title: 086 - serverDir 与 server 节：服务端目录归哪个基准、改名会牵动什么
 date: 2026-11-09T11:00:00+08:00
 updated: 2026-11-09T11:00:00+08:00
 author: cmdragon

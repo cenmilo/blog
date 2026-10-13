@@ -1,6 +1,6 @@
 ---
 url: /posts/6941f7b0cb71176d786840f32d1e4b6e/
-title: typecheck 跑不起来时先看这四件事
+title: 036 - typecheck 跑不起来时先看这四件事
 date: 2026-10-24T09:00:00+08:00
 updated: 2026-10-24T09:00:00+08:00
 author: cmdragon

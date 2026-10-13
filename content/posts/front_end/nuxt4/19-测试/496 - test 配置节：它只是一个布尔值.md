@@ -1,6 +1,6 @@
 ---
 url: /posts/b07bf0eb8514490f5d017a1bf575def4/
-title: test 配置节：它只是一个布尔值
+title: 496 - test 配置节：它只是一个布尔值
 date: 2027-03-26T10:00:00+08:00
 updated: 2027-03-26T10:00:00+08:00
 author: cmdragon
@@ -30,14 +30,14 @@ tags:
 
 ## 它的完整定义就是这三行
 
-`api/nuxt-config` 那一页对 `test` 的记载，一字不多：
+`api/nuxt-config` 那一节对 `test` 的记载，一字不多：
 
 > Whether your app is being unit tested.
 
 - **类型**：`boolean`
 - **默认**：`false`
 
-配置文档那一页是 60 个顶层节的合集，每个节的写法都是「一句说明 + 类型 + 默认值」，`test` 就是其中最省的一节。**它没有子项、没有对象形态、没有列任何可选字段。**
+配置文档那一节是 60 个顶层节的合集，每个节的写法都是「一句说明 + 类型 + 默认值」，`test` 就是其中最省的一节。**它没有子项、没有对象形态、没有列任何可选字段。**
 
 所以"把测试相关配置收进 `nuxt.config` 的 `test` 节"这个想法，按文档是不成立的：这一节只回答一个问题——这个应用是不是正在被单元测试。
 
@@ -112,7 +112,7 @@ export default defineNuxtConfig({
 ## 本文依据
 
 - https://nuxt.com/docs/4.x/api/nuxt-config（`## test` 一节全部记载：说明句、Type `boolean`、Default `false`；顶层节按字母排列、`theme` 一节相邻）
-- https://nuxt.com/docs/4.x/api/commands/test（该页只记载 `NODE_ENV` 设为 `test`，未提及 `test` 配置节）
+- https://nuxt.com/docs/4.x/api/commands/test（那一节只记载 `NODE_ENV` 设为 `test`，未提及 `test` 配置节）
 - https://nuxt.com/docs/4.x/getting-started/testing（Vitest 配置示例中的 `test` 字段、`environmentOptions.nuxt.mock` 的 `intersectionObserver`/`indexedDb` 默认值、`registerEndpoint` 那节指向环境覆盖 `$test` 的 Note）
 - https://nuxt.com/docs/4.x/getting-started/configuration（Environment Overrides 小节：`$production`/`$development`/`$env.staging` 与 `--envName`）
 - https://nuxt.com/docs/4.x/directory-structure/test（`test/` 目录的推荐用途）

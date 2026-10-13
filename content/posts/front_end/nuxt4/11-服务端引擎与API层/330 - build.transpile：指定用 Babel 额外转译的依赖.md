@@ -1,6 +1,6 @@
 ---
 url: /posts/5b296f9c17e87a7f34c7dda2343c3c69/
-title: build.transpile：指定用 Babel 额外转译的依赖
+title: 330 - build.transpile：指定用 Babel 额外转译的依赖
 date: 2027-01-30T09:00:00+08:00
 updated: 2027-01-30T09:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/9b45718ed193c1ef88209c0b1520a903/
-title: NuxtRouteAnnouncer 那个隐藏元素播报换页
+title: 483 - NuxtRouteAnnouncer 那个隐藏元素播报换页
 date: 2027-03-22T09:00:00+08:00
 updated: 2027-03-22T09:00:00+08:00
 author: cmdragon
@@ -55,7 +55,7 @@ tags:
 </template>
 ```
 
-无障碍那一页给的形态更短（`<NuxtRouteAnnouncer />` 直接跟在 `<NuxtPage />` 之前），两处示例的差别只是有没有包布局——**共同点是它放在渲染页面的那一层，不是放在某个页面组件里**。
+无障碍那一节给的形态更短（`<NuxtRouteAnnouncer />` 直接跟在 `<NuxtPage />` 之前），两处示例的差别只是有没有包布局——**共同点是它放在渲染页面的那一层，不是放在某个页面组件里**。
 
 ## 两个属性
 
@@ -100,7 +100,7 @@ tags:
 
 ## 它的质量上限在标题上
 
-这一条来自无障碍那一页，是装完之后最容易踩空的点：
+这一条来自无障碍那一节，是装完之后最容易踩空的点：
 
 > The announcer reads the title that Unhead rendered, so it is only as useful as your titles are. If two routes share the same `<title>`, users hear nothing on the way between them.
 

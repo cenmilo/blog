@@ -1,12 +1,12 @@
 ---
 url: /posts/9d1740af4ec0fb7d44465c4186c9fe49/
-title: 模块选项怎么合并：configKey、defaults 的两种写法与 .with 的类型推断
+title: 634 - 模块选项怎么合并：configKey、defaults 的两种写法与 .with 的类型推断
 date: 2027-05-11T10:00:00+08:00
 updated: 2027-05-11T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：用户在 `nuxt.config.ts` 里写 `myModule: { enabled: false }`，你的 `defaults` 里写的是 `enabled: true`——**`setup` 收到的到底是哪个**？Kit 那一页给的定义句就把答案写出来了：`defineNuxtModule` 的职责是**自动把默认值与用户提供的选项合并**、装上提供的钩子、再调用 setup。参数表一共**八个键**（`meta`、`defaults`、`schema`、`hooks`、`moduleDependencies`、`onInstall`、`onUpgrade`、`setup`，全部非必填）。三条容易踩的规则：**把配置键整个写成 `false` 会阻止 setup 运行但仍生成选项类型**；**兼容性不满足时是 WARN 并把模块禁用**，不是启动失败；**用了 `.with()` 之后 TypeScript 才知道默认值把可选属性变成了必有值**。
+  摘要：用户在 `nuxt.config.ts` 里写 `myModule: { enabled: false }`，你的 `defaults` 里写的是 `enabled: true`——**`setup` 收到的到底是哪个**？Kit 那一节给的定义句就把答案写出来了：`defineNuxtModule` 的职责是**自动把默认值与用户提供的选项合并**、装上提供的钩子、再调用 setup。参数表一共**八个键**（`meta`、`defaults`、`schema`、`hooks`、`moduleDependencies`、`onInstall`、`onUpgrade`、`setup`，全部非必填）。三条容易踩的规则：**把配置键整个写成 `false` 会阻止 setup 运行但仍生成选项类型**；**兼容性不满足时是 WARN 并把模块禁用**，不是启动失败；**用了 `.with()` 之后 TypeScript 才知道默认值把可选属性变成了必有值**。
 
 categories:
   - 前端开发
@@ -107,7 +107,7 @@ export default defineNuxtConfig({
  - [nuxt] Nuxt version ^3.1.0 is required but currently using 3.0.0
 ```
 
-注意那句话的动词：**is disabled**。也就是说这不是构建失败，而是**模块被静默跳过、只留一条 WARN**。排查"我的模块怎么完全没反应"时，这条警告是第一个要看的地方；而 **这一页没有说被禁用时 `defaults` 与类型是否还参与生成**，不能假定。
+注意那句话的动词：**is disabled**。也就是说这不是构建失败，而是**模块被静默跳过、只留一条 WARN**。排查"我的模块怎么完全没反应"时，这条警告是第一个要看的地方；而 **这一节没有说被禁用时 `defaults` 与类型是否还参与生成**，不能假定。
 
 ## `.with()` 解决的是类型，不是运行时
 
@@ -193,6 +193,10 @@ moduleDependencies (nuxt) {
 ```
 
 合并规则说完了，下一篇是往项目里塞东西：九节基础配方各用哪个函数。
+
+## 下一篇
+
+下一篇 635：基础配方九节：每类资产用哪个 Kit 函数、路径为什么必须 resolver
 
 ## 本文依据
 

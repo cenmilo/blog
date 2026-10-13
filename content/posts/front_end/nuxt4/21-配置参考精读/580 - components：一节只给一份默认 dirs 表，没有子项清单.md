@@ -1,12 +1,12 @@
 ---
 url: /posts/7779812878e1c32f49812e44b66cc07a/
-title: components：一节只给一份默认 dirs 表，没有子项清单
+title: 580 - components：一节只给一份默认 dirs 表，没有子项清单
 date: 2027-04-23T10:00:00+08:00
 updated: 2027-04-23T10:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`## components` 有两句定性（"Configure Nuxt component auto-registration." 与"这些目录里的组件可以在页面、布局和其他组件里直接使用，**不需要显式 import**"）、一行 `**Type**: object`、一份**两个元素**的默认 `dirs` 表（`{ path: "~/components/global", global: true }` 与裸字符串 `"~/components"`），加一条指向组件目录那一页的 See。**这一节没有任何 `###` 子项**——`pathPrefix`、`prefix`、`priority`、`global` 这些字段在配置参考里一个都没有条目。还有一处形状分歧：**配置页的类型行写 `object`，而组件目录那页的示例直接写 `components: [ { path, pathPrefix: false } ]`（数组）**。
+  摘要：`## components` 有两句定性（"Configure Nuxt component auto-registration." 与"这些目录里的组件可以在页面、布局和其他组件里直接使用，**不需要显式 import**"）、一行 `**Type**: object`、一份**两个元素**的默认 `dirs` 表（`{ path: "~/components/global", global: true }` 与裸字符串 `"~/components"`），加一条指向组件目录那一节的 See。**这一节没有任何 `###` 子项**——`pathPrefix`、`prefix`、`priority`、`global` 这些字段在配置参考里一个都没有条目。还有一处形状分歧：**配置页的类型行写 `object`，而组件目录那一节的示例直接写 `components: [ { path, pathPrefix: false } ]`（数组）**。
 
 categories:
   - 前端开发
@@ -57,7 +57,7 @@ See 指向 `directory-structure/app/components`。
 
 ## 类型行与示例的形状不一致
 
-配置页这一行的类型写的是 `object`。但组件目录那一页给的两个例子，**没有一个符合"对象"**：
+配置页这一行的类型写的是 `object`。但组件目录那一节给的两个例子，**没有一个符合"对象"**：
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -83,7 +83,7 @@ export default defineNuxtConfig({
   })
 ```
 
-也就是说文档里同时出现过**数组形式**和**带 `global` ＋ `dirs` 的对象形式**，而配置参考只声明 `object`。**这三种形状的确切类型定义不在这页**，要确认只能去读类型或实测。
+也就是说文档里同时出现过**数组形式**和**带 `global` ＋ `dirs` 的对象形式**，而配置参考只声明 `object`。**这三种形状的确切类型定义不在这一节**，要确认只能去读类型或实测。
 
 ## 全局注册：官方的态度写在措辞里
 

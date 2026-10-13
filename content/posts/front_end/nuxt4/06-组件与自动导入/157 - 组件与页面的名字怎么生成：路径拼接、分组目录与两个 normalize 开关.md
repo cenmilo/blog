@@ -1,6 +1,6 @@
 ---
 url: /posts/9d6e2485935ffb08ae8397ec4b52ecb5/
-title: 组件与页面的名字怎么生成：路径拼接、分组目录与两个 normalize 开关
+title: 157 - 组件与页面的名字怎么生成：路径拼接、分组目录与两个 normalize 开关
 date: 2026-12-03T10:00:00+08:00
 updated: 2026-12-03T10:00:00+08:00
 author: cmdragon

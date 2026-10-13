@@ -1,6 +1,6 @@
 ---
 url: /posts/1c1077035663d9afd41b0b19ad2620ca/
-title: useAnnouncer 与 NuxtAnnouncer：播报页面内的变化
+title: 485 - useAnnouncer 与 NuxtAnnouncer：播报页面内的变化
 date: 2027-03-22T11:00:00+08:00
 updated: 2027-03-22T11:00:00+08:00
 author: cmdragon
@@ -46,7 +46,7 @@ tags:
 </template>
 ```
 
-**两个可以共存，各管一类事件**。而 `useAnnouncer` 那一页末尾第一条 `callout` 是硬性条件：
+**两个可以共存，各管一类事件**。而 `useAnnouncer` 那一节末尾第一条 `callout` 是硬性条件：
 
 > You need to add the `<NuxtAnnouncer>` component to your app for the announcements to be rendered in the DOM.
 
@@ -86,7 +86,7 @@ tags:
 | `polite(message)` | 设 `politeness = "polite"`。**用于不紧急、可以等屏幕阅读器把手上的事做完的更新** |
 | `assertive(message)` | 设 `politeness = "assertive"`。**用于应当立即打断屏幕阅读器的紧急更新** |
 
-有一处类型细节值得对读：**`useAnnouncer` 的 `politeness` 写的是 `Ref<'polite' | 'assertive' | 'off'>`，而 `useRouteAnnouncer` 那一页同一属性写的是 `Ref<string>`**。两页类型标注不一致（文档未解释），按各自页面写就可能出现一边收窄一边放宽的情况。
+有一处类型细节值得对读：**`useAnnouncer` 的 `politeness` 写的是 `Ref<'polite' | 'assertive' | 'off'>`，而 `useRouteAnnouncer` 那一节同一属性写的是 `Ref<string>`**。两节类型标注不一致（文档未解释），按各自页面写就可能出现一边收窄一边放宽的情况。
 
 ## 三组官方示例
 
@@ -146,7 +146,7 @@ watch(results, (newResults) => {
 </script>
 ```
 
-这第三个用例和 484 记的那段"官方用 `useRouteAnnouncer` 的 `set()` 播搜索结果"是**同一件事的两种写法**。两页都这么写，官方没有给裁决；本系列按各自页面的分工句处理：**这条场景两个 API 都演示过**，选哪个取决于你更想统一入口（组件页那句"页面/路由变化请用路由那一套"）还是保留紧急度语义。
+这第三个用例和 484 记的那段"官方用 `useRouteAnnouncer` 的 `set()` 播搜索结果"是**同一件事的两种写法**。两节都这么写，官方没有给裁决；本系列按各自页面的分工句处理：**这条场景两个 API 都演示过**，选哪个取决于你更想统一入口（组件页那句"页面/路由变化请用路由那一套"）还是保留紧急度语义。
 
 **提交成功/失败这对写法**在组件页与函数页各出现一次，是同一个例子：
 
@@ -173,7 +173,7 @@ async function submitForm () {
 - 与路由那一对的四行差别里，只有 `atomic` 的默认值不同（`false` 对 **`true`**）。
 - `polite` 等屏幕阅读器空闲、`assertive` 立即打断；成功提示用前者、报错用后者是官方示范。
 - `set()` 的第二参默认 `polite`，不会沿用实例的紧急度。
-- `politeness` 的类型标注两页不一致（`Ref<'polite'|'assertive'|'off'>` 对 `Ref<string>`）。
+- `politeness` 的类型标注两节不一致（`Ref<'polite'|'assertive'|'off'>` 对 `Ref<string>`）。
 
 ## 下一篇
 

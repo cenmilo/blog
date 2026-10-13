@@ -1,6 +1,6 @@
 ---
 url: /posts/cd287ca145be62c556c2f27c9630e078/
-title: PM2 与 node_cluster：官方给的两种 Node 进程管理写法
+title: 526 - PM2 与 node_cluster：官方给的两种 Node 进程管理写法
 date: 2027-04-05T10:00:00+08:00
 updated: 2027-04-05T10:00:00+08:00
 author: cmdragon

@@ -1,6 +1,6 @@
 ---
 url: /posts/fc9214ebcf5191823391a5442c9b8502/
-title: 静态托管的两条路：generate 与不带服务端的构建
+title: 513 - 静态托管的两条路：generate 与不带服务端的构建
 date: 2027-04-01T09:00:00+08:00
 updated: 2027-04-01T09:00:00+08:00
 author: cmdragon
@@ -126,7 +126,7 @@ export default defineNuxtConfig({
 
 选这条路要知道的代价，文档有两处明确写了：
 
-- **预渲染之后没法再设运行时配置。** 环境变量那页有一句：**"Note that for a purely static site, it is not possible to set runtime configuration config after your project is prerendered."** 你的 `runtimeConfig` 值在构建时就固定进产物了，改它要重新构建。
+- **预渲染之后没法再设运行时配置。** 环境变量那一节有一句：**"Note that for a purely static site, it is not possible to set runtime configuration config after your project is prerendered."** 你的 `runtimeConfig` 值在构建时就固定进产物了，改它要重新构建。
 - **混合渲染在 `nuxt generate` 下不可用。** 渲染概念页那条 `::important` 写着 "Note that Hybrid Rendering is not available when using `nuxt generate`." 想用 `swr`/`isr` 这类按路由的缓存策略，就得有一个跑着的服务器。
 
 顺带一条 payload 的：预渲染的路由在构建期就产出 `_payload.json`，客户端导航复用它——**"so data can be stale until the next rebuild"**，官方这句直译就是"数据会一直旧到下次构建"。

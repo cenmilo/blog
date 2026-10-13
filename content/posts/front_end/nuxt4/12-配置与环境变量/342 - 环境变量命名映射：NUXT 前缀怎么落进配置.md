@@ -1,6 +1,6 @@
 ---
 url: /posts/950ba17df9c4c501a5a029a640aaae45/
-title: 环境变量命名映射：NUXT 前缀怎么落进配置
+title: 342 - 环境变量命名映射：NUXT 前缀怎么落进配置
 date: 2027-02-03T09:00:00+08:00
 updated: 2027-02-03T09:00:00+08:00
 author: cmdragon
@@ -81,8 +81,7 @@ NUXT_API_SECRET = "123"
 - app.baseURL/cdnURL 用 `NUXT_APP_BASE_URL`/`NUXT_APP_CDN_URL` 改，别往 app 里加自己的键。
 
 ## 下一篇
-
-P12 配置与环境变量继续按索引推进（343 起）。编号连续，日期每篇 +30 分钟。
+下一篇 343：构建期能过运行期会坏：默认值来源写错的坑
 
 ## 本文依据
 

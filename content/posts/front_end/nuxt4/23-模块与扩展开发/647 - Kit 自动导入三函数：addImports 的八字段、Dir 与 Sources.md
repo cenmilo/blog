@@ -1,12 +1,12 @@
 ---
 url: /posts/f66b9c31fdb5ba094c5b2c637fc732de/
-title: Kit 自动导入三函数：addImports 的八字段、Dir 与 Sources
+title: 647 - Kit 自动导入三函数：addImports 的八字段、Dir 与 Sources
 date: 2027-05-15T11:00:00+08:00
 updated: 2027-05-15T11:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：让宿主的代码里不写 import 就能用你提供的函数，靠这一页的三个工具，**它们的分工是"条目、目录、第三方包"三种粒度**：`addImports` 逐个登记（八个字段里只有 `name` 与 `from` 必填，**同名时 `priority` 高的那个胜出**）；`addImportsDir` 把一个目录整个扫进来，**可选 `prepend` 决定插到列表前面还是后面**；`addImportsSources` 登记第三方包，两种形状——**给 `package` 就是整包，给 `from` ＋ `imports` 就是白名单**。三个函数**都由 unimport 提供底层机制**，而且**都只作用于应用侧上下文：服务端要换成 `addServerImports`**。页面还有一条 note：这三个是给 utils、composables 与 Vue API 用的，**页面、组件、插件各有专门的章节**。
+  摘要：让宿主的代码里不写 import 就能用你提供的函数，靠这一节的三个工具，**它们的分工是"条目、目录、第三方包"三种粒度**：`addImports` 逐个登记（八个字段里只有 `name` 与 `from` 必填，**同名时 `priority` 高的那个胜出**）；`addImportsDir` 把一个目录整个扫进来，**可选 `prepend` 决定插到列表前面还是后面**；`addImportsSources` 登记第三方包，两种形状——**给 `package` 就是整包，给 `from` ＋ `imports` 就是白名单**。三个函数**都由 unimport 提供底层机制**，而且**都只作用于应用侧上下文：服务端要换成 `addServerImports`**。页面还有一条 note：这三个是给 utils、composables 与 Vue API 用的，**页面、组件、插件各有专门的章节**。
 
 categories:
   - 前端开发
@@ -38,7 +38,7 @@ tags:
 
 > These functions are designed for registering your own utils, composables and Vue APIs. For pages, components and plugins, please refer to the specific sections: Pages, Components, Plugins.
 
-**页面、组件、插件不在这一页**——它们各有专门章节，硬用 `addImports` 去登记一个组件名，不会得到组件注册的那套行为。
+**页面、组件、插件不在这一节**——它们各有专门章节，硬用 `addImports` 去登记一个组件名，不会得到组件注册的那套行为。
 
 ## 三个函数怎么选
 
@@ -97,11 +97,11 @@ export default defineNuxtModule({
 
 这个例子里能看出两件事：**数组写法是 `forEach` 逐个调**（参数本身支持数组，示例没这么写），**最后一项 `RichTextSchema` 其实是个类型而不是 composable**——示例里没给它加 `type: true`。
 
-`addImports` 上面挂了一条 `::tip`，是这一页最容易踩空的地方：
+`addImports` 上面挂了一条 `::tip`，是这一节最容易踩空的地方：
 
 > To add imports for the Nitro server context, refer to the `addServerImports` function.
 
-**要往服务端上下文加自动导入，得换成 `addServerImports`（它在 nitro 那一页）**，`addImports` 只管应用侧。
+**要往服务端上下文加自动导入，得换成 `addServerImports`（它在 nitro 那一节）**，`addImports` 只管应用侧。
 
 ## `addImportsDir`：整目录，带一个方向选项
 
@@ -180,7 +180,7 @@ export default defineNuxtModule({
 })
 ```
 
-**`{ package: '@vueuse/core' }` 是一整包的预设，`{ from: 'h3', imports: [...] }` 是点名五个导出**。这一页没写 `package` 那种形状具体会带进来哪些名字（那是 unimport 预设的事），所以**用整包形状时最好先跑一次看看生成了什么**。
+**`{ package: '@vueuse/core' }` 是一整包的预设，`{ from: 'h3', imports: [...] }` 是点名五个导出**。这一节没写 `package` 那种形状具体会带进来哪些名字（那是 unimport 预设的事），所以**用整包形状时最好先跑一次看看生成了什么**。
 
 顺带一提，示例里那五个 h3 的名字（`defineEventHandler`、`getQuery`、`getRouterParams`、`readBody`、`sendRedirect`）在服务端兼容性那一章正是"两代 API 行为不同"的那几个——**把它们接进应用侧自动导入，等于把版本差异搬到了你眼前**。
 
@@ -188,13 +188,17 @@ export default defineNuxtModule({
 
 - **在 runtime 文件里 import 这三个函数**：Kit 只给模块用，运行时产物里没它。
 - **想用 `addImports` 服务服务端代码**：换 `addServerImports`。
-- **想注册组件或页面**：分别是 components 页与 pages 页的事，这一页的 note 已经点名。
+- **想注册组件或页面**：分别是 components 那一节与 pages 那一节的事，这一节的 note 已经点名。
 
 ## 与配置那一侧的关系
 
-宿主的 `nuxt.config` 里有一个 `imports` 配置节（`autoImport`、`presets`、`global` 等键），**它管的是"要不要自动导入、预设从哪来"；这一页三个函数管的是"往列表里加哪一条"**。两边都能写 presets，页面没有说明同一份 preset 同时出现时的合并方向。
+宿主的 `nuxt.config` 里有一个 `imports` 配置节（`autoImport`、`presets`、`global` 等键），**它管的是"要不要自动导入、预设从哪来"；这一节三个函数管的是"往列表里加哪一条"**。两边都能写 presets，页面没有说明同一份 preset 同时出现时的合并方向。
 
 下一篇讲组件那两个函数：两张各 14 行的参数表。
+
+## 下一篇
+
+下一篇 648：Kit 组件两函数：两张 14 行参数表与那四个同名选项
 
 ## 本文依据
 

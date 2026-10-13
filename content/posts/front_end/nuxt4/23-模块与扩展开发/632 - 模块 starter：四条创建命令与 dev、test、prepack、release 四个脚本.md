@@ -1,6 +1,6 @@
 ---
 url: /posts/d0ed79b125d92e7a7702e1efe27de08f/
-title: 模块 starter：四条创建命令与 dev、test、prepack、release 四个脚本
+title: 632 - 模块 starter：四条创建命令与 dev、test、prepack、release 四个脚本
 date: 2027-05-10T11:00:00+08:00
 updated: 2027-05-10T11:00:00+08:00
 author: cmdragon
@@ -65,7 +65,7 @@ bun create nuxt --template=module my-module
 1. 用你惯用的 IDE 打开 `my-module`
 2. 用你惯用的包管理器安装依赖
 3. **用 `npm run dev:prepare` 为开发准备好本地文件**
-4. 接着看这一页了解模块的写法
+4. 接着看这一节了解模块的写法
 
 第 3 步不是可选的。跳过它的表现是模块项目里那些该生成的类型与构建产物还不存在，`dev` 起不来或者 IDE 里一片红的导入路径。**它排在"安装依赖"之后、"启动开发服务器"之前**，这个位置是官方给的顺序。
 
@@ -149,6 +149,10 @@ npm run prepack
 上手路径就是这四条命令里挑一条生成项目、跑一次 `dev:prepare`，然后把 `dev` 挂着写 `src`。
 
 下一篇讲模块本体的三段结构：meta、defaults 和 setup。
+
+## 下一篇
+
+下一篇 633：模块定义文件长什么样：两种写法、五个键与 wrapper 的八条保证
 
 ## 本文依据
 

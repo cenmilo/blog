@@ -1,6 +1,6 @@
 ---
 url: /posts/ed10f2cbc66570b6b0e153f4b15a3635/
-title: 缓存的两把新开关：granularCachedData 与 purgeCachedData
+title: 236 - 缓存的两把新开关：granularCachedData 与 purgeCachedData
 date: 2026-12-29T11:00:00+08:00
 updated: 2026-12-29T11:00:00+08:00
 author: cmdragon
@@ -104,7 +104,7 @@ const getDefaultCachedData = (key, nuxtApp, ctx) => nuxtApp.isHydrating
 
 > This only caches data when `experimental.payloadExtraction` in `nuxt.config` is enabled.
 
-把三件事叠起来才是完整图：**默认实现在水合期读 payload、其它时候读 `static.data`；payload 那条通道由 `payloadExtraction` 决定；而 `static.data` 会被 `purgeCachedData` 在路由跳转时清掉。**所以"我以为缓存会跨页留着"这个期待，在默认配置下是有保质期的。
+把三件事叠起来才是完整图：**默认实现在水合期读 payload、其它时候读 `static.data`；payload 那条通道由 `payloadExtraction` 决定；而 `static.data` 会被 `purgeCachedData` 在路由跳转时清掉。**所以"缓存会跨页留着"这个期待，在默认配置下是有保质期的。
 
 ## 顺带：key 换掉之后旧数据去哪了
 

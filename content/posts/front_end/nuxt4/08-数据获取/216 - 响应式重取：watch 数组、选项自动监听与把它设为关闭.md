@@ -1,12 +1,12 @@
 ---
 url: /posts/0ca0dded81fc7ad73dfdfa0647b74569/
-title: 响应式重取：watch 数组、选项自动监听与把它设为关闭
+title: 216 - 响应式重取：watch 数组、选项自动监听与把它设为关闭
 date: 2026-12-23T09:00:00+08:00
 updated: 2026-12-23T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：让数据跟着状态重取，文档里其实给了三条不同的路，而且它们的关闭方式不一样，我先把三条摆出来再讲开关。① 显式 `watch` 数组：note 是 "The built-in `watch` option allows automatically rerunning the fetcher function when any changes are detected."，示例是 `{ watch: [page] }`，类型 `MultiWatchSources`，说明 "Array of reactive sources to watch and auto-refresh."。② **选项本身给成响应式就会自动重取**：`useFetch` 的 Reactive Fetch Options 一节写 "Fetch options can be provided as reactive, supporting `computed`, `ref` and computed getters. When a reactive fetch option is updated it will trigger a refetch using the updated resolved reactive value."，例子是 `query: { q: searchQuery }`，改一次值就打一次 `/api/search?q=new%20search`；两页表格后面各有一条同义 note。③ key 或 URL 用 computed：215 讲过 key 的生成，212 引的 Reactive Keys 那句是 "When the route changes and userId updates, the data will be automatically refetched"。**关掉的方式只有两处写明**：`useFetch` 给了 `watch: false`（"If needed, you can opt out of this behavior using `watch: false`"，选项表补 "`false` disables watching."），`enabled: false` 则把三种执行一起挡（"While `false`, every execution is blocked (initial fetch, `execute`/`refresh`, and **watch triggers**)"）。至于 `useAsyncData` 那页的 `watch` 行**类型里没有 `false`**，这是两页之间的一处不对称，我没有替它补齐。
+  摘要：让数据跟着状态重取，文档里其实给了三条不同的路，而且它们的关闭方式不一样，我先把三条摆出来再讲开关。① 显式 `watch` 数组：note 是 "The built-in `watch` option allows automatically rerunning the fetcher function when any changes are detected."，示例是 `{ watch: [page] }`，类型 `MultiWatchSources`，说明 "Array of reactive sources to watch and auto-refresh."。② **选项本身给成响应式就会自动重取**：`useFetch` 的 Reactive Fetch Options 一节写 "Fetch options can be provided as reactive, supporting `computed`, `ref` and computed getters. When a reactive fetch option is updated it will trigger a refetch using the updated resolved reactive value."，例子是 `query: { q: searchQuery }`，改一次值就打一次 `/api/search?q=new%20search`；两节表格后面各有一条同义 note。③ key 或 URL 用 computed：215 讲过 key 的生成，212 引的 Reactive Keys 那句是 "When the route changes and userId updates, the data will be automatically refetched"。**关掉的方式只有两处写明**：`useFetch` 给了 `watch: false`（"If needed, you can opt out of this behavior using `watch: false`"，选项表补 "`false` disables watching."），`enabled: false` 则把三种执行一起挡（"While `false`, every execution is blocked (initial fetch, `execute`/`refresh`, and **watch triggers**)"）。至于 `useAsyncData` 那一节的 `watch` 行**类型里没有 `false`**，这是两节之间的一处不对称，我没有替它补齐。
 
 categories:
   - 前端开发
@@ -30,7 +30,7 @@ tags:
 
 ## 路一：显式 watch 数组
 
-`useAsyncData` 那页 Watch Parameters 小节的定义与例子：
+`useAsyncData` 那一节 Watch Parameters 小节的定义与例子：
 
 > The built-in `watch` option allows automatically rerunning the fetcher function when any changes are detected.
 
@@ -70,7 +70,7 @@ const { data } = await useFetch('/api/search', {
 searchQuery.value = 'new search'
 ```
 
-`useAsyncData` 那页表格后也有一条同义 note：
+`useAsyncData` 那一节表格后也有一条同义 note：
 
 > All options can be given a `computed` or `ref` value. These will be watched and new requests made automatically with any new values if they are updated.
 
@@ -108,7 +108,7 @@ const { data: post } = await useFetch(() => `/api/posts/${id.value}`)
 
 ## 两个写明的开关
 
-**`watch: false`（只在 `useFetch` 那页写明）**：
+**`watch: false`（只在 `useFetch` 那一节写明）**：
 
 > If needed, you can opt out of this behavior using `watch: false`:
 
@@ -124,7 +124,7 @@ searchQuery.value = 'new search'
 
 选项表里也补了类型与语义：`MultiWatchSources | false`，"Array of reactive sources to watch and auto-refresh. `false` disables watching."
 
-对照 `useAsyncData` 那页：它的 `watch` 行类型是 `MultiWatchSources`（**没有 `| false`**），note 也没有那个 `unless` 括号。**两页这里不一致，文档没有解释**。我的处理是：需要"带 ref 但不重取"时用 `useFetch` 那条写明路径；写 `useAsyncData` 时不去猜 `false` 的语义。要确认只能实测：给它 `watch: false` 看类型报不报错、以及改 ref 时是否仍重发请求。
+对照 `useAsyncData` 那一节：它的 `watch` 行类型是 `MultiWatchSources`（**没有 `| false`**），note 也没有那个 `unless` 括号。**两节这里不一致，文档没有解释**。处理办法是：需要"带 ref 但不重取"时用 `useFetch` 那条写明路径；写 `useAsyncData` 时不去猜 `false` 的语义。要确认只能实测：给它 `watch: false` 看类型报不报错、以及改 ref 时是否仍重发请求。
 
 **`enabled: false`（把三种执行一起挡）**：
 
@@ -150,7 +150,7 @@ type AsyncDataRequestContext = {
 ## 自查
 
 1. `query: { q: ref }` 要不要再写 `watch: [ref]`？（答：不要，两处 note 都写了响应式选项会被自动监听并重发请求。）
-2. 要"带 ref 但不重取"，文档写明的写法是什么？（答：`useFetch` 里 `watch: false`；`useAsyncData` 那页没有这一档。）
+2. 要"带 ref 但不重取"，文档写明的写法是什么？（答：`useFetch` 里 `watch: false`；`useAsyncData` 那一节没有这一档。）
 3. `watch` 触发和 `enabled: false` 有什么关系？（答：`enabled` 为 `false` 时 watch 触发的执行也会被挡住，和首次、手动 refresh 一起挡。）
 
 ## 下一篇

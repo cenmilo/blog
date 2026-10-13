@@ -1,6 +1,6 @@
 ---
 url: /posts/80879c898f1318238eaf286927b25410/
-title: Bridge 的新 Composition API：七个旧 composable 各有去处、两个 lazy 变体与一个 nuxt2Context
+title: 624 - Bridge 的新 Composition API：七个旧 composable 各有去处、两个 lazy 变体与一个 nuxt2Context
 date: 2027-05-08T09:00:00+08:00
 updated: 2027-05-08T09:00:00+08:00
 author: cmdragon
@@ -24,13 +24,13 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
-Bridge 文档里最容易做错的一处是取数：名字还是那几个，含义已经换了。这一页把旧包的每个 API 都指定了去处，其中有三个是"没有替代，自己想办法"。
+Bridge 文档里最容易做错的一处是取数：名字还是那几个，含义已经换了。这一节把旧包的每个 API 都指定了去处，其中有三个是"没有替代，自己想办法"。
 
-## 开场：这一页存在的理由
+## 开场：这一节存在的理由
 
 > By migrating from `@nuxtjs/composition-api` to the Nuxt 3 compatible API, there will be less rewriting when migrating to Nuxt 3.
 
-也就是：**先把这一页的替换做完，真上 3 时改动的量最小。**
+也就是：**先把这一节的替换做完，真上 3 时改动的量最小。**
 
 ## 七个去处逐个看
 
@@ -113,7 +113,7 @@ const wrapProperty = (property: string, makeComputed = true) => () => {
 }
 ```
 
-**这段是可以直接抄进项目的**（这一页唯一"官方给实现"的一条）。
+**这段是可以直接抄进项目的**（这一节唯一"官方给实现"的一条）。
 
 ### useAsync 与 useFetch → 两个 lazy 变体
 
@@ -151,7 +151,7 @@ const wrapProperty = (property: string, makeComputed = true) => () => {
 </script>
 ```
 
-三点必须改：**多了第一个参数 key**、**结果在 `data` 里**、**旧的 `fetch()` 调用变成 `refresh()`**。这也正好回答 Overview 那页 `::warning` 的疑问——它说 `useAsyncData`／`useFetch` 在 Bridge 下不可用，而这一页给的可用形态是**两个 lazy 变体**。
+三点必须改：**多了第一个参数 key**、**结果在 `data` 里**、**旧的 `fetch()` 调用变成 `refresh()`**。这也正好回答 Overview 那一节 `::warning` 的疑问——它说 `useAsyncData`／`useFetch` 在 Bridge 下不可用，而这一节给的可用形态是**两个 lazy 变体**。
 
 ## meta：三条路，别同时走
 
@@ -161,7 +161,7 @@ const wrapProperty = (property: string, makeComputed = true) => () => {
 2. **`useHead`**：Bridge 提供的 Nuxt 3 兼容实现，**需要在配置里显式开 `bridge.meta: true`**；底层是 `@unhead/vue`（不是 `vue-meta`），并建议**不要与原生 `head()` 并用**（会冲突）。
 3. 指向 Nuxt 3 侧 seo-meta 文档的链接。
 
-这三条与 622 那篇讲的是同一套约束，**只是这一页从"旧 `useMeta` 怎么换"的角度再说一遍**。
+这三条与 622 那篇讲的是同一套约束，**只是这一节从"旧 `useMeta` 怎么换"的角度再说一遍**。
 
 ## 最后两小节：显式导入与关自动导入
 
@@ -178,7 +178,7 @@ const double = computed(() => count.value * 2)
 
 `### Disabling Auto-imports`：`imports.autoImport: false` 会**完全关掉自动导入**，但 `#imports` 的显式导入仍然可用。
 
-**这里有个查不到东西的位置要提醒**：`imports` 在配置参考里只有三个子项（`dirs`、`global`、`scan`），**`autoImport` 那一节根本没有条目**——想查它的类型与默认值，配置页查不到，本页这类用法句是唯一的依据。
+**这里有个查不到东西的位置要提醒**：`imports` 在配置参考里只有三个子项（`dirs`、`global`、`scan`），**`autoImport` 那一节根本没有条目**——想查它的类型与默认值，配置页查不到，这一节这类用法句是唯一的依据。
 
 ## 自查
 
@@ -190,11 +190,11 @@ const double = computed(() => count.value * 2)
 
 ## 下一篇
 
-下一篇 625 给整个 P22 收口：把 migration 11 页与 bridge 10 页的**结构清点**摆出来——**每页有几个小节、有没有编号步骤**，顺带说明一件事：**官方从没给过"总共有多少条变更"这个数**，任何统计都得自己说清是按什么数的。
+下一篇 625 给整个 600-629 收口：把 migration 11 页与 bridge 10 页的**结构清点**摆出来——**每页有几个小节、有没有编号步骤**，顺带说明一件事：**官方从没给过"总共有多少条变更"这个数**，任何统计都得自己说清是按什么数的。
 
 ## 本文依据
 
 - https://nuxt.com/docs/4.x/bridge/nuxt3-compatible-api（页标题 "New Composition API" 与开场句；七个 `##` 小节全部原文与代码块（`useState` 的两点差别与跨请求理由、`ssrPromise` 无替代、`onGlobalSetup` 的 `vue:setup` diff、`useStore`、`useContext`/`withContext` 与 `nuxt2Context` 的 `::note`、`wrapProperty` 实现、`useAsync`/`useFetch` 段含 `::important` 与 `::warning` 及两个 diff）；`### useMeta` 三种做法与两条 note/warning；`### Explicit Imports` 的 `#imports` 段；`### Disabling Auto-imports` 的 `imports.autoImport: false` 示例与说明）
-- https://nuxt.com/docs/4.x/bridge/overview（`::warning` 点名 `useAsyncData` 与 `useFetch` 不可用，与本页 lazy 变体互为补充）
+- https://nuxt.com/docs/4.x/bridge/overview（`::warning` 点名 `useAsyncData` 与 `useFetch` 不可用，与这一节 lazy 变体互为补充）
 - https://nuxt.com/docs/4.x/bridge/nitro（`useLazyFetch` 依赖的 Nitro 配置前置）
 - https://nuxt.com/docs/4.x/api/nuxt-config（`## imports` 只有 `dirs`／`global`／`scan` 三个子项，用于说明 `autoImport` 在配置参考无条目）

@@ -1,6 +1,6 @@
 ---
 url: /posts/e81924574f330b899013b4b366bcd950/
-title: 要动 HTML 模板本身时：render-html 与 render-response 两个钩子
+title: 027 - 要动 HTML 模板本身时：render-html 与 render-response 两个钩子
 date: 2026-10-21T09:00:00+08:00
 updated: 2026-10-21T09:00:00+08:00
 author: cmdragon

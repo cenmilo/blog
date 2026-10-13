@@ -1,12 +1,12 @@
 ---
 url: /posts/711805160f086fd4798f30cc3d3e5c37/
-title: 缓存命中时取数还跑吗：swr、isr 与 payload 文件
+title: 237 - 缓存命中时取数还跑吗：swr、isr 与 payload 文件
 date: 2026-12-30T09:00:00+08:00
 updated: 2026-12-30T09:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：这一篇把"路由级缓存"和"取数"两件事对上，因为它们的边界官方是在两页各写一半。`swr` 的定义句："Add cache headers to the server response and cache it on the server or reverse proxy for a configurable TTL (time to live). The `node-server` preset of Nitro is able to cache the full response. **When the TTL expired, the cached response will be sent while the page will be regenerated in the background.** If true is used, a `stale-while-revalidate` header is added without a MaxAge."；`isr` 只改一句作用域："The behavior is the same as `swr` except that we are able to add the response to the CDN cache on platforms that support this (currently Netlify or Vercel). If `true` is used, the content persists until the next deploy inside the CDN."**注意它俩缓存的是"整个响应"**——所以命中时页面组件的 setup 根本没跑，取数自然也没跑。官方在渲染那节还补了一条与取数直接相关的 note："Routes using `isr` or `swr` also generate `_payload.json` files alongside HTML. Client-side navigation loads these cached payloads instead of re-fetching data."。再把 204 那条合上来才完整：混合渲染命中 Nitro 缓存时**所有入站请求头被丢弃**，此时 `useRequestURL()` 的 host 读成 `localhost`，要靠 `cache.varies` 把 `host`/`x-forwarded-host` 纳进缓存键。配置示例里每行注释都写清了语义（`swr: true` 无 MaxAge、`swr: 3600` 一小时、`isr: true` 留到下次部署）。
+  摘要：这一篇把"路由级缓存"和"取数"两件事对上，因为它们的边界官方是在两节各写一半。`swr` 的定义句："Add cache headers to the server response and cache it on the server or reverse proxy for a configurable TTL (time to live). The `node-server` preset of Nitro is able to cache the full response. **When the TTL expired, the cached response will be sent while the page will be regenerated in the background.** If true is used, a `stale-while-revalidate` header is added without a MaxAge."；`isr` 只改一句作用域："The behavior is the same as `swr` except that we are able to add the response to the CDN cache on platforms that support this (currently Netlify or Vercel). If `true` is used, the content persists until the next deploy inside the CDN."**注意它俩缓存的是"整个响应"**——所以命中时页面组件的 setup 根本没跑，取数自然也没跑。官方在渲染那节还补了一条与取数直接相关的 note："Routes using `isr` or `swr` also generate `_payload.json` files alongside HTML. Client-side navigation loads these cached payloads instead of re-fetching data."。再把 204 那条合上来才完整：混合渲染命中 Nitro 缓存时**所有入站请求头被丢弃**，此时 `useRequestURL()` 的 host 读成 `localhost`，要靠 `cache.varies` 把 `host`/`x-forwarded-host` 纳进缓存键。配置示例里每行注释都写清了语义（`swr: true` 无 MaxAge、`swr: 3600` 一小时、`isr: true` 留到下次部署）。
 
 categories:
   - 前端开发

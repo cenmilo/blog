@@ -1,12 +1,12 @@
 ---
 url: /posts/6c09574c5f40521003d35cf093ebd1a8/
-title: useRouteAnnouncer：手动改播报内容与紧急度
+title: 484 - useRouteAnnouncer：手动改播报内容与紧急度
 date: 2027-03-22T10:00:00+08:00
 updated: 2027-03-22T10:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：`useRouteAnnouncer()` 是 `<NuxtRouteAnnouncer>` 背后的那个实例——官方原话是"A composable which observes the page title changes and updates the announcer message accordingly. Used by `<NuxtRouteAnnouncer>` and controllable"，实现方式写得很具体：**挂进 Unhead 的 `dom:rendered` 钩子读页面标题，并把它设为播报消息**。它返回两个属性（`message`、`politeness`，都是 `Ref`）与三个方法（`set(message, politeness = "polite")`、`polite(message)`、`assertive(message)`），唯一入参是 `politeness`（`off`/`polite`/`assertive`，默认 `polite`）。版本要求 v3.12+。要留意两页之间的口径差：这个组件页说"页面内的动态变化请用 `useAnnouncer`"，而无障碍那一页的示例恰恰是用 `useRouteAnnouncer` 的 `set()` 播报搜索结果数量。
+  摘要：`useRouteAnnouncer()` 是 `<NuxtRouteAnnouncer>` 背后的那个实例——官方原话是"A composable which observes the page title changes and updates the announcer message accordingly. Used by `<NuxtRouteAnnouncer>` and controllable"，实现方式写得很具体：**挂进 Unhead 的 `dom:rendered` 钩子读页面标题，并把它设为播报消息**。它返回两个属性（`message`、`politeness`，都是 `Ref`）与三个方法（`set(message, politeness = "polite")`、`polite(message)`、`assertive(message)`），唯一入参是 `politeness`（`off`/`polite`/`assertive`，默认 `polite`）。版本要求 v3.12+。要留意两节之间的口径差：这个组件页说"页面内的动态变化请用 `useAnnouncer`"，而无障碍那一节的示例恰恰是用 `useRouteAnnouncer` 的 `set()` 播报搜索结果数量。
 
 categories:
   - 前端开发
@@ -79,7 +79,7 @@ const { message, politeness, set, polite, assertive } = useRouteAnnouncer({
 
 ## 官方自己用它播非标题内容
 
-无障碍那一页的搜索示例，用的正是 `set()`：
+无障碍那一节的搜索示例，用的正是 `set()`：
 
 ```vue [app/pages/search.vue]
 <script setup lang="ts">
@@ -94,18 +94,18 @@ watch(results, (results) => {
 
 这段是官方原文（放在 Route Announcements 一节里），说明**播报内容不必真是标题**——`set()` 写什么就播什么。
 
-但这里有一个两页之间的口径差要说明白：
+但这里有一个两节之间的口径差要说明白：
 
 | 出处 | 说法 |
 | --- | --- |
 | `useRouteAnnouncer` 页末尾的 `callout` | "For announcing **dynamic in-page content changes** (form validation, toasts, loading states), use `useAnnouncer` instead." |
 | 无障碍页的 Route Announcements 一节 | 用 `useRouteAnnouncer()` 的 `set()` 播报搜索结果数量，并把这写成"When you need to announce something else, or to change how urgently it is announced" |
 
-**搜索结果变化算不算 in-page content change？两页没给出裁决**（文档未说明）。可执行的区分方式是那句官方措辞：**要换紧急度或播"别的东西"用这个**，**做表单校验、toast、加载状态这类页面内反馈用 `useAnnouncer`**（485）——后者还有官方给的三个成型示例正好对着这三类场景。
+**搜索结果变化算不算 in-page content change？两节没给出裁决**（文档未说明）。可执行的区分方式是那句官方措辞：**要换紧急度或播"别的东西"用这个**，**做表单校验、toast、加载状态这类页面内反馈用 `useAnnouncer`**（485）——后者还有官方给的三个成型示例正好对着这三类场景。
 
 ## 一个没写的点
 
-如果**只调 `useRouteAnnouncer()` 而没有在模板里放 `<NuxtRouteAnnouncer>`**，`set()` 写进去的消息有没有渲染处、会不会被播报——**两页都没说**。文档未记载这一点，但组件页那句"Used by `<NuxtRouteAnnouncer>`"暗示渲染责任在组件那边。
+如果**只调 `useRouteAnnouncer()` 而没有在模板里放 `<NuxtRouteAnnouncer>`**，`set()` 写进去的消息有没有渲染处、会不会被播报——**两节都没说**。文档未记载这一点，但组件页那句"Used by `<NuxtRouteAnnouncer>`"暗示渲染责任在组件那边。
 
 要确认，做法很直接：只调 `set()` 不装组件，用读屏软件（或系统自带的朗读功能）听一次；再对照 DOM 里有没有那个隐藏元素。**别只看 `message.value` 变了就认为播出去了**——变量变了和有没有 live region 承载是两件事。
 
@@ -113,7 +113,7 @@ watch(results, (results) => {
 
 - 它是 `<NuxtRouteAnnouncer>` 用的那一个实例，靠 Unhead 的 `dom:rendered` 读标题写入 `message`；v3.12+。
 - 返回 `message`/`politeness` 两个 ref 与 `set`/`polite`/`assertive` 三个方法；`set` 的第二参默认 `polite`。
-- `set()` 能播任意文本，官方自己的搜索示例就这么用；但它与 `useAnnouncer` 的分工在两页间表述不一致，页面内反馈按官方 callout 走 `useAnnouncer`。
+- `set()` 能播任意文本，官方自己的搜索示例就这么用；但它与 `useAnnouncer` 的分工在两节间表述不一致，页面内反馈按官方 callout 走 `useAnnouncer`。
 - 不装组件时 `set()` 有没有效果，文档未记载，要用读屏与 DOM 双重确认。
 - 标题不可区分时（483 那条）这个函数就是唯一的补救入口——但那是治标，标题还是要改。
 

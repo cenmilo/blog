@@ -1,6 +1,6 @@
 ---
 url: /posts/7c9103d5fdaa08bdb06eaedd5f24207f/
-title: event.context 与 params：动态文件名怎么变成参数
+title: 306 - event.context 与 params：动态文件名怎么变成参数
 date: 2027-01-22T09:00:00+08:00
 updated: 2027-01-22T09:00:00+08:00
 author: cmdragon
@@ -28,7 +28,7 @@ tags:
 
 ## event.context.params：动态段落在这
 
-`server/` 里文件名带方括号的动态段，匹配到的值进 `event.context.params`。官方 server 那页 "Route Parameters" 给的是单段 `[name]`，推荐用 `getRouterParam` 取：
+`server/` 里文件名带方括号的动态段，匹配到的值进 `event.context.params`。官方 server 那一节 "Route Parameters" 给的是单段 `[name]`，推荐用 `getRouterParam` 取：
 
 ```ts [server/api/hello/[name].ts]
 export default defineEventHandler((event) => {
@@ -109,4 +109,4 @@ export default defineEventHandler((event) => {
 ## 本文依据
 
 - server 目录（`directory-structure/server`）：Route Parameters 一节（`[name].ts` + `getRouterParam(event,'name')`、`/api/hello/nuxt`→`Hello, nuxt!`、tip `getValidatedRouterParams`）；Catch-all Route 一节（`[...].ts`→`event.context.path`/`event.context.params._`、`[...slug].ts`→`event.context.params.slug`）；Server Middleware 一节（`auth.ts` 的 `event.context.auth = { user: 123 }`，见 291）。
-- 与页面侧 `[...slug]` 数组形状的区别（见 111/P05 页面路由记录）。
+- 与页面侧 `[...slug]` 数组形状的区别（见 111/110-149 页面路由记录）。

@@ -1,12 +1,12 @@
 ---
 url: /posts/4480fdf3ad39e378b5e54618c4b5887b/
-title: 图层的发布与继承：git 来源的六种写法、三个环境变量与 npm 包的六个键
+title: 677 - 图层的发布与继承：git 来源的六种写法、三个环境变量与 npm 包的六个键
 date: 2027-05-25T11:00:00+08:00
 updated: 2027-05-25T11:00:00+08:00
 author: cmdragon
 
 summary: >-
-  摘要：`extends` 一个字符串数组就能继承别的层，而这一页把它的三种来源与各自的坑写全了。**git 来源有六种写法**（`github:用户/仓库`、带子目录 `github:.../base`、带分支 `#dev`、带标签 `#v1.0.0`、`gitlab:`、`bitbucket:`），**未指定分支时会 clone `main`**；私有仓库要 `GIGET_AUTH=<token>`，自建实例要 `GIGET_GITHUB_URL` 或 `GIGET_GITLAB_URL`；git 层若要装它自己的依赖，得显式写 `install: true`。**最该提前知道的一条警告是**：以远程层方式引入的依赖会被装到 `node_modules/.c12/层名/node_modules/`，**你的包管理器看不见它**——所以官方推荐把层发成 npm 包（公共或私有），或在 `package.json` 里直接用 git URL 作依赖。走 npm 时**层的 `package.json` 要填六个键**，其中 **`main` 指向 `./nuxt.config.ts`**，且**层里 import 到的每个依赖都必须显式列进 `dependencies`**。
+  摘要：`extends` 一个字符串数组就能继承别的层，而这一节把它的三种来源与各自的坑写全了。**git 来源有六种写法**（`github:用户/仓库`、带子目录 `github:.../base`、带分支 `#dev`、带标签 `#v1.0.0`、`gitlab:`、`bitbucket:`），**未指定分支时会 clone `main`**；私有仓库要 `GIGET_AUTH=<token>`，自建实例要 `GIGET_GITHUB_URL` 或 `GIGET_GITLAB_URL`；git 层若要装它自己的依赖，得显式写 `install: true`。**最该提前知道的一条警告是**：以远程层方式引入的依赖会被装到 `node_modules/.c12/层名/node_modules/`，**你的包管理器看不见它**——所以官方推荐把层发成 npm 包（公共或私有），或在 `package.json` 里直接用 git URL 作依赖。走 npm 时**层的 `package.json` 要填六个键**，其中 **`main` 指向 `./nuxt.config.ts`**，且**层里 import 到的每个依赖都必须显式列进 `dependencies`**。
 
 categories:
   - 前端开发
@@ -175,9 +175,13 @@ export default defineNuxtConfig({
 | 要控制"层的依赖到底装不装" | git 来源时靠 `install: true`；npm 包时靠包管理器本身 |
 | 私有分发 | 私有 npm 包（**需要 npm 登录**）或带 token 的 git（`GIGET_AUTH` / `auth`） |
 
-这一页没写的：`extends` 指向一个 monorepo 内部目录时的最佳实践、git 层被 clone 到哪个目录（**只有那条 `.c12` 路径的侧面提示**）、`install: true` 用哪种包管理器安装，以及层的 `version` 与 `nuxt` 兼容范围之间有没有校验（`meta.compatibility` 是模块那套机制，页面没有把它接到层上）。
+这一节没写的：`extends` 指向一个 monorepo 内部目录时的最佳实践、git 层被 clone 到哪个目录（**只有那条 `.c12` 路径的侧面提示**）、`install: true` 用哪种包管理器安装，以及层的 `version` 与 `nuxt` 兼容范围之间有没有校验（`meta.compatibility` 是模块那套机制，页面没有把它接到层上）。
 
 下一篇讲优先级：一个资源被多层同时定义时，谁赢。
+
+## 下一篇
+
+下一篇 678：图层优先级：三级顺序、两种控制手段与那条覆盖规则
 
 ## 本文依据
 

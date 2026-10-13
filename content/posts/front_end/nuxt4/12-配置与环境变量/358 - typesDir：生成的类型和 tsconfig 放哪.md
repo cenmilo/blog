@@ -1,6 +1,6 @@
 ---
 url: /posts/78014ca8d0811eb7107010101516f2f8/
-title: typesDir：生成的类型和 tsconfig 放哪
+title: 358 - typesDir：生成的类型和 tsconfig 放哪
 date: 2027-02-08T10:00:00+08:00
 updated: 2027-02-08T10:00:00+08:00
 author: cmdragon
