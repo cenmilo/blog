@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（311）把 app 与 server 的自动导入分界讲了，那条"不许互 import"的墙留了个问题：那**两端都要用的代码放哪**？答案是 `shared/`。这一篇讲它的规则和它的限制。
 
 ## shared 是干嘛的
@@ -135,7 +136,3 @@ import upper from '#shared/utils/formatters/upper'
 ## 下一篇
 
 300-339 服务端引擎与 API 层继续。下一篇 313 讲服务端配置的下一环（见索引），编号与日期连续推进。
-
-## 本文依据
-
-- shared 目录（`directory-structure/shared`）：定位句 "The `shared/` directory allows you to share code that can be used in both the Vue app and the Nitro server."；note v3.14+；important "Code in the `shared/` directory cannot import any Vue or Nitro code."；Why You Cannot Mix（"Nuxt builds two separate bundles ... bundled independently and run in different contexts ... cannot import from either"、Vue App Code in Nitro 与 Nitro Code in the Vue App 两段后果、Type-Only Imports "import type is erased at compile time" 及建议放 shared/types）；类型上下文归属（app/types 仅 app、server/types 仅 server、shared/types 两端）；Usage 具名/默认导出与 app/server 使用示例；How Files Are Scanned（"Only files in the `shared/utils/` and `shared/types/` directories will be auto-imported"、嵌套需 `imports.dirs`+`nitro.imports.dirs`、"identical to app/composables and app/utils"、目录扫描注释图）；`#shared` 别名三条 import 示例。

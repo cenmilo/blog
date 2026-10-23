@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前面几篇反复提到"payload"这个词，这一篇正式讲它。`nuxtApp.payload` 就是那份"服务端算出来、随 HTML 发给浏览器、供水合时接手"的数据。你能通过它读、也能往里写自定义内容。
 
 ## payload 的定位与三个键
@@ -120,7 +121,3 @@ export default definePayloadPlugin((nuxtApp) => {
 ## 下一篇
 
 下一篇 280 讲 `nuxtApp.ssrContext`：那份只在服务端存在、带 `url`/`event`/`payload` 三个属性的上下文，以及它在插件/服务端里能干什么。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）`payload` 一节：定位句；`serverRendered`/`data`/`state` 三键的官方描述（含 data "cached and helps you prevent fetching the same data"、`useAsyncData('count', ...)` 后 `payload.data` 见 `{ count: 1 }`、`ssrcontext` 同值服务端可读、`state` 的 "payload.state.[name-of-your-state]" 与 `useColor`/`my-plugin.ts` 示例、支持 `ref`/`reactive`/`shallowRef`/`shallowReactive`/`NuxtError`）；Custom Reducer/Reviver（v3.4 起、`definePayloadPlugin` 示例及其注释 "runs very early ... before we revive the payload"、"will not have access to the router or other Nuxt-injected properties"、"type identifier ... must be the same on both the reducer and the reviver"）。

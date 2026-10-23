@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 SSR 页面首屏 HTML 里内联的 payload（264 讲过），主要是为了让浏览器**水合**时能读到和服务端一致的数据。那如果某个组件在浏览器里根本不会水合呢？给它塞进 payload 的数据就是纯浪费——白白加宽首屏 HTML。`stripNeverHydratedData` 处理的就是这个浪费。
 
 ## 先补一句：什么是"永不水合的组件"
@@ -90,13 +91,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 到这里 250-269 客户端状态的具体机制基本讲完。下一篇 268 把 useState / useCookie / app.config / runtimeConfig / payload 这几种"状态该放哪儿"的选择，收进一张决策表。
-
-## 本文依据
-
-- Experimental Features（`guide/going-further/experimental-features`）：
-  - `stripNeverHydratedData` 一节："Apply `serialize: false` by default to `useAsyncData` and `useFetch` calls made within components lazily hydrated with `hydrate-never`, keeping their data out of the `__NUXT_DATA__` payload. Since these components never hydrate on the client, their data is not needed for hydration."
-  - "An explicit `serialize` option always takes precedence. If the same key is shared with components that do hydrate, keep the `serialize` option consistent across calls (Nuxt warns about mismatches in development)."
-  - `payloadExtraction` 一节："Controls how payload data is delivered for prerendered and cached (ISR/SWR) pages."、三档取值、默认与 `ssr:false` 强制 `false`。
-  - 页首 note：实验特性可能被移除或修改。
-- useNuxtData（`api/composables/use-nuxt-data`）：同 key 共享缓存值、需显式 key 的前提。
-- useAsyncData 参数（`api/composables/use-async-data`）：`serialize: false` 的既定语义（服务端取但不进 payload）。

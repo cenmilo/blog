@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 368-370 讲的都是"Vue 生命周期在 Nuxt 里的行为"。但 Nuxt 还有**另一套它自己的钩子**——`app:created`、`app:rendered`、`page:finish` 这些。它们跟着 368 那两半按顺序触发，是你在请求流程里插手的正规入口。这一篇把顺序摆出来。
 
 ## 先分清两类钩子
@@ -84,8 +85,3 @@ tags:
 ## 下一篇
 
 下一篇 372 讲取数和这条生命周期怎么咬合：Nuxt 用 Vue 的 `<Suspense>` 挡住导航直到异步数据就绪，以及 `await` 到底改变了什么、没改变什么。
-
-## 本文依据
-
-- 生命周期各步点名的钩子位置 `app:created`/`app:rendered`/`render:html`/`app:beforeMount`/`app:mounted`（`guide/concepts/nuxt-lifecycle`）。
-- App Hooks (Runtime) 表内各钩子的 Arguments/Environment/Description（`app:created` `vueApp` Server & Client "Called when initial vueApp instance is created"；`app:rendered` `renderContext` Server；`app:beforeMount`/`app:mounted` Client；`app:suspense:resolve`、`page:start`、`page:finish`、`app:redirected`、`app:error`、`vue:setup`、`vue:error`）与 Nitro App Hooks (Server-Side) 的 `render:html`（`api/advanced/hooks`）。全量钩子清单见 294。

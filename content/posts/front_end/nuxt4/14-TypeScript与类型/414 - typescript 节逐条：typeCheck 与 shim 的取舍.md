@@ -106,7 +106,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 415 起进入 415-434 样式与资源：样式接入的三条路——`css` 数组全局注入、组件内 import 或 `@import`、以及外部样式表通过 head 挂进来。
-
-## 本文依据
-
-- `## typescript` 下 `typeCheck`（默认 false、true 开发期、`'build'` 限制到构建期、需装 typescript+vue-tsc）、`strict`（默认 true）、`shim`（默认 false 与"recommend letting the official Vue extension"、ESLint 例外）、`tsConfig`（compilerOptions 全局；include/exclude/vueCompilerOptions 与 lib/jsx/jsxImportSource 只 app；types/paths/noEmit 无效）、四个 `*TsConfig` 与 take precedence、`builder`/`includeWorkspace`/`hoist` 定位（`api/nuxt-config`）；dev/build 默认不检查类型与 strict 迁移期关闭、别手改生成 tsconfig 的 `::warning`（`guide/concepts/typescript`）；`nitro.typescript.tsConfig` 废弃改 `typescript.serverTsConfig`（`directory-structure/tsconfig`，见 397）。

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 用户点了个链接，浏览器去拉那个页面对应的 JavaScript 文件（chunk），结果没拉下来——网络抖了一下、或者你刚部署了新包、旧文件名的 chunk 已经没了。这时 Nuxt 会重载页面。问题是：重载之前用户填了一半的表单、选了半天的筛选条件，全没了。`restoreState` 就是拿来救这个的。
 
 ## 它是什么：把状态塞进 sessionStorage，重载后找回
@@ -98,13 +99,3 @@ const draft = useState('compose-draft', () => '')
 ## 下一篇
 
 下一篇 264 反过来讲：既然 `useState` 的值要进 HTML payload，那敏感信息就该谨慎——文档点名的三处"别把什么放进 payload / 客户端包"的注意。
-
-## 本文依据
-
-- Experimental Features（`guide/going-further/experimental-features`）中 `restoreState` 一节：
-  - "Allows Nuxt app state to be restored from `sessionStorage` when reloading the page after a chunk error or manual `reloadNuxtApp()` call."
-  - "To avoid hydration errors, it will be applied only after the Vue app has been mounted, meaning there may be a flicker on initial load."
-  - important："Consider carefully before enabling this as it can cause unexpected behavior, and consider providing explicit keys to `useState` as auto-generated keys may not match across builds."
-  - 页首统一 note："Note that these features are experimental and could be removed or modified in the future."
-- useState（`api/composables/use-state`）：不传 key 时"then a key that is unique to the file and line number ... will be generated for you"，即自动 key 随构建变化的来源。
-- State Management（`getting-started/state-management`）：`useState` 的值 "preserved after server-side rendering (during client-side hydration) and shared across all components"——即它作用在一次加载内。

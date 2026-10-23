@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `nuxt dev` 下网站在根路径 `/` 一切正常。把 `.output` 丢到服务器上、让它跑在 `https://example.com/app/`，页面就空白了——打开控制台，`/_nuxt/xxx.js` 请求 404。这就是 `app` 节要解决的：应用挂在哪个路径下、静态资源去哪个目录取。
 
 ## 先说两个词
@@ -57,7 +58,7 @@ export default defineNuxtConfig({
 NUXT_APP_BASE_URL=/prefix/ node .output/server/index.mjs
 ```
 
-::note
+:::note
 `:::important` 那种块 nuxt-config 这里是 `::note`，原话：Relative paths (like `./`) are not supported directly in `nuxt.config.ts` due to Nitro limitations. For static hosting with relative asset paths, use one of these approaches:
 
 方案一，构建时用环境变量：
@@ -78,7 +79,7 @@ export default defineNuxtConfig({
 })
 ```
 
-::
+:::
 
 也就是说：`app.baseURL: './'` 这种直接写相对路径在 `nuxt.config.ts` 里是**不行的**（Nitro 的限制），要相对路径只能绕上面两条。
 
@@ -155,8 +156,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 ## 下一篇
 
 下一篇 362 讲配置生效时机：改哪些文件 Nuxt 会整个重启（`nuxt.config`、`.env`、`.nuxtrc`、`.nuxtignore`），哪些值能热更（`app.config`），哪些不能（`runtimeConfig`）。
-
-## 本文依据
-
-- `app` / `baseURL` / `buildAssetsDir` / `cdnURL` 的类型、默认值、示例与覆盖变量，及相对路径限制的 `::note`（`api/nuxt-config`）。原文："baseURL — The base path of your Nuxt application." "This can also be set at runtime by setting the NUXT_APP_BASE_URL environment variable." "buildAssetsDir — The folder name for the built site assets, relative to baseURL (or cdnURL if set). This is set at build time and should not be customized at runtime." "cdnURL — An absolute URL to serve the public folder from (production-only)." "Relative paths (like `./`) are not supported directly in nuxt.config.ts due to Nitro limitations."
-- 子路径部署与多路径代理的 payload 处理（`getting-started/deployment`「Serving the Same Build at Multiple Paths」）。原文："For a normal subpath deployment, set app.baseURL or the NUXT_APP_BASE_URL environment variable."

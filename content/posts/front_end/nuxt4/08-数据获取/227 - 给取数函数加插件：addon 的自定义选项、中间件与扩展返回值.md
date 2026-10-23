@@ -219,9 +219,3 @@ function defineUseFetchAddon<Opts extends Record<string, any> = {}, Ext = {}> (a
 ## 下一篇
 
 228 - useNuxtData 实战：乐观更新与失败回滚的官方形状
-
-## 本文依据
-
-- `api/utils/define-use-fetch-addon`：定位句与四能力句；"Pass addons to `createUseFetch` via the `addons` array."；`refreshOnFocus` 完整示例与调用侧；setup 时机与合并选项那句；顺序与重复列 note；Custom Options 一节（标注方式、成为签名的一部分、`auth` 示例、"Custom options stay in the merged options object..."）；Extending the Return Value 一节（规则句 + `timestamps` 示例与 `readonly`）；Middleware 一节（定义句 + `minDuration` 示例）；Contributing to the Auto-Generated Key 一节（规则句 + `scoped` 示例 + setup/key 顺序 warning）；Wrapping then/catch/finally 一节与多 addon 组合顺序 note；Type 签名与"五个数组已归一化"那句。
-- `api/utils/define-use-async-data-addon`：定位句与同款四能力句；read-more（"Addons for useAsyncData work the same way as useFetch addons"）；`pollEvery` 示例与 `UseAsyncDataAddonOptions`；同款顺序 note；签名行。
-- `api/composables/create-use-fetch`、`api/composables/create-use-async-data`：`addons` 数组入口与能力清单句（226 已逐句引）。

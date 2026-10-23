@@ -137,11 +137,3 @@ const { data, status, clear } = await useLazyFetch('/api/x', { default: () => 'p
 ## 下一篇
 
 226 - createUseFetch 与 createUseAsyncData：默认值模式与覆盖模式
-
-## 本文依据
-
-- `api/composables/use-lazy-fetch`：定位句；"By default, useFetch blocks navigation until its async handler is resolved..." 段；Usage 模板示例（pending/error/`v-for`）；note "has the same signature as useFetch"；warning 两条（await 不等待数据、reserved name）；Type 签名与 note "is equivalent to `useFetch` with `lazy: true` option set"；Parameters 两句；返回值表七行（尤其 `clear` 与 `pending` 两行的措辞）；Example 之 Handling Loading State 全段。
-- `api/composables/use-lazy-async-data`：同族对照（"has the same signature as" 与两条重载、`clear` 未列表、`count` 示例与 null 注释）（224 已逐句引）。
-- `api/composables/use-fetch`：`clear` 行含 `options.default()` 括号的原文；`pending` 行的 `pendingWhenIdle` 说明（214/220 已逐句引）。
-- `api/composables/use-async-data`：`clear` 行原文与 Status Values 四条（213/214 已逐句引）。
-- `getting-started/data-fetching`：await 与 lazy 的独立性 warning（"it still blocks server rendering as usual, but on client-side navigation the `await` resolves immediately..."，210 已逐句引）。

@@ -136,9 +136,3 @@ const { data, status, refresh } = useFetch('/api/report', { immediate: false })
 ## 下一篇
 
 下一篇 447 讲比首字节还早的一件事：`writeEarlyHints`。官方只给了一句"Enables writing of early hints when using node server"——限定条件是 node 服务端，而 `writeEarlyHints` 同时还是 h3 里一个要你自己从 `h3` 导入的函数名，两者不是一回事。
-
-## 本文依据
-
-- `pendingWhenIdle` 全节：控制对象句（"controls the `pending` ref returned by `useAsyncData` and `useFetch`"）、默认 `false` 时与 `status === 'idle'` 的规则句、点名的两种写法（`{ immediate: false }`、`{ server: false }` 在服务端渲染时）、设 `true` 后的行为与"no cached data is available"条件、"Use `status` when your loading UI needs to distinguish `idle` from an in-flight request."、配置示例（`guide/going-further/experimental-features`）
-- `data`/`status`/`pending`/`error` 是 ref、`refresh`/`execute`/`clear` 是普通函数的 `::note`；`AsyncDataRequestStatus` 四值类型（`api/composables/use-async-data`）
-- `useLoadingIndicator`：三个参数与默认值（`duration` 2000、`throttle` 200、`estimatedProgress` 的 back off 描述）、`isLoading`/`error`/`progress` 三个只读 ShallowRef、`start`/`set`/`finish`/`clear` 四方法与 `force`、`finish` 的 500 ms 复位与 `error: true`、`page:loading:start`/`page:loading:end` 两个钩子、`estimatedProgress` 默认公式示例（`api/composables/use-loading-indicator`）

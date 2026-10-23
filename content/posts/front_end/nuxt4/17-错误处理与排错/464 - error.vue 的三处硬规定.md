@@ -149,9 +149,3 @@ throw createError({
 ## 下一篇
 
 下一篇 465 把"错误页里到底能用什么"这一层摊开：官方**没有给可用组合式函数的清单**，只写明了两条限制（依赖插件的东西要先检查、中间件会再跑一遍），加上从两个示例里能直接确认的三样（`<NuxtLink>`、`NuxtLayout`、`clearError`）。其余要靠自己在 dev 里试一遍。
-
-## 本文依据
-
-- `error.vue` 那一节：定性句（override the default error files、display the error nicely）、完整示例（`import type { NuxtError } from '#app'`、`defineProps<{ error: NuxtError }>()`、`error.status`、`<NuxtLink to="/">`）、`::note` 三条（不是路由且不放 `~/pages`、同一理由不用 `definePageMeta`、可用 `NuxtLayout` 指定布局名）、"single prop - `error`"、八字段 `NuxtError` 接口含两个标注 legacy/deprecated 的等价字段、"自定义字段会丢失、应放进 `data`"及 `createError({ data: { myCustomField: true } })` 示例（`directory-structure/app/error`）
-- 错误处理页：`~/error.vue` 与 `app.vue` 同级的位置句、`defineProps({ error: Object as () => NuxtError })` 形式的示例与 `clearError({ redirect: '/' })`、fatal 与全屏错误页的 `::note`（`getting-started/error-handling`）
-- `createError` 的参数与 `data`、`error.value.data.data`（`api/utils/create-error`）

@@ -104,13 +104,3 @@ NITRO_PRESET=node-server nuxt build
 ## 下一篇
 
 下一篇 516 讲子路径部署：`app.baseURL` 与 `NUXT_APP_BASE_URL`，以及那条硬限制——`nuxt.config.ts` 里**不支持 `./` 这类相对路径**（原因是 Nitro 的限制），官方给了两种替代写法。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/deployment（Presets 一节的定性句、`nitro: { preset: 'node-server' }` 示例、`NITRO_PRESET=node-server nuxt build`、指向 nitro.build/deploy 的清单链接；Node server preset 的 "Default output format if none is specified or auto-detected"；Cluster Mode 的 `node_cluster` 与 round robin）
-- https://nuxt.com/docs/4.x/api/commands/build（`--target` 说明与三个示例值、`--preset` 是别名与 `NITRO_PRESET`→`SERVER_PRESET` 顺序、`--prerender` 总是设 target 为 static 的 `::note`）
-- https://nuxt.com/docs/4.x/api/commands/generate（同样带 `--target` 选项）
-- https://nuxt.com/docs/4.x/api/nuxt-config（`## nitro` 整节只有两句与两个子项、`runtimeConfig` 默认 JSON 含 `nitro.envPrefix: "NUXT_"`）
-- https://nuxt.com/docs/4.x/directory-structure/server（Nitro Config 小节与会影响生产部署的 `::warning`）
-- https://nuxt.com/docs/4.x/guide/concepts/rendering（路由规则尽量映射到平台原生规则、当前支持 Netlify 与 Vercel）
-- https://nuxt.com/docs/4.x/api/commands/preview（不可本地运行的预设改跑预设自己的 preview 命令并告知）

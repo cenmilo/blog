@@ -165,23 +165,3 @@ definePageMeta({
 ## 下一篇
 
 113 讲 `path` 与 `alias`：同一个文件挂多个 URL 的规则，以及官方那条硬约束——`alias` 与 `path` **必须共享同样的 params**。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（Type 签名）：`interface PageMeta { ... name?: string; path?: string; props?: RouteRecordRaw['props']; alias?: string | string[]; groups?: string[]; ... }`
-  - 原文（`name`）："You may define a name for this page's route. By default, name is generated based on path inside the `app/pages/` directory."；Type `string`
-  - 原文（`path`）："You may define a custom regular expression if you have a more complex pattern than can be expressed with the file name."
-  - 原文（Using a Custom Regular Expression）："A custom regular expression is a good way to resolve conflicts between overlapping routes, for instance: The two routes '/test-category' and '/1234-post' match both `[postId]-[postSlug].vue` and `[categorySlug].vue` page routes."；"To make sure that we are only matching digits (`\d+`) for `postId` in the `[postId]-[postSlug]` route, we can add the following to the `[postId]-[postSlug].vue` page template"；示例 `definePageMeta({ path: '/:postId(\\d+)-:postSlug' })`（文件标注 `app/pages/[postId]-[postSlug].vue`）；"For more examples see Vue Router's Matching Syntax"
-- `https://nuxt.com/docs/4.x/api/components/nuxt-link`
-  - 原文（note）："`<NuxtLink>` is a drop-in replacement for both Vue Router's `<RouterLink>` component and HTML's `<a>` tag. It intelligently determines whether the link is *internal* or *external* and renders it accordingly with available optimizations (prefetching, default attributes, etc.)"
-  - 原文（Internal Routing）：`<NuxtLink to="/about">About page</NuxtLink>` 与"Renders as"块 `<!-- (Vue Router & Smart Prefetching) --> <a href="/about">About page</a>`
-  - 原文（Passing Params to Dynamic Routes）："In this example, we pass the `id` param to link to the route `~/pages/posts/[id].vue`."；`<NuxtLink :to="{ name: 'posts-id', params: { id: 123 } }">Post 123</NuxtLink>`；渲染结果 `<a href="/posts/123">Post 123</a>`
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（Nested Routes 生成的记录）：`{ path: '/parent', component: '~/pages/parent.vue', name: 'parent', children: [{ path: 'child', component: '~/pages/parent/child.vue', name: 'parent-child' }] }`
-  - 原文（Dynamic Routes）："If you place anything within square brackets, it will be turned into a dynamic route parameter. You can mix and match multiple parameters and even non-dynamic text within a file name or directory."
-- `https://nuxt.com/docs/4.x/getting-started/routing`
-  - 原文（Navigation）："It renders an `<a>` tag with the `href` attribute set to the route of the page."；"When a `<NuxtLink>` enters the viewport on the client side, Nuxt will automatically prefetch components and payload (generated pages) of the linked pages ahead of time, resulting in faster navigation."
-  - 原文（生成的路由记录）：`{"path": "/posts/:id", "component": "pages/posts/[id].vue"}`
-- `https://nuxt.com/docs/4.x/api/composables/use-route`
-  - 对照用（见 120）：`useRoute()` 返回字段含 `name`、`path`、`fullPath`（`fullPath` 渲染进模板会造成水合不匹配）

@@ -125,9 +125,3 @@ const handleError = () => clearError({ redirect: '/' })
 ## 下一篇
 
 下一篇 464 讲错误页文件本身：`error.vue` 放在应用源码目录里、和 `app.vue` 同级；官方对它有写明一条硬规定——**它不是路由，不要放进 `pages/`，也因此不该在里面用 `definePageMeta()`**；它能拿到的是唯一一个 prop `error`，但可以用 `NuxtLayout` 并指定布局名来复用布局。
-
-## 本文依据
-
-- `clearError` 参考页：定性句（clears all handled errors）、可用位置（pages, components, and plugins）、参数 `options?: { redirect?: string }` 与"'safe' page"说明句、两种示例（不带参数与 `clearError({ redirect: '/homepage' })`）、机制句（useError 写状态、reset this state、calls the `app:error:cleared` hook with the provided options）、源文件 `composables/error.ts`（`api/utils/clear-error`）
-- 错误处理页：`clearError` 签名 `(): Promise<void>` 与可选 redirect、`error.vue` 里 `handleError = () => clearError({ redirect: '/' })` 的完整示例、`::important` 关于插件抛错后到清掉错误前不会重跑、`::note` 关于错误页是独立页面加载所以中间件会再跑一遍（`getting-started/error-handling`）
-- 钩子表 `app:error`（参数 `err`、Server & Client）与 `app:error:cleared`（参数 `{ redirect? }`、Server & Client、说明句与上一行重复）（`api/advanced/hooks`）

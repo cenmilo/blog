@@ -163,9 +163,3 @@ token.value = 'new-token'
 ## 下一篇
 
 257 - refreshCookie：什么时候才需要手动刷新 cookie 值
-
-## 本文依据
-
-- `api/composables/use-cookie`：Parameters 前两句（"Options to control cookie behavior"、"Most of the options will be directly passed to the cookie package."）；14 行选项表全部原文（含各默认值、v4.4 徽标、`decode` 的抛错回落句、`expires` 的 pure getter 与 RFC 优先级两句、`httpOnly`/`secure`/`partitioned` 三条 note、`sameSite` 五值）；Type 里 `CookieOptions` 自有六键；Readonly Cookies 与 Writable Cookies 两段示例（含四处原注释）；Refreshing Cookies 一节（`refresh` 长说明与 `session` 示例）；Dynamic Expiration 一节（说明句、getter 示例与两条注释）。
-- `guide/best-practices/hydration`：两侧数据不一致的成因与 `useState`/`useCookie` 两个解法（199 已逐句引）。
-- `api/composables/use-state`：`default` 可返回 Ref、`shallowRef` 一档（251 已逐句引）。

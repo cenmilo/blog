@@ -155,9 +155,3 @@ onMounted(async () => {
 ## 下一篇
 
 下一篇 456 讲这一批里最容易互相打架的地方：性能动作与可访问性各自的官方要求在哪里冲突——`hydrate-never` 官方自己写明别用在需要交互的组件上，`<div @click>` 省掉了预取也一并省掉了焦点与中键打开，`custom` 插槽要你把预取自己接回去。
-
-## 本文依据
-
-- 水合页：`Don't ignore those warnings` 一句、Performance Impact 两条（重渲染整个组件树抬高可交互时间、闪烁与意外布局位移）、Functionality 三条（事件挂不上、状态不一致、搜索引擎索引到不同内容）、Common Reasons 里的 `onMounted` 动态导入写法与时间内容的"Solution: Use NuxtTime component or handle it client-side"及两段示例、In Summary 第 2 条"Wrap client-only code: Use ClientOnly component for browser-specific content"（`guide/best-practices/hydration`）
-- `<ClientOnly>` 页：定义句（purposely rendering a component only on client side）、`::note` 关于默认插槽 tree-shake 与 CSS 可能不内联、`placeholderTag`/`fallbackTag` 与 `placeholder`/`fallback` 两对属性、`#fallback` 插槽说明（rendered on the server and displayed until mounted）、两段示例、`Accessing HTML Elements` 小节的 `useTemplateRef` + `watch(..., { once: true })` 写法（`api/components/client-only`）
-- `experimental.clientNodePlaceholder`：注释节点替代 `<div>` 占位、修 scoped 样式的成因、`::warning` 关于 class/style 不进 SSR HTML 与"要防位移就用 `<ClientOnly>` + `#fallback`"的建议、默认随 `compatibilityVersion: 5` 开启（`guide/going-further/experimental-features`）

@@ -150,8 +150,3 @@ it('can render some component', async () => {
 ## 下一篇
 
 下一篇 494 讲端到端这一侧：`setup()` 的三组选项（Nuxt 配置、时间、功能）逐条默认值，以及 `createPage` 和 Playwright 测试运行器两种浏览器驱动方式的差别。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（Helpers 一节：`mountSuspended` 与 `renderSuspended` 的定义句、`::note` 的 wraps `mount`、三条示例与快照内容、`route`/`spy` 两行选项说明、返回值含 `setupState`；`renderSuspended` 的自装依赖／testing globals／`<div id="test-wrapper"></div>` 三条）
-- https://nuxt.com/docs/4.x/getting-started/testing（Unit Testing 的目录与文件名约定，示例文件名 `*.nuxt.spec.ts`）

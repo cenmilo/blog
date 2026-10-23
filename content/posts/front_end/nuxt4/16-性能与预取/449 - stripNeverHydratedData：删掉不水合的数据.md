@@ -106,8 +106,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 450 把视角从载荷挪到首字节：`experimental.ssrStreaming` 让服务端立刻发出 HTML 壳（含 `<head>`、样式、预加载提示与入口脚本），再用 Vue 的 `renderToWebStream` 把渲染出的正文一段段推出去，官方说这"显著提升 TTFB"。代价也写得硬：状态与响应头必须在壳冲出去之前定好，之后写的都到不了客户端。
-
-## 本文依据
-
-- `## stripNeverHydratedData` 全节：定义原文（默认施加 `serialize: false`、作用对象、out of the `__NUXT_DATA__` payload、理由句）、配置示例、"An explicit `serialize` option always takes precedence"与同 key 要保持一致且开发模式警告、对照 `renderJsonPayloads`/`purgeCachedData` 两节的"enabled by default"措辞（`guide/going-further/experimental-features`）
-- `hydrate-never` 的定义"Never hydrates the component."与 `<LazyMyComponent hydrate-never />` 示例、`::note` 关于任何属性变化立即触发水合并以 `hydrate-never` 举例、`::warning` 三条限制（仅 SFC、属性要写在模板上、不支持从 `#components` 直接导入）、"Only one strategy can be used per lazy component"（`directory-structure/app/components`）

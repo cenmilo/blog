@@ -115,33 +115,3 @@ definePageMeta({
 ## 下一篇
 
 136 把 `layout`、`middleware`、`alias`、`redirect` 四个字段拉到一起做实操：布局的字符串/ref/computed/false 与对象形态、中间件与父子路由的合并、alias 的 params 硬约束，以及 redirect 早于守卫的后果。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（描述）："Define metadata for your page components."；"`definePageMeta` is a compiler macro that you can use to set metadata for your **page** components located in the `app/pages/` directory (unless set otherwise). This way you can set custom metadata for each static or dynamic route of your Nuxt application."；示例 `definePageMeta({ layout: 'default' })`（文件标注 `app/pages/some-page.vue`）
-  - 原文（Type 签名，15 个具名字段 + 自定义口子）：`export function definePageMeta (meta: PageMeta): void` / `interface PageMeta { validate?: ((route: RouteLocationNormalized) => boolean | Promise<boolean> | Partial<NuxtError> | Promise<Partial<NuxtError>>) ; redirect?: RouteRecordRedirectOption; name?: string; path?: string; props?: RouteRecordRaw['props']; alias?: string | string[]; groups?: string[]; pageTransition?: boolean | TransitionProps; layoutTransition?: boolean | TransitionProps; viewTransition?: ViewTransitionPageOptions['enabled'] | ViewTransitionPageOptions; key?: false | string | ((route: RouteLocationNormalizedLoaded) => string); keepalive?: boolean | KeepAliveProps; layout?: false | LayoutKey | Ref<LayoutKey> | ComputedRef<LayoutKey> | { name?: LayoutKey | false, props?: Record<string, unknown> }; middleware?: MiddlewareKey | NavigationGuard | Array<MiddlewareKey | NavigationGuard>; scrollToTop?: boolean | ((to: RouteLocationNormalizedLoaded, from: RouteLocationNormalizedLoaded) => boolean); [key: string]: unknown }`
-  - 原文（`redirect`）："Where to redirect if the route is directly matched. The redirection happens before any navigation guard and triggers a new navigation with the new target location."
-  - 原文（`validate`）："Validate whether a given route can validly be rendered with this page. Return true if it is valid, or false if not. If another match can't be found, this will mean a 404. You can also directly return an object with `status`/`statusText` to respond immediately with an error (other matches will not be checked)."
-  - 原文（`name`）："You may define a name for this page's route. By default, name is generated based on path inside the `app/pages/` directory."
-  - 原文（`path`）："You may define a custom regular expression if you have a more complex pattern than can be expressed with the file name."
-  - 原文（`props`）："Allows accessing the route `params` as props passed to the page component."
-  - 原文（`alias`）："Aliases for the record. Allows defining extra paths that will behave like a copy of the record. Allows having paths shorthands like `/users/:id` and `/u/:id`. All `alias` and `path` values must share the same params."
-  - 原文（`groups`，badge v4.3）："Route groups the page belongs to, based on the folder structure. Automatically populated for pages within route groups."
-  - 原文（`keepalive`）："Set to `true` when you want to preserve page state across route changes or use the `KeepAliveProps` for a fine-grained control."
-  - 原文（`key`）："Set `key` value when you need more control over when the `<NuxtPage>` component is re-rendered."
-  - 原文（`layout`）："Set a static or dynamic name of the layout for each route. This can be set to `false` in case the default layout needs to be disabled."；"You can also pass an object with `name` and `props` to pass typed props to your layout component. When your layout defines props with `defineProps`, they will be fully typed in `definePageMeta`."
-  - 原文（`layoutTransition` / `pageTransition`）："Set name of the transition to apply for current layout. You can also set this value to `false` to disable the layout transition."；"Set name of the transition to apply for current page. You can also set this value to `false` to disable the page transition."
-  - 原文（`viewTransition`）："Experimental feature, only available when enabled in your nuxt.config file. Enable/disable View Transitions for the current page. If set to true, Nuxt will not apply the transition if the users browser matches `prefers-reduced-motion: reduce` (recommended). If set to `always`, Nuxt will always apply the transition."；对象字段 `enabled`/`types`/`toTypes`/`fromTypes`
-  - 原文（`middleware`）："Define anonymous or named middleware directly within `definePageMeta`. Learn more about route middleware."
-  - 原文（`scrollToTop`）："Tell Nuxt to scroll to the top before rendering the page or not. Navigation is independent from rendering, so scroll behavior is always triggered even when the page doesn't re-render (e.g. when using a fixed `key`). Set `scrollToTop: false` to disable scrolling in such cases. If you want to overwrite the default scroll behavior of Nuxt, you can do so in `~/router.options.ts`."
-  - 原文（`[key: string]`）："Apart from the above properties, you can also set **custom** metadata. You may wish to do so in a type-safe way by augmenting the type of the `meta` object."
-  - 原文（Passing Props to a Layout）："You can pass props to a layout by using the object syntax for `layout`. If your layout defines props with `defineProps`, the props will be fully typed."；示例 `definePageMeta({ layout: { name: 'panel', props: { sidebar: true, title: 'Dashboard' } } })` 与 `app/layouts/panel.vue` 里 `defineProps<{ sidebar?: boolean; title?: string }>()`；（tip）"Layout props set via `definePageMeta` are fully typed based on the layout's `defineProps`. You'll get autocomplete and type-checking in your editor."
-  - 原文（Defining Middleware 示例）：`middleware: [function (to, from) { ... }]`、`middleware: 'auth'`、`middleware: ['auth', 'another-named-middleware']`
-  - 原文 Source：`packages/nuxt/src/pages/runtime/composables.ts`
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 对照用（见 117）：Page Metadata 与编译器宏四条限制；（Special Metadata）"middleware ... It will be merged with all the other middleware used in any matching parent/child routes."；（keepalive）"You can set a default value for this property in your `nuxt.config`."；（Typing Custom Metadata）`declare module '#app' { interface PageMeta { pageType?: string } }` + `export {}`
-- `https://nuxt.com/docs/4.x/api/kit/pages`
-  - 对照用（见 131）：`NuxtPageMeta` 的增强走 `@nuxt/schema`；`meta` — "Custom metadata for the route. Can be used in layouts, middlewares, or navigation guards."
-- `https://nuxt.com/docs/4.x/getting-started/transitions`
-  - 对照用（见 118）：`app.pageTransition` / `app.layoutTransition` 全局默认与 "To override the global transition property, use the `definePageMeta`..."

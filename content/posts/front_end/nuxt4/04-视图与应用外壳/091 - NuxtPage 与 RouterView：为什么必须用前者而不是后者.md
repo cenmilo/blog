@@ -124,19 +124,3 @@ tags:
 ## 下一篇
 
 092 把 `<NuxtPage>` 的五个 prop 逐个讲完：`pageKey` 怎么控制重渲染、为什么官方写着不要在这里用 `$route` 对象、`ref` 为什么不能直接用而要走 `pageRef`，以及自定义 prop 怎么一路传到页面组件（包括没写 `defineProps` 时从 `attrs` 取）。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 原文（描述与首句）："The \<NuxtPage> component is required to display pages located in the pages/ directory."；"`<NuxtPage>` is a built-in component that comes with Nuxt. It lets you display top-level or nested pages located in the `app/pages/` directory."
-  - 原文（note）："`<NuxtPage>` is a wrapper around `<RouterView>` from Vue Router. It should be used instead of `<RouterView>` because the former takes additional care of internal states. Otherwise, `useRoute()` may return incorrect paths."
-  - 原文（包含的组件）："`<NuxtPage>` includes the following components:"，模板中依次是 `<RouterView v-slot="{ Component }">`、`<!-- Optional, when using transitions --> <Transition>`、`<!-- Optional, when using keep-alive --> <KeepAlive>`、`<Suspense>`、`<component :is="Component" />`
-  - 原文："By default, Nuxt does not enable `<Transition>` and `<KeepAlive>`. You can enable them in the nuxt.config file or by setting the `transition` and `keepalive` properties on `<NuxtPage>`. If you want to define a specific page, you can set it in `definePageMeta` in the page component."
-  - 原文（warning）："If you enable `<Transition>` in your page component, ensure that the page has a single root element."
-  - 原文："Since `<NuxtPage>` uses `<Suspense>` under the hood, the component lifecycle behavior during page changes differs from that of a typical Vue application."
-  - 原文："In a typical Vue application, a new page component is mounted **only after** the previous one has been fully unmounted. However, in Nuxt, due to how Vue `<Suspense>` is implemented, the new page component is mounted **before** the previous one is unmounted."
-  - 原文（链接示例）：`::link-example{to="https://nuxt.com/docs/examples/routing/pages"}`；末尾 Source 指向 `packages/nuxt/src/pages/runtime/page.ts`
-- `https://nuxt.com/docs/4.x/directory-structure/app/app`
-  - 原文（Usage with Pages）："When you have a `app/pages/` directory, you need to use the `<NuxtPage>` component to display the current page"
-- `https://nuxt.com/docs/4.x/getting-started/views`
-  - 原文："To use pages, create an `app/pages/index.vue` file and add `<NuxtPage />` component to the `app/app.vue` (or remove `app/app.vue` for default entry)."

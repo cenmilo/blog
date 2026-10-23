@@ -25,47 +25,29 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+050-089 收尾这四篇讲生成物。这一篇先讲怎么看清它们，官方把调试拆成四把互相独立的开关，用错一把就会白等一次构建。
 
-50-89 收尾这四篇讲"生成物"。**这一篇先讲怎么看清它们**：官方把调试拆成四把互相独立的开关，**用错一把就会白等一次构建。**
+第一把，`debug`，看钩子。官方原话，设为 `true` 以启用调试模式。目前，它会打印服务端的钩子名与耗时，并在浏览器里也打印钩子的参数。你也可以把它设成一个对象，以启用特定的调试选项。类型 boolean，默认值 false。
 
-## 第一把：`debug`（看钩子）
+两个词要抓住。
 
-> 设为 `true` 以启用调试模式。
->
-> **目前，它会打印服务端的钩子名与耗时，并在浏览器里也打印钩子的参数。**
->
-> 你也可以把它设成一个对象，以启用特定的调试选项。
->
-> - 类型：`boolean` - 默认值：`false`
+目前，官方原文 At the moment，这句是在说输出内容会变，别把它当稳定接口。
 
-**两个词要抓住：**
+钩子名与耗时，这条覆盖的正是 019 那条生命周期链，你想知道哪一步慢，它给的是钩子级数据。这与 043 的 `nuxt analyze`，量产物、037 的 `--profile`，量构建，是三个不同工具。
 
-- **"目前"（官方原文 "At the moment"）**：这句是在说**输出内容会变**，别把它当稳定接口。
-- **"钩子名与耗时"**：这条覆盖的正是 019 那条生命周期链——**你想知道"哪一步慢"，它给的是钩子级数据。** 这与 043 的 `nuxt analyze`（量产物）、037 的 `--profile`（量构建）是三个不同工具。
+第二把，`logLevel`，决定你看不看得见。官方原话，构建日志的级别。在 CI 里或当一个 TTY 不可用时，默认为 `silent`，并且这个值在 Vite 里被用作 `silent`、在 webpack 里被用作 `none`。类型 string，默认值 `info`。
 
-## 第二把：`logLevel`（决定你看不看得见）
+这一条解释了一个非常具体的现象，本地有日志，CI 上什么都没有。官方给的答案是自动降级。
 
-> 构建日志的级别。
->
-> **在 CI 里或当一个 TTY 不可用时，默认为 `'silent'`；并且这个值在 Vite 里被用作 `'silent'`、在 webpack 里被用作 `'none'`。**
->
-> - 类型：`string` - 默认值：`"info"`
+第二半句还带出一条 builder 相关的差别，088 会讲构建器可切换，同一个 Nuxt 配置值，会被翻译成不同构建器各自的取值。
 
-**这一条解释了一个非常具体的现象：**"本地有日志，CI 上什么都没有。"**官方给的答案是自动降级。**
-
-**第二半句还带出一条 builder 相关的差别**（088 会讲构建器可切换）：**同一个 Nuxt 配置值，会被翻译成不同构建器各自的取值。**
-
-## 第三把：`sourcemap`（决定报错能不能定位到你写的代码）
-
-> 配置是否为服务端和/或客户端包生成 sourcemaps，以及如何生成。
->
-> **如果设为一个单独的布尔值，该值同时应用于 server 与 client。此外，`'hidden'` 选项对 server 与 client 都可用。**
+第三把，`sourcemap`，决定报错能不能定位到你写的代码。官方原话，配置是否为服务端和或客户端包生成 sourcemaps，以及如何生成。如果设为一个单独的布尔值，该值同时应用于 server 与 client。此外，`hidden` 选项对 server 与 client 都可用。
 
 | 取值 | 官方说明 |
 | --- | --- |
-| `true` | 生成 sourcemaps **并在最终产物里包含 source 引用** |
-| `false` | **不生成任何** sourcemap |
-| `'hidden'` | **生成 sourcemaps，但不在最终产物里包含引用** |
+| `true` | 生成 sourcemaps 并在最终产物里包含 source 引用 |
+| `false` | 不生成任何 sourcemap |
+| `hidden` | 生成 sourcemaps，但不在最终产物里包含引用 |
 
 ```json
 {
@@ -74,37 +56,33 @@ tags:
 }
 ```
 
-（上面这份 JSON 是官方给的**默认值**。）
+上面这份 JSON 是官方给的默认值。
 
-Debugging 页那句与它对照着读：
+Debugging 页那句与它对照着读。Sourcemaps 默认对你的服务端构建开启，对客户端在 dev 模式下开启，但你可以在配置里更具体地启用它们。
 
-> Sourcemaps 默认对你的**服务端构建**开启，对**客户端在 dev 模式下**开启，但你可以在配置里更具体地启用它们。
+两者一致，默认是服务端有、客户端生产没有。于是这条排查口诀成立，生产环境浏览器里那份堆栈看不懂，第一反应是 `sourcemap.client` 是 `false`。
 
-**两者一致：默认是"服务端有、客户端生产没有"。** 于是这条排查口诀成立——**生产环境浏览器里那份堆栈看不懂，第一反应是 `sourcemap.client` 是 `false`。**
+`hidden` 这一档存在的意义值得说清，官方只给了定义，这一句是我从生成但不带引用推出的用途，产物里不带引用，就不会在浏览器控制台出现 sourcemap 提示，但你手里仍然有 sourcemap 文件可以事后还原堆栈，要留给排查用、又不想暴露给用户的，就是这一档。
 
-**`'hidden'` 这一档存在的意义值得说清**（官方只给了定义，这一句是我从"生成但不带引用"推出的用途）：**产物里不带引用，就不会在浏览器控制台出现 sourcemap 提示，但你手里仍然有 sourcemap 文件可以事后还原堆栈**——**要留给排查用、又不想暴露给用户的，就是这一档。**
+第四把，命令行 `--inspect`。Debugging 页给的命令与解释。
 
-## 第四把：命令行 `--inspect`
+官方原话，你可以使用 Node inspector 来调试 Nuxt 的服务端。
 
-Debugging 页给的命令与解释：
+```bash
+nuxt dev --inspect
+```
 
-> 你可以使用 Node inspector 来调试 Nuxt 的服务端。
->
-> ```bash
-> nuxt dev --inspect
-> ```
->
-> 这会在调试器激活的状态下以 `dev` 模式启动 Nuxt。如果一切正常，你的 Chrome DevTools 里会出现一个 Node.js 图标，你可以附着到调试器上。
+这会在调试器激活的状态下以 `dev` 模式启动 Nuxt。如果一切正常，你的 Chrome DevTools 里会出现一个 Node.js 图标，你可以附着到调试器上。
 
-**034 抄过 dev 页那句更精确的版本：默认端口 `127.0.0.1:9229`、服务端代码跑在 Nitro 工作线程里、CLI 进程自己占下一个端口 9230。** 那一节和这一篇是一对——**这里补上官方那条限制：**
+034 抄过 dev 页那句更精确的版本，默认端口 `127.0.0.1:9229`、服务端代码跑在 Nitro 工作线程里、CLI 进程自己占下一个端口 9230。那一节和这一篇是一对，这里补上官方那条限制。
 
-> （important）请注意，**Node.js 与 Chrome 进程需要运行在同一平台上。这在 Docker 里面不起作用。**
+官方用 important 写着，请注意，Node.js 与 Chrome 进程需要运行在同一平台上。这在 Docker 里面不起作用。
 
-**这一条对用 032 那份 dev container 的人很重要**：**容器里跑 Nuxt、宿主机开 Chrome，正是"跨平台"的组合。** 官方在这里没给绕法，我就**不编绕法**——**该走的是另外两条能用的路**：IDE 配置（下一节）或 `nuxt dev --inspect` 后由编辑器连端口。
+这一条对用 032 那份 dev container 的人很重要，容器里跑 Nuxt、宿主机开 Chrome，正是跨平台的组合。官方在这里没给绕法，我就不编绕法，该走的是另外两条能用的路，IDE 配置，下一节，或 `nuxt dev --inspect` 后由编辑器连端口。
 
-## 第五个入口：IDE 里调试（官方给两份配置）
+第五个入口，IDE 里调试，官方给两份配置。
 
-**VS Code。** 官方给的这份配置里有两个注释值得看：
+VS Code。官方给的这份配置里有两个注释值得看。
 
 ```json5
 {
@@ -141,44 +119,41 @@ Debugging 页给的命令与解释：
 }
 ```
 
-**三处要点：**
+三处要点。
 
-1. **`webRoot` 那句注释直接连着 051、079 的知识**：它**必须指向你的 `srcDir`**，而 `srcDir` 默认是 `app`。**改了 `srcDir` 的人，这份配置要跟着改。**
-2. **`server` 那条的 `program` 是 `node_modules/nuxt/bin/nuxt.mjs` + `args: ["dev"]`**——**它就是 024 那张脚本表底下那层**（`npm run dev` → `nuxt dev`）。
-3. **`compounds` 才是这份配置的价值**：`fullstack: nuxt` 把"服务端 Node"与"浏览器 Chrome"两个会话**同时**起来——**同构应用里"同一个请求两侧各跑一次"（013），两侧要能同时下断点。**
+`webRoot` 那句注释直接连着 051、079 的知识，它必须指向你的 `srcDir`，而 `srcDir` 默认是 `app`。改了 `srcDir` 的人，这份配置要跟着改。
 
-官方还留了一条偏好项：
+`server` 那条的 `program` 是 `node_modules/nuxt/bin/nuxt.mjs` 加 `args: ["dev"]`，它就是 024 那张脚本表底下那层，`npm run dev` 到 `nuxt dev`。
 
-> 如果你更喜欢你平常用的浏览器扩展，在上面 *chrome* 配置里加上这一行：`"userDataDir": false,`
+`compounds` 才是这份配置的价值，`fullstack: nuxt` 把服务端 Node 与浏览器 Chrome 两个会话同时起来，同构应用里同一个请求两侧各跑一次，013，两侧要能同时下断点。
 
-**JetBrains 那份是同构的三份配置**：官方让你在项目根建一个 `nuxt.run.xml` 并粘进去，里面同样是 `client: chrome`（一个 `JavascriptDebugType`，`uri="http://localhost:3000"`）、`server: nuxt`（一个 `NodeJSConfigurationType`，`application-parameters="dev"`、`path-to-js-file="$PROJECT_DIR$/node_modules/nuxt/bin/nuxt.mjs"`）与 `fullstack: nuxt`（`CompoundRunConfigurationType`）。
+官方还留了一条偏好项，如果你更喜欢你平常用的浏览器扩展，在上面 chrome 配置里加上这一行 `"userDataDir": false`。
 
-**以及最后一条："其它 IDE"这一节官方没有配置**，只写了"如果你有别的 IDE 并愿意贡献示例配置，欢迎开 PR"。
+JetBrains 那份是同构的三份配置，官方让你在项目根建一个 `nuxt.run.xml` 并粘进去，里面同样是 `client: chrome`，一个 `JavascriptDebugType`、`uri="http://localhost:3000"`，`server: nuxt`，一个 `NodeJSConfigurationType`、`application-parameters="dev"`、`path-to-js-file="$PROJECT_DIR$/node_modules/nuxt/bin/nuxt.mjs"`，与 `fullstack: nuxt`，`CompoundRunConfigurationType`。
 
-## 一次排错该按什么顺序开：我的用法
+以及最后一条，其它 IDE 这一节官方没有配置，只写了如果你有别的 IDE 并愿意贡献示例配置，欢迎开 PR。
 
-（**这一节是我的操作建议，官方没有给顺序。**）
+一次排错该按什么顺序开，我的用法。这一节是我的操作建议，官方没有给顺序。
 
-1. **先 `logLevel`**：确认日志级别没被降成 `silent`（034 的 `--logLevel` 就能临时改）。
-2. **再 `sourcemap`**：看不懂堆栈就确认对应那一侧有没有 sourcemap。
-3. **想知道哪一步慢** → `debug: true` 看钩子耗时（服务端）。
-4. **要在代码里下断点** → `--inspect`（非 Docker）或那份 IDE compound。
-5. **要看框架替我生成了什么文件** → 052 的 DevTools Virtual Files；**要请求接口** → 041 的 `nuxt curl`。
+先 `logLevel`，确认日志级别没被降成 `silent`，034 的 `--logLevel` 就能临时改。
+
+再 `sourcemap`，看不懂堆栈就确认对应那一侧有没有 sourcemap。
+
+想知道哪一步慢，`debug: true` 看钩子耗时，服务端。
+
+要在代码里下断点，`--inspect`，非 Docker，或那份 IDE compound。
+
+要看框架替我生成了什么文件，052 的 DevTools Virtual Files，要请求接口，041 的 `nuxt curl`。
 
 ## 自查
 
 - [ ] `debug: true` 具体打印什么？官方哪两个字在提醒你别依赖它？
 - [ ] 为什么 CI 上什么都没打印？那个降级值在 Vite 与 webpack 里分别被翻译成什么？
 - [ ] 生产浏览器堆栈不可读，默认值是哪一项造成的？
-- [ ] `'hidden'` 与 `true` 的差别是什么？什么时候选它？
+- [ ] `hidden` 与 `true` 的差别是什么？什么时候选它？
 - [ ] 你在容器里跑 Nuxt、宿主机开 Chrome，`--inspect` 为什么不生效？能改用哪两条路？
 - [ ] 改了 `srcDir` 之后，那份 VS Code 配置里哪个字段必须跟着改？
 
 ## 下一篇
 
 084 讲 `watch` 与 `watchers`：改了文件不热重载时，先看 `watch` 里字符串与正则各自的基准（都是 `srcDir`，与 079 那批配置项不同），再看 `chokidar.ignorePermissionErrors` 默认为 true 会在容器里静默吞掉什么。
-
-## 本文依据
-
-- `guide/going-further/debugging`（标题：在 Nuxt 中你可以直接在浏览器里以及在 IDE 里开始调试你的应用；Sourcemaps 一节：sourcemaps 默认对服务端构建开启、对客户端在 dev 模式开启，可在配置里更具体启用，示例 sourcemap: {server:true, client:true} 与注释 or sourcemap: true；Debugging with Node Inspector 一节：nuxt dev --inspect 会在调试器激活状态下以 dev 模式启动 Nuxt、一切正常时 Chrome DevTools 出现 Node.js 图标可附着调试、important 注意 Node.js 与 Chrome 进程需运行在同一平台上这在 Docker 里不起作用；Debugging in Your IDE 一节 VS Code 配置：client: chrome 用 type chrome/request launch/url http://localhost:3000 且注释 this should point to your Nuxt srcDir which is app by default 与 webRoot ${workspaceFolder}/app、server: nuxt 用 type node/request launch/outputCapture std/program ${workspaceFolder}/node_modules/nuxt/bin/nuxt.mjs/args ["dev"]、compounds fullstack: nuxt 引用上述两者，并说明可能需要用你的浏览器路径更新配置以及若要使用平常的浏览器扩展可在 chrome 配置里加 "userDataDir": false；JetBrains 一节：可在 IntelliJ IDEA/WebStorm/PhpStorm 里调试，步骤是在项目根新建 nuxt.run.xml 并粘入配置，内含 JavascriptDebugType 的 client: chrome（uri=http://localhost:3000、useFirstLineBreakpoints=true）、NodeJSConfigurationType 的 server: nuxt（application-parameters=dev、path-to-js-file=$PROJECT_DIR$/node_modules/nuxt/bin/nuxt.mjs、working-dir=$PROJECT_DIR$）与 CompoundRunConfigurationType 的 fullstack: nuxt；Other IDEs 一节：没有示例，欢迎开 PR 贡献）
-- `api/nuxt-config`（debug：设为 true 启用调试模式，目前会打印服务端的钩子名与耗时并在浏览器里也打印钩子参数，也可设为对象以启用特定调试选项，类型 boolean，默认 false。dev：Nuxt 是否运行在开发模式、通常不需要设置、默认 false。logLevel：构建日志级别、在 CI 或无 TTY 时默认降为 'silent' 且该值在 Vite 里用作 'silent' 在 webpack 里用作 'none'、类型 string、默认 "info"。sourcemap：配置是否为服务端与/或客户端包生成 sourcemaps 及如何生成、设为单个布尔时同时应用于 server 与 client、'hidden' 对两者均可用，取值说明 true 生成并在最终产物中包含 source 引用、false 不生成、'hidden' 生成但不在最终产物中包含引用，类型 object，默认 {server:true, client:false}。devServer 与 watch/watchers 见 084、085）

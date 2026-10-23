@@ -165,9 +165,3 @@ export default eventHandler(() => {
 ## 下一篇
 
 下一篇 463 讲怎么收掉它：`clearError(options?: { redirect?: string })` 返回 Promise，用来清掉当前正在处理的错误，并可选带一个要跳转的路径——官方举的例子是"导航到一个安全的页面"。
-
-## 本文依据
-
-- `createError` 参考页：定义句（含 "is meant to be thrown"、Vue 与 Nitro 两侧可用）、参数 `string | { cause, data, message, name, stack, status, statusText, fatal }`、字符串形态与 `status` 默认 `500`、In Vue App 两条（服务端全屏页可用 `clearError` 清、客户端非致命需 `fatal: true`）、页面示例、Error Causes 段与 `cause` 示例及 `{ name, message, stack, cause }` 序列化/原始值透传/生产不含的三条、In API Routes 示例与那段四规则（短 `statusText` 可达客户端、`message` 不传播、`data`、`error.value.data.data`、勿把动态用户输入放进 message）（`api/utils/create-error`）
-- `showError` 参考页：定位句（quick and simple way to show a full screen error page）、"Within the Nuxt context you can use `showError`"、参数 `string | Error | Partial<{...}>`、对象形态示例、"The error is set in the state using `useError()`…"、`::tip` "`showError` calls the `app:error` hook."（`api/utils/show-error`）
-- 错误处理页的 Error Utils：`createError` 签名与两条抛出后果、`cause` 的开发/生产差异句、`statusText` 只允许 HTTP 合规字符的 `::tip`（`[\t\u0020-\u007E]`）与详细说明要用 `message`；`showError` 签名、可调用时机句与"It is recommended instead to use `throw createError()`"（`getting-started/error-handling`）

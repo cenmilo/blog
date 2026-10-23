@@ -213,22 +213,3 @@ type OpenWindowFeatures = {
 ## 下一篇
 
 126 把跳转的安全面收齐：外部地址默认被拒、`noopener`/`noreferrer`、`<NuxtLink>` 给绝对链接与 `target` 链接自动加 `rel` 的默认值，以及 `rel`/`noRel` 为什么不能同时用。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 原文（Type）：`interface NavigateToOptions { replace?: boolean; redirectCode?: number; external?: boolean; open?: OpenOptions }`；`type OpenOptions = { target: string; windowFeatures?: OpenWindowFeatures }`；`type OpenWindowFeatures = { popup?: boolean; noopener?: boolean; noreferrer?: boolean } & XOR<{ width?: number }, { innerWidth?: number }> & XOR<{ height?: number }, { innerHeight?: number }> & XOR<{ left?: number }, { screenX?: number }> & XOR<{ top?: number }, { screenY?: number }>`
-  - 原文（`replace`）：Type `boolean`、Default `false`；"By default, `navigateTo` pushes the given route into the Vue Router's instance on the client side. This behavior can be changed by setting `replace` to `true`, to indicate that given route should be replaced."
-  - 原文（`redirectCode`）：Type `number`、Default `302`；"`navigateTo` redirects to the given path and sets the redirect code to `302 Found` by default when the redirection takes place on the server side. This default behavior can be modified by providing different `redirectCode`. Commonly, `301 Moved Permanently` can be used for permanent redirections."
-  - 原文（`external`）：Type `boolean`、Default `false`；"Allows navigating to an external URL when set to `true`. Otherwise, `navigateTo` will throw an error, as external navigation is not allowed by default."
-  - 原文（Navigating to an External URL）："Without `external: true`: Internal URLs navigate as expected. External URLs throw an error. With `external: true`: Internal URLs navigate with a full-page reload. External URLs navigate as expected."；示例注释 `// will throw an error; // navigating to an external URL is not allowed by default` 与 `// will redirect successfully with the 'external' parameter set to 'true'`
-  - 原文（`open`）：Type `OpenOptions`；"Allows navigating to the URL using the open() method of the window. This option is only applicable on the client side and will be ignored on the server side."；`target` Type `string`、Default `'_blank'`、"A string, without whitespace, specifying the name of the browsing context the resource is being loaded into."；`windowFeatures` 表格七项原文（`popup` / `width` 或 `innerWidth` / `height` 或 `innerHeight`（minimum 100 pixels，including scrollbars）/ `left` 或 `screenX` / `top` 或 `screenY` / `noopener` "Prevents the new window from accessing the originating window via `window.opener`." / `noreferrer` "Prevents the Referer header from being sent and implicitly enables `noopener`."）
-  - 原文（Opening a Page in a New Tab 示例）：`open: { target: '_blank', windowFeatures: { width: 500, height: 500 } }` 与注释 `// will open 'https://nuxt.com' in a new tab`
-  - 原文（Within Route Middleware 示例）：`return navigateTo('/search', { redirectCode: 301 })` 与注释 `// setting the redirect code to '301 Moved Permanently'`
-- `https://nuxt.com/docs/4.x/api/components/nuxt-link`
-  - 原文（Handling Static File and Cross-App Links）："By default, `<NuxtLink>` uses Vue Router's client side navigation for relative route. When linking to static files in the `/public` directory or to another application hosted on the same domain, it might result in unexpected 404 errors because they are not part of the client routes. In such cases, you can use the `external` prop with `<NuxtLink>` to bypass Vue Router's internal routing mechanism."；"The `external` prop explicitly indicates that the link is external. `<NuxtLink>` will render the link as a standard HTML `<a>` tag. This ensures the link behaves correctly, bypassing Vue Router's logic and directly pointing to the resource."；示例 `<NuxtLink to="/example-report.pdf" external>` 与 `<NuxtLink to="/another-app" external>`
-  - 原文（tip）："When you pass an object into the `to` prop, `<NuxtLink>` will inherit Vue Router's handling of query parameters. Keys and values will be automatically encoded, so you don't need to call `encodeURI` or `encodeURIComponent` manually."
-- `https://nuxt.com/docs/4.x/api/composables/use-router`
-  - 对照用（见 123）：`push()`（压入历史栈）与 `replace()`（替换当前条目）的定义
-- `https://nuxt.com/docs/4.x/guide/concepts/rendering`
-  - 对照用（见 103）：整页刷新会重新走一遍下载与水合

@@ -141,8 +141,3 @@ clear() // will cancel the latest pending handler
 ## 下一篇
 
 215 - key 从哪来：自动生成、共享状态与那七个必须一致的选项
-
-## 本文依据
-
-- `api/composables/use-async-data`：Return Values 段全文；两条 tip（SSR 会等完再发、`then`/`catch`/`finally` 可解构）；`server: false` 那条 note；7 行返回值表全部原文；`AsyncData` 类型定义（七个成员的类型）；`AsyncDataExecuteOptions` 三键；`AsyncDataRequestStatus` 四值与 Status Values 四条；note（四个 ref 与三个函数）；`pendingWhenIdle` 那句附加说明；Make Your `handler` Abortable 一节里手动 abort 示例与那段裸调用 `refresh()`/`clear()` 的示例形状。
-- 与 217 的分工：`server: false` 的完整后果（首屏无数据、水合后才取）在 217；本篇只把它作为"await 也拿不到值"的症状点出来。

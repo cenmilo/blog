@@ -216,30 +216,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 ## 下一篇
 
 101 讲 `<NuxtRouteAnnouncer>`：它放在哪里、`politeness` 与 `atomic` 的默认值，以及为什么页内变化的播报要改用 `<NuxtAnnouncer>` 加 `useAnnouncer`。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-client-fallback`
-  - 原文："Nuxt provides the `<NuxtClientFallback>` component to render its content on the client if any of its children trigger an error in SSR."
-  - 原文（note）："This component is experimental and in order to use it you must enable the `experimental.clientFallback` option in your `nuxt.config`."
-  - 原文示例（`app/pages/example.vue`）：`<Sidebar />`、`<!-- this component will be rendered on client-side -->`、`<NuxtClientFallback fallback-tag="span"><Comments /><BrokeInSSR /></NuxtClientFallback>`
-  - 原文（Events）："`@ssr-error`: Event emitted when a child triggers an error in SSR. Note that this will only be triggered on the server."；示例 `<NuxtClientFallback @ssr-error="logSomeError">`
-  - 原文（Props）："`placeholderTag` | `fallbackTag`: Specify a fallback tag to be rendered if the slot fails to render on the server."（type `string`，default `div`）；"`placeholder` | `fallback`: Specify fallback content to be rendered if the slot fails to render."（type `string`）；"`keepFallback`: Keep the fallback content if it failed to render server-side."（type `boolean`，default `false`）
-  - 原文（warning）："The `placeholder` and `fallback` props render content as raw HTML. Do not pass untrusted user input to these props as it may lead to XSS vulnerabilities. Use the `#fallback` or `#placeholder` slots instead for dynamic content that needs proper escaping."
-  - 原文示例：`<!-- render <span>Hello world</span> server-side if the default slot fails to render -->` 配 `fallback-tag="span"` 与 `fallback="Hello world"`
-  - 原文（Slots）："`#fallback`: specify content to be displayed server-side if the slot fails to render."；示例注释 `<!-- this will be rendered on server side if the default slot fails to render in ssr -->` 与 `<p>Hello world</p>`
-  - 原文 Source：`client-fallback.client.ts` 与 `client-fallback.server.ts`（客户端与服务端两份实现）
-- `https://nuxt.com/docs/4.x/guide/going-further/experimental-features`
-  - 原文（clientFallback 节）："Enables the experimental `<NuxtClientFallback>` component for rendering content on the client if there's an error in SSR."；示例 `experimental: { clientFallback: true }`
-- `https://nuxt.com/docs/4.x/api/composables/use-hydration`
-  - 原文（描述）："Allows full control of the hydration cycle to set and receive data from the server."
-  - 原文："`useHydration` is a built-in composable that provides a way to set data on the server side every time a new HTTP request is made and receive that data on the client side. This way `useHydration` allows you to take full control of the hydration cycle."
-  - 原文（note）："This is an advanced composable, primarily designed for use within plugins, mostly used by Nuxt modules."
-  - 原文（note）："`useHydration` is designed to **ensure state synchronization and restoration during SSR**. If you need to create a globally reactive state that is SSR-friendly in Nuxt, `useState` is the recommended choice."
-  - 原文（Usage）："The data returned from the `get` function on the server is stored in `nuxtApp.payload` under the unique key provided as the first parameter to `useHydration`. During hydration, this data is then retrieved on the client, preventing redundant computations or API calls."
-  - 原文（Type）：`export function useHydration<T> (key: string, get: () => T, set: (value: T) => void): void`
-  - 原文（Parameters 表）：`key` — "A unique key that identifies the data in your Nuxt application."；`get` — "A function executed **only on the server** (called when SSR rendering is done) to set the initial value."；`set` — "A function executed **only on the client** (called when initial Vue instance is created) to receive the data."
-  - 原文（Return Values）："This composable does not return any value."
-  - 原文（code-group）：使用 `useHydration('myStoreState', () => myStore.getState(), data => myStore.setState(data))` 与不使用时的 `if (import.meta.server) { nuxt.hooks.hook('app:rendered', ...) }` / `if (import.meta.client) { nuxt.hooks.hook('app:created', ...) }` 对照
-- `https://nuxt.com/docs/4.x/api/components/nuxt-error-boundary`
-  - 对照用（见 095）："The \<NuxtErrorBoundary> component handles client-side errors happening in its default slot."；"`@error`: Event emitted when the default slot of the component throws an error."

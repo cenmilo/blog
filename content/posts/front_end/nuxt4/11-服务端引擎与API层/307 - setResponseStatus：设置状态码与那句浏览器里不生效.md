@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（306）读请求，这一篇讲怎么把响应"标上正确的状态码"。默认响应是 200；要返回 404、202 这种，用 `setResponseStatus`。
 
 ## 它是什么
@@ -97,8 +98,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 下一篇 308 讲服务端错误的正规姿势：`createError` 的参数 status/statusText/body/data/fatal，以及字符串参数和对象参数的差别。
-
-## 本文依据
-
-- setResponseStatus（`api/utils/set-response-status`）：定位句；important "setResponseStatus can only be called in the Nuxt context."；`useRequestEvent()` + `// event will be undefined in the browser` + `if (event)` + `setResponseStatus(event, 404)` / `setResponseStatus(event, 404, 'Page Not Found')` 示例；note "In the browser, setResponseStatus will have no effect."
-- server 目录（`directory-structure/server`）：Status Codes 一节（`setResponseStatus(event, 202)` 返回 202 Accepted，`[id].ts` 示例）；Nuxt context 定义（见 295）。

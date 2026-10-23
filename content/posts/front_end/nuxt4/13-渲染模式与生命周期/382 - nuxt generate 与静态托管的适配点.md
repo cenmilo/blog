@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 379-381 都在讲预渲染，最后收口到落地：把预渲染产物丢到静态主机上，有几件事框架替不了你。`api/commands/generate` 讲命令本身，`getting-started/deployment` 的 Static Hosting 一节讲适配点。
 
 ## `nuxt generate` 是什么
@@ -94,9 +95,3 @@ routeRules: {
 ## 下一篇
 
 下一篇 383 回到渲染，讲路由切换动画的渲染层原理：`<NuxtPage>` 的过渡怎么套 Vue `<Transition>`、`page:transition:finish` 钩子、以及 view transitions API 那条实验线。
-
-## 本文依据
-
-- `nuxt generate` 定义（pre-render every route / triggers `nuxt build` with `prerender: true`）、ROOTDIR 与七个选项表（含 `--envName` 构建默认 production、dev 默认 development；`--target`；`--profile`）（`api/commands/generate`）。
-- Static Hosting 两条路（`ssr: true` SSG 产 200/404 vs `ssr: false` 纯 SPA 空 `#__nuxt`、建议 `<ClientOnly>`）、`ssr: false` 下 generate 输出 index.html、200/404 语义与自动生成、部分预渲染显式加回退、`experimental.prerenderErrorPages`、主机 rewrite 差异（`getting-started/deployment`）。
-- 预渲染无服务器端点的 `::warning`、`nuxt build --prerender` 等价（`guide/concepts/rendering`，见 365/367）。

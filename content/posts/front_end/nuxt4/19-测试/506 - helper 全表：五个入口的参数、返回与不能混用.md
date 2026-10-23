@@ -146,8 +146,3 @@ await setup({
 ## 下一篇
 
 下一篇 507 讲官方给的另一条路：完全不装 `@nuxt/test-utils`，只用 Vitest 加 Vue Test Utils 测组件，六步配置，以及它成立的前提条件。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（Helpers 一节五个入口：`mountSuspended` 与 `renderSuspended` 的定义句、`route`/`spy` 选项与 `setupState` 返回、`<div id="test-wrapper"></div>`；`mockNuxtImport` 的参数与"specify the target to mock"注释；`mockComponent` 的两段说明句、三形态示例（选项对象、路径＋工厂、`import('./MockComponent.vue')`）与工厂被提升的 `> Note`、`await import('vue')` 的写法；`registerEndpoint` 的两个参数与默认 GET）
-- https://nuxt.com/docs/4.x/getting-started/testing（Conflict with End-To-End Testing 整节：不能同文件的原因句、`// @vitest-environment nuxt` 与 `.nuxt.spec.ts` 两种办法、`app.nuxt.spec.ts` 与 `app.e2e.spec.ts` 两份示例、`setupTimeout: 10000`）

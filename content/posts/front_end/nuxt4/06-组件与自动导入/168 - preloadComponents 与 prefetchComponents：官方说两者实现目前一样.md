@@ -140,18 +140,3 @@ await prefetchComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])
 ## 下一篇
 
 169 转入岛屿：什么时候真的该用服务端组件、客户端导航时每个岛屿要发一次请求这件事的代价，以及官方对"不适合用岛屿"的判断句。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/preload-components`
-  - 原文："Nuxt provides utilities to give you control over preloading components."；"Preloading components loads components that your page will need very soon, which you want to start loading early in rendering lifecycle. This ensures they are available earlier and are less likely to block the page's render, improving performance."；"Use `preloadComponents` to manually preload individual components that have been registered globally in your Nuxt app. By default Nuxt registers these as async components. You must use the Pascal-cased version of the component name."；示例 `await preloadComponents('MyGlobalComponent')` 与 `await preloadComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])`；note "On server, `preloadComponents` will have no effect."；Source `packages/nuxt/src/app/composables/preload.ts`
-- `https://nuxt.com/docs/4.x/api/utils/prefetch-components`
-  - 原文："Nuxt provides utilities to give you control over prefetching components."；"Prefetching component downloads the code in the background, this is based on the assumption that the component will likely be used for rendering, enabling the component to load instantly if and when the user requests it. The component is downloaded and cached for anticipated future use without the user making an explicit request for it."；"Use `prefetchComponents` to manually prefetch individual components that have been registered globally in your Nuxt app. By default Nuxt registers these as async components. You must use the Pascal-cased version of the component name."；示例 `await prefetchComponents('MyGlobalComponent')` 与数组形态；note "Current implementation behaves exactly the same as `preloadComponents` by preloading components instead of just prefetching we are working to improve this behavior."；note "On server, `prefetchComponents` will have no effect."；Source 同为 `packages/nuxt/src/app/composables/preload.ts`
-- `https://nuxt.com/docs/4.x/api/utils/preload-route-components`
-  - 对照用（见 145）："Preloading routes loads the components of a given route that the user might navigate to in future."；示例注释 "we don't await this async function, to avoid blocking rendering this component's setup function"；"On server, `preloadRouteComponents` will have no effect."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-link`
-  - 对照用（见 147）："`prefetch`: When enabled will prefetch middleware, layouts and payloads (when using payloadExtraction) of links in the viewport."
-- `https://nuxt.com/docs/4.x/api/kit/components`
-  - 对照用（见 160、161）：`prefetch`/`preload` — "These properties (prefetch/preload) are used in production to configure how components with Lazy prefix are handled by webpack via its magic comments."；`isAsync` — "loaded async (with a separate chunk) regardless of using Lazy prefix or not."
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 对照用（见 159）：全局注册两条路径与"each global component is rendered in a separate chunk"的代价

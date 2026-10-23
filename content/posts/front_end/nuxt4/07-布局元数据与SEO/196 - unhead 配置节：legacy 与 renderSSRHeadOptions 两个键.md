@@ -118,9 +118,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 197 - useRouteAnnouncer 返回什么：两个 Ref 与三个方法
-
-## 本文依据
-
-- `api/nuxt-config`（unhead 一节）：定位句 "An object that allows us to configure the `unhead` nuxt module."；`legacy` 的类型 `boolean`、默认 `false`、三条变更原文与 **See:** `unhead` migration documentation 链接；`renderSSRHeadOptions` 的说明句 "An object that will be passed to `renderSSRHead` to customize the output."、类型 `object`、默认 `{ "omitLineBreaks": false }` 与两个 `defineNuxtConfig` 示例。
-- `api/nuxt-config`（typescript.hoist）：说明句 "Modules to generate deep aliases for within `compilerOptions.paths`. This does not yet support subpaths. It may be necessary when using Nuxt within a pnpm monorepo with `shamefully-hoist=false`." 与含 `@unhead/vue` 的默认数组。
-- `getting-started/seo-meta`：`Nuxt head tag management is powered by [Unhead].` 一句，用来确认 head 的实际管理者是谁。

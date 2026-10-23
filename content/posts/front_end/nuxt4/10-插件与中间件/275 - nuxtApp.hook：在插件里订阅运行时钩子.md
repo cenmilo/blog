@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 页面从"服务端渲染"到"浏览器可交互"之间，有一串固定发生的时刻（应用创建了、渲染完了、挂载完了、页面开始加载了、出错了……）。Nuxt 在这些时刻上挂了名字，让你能在旁边插一段代码，这就是**运行时钩子（runtime hooks）**。`nuxtApp.hook(name, cb)` 就是订阅它的函数。
 
 ## hook 用在哪、长什么样
@@ -128,9 +129,3 @@ export default defineNuxtPlugin({
 ## 下一篇
 
 下一篇 276 讲 `nuxtApp.callHook`——反过来，由你去"触发"一个钩子、并等它的监听跑完（返回 Promise）；顺带澄清一个常见误解：文档里没有 `nuxtApp.callAsync` 这个东西。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）`hook (name, cb)` 一节：定位句两句、"mostly used when creating Nuxt plugins"、`app/plugins/test.ts` 示例（`nuxtApp.hook('page:start', ...)` 与 `nuxtApp.hook('vue:error', (..._args) => ...)` 及其 `import.meta.client` 注释）。
-- Lifecycle Hooks（`api/advanced/hooks`）App Hooks (Runtime) 表：各钩子的 Arguments / Environment / Description 逐条（`app:created`、`app:error`、`app:error:cleared`、`vue:setup` 的 "This callback must be synchronous."、`vue:error` 的 `err, target, info`、`app:rendered`、`app:redirected`、`app:beforeMount`、`app:mounted`、`app:suspense:resolve`、`app:manifest:update`、`app:data:refresh`、`link:prefetch`、`page:start`/`page:finish`、`page:loading:start`（含 "May fire without the page component's setup() re-running ... static key"）/`page:loading:end`、`page:transition:finish`、`dev:ssr-logs`、`page:view-transition:start`）；表头 "Check the app source code for all available hooks."
-- plugins 目录（`directory-structure/app/plugins`）：对象写法 note "Nuxt does statically pre-load any hook listeners when using object-syntax ..."。

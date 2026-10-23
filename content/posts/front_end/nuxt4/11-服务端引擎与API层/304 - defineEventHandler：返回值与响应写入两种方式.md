@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 第一篇 server 相关的代码（`server/api/hello.ts`）长这样：
 
 ```ts [server/api/hello.ts]
@@ -106,9 +107,3 @@ server-imports 那一节还有个相关 tip：
 ## 下一篇
 
 下一篇 305 讲 handler 怎么读请求数据：`readBody` 读体、`getQuery`/`getValidatedQuery` 读查询串，以及校验失败返回 400 的行为。
-
-## 本文依据
-
-- server 目录（`directory-structure/server`）："Each file should export a default function defined with `defineEventHandler()` or `eventHandler()` (alias)."、"The handler can directly return JSON data, a `Promise`, or use `event.node.res.end()` to send a response."、`hello.ts` 示例、开头 important（别在 server 里 import Vue app 代码）。
-- Server Imports（`guide/going-further/server-imports`）：Handlers 一节三类返回值（JSON-serializable/Response/ReadableStream 的原文描述、"res.end() and next() are also supported"）；tip "defineEventHandler preserves your handler's return type ... Annotate the value you return rather than the handler."
-- Server Engine（`guide/concepts/server-engine`）：Typed API Routes "generate typings ... as long as you are returning a value instead of using res.end()"（见 300）。

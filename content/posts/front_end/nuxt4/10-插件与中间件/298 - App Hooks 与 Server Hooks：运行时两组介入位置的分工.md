@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 294 把钩子分了构建期/运行时两类。297 讲了构建期怎么注册。这一篇把"运行时"再拆细——它其实有两组：**App Hooks** 和 **Server Hooks**。名字都带 Runtime，但作用在不同的一侧，选错就订不到。
 
 ## App Hooks (Runtime)：应用的渲染生命周期
@@ -94,8 +95,3 @@ tags:
 ## 下一篇
 
 下一篇 299 讲自定义钩子：官方 Adding Custom Hooks 那节怎么用 declare module 扩展 RuntimeNuxtHooks / NuxtHooks / NitroRuntimeHooks 给自己起的钩子补类型。
-
-## 本文依据
-
-- Lifecycle Hooks 指南（`guide/going-further/hooks`）：App Hooks (Runtime)（"mainly used by Nuxt Plugins to hook into rendering lifecycle but could also be used in Vue composables."、`nuxtApp.hook('page:start')` 示例）；Server Hooks (Runtime)（"available for server plugins to hook into Nitro's runtime behavior."、`defineNitroPlugin` 里 `nitroApp.hooks.hook('render:html'/'render:response', ...)` 示例）。
-- Lifecycle Hooks API（`api/advanced/hooks`）：Nitro App Hooks (Runtime, Server-Side) 表（`request`/`render:html`/`render:response`/`render:island`/`beforeResponse`/`afterResponse`/`error`/`close`/`dev:ssr-logs` 的参数与描述、"See Nitro for all available hooks."）；App Hooks (Runtime) 表（见 275）。

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（343）让 runtimeConfig 的"值"在运行时正确落地。这一篇管它的"类型"——`useRuntimeConfig()` 返回的东西 TS 认不认识你的键。
 
 ## 默认：自动推类型
@@ -87,8 +88,3 @@ runtimeConfig 的类型是**两端都要用的**（服务端读私有、客户�
 ## 下一篇
 
 下一篇 345 把配置来源排个优先级全景：nuxt.config、项目 .nuxtrc、家目录 .nuxtrc、以及运行时环境变量各管哪一层、谁盖谁。
-
-## 本文依据
-
-- Runtime Config（`guide/going-further/runtime-config`）："Typing Runtime Config" 节（"Nuxt tries to automatically generate a typescript interface from provided runtime config using unjs/untyped."、手动 declare `RuntimeConfig`/`PublicRuntimeConfig` 于 `declare module 'nuxt/schema'` + `export {}`、note "`nuxt/schema` is provided as a convenience ... Module authors should instead augment `@nuxt/schema`"）。
-- TypeScript（`guide/concepts/typescript`）：增补要放对类型上下文目录（app/server/shared）、生成时机 dev/build/prepare（见 289/344）。

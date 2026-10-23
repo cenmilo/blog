@@ -126,11 +126,3 @@ if (nuxt.options.builder === '@nuxt/webpack-builder') {
 ## 下一篇
 
 下一篇 439 讲代码分割：包被切成哪几块、谁决定切。路由级是怎么来的、`Lazy` 前缀和全局组件各自出 chunk 的规则不一样，以及官方那句"关掉代码分割通常只会让首屏下载更多"是针对什么写法说的。
-
-## 本文依据
-
-- `build` 节 `transpile`：定义原文、四种元素、"conditionally transpile"与空括号那句、类型 `array`、`({ isLegacy }) => isLegacy && 'ky'` 示例（`api/nuxt-config`）
-- Transpiling Libraries：`transpile: ['sample-library']` 与"also need to add other packages that are being imported by these libraries"；`SyntaxError: Unexpected token 'export'` 报错示例及其成因段（`guide/concepts/esm`）
-- E1006 描述与 Resolution 原文（`errors/e1006`）
-- Kit 上下文示例中按 `nuxt.options.builder === '@nuxt/webpack-builder'` 条件 push `xstate`（`api/kit/context`）；`addComponent` 选项表里 `transpile` 的类型、默认值与说明（`api/kit/components`）
-- bridge 配置示例中注释掉的 `transpile: false` 与 `// Do not transpile modules`（`bridge/configuration`）

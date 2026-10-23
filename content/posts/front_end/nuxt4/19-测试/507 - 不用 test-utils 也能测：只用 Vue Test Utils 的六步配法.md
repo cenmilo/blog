@@ -134,8 +134,3 @@ describe('HelloWorld', () => {
 ## 下一篇
 
 下一篇 508 讲第三种执行环境：Vitest Browser Mode，配置四行、`page.render` 与 `render` 两种入口，以及那八个返回项。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（Using `@vue/test-utils` 整节：适用条件原句、六步全部内容与代码（四包安装命令含 npm/yarn/pnpm/bun、`vitest.config.ts` 全文、`package.json` scripts 片段、`app/components/HelloWorld.vue`、`~/components/HelloWorld.spec.ts` 的 `mount` 测试、四条运行命令、结尾祝贺句））
-- https://nuxt.com/docs/4.x/getting-started/testing（对照用：`mountSuspended`/`renderSuspended` 的 `route`/`spy`/`setupState`、`mockNuxtImport`/`mockComponent`/`registerEndpoint`、TypeScript Support in Tests 的默认目录）

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `theme` 这个词在别的生态里多半指"配色/皮肤"。在 Nuxt 的 nuxt.config 里，它**不是**——这一点必须先纠正，否则你会往错的方向写配置。
 
 ## 它实际是什么
@@ -68,8 +69,3 @@ nuxt-config 的 `## theme` 全文：
 ## 下一篇
 
 下一篇 360 讲 nuxt.config 的 hooks 节：在配置文件里直接写构建期钩子，以及它能用层次对象结构书写（build.done）这条便利。
-
-## 本文依据
-
-- nuxt-config theme 节（`api/nuxt-config`）：全文 "Extend project from a local or remote source. Value should be a string pointing to source directory or config path relative to current config. You can use `github:`, `gitlab:`, `bitbucket:` or `https://` to extend from a remote git repository."，类型 string。
-- 主题色/深浅色是 app.config（`directory-structure/app/app-config`，见 340）；extends 与图层优先级（`getting-started/layers`，见 068）。本节未写 theme 与 extends 的合并/优先级细则（正文如实标注，未外推）。

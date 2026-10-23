@@ -108,11 +108,3 @@ Node 托管只是 Nitro 六种能力的一种落点。同页开头列的那份�
 ## 下一篇
 
 下一篇 515 讲 preset 与 target 这套机制：`NITRO_PRESET`、`SERVER_PRESET`、`--target` 三者的顺序，以及为什么 4.x 的 `nuxt.config` 配置参考里几乎不讲 preset。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/guide/concepts/server-engine（Standalone Server 整节：独立于 `node_modules` 的定性句、输出内容含任何环境的运行时代码与实验性浏览器 service worker、JAMstack 混合、原生存储层与多来源驱动、`nuxt build` 生成到 `.output`、Nuxt 2 需 `nuxt-start`/`nuxt` 或编程式使用且被评价为脆弱不适合 serverless；开头六条能力清单）
-- https://nuxt.com/docs/4.x/getting-started/deployment（Node.js Server 三条定性、Entry Point 句与启动命令与默认 3000、三个 runtime 环境变量与 SSL 只用于测试/交给反向代理、`app.baseURL` 与 `NUXT_APP_BASE_URL`）
-- https://nuxt.com/docs/4.x/api/commands/preview（要求依赖装在包目录那句、`.env` 载入与 `--env-file` 示例）
-- https://nuxt.com/docs/4.x/directory-structure/env（Production Preview 同一限定句）
-- https://nuxt.com/docs/4.x/api/nuxt-config（`NUXT_APP_CDN_URL` 与 `app.cdnURL` 默认 `""`）

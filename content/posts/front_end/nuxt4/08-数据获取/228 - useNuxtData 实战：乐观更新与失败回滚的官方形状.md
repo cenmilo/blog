@@ -136,10 +136,3 @@ async function addTodo () {
 ## 下一篇
 
 229 - 两种清理粒度：refreshNuxtData 与 clearNuxtData
-
-## 本文依据
-
-- `api/composables/use-nuxt-data`：定位句 "Access the current cached value of data fetching composables."；note（四个 composable 与 explicitly provided key）；Usage 段三句（含三种用途与前提句）；签名；Parameters 与 Return Values 两句（含 `undefined` 与 "automatically updates"）；Optimistic Updates 一节的定义句、`todos.vue` 与 `NewTodo.vue` 两段示例（含三个钩子的三行注释）。
-- `api/utils/refresh-nuxt-data`：`refreshNuxtData('todos')` 的调用形状与"可传 key/数组"的参数说明（215/229 已引）。
-- `api/composables/use-fetch`：四个拦截器钩子的名称、入参与 ofetch 版本依赖（221 已逐句引）。
-- `guide/best-practices/hydration`：两侧执行与浏览器 API 的成因表（199 已逐句引），用来限定这段逻辑的触发时机。

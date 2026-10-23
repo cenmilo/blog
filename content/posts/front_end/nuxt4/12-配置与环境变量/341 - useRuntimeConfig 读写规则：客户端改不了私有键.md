@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（340）讲了 runtimeConfig 的分层。这一篇讲读它的 `useRuntimeConfig()` 本身有个不对称：服务端和客户端能读的范围、能不能改，都不一样。
 
 ## 核心：两端的读写不对称
@@ -91,9 +92,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 下一篇 342 讲环境变量到 runtimeConfig 键的命名映射：NUXT_ 前缀、大小写转下划线、public 层要加 PUBLIC，以及 destr 把值当类型转换带来的"数字串变数字"坑。
-
-## 本文依据
-
-- useRuntimeConfig（`api/composables/use-runtime-config`）：读法两端示例（app.vue `useRuntimeConfig()`、server/api `useRuntimeConfig(event)`）、Define Runtime Config 例子、Access 例子里 config.public.apiBase 与 config.apiSecret（后者 only server-side）；tip "Public runtime config is accessible in Vue templates with $config.public."
-- Runtime Config（`guide/going-further/runtime-config`）：两端读写不对称 important（client 只 public/app 可写可响应式、server 全部可读但只读"to avoid context sharing"）；服务端路由传 event 的 note（见 335/327）。
-- app.config / updateAppConfig（`guide/concepts`/`api`）：前端可改配置走 app.config（见 265/266）。

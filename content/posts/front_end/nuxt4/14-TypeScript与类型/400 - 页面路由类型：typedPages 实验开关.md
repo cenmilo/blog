@@ -95,7 +95,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 401 讲 `strictRouteTypes`：把"只允许已注册的路由名与参数"这件事推到接口请求侧，`false`/`true`/`'isomorphic'` 三档各自的取舍与官方给的理由句。
-
-## 本文依据
-
-- `## typedPages`（"Enable the new experimental typed router"、开启示例、"Out of the box, this will enable typed usage of `navigateTo`, `<NuxtLink>`, `router.push()` and more."、"You can even get typed params within a page by using `const route = useRoute('route-name')`"、type-safe routing 视频）（`guide/going-further/experimental-features`）；`navigateTo` 的 await/return `::warning`、Nitro 路由不可用与 `sendRedirect` 的 `::note`、中间件须返回、`navigateToEarlyReturn` 的 `::note`（`api/utils/navigate-to`）。

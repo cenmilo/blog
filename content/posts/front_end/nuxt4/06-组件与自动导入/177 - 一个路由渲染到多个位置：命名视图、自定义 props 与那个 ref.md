@@ -190,17 +190,3 @@ defineExpose({
 ## 下一篇
 
 178 讲一个只在模块场景下有意义的实验开关：`experimental.extraPageMetaExtractionKeys` 让构建期多读哪几个 key、为什么必须配 `pages:resolved` 用、以及官方要求模块同时增强 `NuxtPage` 类型。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（Named Views :badge[v4.5]）："A single route can render into multiple `<NuxtPage>` outlets in a parent component by giving each outlet a `name` and providing a sibling page file for each name."；"Use the `name@view.vue` filename convention to declare a named view alongside the default route file:" + 目录树 `-| pages/ ---| parent/ ------| child.vue ------| child@sidebar.vue ---| parent.vue`；父级示例 `<NuxtPage />` 与 `<NuxtPage name="sidebar" />`；"When the user navigates to `/parent/child`, `child.vue` renders into the default `<NuxtPage />` and `child@sidebar.vue` renders into `<NuxtPage name=\"sidebar\" />`. Outlets without a matching named view are left empty."；note "`definePageMeta` is read from the default route file only. Meta declared inside a `name@view.vue` sibling has no effect on the route."；read-more 指向 vue-router 的 named views 文档
-  - 原文（Route Groups 对照）："In some cases, you may want to group a set of routes together in a way which doesn't affect file-based routing. For this purpose, you can put files in a folder which is wrapped in parentheses - `(` and `)`."；"The `marketing` group is ignored for purposes of your URL structure."；`route.meta.groups`（v4.3）
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 原文（props 与 tip）：`name` — "tells `<RouterView>` to render the component with the corresponding name in the matched route record's components option. See Named Views for the `name@view.vue` filename convention."；`route` — "route location that has all of its components resolved."；tip "Nuxt automatically resolves the `name` and `route` by scanning and rendering all Vue component files found in the `/pages` directory."
-  - 原文（Page's Ref / Custom Props）："To get the `ref` of a page component, access it through `ref.value.pageRef`" + `page.value.pageRef.foo()` 与页面侧 `defineExpose({ foo })`；"`<NuxtPage>` also accepts custom props that you may need to pass further down the hierarchy. For example, in the below example, the value of `foobar` will be passed to the `NuxtPage` component and then to the page components." + `<NuxtPage :foobar="123" />`、`const props = defineProps<{ foobar: number }>()`、"If you have not defined the prop with `defineProps`, any props passed down to `NuxtPage` can still be accessed directly from the page `attrs`:" + `const attrs = useAttrs()`
-  - 原文（包装结构与警告，与 091、092 同源）：`<RouterView v-slot="{ Component }">` → `<Transition>` → `<KeepAlive>` → `<Suspense>` → `<component :is="Component" />`；note "`<NuxtPage>` is a wrapper around `<RouterView>` from Vue Router. It should be used instead of `<RouterView>` because the former takes additional care of internal states. Otherwise, `useRoute()` may return incorrect paths."；warning "Don't use `$route` object here as it can cause problems with how `<NuxtPage>` renders pages with `<Suspense>`."
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 对照用（见 158、167、176）：`(分组)` 目录不改名；模板 ref 与编译期特性的 SFC 边界
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 对照用（见 117、135、137）：`definePageMeta` 的编译期提取与 `key`/`props` 字段

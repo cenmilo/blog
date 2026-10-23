@@ -122,10 +122,3 @@ npx nuxt dev --inspect-brk
 ## 下一篇
 
 下一篇 476 讲报障这件事：官方报障页的四步是"先分清是求助还是 bug、先搜 open issues 与 discussions、做最小复现、判断责任在哪一层"，其中两条有硬性指引——**能归到某个模块或上游库就别提到 Nuxt 仓库**，以及**问题若涉及 Vue 或 Vite，先用 Vue SSR starter 试着复现**。
-
-## 本文依据
-
-- `nuxt dev` 命令页 Debugging 一节：`--inspect` 段原文（服务端代码＝路由、中间件、SSR，跑在 Nitro worker 线程、可选 `[host:]port`、默认 `127.0.0.1:9229`、Chrome DevTools 与多数编辑器免配置、重载后自动重连）；"Debugging the CLI" 段（`nuxt.config`、模块与构建钩子在 CLI 进程、下一个端口默认 9230、`chrome://inspect` 的 Configure 加 `localhost:9230`）；`--inspect-brk` 段与命令示例；`--profile` 段与 `nuxt-dev.cpuprofile`/`verbose`、`::note` 的 v4.4 与 `perf-report.json`/`perf-trace.json`；选项表中 `--inspect`、`--inspect-brk`、`--profile=<verbose>` 三行原文（`api/commands/dev`）
-- 交互面板退化四种条件（含 attach 调试器）与 plain 模式快捷键集、`NUXT_TUI=1` 与管道/重定向无效的括号句（`api/commands/dev`）
-- 网络视图请求追踪的时间线内容清单、Vite 编译耗时按插件与最慢模块拆分、tracing channels 来源与 `tracingChannel: false`（`api/commands/dev`）
-- IDE 侧的 `client: chrome` 配置、`webRoot` 指向 `srcDir`（默认 `app`）、`userDataDir: false`、JetBrains 的 `JavascriptDebugType` 与 compound（`guide/going-further/debugging`，474 依据）

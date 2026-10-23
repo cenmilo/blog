@@ -212,24 +212,3 @@ const double = computed(() => count.value * 2)
 ## 下一篇
 
 151 划边界：目录到底扫到哪一层、composable 必须在什么上下文里同步调用、`Nuxt instance is unavailable` 是怎么来的、以及服务端与客户端两套自动导入名字撞车时怎么办。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`（本篇主要依据）
-  - 原文（标题句与开篇）："Nuxt auto-imports components, composables, helper functions and Vue APIs."；"Nuxt auto-imports components, composables and Vue.js APIs to use across your application without explicitly importing them."；示例 `const count = ref(1) // ref is auto-imported`（文件标注 `app/app.vue`）
-  - 原文（三个承诺）："Contrary to a classic global declaration, Nuxt preserves typings, IDEs completions and hints, and only includes what is used in your production code."
-  - 原文（目录来源）："Thanks to its opinionated directory structure, Nuxt can auto-import your `app/components/`, `app/composables/` and `app/utils/`."
-  - 原文（读文档约定 note）："In the docs, every function that is not explicitly imported is auto-imported by Nuxt and can be used as-is in your code. You can find a reference for auto-imported components, composables and utilities in the API section."
-  - 原文（服务端 note）："In the `server` directory, Nuxt auto-imports exported functions and variables from `server/utils/`."
-  - 原文（自定义/第三方 note）："You can also auto-import functions exported from custom folders or third-party packages by configuring the `imports` section of your `nuxt.config` file."
-  - 原文（Built-in Auto-imports）："Nuxt auto-imports functions and composables to perform data fetching, get access to the app context and runtime config, manage state or define components and plugins."；示例 `const { data, refresh, status } = await useFetch('/api/hello')` 与注释 `/* useFetch() is auto-imported */`；"Vue exposes Reactivity APIs like `ref` or `computed`, as well as lifecycle hooks and helpers that are auto-imported by Nuxt."；示例 `const count = ref(1)` + `const double = computed(() => count.value * 2)` 与注释 `/* ref() and computed() are auto-imported */`
-  - 原文（Directory-based Auto-imports）："Nuxt directly auto-imports files created in defined directories: `app/components/` for Vue components. `app/composables/` for Vue composables. `app/utils/` for helper functions and other utilities."
-  - 原文（warning）："Auto-imported `ref` and `computed` won't be unwrapped in a component `<template>`."；"This is due to how Vue works with refs that aren't top-level to the template. You can read more about it in the Vue documentation."
-  - 原文（Explicit Imports）："Nuxt exposes every auto-import with the `#imports` alias that can be used to make the import explicit if needed:" + `import { computed, ref } from '#imports'`
-  - 原文（Auto-imported Components）："Nuxt also automatically imports components from your `~/components` directory, although this is configured separately from auto-importing composables and utility functions."；"To disable auto-importing components from your own `~/components` directory, you can set `components.dirs` to an empty array (though note that this will not affect components added by modules)." + `components: { dirs: [] }`
-  - 原文（Auto-Import from Third-Party Packages）："Nuxt also allows auto-importing from third-party packages."；tip "If you are using the Nuxt module for that package, it is likely that the module has already configured auto-imports for that package."；示例 `imports: { presets: [{ from: 'vue-i18n', imports: ['useI18n'] }] }`
-  - 原文（页尾）：`::link-example{to="https://nuxt.com/docs/examples/features/auto-imports"}`
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`、`https://nuxt.com/docs/4.x/directory-structure/app/composables`、`https://nuxt.com/docs/4.x/directory-structure/app/utils`、`https://nuxt.com/docs/4.x/directory-structure/server`
-  - 对照用（见 063、151、156）：四个目录页，这一节三条目录来源与 server note 都以它们为链接目标
-- `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 对照用（见 152、153）：`imports` 一节（这一节 note 与 `presets` 示例都链接到 `api/nuxt-config#imports`）

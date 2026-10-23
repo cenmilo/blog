@@ -153,13 +153,3 @@ useHead({
 ## 下一篇
 
 下一篇 489 收官方那一节剩下的两节：滚动行为（默认三种：新路由滚到顶、返回时恢复位置、命中锚点滚动；改法是 `scrollBehaviorType` 或自己在 `router.options.ts` 里写 `scrollBehavior`，并要尊重 `prefers-reduced-motion`）与那一节末尾列出的三条外部资源。
-
-## 本文依据
-
-- SEO 页 Title Template 一节：定义两句（可字符串 `%s` 或函数、"this cannot be set in your `nuxt.config`"、推荐写在 `app.vue` 并作用于全站）、`useHead` 的函数示例、"My Page - Site Title" 与传 `null` 落兜底两句（`getting-started/seo-meta`）
-- Template Parameters 一节：定义句与 `templateParams: { siteName, separator }` 示例
-- Dynamic Title 一节：字符串与函数两份示例、"nuxt.config does not allow the page title to be dynamic. Therefore, it is recommended to use `titleTemplate` in the `app.vue` file"
-- With `definePageMeta` 一节："this is extracted at build time via a macro, so it can't be set dynamically"、`definePageMeta({ title })` 与布局里 `route.meta.title` 填 `og:title` 的两段示例
-- `useHead` 参数表：`title`（Sets the page title）与 `titleTemplate` 的类型 `string | ((title?: string) => string)`（`api/composables/use-head`）
-- `app.head` 那条 `::important`（不能放响应式数据、建议 `useHead()`）与 `title: 'Nuxt'` 的 "default fallback title" 注释（`getting-started/seo-meta`）
-- 宏被构建期 transform（`errors/e1007`）、`definePageMeta` 的静态提取键（`api/nuxt-config`）、播报器读 Unhead 标题（`guide/best-practices/accessibility`）

@@ -100,7 +100,3 @@ nuxt-config 的 `## vue` 下：
 ## 下一篇
 
 下一篇 406 专讲 runtimeConfig 的类型：官方说 Nuxt 会用 untyped 自动生成接口，但保留手动增强 `RuntimeConfig` 与 `PublicRuntimeConfig` 的做法，以及为什么模块作者要增强 `@nuxt/schema`。
-
-## 本文依据
-
-- `definePageMeta` 是编译器宏、与 `defineEmits`/`defineProps` 同类的说法（`directory-structure/app/pages`）；布局 props fully typed 与 `tip`、对象语法示例（`api/utils/define-page-meta`、`api/components/nuxt-layout`、`directory-structure/app/layouts`）；`<NuxtPage>` 自定义 prop 的 `defineProps<{ foobar: number }>()` 与未声明时走 `useAttrs()`（`api/components/nuxt-page`）；`defineProps<{ error: NuxtError }>()`（`directory-structure/app/error`）；`defineProps<{ variant: string }>()`（`guide/concepts/server-components`）；`vue.propsDestructure` 默认 `true`（`api/nuxt-config`）；app.config 不能 import Vue 组件（`directory-structure/app/app-config`，见 055）。

@@ -159,7 +159,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 419 讲 PostCSS：Nuxt 自带、在 `postcss.plugins` 里加插件，官方列出四个预配置插件（postcss-import、postcss-url、autoprefixer、cssnano）与配置节里只有 `order` 和 `plugins` 两个键的实情。
-
-## 本文依据
-
-- "To use a preprocessor like SCSS, Sass, Less or Stylus, install it first."与三条安装命令、`app/assets` 位置、`<style lang="scss">` 里 `@use` 与 `css` 数组两种引法、"the compiled stylesheets will be inlined in the HTML rendered by Nuxt"、Sass partial 注入（`_colors.scss`/`_colors.sass` 两份示例与 `vite.css.preprocessorOptions.scss|sass.additionalData` 两份配置）、"Nuxt uses Vite by default. If you wish to use webpack instead, refer to each preprocessor loader documentation"、`preprocessorMaxWorkers: true`（number of CPUs minus 1）与其实验性 `::note`（`getting-started/styling`）。

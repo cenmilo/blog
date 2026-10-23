@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 刚把 Vue 迁移过来的人最容易在这里翻车：`onMounted` 里 `document.getElementById(...)`、或 setup 顶层直接 `setInterval`，本地看着没事，服务端渲染首屏时行为不对甚至报错。原因是 Nuxt 把你的组件**在两个环境各跑一遍**，而这两遍的性质完全不同。官方 `guide/concepts/nuxt-lifecycle` 那一页就是把这件事讲透：
 
 > The goal of this chapter is to provide a high-level overview of the different parts of the framework, their execution order, and how they work together.
@@ -69,7 +70,3 @@ Nuxt 把生命周期切成两段：
 ## 下一篇
 
 下一篇 369 专讲七步里最反直觉那条：SSR 期间 `onBeforeMount`/`onMounted` 为什么不执行，以及官方给的判断口径。
-
-## 本文依据
-
-- 全章目标、Server Lifecycle 七步与 Client Lifecycle 五步、各步说明、serverless 插件不 await 的 callout、中间件 return 终止请求的 `::warning`、服务端重定向重置状态、`app:created`/`app:rendered`/`render:html`/`app:beforeMount`/`app:mounted` 钩子位置、水合排除 Server Components、"Unlike on the server, the browser executes the full Vue lifecycle"（`guide/concepts/nuxt-lifecycle`）。

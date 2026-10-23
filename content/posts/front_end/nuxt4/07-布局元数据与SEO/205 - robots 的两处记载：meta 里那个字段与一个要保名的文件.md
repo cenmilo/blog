@@ -144,14 +144,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 206 - 301 还是 302：redirectCode 只管服务端那一次
-
-## 本文依据
-
-- `api/composables/use-seo-meta`：Performance 一节 "In most instances, SEO meta tags don't need to be reactive as search engine robots primarily scan the initial page load." 与含 `robots: 'index, follow'` 的 server-only 示例；Parameters 一节 "There are over 100 parameters. See the full list of parameters in the source code."
-- `api/composables/use-server-seo-meta`：deprecated warning 与 `if (import.meta.server) { useSeoMeta({ robots: 'index, follow' }) }` 替代写法。
-- `api/composables/use-head-safe`：`meta: ['name', 'property', 'charset', 'content', 'media']` 与 "http-equiv in meta tags are automatically stripped out"。
-- `directory-structure/public`：定位句与目录树（`favicon.ico` / `og-image.png` / `robots.txt`）。
-- `api/kit/nitro`：`addServerHandler` 定位句 "Adds a Nitro server handler. Use this if you want to create server middleware or a custom route."、`route: '/robots.txt'` + `handler: resolve('./runtime/robots.get')` 示例、`runtime/robots.get.ts` 返回 `{ body: \`User-agent: *\nDisallow: /\` }`、"When you access `/robots.txt`, it will return the following response:" 与其下 `User-agent: *` / `Disallow: /` 两块。
-- `getting-started/prerendering`：`prerender: { crawlLinks: true, routes: ['/sitemap.xml', '/robots.txt'] }` 示例与四步机制第 3 步。
-- `guide/going-further/experimental-features`（`ssrStreaming`）：爬虫自动退出流式那句、默认模式只匹配索引爬虫、Lighthouse 等审计工具刻意排除、`botRegex` 可自定义。
-- 检索结论（否定性事实）：`X-Robots-Tag`、`noindex`、`nofollow` 在 4.x 语料中零命中。

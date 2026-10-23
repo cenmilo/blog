@@ -123,7 +123,3 @@ const { data: suggestions } = await useAsyncData(
 ## 下一篇
 
 下一篇 427 纠正一个 3.x 时代的名字：4.x 里没有 `inlineSSRStyles`，控制内联粒度的是 `features.inlineStyles`，默认只内联 Vue 组件样式、不再内联全局 CSS。
-
-## 本文依据
-
-- `import.meta` 定义、Runtime (App) Properties 八行表（含 "statically injected and can be used for tree-shaking"、envName 的 v4.5 徽标与 `--envName` 说明、prerender 描述）、Builder Properties 两行表与"available both in modules and in your nuxt.config"、`createResolver(import.meta.url)` + `addComponent` 示例（`api/advanced/import-meta`）；`addPlugin` 同一写法（`api/kit/plugins`，见 296）；`import.meta.prerender` 在错误页的用法与"only `true` while the page is being generated"解释（`guide/concepts/rendering`，见 382）；`::warning` 关于 `new URL(..., import.meta.url)` 不支持 SSR（`getting-started/assets`，见 421）。

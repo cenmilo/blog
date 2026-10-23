@@ -140,20 +140,3 @@ const props = defineProps<{
 ## 下一篇
 
 140 进入 route rules：那一层按 URL 模式配置的服务端规则是什么、`defineRouteRules` 与 `extendRouteRules` 各在什么时候用、以及它与 `appLayout` 的同一张配置表。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/set-page-layout`
-  - 原文（描述与定义）："setPageLayout allows you to dynamically change the layout of a page."；（important）"`setPageLayout` allows you to dynamically change the layout of a page. It relies on access to the Nuxt context and therefore can only be called within the Nuxt context."
-  - 原文示例（`app/middleware/custom-layout.ts`）：`export default defineNuxtRouteMiddleware((to) => { /* Set the layout on the route you are navigating _to_ */ setPageLayout('other') })`
-  - 原文（Passing Props to Layouts，badge v4.3）："You can pass props to the layout by providing an object as the second argument:"；示例（`app/middleware/admin-layout.ts`）`setPageLayout('admin', { sidebar: true, title: 'Dashboard' })` 与注释 "// Set the layout on the route you are navigating _to_"；"The layout can then receive these props:"；示例（`app/layouts/admin.vue`）`const props = defineProps<{ sidebar?: boolean; title?: string }>()`、`<aside v-if="sidebar">Sidebar</aside>`、`<h1>{{ title }}</h1>`、`<slot />`
-  - 原文（note）："If you choose to set the layout dynamically on the server side, you *must* do so before the layout is rendered by Vue (that is, within a plugin or route middleware) to avoid a hydration mismatch."
-  - 原文 Source：`packages/nuxt/src/app/composables/router.ts`（与 120、123、124、127、134 同一份文件）
-- `https://nuxt.com/docs/4.x/guide/going-further/nuxt-app`
-  - 对照用（见 130）："Currently, the Nuxt context is only accessible in plugins, Nuxt hooks, Nuxt middleware (if wrapped in `defineNuxtRouteMiddleware`), and setup functions (in pages and components)."
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 对照用（见 135、136）：`layout` 的类型 `false | LayoutKey | Ref<LayoutKey> | ComputedRef<LayoutKey> | { name?, props? }` 与"对象形态的 props 会被完整类型推断"
-- `https://nuxt.com/docs/4.x/directory-structure/app/layouts`
-  - 对照用（见 136）：设置布局的三条途径（`definePageMeta`、`<NuxtLayout>` 的 `name`、route rules 的 `appLayout`）与 kebab-case 规范化、单根且根不能是 `<slot />`
-- `https://nuxt.com/docs/4.x/api/components/nuxt-layout`
-  - 对照用（见 094）：`name` 与 `fallback` 的语义

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 一个 `useFetch`/`$fetch` 调用，SSR 那一趟在服务端执行、水合后那一趟在浏览器执行。地址解析在两端的差异，就是 baseURL 类 bug 的来源。这一篇把这条一致性讲透。
 
 ## 为什么两端会不一样
@@ -79,11 +80,5 @@ tags:
 - SSR 直调 handler、浏览器发 HTTP，两端内容要一致前提是地址解析对齐。
 
 ## 下一篇
+
 下一篇 333：跨域与请求头：文档里能处理跨域的地方
-
-## 本文依据
-
-- useRequestFetch（`api/composables/use-request-fetch`）：SSR 阶段 `$fetch` 不自动转发头（due to security considerations）、useFetch 底层用 useRequestFetch（见 318）；浏览器端行为。
-- Server 页（`getting-started/server`）：Server Endpoints & Middleware（"directly return text, json, html or even a stream"）；Hybrid Rendering routeRules 概览。
-- useFetch / 前序记录：baseURL 三层（请求选项、runtimeConfig.public 的 NUXT_PUBLIC_API_BASE、app.baseURL 默认 `/` 保留命名空间）；相对路径是否带 app.baseURL 文档未写 → 实测（245、222 已标注）。
-- useRequestURL（`api/composables/use-request-url`）：缓存命中 host 变 localhost 与 cache.varies（见 316）。

@@ -108,11 +108,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 497 讲 `test/` 目录：官方对它的定性是「Nuxt 不会像扫 `app/` 和 `server/` 那样扫它」，以及三个推荐子目录各自对着哪种运行环境。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/api/nuxt-config（`## test` 一节全部记载：说明句、Type `boolean`、Default `false`；顶层节按字母排列、`theme` 一节相邻）
-- https://nuxt.com/docs/4.x/api/commands/test（那一节只记载 `NODE_ENV` 设为 `test`，未提及 `test` 配置节）
-- https://nuxt.com/docs/4.x/getting-started/testing（Vitest 配置示例中的 `test` 字段、`environmentOptions.nuxt.mock` 的 `intersectionObserver`/`indexedDb` 默认值、`registerEndpoint` 那节指向环境覆盖 `$test` 的 Note）
-- https://nuxt.com/docs/4.x/getting-started/configuration（Environment Overrides 小节：`$production`/`$development`/`$env.staging` 与 `--envName`）
-- https://nuxt.com/docs/4.x/directory-structure/test（`test/` 目录的推荐用途）

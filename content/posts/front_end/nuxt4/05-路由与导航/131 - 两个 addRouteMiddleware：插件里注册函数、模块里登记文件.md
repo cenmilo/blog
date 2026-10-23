@@ -206,25 +206,3 @@ export {}
 ## 下一篇
 
 132 把中间件的返回值一次讲透：为什么没有 `next()`、五种返回值分别发生什么、`302` 与 `301` 什么时候才用得上，以及"忘记 return"为什么是最常见的一种 bug。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/add-route-middleware`
-  - 原文（描述）："addRouteMiddleware() is a helper function to dynamically add middleware in your application."
-  - 原文（note）："Route middleware are navigation guards stored in the `app/middleware/` directory of your Nuxt application (unless set otherwise)."
-  - 原文（Type）：`function addRouteMiddleware (name: string, middleware: RouteMiddleware, options?: AddRouteMiddlewareOptions): void`；`function addRouteMiddleware (middleware: RouteMiddleware): void`；`interface AddRouteMiddlewareOptions { global?: boolean }`
-  - 原文（`name`）："**Type:** `string | RouteMiddleware`"；"Can be either a string or a function of type `RouteMiddleware`. Function takes the next route `to` as the first argument and the current route `from` as the second argument, both of which are Vue route objects."
-  - 原文（`middleware`）："The second argument is a function of type `RouteMiddleware`. Same as above, it provides `to` and `from` route objects. It becomes optional if the first argument in `addRouteMiddleware()` is already passed as a function."
-  - 原文（`options`）："An optional `options` argument lets you set the value of `global` to `true` to indicate whether the router middleware is global or not (set to `false` by default)."
-  - 原文（Named Route Middleware）："Named route middleware is defined by providing a string as the first argument and a function as the second"；示例 `addRouteMiddleware('named-middleware', () => { console.log('named middleware added in Nuxt plugin') })`；"When defined in a plugin, it overrides any existing middleware of the same name located in the `app/middleware/` directory."
-  - 原文（Global Route Middleware）："Pass a function directly as the first argument without a name. It will automatically be treated as global middleware and applied on every route change."；示例 `addRouteMiddleware((to, from) => { console.log('anonymous global middleware that runs on every route change') })`；"Set an optional, third argument `{ global: true }` to indicate whether the route middleware is global."；示例 `addRouteMiddleware('global-middleware', (to, from) => {...}, { global: true })`
-- `https://nuxt.com/docs/4.x/api/kit/pages`
-  - 原文（`addRouteMiddleware`）："Registers route middlewares to be available for all routes or for specific routes."；"Route middlewares can be also defined in plugins via `addRouteMiddleware` composable."；Type `function addRouteMiddleware (input: NuxtMiddleware | NuxtMiddleware[], options?: AddRouteMiddlewareOptions): void`；input 表 `name`/`path`/`global` 三项（`name` Required `true` "The name of the middleware."、`path` Required `true` "The file path to the middleware."、`global` Required `false` "If set to `true`, applies middleware to all routes."）；options 表 `override`（`boolean`，default `false`，"If `true`, replaces middleware with the same name."）与 `prepend`（`boolean`，default `false`，"If `true`, prepends middleware before existing middlewares."）；示例 `addRouteMiddleware({ name: 'auth', path: resolve('runtime/auth'), global: true }, { prepend: true })` 与 `runtime/auth.ts` 里 `export default defineNuxtRouteMiddleware((to, from) => { if (to.path !== '/login' && isAuthenticated() === false) { return navigateTo('/login') } })`；Source `packages/kit/src/pages.ts`
-  - 原文（`extendPages`）：`meta` — "Custom metadata for the route. Can be used in layouts, middlewares, or navigation guards."；类型 `NuxtPageMeta`；"You should modify the provided pages array directly, as changes made to a copied array will not be reflected in the configuration."；Typing Custom Page Metadata 示例 `declare module '@nuxt/schema' { interface NuxtPageMeta { requiresAuth?: boolean } }` + `export {}`
-- `https://nuxt.com/docs/4.x/directory-structure/app/middleware`
-  - 对照用（见 128、129）：插件示例 `addRouteMiddleware('global-test', ..., { global: true })` 与 `addRouteMiddleware('named-test', ...)`（注释 "would override any existing middleware of the same name"）；`pages:extend` 示例及注释 "Note that this will override any middleware set in `definePageMeta` in the page"
-- `https://nuxt.com/docs/4.x/api/utils/define-nuxt-route-middleware`
-  - 对照用（见 130）：被登记的那个文件仍是 `defineNuxtRouteMiddleware` 写的中间件
-- `https://nuxt.com/docs/4.x/errors/e2003` 与 `https://nuxt.com/docs/4.x/errors/e2005`
-  - 原文（E2003）："`abortNavigation()` was called outside a route middleware. It can only cancel navigation from within a middleware handler, so calling it from a component, plugin, composable, or a callback that lost the middleware context fails."；Resolution："Move the `abortNavigation()` call into the body of a `defineNuxtRouteMiddleware()` handler."
-  - 原文（E2005）："`useRoute()` was called inside a route middleware (directly or via another composable)... middleware receives the `to` and `from` routes as arguments instead."

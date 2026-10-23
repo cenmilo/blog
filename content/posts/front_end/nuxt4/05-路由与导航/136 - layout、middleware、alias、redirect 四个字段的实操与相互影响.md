@@ -188,7 +188,7 @@ definePageMeta({
 
 1. 设置布局的四种途径分别是什么？都不设时会用哪个文件？
 2. `layout` 的四种取值分别适合什么场景？对象形态为什么要求布局先声明 `defineProps`？
-3. 关于布局，官方给了哪三条硬约束？"`<template><slot /></template>` 可以吗？
+3. 关于布局，官方给了哪三条硬约束？`<template><slot /></template>` 可以吗？
 4. `appLayout` 与页面 `layout` 各自适合什么管理方式？官方给 `appLayout` 的独有用处是什么？
 5. `middleware` 数组的顺序意味着什么？父子路由之间是覆盖还是合并？
 6. `alias` 与 `redirect` 在"地址栏"和"守卫时机"上的差别分别是什么？
@@ -197,23 +197,3 @@ definePageMeta({
 ## 下一篇
 
 137 讲 `key` 与 `pageKey`：官方给的两种等价写法、"永不改变的 key 只渲染一次"这条示例，以及 `key` 与 `scrollToTop`、`keepalive` 三者的分工。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/directory-structure/app/layouts`
-  - 原文（To use a layout 三条）："Set a `layout` property in your page with definePageMeta."；"Set the `name` prop of `<NuxtLayout>`."；"Set the `appLayout` property in route rules."
-  - 原文（note）："If no layout is specified, `app/layouts/default.vue` will be used."；"The layout name is normalized to kebab-case, so `someLayout` becomes `some-layout`."
-  - 原文（important）："If you only have a single layout in your application, we recommend using `app.vue` instead."；"Unlike other components, your layouts must have a single root element to allow Nuxt to apply transitions between layout changes - and this root element cannot be a `<slot />`."
-  - 原文（appLayout，badge v4.3）："You can also set layouts for specific routes using the `appLayout` property in route rules"；示例 `'/admin': { appLayout: 'admin' }`、`'/dashboard/**': { appLayout: 'dashboard' }`、`'/landing': { appLayout: false }`；（tip）"This is useful when you want to manage layouts centrally in your configuration rather than in each page file, or when you need to apply layouts to routes that don't have corresponding page components (such as catchall pages which might match many paths)."
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（`layout`）："Set a static or dynamic name of the layout for each route. This can be set to `false` in case the default layout needs to be disabled."；"You can also pass an object with `name` and `props` to pass typed props to your layout component. When your layout defines props with `defineProps`, they will be fully typed in `definePageMeta`."；（tip）"Layout props set via `definePageMeta` are fully typed based on the layout's `defineProps`. You'll get autocomplete and type-checking in your editor."；示例 `layout: { name: 'panel', props: { sidebar: true, title: 'Dashboard' } }` 与 `app/layouts/panel.vue` 的 `defineProps`
-  - 原文（`middleware`）："Define anonymous or named middleware directly within `definePageMeta`."；示例 `middleware: [function (to, from) { const auth = useState('auth'); if (!auth.value.authenticated) { return navigateTo('/login') } ... }]`、`middleware: 'auth'`、`middleware: ['auth', 'another-named-middleware']`
-  - 原文（`alias`）："Aliases for the record. Allows defining extra paths that will behave like a copy of the record. Allows having paths shorthands like `/users/:id` and `/u/:id`. All `alias` and `path` values must share the same params."
-  - 原文（`redirect`）："Where to redirect if the route is directly matched. The redirection happens before any navigation guard and triggers a new navigation with the new target location."
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（`alias`）："You can define page aliases. They allow you to access the same page from different paths. It can be either a string or an array of strings as defined in the vue-router documentation."
-  - 原文（`middleware`）："You can define middleware to apply before loading this page. It will be merged with all the other middleware used in any matching parent/child routes."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-layout`
-  - 对照用（见 094）：`name` 的 kebab-case 规范化、无效布局名则什么都不渲染、`fallback`
-- `https://nuxt.com/docs/4.x/api/utils/set-page-layout`
-  - 对照用（见 139）："If you choose to set the layout dynamically on the server side, you *must* do so before the layout is rendered by Vue (that is, within a plugin or route middleware) to avoid a hydration mismatch."

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 有些服务端活儿不是给浏览器调的接口，而是"手动触发一次作业"——灌种子数据、批量重建索引。Nitro 把这叫 tasks（后台任务），Nuxt 给的入口是 `nuxt task` 命令。
 
 ## 命令是干嘛的
@@ -115,8 +116,3 @@ npx nuxt task run db:seed --payload.count=10
 ## 下一篇
 
 下一篇 322 讲 `nuxt curl`：直接对项目正在跑的 dev server 发一条 HTTP 请求、打印响应，做接口冒烟不用先记端口号。
-
-## 本文依据
-
-- nuxt task（`api/commands/task`）：定位句 "List and run Nitro tasks on your dev server."；"talks to the Nitro tasks your project exposes, using the `nuxt dev` server running for it. Pass --url to target another server."；`nuxt task list` 命令签名 + Arguments（ROOTDIR 默认 .）+ Options（--cwd/--url 默认运行中的 dev server/--json）；`nuxt task run` 签名 + Arguments（NAME 必填、ROOTDIR）+ Options（--cwd/--url/--payload）；"The task's result is printed as JSON. A payload can be given as a single JSON object or built up from individual keys" + `db:seed --payload '{"count":10}'` 与 `--payload.count=10` 两示例；note "Nitro only scans your `tasks` directory when tasks are enabled" + `nitro.experimental.tasks: true` 配置；read-more 指向 Nitro tasks 文档。
-- server 目录（`directory-structure/server`）：无 server/tasks 一节（301 记录）；nitro 配置节（320）。

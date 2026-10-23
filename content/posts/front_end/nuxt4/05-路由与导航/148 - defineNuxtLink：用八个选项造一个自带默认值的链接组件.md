@@ -145,18 +145,3 @@ function defineNuxtLink (options: NuxtLinkOptions): Component {}
 ## 下一篇
 
 149 给 110-149 收尾：把一次导航经过的全部环节按顺序排出来——从 `<a href>` 被点下，到中间件、`validate`、布局与过渡、`page:loading:*` 钩子，再到 chunk 预取在哪一步发生。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-link`
-  - 原文（Custom Link Component）："You can overwrite `<NuxtLink>` defaults by creating your own link component using `defineNuxtLink`."；示例（文件标注 `app/components/MyNuxtLink.ts`）：`export default defineNuxtLink({ componentName: 'MyNuxtLink', /* see signature below for more */ })`
-  - 原文（两个名字）："The component is auto-imported by its file name, so you can use `<MyNuxtLink />` as usual with your new defaults. `componentName` only sets the component's internal name (as shown in Vue DevTools); it does not change how the component is used in templates."
-  - 原文（Signature）：`interface NuxtLinkOptions { componentName?: string; externalRelAttribute?: string; activeClass?: string; exactActiveClass?: string; trailingSlash?: 'append' | 'remove'; prefetch?: boolean; prefetchedClass?: string; prefetchOn?: Partial<{ visibility: boolean, interaction: boolean }> }` 与 `function defineNuxtLink (options: NuxtLinkOptions): Component {}`
-  - 原文（逐条定义）："`componentName`: The component's internal name, as shown in Vue DevTools. It does not change the name used in templates (that comes from the component's file name). Default is `NuxtLink`."；"`externalRelAttribute`: A default `rel` attribute value applied on external links. Defaults to `"noopener noreferrer"`. Set it to `""` to disable"；"`activeClass`: A default class to apply on active links. Works the same as Vue Router's `linkActiveClass` option. Defaults to Vue Router's default (`"router-link-active"`)"；"`exactActiveClass`: A default class to apply on exact active links. Works the same as Vue Router's `linkExactActiveClass` option. Defaults to Vue Router's default (`"router-link-exact-active"`)"；"`trailingSlash`: An option to either add or remove trailing slashes in the `href`. If unset or not matching the valid values `append` or `remove`, it will be ignored."；"`prefetch`: Whether or not to prefetch links by default."；"`prefetchOn`: Granular control of which prefetch strategies to apply by default."；"`prefetchedClass`: A default class to apply to links that have been prefetched."
-  - 原文（In Nuxt Config 的默认值块，用于对照）：`experimental.defaults.nuxtLink` 八个键与注释 `// default values`、`componentName: 'NuxtLink'`、`externalRelAttribute: 'noopener noreferrer'`、`activeClass: 'router-link-active'`、`exactActiveClass: 'router-link-exact-active'`、`prefetchedClass: undefined // can be any valid string class name`、`trailingSlash: undefined // can be 'append' or 'remove'`、`prefetch: true`、`prefetchOn: { visibility: true }`；important "These options will likely be moved elsewhere in the future, such as into `app.config` or into the `app/` directory."
-  - 原文（props 那节措辞对照）：`activeClass` — "A class to apply on active links."；`prefetchOn` — "Possible options are `interaction` and `visibility` (default)."
-  - 原文（页尾）：`::link-example{to="https://nuxt.com/docs/examples/routing/pages"}`；Source 位于 `packages/nuxt/src/app/components/nuxt-link.ts`
-- `https://nuxt.com/docs/4.x/guide/recipes/custom-routing`
-  - 对照用（见 142）：`router.options` 里"只有 JSON 可序列化"的七个选项含 `linkActiveClass`、`linkExactActiveClass`
-- `https://nuxt.com/docs/4.x/api/advanced/hooks`
-  - 对照用（见 145）："`link:prefetch` | `to` | Client | Called when a `<NuxtLink>` is observed to be prefetched."

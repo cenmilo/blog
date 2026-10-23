@@ -173,19 +173,3 @@ tags:
 ## 下一篇
 
 173 收 150-179 这一段：把"一个名字/标签是怎么被解析出来的"画成一张顺序图，从自动导入名单、目录扫描、编译器宏到全局注册，标出每一步失败时你会看到什么。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/teleports`
-  - 原文（定位与边界）："The `<Teleport>` component teleports a component to a different location in the DOM."；warning "The `to` target of [`<Teleport>`](https://vuejs.org/guide/built-ins/teleport) expects a CSS selector string or an actual DOM node. Nuxt currently has SSR support for teleports to `#teleports` only, with client-side support for other targets using a `<ClientOnly>` wrapper."
-  - 原文（两个示例）：Body Teleport——`<button @click="open = true">Open Modal</button>` + `<Teleport to="#teleports"><div v-if="open" class="modal">…<button @click="open = false">Close</button></div></Teleport>`；Client-side Teleport——`<ClientOnly><Teleport to="#some-selector"><!-- content --></Teleport></ClientOnly>`；页尾 `::link-example{to="https://nuxt.com/docs/examples/advanced/teleport"}`
-- `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 原文（`app` 节三组键）："### `teleportAttrs` — Customize Nuxt Teleport element attributes. — Type: `object` — Default `{ "id": "teleports" }`"；"### `teleportId` — Customize Nuxt Teleport element id. — Type: `string` — Default: `"teleports"`"；"### `teleportTag` — Customize Nuxt Teleport element tag. — Type: `string` — Default: `"div"`"；"### `rootAttrs` — Customize Nuxt root element id. — Type: `object` — Default `{ "id": "__nuxt" }`"（说明句与 `rootId` 重复）；"### `rootId` — Customize Nuxt root element id. — Default: `"__nuxt"`"；"### `rootTag` — Customize Nuxt root element tag. — Default: `"div"`"；"### `spaLoaderAttrs` — Customize Nuxt SPA loading template element attributes. — Default `{ "id": "__nuxt-loader" }`"、其下 `#### id`（Default `"__nuxt-loader"`）与 "### `spaLoaderTag` — Customize Nuxt SpaLoader element tag. — Default: `"div"`"
-- `https://nuxt.com/docs/4.x/guide/concepts/server-components` 与 `https://nuxt.com/docs/4.x/guide/going-further/experimental-features`
-  - 原文（岛屿与 Teleport 的关系）：warning "After client navigation you may see `Failed to locate Teleport target`, or the link disappears with no error."；note "Component islands are compatible with streaming. … Instead, the renderer emits each island teleport as an inert `<template>` at the end of the document and relocates it into place with an inline script that runs before hydration. This is transparent to app code. The exception is apps built with `features.noScripts` and island components, which fall back to the buffered renderer since the relocation script cannot run."；"island slots and `nuxt-client` components rely on a small inline script to relocate teleported content into place before hydration. On routes rendered with `noScripts`, that script is omitted, so fully interactive `nuxt-client` components will not hydrate there. Plain static islands are unaffected."
-- `https://nuxt.com/docs/4.x/guide/concepts/rendering`
-  - 原文（"Calling `app.mount('#__nuxt')` mounts the Vue application to the DOM."）
-- `https://nuxt.com/docs/4.x/api/components/client-only`
-  - 对照用（见 165、096）：默认插槽内容被 tree-shake 出服务端构建、CSS 内联的那半句括号、"rendered only after being mounted"
-- `https://nuxt.com/docs/4.x/guide/going-further/features`
-  - 对照用（见 141、171）：`noScripts` 与"rely on an inline script to relocate teleported content"

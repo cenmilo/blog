@@ -123,9 +123,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 449 讲 `stripNeverHydratedData`：它给用 `hydrate-never` 懒水合的组件里的取数调用默认加 `serialize: false`，因为那些组件在客户端永远不水合、数据本来就不需要；官方同时提醒同一个 key 被会水合的组件共用时，`serialize` 必须保持一致，开发模式下会警告不一致。
-
-## 本文依据
-
-- 载荷定义句（serializes data fetching results and app state so the client can hydrate without re-fetching）、`payloadExtraction` 三档原文与默认值句（含 cv5 与 `ssr: false` 强制）、两条生成时机（构建期 / ISR-SWR 首次渲染）、客户端导航复用 `_payload.json` 的说明、三条实际后果（静态站数据陈旧、CDN 可缓存载荷文件与 `'/**': { isr: true }` glob、devalue 与 payload plugin）（`getting-started/prerendering`）
-- `## payloadExtraction` 一节三档措辞与默认值、指向预渲染页的 read-more；`## renderJsonPayloads` 一节定义原文与 "enabled by default" 措辞与示例；`## purgeCachedData` 一节定性、"purge cached data from `useAsyncData` and `nuxtApp.static.data`"与内存泄漏/新鲜数据理由句、默认开启与示例、指向 PR #31379 的 read-more；`stripNeverHydratedData` 一节对 `serialize: false` 的引用（`guide/going-further/experimental-features`）
-- `useNuxtData` 需显式 key、返回自动更新的 ref、用于复用已取数据与乐观更新（`api/composables/use-nuxt-data`）

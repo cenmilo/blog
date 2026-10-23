@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 315 里我们手动用 `useRequestHeaders(['authorization'])` 把某个头塞进取数请求。这一篇的 `useRequestFetch` 是它的"整体版"——一次性把这次请求的上下文和头都转发过去。
 
 ## 要解决的问题
@@ -115,8 +116,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 下一篇 319 把这一层的时间线串起来：一次初始请求在服务端经历的七步（Nitro 插件 → 服务端中间件 → 应用插件 → 路由校验 → 应用中间件 → 页面与组件 → HTML 输出）。
-
-## 本文依据
-
-- useRequestFetch（`api/composables/use-request-fetch`）：定位句 "Forward the request context and headers for server-side fetch requests"；两端差别段（"client-side fetch request, the browser automatically sends the necessary headers ... server-side rendering, due to security considerations, we need to forward the headers manually."）；note 不转发头清单（transfer-encoding/connection/keep-alive/upgrade/expect/host/accept）；tip "useFetch composable uses useRequestFetch under the hood"；`index.vue` 对照示例（requestFetch→`{ cookies: { foo: 'bar' } }`、裸 `$fetch`→`{ cookies: {} }`）与 `server/api/cookies.ts` 的 parseCookies；tip 浏览器客户端导航"behave just like regular $fetch"。
-- useRequestHeaders（`api/composables/use-request-headers`）：手动转发某几个头（见 315）。

@@ -108,9 +108,3 @@ const getDefaultCachedData = (key, nuxtApp, ctx) => nuxtApp.isHydrating
 ## 下一篇
 
 221 - 查询参数三种写法：query 与 params、响应式 URL 与四个拦截器
-
-## 本文依据
-
-- `api/composables/use-fetch`：Parameters 两句（`URL` 类型与 "Extends unjs/ofetch options and `AsyncDataOptions`. All options can be a static value, a `ref`, or a computed value."）；23 行选项表全部原文（含 8 个版本徽标与 `key` 行的 auto-gen 说明）；表后 note（含 "unless `watch` is set to `false`"）；"getCachedData default" 代码块与 `payloadExtraction` 限定句；`AsyncDataRequestContext`、`AsyncData`、`AsyncDataExecuteOptions`、`AsyncDataRequestStatus` 定义；`createUseFetch` 的 tip（"pre-defined defaults (like `baseURL` or auth headers）"）。
-- `api/composables/use-async-data`：14 行选项表原文，用于逐条措辞对照（`watch`、`dedupe`、`immediate`、`middleware` 四行差异）。
-- `getting-started/prerendering`：`experimental.payloadExtraction` 取值与默认（200 已逐句引）。

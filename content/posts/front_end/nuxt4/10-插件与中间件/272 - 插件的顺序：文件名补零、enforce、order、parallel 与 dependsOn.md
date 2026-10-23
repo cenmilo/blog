@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前提先钉死：**默认情况下，Nuxt 是顺序加载插件的**，官方原话——"By default, Nuxt loads plugins sequentially." 也就是说没有你做特别安排的话，插件是一个接一个跑的。这一篇讲的就是"你凭什么安排这个先后"，一共四个手段。
 
 ## 手段一：文件名的字典序编号
@@ -142,12 +143,3 @@ parallel 和 dependsOn 是能搭 together 用的：一组插件并行跑，其�
 ## 下一篇
 
 270-299 从这里继续。下一篇 273 讲 `app:created`、`app:beforeMount`、`app:mounted`、`app:rendered` 这几个应用生命周期钩子在插件里的订阅时机。
-
-## 本文依据
-
-- plugins 目录（`directory-structure/app/plugins`）：
-  - Registration Order 一节：`01.myPlugin.ts` / `02.myOtherPlugin.ts` 例子、"02.myOtherPlugin.ts will be able to access anything that was injected by 01.myPlugin.ts"、note "filenames are sorted as strings, not as numeric values. For example, `10.myPlugin.ts` would come before `2.myOtherPlugin.ts`. This is why the example prefixes single digit numbers with `0`."
-  - Loading Strategy：`"By default, Nuxt loads plugins sequentially."`、Parallel Plugins 段与 `parallel: true` 示例、"the next plugin will be executed immediately"、Plugins With Dependencies 段与 `dependsOn: ['my-plugin']` 示例、"this plugin will wait for the end of `my-plugin`'s execution before it runs"。
-  - Using Composables 两条 important：跨插件依赖组合式（"Plugins are called in order sequentially and before everything else."）与依赖 Vue 生命周期的组合式不工作（"plugins are only bound to `nuxtApp` instance"）。
-- defineNuxtPlugin（`api/utils/define-nuxt-plugin`）：参数表里 `enforce`（"Controls when the plugin runs relative to other plugins."）、`order`（"It overrides the value of `enforce` and is used to sort plugins."）、`parallel`（"in parallel with other parallel plugins."）、`dependsOn`（"Array of plugin names this plugin depends on. Ensures proper execution order."）。
-- plugins 目录 Object Syntax note：`enforce: import.meta.server ? 'pre' : 'post'` 会打掉优化（顺序键须静态可分析）。

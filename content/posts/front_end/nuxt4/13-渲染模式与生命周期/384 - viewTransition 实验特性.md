@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 383 是 Vue 层的过渡。384 讲另一条路线：让浏览器自己接管切页动画——View Transitions API。experimental-features 那页给它一句话："Enables View Transition API integration with client-side router."（把 View Transition API 接到客户端路由上）。
 
 ## 先开开关
@@ -141,7 +142,3 @@ View Transitions **在进行期间会完全冻结 DOM 更新**。如果你在页
 ## 下一篇
 
 下一篇 385 讲另外两个导航/首屏体验开关：`navigationRepaint`（导航前等一帧让浏览器重绘、降 INP）和 `ssrStreaming`（先发抖壳流式渲染、降 TTFB），两者优化的是不同指标。
-
-## 本文依据
-
-- experimental-features `## viewTransition`（"Enables View Transition API integration with client-side router"、布尔与对象 `{ enabled, types }` 两形态）；transitions 页 View Transitions 节：三档值与 `true` 尊重 `prefers-reduced-motion`、`app.viewTransition` 全局默认、`definePageMeta` 逐页覆盖的 `::warning`、View Transition Types（v4.4、types/toTypes/fromTypes、函数只在 definePageMeta、`:active-view-transition-type()`、`page:view-transition:start`）、disable-vue-transitions 中间件、Known Issues "completely freeze DOM updates"（`guide/going-further/experimental-features`、`getting-started/transitions`）。

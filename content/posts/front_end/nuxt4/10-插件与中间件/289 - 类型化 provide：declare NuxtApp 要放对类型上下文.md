@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 274 讲过 `provide('hello', ...)` → 取出来是 `$hello`。这一篇只解决一件事：**怎么让 `$hello` 有正确的类型、还不会"加了声明却不生效"。** 后者是新手最常见的坑，根源不在写法、在"文件放哪"。
 
 ## 先看默认：自动类型
@@ -104,9 +105,3 @@ export {}
 ## 下一篇
 
 下一篇 290 讲中间件和插件的分工：路由中间件能改路由（navigateTo/abort）但"没有当前路由概念"、不作用在 /api，插件挂应用级能力还能反过来注册中间件。
-
-## 本文依据
-
-- plugins 目录（`directory-structure/app/plugins`）：Typing Plugins 一节（"If you return your helpers from the plugin, they will be typed automatically; you'll find them typed for the return of `useNuxtApp()` and within your templates."、`declare module '#app' { interface NuxtApp { $hello } }` + `declare module 'vue' { interface ComponentCustomProperties { $hello } }` + `export {}`）。
-- TypeScript（`guide/concepts/typescript`）：Auto-generated Types（生成时机 dev/build/`nuxt prepare`、warning "it is not recommended to modify your `tsconfig.json` file directly ... Instead, extend it via `nuxt.config.ts`"）；Project References（app/node/server/shared 四份 tsconfig 及各自覆盖范围）；"Augmenting Types with Project References"（"augment types within the correct context"、"augment types for the app context ... placed in the app/ directory"、server→`server/`、shared→`shared/`）。
-- defineNuxtPlugin（`api/utils/define-nuxt-plugin`）：provide 的返回形状（`return { provide: { ... } }`）。

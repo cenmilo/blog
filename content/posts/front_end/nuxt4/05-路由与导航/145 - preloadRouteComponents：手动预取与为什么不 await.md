@@ -199,27 +199,3 @@ props 那节的 note 也补了一句：
 ## 下一篇
 
 146 讲 `useLoadingIndicator`：`isLoading`、`progress`、`isLoadingForced` 三个状态，`start`/`finish`/`clear`/`force` 四个方法，以及 `duration` 与 `throttle` 两个节流值怎么配合顶部的进度条。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/preload-route-components`
-  - 原文（标题句与描述）："preloadRouteComponents allows you to manually preload individual pages in your Nuxt app."；"Preloading routes loads the components of a given route that the user might navigate to in future. This ensures that the components are available earlier and less likely to block the navigation, improving performance."
-  - 原文（tip）："Nuxt already automatically preloads the necessary routes if you're using the `NuxtLink` component."
-  - 原文（Example）："Preload a route when using `navigateTo`." + 代码 "// we don't await this async function, to avoid blocking rendering \n // this component's setup function \n preloadRouteComponents('/dashboard') \n\n const submit = async () => { const results = await $fetch('/api/authentication'); if (results.token) { await navigateTo('/dashboard') } }"
-  - 原文（note）："On server, `preloadRouteComponents` will have no effect."
-  - 原文（Source 链接）：源码位于 `packages/nuxt/src/app/composables/preload.ts`；页尾 read-more 指向 `https://nuxt.com/docs/4.x/api/components/nuxt-link` 与 `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-- `https://nuxt.com/docs/4.x/api/utils/preload-components`
-  - 原文："Nuxt provides utilities to give you control over preloading components."；"Preloading components loads components that your page will need very soon, which you want to start loading early in rendering lifecycle. This ensures they are available earlier and are less likely to block the page's render, improving performance."；"Use `preloadComponents` to manually preload individual components that have been registered globally in your Nuxt app. By default Nuxt registers these as async components. You must use the Pascal-cased version of the component name."
-  - 原文示例：`await preloadComponents('MyGlobalComponent')`；`await preloadComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])`；note "On server, `preloadComponents` will have no effect."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-link`
-  - 原文（Prefetch Links 开篇）："Nuxt automatically includes smart prefetching. That means it detects when a link is visible (by default), either in the viewport or when scrolling and prefetches the JavaScript for those pages so that they are ready when the user clicks the link. Nuxt only loads the resources when the browser isn't busy and skips prefetching if your connection is offline or if you only have 2g connection."
-  - 原文（custom 与 prefetch）："When using the `custom` prop, `<NuxtLink>` does not automatically attach prefetch handlers. You can call `prefetch` from the custom slot yourself."；（note）"With the `custom` prop, `prefetch`, `prefetchOn` and `prefetchedClass` do not attach handlers or classes automatically. Use the custom slot's `prefetch`, `prefetched` and `shouldPrefetch` values to implement this behavior."
-  - 原文（v4.5 示例）：`v-slot="{ href, navigate, prefetch, shouldPrefetch }"` 配 `@pointerenter="shouldPrefetch('interaction') && prefetch()"` 与 `@focus="shouldPrefetch('interaction') && prefetch()"`
-  - 原文（`prefetch` prop 定义）："When enabled will prefetch middleware, layouts and payloads (when using payloadExtraction) of links in the viewport. Used by the experimental crossOriginPrefetch config."
-  - 原文（关闭预取）：`<NuxtLink to="/about" no-prefetch>` 与 `<NuxtLink to="/about" :prefetch="false">`
-- `https://nuxt.com/docs/4.x/api/advanced/hooks`
-  - 原文（App Hooks 表）："`link:prefetch` | `to` | Client | Called when a `<NuxtLink>` is observed to be prefetched."
-- `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 对照用（见 124）：`navigateTo` 必须 await 或 return 的规则；这一节通过 read-more 指向它
-- `https://nuxt.com/docs/4.x/guide/going-further/experimental-features`
-  - 原文（`payloadExtraction` 与 `crossOriginPrefetch` 两处条目，被这一节的 props 定义引用）：`prefetch` 的定义里括号写明 "(when using payloadExtraction)"，并链接到 "the experimental crossOriginPrefetch config"

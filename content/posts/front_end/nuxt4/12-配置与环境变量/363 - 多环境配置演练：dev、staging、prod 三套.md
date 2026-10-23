@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 一个站往往要跑在三套地方：本地 `nuxt dev`、给测试用的预发（staging）、正式线上（production）。差别常常是几行配置——线上要全站边缘缓存、本地不想缓存；预发要指向测试数据库、线上指向生产库。把这些全写进顶层 `nuxt.config`，就得每次部署前手动改、极易改漏。Nuxt 允许在同一个配置文件里**按环境分块**。
 
 ## "环境"在这里指什么
@@ -140,8 +141,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 364 收 340-364 那几篇：一份配置排错清单，值没生效时按顺序检查哪几处（键写错、优先级、外部文件、runtimeConfig 映射、生效时机、`--envName` 没选）。
-
-## 本文依据
-
-- Environment Overrides：`$production`/`$development`/`$env.staging` 示例、`--envName`、`$meta`、c12 机制与 "fully typed"（`getting-started/configuration`）。原文："You can configure fully typed, per-environment overrides in your nuxt.config." "To select an environment when running a Nuxt CLI command, simply pass the name to the `--envName` flag, like so: nuxt build --envName staging."
-- `.env` 的 `--dotenv` 用法与 dev/build/generate 读取窗口（`directory-structure/env`）。

@@ -159,16 +159,3 @@ useHeadSafe({
 ## 下一篇
 
 190 讲 `useSeoMeta`：官方说它有 100+ 个全类型化字段、是"推荐的加 meta 方式"，以及它要求响应式值写成 `() => value` 这种 getter 形态——与 `useHead` 的 `computed` 写法不同。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-head-safe`（本篇主要依据）
-  - 原文（定位与机制）："The recommended way to provide head data with user input."；"The `useHeadSafe` composable is a wrapper around the `useHead` composable that restricts the input to only allow safe values. This is the recommended way to manage head data when working with user input, as it prevents XSS attacks by sanitizing potentially dangerous attributes."
-  - 原文（warning）："When using `useHeadSafe`, potentially dangerous attributes like `innerHTML` in scripts or `http-equiv` in meta tags are automatically stripped out to prevent XSS attacks. Use this composable whenever you're working with user-generated content."
-  - 原文（Type 与白名单）：`export function useHeadSafe (input: MaybeComputedRef<HeadSafe>): void`；"### Allowed Attributes" — "The following attributes are whitelisted for each head element type:" + `const WhitelistAttributes = { htmlAttrs: ['class','style','lang','dir'], bodyAttrs: ['class','style'], meta: ['name','property','charset','content','media'], noscript: ['textContent'], style: ['media','textContent','nonce','title','blocking'], script: ['type','textContent','nonce','blocking'], link: ['color','crossorigin','fetchpriority','href','hreflang','imagesrcset','imagesizes','integrity','media','referrerpolicy','rel','sizes','type'] }`；"See [@unhead/vue](...) for more detailed types."
-  - 原文（Parameters 与 Return Values）："`input`: A `MaybeComputedRef<HeadSafe>` object containing head data. You can pass all the same values as `useHead`, but only safe attributes will be rendered."；"This composable does not return any value."
-  - 原文（示例与 read-more）：`app/pages/user-profile.vue` 的 `const userBio = ref('<script>alert("xss")<' + '/script>')` 与 `useHeadSafe({ title: 'User Profile', meta: [{ name: 'description', content: userBio.value // Safely sanitized }] })`；read-more 指向 unhead 文档站
-- `https://nuxt.com/docs/4.x/api/composables/use-head`
-  - 对照用（见 187、188）：`script` 的 `innerHTML` 示例、`script: [{ src, async: true }]` 形态、`useHeadSafe` 那条 warning 的指向
-- `https://nuxt.com/docs/4.x/api/composables/use-seo-meta`
-  - 对照用（见 190）："This is the recommended way to add meta tags to your site as it is XSS safe and has full TypeScript support."

@@ -90,9 +90,3 @@ tags:
 ## 下一篇
 
 下一篇 435 进入性能这个分区：官方性能那一节本身就是一张检查表，它把内容分成"框架自带的、核心模块管的、你用什么工具去量的、常见会撞上的问题"四块，下一篇按这四块过一遍，把每一块里能落到配置名的条目挑出来。
-
-## 本文依据
-
-- `<NuxtPicture>` 三句原文（drop-in replacement for the native `<picture>` tag、"Usage ... almost identical to `<NuxtImg>` but it also allows serving modern formats like `webp` when possible"、指向 MDN 的那句）、Setup 命令、read-more 指向 image.nuxt.com 的 nuxt-picture 页（`api/components/nuxt-picture`）
-- `<NuxtImg>` 的定位、五条能力清单、"outputs a native `img` tag directly (without any wrapper around it)"与输入输出示例、Setup 命令（`api/components/nuxt-img`）
-- NuxtImg 五条增强的复述，其中第二条为 "Converts `src` to provider optimized URLs with modern formats such as WebP or Avif"（`guide/best-practices/performance`）

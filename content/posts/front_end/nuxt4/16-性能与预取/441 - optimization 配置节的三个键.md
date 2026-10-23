@@ -117,9 +117,3 @@ tags:
 ## 下一篇
 
 下一篇 442 进入真正能改加载行为的预取：`<NuxtLink>` 默认按可见性预取，官方同时写明了它的代价——两种触发器都开会重复取同一份资源，而浏览器忙、断网或只有 2g 时它会自己跳过。
-
-## 本文依据
-
-- `## optimization` 定性原文一句；`asyncTransforms` 定义原文、`asyncFunctions` 类型与默认两项、`objectDefinitions` 三组默认列表（`api/nuxt-config`）
-- `keyedComposables` 四句规则原文（inject a key、`argumentLength` 与 last argument 的注入条件、stable between SSR and client-side hydration、"You will need to take steps to handle this additional key"、key 按调用位置唯一）、类型 `array` 与七项默认（含每项 `name`/`argumentLength`/`source`）、指向 keyed functions 的 read-more（`api/nuxt-config`）
-- `treeShake` 与 `composables` 的说明原文、示例配置、`client` 与 `server` 两份默认清单全量条目（`api/nuxt-config`）

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（345）讲配置分文件层与环境变量层。这一篇是第三种：**在同一个 nuxt.config 里，按环境写不同的块**。官方 configuration 页 "Environment Overrides" 给的就是这个。
 
 ## 三个 $ 键
@@ -94,7 +95,3 @@ configuration 页有条 note 是给图层作者的：
 ## 下一篇
 
 下一篇 347 讲外部配置文件：nitro.config.ts、vite.config.ts、postcss.config.js、webpack.config.ts 这几个 Nuxt 不再单独读，要写进 nuxt.config 对应键。
-
-## 本文依据
-
-- Configuration（`getting-started/configuration`）："Environment Overrides" 节（"configure fully typed, per-environment overrides in your nuxt.config"、`$production`/`$development`/`$env.staging` 示例、`nuxt build --envName staging`、机制指向 c12 的 environment-specific configuration、note 图层 `$meta` 提供元数据）。

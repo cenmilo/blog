@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 275 讲的是 `nuxtApp.hook(name, cb)`：在插件里订阅钩子，那份订阅会活在整个应用生命周期里。但有些钩子你只想在**某个组件还在屏上时**响应——组件被卸载了，这个监听就该跟着没了。`useRuntimeHook` 就是干这个的，重点是它**自动帮你清理**。
 
 ## 它是什么
@@ -95,8 +96,3 @@ useRuntimeHook('link:prefetch', (link) => {
 ## 下一篇
 
 下一篇 284 讲怎么定义自己的钩子与事件：用 `hook` 订阅、`callHook` 触发，以及通过扩展 `RuntimeNuxtHooks` 等接口给自己起的钩子名补类型。
-
-## 本文依据
-
-- useRuntimeHook（`api/composables/use-runtime-hook`）：定位句 "Registers a runtime hook in a Nuxt application and ensures it is properly disposed of when the scope is destroyed."；important "available in Nuxt v3.14+."；签名 `useRuntimeHook(name, fn): void`；参数 `name`（链接 runtime hooks 清单）与 `fn`（"The function signature varies based on the hook name."）；Return Values "doesn't return a value, but it automatically unregisters the hook when the component's scope is destroyed."；`pages/index.vue` 的 `useRuntimeHook('link:prefetch', (link) => ...)` 示例。
-- Lifecycle Hooks（`api/advanced/hooks`）：App Hooks (Runtime) 表；`link:prefetch` 描述 "Called when a `<NuxtLink>` is observed to be prefetched."。

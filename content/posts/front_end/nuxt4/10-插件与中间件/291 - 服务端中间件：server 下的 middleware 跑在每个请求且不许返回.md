@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（290）结尾留了个钩子：路由中间件不作用在 `/api`，要守服务端请求得用**服务端中间件**。这一篇就是它。它和前端中间件虽然都叫 middleware，机制几乎是相反的——最容易搞错的就是这条"不许返回"。
 
 ## 它在哪、跑多勤
@@ -101,9 +102,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 下一篇 292 把 259 的会话配方和中间件合起来：客户端中间件守页面、服务端 `requireUserSession` 守数据，官方那份鉴权配方的完整落点。
-
-## 本文依据
-
-- server 目录（`directory-structure/server`）：Server Middleware 一节（"automatically read in any file in the `~~/server/middleware`"、"Middleware handlers will run on every request before any other server route to add or check headers, log requests, or extend the event's request object."、note "Middleware handlers should not return anything (nor close or respond to the request) and only inspect or extend the request context or throw an error."、`log.ts` 与 `auth.ts`（`event.context.auth = { user: 123 }`）示例）；开头 important "Do not import Vue app code ... and do not import server-only code in your app."。
-- Routing（`getting-started/routing`）：important 路由中间件不跑 `/api/*`、要守服务端请求改用 server middleware。
-- Sessions and Authentication（`guide/recipes/sessions-and-authentication`，259 已引）："Client-side middleware is helpful for the user, but without server-side protection your data can still be accessed."

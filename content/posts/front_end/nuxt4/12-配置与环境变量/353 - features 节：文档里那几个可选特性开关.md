@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 配置里三个命名空间容易混：`future`（352，未来会变默认的）、`experimental`（263/267，不保证留）、还有这个 `features`。nuxt-config 的 `## features` 节本身就一句 read-more 指向 features 指南——真正的内容在那一节，列了三个开关。这一篇讲它们。
 
 ## 开关一：devLogs
@@ -90,8 +91,3 @@ routeRules: { '/blog/**': { noScripts: true } }
 ## 下一篇
 
 下一篇 354 讲 telemetry：nuxt 的匿名使用数据上报，怎么关、去哪看它收集了什么。
-
-## 本文依据
-
-- Features 指南（`guide/going-further/features`）：`## features` 三项——devLogs（流服务端日志到客户端、`dev:ssr-logs` 钩子、默认 dev 开非 test、`silent` 不打印）；inlineStyles（渲染时内联、仅 Vite、可传函数、默认 `(id)=>id.includes('.vue')`）；noScripts（false/'production'|true/'all'、纯 HTML+CSS、页面不水合无交互、整文档加载、speculation rules 与 catch-all 放宽、被覆盖页面移出客户端 bundle、总是缓冲渲染、nuxt-client/岛屿插槽不交互、四类被省内容、routeRules 按路由 noScripts）。
-- nuxt-config features 节（`api/nuxt-config`）：仅 read-more 指向 features#features。

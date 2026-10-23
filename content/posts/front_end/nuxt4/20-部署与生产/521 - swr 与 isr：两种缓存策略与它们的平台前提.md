@@ -94,10 +94,3 @@ Route Rules 小节给的可用属性一共九个，原文照列：
 ## 下一篇
 
 下一篇 522 讲静态资源的路径链条：`app.baseURL`、`buildAssetsDir`（默认 `/_nuxt/`）与 `cdnURL`（生产专用）三者怎么拼出资源 URL，以及 `public/` 目录为什么是唯一保持原名的那部分。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/guide/concepts/rendering（Route Rules 九个属性的逐条原文（含 `swr` 的 TTL／`node-server` 能缓存整份响应／到期后先返回缓存并后台重生成／`true` 时 `stale-while-revalidate` 无 MaxAge，`isr` 的"与 `swr` 相同但可进 CDN、当前 Netlify 或 Vercel"、`prerender`、`noScripts`、`appMiddleware` 不含 Nitro 路由）、那份示例中 `swr: 3600`／`isr: 3600`／`isr: true` 三行注释、`isr`/`swr` 也产出 `_payload.json` 的 `::note`）
-- https://nuxt.com/docs/4.x/getting-started/prerendering（ISR/SWR 路由在首次渲染时生成载荷、CDN 可缓存载荷文件、动态路由用 `'/**': { isr: true }` 这类 glob opt in、载荷用 devalue 序列化需 reducer/reviver）
-- https://nuxt.com/docs/4.x/guide/going-further/experimental-features（`checkOutdatedBuildInterval` 单位为毫秒与 `3600000 // 1 hour` 示例）
-- https://nuxt.com/docs/4.x/errors/e8007 与 https://nuxt.com/docs/4.x/guide/going-further/features（`noScripts` 默认 `'production'` 与两类会静默坏掉的能力）

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（314）拿到整个 event 后，`event?.headers.get('user-agent')` 也能读头。但那太重了——多数时候你只想读某几个请求头，官方给了两个轻组合式。
 
 ## 读一个头：useRequestHeader
@@ -116,9 +117,3 @@ const { data } = await useFetch('/api/confidential', {
 ## 下一篇
 
 下一篇 316 讲 `useRequestURL`：返回一个两端都能用的 URL 对象，以及那个"混合渲染命中缓存时 host 变成 localhost"的坑与 `cache.varies` 解法。
-
-## 本文依据
-
-- useRequestHeader（`api/composables/use-request-header`）：定位句；`useRequestHeader('authorization')`；tip "In the browser, useRequestHeader will return undefined."；`authorized-only.ts` 中间件示例（无头 navigateTo('/not-authorized')）。
-- useRequestHeaders（`api/composables/use-request-headers`）：定位句；`useRequestHeaders()` 取全部、`const { cookie } = useRequestHeaders(['cookie'])` 取指定；tip "In the browser, useRequestHeaders will return an empty object."；`some-page.vue` 示例（`useFetch('/api/confidential',{ headers: useRequestHeaders(['authorization']) })`）。
-- useRequestFetch（`api/composables/use-request-fetch`）：SSR 手动转发头的另一解（见 318）。

@@ -162,20 +162,3 @@ tags:
 ## 下一篇
 
 160 把 `addComponent` 与 `addComponentsDir` 的字段全部摊平：`export` 怎么指具名导出、`declarationPath` 与类型模板的关系、`mode` 的三值、`island`/`isAsync`/`prefetch`/`preload` 各自落在哪一层，以及库作者一次注册一整个目录的完整写法。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 原文（开篇与模块共存）："Nuxt automatically imports any components in this directory (along with components that are registered by any modules you may be using)."
-  - 原文（顺序）：note "Any nested directories need to be added first as they are scanned in order."；示例注释 "It's important that this comes last if you have overrides you wish to apply to sub-directories of `~/components`." 与 `// ~/components/Btn.vue => <Btn />`、`// ~/components/base/Btn.vue => <BaseBtn />`
-  - 原文（全局注册三句）："Alternatively, though not recommended, you can register all your components globally, which will create async chunks for all your components and make them available throughout your application." + diff 块 `components: { + global: true, + dirs: ['~/components'] }`；"You can also selectively register some components globally by placing them in a `~/components/global` directory, or by using a `.global.vue` suffix in the filename. As noted above, each global component is rendered in a separate chunk, so be careful not to overuse this feature."；note "The `global` option can also be set per component directory."
-  - 原文（Dynamic Components 的两个替代）："If you want to use the Vue `<component :is=\"someComputedComponent\">` syntax, you need to use the `resolveComponent` helper provided by Vue or import the component directly from `#components` and pass it into `is` prop."；important "If you are using `resolveComponent` to handle dynamic components, make sure not to insert anything but the name of the component, which must be a literal string and not be or contain a variable. The string is statically analyzed at the compilation step."
-- `https://nuxt.com/docs/4.x/api/kit/components`
-  - 原文（`addComponentsDir` 定位与字段）："Register a directory to be scanned for components and imported only when used. Keep in mind, that this does not register components globally, until you specify `global: true` option."；`global` — "If enabled, registers components to be globally available."；`opts.prepend` — "If set to `true`, the directory will be prepended to the array with `unshift()` instead of `push()`."；`island` — "If enabled, registers components as islands."；`transpile` — "If set to `'auto'`, it will set `transpile: true` if `node_modules/` is in path."
-  - 原文（`addComponent` 的 global 与 priority）：`global` — "If enabled, registers component to be globally available."；`priority` — "Priority of the component, if multiple components have the same name, the one with the highest priority will be used."
-- `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 原文（`components` 默认值）：`{ "dirs": [ { "path": "~/components/global", "global": true }, "~/components" ] }`，配 "Configure Nuxt component auto-registration." 与 "Any components in the directories configured here can be used throughout your pages, layouts (and other components) without needing to explicitly import them."
-- `https://nuxt.com/docs/4.x/api/kit/autoimports` 与 `https://nuxt.com/docs/4.x/api/kit/nitro`
-  - 对照用（见 151、153）：`priority` — "Priority of the import; if multiple imports have the same name, the one with the highest priority will be used."（app 侧与服务端侧同句）
-- `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`
-  - 对照用（见 150）："Contrary to a classic global declaration, Nuxt preserves typings, IDEs completions and hints, and only includes what is used in your production code."

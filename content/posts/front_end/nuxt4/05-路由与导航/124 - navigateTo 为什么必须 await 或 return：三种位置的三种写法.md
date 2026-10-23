@@ -170,24 +170,3 @@ export default defineNuxtRouteMiddleware((to, from) => {
 ## 下一篇
 
 125 拆 `navigateTo` 的 options 四个键：`replace` 默认 `false` 的含义、`redirectCode` 为什么默认 302、`external` 不设时跳外部地址会**抛错**，以及 `open` 只能在客户端生效。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 原文（描述）："navigateTo is a helper function that programmatically navigates users."
-  - 原文（Usage）："`navigateTo` is available on both server side and client side. It can be used within the Nuxt context, or directly, to perform page navigation."
-  - 原文（warning）："Make sure to always use `await` or `return` on result of `navigateTo` when calling it."
-  - 原文（note）："`navigateTo` cannot be used within Nitro routes. To perform a server-side redirect in Nitro routes, use `sendRedirect` instead."
-  - 原文（Within a Vue Component）：`await navigateTo('/search')`、`await navigateTo({ path: '/search' })`、`await navigateTo({ path: '/search', query: { page: 1, sort: 'asc' } })` 及其注释
-  - 原文（note）："Calling `navigateTo` does not stop execution of the rest of your `<script setup>` code. If you want a successful navigation to return early from `setup()`, enable `experimental.navigateToEarlyReturn`."
-  - 原文（Within Route Middleware）：示例 `return navigateTo('/search', { redirectCode: 301 })` 与注释 `// setting the redirect code to '301 Moved Permanently'`；"When using `navigateTo` within route middleware, you must **return its result** to ensure the middleware execution flow works correctly."；反例 "// ❌ This will not work as expected" + `navigateTo('/search', { redirectCode: 301 })` 后跟 `return`；"In this case, `navigateTo` will be executed but not returned, which may lead to unexpected behavior."
-  - 原文（Type）：`export function navigateTo (to: RouteLocationRaw | undefined | null, options?: NavigateToOptions): Promise<void | NavigationFailure | false> | false | void | RouteLocationRaw`；`interface NavigateToOptions { replace?: boolean; redirectCode?: number; external?: boolean; open?: OpenOptions }`
-  - 原文（`to`）：Type `RouteLocationRaw | undefined | null`、Default `'/'`；"`to` can be a plain string or a route object to redirect to. When passed as `undefined` or `null`, it will default to `'/'`."；示例 `await navigateTo('/blog')`、`await navigateTo({ name: 'blog' })`、`await navigateTo({ name: 'product', params: { id: 1 } })`
-  - 原文（`external` 一节）："The `external` parameter in `navigateTo` influences how navigating to URLs is handled: Without `external: true`: Internal URLs navigate as expected. External URLs throw an error. With `external: true`: Internal URLs navigate with a full-page reload. External URLs navigate as expected."
-  - 原文 Source：`packages/nuxt/src/app/composables/router.ts`
-- `https://nuxt.com/docs/4.x/api/composables/use-router`
-  - 对照用（见 123）：`push()`/`replace()` 两处都写 "It is recommended to use `navigateTo` instead."；`addRoute()` 与 `push()` 的场景区分
-- `https://nuxt.com/docs/4.x/api/utils/abort-navigation`
-  - 对照用（见 127）：`abortNavigation` 只在路由中间件处理器里可用
-- `https://nuxt.com/docs/4.x/guide/going-further/nuxt-app`
-  - 对照用（见 130）：`navigateTo` 所说的 "Nuxt 上下文" 出处

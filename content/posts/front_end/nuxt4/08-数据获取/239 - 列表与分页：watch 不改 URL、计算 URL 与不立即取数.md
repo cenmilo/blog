@@ -221,10 +221,3 @@ const author = computed(() => data.value?.[1])
 ## 下一篇
 
 240 - 提交表单之后该调谁：refresh、execute 与 clear
-
-## 本文依据
-
-- `getting-started/data-fetching`：Watch 一节（定义句、`watch: [id]` 正例、模板串反例与"watching a reactive value won't change the URL fetched"整段、指向 computed URL、`watch: false` 代码块与两句注释）；Computed URL 一节（两段理由句、`query: { user_id: id }` 示例、回调形态说明、`useLazyFetch(() => ..., { immediate: false })` 完整示例与模板三支及 `:disabled`、末尾指向 watch 的句子）；Not immediate 一节（三句定义与 `execute` 模板示例、`status` 四值逐条）；Refresh and execute 段（"more semantic for cases when the fetch is not immediate"）；Recipes 的 Making parallel requests 示例；Minimize payload size 段（235 已逐句引）。
-- `api/composables/use-async-data`：`(_nuxtApp, { signal })` 与购物车并行示例、返回值表与 `execute` 行（212/214 已逐句引）。
-- `api/composables/use-fetch`：`query` 选项行与响应式选项说明、`watch` 类型 `MultiWatchSources | false`（220/221 已逐句引）。
-- `api/composables/use-lazy-fetch`：lazy 与 await 的关系（225 已逐句引）。

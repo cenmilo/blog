@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 决策表看着抽象，落到两个具体功能上立刻清楚。挑这两个是因为它们刚好踩在表的两条不同分支上：主题切换是"活这一次访问"，草稿是"活过刷新"。
 
 ## 演练一：主题色，用 useState 封一个组合式
@@ -115,9 +116,3 @@ function save() {
 ## 下一篇
 
 250-269 客户端状态到此收尾。下一篇 270 开 270-299 插件与中间件：先从"插件到底解决什么问题、和组件里的组合式有什么分工"讲起。
-
-## 本文依据
-
-- State Management（`getting-started/state-management`）："Shared State" 的 `export const useColor = () => useState<string>('color', () => 'pink')` 与 `// Same as useState('color')`；"Advanced Usage" 里 `useLocale = () => useState<string>('locale', () => useDefaultLocale().value)`、`useDefaultLocale` 内按 `import.meta.server`（`accept-language`）/`import.meta.client`（`navigator.language`）分流。
-- useCookie（`api/composables/use-cookie`）：Writable Cookies 示例 `list.value?.push(...)` 配注释 "list cookie won't be updated with this change"，以及 `save()` 里 `list.value &&= [...list.value]` 配注释 "the actual `list` cookie will be updated"；选项表 `watch` 的 `true`/`'shallow'`/`false` 与 shallow="data changes for only top level properties"；`default` 选项。
-- useState（`api/composables/use-state`）：序列化为 JSON 的 important；`shallowRef` 组合段（大对象性能）。

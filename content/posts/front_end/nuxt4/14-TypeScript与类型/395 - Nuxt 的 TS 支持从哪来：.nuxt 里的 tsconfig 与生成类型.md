@@ -115,7 +115,3 @@ Nuxt 用 TypeScript **project references** 把项目切成几块分别检查（�
 ## 下一篇
 
 下一篇 396 分清 Nuxt 里"类型自动给了"和"你要自己写"的两边：哪些由生成物覆盖、哪些需要显式声明（以及运行时配置的自动推型）。
-
-## 本文依据
-
-- "Nuxt projects rely on auto-generated types ... stored in the .nuxt directory ... generated when you run the dev server or build ... manually by running `nuxt prepare`"、生成的 tsconfig 含推荐基础配置+自动导入/API 路由类型/路径别名引用、不要手改 tsconfig 的 `::warning`、project references 四份文件与用途、遗留 `.nuxt/tsconfig.json` 将被移除的 `::note`、四条好处、"augment types within the correct context"（app/server/shared）、strict checks 随 `typescript.typeCheck` 默认启用（`guide/concepts/typescript`）；根 tsconfig `"files": []` 与四条 references 形态（`directory-structure/tsconfig`）。

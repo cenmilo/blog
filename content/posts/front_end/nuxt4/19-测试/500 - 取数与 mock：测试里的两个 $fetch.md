@@ -123,8 +123,3 @@ const { data } = await useAsyncData(() => requestFetch('/api/cookies'))
 ## 下一篇
 
 下一篇 501 讲模块作者怎么测自己的模块：fixture 应用的组织、`setup` 指向 fixture 的写法，以及那半张还开着的单元测试讨论。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/api/utils/$fetch（ofetch 全局暴露的定义句、SSR 期间直接调用内部路由处理函数的 `::tip`、不包 `useAsyncData` 会双取的 `::note`、三段对比示例、只在客户端执行的方法示例与 POST 用法、取代 `@nuxt/http`/`@nuxtjs/axios` 的 `::tip`、自签名证书需 `NODE_TLS_REJECT_UNAUTHORIZED=0` 的 `::note`、Pass Headers and Cookies 小节三条与 `useRequestFetch` 示例）
-- https://nuxt.com/docs/4.x/getting-started/testing（e2e 的 `$fetch(url)` 定义、`registerEndpoint` 一节两个参数与默认 GET 及外部 API 走 `baseURL` + 环境覆盖 `$test` 的 Note、`mountSuspended`/`renderSuspended` 与 `fireEvent` 的对应关系）

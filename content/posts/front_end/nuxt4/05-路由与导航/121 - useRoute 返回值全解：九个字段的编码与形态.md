@@ -156,25 +156,3 @@ const { data: mountain } = await useFetch(`/api/mountains/${route.params.slug}`)
 ## 下一篇
 
 122 讲监听路由变化：官方给的正解是**响应式取数**——`watch` 选项、把 ref 直接塞进 `query`、用 `route.params` 派生的 computed key，以及 `watch: false` 与 `dedupe` 这两处控制。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-route`
-  - 原文（note）："Within the template of a Vue component, you can access the route using `$route`."
-  - 原文（API 引导句）："Apart from dynamic parameters and query parameters, `useRoute()` also provides the following computed references related to the current route:"
-  - 原文（字段逐条）："`fullPath`: encoded URL associated with the current route that contains path, query and hash"；"`hash`: decoded hash section of the URL that starts with a #"；"`query`: access route query parameters"；"`matched`: array of normalized matched routes with current route location"；"`meta`: custom data attached to the record"；"`name`: unique name for the route record"；"`path`: encoded pathname section of the URL"；"`redirectedFrom`: route location that was attempted to access before ending up on the current route location"
-  - 原文（query 与 params 的划界）："If you need to access the route query parameters (for example `example` in the path `/test?example=true`), then you can use `useRoute().query` instead of `useRoute().params`."
-  - 原文（Example）：`const route = useRoute()` 与 `await useFetch(\`/api/mountains/${route.params.slug}\`)`（文件标注 `~/pages/[slug].vue`）
-  - 原文（Hydration Issues with `route.fullPath`）："Browsers don't send URL fragments (for example `#foo`) when making requests. So using `route.fullPath` to affect the template can trigger hydration issues because this will include the fragment on client but not the server."
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（合并）："If you are using nested routes, the page metadata from all these routes will be merged into a single object."
-  - 原文（Page Metadata）："This data can then be accessed throughout the rest of your app from the `route.meta` object."；示例 `console.log(route.meta.title) // My home page`
-  - 原文（类型增强）：`declare module '#app' { interface PageMeta { pageType?: string } }` + `export {}`
-  - 原文（Catch-all）："Navigating to `/hello/world` would render:" + `<p>["hello", "world"]</p>`；（Dynamic Routes）："If you place anything within square brackets, it will be turned into a dynamic route parameter."
-  - 原文（模板侧 `$route`）：`<template><p>{{ $route.params.slug }}</p></template>`
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（`redirect`）："Where to redirect if the route is directly matched. The redirection happens before any navigation guard and triggers a new navigation with the new target location."
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`（`name`）与 `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 对照用（见 112、116）：name 默认基于 `app/pages/` 里的路径生成；`parent-child`、`posts-id` 两个官方样本
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 对照用（见 092）：`definePageMeta({ key: route => route.fullPath })` 与 `<NuxtPage :page-key="route => route.fullPath" />`

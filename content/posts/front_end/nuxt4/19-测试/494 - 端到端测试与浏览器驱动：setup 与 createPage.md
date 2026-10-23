@@ -186,9 +186,3 @@ test('test', async ({ page, goto }) => {
 ## 下一篇
 
 下一篇 495 讲 `nuxt test` 这条命令：它带的两个参数、三个选项，以及它对环境变量做的那件事。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（End-To-End Testing：四种运行器句、`setup` 的四个钩子说明与最小示例、Nuxt Config/Timings/Features 三组选项全部条目与默认值、`browserOptions` 的 `type`/`launch`、被注释掉的 `config`、Target `host` 小节与登录页示例）
-- https://nuxt.com/docs/4.x/getting-started/testing（APIs 一节 `$fetch`/`fetch`/`url`/`getServerLogs`/`clearServerLogs`；Testing in a Browser 的 `createPage` 定义与 Playwright Test Runner 的安装、`playwright.config.ts`、`@nuxt/test-utils/playwright` 的 `expect`/`test`、`test.use` 两种配置写法）
-- https://nuxt.com/docs/4.x/getting-started/testing（Running Tests 的 `::warning`：happy-dom 或 jsdom、测试前初始化全局 Nuxt 应用）

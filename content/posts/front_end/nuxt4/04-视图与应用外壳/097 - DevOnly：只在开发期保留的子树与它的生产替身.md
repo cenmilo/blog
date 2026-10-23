@@ -82,10 +82,10 @@ tags:
 
 | 命令 | 官方定义 |
 | --- | --- |
-| `nuxt build` | 生产构建，产物是 `.output`（029、037 两篇） |
+| `nuxt build` | 生产构建，产物是 `.output` |
 | `nuxt preview` | 启动一个服务器来预览 `build` 之后的应用；`nuxt start` 是它的另一个名字 |
 
-预览端口同样可以指：`-p, --port`（默认链是 `NUXT_PORT || NITRO_PORT || PORT`）。另外这一节还有一个细节，官方写明 preview 会把自己记录在 `node_modules/.cache/nuxt/preview`，所以同一个项目的第二个 preview 实例会按 `--takeover` / `--no-takeover` 的规则处理已在跑的那个（039 展开过）。
+预览端口同样可以指：`-p, --port`（默认链是 `NUXT_PORT || NITRO_PORT || PORT`）。另外这一节还有一个细节，官方写明 preview 会把自己记录在 `node_modules/.cache/nuxt/preview`，所以同一个项目的第二个 preview 实例会按 `--takeover` / `--no-takeover` 的规则处理已在跑的那个。
 
 ## 与 `<ClientOnly>` 的分界
 
@@ -121,20 +121,3 @@ tags:
 ## 下一篇
 
 098 讲 `<Teleport>` 在 Nuxt 里的挂载点约定：`to` 能接受什么，为什么官方写"目前只对 `#teleports` 有 SSR 支持"，以及其他目标为什么要包一层 `<ClientOnly>`。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/dev-only`
-  - 原文（标题与描述）："Render components only during development with the \<DevOnly> component."
-  - 原文："Nuxt provides the `<DevOnly>` component to render a component only during development."；"The content will not be included in production builds."
-  - 原文示例（文件标注 `app/pages/example.vue`）：`<!-- this component will only be rendered during development --> <LazyDebugBar />`；`<!-- if you ever require to have a replacement during production -->`；`<!-- be sure to test these using \`nuxt preview\` -->`；`<template #fallback><div><!-- empty div for flex.justify-between --></div></template>`
-  - 原文（Slots）："`#fallback`: if you ever require to have a replacement during production."，其示例里再次出现 `<!-- be sure to test these using \`nuxt preview\` -->`
-  - 原文 Source：`packages/nuxt/src/app/components/dev-only.ts`
-- `https://nuxt.com/docs/4.x/api/commands/preview`
-  - 原文："The `preview` command starts a server to preview your Nuxt application after running the `build` command. `nuxt start` is the same command under another name. When running your application in production refer to the Deployment section."
-  - 原文（选项）："`-p, --port=<port>` | Port to listen on (default: `NUXT_PORT \|\| NITRO_PORT \|\| PORT`)"；"`--envName=<environment>` | The environment to use when resolving configuration overrides (default is `production` when building, and `development` when running the dev server)"
-  - 原文（Taking over a running preview）："A preview records itself in `node_modules/.cache/nuxt/preview`, so a second `nuxt preview` for the same project deals with the one already running the way `nuxt dev` deals with a running dev server"
-  - 原文："`--takeover` | Stop a preview server already running on this project and take its place"；"`--no-takeover` | Never stop a preview server already running on this project"
-  - 原文："When the configured `server.builder` produces no server at all (a client-only build, for example), there is nothing to run: the static output is served directly instead, with unmatched paths falling back to the client entry so client-side routing works."
-- `https://nuxt.com/docs/4.x/api/components/client-only`
-  - 对照用（见 096）："The `<ClientOnly>` component is used for purposely rendering a component only on client side."；"The content of the default slot will be tree-shaken out of the server build."；"`#fallback`: specify a content to be rendered on the server and displayed until `<ClientOnly>` is mounted in the browser."

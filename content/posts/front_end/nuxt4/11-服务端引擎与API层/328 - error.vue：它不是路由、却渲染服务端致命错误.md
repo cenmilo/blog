@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前面几篇讲服务端怎么抛错（createError、requireUserSession）。这一篇讲错误**抛上去之后由谁渲染**——`error.vue`。
 
 ## 它是什么、什么时候出现
@@ -126,8 +127,3 @@ error-handling 那一节：错误页 ready 移除时调用 `clearError`，它接
 ## 下一篇
 
 下一篇 329 讲 serverHandlers 与 devServerHandlers：怎么在 nuxt.config 里手动登记服务端处理程序（含 route 的 rou3 约定、method、middleware、lazy），以及它和目录自动注册的关系。
-
-## 本文依据
-
-- error.vue（`directory-structure/app/error`）：定位句；note（"it's not a route and shouldn't placed in your ~/pages directory ... you shouldn't use definePageMeta ... you can still use layouts ... utilizing the NuxtLayout component and specifying the name"）；"The error page has a single prop - error"；`error.vue` 示例（`import type { NuxtError } from '#app'`、`defineProps<{ error: NuxtError }>()`、`error.status`）；NuxtError 字段表（status/fatal/unhandled/statusText/data/cause + legacy statusCode/statusMessage）；"custom fields ... will be lost; you should assign them to data instead" + `throw createError({ status, statusText, data: { myCustomField } })`。
-- Error Handling（`getting-started/error-handling`）：fatal 错误 → JSON 或全屏错误页、cv5 页面错误总触发错误页、服务端路由/中间件错误回 JSON（note）；clearError 可带 redirect。

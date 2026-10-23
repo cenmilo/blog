@@ -191,26 +191,3 @@ important 那句是给你"想走捷径"时的护栏：
 ## 下一篇
 
 133 讲另一道门：路由中间件保护不到 `/api/*`，服务端中间件才管得到接口——两条链的位置、能力与"为什么前端权限判断不能当安全边界"。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/directory-structure/app/middleware`
-  - 原文（无 next）："Unlike navigation guards from `vue-router`, a third `next()` argument is not passed, and **redirect or route cancellation is handled by returning a value from the middleware**."
-  - 原文（五种返回值）："nothing (a simple `return` or no return at all) - does not block navigation and will move to the next middleware function, if any, or complete the route navigation"；"`return navigateTo('/')` - redirects to the given path and will set the redirect code to `302 Found` if the redirect happens on the server side"；"`return navigateTo('/', { redirectCode: 301 })` - redirects to the given path and will set the redirect code to `301 Moved Permanently` if the redirect happens on the server side"；"`return abortNavigation()` - stops the current navigation"；"`return abortNavigation(error)` - rejects the current navigation with an error"
-  - 原文（important）："We recommend using the helper functions above for performing redirects or stopping navigation. Other possible return values described in the vue-router docs may work but there may be breaking changes in future."
-  - 原文（Usage 示例）：`if (to.params.id === '1') { return abortNavigation() }` 与 `if (to.path !== '/') { return navigateTo('/') }`，注释 "it is important to check `to.path` before redirecting or you might get an infinite redirect loop"
-  - 原文（两个 helper）："Nuxt provides two globally available helpers that can be returned directly from the middleware. 1. `navigateTo` - Redirects to the given route 2. `abortNavigation` - Aborts the navigation, with an optional error message."
-  - 原文（Middleware Order / Ordering Global Middleware）："Middleware runs in the following order: 1. Global Middleware 2. Page defined middleware order..."；"By default, global middleware is executed alphabetically based on the filename."；编号前缀示例与 "filenames are sorted as strings, not as numeric values"
-  - 原文（When Middleware Runs）："middleware for the initial page will be executed both when the page is rendered and then again on the client"；"This is true even if you throw an error in your middleware on the server, and an error page is rendered. The middleware will still run again in the browser."；（note）"Rendering an error page is an entirely separate page load, meaning any registered middleware will run again. You can use `useError` in middleware to check if an error is being handled."
-  - 原文（middleware 字段合并）："You can define middleware to apply before loading this page. It will be merged with all the other middleware used in any matching parent/child routes."
-- `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 原文（必须 return）："When using `navigateTo` within route middleware, you must **return its result** to ensure the middleware execution flow works correctly."；反例 "// ❌ This will not work as expected" + `navigateTo('/search', { redirectCode: 301 })` 后 `return`；"In this case, `navigateTo` will be executed but not returned, which may lead to unexpected behavior."
-  - 原文（warning）："Make sure to always use `await` or `return` on result of `navigateTo` when calling it."
-  - 原文（`redirectCode`）："`navigateTo` redirects to the given path and sets the redirect code to `302 Found` by default **when the redirection takes place on the server side**. This default behavior can be modified by providing different `redirectCode`. Commonly, `301 Moved Permanently` can be used for permanent redirections."
-- `https://nuxt.com/docs/4.x/api/utils/abort-navigation`
-  - 原文："abortNavigation is a helper function that prevents navigation from taking place and throws an error if one is set as a parameter."；（warning）"`abortNavigation` is only usable inside a route middleware handler."；Type `export function abortNavigation (err?: Error | string): false`；示例 `return abortNavigation('Insufficient permissions.')`、`catch (err) { return abortNavigation(err) }`
-- `https://nuxt.com/docs/4.x/api/utils/define-nuxt-route-middleware`
-  - 原文（接口）：`interface RouteMiddleware { (to: RouteLocationNormalized, from: RouteLocationNormalized): ReturnType<NavigationGuard> }`
-  - 原文（抛错误页）：`throw createError({ status: 404, statusText: 'Page Not Found' })`；"The above route middleware will redirect a user to the custom error page defined in the `~/error.vue` file, and expose the error message and code passed from the middleware."
-- `https://nuxt.com/docs/4.x/getting-started/error-handling`
-  - 对照用（见 111）：`statusText` 只允许水平制表符、空格与可见 ASCII 字符（`[\t\u0020-\u007E]`），详细描述与非 ASCII 内容改用 `message`

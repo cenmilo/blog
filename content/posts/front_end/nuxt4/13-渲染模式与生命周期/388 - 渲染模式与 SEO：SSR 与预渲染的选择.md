@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 366 已经给过一句结论——要 SEO 就用 SSR、别纯客户端。这一篇把"为什么"和"具体怎么选"落到渲染模式上，并且把 head/meta 这条线接上：光有正确的 `<title>`/meta 不够，它们得真的出现在爬虫拿到的 HTML 里。
 
 ## 一条不变的原理
@@ -79,7 +80,3 @@ SEO 不只是正文，还有 `<title>`、meta、`og:` 这些。Nuxt 的 head 管
 ## 下一篇
 
 下一篇 389 做 365-394 排错：把"页面闪烁、二次请求、状态串页"三类现象各自的成因和检查顺序归位。
-
-## 本文依据
-
-- SSR "crawlers can directly index"、CSR "search engine crawlers won't wait for the interface to be fully rendered"、预渲染构建期出静态 HTML（`guide/concepts/rendering`、`getting-started/prerendering`）；`ssr: false` 空 `#__nuxt` 与"lose many SEO benefits ... use `<ClientOnly>`"（`getting-started/deployment`、见 382）；head 管理 Unhead、`app.head` 静态不支持响应式的 `::important`、`useHead`/`useSeoMeta` 响应式（`getting-started/seo-meta`）；流式下 head 晚注册变客户端补丁见 324。

@@ -160,10 +160,3 @@ interface AsyncDataExecuteOptions {
 ## 下一篇
 
 248 - 取数小结：一张决策图表该用哪个 API
-
-## 本文依据
-
-- `api/composables/use-async-data`：Make Your `handler` Abortable 全节（定义句与三块示例、`signal?.addEventListener('abort', ...)` 方案、abort 三条时机）；`AsyncDataHandler` 与 `AsyncDataExecuteOptions` 定义；选项表 `timeout` 行（v4.2 徽标、"defaults to `undefined`, which means no timeout"）、`dedupe` 行与 `pending` 行；Usage 示例里裸调 `refresh()`/`clear()` 的注释形状；`experimental.pendingWhenIdle` 一句（212/213/214/218 已逐句引）。
-- `api/composables/use-fetch`：`timeout` 行（"the request"措辞）、`dedupe` 行（"Avoid fetching same key more than once at a time."）、`pending` 行同文（220 已逐句引）。
-- `getting-started/data-fetching`：并行请求配方中每个 `$fetch` 都带 `{ signal }` 的写法（243 已逐句引）。
-- 与前文的分工：`clear()` 的四件事与状态复位在 214/229，`dedupe` 空白在 218，刷新与导航的并发在 246。

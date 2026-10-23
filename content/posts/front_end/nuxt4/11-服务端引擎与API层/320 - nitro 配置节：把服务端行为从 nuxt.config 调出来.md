@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前面几篇一直在写 `server/` 里的代码。这一篇讲：**服务端的配置从哪调**。答案是一个地方——`nuxt.config.ts` 里的 `nitro` 节。
 
 ## nitro 节是什么
@@ -119,9 +120,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 321 讲 `nuxt task`：Nitro 后台任务的定义前提（要开 tasks）、`nuxt task list` 与 `nuxt task run` 两个子命令和参数。
-
-## 本文依据
-
-- nuxt-config nitro 节（`api/nuxt-config`）："Configuration for Nitro." 与指向 Nitro 配置文档；子键 `routeRules`（object）、`runtimeConfig`（object，默认含 `nitro.envPrefix: "NUXT_"`）。
-- server 目录（`directory-structure/server`）：Nitro Config 一节（"use `nitro` key in `nuxt.config` to directly set Nitro configuration"、warning "Custom config can affect production deployments, as the configuration interface might change ... when Nitro is upgraded in semver-minor versions"）；Server Storage 一节（`nitro.storage.redis` 示例 + `useStorage('redis')`）；builder 选项同类 warning（高级、接口未定稿）。
-- nuxt task（`api/commands/task`）：note 关于 `nitro.experimental.tasks: true` 才扫 tasks 目录（见 321）。

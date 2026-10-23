@@ -145,10 +145,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 452 讲比路由规则更细的一层缓存：`defineCachedEventHandler()` 与 `defineCachedFunction()`。官方把它们归在"不可移植"那一类——它们来自 `nitropack/runtime`，而不是 Nuxt 的服务端表面，"想让缓存在任何地方都能跑，就直接依赖一个缓存库"。
-
-## 本文依据
-
-- 配置页 `## routeRules`：定义句"Global route options applied to matching server routes"、`::important` 性质的实验特性声明与指向 Nitro 配置文档、`## nitro` 下 `routeRules` 只有类型 `object` 无说明（`api/nuxt-config`）
-- 概念页 Hybrid Rendering 一节：整段引入（内容与后台两种页面的对照）、"define rules for a group of nuxt routes, change rendering mode or assign a cache strategy"、"automatically register corresponding middleware and wrap routes with cache handlers using Nitro caching layer"、八条示例及其全部注释原文、九个属性的类型与说明逐条、`::note` 关于 `isr`/`swr` 生成 `_payload.json`、Server Bundle Size with `ssr: false` 一节（排除逻辑、三种保留情形、build-time optimization only）、平台原生规则映射句、`::important` 关于 `nuxt generate` 不可用、Vercel ISR 示例卡片（`guide/concepts/rendering`）
-- `cache` 路由规则的两处出现：`early404` 的 `maxAge`/`Cache-Control` 句与流式退回清单（`guide/going-further/experimental-features`）
-- `noScripts` 属性指向 features 页的 read-more、`appMiddleware` 只作用 Vue 应用部分（`guide/concepts/rendering`、`guide/going-further/features`）

@@ -216,9 +216,3 @@ addons 那部分留给下一篇，两节的说明句是同一句："Addons are r
 ## 下一篇
 
 227 - 给取数函数加插件：addon 的自定义选项、中间件与扩展返回值
-
-## 本文依据
-
-- `api/composables/create-use-fetch`：定位句与 "fully typed / works exactly like useFetch / defaults baked in" 两句；note（compiler macro、exported declaration、composables 目录、构建期注入去重 key）；Usage 两例（`useAPI` 与调用页）；Type 三条重载；Options 段的键清单；Typing a Third-Party API 全节（4.6 起、`DynamicParam`/`Endpoint` 示例、三条使用结果、四条限制原文、两个实验开关与两个类型错误判例、两条 note/tip）；Default vs Override Mode 两节原文与三块示例；Combining with a Custom `$fetch` 段与 important（函数形态才能拿 `useNuxtApp()`）；Addons 段与 `refreshOnFocus` 示例。
-- `api/composables/create-use-async-data`：定位句与同款两句；同一条 macro note；`useCachedData` 的 `getCachedData` 示例；Type 两条重载；Options 段列出的 11 个键；Default Mode（`lazy: true` + `server: false` 与调用方覆盖 `server: true`）；Override Mode（`deep` is always enforced as false）；Addons 段与 `useCustomAsyncData` 示例。
-- `api/composables/use-fetch`：`$fetch` 选项行 "Custom $fetch implementation."（220 已引）；URL 类型提示来自服务端路由那句（219 已引）。

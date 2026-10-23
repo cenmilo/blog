@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（273）的 vueApp 配的是 Vue 那一层。这一篇讲的是挂到 **NuxtApp 这一层**——让某个 helper 变成"哪里 `useNuxtApp()` 都能拿到"的全局方法。
 
 ## 写法一：直接调 nuxtApp.provide
@@ -147,9 +148,3 @@ use-nuxt-app 的 `runWithContext` 那节不涉，但 provide 相关这句 import
 ## 下一篇
 
 下一篇 275 讲 `nuxtApp.hook`：在插件里订阅运行时钩子（`app:created`、`vue:error`、`page:start` 这些渲染生命周期上的点）。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）`provide (name, value)` 一节："Use the `provide` function to create Nuxt plugins to make values and helper methods available in your Nuxt application across all composables and components."、`provide` 接受 `name` 和 `value`、`nuxtApp.provide('hello', ...)` + `nuxtApp.$hello('name')` 示例、"`$hello` has become the new and custom part of `nuxtApp` context and it is available in all places where `nuxtApp` is accessible."
-- plugins 目录（`directory-structure/app/plugins`）：Providing Helpers 两种写法（函数返回 `{ provide: {...} }` 与对象 setup 返回 `{ provide: {...} }`）、组件里 `const { $hello } = useNuxtApp()`、Typing Plugins（自动类型说明、`declare module '#app' { interface NuxtApp }` + `declare module 'vue' { interface ComponentCustomProperties }`、跨插件 `useNuxtApp()` 取用及其"避免除非确定顺序"note）、important "we highly recommend using composables instead of providing helpers ..."、warning "If your plugin provides a `ref` or `computed`, it will not be unwrapped in a component `<template>`."
-- defineNuxtPlugin（`api/utils/define-nuxt-plugin`）：Basic Usage 里 `return { provide: { hello: ... } }` 形状。

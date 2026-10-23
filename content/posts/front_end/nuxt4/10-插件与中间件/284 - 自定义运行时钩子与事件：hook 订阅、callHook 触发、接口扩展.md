@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前面几篇订阅的都是 Nuxt 内置的钩子时刻（app:created、page:start、vue:error）。这一篇把方向反过来：**你自己定一个事件名、自己触发、让别人订阅**——用它来解耦代码。官方 events 那一节给的就是这套。
 
 ## 为什么用它：解耦
@@ -158,8 +159,3 @@ declare module 'nitropack/types' {
 ## 下一篇
 
 下一篇 285 讲插件里抛出的错误怎么走：`vue:error` 钩子与 `vueApp.config.errorHandler` 接客户端错误、`app:error` 接启动期（含插件抛错）错误，以及"插件抛错后要清错误才会重跑"那条坑。
-
-## 本文依据
-
-- Creating Custom Events（`guide/going-further/events`）：解耦动机段（order shipped → email 的例子）；"The Nuxt event system is powered by unjs/hookable, which is the same library that powers the Nuxt hooks system."；`nuxtApp.hook('app:user:registered', (payload) => ...)` 订阅示例；`await nuxtApp.callHook('app:user:registered', { id, name })` 触发示例；"the payload is passed by reference, a listener can modify it to send data back to the emitter" 及 `payload.message = '...'` 双向示例（含其 callHook 传入另写字面量的示例瑕疵）；tip "inspect all events using the Nuxt DevTools Hooks panel."。
-- Lifecycle Hooks 指南（`guide/going-further/hooks`）："Adding Custom Hooks" 的 `declare module '#app' { interface RuntimeNuxtHooks; interface NuxtHooks }` + `declare module 'nitropack/types' { interface NitroRuntimeHooks }`；Nuxt Hooks (Build Time) / App Hooks (Runtime) / Server Hooks (Runtime) 三层划分与各自 `nuxt.hook('close')` / `nuxtApp.hook('page:start')` / `nitroApp.hooks.hook('render:html')` 示例。

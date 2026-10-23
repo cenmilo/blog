@@ -126,7 +126,3 @@ builders 那页解释了为什么：builder 负责把虚拟应用打包成 JS/CS
 ## 下一篇
 
 下一篇 430 收这一章的排错：样式路径 404、资源取不到、首屏闪一下，各自对应前面哪一条事实，按什么顺序查。
-
-## 本文依据
-
-- `## vite` 定性（"passed directly to Vite"）、"Top-level `vite` options are shared across both client and server environments. Use `$client` and `$server` ..."、$client/$server 示例、"not all vite options are supported in Nuxt"、具名子键与默认值（`$client`/`$server`/`build.assetsDir`/`build.emptyOutDir`/`cacheDir`/`clearScreen`/`define`/`esbuild`/`mode`/`optimizeDeps.esbuildOptions`）与 `## postcss` 两键（`order`、`plugins`）（`api/nuxt-config`）；预处理器落点与 webpack 另看 loader 文档、`preprocessorMaxWorkers`（`getting-started/styling`，见 418）；默认四插件与包名为键（`getting-started/styling`，见 419）；构建器三选与 `addVitePlugin`/`addWebpackPlugin`/`addBuildPlugin`/`extendViteConfig`/`extendWebpackConfig`、官方构建器自有钩子、builder 与 Nitro 的产物分工（`guide/going-further/builders`）；`features.inlineStyles` 仅 Vite（`guide/going-further/features`，见 427）。

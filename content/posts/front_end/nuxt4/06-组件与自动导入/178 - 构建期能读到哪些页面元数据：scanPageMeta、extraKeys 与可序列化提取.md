@@ -193,19 +193,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 179 给这一段的收尾：一张"自动导入或组件解析失败"的排错清单，按第 ① 到第 ⑤ 步逐级检查，并列出官方给的三件能看见真相的工具。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/guide/going-further/experimental-features`
-  - 原文（scanPageMeta）："Nuxt exposing some route metadata defined in `definePageMeta` at build-time to modules (specifically `alias`, `name`, `path`, `redirect`, `props` and `middleware`)."；"This only works with static or strings/arrays rather than variables or conditional assignment. See original issue for more information and context."；"By default page metadata is only scanned after all routes have been registered in `pages:extend`. Then another hook, `pages:resolved` will be called."；"You can disable this feature if it causes issues in your project." + `experimental: { scanPageMeta: false }`
-  - 原文（extraPageMetaExtractionKeys）："The `definePageMeta()` macro is a useful way to collect build-time meta about pages. Nuxt itself provides a set list of supported keys which is used to power some of the internal features such as redirects, page aliases and custom paths."；"This option allows passing additional keys to extract from the page metadata when using `scanPageMeta`."；示例 `definePageMeta({ foo: 'bar' })` 与 `experimental: { extraPageMetaExtractionKeys: ['foo'] }, hooks: { 'pages:resolved' (ctx) { // ✅ foo is available } }`；"This allows modules to access additional metadata from the page metadata in the build context. If you are using this within a module, it's recommended also to augment the `NuxtPage` types with your keys."（链接指向 `directory-structure/app/pages#typing-custom-metadata`）
-  - 原文（extractSerializablePageMeta）："Enabled by default when `future.compatibilityVersion` is `5` or higher."；"By default, Nuxt only reads a fixed list of `definePageMeta()` keys at build time (plus anything in `extraPageMetaExtractionKeys`); everything else is resolved at runtime from a separate module generated per page. With this option, Nuxt writes every JSON-serializable property straight into the generated route record instead."；"When every property of a page's `definePageMeta()` can be resolved statically, the route no longer imports that page's meta module at all, which removes one module per page from the dev module graph."；示例 `definePageMeta({ layout: { name: 'admin', props: { collapsed: true } }, title: 'Dashboard' })`；"Properties whose values cannot be serialized (functions, variable references, spreads, computed keys) are unaffected and still resolved at runtime."；"This has no effect when `scanPageMeta` is `false`, as the route record does not override the meta module in that case." + `experimental: { extractSerializablePageMeta: false }`
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（自定义元数据两处增强之一）："If you add custom metadata for your pages, you may wish to do so in a type-safe way. It is possible to augment the type of the object accepted by `definePageMeta`" + `declare module '#app' { interface PageMeta { pageType?: string } }` + `export {}`
-- `https://nuxt.com/docs/4.x/api/kit/pages`
-  - 原文（另一处增强）："You can augment the `NuxtPageMeta` interface to add type-safe custom metadata for pages when using `extendPages` or the `pages:extend` hook" + `declare module '@nuxt/schema' { interface NuxtPageMeta { requiresAuth?: boolean } }`
-- `https://nuxt.com/docs/4.x/api/advanced/hooks` 与 `https://nuxt.com/docs/4.x/getting-started/upgrade`
-  - 对照用（见 143）：`pages:extend`（"Called after page routes are scanned from the file system."）与 `pages:resolved`（"Called after page routes have been augmented with scanned metadata."）；v4 变更句 "We now scan page metadata (defined in `definePageMeta`) *after* calling the `pages:extend` hook rather than before."
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 对照用（见 117、135）：`PageMeta` 的 15 个具名字段与 `[key: string]` 自定义口子；`layout` 的对象形态
-- 事实核对：`api/nuxt-config` 那页**没有** `scanPageMeta`、`extraPageMetaExtractionKeys`、`extractSerializablePageMeta` 任何一项条目（这三个键只出现在实验特性页）

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 一个内容站带一个后台，是最好的例子：内容页应该静态、生成一次就够，后台要登录、更像动态应用。以前一个 Nuxt 应用只能全站选一种模式（全 universal 或全客户端）。Hybrid rendering 打破这条——它用 Route Rules 按路由分组，决定服务器对某个 URL 该怎么响应。
 
 ## 机制：它到底改了什么
@@ -112,7 +113,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 368 起从"渲染形态"转到"生命周期"：Nuxt 把一次访问切成服务端七步、客户端五步，先看清这条主轴和 365 那张"谁在哪跑"的关系。
-
-## 本文依据
-
-- Hybrid Rendering 机制、Route Rules 九项属性清单与各自描述、`isr`/`swr` 的 `_payload.json` note、`ssr: false` 对服务端包体的影响与三种例外、Netlify/Vercel 原生映射、`nuxt generate` 下 hybrid 不可用的 `::important`（`guide/concepts/rendering`）。

@@ -128,10 +128,3 @@ nuxt dev --inspect
 ## 下一篇
 
 下一篇 458 讲一件文档里其实没有的事：性能回归防线。官方测试那一节对 Lighthouse、指标、预算**零记载**，unit 环境只支持 vitest；能接上的只有 `nuxt analyze` 那条与 `CI` 有关的行为，和 Playwright 那条能跑真实浏览器的路。
-
-## 本文依据
-
-- `nuxt devtools` 命令：语法行、两个参数与一个选项的表、enable 全局安装＋项目启用＋偏好存用户级 `.nuxtrc`＋disable 针对单个项目的整段说明、指向 devtools.nuxt.com 的 read-more、源文件指向（`api/commands/devtools`）
-- 配置项 `## devtools`：三句原文（Enable Nuxt DevTools for development、Breaking changes for devtools might not reflect on the version of Nuxt、See Nuxt DevTools）（`api/nuxt-config`）
-- DevTools 定性句与四个面板的编号清单原文（Timeline / Assets / Render Tree / Inspect 各自说明）；线上三工具（Chrome Performance 显示本地 LCP 与 CLS、操作后抓 INP；Lighthouse 五类审计与"Use failing audits as a guide"、每个审计有参考文档；PSI 给 lab 与 field 及其用途差别；WebPageTest 的地点/真实浏览器/网络条件）（`guide/best-practices/performance`）
-- Sourcemaps 默认状态（服务端默认开、客户端 dev 开）与 `sourcemap: { server, client }` 配置示例；`nuxt dev --inspect`、Chrome DevTools 上的 Node.js 图标与 attach、`::important` 同平台与 Docker 不可用；VS Code 与 JetBrains 调试配置示例（`guide/going-further/debugging`）

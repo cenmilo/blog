@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇 `nuxt task` 也是"对话正在跑的 dev 服务器"。这一篇的 `nuxt curl` 更直接：**给那个服务器发一条 HTTP 请求，看响应**——不用你先去查它到底占用哪个端口。
 
 ## 它解决什么
@@ -120,7 +121,3 @@ npx nuxt curl /api/todos -d @todo.json
 ## 下一篇
 
 300-339 服务端这一层的 CLI 与请求相关主题到 322 先告一段落。下一篇 323 继续 300-339 那几篇，编号与日期连续推进。
-
-## 本文依据
-
-- nuxt curl（`api/commands/curl`）：定位句 "The curl command sends an HTTP request to your running Nuxt dev server."；"sends an HTTP request to the nuxt dev server running for your project and prints the response. A path is resolved against that server, so you do not need to know which port it ended up on."；"found through the nuxt.lock file it writes into your build directory, so the command only works while nuxt dev is running ... Pass an absolute URL to talk to any other server."；命令签名 + Arguments（URL、ROOTDIR 默认 .）+ Options 全表（--cwd/-X/-H/-d 含 @- 与 @file/-i/-I/-v/--pretty）；四示例；pretty 输出规则（终端重排高亮、管道逐字节透传、--no-pretty/--pretty）；note "exits with 22 when the server answers with an HTTP error status, matching curl --fail."

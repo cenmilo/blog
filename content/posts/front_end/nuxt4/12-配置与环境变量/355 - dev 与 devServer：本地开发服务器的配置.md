@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `nuxt dev` 起的那个本地服务器，其行为由两个 nuxt.config 节控制：`dev` 和 `devServer`。名字像，一个你基本不碰、一个常碰。
 
 ## dev：一个你通常不该设的布尔
@@ -80,8 +81,3 @@ host 同理（`NUXT_HOST`/`NITRO_HOST`/`HOST` → devServer.host）。也就是�
 ## 下一篇
 
 下一篇 356 串讲目录类配置：srcDir、serverDir、dir 与 buildDir——各自默认、基准目录，以及改名会牵动什么。
-
-## 本文依据
-
-- nuxt-config dev / devServer 节（`api/nuxt-config`）：dev（"Whether Nuxt is running in development mode. Normally, you should not need to set this."，boolean 默认 false）；devServer 子项 host（"Dev server listening host"）、port（默认 3000）、https（默认 false、`{key,cert}` 示例）、cors.origin（array）、loadingTemplate（function）、url（默认 `http://localhost:3000`、"should not be set directly as it will always be overridden"）；相邻 devtools 节与 devServerHandlers 节。
-- devServer 环境变量优先级（NUXT_PORT/NITRO_PORT/PORT/devServer.port，见 085/034 记录）。

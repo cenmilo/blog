@@ -96,7 +96,3 @@ useSeoMeta({
 ## 下一篇
 
 下一篇 423 起继续 415-434 那几篇：图片与字体的加载策略（`getting-started/assets` 与 Nuxt Image 那条线），把资源这一章的最后一块补齐。
-
-## 本文依据
-
-- "Files contained within the `public/` directory are served at the root and are not modified by the build process."、适用判据（have to keep their names / likely won't change）、目录结构示例与 `useSeoMeta({ ogImage: '/og-image.png' })`、Nuxt 2 称 `static/`（`directory-structure/public`）；两目录对照与"content is served at the server root as-is"、`/img/nuxt.png` 静态 URL 示例、Static vs. Dynamic `src`（字面量被包以应用 `app.baseURL`；仅构建器可见的字面量才解析）、运行时拼路径不带前缀与 `useRuntimeConfig().app.baseURL`+`joinURL`、"Files in public/ keep their original filenames"、public 资源按 URL 引用（不需处理或 hash）（`getting-started/assets`）；本地字体放 `public/fonts` 与 `@font-face` 示例（`getting-started/styling`）；`cdnURL` 解析 `public/` 资源、`app.head` 字面量不解析、改用 `useHead()` 从 runtime config 拼（`getting-started/seo-meta`，另见 361）。

@@ -114,7 +114,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 428 讲把主题值放进 `app.config`：官方示例本身就是 `theme.primaryColor`，配合 `useAppConfig()` 两端可读与 `updateAppConfig` 运行期改，但要注意它会进客户端包、不能放密钥。
-
-## 本文依据
-
-- `features` 节 inlineStyles 三条定义（"Inlines styles when rendering HTML. This is currently available only when using Vite."、可传接收组件路径返回布尔的函数、"It defaults to `(id) => id.includes('.vue')`"）与 `features: { inlineStyles: false }` 示例（`guide/going-further/features`、`api/nuxt-config`）；升级指南 "More Granular Inline Styles"（Impact Level Moderate、"Nuxt will now only inline styles for Vue components, not global CSS"、Previously/Now 对照与平衡理由、`inlineStyles: true` 迁移写法）（`getting-started/upgrade`）；noScripts 不动 CSS（`guide/going-further/features`，见 353）；流式下路由样式随 `inlineStyles` 决定内联或链接（`guide/going-further/experimental-features`，见 324）。

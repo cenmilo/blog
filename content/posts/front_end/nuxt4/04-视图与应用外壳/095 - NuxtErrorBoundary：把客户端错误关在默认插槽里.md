@@ -154,20 +154,3 @@ const errorBoundary = useTemplateRef('errorBoundary')
 ## 下一篇
 
 096 讲 `<ClientOnly>`：默认插槽的内容如何被从服务端构建里摇掉、`#fallback` 插槽与 `fallback`/`placeholder` prop 两种占位写法的区别，以及为什么它显示占位直到挂载完成。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-error-boundary`
-  - 原文："The \<NuxtErrorBoundary> component handles client-side errors happening in its default slot."
-  - 原文（tip）："The `<NuxtErrorBoundary>` uses Vue's `onErrorCaptured` hook under the hood."
-  - 原文（Events）："`@error`: Event emitted when the default slot of the component throws an error."；示例 `<NuxtErrorBoundary @error="logSomeError">`（文件标注 `app/app.vue`）
-  - 原文（Slots）："`#error`: Specify a fallback content to display in case of error."；示例 `<template #error="{ error, clearError }"><p>An error occurred: {{ error }}</p><button @click="clearError">Clear error</button></template>`
-  - 原文（Example - Accessing `error` and `clearError` in Script）："You can access `error` and `clearError` properties within the component's script as below:"；示例 `const errorBoundary = useTemplateRef('errorBoundary')`、`// errorBoundary.value?.error`、`// errorBoundary.value?.clearError()`
-  - 原文 Source：`packages/nuxt/src/app/components/nuxt-error-boundary.vue`
-- `https://nuxt.com/docs/4.x/getting-started/error-handling`
-  - 原文（Render Error in Component）："Nuxt also provides a `<NuxtErrorBoundary>` component that allows you to handle client-side errors within your app, without replacing your entire site with an error page."
-  - 原文："This component is responsible for handling errors that occur within its default slot. On client-side, it will prevent the error from bubbling up to the top level, and will render the `#error` slot instead."
-  - 原文："The `#error` slot will receive `error` as a prop. (If you set `error = null` it will trigger re-rendering the default slot; you'll need to ensure that the error is fully resolved first or the error slot will just be rendered a second time.)"
-  - 原文（tip）："If you navigate to another route, the error will be cleared automatically."
-  - 原文示例（文件标注 `app/pages/index.vue`）：`<!-- some content -->`、`<NuxtErrorBoundary @error="someErrorLogger">`、`<!-- You use the default slot to render your content -->`、`<template #error="{ error, clearError }">`、`You can display the error locally here: {{ error }}`、`<button @click="clearError">This will clear the error.</button>`
-  - 原文 link-example 指向 `https://nuxt.com/docs/examples/advanced/error-handling`

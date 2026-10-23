@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 270-299 讲完插件与中间件，进入 300-339 那几篇：服务端引擎与 API 层。第一篇先把地基概念立起来——你项目里那些 `server/api/*.ts`、SSR、部署到 serverless，背后都是同一个引擎在管，它叫 **Nitro**。
 
 ## Nitro 是什么
@@ -105,7 +106,3 @@ tags:
 ## 下一篇
 
 下一篇 301 把 `server/` 目录全景铺开：api、routes、middleware、plugins、utils 各放什么、各自怎么被自动扫描注册。
-
-## 本文依据
-
-- Server Engine（`guide/concepts/server-engine`）：定位句 "While building Nuxt, we created a new server engine: Nitro."；六项特性清单（跨平台/开箱 serverless/API 路由/自动代码分割/混合模式/带 HMR 的开发服务器）；API Layer（"Server API endpoints and Middleware are added by Nitro that internally uses h3"、h3 三条关键特性）；Direct API Calls（"$fetch ... make an API call to the server if run on the browser, but will directly call the relevant function if run on the server, saving an additional API call"、基于 ofetch）；Typed API Routes（"generate typings ... as long as you are returning a value instead of using res.end()"）；Standalone Server（"produces a standalone server dist that is independent of node_modules"、对比 Nuxt 2、`nuxt build` 产出 `.output`、hybrid/JAMstack、native storage layer）。

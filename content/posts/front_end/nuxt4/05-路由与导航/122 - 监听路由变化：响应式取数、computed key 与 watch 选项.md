@@ -204,25 +204,3 @@ const { data, error } = await useAsyncData(
 ## 下一篇
 
 123 讲 `useRouter()`：它返回什么、什么时候会是空、`push`/`replace` 与官方推荐的 `navigateTo` 之间怎么分工。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-fetch`
-  - 原文（Reactive Fetch Options）："Fetch options can be provided as reactive, supporting `computed`, `ref` and computed getters. When a reactive fetch option is updated it will trigger a refetch using the updated resolved reactive value."
-  - 原文示例：`const searchQuery = ref('initial')`、`await useFetch('/api/search', { query: { q: searchQuery } })`、`// triggers a refetch: /api/search?q=new%20search`、`searchQuery.value = 'new search'`
-  - 原文（opt out）："If needed, you can opt out of this behavior using `watch: false`:"；示例 `{ query: { q: searchQuery }, watch: false }` 与 `// does not trigger a refetch`
-  - 原文（签名）：`url: string | Request | Ref<string | Request> | (() => string | Request)`
-  - 原文（选项）：`dedupe?: 'cancel' | 'defer'`；`enabled?: MaybeRefOrGetter<boolean>`；`watch?: ...`
-- `https://nuxt.com/docs/4.x/api/composables/use-async-data`
-  - 原文（Watch Parameters）："The built-in `watch` option allows automatically rerunning the fetcher function when any changes are detected."；示例 `await useAsyncData('posts', (_nuxtApp, { signal }) => $fetch('https://fakeApi.com/posts', { params: { page: page.value }, signal }), { watch: [page] })`
-  - 原文（Reactive Keys）："You can use a computed ref, plain ref or a getter function as the key, allowing for dynamic data fetching that automatically updates when the key changes:"；示例（`app/pages/[id].vue`）`const route = useRoute()`、`const userId = computed(() => \`user-${route.params.id}\`)`、注释 `// When the route changes and userId updates, the data will be automatically refetched`、`useAsyncData(userId, () => fetchUserById(route.params.id))`
-  - 原文（Make Your `handler` Abortable）："You can make your `handler` function abortable by using the `signal` provided in the second argument. This is useful for cancelling requests when they are no longer needed, such as when a user navigates away from the page. `$fetch` natively supports abort signals."；示例 `await useAsyncData('users', (_nuxtApp, { signal }) => $fetch('/api/users', { signal }))` 与 `refresh() // will actually cancel the $fetch request (if dedupe: cancel)`
-  - 原文（参数表）：`watch` — `MultiWatchSources` — "Array of reactive sources to watch and auto-refresh."；`dedupe` — `'cancel' | 'defer'` — 默认 `'cancel'` — "Policy when triggering an execution more than once at a time."；`enabled` — 默认 `true` — "Barrier that gates whether the `handler` may run. While `false`, every execution is blocked (initial fetch, `execute`/`refresh`, and watch triggers), and switching `true` → `false` cancels any in-flight request without clearing `data`. Re-enabling does not refetch on its own."
-  - 原文（类型）：`type AsyncDataRequestContext = { /** The reason for this data request */ cause: 'initial' | 'refresh:manual' | 'refresh:hook' | 'watch' }`；`getCachedData` — `(key, nuxtApp, ctx) => DataT | undefined`
-  - 原文（note）："`data`, `status`, `pending`, and `error` are Vue refs. Access their values with `.value` in `<script setup>`. `refresh`/`execute` and `clear` are plain functions."
-- `https://nuxt.com/docs/4.x/api/utils/on-before-route-update`
-  - 原文："The onBeforeRouteUpdate composable allows registering a route guard within a component."；read-more 指向 vue-router 的 `onbeforerouteupdate`；Source 为 `packages/nuxt/src/app/composables/router.ts`
-- `https://nuxt.com/docs/4.x/api/composables/use-route`
-  - 对照用（见 120、121）：字段是 computed references；中间件里不得使用 `useRoute()`；`route.fullPath` 进模板的水合问题
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page` 与 `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 对照用（见 092、116）：`pageKey` / `definePageMeta({ key })` 控制"何时重新渲染"

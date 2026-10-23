@@ -42,7 +42,7 @@ tags:
 | 只有列表→详情才跳顶、返回时不跳 | 用函数形态按 `to`/`from` 判 |
 | 改"默认行为"本身（不止这一页） | 去第二层：`router.options.ts` |
 
-**这一层最容易犯的错，是以为"固定 `key` 让页面不重建"会顺带让滚动不动。**官方的原话正相反：滚动跟着**导航**，不跟着渲染。
+**这一层最容易犯的错，是以为"固定 `key` 让页面不重建"会顺带让滚动不动。** 官方的原话正相反：滚动跟着**导航**，不跟着渲染。
 
 ## 第二层：`app/router.options.ts`（官方推荐的那层）
 
@@ -155,7 +155,7 @@ export default defineNuxtConfig({
 })
 ```
 
-**它的范围要记住：这一格说的是 hash 链接（锚点），不是"换页时滚到顶部"。**后者属于第一、二层。
+**它的范围要记住：这一格说的是 hash 链接（锚点），不是"换页时滚到顶部"。** 后者属于第一、二层。
 
 ### `hashMode`：一条会连带 SSR 的限制
 
@@ -207,20 +207,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 139 讲运行时换布局的 `setPageLayout`：它依赖 Nuxt 上下文、官方要求服务端必须赶在布局被 Vue 渲染之前调用（否则水合不匹配），以及 v4.3 起如何连 props 一起传。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（`scrollToTop`）："Tell Nuxt to scroll to the top before rendering the page or not. Navigation is independent from rendering, so scroll behavior is always triggered even when the page doesn't re-render (e.g. when using a fixed `key`). Set `scrollToTop: false` to disable scrolling in such cases. If you want to overwrite the default scroll behavior of Nuxt, you can do so in `~/router.options.ts`."；Type `boolean | ((to: RouteLocationNormalizedLoaded, from: RouteLocationNormalizedLoaded) => boolean)`
-- `https://nuxt.com/docs/4.x/guide/recipes/custom-routing`
-  - 原文（Router Config）："Using router options, you can optionally override or extend your routes using a function that accepts the scanned routes and returns customized routes."；"If it returns `null` or `undefined`, Nuxt will fall back to the default routes (useful to modify input array)."；示例 `routes: _routes => [{ name: 'home', path: '/', component: () => import('~/pages/home.vue') }]`
-  - 原文（note）："Nuxt will not augment any new routes you return from the `routes` function with metadata defined in `definePageMeta` of the component you provide. If you want that to happen, you should use the `pages:extend` hook which is called at build-time."
-  - 原文（Using `router.options`）："This is the recommended way to specify router options."；"It is possible to add more router options files by adding files within the `pages:routerOptions` hook. Later items in the array override earlier ones."；（callout）"Adding a router options file in this hook will switch on page-based routing, unless `optional` is set, in which case it will only apply when page-based routing is already enabled."；示例 `files.push({ path: resolver.resolve('./runtime/router-options'), optional: true })`
-  - 原文（Using `nuxt.config`）："**Note:** Only JSON serializable options are configurable: `linkActiveClass`、`linkExactActiveClass`、`end`、`sensitive`、`strict`、`hashMode`、`scrollBehaviorType`"；示例 `router: { options: {} }`
-  - 原文（note）："With `future.compatibilityVersion: 5`, routing is case-sensitive by default to match Nitro. Set `router.options.sensitive` to `false` to opt out."
-  - 原文（Hash Mode (SPA)）："You can enable hash history in SPA mode using the `hashMode` config. In this mode, router uses a hash character (#) before the actual URL that is internally passed. When enabled, the **URL is never sent to the server** and **SSR is not supported**."；示例 `ssr: false` + `router: { options: { hashMode: true } }`
-  - 原文（Scroll Behavior for hash links）："You can optionally customize the scroll behavior for hash links. When you set the config to be `smooth` and you load a page with a hash link (e.g. `https://example.com/blog/my-article#comments`), you will see that the browser smoothly scrolls to this anchor."；示例 `router: { options: { scrollBehaviorType: 'smooth' } }`
-  - 原文（Custom History (advanced)）："You can optionally override history mode using a function that accepts the base URL and returns the history mode. If it returns `null` or `undefined`, Nuxt will fallback to the default history."；示例 `history: base => import.meta.client ? createMemoryHistory(base) : null, /* default */`
-  - 原文（Pages Hook / Nuxt Module）："You can add, change or remove pages from the scanned routes with the `pages:extend` nuxt hook."（示例 `pages.push({ name: 'profile', path: '/profile', file: '~/extra-pages/profile.vue' })` 与 `removePagesMatching(/\.ts$/, pages)`）；"The Nuxt kit provides a few ways to add routes: `extendPages` (callback: pages => void)、`extendRouteRules` (route: string, rule: NitroRouteConfig, options: ExtendRouteRulesOptions)"
-- `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 原文（`scrollBehaviorType`）："Customize the scroll behavior for hash links."；Type `string`；Default `"auto"`

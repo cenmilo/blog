@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `build` 是 nuxt.config 里的构建配置节，`transpile` 是它下面一个数组。这一节文档写得很短，我按原样把它能确定的讲清，不确定的地方如实标出来。
 
 ## 它是干什么的
@@ -88,8 +89,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 331 讲 `.output` 目录与 preset：`nuxt build` 产出独立于 node_modules 的 `.output`，靠 preset 选目标运行环境；并说清 4.x 没有逐厂商的 deployment 文档目录。
-
-## 本文依据
-
-- nuxt-config build.transpile 节（`api/nuxt-config`）：全文两句（"If you want to transpile specific dependencies with Babel ... Each item in transpile can be a package name, a function, a string or regex object matching the dependency's file name."；"You can also use a function to conditionally transpile. The function will receive an object ()."）；类型 array；示例 `transpile: [({ isLegacy }) => isLegacy && 'ky']`。函数参数对象字段官方未列全（如实标注）。
-- nuxt-config sourcemap / nitro 节：相邻构建配置对照（见 320）。

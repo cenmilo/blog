@@ -217,32 +217,3 @@ export default defineNitroPlugin((nitroApp) => {
 ## 下一篇
 
 091 展开 `<NuxtPage>`：它和 Vue Router 的 `<RouterView>` 是什么关系，为什么官方写着"必须用它、否则 `useRoute()` 可能返回错误的路径"，以及它内部到底套了哪几层组件。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/getting-started/views`
-  - 原文："Nuxt provides several component layers to implement the user interface of your application."
-  - 原文（app.vue）："By default, Nuxt will treat this file as the **entrypoint** and render its content for every route of the application."
-  - 原文示例：`<div><h1>Welcome to the homepage</h1></div>`，文件标注为 `app/app.vue`
-  - 原文（tip）："If you are familiar with Vue, you might wonder where `main.js` is (the file that normally creates a Vue app). Nuxt does this behind the scene."
-  - 原文（Components）："Most components are reusable pieces of the user interface, like buttons and menus. In Nuxt, you can create these components in the `app/components/` directory, and they will be automatically available across your application without having to explicitly import them."
-  - 原文示例：`<AppAlert>This is an auto-imported component.</AppAlert>` 与 `app/components/AppAlert.vue` 里的 `<span><slot /></span>`
-  - 原文（Pages）："Pages represent views for each specific route pattern. Every file in the `app/pages/` directory represents a different route displaying its content."
-  - 原文："To use pages, create an `app/pages/index.vue` file and add `<NuxtPage />` component to the `app/app.vue` (or remove `app/app.vue` for default entry). You can now create more pages and their corresponding routes by adding new files in the `app/pages/` directory."
-  - 原文示例：`app/pages/about.vue` 中 `<p>This page will be displayed at the /about route.</p>`
-  - 原文（Layouts）："Layouts are wrappers around pages that contain a common User Interface for several pages, such as header and footer displays. Layouts are Vue files using `<slot />` components to display the **page** content. The `app/layouts/default.vue` file will be used by default. Custom layouts can be set as part of your page metadata."
-  - 原文（note）："If you only have a single layout in your application, we recommend using `app/app.vue` with `<NuxtPage />` instead."
-  - 原文示例：`app/app.vue` 中 `<NuxtLayout><NuxtPage /></NuxtLayout>`；`app/layouts/default.vue` 中 `<AppHeader /> <slot /> <AppFooter />`
-  - 原文："If you want to create more layouts and learn how to use them in your pages, find more information in the Layouts section."
-  - 原文（Advanced: Extending the HTML Template）："You can have full control over the HTML template by adding a Nitro plugin that registers a hook. The callback function of the `render:html` hook allows you to mutate the HTML before it is sent to the client."
-  - 原文示例：`server/plugins/extend-html.ts`，其中 "// This will be an object representation of the html template."、`html.head.push(\`<meta name="description" content="My custom description" />\`)`、"// You can also intercept the response here."、`nitroApp.hooks.hook('render:response', (response, { event }) => { console.log(response) })`
-  - 原文（note）："If you only need to modify the `<head>`, you can refer to the SEO and meta section."
-- `https://nuxt.com/docs/4.x/directory-structure/app/app`
-  - 原文："The app.vue file is the main component of your Nuxt application."
-  - 原文（tip）："If you have a `app/pages/` directory, the `app.vue` file is optional. Nuxt will automatically include a default `app.vue`, but you can still add your own to customize the structure and content as needed."
-  - 原文（Minimal Usage）："With Nuxt, the `app/pages/` directory is optional. If it is not present, Nuxt will not include the vue-router dependency. This is useful when building a landing page or an application that does not require routing."
-  - 原文示例：`<template><h1>Hello World!</h1></template>`
-  - 原文（Usage with Pages）："When you have a `app/pages/` directory, you need to use the `<NuxtPage>` component to display the current page"
-  - 原文："You can also define the common structure of your application directly in `app.vue`. This is useful when you want to include global elements such as a header or footer"，示例含 `<header>Header content</header>`、`<NuxtPage />`、`<footer>Footer content</footer>`
-  - 原文（note）："Remember that `app.vue` acts as the main component of your Nuxt application. Anything you add to it (JS and CSS) will be global and included in every page."
-  - 原文（Usage with Layouts）："When your application requires different layouts for different pages, you can use the `app/layouts/` directory with the `<NuxtLayout>` component. This allows you to define multiple layouts and apply them per page."

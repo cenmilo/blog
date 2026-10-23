@@ -104,10 +104,3 @@ export default eventHandler(() => {
 ## 下一篇
 
 下一篇 468 进入错误码页：官方对 `NUXT_E1001`（组合式函数在 Nuxt 上下文外调用）、`NUXT_E1006`（`onPrehydrate()` 没被构建流水线转换）与 `NUXT_E1007`（编译期宏在运行时执行）三节各写了两段——一段说清是什么触发的，一段给出修法，三处都落在"编译期处理"与"上下文"这两个概念上。
-
-## 本文依据
-
-- `## parseErrorData` 全节：定性原文（"Whether to parse `error.data` when rendering a server error page"）、"This flag is enabled by default, but you can disable this feature" 与设 `false` 的示例；同页 `## payloadExtraction`、devalue 序列化的相邻记载（`guide/going-further/experimental-features`）
-- `createError`：参数含 `data`、API 路由段关于 `message` 不传播/短 `statusText` 可达/`data` 传回客户端/`error.value.data.data` 位置/勿把动态用户输入放进 message 的四条原文、`server/api/error.ts` 示例（`api/utils/create-error`）
-- 错误页：`NuxtError` 的 `data?: unknown`、"自定义字段会丢失、应放进 `data`"及其 `createError({ data: { myCustomField: true } })` 示例（`directory-structure/app/error`）
-- fatal 响应按 `Accept: application/json` 分岔（`getting-started/error-handling`）；载荷用 devalue 序列化、自定义类型需 payload plugin（`getting-started/prerendering`）

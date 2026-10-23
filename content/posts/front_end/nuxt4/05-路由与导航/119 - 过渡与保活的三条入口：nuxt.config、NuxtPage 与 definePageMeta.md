@@ -165,23 +165,4 @@ definePageMeta({
 
 ## 下一篇
 
-120 讲 `useRoute()`：官方为什么把 `import { useRoute } from 'vue-router'` 标成错误、Nuxt 版包装到底多做了什么，以及为什么它只该在组件 setup 或插件里用。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 原文："By default, Nuxt does not enable `<Transition>` and `<KeepAlive>`. You can enable them in the nuxt.config file or by setting the `transition` and `keepalive` properties on `<NuxtPage>`. If you want to define a specific page, you can set it in `definePageMeta` in the page component."
-  - 原文（结构）：`<RouterView v-slot="{ Component }">` / `<!-- Optional, when using transitions --> <Transition>` / `<!-- Optional, when using keep-alive --> <KeepAlive>` / `<Suspense>` / `<component :is="Component" />`
-  - 原文（warning）："If you enable `<Transition>` in your page component, ensure that the page has a single root element."
-  - 原文（Props）："`transition`: define global transitions for all pages rendered with the `NuxtPage` component."，type `boolean` or `TransitionProps`；"`keepalive`: control state preservation of pages rendered with the `NuxtPage` component."，type `boolean` or `KeepAliveProps`；"`pageKey`: control when the `NuxtPage` component is re-rendered."
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（`keepalive`）："Nuxt will automatically wrap your page in the Vue `<KeepAlive>` component if you set `keepalive: true` in your `definePageMeta`. This might be useful to do, for example, in a parent route that has dynamic child routes, if you want to preserve page state across route changes."；"When your goal is to preserve state for parent routes use this syntax: `<NuxtPage keepalive />`. You can also set props to be passed to `<KeepAlive>` (see a full list)."；"You can set a default value for this property in your `nuxt.config`."
-  - 原文（单根）："Pages **must have a single root element** to allow route transitions between pages. HTML comments are considered elements as well."
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（`keepalive`）："Set to `true` when you want to preserve page state across route changes or use the `KeepAliveProps` for a fine-grained control."；Type `boolean | KeepAliveProps`
-  - 原文（`key`）："Set `key` value when you need more control over when the `<NuxtPage>` component is re-rendered."；Type `false | string | ((route: RouteLocationNormalizedLoaded) => string)`
-  - 原文（`viewTransition`）："**Experimental feature, only available when enabled in your nuxt.config file.** Enable/disable View Transitions for the current page. If set to true, Nuxt will not apply the transition if the users browser matches `prefers-reduced-motion: reduce` (recommended). If set to `always`, Nuxt will always apply the transition."；Type `boolean | 'always' | ViewTransitionPageOptions`；对象字段 `enabled`: `boolean | 'always'`、`types`: `string[] | (to, from) => string[]` "types applied to any transition involving this page"、`toTypes` "types applied only when navigating **to** this page"、`fromTypes` "types applied only when navigating **from** this page"
-  - 原文（Example - Basic Usage）："The example below demonstrates: how `key` can be a function that returns a value; how `keepalive` property makes sure that the `<modal>` component is not cached when switching between multiple components; adding `pageType` as a custom property" + `definePageMeta({ key: route => route.fullPath, keepalive: { exclude: ['modal'] }, pageType: 'Checkout' })`
-- `https://nuxt.com/docs/4.x/getting-started/transitions`
-  - 原文（override）："To override the global transition property, use the `definePageMeta` to define page or layout transitions for a single Nuxt page and override any page or layout transitions that are defined globally in `nuxt.config` file."
-  - 对照用（见 118）：`app.pageTransition` / `app.layoutTransition` 的全局写法与 `mode: 'out-in' // default`；（note）"If you are changing layouts as well as pages, the page transition you set here will not run."；（warning）"If you change the `name` property, you also have to rename the CSS classes accordingly."
+120 讲 `useRoute()`：官方为什么把 `import { useRoute } from 'vue-router'` 标成错误、Nuxt 版本包装到底多做了什么，以及为什么它只该在组件 setup 或插件里用。

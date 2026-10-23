@@ -118,7 +118,7 @@ definePageMeta({
 
 > 告诉 Nuxt 在渲染页面之前是否滚动到顶部。**导航独立于渲染，所以即使页面不重新渲染（例如使用固定的 `key` 时），滚动行为也总会触发。**在这种情形下**设 `scrollToTop: false` 来禁用滚动**。
 
-**也就是说：用固定 `key` 复用页面时，滚动仍然会跳顶部。**要换参数时不跳顶部，得显式 `scrollToTop: false`，或者按官方另一句去 `~/router.options.ts` 里覆盖默认滚动行为（138）。
+**也就是说：用固定 `key` 复用页面时，滚动仍然会跳顶部。** 要换参数时不跳顶部，得显式 `scrollToTop: false`，或者按官方另一句去 `~/router.options.ts` 里覆盖默认滚动行为（138）。
 
 ### ③ 状态：`keepalive` 管的是"重建时留不留"
 
@@ -155,21 +155,3 @@ definePageMeta({
 ## 下一篇
 
 138 讲滚动这一层：`scrollToTop` 为什么与渲染无关、`router.options.ts` 与 `scrollBehaviorType` 分别管什么、`hashMode` 那条"URL 从不发给服务器且不支持 SSR"的限制。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（`key`）："Set `key` value when you need more control over when the `<NuxtPage>` component is re-rendered."；Type `false | string | ((route: RouteLocationNormalizedLoaded) => string)`
-  - 原文（`keepalive`）："Set to `true` when you want to preserve page state across route changes or use the `KeepAliveProps` for a fine-grained control."
-  - 原文（`scrollToTop`）："Tell Nuxt to scroll to the top before rendering the page or not. Navigation is independent from rendering, so scroll behavior is always triggered even when the page doesn't re-render (e.g. when using a fixed `key`). Set `scrollToTop: false` to disable scrolling in such cases. If you want to overwrite the default scroll behavior of Nuxt, you can do so in `~/router.options.ts`."
-  - 原文（Example - Basic Usage）：`definePageMeta({ key: route => route.fullPath, keepalive: { exclude: ['modal'] }, pageType: 'Checkout' })`，说明 "how `key` can be a function that returns a value"
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（Child Route Keys）："If you want more control over when the `<NuxtPage>` component is re-rendered (for example, for transitions), you can either pass a string or function via the `pageKey` prop, or you can define a `key` value via `definePageMeta`"；示例 `<NuxtPage :page-key="route => route.fullPath" />`（父页面）与 `definePageMeta({ key: route => route.fullPath })`（子页面）
-  - 原文（`keepalive`）："This might be useful to do, for example, in a parent route that has dynamic child routes, if you want to preserve page state across route changes."；"When your goal is to preserve state for parent routes use this syntax: `<NuxtPage keepalive />`."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 原文（Props）："`pageKey`: control when the `NuxtPage` component is re-rendered."，type `string` or `function`
-  - 原文（Example）："For example, if you pass a key that never changes, the `<NuxtPage>` component will be rendered only once - when it is first mounted."；`<NuxtPage page-key="static" />`；"You can also use a dynamic key based on the current route"：`<NuxtPage :page-key="route => route.fullPath" />`
-  - 原文（warning）："Don't use `$route` object here as it can cause problems with how `<NuxtPage>` renders pages with `<Suspense>`."
-  - 原文（结构）：`<RouterView v-slot="{ Component }">` → `<Transition>` → `<KeepAlive>` → `<Suspense>` → `<component :is="Component" />`；"By default, Nuxt does not enable `<Transition>` and `<KeepAlive>`."
-- `https://nuxt.com/docs/4.x/getting-started/transitions`
-  - 对照用（见 118）：单根元素与四组 CSS 类名；"If you are changing layouts as well as pages, the page transition you set here will not run."

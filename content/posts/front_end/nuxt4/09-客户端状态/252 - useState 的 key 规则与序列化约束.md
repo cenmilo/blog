@@ -121,12 +121,3 @@ export function clearNuxtState (keys?: string | string[] | ((key: string) => boo
 ## 下一篇
 
 253 - clearNuxtState：按 key 精确清理
-
-## 本文依据
-
-- `api/composables/use-state`：两条重载与 `key`/`init`/`T` 三条参数说明（含 "A function that provides initial value for the state when not initiated. This function can also return a `Ref`."）；important 序列化边界；Using `shallowRef` 一节；Troubleshooting 的 `Cannot stringify arbitrary non-POJOs` 与 `definePayloadPlugin`。
-- `api/utils/clear-nuxt-state`：定位句；note（"You can also reset the state to its initial value by passing `{ reset: true }"）；签名；`keys` 与 `opts.reset` 两条参数说明（含 v4.4 徽标与 `experimental.defaults.useState.resetOnClear`、`compatibilityVersion: 5` 下为 `true`）。
-- `errors/e7007`、`errors/e7009`：两条描述句（初值必须是函数、key 必须非空字符串，及各自关于 payload 的理由）。
-- `getting-started/state-management`：Basic Usage 的 `useState('counter', () => Math.round(Math.random() * 1000))` 与共享说明句、Shared State 的 `useColor` 包装、同一条 important（250 已逐句引）。
-- `api/composables/use-async-data`：`key` 自动生成句与"建议自己给 key"的同类规则（215 已逐句引）；`clear` 行措辞（214 已逐句引）。
-- `api/composables/use-nuxt-data`：覆盖四个取数 composable 且需显式 key（228 已逐句引）；`getting-started/data-fetching` 的 devalue 段与 `api/utils/clear-nuxt-data` 的定位句（235/229 已逐句引）。

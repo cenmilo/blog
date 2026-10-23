@@ -146,9 +146,3 @@ const { data, status, error, refresh, clear } = await useFetch('/api/auth/login'
 ## 下一篇
 
 222 - 服务端那次请求要不要带头：useRequestFetch 与 baseURL 选项
-
-## 本文依据
-
-- `api/composables/use-fetch`：query 段落两句与 `{ param1, param2: 'value2' }` 示例及其结果 URL；选项表 `query` 行（"Alias: `params`."）与 `params` 行（"Alias for `query`."）、`body` 行（"Objects are automatically stringified."）；Reactive Keys and Shared State 一节（函数 URL 示例与注释）；Reactive Fetch Options 一节（两句 + `searchQuery` 示例 + `%20` 编码结果 + `watch: false` 示例）；拦截器示例全文（四个钩子、`options.headers.set`、`response._data.token`、ofetch >= 1.4.0 那句注释）；`URL` 参数类型四种形态。
-- `api/components/client-only`：默认插槽"tree-shaken out of the server build"与"rendered only after being mounted"（198 已逐句引）。
-- `guide/best-practices/hydration`：Browser-only APIs 成因（`localStorage` 不存在于服务端）与 `useCookie` 解法（199 已逐句引）。

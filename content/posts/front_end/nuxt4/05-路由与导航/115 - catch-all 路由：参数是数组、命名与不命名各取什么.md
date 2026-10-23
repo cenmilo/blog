@@ -134,19 +134,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 116 讲路由的三种结构形态：嵌套路由（父页面里必须再放一个出口）、命名视图（v4.5，一个路由填多个出口、meta 只从默认文件读）与路由组（用 `(marketing)` 这类括号目录组织文件、组名不进 URL，v4.3 起还会自动出现在 `route.meta.groups`）。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（Catch-all Route）："If you need a catch-all route, you create it by using a file named like `[...slug].vue`. This will match *all* routes under that path."
-  - 原文示例：`<template><p>{{ $route.params.slug }}</p></template>`（文件标注 `app/pages/[...slug].vue`）；"Navigating to `/hello/world` would render:" + `<p>["hello", "world"]</p>`
-  - 原文（Dynamic Routes，对照）："If you want a parameter to be *optional*, you must enclose it in double square brackets - for example, `~/pages/[[slug]]/index.vue` or `~/pages/[[slug]].vue` will match both `/` and `/test`."
-- `https://nuxt.com/docs/4.x/directory-structure/server`
-  - 原文（Catch-all Route）："Catch-all routes are helpful for fallback route handling."；"For example, creating a file named `~~/server/api/foo/[...].ts` will register a catch-all route for all requests that do not match any route handler, such as `/api/foo/bar/baz`."
-  - 原文示例（`server/api/foo/[...].ts`）：`// event.context.path to get the route path: '/api/foo/bar/baz'`、`// event.context.params._ to get the route segment: 'bar/baz'`、`return \`Default foo handler\``
-  - 原文："You can set a name for the catch-all route by using `~~/server/api/foo/[...slug].ts` and access it via `event.context.params.slug`."；示例（`server/api/foo/[...slug].ts`）`// event.context.params.slug to get the route segment: 'bar/baz'`
-  - 原文（Server Routes，对照）："Files inside the `~~/server/api` are automatically prefixed with `/api` in their route."；"To add server routes without `/api` prefix, put them into `~~/server/routes` directory."
-- `https://nuxt.com/docs/4.x/api/composables/use-route`
-  - 对照用（见 121）：`useRoute()` 返回字段含 `params`、`path`、`matched`、`meta`
-- `https://nuxt.com/docs/4.x/getting-started/error-handling` 与 `https://nuxt.com/docs/4.x/guide/concepts/rendering`
-  - 对照用（见 111）：主动 404 用 `throw createError({ status: 404, statusText: 'Page Not Found' })`；静态托管用 `200.html` 与 `404.html` 兜底

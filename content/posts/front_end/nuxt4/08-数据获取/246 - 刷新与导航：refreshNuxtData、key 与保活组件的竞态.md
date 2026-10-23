@@ -121,12 +121,3 @@ refresh({ signal: abortController.signal })
 ## 下一篇
 
 247 - 取消与超时：signal、timeout 与 dedupe 三件事
-
-## 本文依据
-
-- `api/utils/refresh-nuxt-data`：定位句（覆盖四个 composable）；`<KeepAlive>` deactivated note；`keys` 参数句与"不给键时全部重取"；返回值句；两段示例（`refreshing`、`try/finally`、`:disabled`、`['count', 'user']` 与数组注释）；"能拿实例就用 refresh/execute"那条 note（229 已逐句引）。
-- `api/composables/use-async-data`：`refresh` 行"等上次跑完"、`AsyncDataExecuteOptions` 三键、signal aborted 三条时机、`enabled` 长说明、Shared State 两张清单（212/214/215/218 已逐句引）。
-- `getting-started/data-fetching`：Reactive Keys 注释（old data cleaned up if no other components use it）、Refresh and execute 段、Clear 段（236/239/240 已逐句引）。
-- `guide/going-further/experimental-features`：`purgeCachedData` 与 `granularCachedData` 两节（236 已逐句引）。
-- `api/utils/clear-nuxt-data`：覆盖范围句与参数、返回 void（229 已逐句引）。
-- `api/components/nuxt-page`、`api/utils/define-page-meta`：`keepalive` 的两处入口与 `KeepAliveProps` 类型（"By default, Nuxt does not enable `<Transition>` and `<KeepAlive>`..."、`keepalive` 的 type 行），用来界定"保活"在这套文档里指什么（092/119/135 已逐句引）。

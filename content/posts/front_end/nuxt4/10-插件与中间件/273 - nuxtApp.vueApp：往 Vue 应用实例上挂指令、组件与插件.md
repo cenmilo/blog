@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（270）留了个尾巴：插件的入参 `nuxtApp` 上挂着 `vueApp.use(...)`、`vueApp.directive(...)`。这一篇就讲这个 `vueApp` 是什么、能干什么。
 
 ## vueApp 就是 Vue 的应用实例
@@ -112,11 +113,3 @@ vueApp 只解决"应用级、一次性"的注册。另外两件事别错用它�
 ## 下一篇
 
 下一篇 274 讲 `nuxtApp.provide` 和 `useNuxtApp().$xxx` 的取用规则——往 NuxtApp 上挂全局 helper、以及取出来时那个 `$` 前缀和"模板不解包"的坑。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）`vueApp` 一节："`vueApp` is the global Vue.js application instance that you can access through `nuxtApp`."；`component()`/`directive()`/`use()` 三个方法的官方说明。
-- plugins 目录（`directory-structure/app/plugins`）：
-  - Vue Plugins 一节 `vue-gtag.client.ts` 完整示例（`nuxtApp.vueApp.use(VueGtag, {...})` + `trackRouter(useRouter())`）。
-  - Vue Directives 一节 `nuxtApp.vueApp.directive('focus', { mounted(el){...}, getSSRProps(binding, vnode){...} })` 示例。
-  - warning "If you register a Vue directive, you *must* register it on both client and server side..." 与 `.client.ts`/`.server.ts` stub 的补救说法。

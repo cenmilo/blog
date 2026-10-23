@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一节讲 `.nuxt` 是 buildDir。这一节讲"生成的类型文件放哪"——它其实是个独立的配置 `typesDir`，只是默认值和 buildDir 相同。这个"默认相同、但故意分开"的设计值得单独说。
 
 ## typesDir 是什么
@@ -71,8 +72,3 @@ nuxt-config 的 `## typesDir`：
 ## 下一篇
 
 下一篇 359 讲 theme 这一节：文档里它其实是"从一个本地或远程源扩展项目"的键，说清它和图层/extends 的继承关系，别当"换肤"。
-
-## 本文依据
-
-- nuxt-config typesDir 节（`api/nuxt-config`）："Define the directory where generated types and tsconfig.json files will be placed."、"This defaults to your buildDir, and is separate from it so that the configurations referenced by your project tsconfig.json stay in place even when Nuxt builds elsewhere (as it does when building a project that has already been run in development)."、"If a relative path is specified, it will be relative to your rootDir."、默认 `<rootDir>/.nuxt`。
-- buildDir / analyzeDir（`api/nuxt-config`，见 356/043）；生成的四份 tsconfig 与根 tsconfig references（见 076/052/087）。

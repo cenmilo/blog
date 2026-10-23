@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 插件在"应用创建的那一刻"就跑（270）。这个位置很特殊：它比页面组件早、又两端都跑，所以它出错的影响面比一个组件里出错大得多。要处理插件相关错误，先得知道官方给了**三个接收点**，各接哪类错。
 
 ## 接收点一：vue:error 钩子
@@ -125,9 +126,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 ## 下一篇
 
 下一篇 286 讲官方那一节插件最佳实践：能组合就别用插件、插件别堆多（跑在水合期）、异步插件开 parallel。
-
-## 本文依据
-
-- Error Handling（`getting-started/error-handling`）：Vue Errors 一节（`onErrorCaptured`、`vue:error` hook "called if any errors propagate up to the top level"、`vueApp.config.errorHandler` "will receive all Vue errors, even if they are handled"、`plugins/error-handler.ts` 两种写法、note "vue:error is based on onErrorCaptured"）；Startup Errors（`app:error` 与"running Nuxt plugins"等五条清单）；Nitro Server Errors（不能自定义服务端 handler、只能渲染错误页）；"we highly recommend using onErrorCaptured ... or vue:error ... in a nuxt plugin"；important "if a plugin threw an error, then it won't be re-run until you clear the error"；clearError 可带 redirect。
-- useNuxtApp（`api/composables/use-nuxt-app`）：`hook` 用法、`vueApp` 一节（vueApp 是应用实例）。
-- Lifecycle Hooks（`api/advanced/hooks`）：`vue:error`（`err, target, info`）、`app:error`（`err`，Server & Client）两行。

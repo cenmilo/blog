@@ -156,8 +156,3 @@ type AsyncDataRequestContext = {
 ## 下一篇
 
 217 - 不服务端取数那一档：server 关掉之后 status 与 data 会怎样
-
-## 本文依据
-
-- `api/composables/use-async-data`：Watch Parameters 小节定义句与 `page` 示例；选项表 `watch` 行（`MultiWatchSources`）；表后 note（computed/ref 自动重发）；`enabled` 长说明；`AsyncDataRequestContext` 的四个 `cause`；`getCachedData` 类型与默认实现；Reactive Keys 一节（`userId` computed 示例与注释）；`AsyncDataOptions` 定义。
-- `api/composables/use-fetch`：Reactive Fetch Options 一节两句与 `searchQuery` 示例、`watch: false` 示例与 "If needed, you can opt out of this behavior using `watch: false`."；表后 note（含 "unless `watch` is set to `false`"）；选项表 `watch` 行（`MultiWatchSources | false`、"`false` disables watching."）；Reactive Keys and Shared State 一节（函数 URL 示例与注释）；Type 一节 `url` 参数类型与 `UseFetchOptions` 定义；`AsyncDataRequestContext` 同页重复定义。

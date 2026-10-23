@@ -103,11 +103,3 @@ tags:
 ## 下一篇
 
 下一篇 453 回到用户能看见的两个指标：图片与字体。官方在这一节把 LCP 挂在未优化的图片上、把 CLS 挂在字体的度量回退上，并给了图片按重要性分两组加载的写法；第三方脚本那一节则点名它同时拖累 INP 与 LCP。
-
-## 本文依据
-
-- `nuxt/server` 的定位句（提供与 runtime 无关的 agnostic utilities、是第二个 runtime 表面）、十九行工具与类型清单、"These names are not auto-imported from `nuxt/server`"（服务端自动导入的同名者是 h3 的 helper）（`guide/going-further/server-imports`）
-- Nitro 自有 API 那句（`defineCachedEventHandler()`、`useStorage()`、`useDatabase()` and tasks 从 `nitropack/runtime` 导入、大多不接 event）；"What Isn't Portable"一节的 Caching 整条与"depend on a cache library directly"、Storage/Server plugins/Lazy handlers 三条与"because Nuxt can't provide them for every builder"；"Server Code Only"一节的构建失败句、类型仍可解析、Nuxt 进程里返回空对象与改读 `nuxt.options`（`guide/going-further/server-imports`）
-- 兼容表的 Caching 行（`nitropack/runtime` 对 `nitro/cache`）与相邻四行（`guide/modules/server-compatibility`）
-- 升级指南中 "Helpers Outside `nuxt/server`" 一句（点名 `defineCachedEventHandler`，并写明"tied to the server runtime and needs revisiting on Nuxt 5"）（`getting-started/upgrade`）
-- `routeRules` 与服务端缓存处理器的声明式路径（`guide/concepts/rendering`、`api/nuxt-config`）

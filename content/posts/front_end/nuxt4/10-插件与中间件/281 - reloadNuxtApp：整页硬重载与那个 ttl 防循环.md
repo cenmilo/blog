@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 什么时候需要"把整个应用重新来一遍"？典型是检测到线上新版本（275 里那个 `app:manifest:update` 钩子），或者用户操作要求彻底重置运行时。软路由跳转做不到"重新拉依赖、重建应用"，那就要 `reloadNuxtApp`。
 
 ## 它是硬重载
@@ -94,8 +95,3 @@ tags:
 ## 下一篇
 
 下一篇 282 讲 `onNuxtReady`：只在客户端、应用初始化完成后才跑的回调，适合塞那些"不该挡住首屏渲染"的活（比如动态 import 一个大的分析库）。
-
-## 本文依据
-
-- reloadNuxtApp（`api/utils/reload-nuxt-app`）：定位句 "reloadNuxtApp will perform a hard reload of the page."；note "hard reload ... re-requesting a page and its dependencies from the server."；"By default, it will also save the current `state` of your app (that is, any state you could access with `useState`)." 与 read-more 关于 `experimental.restoreState`；`ReloadNuxtAppOptions` 签名与四选项（`path` 默认 `window.location.pathname` 及其导航/加历史说明、`ttl` 默认 `10000` 防重载循环、`force` 默认 `false` 绕过保护、`persistState` 默认 `false`、"dump the current Nuxt state to sessionStorage (as `nuxt:reload:state`)"、"no effect on reload unless `experimental.restoreState` is also set, or unless you handle restoring the state yourself"）。
-- restoreState（`guide/going-further/experimental-features`，263 已引）："restored from sessionStorage when reloading the page after a chunk error or manual `reloadNuxtApp()` call."

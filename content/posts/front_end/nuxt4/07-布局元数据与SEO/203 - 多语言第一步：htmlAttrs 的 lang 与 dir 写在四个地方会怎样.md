@@ -123,11 +123,3 @@ interface AppHeadMetaObject extends SerializableHead {
 ## 下一篇
 
 204 - canonical 链接：文档只提过一次，可用的工具是 useRequestURL
-
-## 本文依据
-
-- `getting-started/seo-meta`：`app.head` 示例（`htmlAttrs: { lang: 'en' }`、`title: 'Nuxt', // default fallback title`、favicon 那条 link）；"It's good practice to set tags here that won't change such as your site title default, language and favicon."；important "This method does not allow you to provide reactive data. We recommend using `useHead()` in `app.vue`."；默认标签 `viewport`/`charset` 与带 key 的快捷写法。
-- `api/composables/use-head`：参数表 `htmlAttrs` 行 "Sets attributes of the `<html>` tag. Each object property is mapped to the corresponding attribute." 与 `bodyAttrs` 行；"Body and HTML Attributes" 示例（`lang: 'en'` + `class: computed(...)`）；note "The properties of `useHead` can be dynamic, accepting `ref`, `computed` and `reactive` properties."
-- `api/composables/use-head-safe`：`WhitelistAttributes` 中 `htmlAttrs: ['class', 'style', 'lang', 'dir']`、`bodyAttrs: ['class', 'style']`。
-- `api/kit/head`：`setGlobalHead` 定位句与 deep merging/precedence 原话、`AppHeadMetaObject extends SerializableHead { charset?: string; viewport?: string }`、12 项参数清单（含 `htmlAttrs`）。
-- `migration/meta`：可自定义项清单 "You can customize `title`, `titleTemplate`, `base`, `script`, `noscript`, `style`, `meta`, `link`, `htmlAttrs` and `bodyAttrs`."

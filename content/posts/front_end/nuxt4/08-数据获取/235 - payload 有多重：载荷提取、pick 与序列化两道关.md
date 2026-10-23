@@ -151,11 +151,3 @@ const { data: mountain } = await useFetch('/api/mountains/everest', {
 ## 下一篇
 
 236 - 缓存的两把新开关：granularCachedData 与 purgeCachedData
-
-## 本文依据
-
-- `getting-started/data-fetching`：Serializing Data From Server to Client 全段（devalue 与类型清单、自定义序列化器指向 useNuxtApp、那条 does not apply 的 note）；Serializing Data From API Routes 段（`JSON.stringify`、"limited to only JavaScript primitive types"、"does its best to convert the return type"）；Example（`server/api/foo.ts` 返回 Date 与 `inferred as string` 注释）；Custom serializer function 段（`toJSON` 两句与 `bar.ts` 示例、推断结果注释）；Using an alternative serializer 段（"does not currently support" 与 superjson 做法）；Minimize payload size 段（`pick` 定位句与 `mountain` 示例）与 `transform` 那句；Caching and refetching 一节。
-- `guide/going-further/experimental-features`：`payloadExtraction` 一节全文（三取值、默认与 `compatibilityVersion: 5`、`ssr: false` 强制 `false`、指向 prerendering 的 read-more）；`stripNeverHydratedData` 一节原文。
-- `api/composables/use-async-data`：`pick`/`transform`/`serialize` 三行原文与 "This only caches data when `experimental.payloadExtraction` in `nuxt.config` is enabled."（213 已逐句引）。
-- `getting-started/prerendering`：`_payload.json` 生成时机、CDN 缓存与"多一次请求"那句、devalue reducer/reviver 那条（200 已逐句引）。
-- `guide/best-practices/performance`（lazy hydration）与延迟水合策略（166/167 已逐句引）。

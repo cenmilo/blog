@@ -104,7 +104,3 @@ tags:
 ## 下一篇
 
 下一篇 403 处理 monorepo：`workspaceDir` 与 `typescript.includeWorkspace`/`hoist` 怎么配合，让父工作区里的类型可见。
-
-## 本文依据
-
-- `## routeTypedFetch`：定义句（"Type `$fetch` and `useFetch` from the routes your server builder reports, rather than from the responses nitro contributes to `ServerRoutes` through its `InternalApi` interface"）、"carries the `body`, `query` and `headers` a handler validates as well as its response, typed as it arrives over the wire"、五条后果原文、`Endpoint`（imported from `nuxt/app`）在开关两侧都生效、opt-in 与 `future.compatibilityVersion: 5` 启用及两种采用节奏、`::note`（"From Nuxt 5 the generated route set is the only source and the option is gone"）（`guide/going-further/experimental-features`）；`params` 与 `query` 原为互为别名的选项表见 220（`api/composables/use-fetch`）；API 路由用 `JSON.stringify` 只限基本类型见 235。

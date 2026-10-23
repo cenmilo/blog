@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `server/api/*.ts` 里抛个错，你在浏览器控制台常常看不到清楚的栈——因为它在服务端跑。这一篇把官方给的服务端（和全栈）调试手段收齐。
 
 ## sourcemaps：服务端默认就有
@@ -114,9 +115,3 @@ nuxt-config 的 `debug` 选项（默认 false）：
 ## 下一篇
 
 下一篇 339 给服务端这层收尾：一张 Nitro 能力地图，把 300-339 讲过的路由、中间件、插件、runtimeConfig、routeRules、预渲染、部署串成索引。
-
-## 本文依据
-
-- Debugging（`guide/going-further/debugging`）：Sourcemaps（"enabled for your server build by default, and for the client build in dev mode"、`sourcemap:{server,client}` 示例）；Node Inspector（`nuxt dev --inspect`、Chrome DevTools Node.js 图标、important "Node.js and Chrome processes need to be run on the same platform. This doesn't work inside of Docker."）；VS Code 配置（webRoot 注释 "should point to your Nuxt srcDir, which is app by default"、client/server/fullstack 三 config、userDataDir:false）；JetBrains nuxt.run.xml 三配置。
-- nuxt-config debug 节（`api/nuxt-config`）："Set to true ... At the moment, it prints out hook names and timings on the server, and logs hook arguments as well in the browser."，默认 false；sourcemap 默认（见 083）。
-- nuxt devtools（`api/commands/devtools`）：`nuxt devtools enable/disable`、全局安装 + 写到用户级 `.nuxtrc`、COMMAND=enable|disable。

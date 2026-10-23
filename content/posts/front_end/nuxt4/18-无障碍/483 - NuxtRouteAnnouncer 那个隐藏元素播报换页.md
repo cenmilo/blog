@@ -118,8 +118,3 @@ tags:
 ## 下一篇
 
 下一篇 484 讲它的底层实例：`useRouteAnnouncer()` 返回 `message`、`politeness` 两个 ref 与 `set`/`polite`/`assertive` 三个方法，参数只有一个 `politeness`（默认 `polite`）；它靠挂进 Unhead 的 `dom:rendered` 钩子读标题并写进播报消息——所以手动 set 的内容与自动读到的标题走的是同一条通道。
-
-## 本文依据
-
-- `<NuxtRouteAnnouncer>` 组件页：标题句（adds a hidden element with the page title to announce route changes）、`::important` v3.12+、Usage 段（放 `app.vue` 或 `app/layouts/`、informing assistive technologies about page title changes、`app/app.vue` 示例）、Slots 段与 `#default="{ message }"` 示例、Props 两条原文（`atomic` 默认 `false`、`politeness` 三档默认 `polite`）、三条 callout（组件可选并可照源码自写、可用 `useRouteAnnouncer` 挂钩、页面内变化改用 `<NuxtAnnouncer>`＋`useAnnouncer`）、源文件路径（`api/components/nuxt-route-announcer`）
-- 无障碍页 Route Announcements 一节：定位句（渲染隐藏 live region、每次导航后写入新页面标题）、`<NuxtRouteAnnouncer />` 在 `<NuxtPage />` 之前的示例、"reads the title that Unhead rendered ... If two routes share the same `<title>`, users hear nothing"（`guide/best-practices/accessibility`）

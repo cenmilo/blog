@@ -122,11 +122,3 @@ clearNuxtData(['profile', 'unread-count'])
 ## 下一篇
 
 254 - 状态与取数怎么搭配：default 读缓存与 transform 重塑
-
-## 本文依据
-
-- `api/utils/clear-nuxt-state`：定位句；用途 note（含 `{ reset: true }`）；签名（三种键形态、`ClearNuxtStateOptions`、返回 `void`）；`keys` 参数句（不给键全清）；`opts.reset` 长说明（v4.4 徽标、`experimental.defaults.useState.resetOnClear`、`compatibilityVersion: 5` 下为 `true`）。
-- `api/composables/use-state`：`init` 的 "when not initiated" 与"可返回 Ref"（251 已逐句引）。
-- `api/utils/clear-nuxt-data`、`api/utils/refresh-nuxt-data`：定位句、参数与返回（229 已逐句引）。
-- `api/composables/use-async-data`：`clear` 行原文（复位到 `options.default()`、`status` 置 `idle`、取消在飞）（214 已逐句引）。
-- `guide/best-practices/performance`：`experimental.defaults.nuxtLink.prefetchOn` 配置块（243 已逐句引）。

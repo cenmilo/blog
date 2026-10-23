@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `nuxtApp.ssrContext` 是 Nuxt 应用实例上一个"只在服务端有"的成员。理解它，先理解它为什么只在一侧存在——因为它本身就是"服务端渲染这次请求"的上下文，浏览器里根本没有"服务端渲染"这回事，自然也没有它。
 
 ## 定义与三个属性
@@ -91,7 +92,3 @@ if (import.meta.server) {
 ## 下一篇
 
 下一篇 281 讲 `reloadNuxtApp`：主动整页硬重载，以及它默认 10 秒的 ttl 防重载循环、path/force/persistState 三个选项，和 263 的 restoreState 怎么配合。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）`ssrContext` 一节："ssrContext is generated during server-side rendering and it is only available on the server side." 及 `url`/`event`/`payload` 三属性描述（"Current request url."、"Access the request & response of the current route."、"NuxtApp payload object."）；`payload` 一节里 "When accessing the same `payload.data` from `ssrcontext`, you can access the same value on the server side as well."

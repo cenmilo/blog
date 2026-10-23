@@ -149,7 +149,3 @@ const color = ref('red')
 ## 下一篇
 
 下一篇 418 讲预处理器怎么装、装完在哪配：`vite.css.preprocessorOptions` 注入 Sass partial（SCSS 与 SASS 的 `additionalData` 写法不同），以及实验性的 `preprocessorMaxWorkers`。
-
-## 本文依据
-
-- SFC 样式定位句（"without having to use something like CSS-in-JS"、pinceau）、Class And Style Bindings 四种形态与"leverage Vue SFC features"、Dynamic Styles With `v-bind` 及其 dynamic 说明、Scoped Styles 定义与示例、CSS Modules 定义与 `$style` 示例、Preprocessors Support（Vite 内建支持 .scss/.sass/.less/.styl/.stylus、要先装、`lang` 属性）、webpack 用户看 vue-loader（`getting-started/styling`）。

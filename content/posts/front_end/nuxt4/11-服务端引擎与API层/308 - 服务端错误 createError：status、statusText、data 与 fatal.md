@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（307）是"正常内容 + 标个状态码"。这一篇是它的对面：**出错时怎么抛一个带状态码的错误**。工具是 `createError`，官方定位：
 
 > Create an error object with additional metadata. ... It is usable in both the Vue and Nitro portions of your app, and is meant to be thrown.
@@ -127,7 +128,3 @@ try {
 ## 下一篇
 
 下一篇 309 专门讲那条"下发规则"：为什么 API 路由里 createError 的 `message` 不会传到客户端，要前端拿到信息该用 `statusText` 或 `data`，以及 `error.value.data.data` 的位置。
-
-## 本文依据
-
-- createError（`api/utils/create-error`）：定位句 "usable in both the Vue and Nitro portions of your app, and is meant to be thrown."；参数 `string | { cause, data, message, name, stack, status, statusText, fatal }` 与字符串→message+status 500、对象→多属性；In Vue App 两端差别（服务端全屏可 clearError、客户端 non-fatal 需 fatal:true）与 `movies/[slug].vue` 示例；In API Routes（`server/api/error.ts` throw 404/`statusText`）；Error Causes（`cause` 示例、开发暴露 `{ name, message, stack, cause }`、生产永不进响应/payload）；安全提醒 "always consider avoiding to put dynamic user input to the message to avoid potential security issues."

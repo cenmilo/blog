@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 "往项目里接一个别人的库"是高频需求。Nuxt 里有两类"插件"、三个接入点，容易混，这一篇一次摆清：接 **Vue 插件**、接**自定义指令**、以及**改整页 HTML 的 Nitro 服务端插件**。
 
 ## 为什么 Vue 插件要套一层 Nuxt 插件
@@ -124,10 +125,3 @@ best-practices 那一节的口径（286 已展开）在这里当总闸：**能�
 ## 下一篇
 
 下一篇 288 讲只在服务端跑的那类插件：`.server` 后缀、`env.islands:false`，以及"哪些代码只能在服务端跑"（`nuxt/server` 的 Server Code Only 边界）。
-
-## 本文依据
-
-- Views（`getting-started/views`）："If you are familiar with Vue, you might wonder where `main.js` is ... Nuxt does this behind the scene."；"Advanced: Extending the HTML Template" 一节（"full control over the HTML template by adding a Nitro plugin that registers a hook"、"callback function of the `render:html` hook allows you to mutate the HTML before it is sent to the client"、`server/plugins/extend-html.ts` 的 `defineNitroPlugin` + `render:html`/`render:response` 示例、只改 head 走 SEO/meta 的 note）。
-- plugins 目录（`directory-structure/app/plugins`）：Vue Plugins 一节（`npm install vue-gtag-next` + `vue-gtag.client.ts` 的 `nuxtApp.vueApp.use(VueGtag, {...})`）；Vue Directives 一节（`directive('focus', { mounted, getSSRProps })` 与"两端注册/`.client`+`.server` 桩"warning）。
-- server 目录（`directory-structure/server`）：Server Plugins 一节（"Nuxt will automatically read any files in the `~~/server/plugins` directory and register them as Nitro plugins ... hooking into lifecycle events."）。
-- Nuxt Plugins（`guide/best-practices/plugins`）：Use Composition Whenever Possible（能组合就别插件）。

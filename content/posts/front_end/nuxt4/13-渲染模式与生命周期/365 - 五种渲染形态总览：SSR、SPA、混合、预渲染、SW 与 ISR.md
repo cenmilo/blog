@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 打开 Nuxt 文档或跟别人讨论，一堆缩写砸过来：SSR、CSR、SSG、ISR、hybrid、edge……它们不是六套互不相干的系统，官方其实只分了几大块，其余是块里的策略。这一篇先把这些名字对应到官方 `guide/concepts/rendering` 那一页的四个小节，让你知道"默认是哪条、想换怎么说"。
 
 ## 先定义"渲染"
@@ -117,7 +118,3 @@ ESR 借 Nitro 把渲染推到离用户更近的 CDN 边缘节点：请求被最�
 ## 下一篇
 
 下一篇 366 讲每种形态适用的真实场景与代价：SSR 的性能/SEO 好处对上开发约束/服务器成本，CSR 的开发快/便宜/离线对上首屏慢/SEO 弱，以及该给什么站选什么。
-
-## 本文依据
-
-- 渲染定义、默认 universal 与一行切换、hydration 定义、`ssr: false` 与 SPA loading 模板、counter 谁在哪跑、按目录的执行位置表、route rules 多策略示例、ESR "more a deployment target than an actual rendering mode"（`guide/concepts/rendering`）。

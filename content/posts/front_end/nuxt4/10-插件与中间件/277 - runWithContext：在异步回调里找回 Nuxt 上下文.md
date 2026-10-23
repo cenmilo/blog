@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 先接上错误码。你多半是因为屏幕上跳出一句 "Nuxt instance unavailable" 才翻到这里的——那是 `E1001`。它的定义：
 
 > A composable that needs the Nuxt instance (`useNuxtApp()`, `useRoute()`, `useFetch()`, …) ran outside a plugin, Nuxt hook, route middleware, or Vue `setup()`. The most common trigger is calling it inside an async callback (`setTimeout`, `.then()`, after an `await`) where the context has been lost.
@@ -141,8 +142,3 @@ Nuxt 对插件和中间件也提供了类似的自动 transform：官方说明�
 ## 下一篇
 
 下一篇 278 讲 `nuxtApp.isHydrating`：一个布尔，判断客户端当前是不是正处于水合阶段，以及水合期该避讳什么（结合 hydration 那页的成因清单）。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）runWithContext 一节：note "You are likely here because you got a 'Nuxt instance unavailable' message. Please use this method sparingly ... solved at the framework level."；`const result = nuxtApp.runWithContext(() => functionWithContext())` 与参数说明；`app/middleware/auth.ts` 示例（try/catch + `runWithContext(() => navigateTo('/auth'))`）；"A Deeper Explanation of Context"（全局变量、"multiple requests from different users ... same global context"、立即 unset 防泄漏、概念例子 await 后 `getCurrentInstance()` 为 null）；Compiled Output（`__restoreInstance`）；"similarly to how `<script setup>` works"；对 `defineNuxtPlugin()`/`defineNuxtRouteMiddleware()` 已加 transform；"Remaining Issues"（"buggy with `try/catch` statements containing `await`"）；"Native Async Context" 与其 tip "works currently in Bun and Node"（指向 experimental asyncContext）。
-- E1001（`errors/e1001`）：定义（"ran outside a plugin, Nuxt hook, route middleware, or Vue setup()"、"most common trigger is calling it inside an async callback"）与 Resolution（先同步顶层捕获复用，服务端异步再 `nuxtApp.runWithContext()`）。

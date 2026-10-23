@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 从 273 到 294，`vueApp`、`provide`、`hook`、`payload`、`ssrContext`、`runWithContext` 全是 `nuxtApp` 上的成员。这一篇回到最上游：**`nuxtApp`（Nuxt 上下文）到底是什么、什么时候拿得到。** 它是这一整串 API 的地基。
 
 ## 一句话定位
@@ -108,8 +109,3 @@ export function useMyComposable () {
 ## 下一篇
 
 下一篇 296 讲 `usePreviewMode`：一个用 `preview=true` 触发、带 token 状态、开启时自动 refreshNuxtData 重取预览内容的组合式，常见于 CMS 内容预览。
-
-## 本文依据
-
-- Nuxt App 指南（`guide/going-further/nuxt-app`）：定位句；"The Nuxt Context"（"a fresh instance is created on every request"、四类可访问位置含"middleware if wrapped in defineNuxtRouteMiddleware"、E1001 那句错误原文、"explicitly call functions within this context by using nuxtApp.runWithContext"）；Accessing NuxtApp（`useMyComposable` 示例、tryUseNuxtApp 说明、"Plugins also receive nuxtApp as the first argument"）；Providing Helpers（`nuxtApp.provide('hello', ...)` → `$hello`）。
-- useNuxtApp API（`api/composables/use-nuxt-app`）：定位句（访问 Vue 实例/运行时钩子/运行时配置/ssrContext/payload）；`tryUseNuxtApp`（"returns null if context is unavailable instead of throwing"及 STAND_TYPE 示例）；runWithContext 一节（见 277）。

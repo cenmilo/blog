@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 这一节只讲 `defineNuxtPlugin` 这一个函数的两种写法，以及对象写法里三个真正会改变插件行为的键：provide、hooks、env。顺序相关的键（enforce/order/parallel/dependsOn）下一篇单独讲，别混。
 
 ## 两种写法
@@ -179,21 +180,3 @@ hooks: {
 ## 下一篇
 
 下一篇 272 讲插件的顺序：文件名补零规则、`enforce` 三档、`order` 数字（会覆盖 enforce）、以及 `parallel` 与 `dependsOn` 怎么组合。
-
-## 本文依据
-
-- defineNuxtPlugin（`api/utils/define-nuxt-plugin`）：
-  - 两种写法定义句（Function Plugin / Object Plugin 两段原文）。
-  - Signature：`Plugin<T>` 与 `ObjectPlugin<T>` 完整类型（八个键）。
-  - Parameters 表 8 行原样落地。
-  - `order` 那句 "It overrides the value of `enforce` and is used to sort plugins."
-  - `env` 那句 "Set this value to `false` if you don't want the plugin to run when rendering server-only or island components."
-  - Basic Usage 示例（`return { provide: { hello: (name: string) => \`Hello ${name}!\` } }`）。
-  - Object Syntax Plugin 示例（`hooks: { 'app:created' () { console.log('App created!') } }`）。
-- plugins 目录（`directory-structure/app/plugins`）：
-  - 函数写法 provide 两种形态示例（`plugins/hello.ts` 与 `plugins/hello-object-syntax.ts`）。
-  - 组件使用示例 `const { $hello } = useNuxtApp()`。
-  - Typing Plugins 一节的 `declare module '#app'` / `declare module 'vue'` 两处接口扩展。
-  - important "we highly recommend using composables instead of providing helpers ..."。
-  - warning "If your plugin provides a `ref` or `computed`, it will not be unwrapped in a component `<template>`."
-  - Object Syntax Plugins 里那句 note："If you are using the object-syntax, the properties are statically analyzed to produce a more optimized build. So you should not define them at runtime."，反例 `enforce: import.meta.server ? 'pre' : 'post'`；"Nuxt does statically pre-load any hook listeners when using object-syntax, allowing you to define hooks without needing to worry about order of plugin registration."

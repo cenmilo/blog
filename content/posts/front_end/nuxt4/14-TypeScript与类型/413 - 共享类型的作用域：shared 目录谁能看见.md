@@ -127,7 +127,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 下一篇 414 收 395-414 那几篇：把 `typescript` 那一节从"键清单"转成"取舍决策"——`typeCheck` 三档怎么选、`shim` 什么时候才该开、`strict` 何时关。
-
-## 本文依据
-
-- "Only files in the `shared/utils/` and `shared/types/` directories will be auto-imported. Files nested within subdirectories ... unless you add these directories to `imports.dirs` and `nitro.imports.dirs`"、标注目录树五行、`::tip`（与 `app/composables`/`app/utils` 扫描一致）、`#shared` 三条示例与"regardless of the importing file's location"、app 与 server 两侧的 `capitalize` 用法示例、`::note`（v3.14+）（`directory-structure/shared`）；两端可见性与 `import type` 规则、`::important` 禁引 Vue/Nitro 见 409；类型上下文目录规则见 395/396。

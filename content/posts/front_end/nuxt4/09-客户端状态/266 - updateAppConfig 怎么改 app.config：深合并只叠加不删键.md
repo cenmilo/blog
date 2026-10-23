@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇说 `app.config.ts` 是构建期定死的。但 UI 上的东西常常要运行时变：用户切了主题色、某个开关被打开。Nuxt 给的这一对是：`useAppConfig()` 读、`updateAppConfig()` 写。这篇只讲后者那一个关键行为——它到底怎么"改"，因为改的方式有个不那么直觉的地方。
 
 ## 读和写这一对
@@ -113,9 +114,3 @@ app.config 那一节的"Typing"部分出现三个接口名，容易看花，理�
 ## 下一篇
 
 下一篇 267 讲 `stripNeverHydratedData` 这个实验开关：它把"永不水合的组件"的数据从 payload 里剔出去，是 264 里"少往 payload 塞东西"的一个自动化手段。
-
-## 本文依据
-
-- updateAppConfig（`api/utils/update-app-config`）：note "Updates the `app.config` using deep assignment. Existing (nested) properties will be preserved."；`{ foo: 'bar' } → updateAppConfig({ foo: 'baz' }) → { foo: 'baz' }` 示例。
-- useAppConfig（`api/composables/use-app-config`）：定位 "Access the reactive app config defined in the project." 与 `const appConfig = useAppConfig()` 用法。
-- app.config.ts（`directory-structure/app/app-config`）：更新时机 "at runtime within lifecycle or using a nuxt plugin and editing it with HMR"；usage 里 `updateAppConfig(newAppConfig)` 就地改变 `appConfig` 的示例；Typing 节 `AppConfigInput`（"This will not affect the type of `useAppConfig()`"）、`AppConfig`（overwrite 警告）、`SharedAppConfig`（应用外返回类型）。

@@ -146,10 +146,3 @@ const prehydrateId = onPrehydrate((el) => {})
 ## 下一篇
 
 232 - 取数在生命周期里的位置：服务端没有挂载钩子这件事
-
-## 本文依据
-
-- `api/composables/on-prehydrate`：定位句；v3.12+ 的 important；note（advanced utility 与两个被点名模块及"manipulate the DOM to avoid hydration mismatches"）；Usage 整段四句；Type 两条重载；Parameters 表两行（三条硬约束与 `key` 的 multiple root nodes）；Return Values 两行；三段递进示例（含印出 `data-prehydrate-id` 的那行注释）；Under the hood 段（构建期字符串化与压缩、内联为 `<script>`、位置在 `</body>` 之前）与渲染后的 HTML 片段；末句关于 `el` 形参触发打属性的说明。
-- `guide/best-practices/hydration`：`localStorage` 成因与 `useCookie` 解法、"Initialise libraries after hydration has completed"（199 已逐句引）。
-- `guide/going-further/experimental-features`：body 位置标签"每个客户端都读得到"那句（193 已逐句引）。
-- `api/components/nuxt-time`、`api/components/client-only`：被点名模块与水合期定位（096/099/198 已逐句引）。

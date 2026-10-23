@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前面几篇 handler 里直接写 `defineEventHandler(...)`、`getQuery(...)`、`readBody(...)` 都没 import 就能用。这一篇讲清这背后的"自动导入边界"，以及一个容易翻车的点：有一组同名工具**不**自动导入，必须显式写。
 
 ## 默认自动可用的是 h3 那批
@@ -96,8 +97,3 @@ import { formatUser } from '#server/utils/formatUser'
 ## 下一篇
 
 下一篇 312 讲 `shared/` 目录：一份代码 app 和 server 都能用的规则，以及"shared 里不许 import 任何 Vue 或 Nitro 代码"这条硬约束。
-
-## 本文依据
-
-- Server Imports（`guide/going-further/server-imports`）："These names are not auto-imported from `nuxt/server`. In server code, the auto-imported names of the same spelling are h3's own helpers, which take the h3 event and behave differently in places (defineEventHandler, handleCors, getRouterParams and readValidatedBody among them), so import from `nuxt/server` explicitly."；users.post.ts 的显式 import 示例（见 305）。
-- server 目录（`directory-structure/server`）：Server Utilities 一节（"Server routes are powered by h3js/h3 which comes with a handy set of helpers."、"add more helpers yourself inside the `~~/server/utils`"）；Server Alias 一节（`#server` v4.3 示例与 note "The `#server` alias can only be used within the `server/` directory. Importing from `#server` in client code will result in an error."）；Server Types（顶层自动导入，见 301）。

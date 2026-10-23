@@ -131,7 +131,3 @@ export default defineNuxtModule({
 ## 下一篇
 
 下一篇 408 处理"配置与类型怎么都不对"的最后一步：`nuxt cleanup` 删掉哪五样、再 `nuxt prepare` 重来，以及为什么手改 `.nuxt` 必然被覆盖。
-
-## 本文依据
-
-- 两类模块（发布到 npm / 本地内联或 `modules` 目录）与"they work in the same way"、低层函数签名与示例、"we do not recommend ... we recommend using the object-syntax with `meta` property"、`meta.name`/`configKey`/`compatibility` 与 `defaults`/`hooks`/`moduleDependencies`/`setup` 的官方注释、`moduleDependencies` 四子字段描述、包装函数八条行为（含 type hints and automated type inference、唯一键保证只装一次、自动检查兼容性）、runtime 目录与 `::warning` 不能用自动导入（`guide/modules/module-anatomy`）；钩子名字与 `nuxt.hook` 见 294/360；`#imports` 显式导入见 404；starter 里模块定义在 `src/module.ts`、runtime 在 `src/runtime/`。

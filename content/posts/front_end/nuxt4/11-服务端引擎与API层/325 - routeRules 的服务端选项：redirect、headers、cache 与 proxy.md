@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 routeRules 在 140–141 那两篇开过头，这一篇把它**服务端侧**的选项摊全。先记它的机制，官方在 Hybrid Rendering 那节写得很准：
 
 > Nuxt server will automatically register corresponding middleware and wrap routes with cache handlers using Nitro caching layer.
@@ -117,10 +118,3 @@ routeRules 能写三个地方：
 ## 下一篇
 
 下一篇 326 把服务端中间件落到实操：用 `server/middleware` 做鉴权（抛 401）与日志（记 URL），并守住"中间件不该返回值"这条。
-
-## 本文依据
-
-- Rendering Hybrid Rendering 节（`guide/concepts/rendering`）：机制句"automatically register corresponding middleware and wrap routes with cache handlers using Nitro caching layer"；示例 routeRules；Route Rules 属性清单（redirect/ssr/cors/headers/swr/isr/prerender/noScripts/appMiddleware 的官方描述逐条）；swr/isr 的 TTL、full response、stale-while-revalidate、CDN、true 语义；`ssr:false` Server Bundle Size 三条保留条件；note isr/swr 也产 `_payload.json`；important "Hybrid Rendering is not available when using nuxt generate."
-- Server 页（`getting-started/server`）：routeRules 示例 `'/api/*': { cache: { maxAge: 60 * 60 } }`、`redirect: { to, statusCode: 302 }`。
-- Experimental Features（`guide/going-further/experimental-features`）：cache route rule 在 GET/HEAD miss 播报 maxAge 为 Cache-Control；routeRules proxy 提及。
-- defineRouteRules / extendRouteRules（见 140）。

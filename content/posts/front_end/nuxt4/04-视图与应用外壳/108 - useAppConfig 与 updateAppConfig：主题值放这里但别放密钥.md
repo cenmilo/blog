@@ -181,31 +181,3 @@ export {}
 ## 下一篇
 
 109 是视图部分的收束：从 `app.vue` 到 `<NuxtPage>`、布局、加载屏、进度条、播报，再到岛屿，把这一路串成一条完整的渲染链路。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/directory-structure/app/app-config`
-  - 原文（描述）："Expose reactive configuration within your application with the App Config file."
-  - 原文："Nuxt provides an `app/app.config.ts` config file to expose reactive configuration within your application with the ability to update it at runtime within lifecycle or using a nuxt plugin and editing it with HMR (hot-module-replacement)."
-  - 原文："You can easily provide runtime app configuration using `app.config.ts` file. It can have either of `.ts`, `.js`, or `.mjs` extensions."
-  - 原文（caution）："Do not put any secret values inside `app.config` file. It is exposed to the user client bundle."
-  - 原文（note）："When configuring a custom `srcDir`, make sure to place the `app.config` file at the root of the new `srcDir` path."
-  - 原文（Usage）："To expose config and environment variables to the rest of your app, you will need to define configuration in `app.config` file."；示例 `defineAppConfig({ theme: { primaryColor: '#ababab' } })`；"We can now universally access `theme` both when server-rendering the page and in the browser using `useAppConfig` composable."；页面侧 `const appConfig = useAppConfig()`、`console.log(appConfig.theme)`
-  - 原文："The `updateAppConfig` utility can be used to update the `app.config` at runtime."
-  - 原文（Typing App Config）："Nuxt tries to automatically generate a TypeScript interface from provided app config so you won't have to type it yourself."；"However, there are some cases where you might want to type it yourself."
-  - 原文（App Config Input）："`AppConfigInput` might be used by module authors who are declaring what valid *input* options are when setting app config. This will not affect the type of `useAppConfig()`."；示例 `declare module 'nuxt/schema' { interface AppConfigInput { theme?: { primaryColor?: string } } }` + `export {}`
-  - 原文（App Config Output）："If you want to type the result of calling `useAppConfig()` in app code, then you will want to extend `AppConfig`. Outside app code (server routes, the `shared/` directory and `nuxt.config`) `useAppConfig()` returns `SharedAppConfig`, so extend that interface instead."
-  - 原文（warning）："Be careful when typing `AppConfig` as you will overwrite the types Nuxt infers from your actually defined app config."；示例注释 `// This will entirely replace the existing inferred \`theme\` property`、`// such as string literal types`、`primaryColor?: 'red' | 'blue'`、`// It is always important to ensure you import/export something when augmenting a type`
-  - 原文（Merging Strategy）："Nuxt uses a custom merging strategy for the `AppConfig` within the layers of your application. This strategy is implemented using a Function Merger, which allows defining a custom merging strategy for every key in `app.config` that has an array as value."；（note）"The function merger can only be used in the extended layers and not the main `app.config` in project."
-- `https://nuxt.com/docs/4.x/api/composables/use-app-config`
-  - 原文："Access the reactive app config defined in the project."；示例 `const appConfig = useAppConfig()`、`console.log(appConfig)`
-  - 原文 Source：`packages/nuxt/src/app/config.ts`
-- `https://nuxt.com/docs/4.x/api/utils/update-app-config`
-  - 原文："Update the App Config at runtime."
-  - 原文（note）："Updates the `app.config` using deep assignment. Existing (nested) properties will be preserved."
-  - 原文示例：`import { updateAppConfig, useAppConfig } from '#imports'`；`const appConfig = useAppConfig() // { foo: 'bar' }`；`const newAppConfig = { foo: 'baz' }`；`updateAppConfig(newAppConfig)`；`console.log(appConfig) // { foo: 'baz' }`
-  - 原文 Source：`packages/nuxt/src/app/config.ts`（与 `useAppConfig` 同一份实现）
-- `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 对照用（见 072、073）：`runtimeConfig` —— "Runtime config allows passing dynamic config and environment variables to the Nuxt app context."；"The value of this object is accessible from server only using `useRuntimeConfig`. It mainly should hold *private* configuration which is not exposed on the frontend. This could include a reference to your API secret tokens. Anything under `public` and `app` will be exposed to the frontend as well. Values are automatically replaced by matching env variables at runtime, e.g. setting an environment variable `NUXT_API_KEY=my-api-key NUXT_PUBLIC_BASE_URL=/foo/` would overwrite the two values in the example below."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 对照用（见 091）：模板中读取响应式值随换页更新的上下文

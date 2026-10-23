@@ -178,9 +178,3 @@ async function submitForm () {
 ## 下一篇
 
 下一篇 486 讲两件"看起来很小但官方口径不一样"的事：**语言属性有明确写法**（`app.head.htmlAttrs.lang`，官方还把 title 默认值、语言、favicon 一起列为"该放在这里的不会变的东西"），而**图片替代文本在 4.x 文档里没有任何规则句**，只有 `getting-started/assets` 的示例里出现过 `alt` 与 `:alt`。
-
-## 本文依据
-
-- `<NuxtAnnouncer>` 组件页：标题句（adds a hidden element to announce dynamic content changes）、`::important` v4.4.2+、Usage 段（`app.vue` 或 `app/layouts/`、四类场景）、`app/app.vue` 里两个 announcer 并排的示例、"Then use the `useAnnouncer` composable anywhere in your app"与 contact.vue 示例、Slots 段（`#default="{ message }"`）、Props 两条（`atomic` 默认 **`true`**、`politeness` 默认 `polite`）、"Differences from `<NuxtRouteAnnouncer>`" 四行对照表原文、两条 callout（组件可选可照源码自写、可用 `useAnnouncer` 挂钩）（`api/components/nuxt-announcer`）
-- `useAnnouncer` 页：定性句（与 `useRouteAnnouncer` 相反提供手动控制 what and when、四类适用场景）、`::important` v4.4.2+、参数与两个属性（含 `Ref<'polite' | 'assertive' | 'off'>`）、三个方法原文（`polite`/`assertive` 各带"不紧急可等／紧急应打断"的用途句）、Use Cases 三段（表单校验、加载状态跟随 `status`、搜索结果）、两条 callout（**必须加 `<NuxtAnnouncer>` 才会渲染到 DOM**；页面/路由变化改用路由那一套）、源文件 `composables/announcer.ts`（`api/composables/use-announcer`）
-- `status` 四值（`api/composables/use-async-data`）与 `pendingWhenIdle` 语义（`guide/going-further/experimental-features`，446 依据）

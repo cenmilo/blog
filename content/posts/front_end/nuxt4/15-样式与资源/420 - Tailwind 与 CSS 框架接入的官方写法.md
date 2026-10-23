@@ -103,7 +103,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 421 讲 `assets/` 目录里的资源：要走打包器才有 hash，而运行时拼出来的路径构建器看不见、不重写。
-
-## 本文依据
-
-- "Nuxt isn't opinionated when it comes to styling ... such as popular libraries like UnoCSS or Tailwind CSS"、模块路径与六个模块及各自官方描述、"if your favorite tool doesn't have a module, it doesn't mean that you can't use it with Nuxt! You can configure it yourself ... might need to use a Nuxt plugin and/or make your own module"、npm 分发的样式包可直接引（`animate.css`、`css: ['animate.css']`）、Google Fonts 模块与 UnoCSS web fonts presets、本地字体放 `public/` 用 `url()`、Fontaine 降 CLS 与"考虑做一个 Nuxt 模块"、LCP 四条（CDN/Brotli/HTTP2-3/同域）（`getting-started/styling`）。

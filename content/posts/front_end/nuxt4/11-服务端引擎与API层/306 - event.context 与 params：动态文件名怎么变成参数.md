@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇读的是"客户端传来的体/查询串"。这一篇读另一类——**URL 路径里的那段动态部分**，以及服务端各处怎么通过 `event.context` 互相传数据。
 
 ## event.context.params：动态段落在这
@@ -105,8 +106,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 下一篇 307 讲 `setResponseStatus`：服务端设状态码（和可选 statusText）的工具，以及它那句"在浏览器里没有效果"的限定。
-
-## 本文依据
-
-- server 目录（`directory-structure/server`）：Route Parameters 一节（`[name].ts` + `getRouterParam(event,'name')`、`/api/hello/nuxt`→`Hello, nuxt!`、tip `getValidatedRouterParams`）；Catch-all Route 一节（`[...].ts`→`event.context.path`/`event.context.params._`、`[...slug].ts`→`event.context.params.slug`）；Server Middleware 一节（`auth.ts` 的 `event.context.auth = { user: 123 }`，见 291）。
-- 与页面侧 `[...slug]` 数组形状的区别（见 111/110-149 页面路由记录）。

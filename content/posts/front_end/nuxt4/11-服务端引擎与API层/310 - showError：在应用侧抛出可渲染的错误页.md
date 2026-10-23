@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇讲了"throw 一个 createError"。这一篇讲它的命令式版本：**`showError`——不 throw、直接调用，就弹一个全屏错误页。** 官方定位：
 
 > Nuxt provides a quick and simple way to show a full screen error page if needed.
@@ -89,9 +90,3 @@ showError({
 ## 下一篇
 
 下一篇 311 讲 `server/utils` 与服务端自动导入的边界：哪些服务端 helper 自动可用、哪些必须显式 import、以及 `#server` 别名的作用范围。
-
-## 本文依据
-
-- showError（`api/utils/show-error`）：定位句 "quick and simple way to show a full screen error page if needed."；"Within the Nuxt context you can use showError to show an error."；参数 `string | Error | Partial<{ cause, data, message, name, stack, status, statusText }>`；两示例（字符串、`{status:404, statusText:'Page Not Found'}`）；"The error is set in the state using useError() to create a reactive and SSR-friendly shared error state across components."；tip "showError calls the app:error hook."
-- Error Handling（`getting-started/error-handling`）：showError 一节 "You can call this function at any point on client-side, or (on server side) directly within middleware, plugins or setup() functions. It will trigger a full-screen error page which you can clear with clearError." 与 "It is recommended instead to use throw createError()."
-- useNuxtApp（`api/composables/use-nuxt-app`）+ advanced/hooks：`app:error` 钩子（见 285、275）。

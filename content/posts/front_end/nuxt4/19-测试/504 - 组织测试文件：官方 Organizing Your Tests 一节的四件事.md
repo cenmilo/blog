@@ -125,10 +125,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 505 讲 DOM 侧的内置 mock：整页只列了两个（`intersectionObserver` 与 `indexedDB`），默认值一个是真一个是假，而且配置键的写法与标题不一样。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（Organizing Your Tests 全节：`you might organize` 前提句与目录树四文件、"keeping the Nuxt runtime environment separated ... important for test stability" 原句、TypeScript Support in Tests 的默认目录句与 `::tip`、Adding other test directories 的配置示例及路径注释、`::important` 全文、Running Tests 四条命令与 `::warning` 的 happy-dom/jsdom 与全局应用初始化）
-- https://nuxt.com/docs/4.x/directory-structure/test（三行目录树与三条子目录定义）
-- https://nuxt.com/docs/4.x/getting-started/testing（Conflict with End-To-End Testing：两种环境不能同文件、`// @vitest-environment nuxt` 与 `.nuxt.spec.ts`；Vitest Browser Mode 中把 `test/browser/` 指回 Adding other test directories 的 `::note`）
-- https://nuxt.com/docs/4.x/api/commands/test（`nuxt test` 只说用 `@nuxt/test-utils` 跑测试，无按测试种类筛的选项）

@@ -201,9 +201,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 492 收这套工具的能力边界：哪些是 `@nuxt/test-utils` 自己的模块（`/config`、`/e2e`、`/nuxt` 之外的路径、以及那个可选的 `/module`）、mock 有哪三样、helpers 与 `mountSuspended` 之类工具各自出现在哪一节，以及官方对"其他 runner"和"其他 runtime"分别是什么态度。
-
-## 本文依据
-
-- 测试页 Unit Testing 一节：Setup 第二步的完整 `vitest.config.ts`（三个 project 的 `name`/`include`/`environment` 与 `await defineVitestProject`）、`::note`（defineVitestProject 只用于 Nuxt 环境、e2e 应为普通 `test.environment: 'node'` project）、Setup 第三步与 Adding other test directories（`typescript.tsConfig.include` 及其"路径相对生成的 .nuxt/tsconfig.json"注释、默认只纳入 `test/nuxt/` 与 `tests/nuxt/`）、`::important`（单元测试不该依赖自动导入与组合式函数、只在真的从源码导入时加别名）（`getting-started/testing`）
-- Using a Nuxt Runtime Environment 两条（unit 在 `test/unit/` 跑 Node 为速度、Nuxt 测试在 `test/nuxt/`）；Alternative Simple Setup 的 `defineVitestConfig` 示例与注释里的 `rootDir`/`domEnvironment`（默认 happy-dom）/`overrides`；按文件退出的 `// @vitest-environment node` 示例与其 `::warning`（hybrid environment、Nuxt Vite plugins run but Nuxt entry and `nuxtApp` not initialized、hard-to-debug errors）；Running Tests 四条命令；`::warning`（happy-dom 或 jsdom、跑前初始化全局 Nuxt 应用含 `app.vue` 与插件、不要改全局状态或事后复位）（`getting-started/testing`）
-- `test/nuxt/` 与 `tests/nuxt/` 的类型上下文与 `typescript.tsConfig.include` 的关系（`guide/concepts/typescript`、069/395 依据）

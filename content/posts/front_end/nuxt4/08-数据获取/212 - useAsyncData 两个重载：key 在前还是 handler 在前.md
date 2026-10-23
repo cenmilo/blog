@@ -160,9 +160,3 @@ const { data: user } = useAsyncData(
 ## 下一篇
 
 213 - useAsyncData 选项表逐条：14 个键与它们的默认值
-
-## 本文依据
-
-- `api/composables/use-async-data`：页首定位句与 note（"meant to be called directly in the Nuxt context... without re-fetching the data on client side when the page hydrates"）；Usage 示例（六成员解构 + `(_nuxtApp, { signal })`）；Type 一节两条重载与 `AsyncDataHandler`、`AsyncData`、`AsyncDataExecuteOptions`、`AsyncDataRequestStatus` 定义；Watch Parameters 一节（`'posts'` + `{ watch: [page] }` 示例）；Reactive Keys 一节（`MaybeRefOrGetter`、`userId` computed 示例与注释）；Make Your `handler` Abortable 全节（三块示例、signal aborted 三条时机）；Parameters 的 `key`（"a unique key to ensure that data fetching can be properly de-duplicated across requests... unique to the file name and line number"）、`handler`（truthy 值那句）、`options`（"All options can be a static value, a `ref`, or a computed value."）与那条 note；side-effect free 的 warning；reserved function name 的 warning。
-- `getting-started/data-fetching`：`useAsyncData` 一节的两条示例（带 key 与省略 key）与那段 note（"The first argument of `useAsyncData` is a unique key used to cache the response of the second argument..."、自动生成 key 只算调用位置、建议自己给 key）。
-- 与 213/214/215 的分工：14 行选项表在 213；七个返回成员在 214；自动 key 与手动 key 的归属问题在 215。

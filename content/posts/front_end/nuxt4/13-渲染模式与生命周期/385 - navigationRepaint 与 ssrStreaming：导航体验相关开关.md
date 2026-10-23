@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 experimental-features 那页里，和"点了链接之后感受"最相关的两个开关是 `navigationRepaint` 和 `ssrStreaming`。它们常被放在一起谈，但一个改善 INP、一个改善 TTFB，是两码事。
 
 ## navigationRepaint：导航前等一帧
@@ -84,7 +85,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 386 讲 SPA 加载模板：`ssr: false` 时页面在水合完成前是空白，用 `spaLoadingTemplate`（或 `~/spa-loading-template.html`）填一段加载 UI，顺带和 dev 的 `loadingTemplate` 分清。
-
-## 本文依据
-
-- experimental-features `## navigationRepaint`（"Wait for a single animation frame before navigation ... acknowledging user interaction"、"can reduce INP when navigating on prerendered routes"、默认开可关）与 `## ssrStreaming`（"dramatically improve TTFB"、先 shell 后 `renderToWebStream`）（`guide/going-further/experimental-features`）；ssrStreaming 完整机制见 324。

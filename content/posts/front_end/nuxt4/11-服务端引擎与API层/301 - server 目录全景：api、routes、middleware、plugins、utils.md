@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（300）说服务端跑在 Nitro 上。这一篇落到目录：**你在项目里写的服务端代码，几乎全在 `server/` 这个文件夹下，按子目录自动分类注册。** 官方 server 那一节给了这张结构图：
 
 ```bash [Directory Structure]
@@ -145,7 +146,3 @@ import { formatUser } from '#server/utils/formatUser'
 ## 下一篇
 
 下一篇 302 讲 `/api` 前缀这件事本身：为什么 `server/api` 里的文件自动带 `/api`、而 `server/routes` 不带，两种目录该怎么选。
-
-## 本文依据
-
-- server 目录（`directory-structure/server`）：结构图（api/hello.ts→/api/hello、routes/bonjour.ts→/bonjour、middleware/log.ts）；`defineEventHandler()`/`eventHandler()` 别名与"直接返回 JSON/Promise/event.node.res.end()"；开头 important（app 与 server 代码不许互 import）；Server Routes（"Files inside the `~~/server/api` are automatically prefixed with `/api`"、"To add server routes without `/api` prefix, put them into `~~/server/routes`"、note 动态路由不如 pages 完整、`hello.ts` 两示例）；Server Middleware（见 291）；Server Plugins（"automatically read any files in `~~/server/plugins` ... register them as Nitro plugins ... hooking into lifecycle events"、`defineNitroPlugin` 示例）；Server Utilities（"add more helpers yourself inside the `~~/server/utils`"、`defineWrappedResponseHandler` 示例）；Server Types（"`~~/server/types/` are auto-imported in the server context only"、`Todo` 示例、"Only files directly in server/types/ are scanned"、app 需要的放 shared/types）；Server Alias（`#server` 示例、note 只能在 server 目录内用、客户端 import 报错）。

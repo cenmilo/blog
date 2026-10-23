@@ -165,16 +165,3 @@ useSeoMeta({
 ## 下一篇
 
 191 讲那个已经被废弃的 `useServerSeoMeta`：它的原语义（只服务端运行、从客户端包摇掉）、官方给的替代写法，以及"在 `future.compatibilityVersion: 5` 下自动导入被移除"这句的确切含义。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-seo-meta`（本篇主要依据）
-  - 原文（定位与推荐）："The useSeoMeta composable lets you define your site's SEO meta tags as a flat object with full TypeScript support."；"This helps you avoid common mistakes, such as using `name` instead of `property`, as well as typos - with over 100+ meta tags fully typed."；important "This is the recommended way to add meta tags to your site as it is XSS safe and has full TypeScript support."
-  - 原文（Usage 与反应式）：`useSeoMeta({ title: 'My Amazing Site', ogTitle: 'My Amazing Site', description: '...', ogDescription: '...', ogImage: 'https://example.com/image.png', twitterCard: 'summary_large_image' })`；"When inserting tags that are reactive, you should use the computed getter syntax (`() => value`):" + `useSeoMeta({ title, description: () => \`This is a description for the ${title.value} page\` })`
-  - 原文（Parameters 与 Performance）："There are over 100 parameters. See the full list of parameters in the source code."（链接 `github.com/harlan-zw/zhead/blob/main/packages/zhead/src/metaFlat.ts#L1035`）；"In most instances, SEO meta tags don't need to be reactive as search engine robots primarily scan the initial page load."；"For better performance, you can wrap your `useSeoMeta` calls in a server-only condition when the meta tags don't need to be reactive:" + `if (import.meta.server) { useSeoMeta({ robots: 'index, follow', description: 'Static description that does not need reactivity', ogImage: 'https://example.com/image.png', // other static meta tags... }) }` + `const dynamicTitle = ref('My title')` + `useSeoMeta({ title: () => dynamicTitle.value, ogTitle: () => dynamicTitle.value })` 与两处注释；"This previously used the `useServerSeoMeta` composable, but it has been deprecated in favor of this approach."；Source `packages/vue/src/composables.ts`（unhead 仓库）
-- `https://nuxt.com/docs/4.x/getting-started/seo-meta`
-  - 原文（同一示例与反应式 code-group）："The `useSeoMeta` composable lets you define your site's SEO meta tags **as an object** with full type safety."；"This helps you avoid typos and common mistakes, such as using `name` instead of `property`."；六字段示例；Reactivity 一栏 `const description = ref('My amazing site.')` + `useSeoMeta({ description })`
-- `https://nuxt.com/docs/4.x/api/composables/use-server-seo-meta`
-  - 对照用（见 191）：warning "`useServerSeoMeta` is deprecated. Wrap `useSeoMeta` in an `if (import.meta.server)` block instead. The auto-import is removed under `future.compatibilityVersion: 5`."
-- `https://nuxt.com/docs/4.x/api/composables/use-head`
-  - 对照用（见 187、188）：`link`/`base`/`script`/`style`/`noscript` 元素族与 `titleTemplate`、`templateParams` 归属 `useHead`

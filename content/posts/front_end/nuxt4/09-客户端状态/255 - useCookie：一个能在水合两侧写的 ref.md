@@ -6,7 +6,7 @@ updated: 2027-01-05T09:00:00+08:00
 author: cmdragon
 
 summary:
-  摘要：250 解释过 `useState` 只在一次加载里活着，要跨请求持久就得用 cookie。官方定位句是 "useCookie is an SSR-friendly composable to read and write cookies."，写法 `const cookie = useCookie(name, options)`，可用位置是 "Within your pages, components, and plugins"，一条硬约束是 note 里的 "`useCookie` only works in the Nuxt context."。**它的返回值语义在 Return Values 里写得很完整**："Returns a Vue `Ref<T>` representing the cookie value. **Updating the ref will update the cookie (unless `readonly` is set).** The ref is SSR-friendly and will work on both client and server."——"两侧都能用"正是它相对 `localStorage` 的价值（199 那张成因表把 `localStorage` 列为第一类错配原因，解法官方给的就是 `useCookie`，理由句 "This works on both server and client"）。序列化不用你管：tip 是 "The returned ref will automatically serialize and deserialize cookie values to JSON."，参数说明里补一句 "Most of the options will be directly passed to the cookie package."。官方 Basic Usage 那段还有一个我原来没注意的用法：**把 ref 赋成 `null` 是重置**（`<button @click="counter = null">reset</button>`），而整段说明是 "Whenever we update the `counter` variable, the cookie will be updated accordingly."。最后一条跨层：服务端接口里读写要换 h3 的两个 helper——"You can use `getCookie` and `setCookie` from `h3` package to set cookies in server API routes."。
+  摘要：250 解释过 `useState` 只在一次加载里活着，要跨请求持久就得用 cookie。官方定位句是 "useCookie is an SSR-friendly composable to read and write cookies."，写法 `const cookie = useCookie(name, options)`，可用位置是 "Within your pages, components, and plugins"，一条硬约束是 note 里的 "`useCookie` only works in the Nuxt context."。**它的返回值语义在 Return Values 里写得很完整**："Returns a Vue `Ref<T>` representing the cookie value. **Updating the ref will update the cookie (unless `readonly` is set).** The ref is SSR-friendly and will work on both client and server."——"两侧都能用"正是它相对 `localStorage` 的价值（199 那张成因表把 `localStorage` 列为第一类错配原因，解法官方给的就是 `useCookie`，理由句 "This works on both server and client"）。序列化不用你管：tip 是 "The returned ref will automatically serialize and deserialize cookie values to JSON."，参数说明里补一句 "Most of the options will be directly passed to the cookie package."。官方 Basic Usage 那段还有一个我原来没注意的用法：**把 ref 赋成 `null` 是重置**（`<button @click="counter = null">reset</button>`），而整段说明是 "Whenever we update the `counter` variable, the cookie will be updated accordingly."。最后一条跨层：服务端接口里读写要换 h3 的两个 helper——"You can use `getCookie` and `setCookie` from `h3` package to set cookies in server API routes."
 
 categories:
   - 前端开发
@@ -132,10 +132,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 256 - useCookie 选项表逐条：14 个键与两处要小心
-
-## 本文依据
-
-- `api/composables/use-cookie`：定位句；Usage 段两句与代码；note（only works in the Nuxt context）；tip（自动 JSON 序列化/反序列化）；Type 段（`CookieOptions` 六个自有键、`CookieRef<T> extends Ref<T>`、`useCookie<T = string \| null \| undefined>` 签名）；Parameters 两句（`name`、"Most of the options will be directly passed to the cookie package."）；Return Values 整段；Basic Usage 说明与示例（含 `counter = null` 的 reset 按钮与 `{{ counter || '-' }}`）；Cookies in API Routes 一节与 `server/api/counter.ts` 示例；link-example 指向。
-- `guide/best-practices/hydration`：`localStorage` 反例与 `useCookie` 解法及 "This works on both server and client"（199 已逐句引）。
-- `api/composables/use-state`：`useState` 的寿命与序列化边界（251/252 已逐句引）。
-- `directory-structure/server`：服务端 h3 helper 与"服务端同名工具是 h3 的"这条边界（065/151 已逐句引）。

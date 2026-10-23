@@ -110,12 +110,3 @@ nuxt dev --inspect
 ## 下一篇
 
 下一篇 526 逐行拆 PM2 那份配置与 `node_cluster`：六个字段各管什么、`instances: 'max'` 与 round robin 的官方措辞，以及这两条路能不能同时用。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/guide/going-further/debugging（Sourcemaps 的默认值句与 `sourcemap: { server, client }` 示例；Node Inspector 的命令与"This will start Nuxt in `dev` mode"、`::important` 的同平台与 Docker 不成立；Debugging in Your IDE 的 VS Code 与 JetBrains 两小节；Other IDEs 的一句欢迎贡献）
-- https://nuxt.com/docs/4.x/api/nuxt-config（`logLevel` 在 CI 或无 TTY 时默认 `silent`，Vite／webpack 侧的译值）
-- https://nuxt.com/docs/4.x/api/commands/build 与 https://nuxt.com/docs/4.x/api/commands/dev（`--profile` 写 `nuxt-build.cpuprofile`、`--profile=verbose` 才出完整控制台报告、构建计时与 `perf-report.json`/`perf-trace.json` 需 v4.4+）
-- https://nuxt.com/docs/4.x/getting-started/error-handling 与 https://nuxt.com/docs/4.x/guide/going-further/experimental-features（chunk 加载错误与四种取值；`vue:error`/`app:error`/`errorHandler` 三层）
-- https://nuxt.com/docs/4.x/guide/concepts/rendering 与 https://nuxt.com/docs/4.x/getting-started/deployment（兜底页与静态主机配置；CDN Proxy 的两项与水合错误）
-- https://nuxt.com/docs/4.x/community/reporting-bugs（`nuxt info` 报解析到的 Nuxt/Nitro/Vite、包管理器与加载的模块）

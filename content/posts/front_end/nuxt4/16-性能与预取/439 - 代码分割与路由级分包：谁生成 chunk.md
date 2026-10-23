@@ -114,13 +114,3 @@ webpack: {
 ## 下一篇
 
 下一篇 440 讲构建这一侧的缓存：`experimental.buildCache` 按配置与源文件的哈希缓存构建产物，但它默认关闭、只覆盖 `srcDir` 与 `serverDir` 的源码，而且**Nitro 每次都会重新构建**。哪九个文件一动就强制全量重建，下一篇一一对出来。
-
-## 本文依据
-
-- 每个页面文件对应一条路由、"By using dynamic imports for each page ... ship the minimum amount of JavaScript for the requested route"、代码分割默认开启与 `codeSplitting: false` 的完整配置示例及其评价原文（`getting-started/routing`）
-- `Lazy` 前缀动态导入与 `<LazyMountainsList v-if="show" />` 示例、全局注册"though not recommended ... create async chunks for all your components"、`global` 目录与 `.global.vue` 及"each global component is rendered in a separate chunk"、`resolveComponent` 的 `::important` 静态分析禁令、"Lazy components ... still load eagerly unless conditionally rendered"（`directory-structure/app/components`）
-- `addComponent` 选项表中的 `isAsync`、`chunkName` 原文与默认值、Kit 解析示例中的 `chunkName: 'headlessui/combobox'`（`api/kit/components`、`api/kit/resolving`）
-- 岛屿的 `nuxt-client` 只发送自身 chunk、"Using islands can significantly increase the number of chunks generated at build time"（`guide/concepts/server-components`）
-- Code splitting 列为自带能力（`getting-started/introduction`）；"Automatic code-splitting and async-loaded chunks"（`guide/concepts/server-engine`）
-- `webpack.filenames` 的 `chunk` 函数与 `[id].[contenthash].js` 示例、非 hash 文件名的 `::callout` 警告（`api/nuxt-config`）
-- chunk 下载失败的硬重载与 `experimental.emitRouteChunkError`（`getting-started/error-handling`、`guide/going-further/experimental-features`）

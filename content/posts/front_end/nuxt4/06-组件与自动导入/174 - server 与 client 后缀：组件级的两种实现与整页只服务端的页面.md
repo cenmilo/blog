@@ -125,7 +125,7 @@ tags:
 | 意外 | 依据 |
 | --- | --- |
 | 服务端页面在根前写了个 HTML 注释 → 违反单根要求 | 括号那句 "HTML comments are considered elements as well."（组件与页面两处同句） |
-| 以为页面级 `.server.vue` 会省掉导航请求 | 官方："Navigating to a server-only page **needs a request to render it**"，只能靠预取提前 |
+| 以为页面级 `.server.vue` 会省掉导航请求 | 官方："Navigating to a server-only page **needs a request to render it**，只能靠预取提前 |
 | 给 `.server` 组件写 `@error` 或调 `refresh()` 拿不到 | 自动生成的包装不暴露 load/error，改直接用 `<NuxtIsland>` |
 
 ## 自查
@@ -142,17 +142,3 @@ tags:
 ## 下一篇
 
 175 讲 `<DevOnly>`：它的内容为什么在生产构建里不存在、`#fallback` 那版替代要注意什么（官方提醒要用 `nuxt preview` 测），以及性能指南列出的几个"包里多了东西"的常见原因。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（Client-Only Pages）："You can define a page as [client only](https://nuxt.com/docs/4.x/directory-structure/app/components#client-components) by giving it a `.client.vue` suffix. None of the content of this page will be rendered on the server."
-  - 原文（Server-Only Pages）："You can define a page as [server only](https://nuxt.com/docs/4.x/directory-structure/app/components#server-components) by giving it a `.server.vue` suffix. While you will be able to navigate to the page using client-side navigation, controlled by `vue-router`, it will be rendered with a server component automatically, meaning the code required to render the page will not be in your client-side bundle."；warning "Server-only pages must have a single root element. (HTML comments are considered elements as well.)"；"Navigating to a server-only page needs a request to render it, so when a `<NuxtLink>` to one is prefetched, Nuxt prefetches that response as well." + read-more 指向 `guide/concepts/server-components#the-client-navigation-round-trip`
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 原文（后缀四处）："If a component is meant to be rendered only client-side, you can add the `.client` suffix to your component."；note "This feature only works with Nuxt auto-imports and `#components` imports. Explicitly importing these components from their real paths does not convert them into client-only components."；important "`.client` components are rendered only after being mounted. To access the rendered template using `onMounted()`, add `await nextTick()` in the callback of the `onMounted()` hook."；"Register server-only components with the `.server` suffix and use them anywhere in your application automatically."；"Standalone server components will always be rendered on the server, also known as Islands components."；"Server-only components use `<NuxtIsland>` under the hood, meaning that `lazy` prop and `#fallback` slot are both passed down to it."；"In this case, the `.server` + `.client` components are two 'halves' of a component and can be used in advanced use cases for separate implementations of a component on server and client side." + `Comments.client.vue`/`Comments.server.vue`；"You can also selectively register some components globally by placing them in a `~/components/global` directory, or by using a `.global.vue` suffix in the filename."
-- `https://nuxt.com/docs/4.x/guide/concepts/server-components`
-  - 原文（页面成对与限制）："You can also pair a `.server.vue` component with a `.client.vue` component of the same name for separate server and client implementations. In that case the component is not an island: the client half hydrates normally."；warning "Server components (and islands) must have a single root element. (HTML comments are considered elements as well.)"；"Server components rendered via the auto-generated wrapper do not expose load and error events; use `<NuxtIsland>` directly if you need its `error` event and `refresh()` method."；"Each nested island adds extra overhead, so be careful when nesting islands within other islands."；机制三句（isolated Vue app / island context / runs your plugins again, unless they set `env: { islands: false }`）
-- `https://nuxt.com/docs/4.x/api/components/nuxt-island`
-  - 对照用（见 107、170）："By default, component islands are scanned from the `~/components/islands/` directory. So the `~/components/islands/MyIsland.vue` component could be rendered with `<NuxtIsland name=\"MyIsland\" />`."；Ref `refresh()` — "force refetch the server component by refetching it."；Event `error` — "emitted when `NuxtIsland` fails to fetch the new island."
-- `https://nuxt.com/docs/4.x/api/components/client-only` 与 `https://nuxt.com/docs/4.x/guide/concepts/rendering`
-  - 对照用（见 165）：`<ClientOnly>` 与 `ssr: false` 两条"不在服务端渲染"的路径及其代价

@@ -94,8 +94,3 @@ npx vitest --watch
 ## 下一篇
 
 下一篇 496 讲 `nuxt.config.ts` 里的 `test` 这一节：它的类型、默认值，以及它管的事情比名字听起来小得多。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/api/commands/test（命令形状、"runs tests using `@nuxt/test-utils`"、Arguments 表 `ROOTDIR`、Options 表 `--cwd`/`--dev`/`--watch` 三项说明、两处 `NODE_ENV` 设为 `test` 的表述、指向 nuxt/cli 里 `commands/test.ts` 的 Source 链接）
-- https://nuxt.com/docs/4.x/getting-started/testing（Running Tests 四条命令：全量、`--project unit`、`--project nuxt`、`--watch`）

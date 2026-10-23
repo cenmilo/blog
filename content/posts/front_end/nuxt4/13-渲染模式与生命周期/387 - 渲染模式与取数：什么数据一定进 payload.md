@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 372 说 `await useFetch` 不改服务端 HTML，因为 Nuxt 会等取数完再序列化页面。373 说服务端取的数据要转发给客户端避免重复请求。这两件事的连接点就是 payload。这一篇把"什么数据进 payload、渲染模式怎么影响它"讲清。
 
 ## payload 是什么
@@ -41,6 +42,7 @@ tags:
 > When Nuxt renders a page on the server, it serializes the results of your data fetching ([`useAsyncData`] and [`useFetch`]) and app state ([`useState`]) into a payload so the client can hydrate without re-fetching.
 
 **进 payload 的是**：
+
 1. `useAsyncData` 的取数结果
 2. `useFetch` 的取数结果
 3. `useState` 的应用状态
@@ -90,7 +92,3 @@ performance 那一节从另一头印证 `useFetch`/`useAsyncData` 的存在意�
 ## 下一篇
 
 下一篇 388 从 SEO 角度做取舍：SSR 让爬虫拿到全文、预渲染更早可索引、`ssr: false` 丢 SEO；而 head/meta 得由 Unhead 渲进 HTML 才生效。
-
-## 本文依据
-
-- payload 定义（`useNuxtApp().payload`）、"serializes the results of your data fetching (useAsyncData and useFetch) and app state (useState) into a payload"、`useFetch`/`useAsyncData` 防二次请求（performance "forwarded to the client in the payload"）、`$fetch` has no such mechanism（`getting-started/data-fetching`、`guide/best-practices/performance`）；devalue vs JSON.stringify 两分、`payloadExtraction` 三档与默认、`ssr:false` 强制 false、`pick`/`transform` 边界 `::note`（`getting-started/data-fetching`、`getting-started/prerendering`）。

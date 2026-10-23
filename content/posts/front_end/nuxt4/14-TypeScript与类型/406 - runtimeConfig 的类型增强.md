@@ -119,7 +119,3 @@ export default defineEventHandler(async (event) => {
 ## 下一篇
 
 下一篇 407 转到模块作者侧：`defineNuxtModule` 的 `meta.configKey` 如何让模块选项变成 `nuxt.config` 里的一个键，以及 `meta.compatibility` 与模块依赖约束在启动时报错的行为。
-
-## 本文依据
-
-- `## Typing Runtime Config`：untyped 自动生成接口、手动增强模板（`declare module 'nuxt/schema'` + `RuntimeConfig`/`PublicRuntimeConfig` + `export {}` 注释）、`::note`（`nuxt/schema` 便利 vs 模块作者增强 `@nuxt/schema`）；客户端只有 public/app 可写可响应式、服务端整个只读防上下文共享的 `::important`、服务端路由传 `event` 的 `::note`、`::caution` 别暴露到客户端、`app` 前缀为 Nuxt 保留（`guide/going-further/runtime-config`）；`useRuntimeConfig(event)` 与 `$config.public` 见 341；保留命名空间与 B5003 见 410；类型上下文目录规则见 395/396。

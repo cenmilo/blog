@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前面 367、378、379 分别讲了 routeRules、延迟水合、预渲染。381 把它们拼成一份成品配方——官方 `guide/recipes/mostly-static-sites`，目标一句话：给内容和营销站发接近零 JS，同时保留几块交互。
 
 ## 先说为什么默认配置在浪费
@@ -127,7 +128,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 382 收 `nuxt generate` 与静态托管的适配点：`ssr: true` 的 SSG 与 `ssr: false` 的纯 SPA 两条路各自产出什么、200/404 回退页怎么在主机上配、以及预渲染下没有服务端端点这条限制。
-
-## 本文依据
-
-- mostly-static 问题陈述（95% 静态页的水合 JS 是开销、伤 mobile PageSpeed）、四步配方、`prerender`+`noScripts` 组合及其省掉/保留内容、`noScripts` 不水合的 `::important`、脚本/无脚本路由的整页加载与 speculation rules 预取、`.server.vue` 岛屿与"完全交互岛屿部件在 noScripts 失效"的 `::warning`、延迟水合 `hydrate-never`/`hydrate-on-visible`/`hydrate-on-idle`（prop 变化仍触发水合）、成品 routeRules 示例（`guide/recipes/mostly-static-sites`；noScripts 见 353、routeRules 见 367、延迟水合见 378）。

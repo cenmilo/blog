@@ -109,9 +109,3 @@ tags:
 ## 下一篇
 
 218 - 六个行为选项细讲：default、pick、transform、dedupe、enabled、serialize
-
-## 本文依据
-
-- `api/composables/use-async-data`：选项表 `server`/`lazy`/`immediate`/`serialize` 四行原文与默认值；note（`server: false` ⇒ 水合完成前不取、await 也拿不到 `data`）；Status Values 四条（尤其 `idle` 那句含 "on server render"）；`pending` 行与 `experimental.pendingWhenIdle` 附加说明；lazy 与 `<Suspense>` 那条 note；Return Values 段与"SSR 会等完再发"的 tip。
-- `api/composables/use-fetch`：`server` 行 "Whether to fetch on the server."；同一条 `server: false` note；Status Values 四条同文；`serialize` 长说明原文。
-- `getting-started/prerendering` / `api/nuxt-config`：`payloadExtraction` 与 `ssr: false` 的强制关系（200 已逐句引），用来解释"没有 payload 就没有可带的东西"。

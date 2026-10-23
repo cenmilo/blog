@@ -131,14 +131,3 @@ const layout = useLayout()
 ## 下一篇
 
 184 讲布局与页面之间的接口：`<slot />` 与命名插槽、插槽默认内容，以及"页面内容显示在插槽里"这句话对过渡与 `<NuxtLayout>` 根元素的影响。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-layout`
-  - 原文："useLayout returns the layout resolved for the current route."；"`useLayout` returns a computed ref with the layout resolved for the current route, using the same chain as `<NuxtLayout>`: the page's `layout` meta first, then the `appLayout` set via route rules, then `'default'`."；"Within a rendered `<NuxtLayout>` it reflects the enclosing layout; outside of one (for example in `app.vue`) it returns the layout that would be resolved for the current route."；"Unlike reading `route.meta.layout` directly, this accounts for a layout set through route rules and stays in sync as the route changes."；"A read-only computed ref resolving to the layout name (a `string`), or `false` when the layout is disabled."；示例 `const layout = useLayout()` + `<CommandPalette v-if=\"layout !== 'minimal'\" />` + `<NuxtLayout><NuxtPage /></NuxtLayout>`；Source `packages/nuxt/src/app/composables/layout.ts`
-- `https://nuxt.com/docs/4.x/api/components/nuxt-layout`
-  - 对照用（见 094、181）：`name` 的 `string | false` 与 default `default`、`fallback`（default `null`）、"Please note the layout name is normalized to kebab-case"
-- `https://nuxt.com/docs/4.x/directory-structure/app/layouts`
-  - 对照用（见 180、181）：三种指定方式（`definePageMeta` 的 `layout`、`<NuxtLayout>` 的 `name`、route rules 的 `appLayout`）与 `'/landing': { appLayout: false }`
-- `https://nuxt.com/docs/4.x/api/utils/set-page-layout`
-  - 对照用（见 139）：改布局要用它，不是 `useLayout()`

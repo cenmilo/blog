@@ -93,7 +93,7 @@ const { status, data: posts } = await useLazyAsyncData('posts', () => $fetch('/a
 
 **两支都写了**：pending 与 error。我原来只补了 loading，错误那一支漏掉时表现是"转圈消失、内容空白、也不报错"——因为 `v-else` 把错误态当成"成功但没数据"渲染了。
 
-这里要如实说一句：这个例子的 `v-else` 分支其实没区分 `success` 与 `idle`（214 那张表里 status 是四值：`idle`/`pending`/`success`/`error`），而且官方示例的 `<template>` 有两个并列根节点（外层 `<div>` 里再放三个 `<div>`——如果这块组件要参加页面过渡，118/208 的单根要求就会撞上）。**这两点我按其它页的规则处理，不当成这一节示例的推荐形状。**
+这里要如实说一句：这个例子的 `v-else` 分支其实没区分 `success` 与 `idle`（214 那张表里 status 是四值：`idle`/`pending`/`success`/`error`），而且官方示例的 `<template>` 有两个并列根对象（外层 `<div>` 里再放三个 `<div>`——如果这块组件要参加页面过渡，118/208 的单根要求就会撞上）。**这两点我按其它页的规则处理，不当成这一节示例的推荐形状。**
 
 ## 另一段示例里那句关于 null 的注释
 
@@ -141,9 +141,3 @@ watch(count, (newCount) => {
 ## 下一篇
 
 225 - useLazyFetch 与 await 的错觉：初始化了但没等到数据
-
-## 本文依据
-
-- `api/composables/use-lazy-async-data`：定位句（"triggers navigation before the handler is resolved by setting the `lazy` option to `true`"）；note（默认阻塞导航 vs 立即导航）；Usage 示例与那句 "Check `status === 'pending'` and `status === 'error'`..."；reserved name warning；Type 两条重载与 "has the same signature as useAsyncData"；Parameters（"with the `lazy` option automatically set to `true`"）；Return Values（"returns the same values as useAsyncData"）；Example 段（`count` + `watch` 与关于 null 的注释）。
-- `api/composables/use-async-data`：`lazy` 与 `<Suspense>` 那条 note、选项表 `lazy`/`default` 两行、返回值表与 Status Values 四条（212-214 已逐句引）。
-- `getting-started/data-fetching`：`await` 与 `lazy` 的关系与"lazy 是显式做法"那句（210 已逐句引）。

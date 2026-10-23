@@ -110,7 +110,3 @@ await $fetch('/api/todos')
 ## 下一篇
 
 下一篇 402 讲这一组的地基 `routeTypedFetch`：`$fetch`/`useFetch` 改由服务端构建器报告的路由集定型，五条后果逐条讲，以及 `Endpoint` 与手写 `ServerRoutes` 的迁移差异。
-
-## 本文依据
-
-- `## strictRouteTypes`：定义句与 Requires routeTypedFetch、配置示例、职责切分句（"a response is typed by the handler that answers it whatever this option is set to"）、三档 `false`/`true`/`'isomorphic'` 逐条描述与 `false` 的理由句、拼错与方法不匹配的典型代码、三类仍放行（绝对 URL、运行时路径、显式响应泛型）、`baseURL` 先解析再匹配、`::note`（`public/` 不是构建器报告的路由）（`guide/going-further/experimental-features`）。

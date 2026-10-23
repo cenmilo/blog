@@ -126,11 +126,3 @@ useAsyncData('users', handler, { transform: b => ({ ...b, extra: 1 }) })
 ## 下一篇
 
 255 - useCookie：一个能在水合两侧写的 ref
-
-## 本文依据
-
-- `api/composables/use-nuxt-data`：`posts` / `posts-[id]` 两段示例与三条注释；"This is particularly useful for optimizing performance by reusing already-fetched data or implementing features like Optimistic Updates or cascading data updates."；返回值的 "automatically updates" 句与"必须显式 key"前提（215/228 已逐句引）。
-- `api/composables/use-async-data`：`default`/`transform`/`pick`/`getCachedData` 四行原文、`AsyncDataOptions<ResT, DataT = ResT>` 与 `DataT` 默认关系、side-effect free 的 warning、Shared State 的"必须一致七项"（212/213/215/218 已逐句引）。
-- `api/composables/use-state`：`init` 说明句与 important 序列化边界（251/252 已逐句引）。
-- `getting-started/data-fetching`：`useAsyncData` 不用于触发副作用（含 Pinia action 的 ❌ 示例）整段 note；Minimize payload size 一节里 `transform` 那句（210/235 已逐句引）。
-- `api/utils/call-once`：Purpose、示例（`useState` + `callOnce`）与"不返回任何东西"（230 已逐句引）。

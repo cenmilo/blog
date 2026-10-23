@@ -106,7 +106,7 @@ await navigateTo('https://nuxt.com', { external: true })
 </template>
 ```
 
-并挂了一条限制：**"`noRel` 与 `rel` 不能一起使用。`rel` 会被忽略。**"
+并挂了一条限制：**"`noRel` 与 `rel` 不能一起使用。`rel` 会被忽略。"**
 
 ### `//` 这个细节为什么重要
 
@@ -190,21 +190,3 @@ await navigateTo(route.query.redirect as string)
 ## 下一篇
 
 127 讲 `abortNavigation`：它只能用在路由中间件处理器里、签名返回 `false`，以及不带参数、带字符串、带 Error 对象三种写法分别对应什么场景。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 原文（external 四象限）："Without `external: true`: Internal URLs navigate as expected. External URLs throw an error. With `external: true`: Internal URLs navigate with a full-page reload. External URLs navigate as expected."
-  - 原文（`external` 参数）："Allows navigating to an external URL when set to `true`. Otherwise, `navigateTo` will throw an error, as external navigation is not allowed by default."；Type `boolean`、Default `false`
-  - 原文示例注释："// will throw an error; // navigating to an external URL is not allowed by default"；"// will redirect successfully with the 'external' parameter set to 'true'"
-  - 原文（`open`）："Allows navigating to the URL using the open() method of the window. This option is only applicable on the client side and will be ignored on the server side."；`noopener` — "Prevents the new window from accessing the originating window via `window.opener`."；`noreferrer` — "Prevents the Referer header from being sent and implicitly enables `noopener`."
-  - 原文（`to`）："`to` can be a plain string or a route object to redirect to. When passed as `undefined` or `null`, it will default to `'/'`."；示例 `await navigateTo({ name: 'product', params: { id: 1 } })`
-  - 原文（note）："`navigateTo` cannot be used within Nitro routes. To perform a server-side redirect in Nitro routes, use `sendRedirect` instead."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-link`
-  - 原文（rel and noRel Attributes）："A `rel` attribute of `noopener noreferrer` is applied by default to links with a `target` attribute or to absolute links (e.g., links starting with `http://`, `https://`, or `//`)."；"`noopener` solves a security bug in older browsers."；"`noreferrer` improves privacy for your users by not sending the `Referer` header to the linked site."；"These defaults have no negative impact on SEO and are considered best practice."；"When you need to overwrite this behavior you can use the `rel` or `noRel` props."
-  - 原文（note）："`noRel` and `rel` cannot be used together. `rel` will be ignored."
-  - 原文示例：`<!-- <a href="https://twitter.com/nuxt_js" rel="noopener noreferrer">...</a> -->`、`<NuxtLink to="https://discord.nuxtjs.org" rel="noopener">` 与 `<!-- <a href="https://discord.nuxtjs.org" rel="noopener">...</a> -->`、`<NuxtLink to="/about" target="_blank">` 与 `<!-- <a href="/about" target="_blank" rel="noopener noreferrer">...</a> -->`、`<NuxtLink to="https://github.com/nuxt" no-rel>` 与 `<!-- <a href="https://github.com/nuxt">...</a> -->`
-- `https://nuxt.com/docs/4.x/getting-started/routing`
-  - 原文（important）："Route middleware does **not** run for server routes (e.g. `/api/*`) or other server requests. To apply middleware to these requests, use server middleware instead."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-island` 与 `https://nuxt.com/docs/4.x/guide/concepts/server-components`
-  - 对照用（见 106、107）："Component props and context are sent as GET query parameters to enable caching. Query parameters may be visible in server access logs, CDN caches, and HTTP `Referer` headers."

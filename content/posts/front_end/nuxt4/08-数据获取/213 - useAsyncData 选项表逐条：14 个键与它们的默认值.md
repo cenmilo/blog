@@ -115,9 +115,3 @@ const getDefaultCachedData = (key, nuxtApp, ctx) => nuxtApp.isHydrating
 ## 下一篇
 
 214 - 返回值七个成员：data、status、pending、error、refresh、execute、clear
-
-## 本文依据
-
-- `api/composables/use-async-data`：Parameters 一节 `options` 说明句；14 行选项表全部原文（含各键类型、默认值、七个版本徽标）；表后 note（computed/ref 会被监听并自动重发）；`enabled`、`serialize`、`middleware` 三条长说明原文；`AsyncDataOptions` 与 `AsyncDataMiddleware`、`AsyncDataRequestContext` 类型定义；"getCachedData default" 代码块与 "This only caches data when `experimental.payloadExtraction` in `nuxt.config` is enabled."；lazy/Suspense 那条 note 与 `useLazyAsyncData` 的 read-more。
-- `getting-started/prerendering`：`experimental.payloadExtraction` 三取值与默认、`ssr: false` 强制 `false`（200 已逐句引）。
-- `guide/best-practices/performance`：`serialize: false` 那句指向的 lazy hydration 小节（165/167 已细讲）。

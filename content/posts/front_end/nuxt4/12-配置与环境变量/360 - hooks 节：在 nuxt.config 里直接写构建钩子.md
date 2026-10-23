@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 297 讲"构建期钩子在哪注册"时给了两个位置，其一是 `nuxt.config` 的 `hooks` 节。这一篇把这一节讲透。
 
 ## hooks 节是什么
@@ -89,8 +90,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 361 讲 app.baseURL 与 buildAssetsDir：应用挂载路径前缀、静态资源目录前缀，以及它们的 NUXT_ 运行时覆盖。
-
-## 本文依据
-
-- nuxt-config hooks 节（`api/nuxt-config`）："Hooks are listeners to Nuxt events that are typically used in modules, but are also available in nuxt.config. Internally, hooks follow a naming pattern using colons (e.g., build:done). For ease of configuration, you can also structure them as an hierarchical object in nuxt.config (as below)."；示例 `hooks: { build: { done(builder){ ...buildDir... } } }`。
-- Nuxt Hooks (Build Time) 清单与冒号命名、模块 nuxt.hook 入口（`api/advanced/hooks` / `guide/going-further/hooks`，见 294/297）。

@@ -146,11 +146,3 @@ const state = useState('my-shallow-state', () => shallowRef({ deep: 'not reactiv
 ## 下一篇
 
 252 - useState 的 key 规则与序列化约束
-
-## 本文依据
-
-- `api/composables/use-state`：Usage 示例与注释；important（序列化到 JSON、不得含类/函数/symbol）；warning（reserved function name）；Using `shallowRef` 一节两句与代码块（含 `isShallow` 注释）；Type 两条重载；三条参数说明；Troubleshooting 一节（报错标题、两句解释与 `definePayloadPlugin` 指向）；指向 state-management 与 use-nuxt-app#payload 的 read-more。
-- `getting-started/state-management`：定位句 "an SSR-friendly `ref` replacement"；Advanced Usage 的 locale 组合式全段（`useDefaultLocale` 两侧分支与 `accept-language`）；Shared State 的 `useColor`；同一条 important（250 已逐句引）。
-- `api/composables/use-async-data`：`default` 与 `deep` 两行原文（"for improved performance (shallow ref object)"）（213/218 已逐句引）。
-- `api/composables/use-request-headers`：浏览器里返回空对象、`accept-language` 属服务端读法（223 已逐句引）。
-- `api/utils/clear-nuxt-state`、`api/composables/use-nuxt-data`、`api/utils/clear-nuxt-data`：各自定位句与作用对象（228/229 已逐句引、252 细引）。

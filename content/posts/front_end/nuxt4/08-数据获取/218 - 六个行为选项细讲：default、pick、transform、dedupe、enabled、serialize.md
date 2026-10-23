@@ -128,10 +128,3 @@ const { data, status, error, refresh, clear } = await useFetch('/api/modules', {
 ## 下一篇
 
 219 - useFetch 与 useAsyncData 的六处差异：自动 key、可响应式 URL 与错误类型
-
-## 本文依据
-
-- `api/composables/use-async-data`：选项表 `default`/`transform`/`pick`/`deep`/`dedupe`/`enabled`/`serialize`/`middleware`/`getCachedData` 各行原文与默认值、版本徽标；返回值表里 `clear` 与 `refresh` 两行原文；`AsyncDataOptions` 与 `AsyncData<DataT, DataT>` 类型（含 `DataT = ResT`）；`AsyncDataExecuteOptions` 三键；signal abort 三条时机；getCachedData 默认实现与 `payloadExtraction` 限定句；Shared State 两张清单（215 已逐条引）。
-- `api/composables/use-fetch`：Usage 里 `{ pick: ['title'] }` 示例；`dedupe` 行 "Avoid fetching same key more than once at a time."；`serialize`、`enabled`、`default`、`transform`、`getCachedData` 各行原文；同一条 `clear`/`refresh` 返回值描述；Status Values 四条。
-- `api/composables/use-nuxt-data`：`default()` 读缓存的完整示例（215 已引）。
-- 检索结论（否定性事实）：`getPreviousData` 在 4.x 文档中零命中。

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 300-339 从 Nitro 讲到了服务端排错，零件够了。这一篇把它们收成一张地图，日后遇到服务端的问题，先在这张图上找到那块，再翻对应篇。
 
 ## 地基：一切跑在 Nitro 上
@@ -90,9 +91,3 @@ SSR 服务端 `$fetch` 直调 handler、不自动带浏览器头（300、318）�
 ## 下一篇
 
 下一篇 340（340-364 配置与环境变量开局）讲 runtimeConfig 的双层结构：public 与非 public 各暴露给谁、为什么这么分。
-
-## 本文依据
-
-- Server Engine（`guide/concepts/server-engine`）：Nitro 定位、h3、API 层、Direct API Calls（$fetch 直调省一次往返）、Typed API Routes、Standalone Server（.output、独立 node_modules）。
-- Server 页（`getting-started/server`）：Nitro 三超能力（Full control/Universal deployment/Hybrid rendering）、h3 定位、15+ preset。
-- 各能力对应篇：server 目录（301/302/303/304/305/306）、routeRules（325）、runtimeConfig+env（327/335）、取数一致性（318/332）、生命周期（319）、排错（338）。

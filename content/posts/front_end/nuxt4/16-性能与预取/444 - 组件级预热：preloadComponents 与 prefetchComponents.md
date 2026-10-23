@@ -107,9 +107,3 @@ await prefetchComponents(['MyGlobalComponent1', 'MyGlobalComponent2'])
 ## 下一篇
 
 下一篇 445 讲 `preloadRouteComponents`：它预热的是**整条路由的组件**而不是单个组件，官方给的示例特意不 await——理由是别挡住当前组件的 setup，同时"如果你用 `<NuxtLink>`，Nuxt 已经自动预取需要的路由了"。
-
-## 本文依据
-
-- `preloadComponents` 页：预热定义原文、"registered globally"与 "Pascal-cased version of the component name" 两句、单个与数组两例、`::note` "On server, `preloadComponents` will have no effect."、源文件指向 `composables/preload.ts`（`api/utils/preload-components`）
-- `prefetchComponents` 页：后台下载定义原文、同样的 registered globally 与 PascalCase 两句、两例、`::note` 关于当前实现与 preload 完全相同且"we are working to improve this behavior"、服务端无效那句（`api/utils/prefetch-components`）
-- 全局注册的代价：`components.global: true` "create async chunks for all your components"、`global` 目录与 `.global.vue`、"each global component is rendered in a separate chunk, so be careful not to overuse"（`directory-structure/app/components`）

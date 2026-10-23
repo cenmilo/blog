@@ -117,11 +117,3 @@ const url = useRequestURL()
 ## 下一篇
 
 205 - robots 的两处记载：meta 里那个字段与一个要保名的文件
-
-## 本文依据
-
-- `guide/going-further/experimental-features`（`ssrStreaming` 一节）："Keep other SEO-critical tags (canonical links, social meta) synchronous, or opt the route out of streaming with `routeRules: { '/path': { streaming: false } }`."；"`useHead`/`useSeoMeta` called synchronously in `<script setup>` (before any `await`), in plugins, or in middleware render into the shell `<head>` as usual."；"Anything else (a crawler your `botRegex` does not list, a link unfurler, `curl`) will not see those tags at all."；开启键是 `experimental.ssrStreaming`（同节示例），路由级退出写 `'/no-stream/**': { streaming: false }`。
-- `api/composables/use-head`：参数表 `base` 行与 `link` 行原文；"Adding External Scripts and Styles" 里 `{ rel: 'stylesheet', href: '...' }` 的示例形态。
-- `api/composables/use-request-url`：定位句 "a helper function that returns an URL object working on both server-side and client-side"；`const url = useRequestURL()` 与模板输出、开发环境结果 `http://localhost:3000/about`；important 两段（headers dropped ⇒ host 为 `localhost`、`cache.varies` 与 `host`/`x-forwarded-host`）；指向 MDN 的 URL 实例属性 tip。
-- `api/nuxt-config`（routeRules 相关，141 已细讲）：`swr` / `isr` 落缓存层的说法，用来定位"哪条路由会命中缓存"。
-- 检索结论（否定性事实）：`canonical` 在 4.x 语料的正文里只命中 experimental-features 一处；SEO 页与 `useHead` 页都没有 canonical 示例。

@@ -159,17 +159,3 @@ const LazyHydrationMyComponent = defineLazyHydrationComponent(
 ## 下一篇
 
 168 讲 `preloadComponents` 与 `prefetchComponents` 这一对：官方明确说后者当前的实现"和前者完全一样"，以及那句话里"We are working to improve this behavior"该怎么读。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/define-lazy-hydration-component`
-  - 原文（外部变量限制）：warning "To ensure that the compiler correctly recognizes this macro, avoid using external variables. The following approach will prevent the macro from being properly recognized:" + 示例 `const strategy = 'visible'` / `const source = () => import('./components/MyComponent.vue')` / `const LazyHydrationMyComponent = defineLazyHydrationComponent(strategy, source)`
-  - 原文（可用写法）：`defineLazyHydrationComponent('visible', () => import('./components/MyComponent.vue'))`；`source` 类型 `() => Promise<Component>`
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 原文（Delayed (or Lazy) Hydration 一节的三条 note/warning）：note "Any prop change on a lazily hydrated component will trigger hydration immediately. (e.g., changing a prop on a component with `hydrate-never` will cause it to hydrate)"；warning "Currently Nuxt's built-in lazy hydration only works in single-file components (SFCs), and requires you to define the prop in the template (rather than spreading an object of props via `v-bind`). It also does not work with direct imports from `#components`."；"Nuxt provides a range of built-in hydration strategies. Only one strategy can be used per lazy component."；"Nuxt supports this using lazy (or delayed) hydration, allowing you to control when components become interactive."
-  - 原文（Caveats and Best Practices 五条）："Delayed hydration can offer performance benefits, but it's essential to use it correctly:"；"Prioritize In-Viewport Content: Avoid delayed hydration for critical, above-the-fold content. It's best suited for content that isn't immediately needed."；"Conditional Rendering: When using `v-if=\"false\"` on a lazy component, you might not need delayed hydration. You can just use a normal lazy component."；"Shared State: Be mindful of shared state (`v-model`) across multiple components. Updating the model in one component can trigger hydration in all components bound to that model."；"Use Each Strategy's Intended Use Case: Each strategy is optimized for a specific purpose. - `hydrate-when` is best for components that might not always need to be hydrated. - `hydrate-after` is for components that can wait a specific amount of time. - `hydrate-on-idle` is for components that can be hydrated when the browser is idle."；"Avoid `hydrate-never` on interactive components: If a component requires user interaction, it should not be set to never hydrate."
-  - 原文（策略实现注记）："Under the hood, this uses Vue's built-in `hydrateOnVisible` strategy." 等三条（visible/idle/interaction/mediaQuery）；"If you do not pass an event or list of events, it defaults to hydrating on `pointerenter`, `click` and `focus`."
-- `https://nuxt.com/docs/4.x/api/components/client-only` 与 `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 对照用（见 165）："This feature only works with Nuxt auto-imports and `#components` imports. Explicitly importing these components from their real paths does not convert them into client-only components."（同一类"编译期特性只对自动导入生效"的限制）
-- `https://nuxt.com/docs/4.x/directory-structure/app/components` 与 `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 对照用（见 161、137）：`Lazy` 前缀与"still load eagerly unless conditionally rendered"；prop 变化与组件实例复用

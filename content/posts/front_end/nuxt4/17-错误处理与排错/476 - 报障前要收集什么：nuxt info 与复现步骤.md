@@ -142,9 +142,3 @@ npx nuxt info [ROOTDIR] [--cwd=<directory>] [--json]
 ## 下一篇
 
 下一篇 477 走一遍完整链路：接口里 `throw createError({ status: 500, data: {...} })`，到 `useFetch` 在 `error.value.data.data` 读到结构化信息，再让 `error.vue` 显示一句人话并能跳回安全页——每一步对应前面哪一篇的哪条规则。
-
-## 本文依据
-
-- 报障页全部四节原文：开头两句（报得好的价值）、Is It Really a Bug（求助与报 bug 的区分并指向 getting help）、Search the Issues（open issues 与 discussions、"much better to comment on an existing thread than create a duplicate"）、Create a Minimal Reproduction（reliably/minimal/apart from the rest of your project、缩小范围并便于验证修法、"Start with the Nuxt sandbox and add the minimum amount of code necessary"、`::note` 涉及 Vue 或 Vite 先用 Vue SSR starter、五张卡片名称与地址、"remove as much code ... while still recreating the bug"及其收尾句）、Figure Out What the Cause Might Be（moving pieces、报到最相关最具体处、很可能是模块或 Nuxt 依赖的上游库）（`community/reporting-bugs`）
-- `nuxt info` 命令：用法行、`ROOTDIR` 与 `--cwd`/`--json` 三项、"logs information about ... the versions of Nuxt, Nitro and Vite it resolves, the package manager, the modules it loads and the build modules in its configuration"与 `--json` 用途句（`api/commands/info`）
-- dev 的 info 视图与 `shift-y` 复制 `nuxt info` 表（`api/commands/dev`）；E1006 的依赖侧成因与 `build.transpile`（`errors/e1006`、`api/nuxt-config`）；monorepo 下 `modulesDir` 与解析版本差异（`directory-structure/node_modules`、`api/nuxt-config`）

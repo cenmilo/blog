@@ -117,7 +117,3 @@ workspace 里还容易踩一个坑：把 `buildDir` 挪走，结果类型位置�
 ## 下一篇
 
 下一篇 404 讲 `#imports` 这条显式通道：官方"Nuxt exposes every auto-import with the `#imports` alias"，以及关掉 `imports.autoImport` 之后为什么它仍然可用。
-
-## 本文依据
-
-- `## workspaceDir`（"Often this is used when in a monorepo setup. Nuxt will attempt to detect your workspace directory automatically, but you can override it here. It is normally not needed"、默认 `"/<workspaceDir>"`）与 `## typescript` 下 `hoist`（"Modules to generate deep aliases for within compilerOptions paths. This does not yet support subpaths. It may be necessary when using Nuxt within a pnpm monorepo with shamefully-hoist=false"、17 项默认清单）、`includeWorkspace`、`builder`、`## typesDir`（与 buildDir 分开的理由句）（`api/nuxt-config`）；rootDir/workspaceDir/typesDir/modulesDir 配合见 080、357。

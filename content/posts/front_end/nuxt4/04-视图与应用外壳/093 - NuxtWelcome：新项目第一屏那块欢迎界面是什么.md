@@ -97,26 +97,3 @@ tags:
 ## 下一篇
 
 094 展开 `<NuxtLayout>`：`name` 可以给 `false`、布局名会被规范化成 kebab-case、给了不存在的布局名时什么都不渲染（这才轮到 `fallback` 出场），以及做过渡时官方为什么建议它**不要**当页面的根元素。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-welcome`
-  - 原文："The \<NuxtWelcome> component greets users in new projects made from the starter template."
-  - 原文："It includes links to the Nuxt documentation, source code, and social media accounts."
-  - 原文示例（文件标注 `app/app.vue`）：`<template><NuxtWelcome /></template>`
-  - 原文（read-more）："Preview the `<NuxtWelcome />` component."，指向 `https://templates.ui.nuxtjs.org/templates/welcome`
-  - 原文（tip）："This component is part of `@nuxt/ui-templates` package."
-  - 原文 Source 链接：`https://github.com/nuxt/nuxt/blob/main/packages/ui-templates/templates/welcome/index.html`
-  - 说明：本页未列出任何 prop、事件或插槽
-- `https://nuxt.com/docs/4.x/getting-started/installation`
-  - 原文（tip）："Well done! A browser window should automatically open for <http://localhost:3000>."
-  - 原文（additional notes for an optimal setup）："**Windows slow DNS resolution**: Instead of using `localhost:3000` for local dev server on Windows, use `127.0.0.1` for much faster loading experience on browsers."
-  - 原文：页面描述 "Get started with Nuxt quickly with our online starters or start locally with your terminal."；在线沙箱链接指向 `https://stackblitz.com/github/nuxt/starter?file=app%2Fapp.vue`
-- `https://nuxt.com/docs/4.x/directory-structure/app/app`
-  - 原文："The app.vue file is the main component of your Nuxt application."
-  - 原文（tip）："If you have a `app/pages/` directory, the `app.vue` file is optional. Nuxt will automatically include a default `app.vue`, but you can still add your own to customize the structure and content as needed."
-  - 原文（Minimal Usage）："With Nuxt, the `app/pages/` directory is optional. If it is not present, Nuxt will not include the vue-router dependency. This is useful when building a landing page or an application that does not require routing."；示例 `<template><h1>Hello World!</h1></template>`
-  - 原文（Usage with Pages）："When you have a `app/pages/` directory, you need to use the `<NuxtPage>` component to display the current page"；"You can also define the common structure of your application directly in `app.vue`. This is useful when you want to include global elements such as a header or footer"
-  - 原文（note）："Remember that `app.vue` acts as the main component of your Nuxt application. Anything you add to it (JS and CSS) will be global and included in every page."
-- `https://nuxt.com/docs/4.x/getting-started/views`
-  - 原文："By default, Nuxt will treat this file as the **entrypoint** and render its content for every route of the application."

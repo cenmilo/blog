@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（339）用一句话带过"配置放 runtimeConfig"。340-364 把这整块展开。第一篇先立结构：**runtimeConfig 不是一层，是"私有 + 公有"两层，外加一个 Nuxt 保留的 `app` 空间。**
 
 ## 官方那个对比例子
@@ -100,9 +101,3 @@ nuxt-config 对 runtimeConfig 的定义句把分界说死（265、327 也引过�
 ## 下一篇
 
 下一篇 341：useRuntimeConfig 读写规则：客户端改不了私有键
-
-## 本文依据
-
-- Runtime Config（`guide/going-further/runtime-config`）：定义例子（apiSecret 私有、public.apiBase 公有、"When adding apiBase ... Nuxt adds it to each page payload"）。
-- nuxt-config runtimeConfig 节（`api/nuxt-config`）："It mainly should hold *private* configuration which is not exposed on the frontend ... Anything under `public` and `app` will be exposed to the frontend as well."
-- useRuntimeConfig（`api/composables/use-runtime-config`）：note（server 需要的键直接放 runtimeConfig、两端都要的放 public）；`app` 保留命名空间（"You should not introduce additional keys inside `app`"、baseURL/cdnURL）。

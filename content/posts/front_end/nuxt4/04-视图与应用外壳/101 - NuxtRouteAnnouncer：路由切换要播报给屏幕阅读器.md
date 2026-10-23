@@ -167,25 +167,3 @@ watch(results, (results) => {
 ## 下一篇
 
 102 讲 `<NuxtLoadingIndicator>`：它的六个 prop（含 `color` 可以设成 `false`、`estimatedProgress` 收 `duration` 与 `elapsed` 返回 0-100）、`error` 被官方列为状态而不是 prop，以及怎么自己触发 start/finish。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-route-announcer`
-  - 原文（描述）："The \<NuxtRouteAnnouncer> component adds a hidden element with the page title to announce route changes to assistive technologies."
-  - 原文（important）："This component is available in Nuxt v3.12+."
-  - 原文（Usage）："Add `<NuxtRouteAnnouncer/>` in your `app.vue` or `app/layouts/` to enhance accessibility by informing assistive technologies about page title changes. This ensures that navigational changes are announced to users relying on screen readers."
-  - 原文示例：`<NuxtRouteAnnouncer />` 与 `<NuxtLayout><NuxtPage /></NuxtLayout>` 并列
-  - 原文（Slots）："You can pass custom HTML or components through the route announcer's default slot."；示例 `<template #default="{ message }"><p>{{ message }} was loaded.</p></template>`
-  - 原文（Props）："`atomic`: Controls if screen readers only announce changes or the entire content. Set to true for full content readouts on updates, false for changes only. (default `false`)"；"`politeness`: Sets the urgency for screen reader announcements: `off` (disable the announcement), `polite` (waits for silence), or `assertive` (interrupts immediately). (default `polite`)"
-  - 原文（callout）："This component is optional."；"To achieve full customization, you can implement your own one based on its source code."
-  - 原文（callout）："You can hook into the underlying announcer instance using the `useRouteAnnouncer` composable, which allows you to set a custom announcement message."
-  - 原文（callout）："For announcing in-page content changes (form validation, toast notifications, loading states, etc.), use the `<NuxtAnnouncer>` component with the `useAnnouncer` composable instead."
-- `https://nuxt.com/docs/4.x/guide/best-practices/accessibility`
-  - 原文："Once your app has hydrated, it routes on the client, so the document is never reloaded and the browser no longer announces a new page or resets focus for you."
-  - 原文（Route Announcements）："Screen readers announce a full page load by themselves, but they have no way of knowing that a client-side navigation happened. `<NuxtRouteAnnouncer>` solves this by rendering a hidden live region and writing the new page title into it after every navigation"；示例 `<NuxtRouteAnnouncer />` 与 `<NuxtPage />` 并列（文件标注 `app.vue`）
-  - 原文："The announcer reads the title that Unhead rendered, so it is only as useful as your titles are. If two routes share the same `<title>`, users hear nothing on the way between them."
-  - 原文："When you need to announce something else, or to change how urgently it is announced, use `useRouteAnnouncer`"；示例 `const { set } = useRouteAnnouncer()`、`watch(results, ...)`、``set(`${results?.length ?? 0} results found`)``
-  - 原文（Page Titles）："Because the route announcer follows the document title, giving every route a distinct title is the single most valuable thing you can do."
-  - 原文："For in-page updates that are not navigations, such as form validation or toasts, use `<NuxtAnnouncer>` with `useAnnouncer` instead."
-  - 原文（tip）："`@nuxt/a11y` surfaces accessibility problems in your components while you develop, alongside the practices below. It is in alpha, so expect its API to change."
-  - 原文（首段）："Most of what makes an app accessible is not specific to Nuxt: color contrast, form semantics, and ARIA work the same here as in any Vue or plain HTML application"

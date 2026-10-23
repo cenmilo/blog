@@ -122,10 +122,3 @@ const WhitelistAttributes = {
 ## 下一篇
 
 194 - definePageMeta 里的 title 不是具名字段：它和浏览器标签上的标题是两回事
-
-## 本文依据
-
-- `api/composables/use-head`：参数表 "Array of script objects. Each element is mapped to a `<script>` tag, where object properties correspond to HTML attributes."；Usage 示例 `script: [{ innerHTML: 'console.log(\'Hello world\')' }]`；外部脚本示例 `script: [{ src: 'https://cdn.example.com/script.js', async: true }]`；以及 "If the data comes from a user or other untrusted source, we recommend you check out `useHeadSafe`."
-- `api/composables/use-head-safe`：`WhitelistAttributes` 中 `script: ['type', 'textContent', 'nonce', 'blocking']`、`noscript: ['textContent']`；warning 段 "potentially dangerous attributes like `innerHTML` in scripts or `http-equiv` in meta tags are automatically stripped out to prevent XSS attacks"。
-- `guide/going-further/experimental-features`（streaming 一节）："Head tags registered after the shell flushes become client-side patches."、"`useHead`/`useSeoMeta` called synchronously in `<script setup>` (before any `await`), in plugins, or in middleware render into the shell `<head>` as usual."、"JSON-LD scripts, `noscript` tags and body-positioned tags are the exception: they are rendered as real markup before `</body>`, where every client can read them."、"Keep other SEO-critical tags (canonical links, social meta) synchronous, or opt the route out of streaming with `routeRules: { '/path': { streaming: false } }`."
-- 检索结论（否定性事实）：`JSON-LD`、`ld+json`、`structured data`、`schema.org` 四个关键词在 4.x 语料中仅命中 `guide_going-further_experimental-features.md` 一处。

@@ -120,28 +120,3 @@ packages/nuxt/src/app/composables/router.ts
 ## 下一篇
 
 135 把 `definePageMeta` 一次列全：官方签名里那 15 个具名字段各自的类型与说明、`[key: string]: unknown` 这个自定义口子，以及编译器宏带来的四条限制。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/on-before-route-leave`
-  - 原文（描述与定义）："The onBeforeRouteLeave composable allows registering a route guard within a component."
-  - 原文（read-more）：指向 `https://router.vuejs.org/api/functions/onbeforerouteleave`，标题 "Vue Router Docs"
-  - 原文 Source：`packages/nuxt/src/app/composables/router.ts`
-- `https://nuxt.com/docs/4.x/api/utils/on-before-route-update`
-  - 原文（描述与定义）："The onBeforeRouteUpdate composable allows registering a route guard within a component."
-  - 原文（read-more）：指向 `https://router.vuejs.org/api/functions/onbeforerouteupdate`，标题 "Vue Router Docs"
-  - 原文 Source：`packages/nuxt/src/app/composables/router.ts`
-- `https://nuxt.com/docs/4.x/api/composables/use-router`
-  - 原文（Navigation Guards）："`useRouter` composable provides `afterEach`, `beforeEach` and `beforeResolve` helper methods that acts as navigation guards. However, Nuxt has a concept of **route middleware** that simplifies the implementation of navigation guards and provides a better developer experience."
-  - 对照用（见 123）：`push()`/`replace()` 建议改用 `navigateTo`
-- `https://nuxt.com/docs/4.x/directory-structure/app/middleware`
-  - 原文："Unlike [navigation guards](...) from `vue-router`, a third `next()` argument is not passed, and **redirect or route cancellation is handled by returning a value from the middleware**."；五种返回值清单；"Middleware runs in the following order: 1. Global Middleware 2. Page defined middleware order..."
-  - 原文（Accessing Route in Middleware）："Always use the `to` and `from` parameters in your middleware... There is **no concept of a 'current route' in middleware**..."
-- `https://nuxt.com/docs/4.x/errors/e2003`
-  - 原文："`abortNavigation()` was called outside a route middleware. It can only cancel navigation from within a middleware handler, so calling it from a component, plugin, composable, or a callback that lost the middleware context fails."；Resolution："Move the `abortNavigation()` call into the body of a `defineNuxtRouteMiddleware()` handler."
-- `https://nuxt.com/docs/4.x/api/utils/abort-navigation`
-  - 对照用（见 127）：（warning）"`abortNavigation` is only usable inside a route middleware handler."
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 对照用（见 137）：`key` —— "Set `key` value when you need more control over when the `<NuxtPage>` component is re-rendered."；`redirect` —— "The redirection happens before any navigation guard and triggers a new navigation with the new target location."
-- `https://nuxt.com/docs/4.x/guide/recipes/sessions-and-authentication`
-  - 对照用（见 133）："Client-side middleware is helpful for the user, but without server-side protection your data can still be accessed."

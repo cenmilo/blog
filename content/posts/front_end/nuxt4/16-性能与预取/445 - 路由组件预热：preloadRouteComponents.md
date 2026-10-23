@@ -108,9 +108,3 @@ const submit = async () => {
 ## 下一篇
 
 下一篇 446 讲加载态的一个反直觉默认值：`useAsyncData` 和 `useFetch` 返回的 `pending`，在默认配置下 `status` 为 `idle` 时是 `false` 的——`{ server: false }` 在服务端渲染时、`{ immediate: false }` 都属这种"看着在等、其实没在飞"的时刻；官方给的话是"要区分 idle 和在飞，就用 `status`"。
-
-## 本文依据
-
-- `preloadRouteComponents` 全页：标题下的人工预热定位、"loads the components of a given route ... less likely to block the navigation" 段、`::tip` 关于用 `NuxtLink` 时框架已自动预取、`navigateTo` 示例及其不 await 的注释原文、`::note` 服务端无效、指向 `navigateTo` 的 read-more、源文件指向 `composables/preload.ts`（`api/utils/preload-route-components`）
-- `prefetch` 属性定义中"will prefetch middleware, layouts and payloads"（`api/components/nuxt-link`）
-- `preloadComponents`/`prefetchComponents` 的 PascalCase 与 await 用法（`api/utils/preload-components`、`api/utils/prefetch-components`）

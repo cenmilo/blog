@@ -126,11 +126,3 @@ NUXT_APP_BASE_URL=/prefix/ node .output/server/index.mjs
 ## 下一篇
 
 223 - 请求头转发：只挑需要的用 useRequestHeaders
-
-## 本文依据
-
-- `api/composables/use-request-fetch`：定位句；"When making a client-side fetch request, the browser automatically sends the necessary headers..." 两句；note 的七个不转发的头（含 "for example"）；tip 两条（`useFetch` 底层使用它、客户端导航时等同普通 `$fetch`）；code-group 正反两段示例与两条 Result 注释、`server/api/cookies.ts` 三行示例。
-- `api/utils/dollarfetch`：SSR 不带 cookie 的理由（SSRF / Authentication Misuse）、`useFetch` 相对路径自动代理那句、内部 API 路由直调函数省一次请求的 tip（211 已逐句引）。
-- `api/composables/use-fetch`：选项表 `baseURL` 行 "Base URL for the request."；`createUseFetch` 那条 tip（"pre-defined defaults (like `baseURL` or auth headers）"）。
-- `api/nuxt-config`（app.baseURL）：说明句、类型与默认 `"/"`、`NUXT_APP_BASE_URL` 运行时设置那句与示例命令。
-- `api/composables/use-request-url`：host 与缓存的关系（204 已引），用来对照 `host` 不转发这一项。

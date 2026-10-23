@@ -137,18 +137,3 @@ const component = allowed[props.variant] ?? CardA
 ## 下一篇
 
 171 讲这套能力的开关与实验状态：`componentIslands` 的默认值是 `'auto'`、对象形态里 `selectiveClient`（`true` 与 `'deep'` 的差别）与 `remoteIsland`、以及 `nuxt-client` 只能用在本地 SFC 上那条警告。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/guide/concepts/server-components`
-  - 原文（props 序列化与三条后果）："Props are serialized and sent as **GET query parameters**. This makes island responses cacheable, but it also means: props must be JSON-serializable；props are limited by URL length, so avoid passing large amounts of data；props may be visible in server access logs, CDN caches and `Referer` headers"
-  - 原文（不可信输入整段）："Because props come from the request (URL query or body), treat them as untrusted input. Nuxt rejects the props most likely to leak through unintentionally: a top-level `as` that the island does not declare (an undeclared prop falls through as an attribute onto the island's root), and, with `vue.runtimeCompiler` enabled, a `template` anywhere in the props. Beyond that, avoid feeding props you have not validated into dynamic component resolution (`<component :is>`{lang="vue"}, `h()`, `resolveDynamicComponent()`, or a polymorphic `as` / `asChild` prop), since a string can resolve to any registered component or HTML element."
-  - 原文（属性穿透与两种解法）："Props a component does not declare fall through as attributes onto its single root element, so an island whose root is a polymorphic component (e.g. from `reka-ui` / `@nuxt/ui`) can receive attributes you did not bind. Set `defineOptions({ inheritAttrs: false })` on such islands, or declare the props you accept."
-  - 原文（白名单示例）："To switch components based on caller input, map a discriminator through an allowlist of imported components rather than passing the raw prop:" + `import type { Component } from 'vue'`、`import CardA from './CardA.vue'`、`import CardB from './CardB.vue'`、`const props = defineProps<{ variant: string }>()`、`const allowed: Record<string, Component> = { a: CardA, b: CardB }`、`const component = allowed[props.variant] ?? CardA`、`<component :is="component" />`
-  - 原文（路由信息显式传入与缓存键）："If an island needs route information, pass it in explicitly, either as props or via the `context` prop on `<NuxtIsland>` (read inside the island from `nuxtApp.ssrContext.islandContext`)"；"The prefetched response is cached against the island's name, props and context, which is the same key the island uses when it mounts."；"Note that island responses being keyed only on name, props and context is exactly what keeps them cacheable independently of the page they appear on; this is also why they cannot see the current route."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-island`
-  - 原文（note 与 Props 清单）："Component props and context are sent as GET query parameters to enable caching. Query parameters may be visible in server access logs, CDN caches, and HTTP `Referer` headers."；Props 五项：`name`（"Name of the component to render."，required）、`lazy`（"Make the component non-blocking."，default `false`）、`props`（"Props to send to the component to render."，type `Record<string, any>`）、`source`（"Remote source to call the island to render."）、`dangerouslyLoadClientComponents`（default `false`）——**清单中未列 `context`**
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 对照用（见 161、165）：`<component :is>` 的两种入口与 `resolveComponent` 字面量限制；单根元素要求
-- `https://nuxt.com/docs/4.x/guide/going-further/experimental-features`
-  - 对照用（见 171）：`vue.runtimeCompiler` 与 `componentIslands` 两个实验开关的位置

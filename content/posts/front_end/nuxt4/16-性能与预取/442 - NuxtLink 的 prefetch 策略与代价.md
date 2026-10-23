@@ -156,12 +156,3 @@ nuxtLink: {
 ## 下一篇
 
 下一篇 443 把两个跨域/提示用的实验开关放到一起做对照：`crossOriginPrefetch` 走的是 Speculation Rules API，`prefetchPreloadTags` 决定 `<NuxtImg preload>` 这类提示标签会不会被转发，两者的默认状态一开一关。
-
-## 本文依据
-
-- 智能预取的两句原文（默认检测可见性、视口与滚动、为点击准备好 JS；浏览器不忙才取、离线与 2g 跳过）、`custom` 不自动挂处理器与插槽自行调用 `prefetch`、`no-prefetch` 与 `:prefetch="false"` 两种写法（`api/components/nuxt-link`、`guide/best-practices/performance`）
-- `prefetch`/`prefetchOn`/`noPrefetch`/`prefetchedClass` 四个属性定义原文、`prefetch` 含 middleware、layouts、payload 与 `payloadExtraction`、被 `crossOriginPrefetch` 使用、`prefetchOn` 的生效条件句（`api/components/nuxt-link`）
-- `prefetch-on` 字符串与对象两种示例、`visibility` 与 `interaction` 各自的机制说明、"That you probably don't want both enabled!" 与重复预取的后果原文、`v4.5` 插槽 `prefetch`/`shouldPrefetch` 示例、`::note` 三项在 `custom` 下不挂处理器不加类（`api/components/nuxt-link`）
-- `experimental.defaults.nuxtLink` 八个默认键、`::important` 关于搬家的原文、按交互预取的配置示例（`api/components/nuxt-link`、`guide/best-practices/performance`）
-- `defineNuxtLink` 的 `NuxtLinkOptions` 签名与 `prefetch`/`prefetchOn`/`prefetchedClass` 三项说明、按文件名自动导入与 `componentName` 只影响内部名（`api/components/nuxt-link`）
-- `crossOriginPrefetch` 与 Speculation Rules API 的配置示例（`api/components/nuxt-link`、`guide/going-further/experimental-features`）

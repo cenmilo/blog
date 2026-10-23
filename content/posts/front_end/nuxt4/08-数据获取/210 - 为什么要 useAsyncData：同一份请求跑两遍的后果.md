@@ -139,9 +139,3 @@ async function handleFormSubmit () {
 ## 下一篇
 
 211 - 裸用取数助手会跑两遍：去重与导航阻止都没有
-
-## 本文依据
-
-- `getting-started/data-fetching`：三工具清单与 "In a nutshell" 三行；"Both `useFetch` and `useAsyncData` share a common set of options and patterns..."；The Need for 一节两段原文（isomorphic/universal、跑两次、三条后果）；payload 两段与 DevTools **Payload tab** 那条 tip；`useFetch` + `$fetch` 的示例与其后两句解释；Suspense 一节与 `<NuxtLoadingIndicator>` note；A note on `await` 全节（不改变服务端 HTML、with/without 两条、"Neither approach is universally better"、`lazy` 与不加 `await` 的区别句、await 一个 lazy 调用的 warning 全文）。
-- `api/composables/use-async-data`：note "meant to be called directly in the Nuxt context... without re-fetching the data on client side when the page hydrates"；"You do not need to `await` `useAsyncData`..." 那条 note；reserved function name 的 warning。
-- `api/utils/dollarfetch`：SSR 调用内部 API 路由会直接调函数、省一次请求的那条 tip（留给 211 展开）。

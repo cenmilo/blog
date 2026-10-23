@@ -103,9 +103,3 @@ Cluster Mode 小节的原文两句：
 ## 下一篇
 
 下一篇 527 讲那份"保留浏览器地址"的服务端插件：反向代理把同一个渲染结果暴露在多个公开路径时，水合阶段会发生什么、`delete nuxtApp.payload.path` 为什么能保住地址，以及官方给这条写法划的使用前提。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/deployment（PM2 小节的定位句与 `ecosystem.config.cjs` 全文六字段；Cluster Mode 小节的 `NITRO_PRESET=node_cluster`、Node.js cluster 模块与 round robin 两句；运行环境变量 `NITRO_PORT`/`PORT` 默认 3000、`NITRO_HOST`/`HOST` 默认 `0.0.0.0`、SSL 交给反向代理的建议；`::important` 关于 `NODE_ENV=production`）
-- https://nuxt.com/docs/4.x/guide/concepts/server-engine 与 https://nuxt.com/docs/4.x/directory-structure/output（standalone dist 独立于 `node_modules`、`.output` 是部署用目录，用于解释 `script` 为何直接指向 `.mjs`）
-- https://nuxt.com/docs/4.x/getting-started/deployment（Learn More 指向 Nitro 的 node-server 预设文档与一段视频）

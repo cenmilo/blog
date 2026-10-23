@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 前面 270–285 一直在讲插件"怎么写"，官方另有一页专门讲"什么时候别这么写"。它开头一句定了调：
 
 > Plugins in Nuxt allow you to extend your application with additional functionality. However, improper use can lead to performance bottlenecks.
@@ -100,8 +101,3 @@ export default defineNuxtPlugin({
 ## 下一篇
 
 下一篇 287 讲两类具体的插件用途——接入第三方 Vue 插件（`vueApp.use`）与全局指令（`directive`），以及另一类"服务端插件"（Nitro 插件）如何扩展 HTML 输出。
-
-## 本文依据
-
-- Nuxt Plugins（`guide/best-practices/plugins`）：定位句 "Plugins in Nuxt allow you to extend your application ... improper use can lead to performance bottlenecks."；三条小节原文——Avoid Costly Plugin Setup（"A large number of plugins can cause performance issues ... Since plugins run during the hydration phase, inefficient setups can block rendering"）、Use Composition Whenever Possible（"favor composition over plugins ... keeps your project lightweight and improves maintainability"）、If `async`, Enable `parallel`（"By default, all plugins loads synchronously. When defining asynchronous plugins, setting `parallel: true` allows multiple plugins to load concurrently"）。
-- plugins 目录（`directory-structure/app/plugins`）：Providing Helpers 的 composable-over-provide important；Loading Strategy 的 `parallel: true` 与 `dependsOn` 示例。

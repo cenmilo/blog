@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（292）用 `definePageMeta({ middleware: ['authenticated'] })` 给页面点名了一个中间件。这一篇把"一个页面的中间件到底怎么声明、多个的先后怎么定"讲全。
 
 ## definePageMeta 里的 middleware：三种写法
@@ -125,8 +126,3 @@ page.meta.middleware = ['named']
 ## 下一篇
 
 下一篇 294 回到钩子总览：先分清"构建期钩子"和"运行时钩子"这两组，是理解后面所有钩子话题的地基。
-
-## 本文依据
-
-- definePageMeta（`api/utils/define-page-meta`）：`PageMeta` 里 `middleware?: MiddlewareKey | NavigationGuard | Array<MiddlewareKey | NavigationGuard>`；"Defining Middleware" 一节（"Define anonymous or named middleware directly within definePageMeta"、内联 function（`useState('auth')`+`navigateTo`）/单字符串 `'auth'`/多字符串数组三形态示例）。
-- middleware 目录（`directory-structure/app/middleware`）：Middleware Order（"1. Global Middleware 2. Page defined middleware order"、analytics.global→setup.global→inline→auth 的示例顺序）、Ordering Global Middleware（字母序、补零）、"Setting Middleware at Build Time"（pages:extend 里 `page.meta.middleware = ['named']` 及 "will override any middleware set in definePageMeta" 注释）、"Adding Middleware Dynamically"（addRouteMiddleware 同名覆盖，见 290）、kebab-case 规范化。

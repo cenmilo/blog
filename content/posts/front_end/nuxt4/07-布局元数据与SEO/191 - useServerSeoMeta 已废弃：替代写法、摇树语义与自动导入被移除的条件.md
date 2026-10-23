@@ -139,14 +139,3 @@ useSeoMeta({
 ## 下一篇
 
 192 摊平 OG 与 Twitter 的字段映射：官方示例里出现过的扁平字段名各对应哪种 `<meta>` 元素、`name` 与 `property` 的分工，以及为什么官方把"用 `name` 写 `og:title`"列为常见错误。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-server-seo-meta`（本篇主要依据）
-  - 原文（定位与废弃）："The useServerSeoMeta composable lets you define your site's SEO meta tags as a flat object with full TypeScript support."；warning "`useServerSeoMeta` is deprecated. Wrap `useSeoMeta` in an `if (import.meta.server)` block instead. The auto-import is removed under `future.compatibilityVersion: 5`."；"`useServerSeoMeta` lets you define your site's SEO meta tags as a flat object with full TypeScript support, exactly like `useSeoMeta`, but it only runs server-side and is tree-shaken from the client bundle."；"For new code, use the server-only pattern directly:" + `if (import.meta.server) { useSeoMeta({ robots: 'index, follow' }) }`；"Parameters are exactly the same as with `useSeoMeta`."；两处 read-more 指向 `use-seo-meta` 与 `getting-started/seo-meta`；Source `packages/vue/src/composables.ts`（unhead 仓库）
-- `https://nuxt.com/docs/4.x/api/composables/use-seo-meta`
-  - 原文（同一次替换的另一处声明）："This previously used the `useServerSeoMeta` composable, but it has been deprecated in favor of this approach."；Performance 一节完整两段示例与注释 "These meta tags will only be added during server-side rendering" / "Only use reactive meta tags outside the condition when necessary"
-- `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`
-  - 对照用（见 151、185）：composable 的调用位置与同步规则
-- `https://nuxt.com/docs/4.x/getting-started/upgrade` 与 `future.compatibilityVersion` 相关篇目（138、157、180）
-  - 对照用：`future.compatibilityVersion: 5` 作为"提前采用未来默认值"的命名空间，同时影响路由大小写敏感、`normalizePageNames`、页面 meta 提取等默认值

@@ -107,9 +107,3 @@ bun.lockb
 ## 下一篇
 
 下一篇 441 讲 `optimization` 这个配置节。它下面只有三个键，都不是性能开关：前两个决定编译期怎么处理异步上下文和给函数注入 key，第三个的默认值里能看到一批生命周期钩子被从构建中摇掉——那正是"服务端跑不到 `onMounted`"这类规则的实现出处。
-
-## 本文依据
-
-- `## buildCache` 全节：定义原文、"only works for source files within `srcDir` and `serverDir`"、默认关闭与启用示例、触发全量重建的九个文件清单原文、`srcDir` 改动重建 Vue 客户端/服务端包、"Nitro will always be rebuilt"及其 work-in-progress 括号说明、`::note` 最多 10 份 cache tarballs（`guide/going-further/experimental-features`）
-- `nuxt cleanup` 清理的五处清单（`api/commands/cleanup`）
-- `srcDir`、`serverDir` 与 `buildDir` 的基准关系（`api/nuxt-config`、`directory-structure` 相关页）

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 先说场景，否则这个组合式没头没脑。你接了个 CMS，编辑想先看"还没发布的草稿"在正式站点上长什么样，但普通访客不能看到草稿。这就是"预览模式"：一个只有带着特定标记才进得去、进去后内容强制重取的模式。`usePreviewMode` 是 Nuxt 内置用来管这件事的。
 
 ## 它是什么、返回什么
@@ -172,7 +173,3 @@ const { enabled, state } = usePreviewMode({
 ## 下一篇
 
 下一篇 297 回到钩子：讲怎么在构建期注册钩子，官方给的入口正是 nuxt-app 那四类上下文里的两个——`nuxt.config` 的 hooks 节，与模块 setup 里的 `nuxt.hook(...)`。
-
-## 本文依据
-
-- usePreviewMode（`api/composables/use-preview-mode`）：定位句与"detects preview mode ... force any updates necessary for useAsyncData and useFetch to rerender preview content"；`const { enabled, state } = usePreviewMode()`；Custom enable（默认 `?preview=true`、`useMyPreviewMode` 的 `shouldEnable` 示例、"keep options consistent" 建议）；Modify default state（默认存 URL `token`、`getState` 示例、note "getState will append returned values to current state, so be careful not to accidentally overwrite important state"）；onEnable/onDisable（默认 enabled 调 `refreshNuxtData()`、disabled 在下一次路由导航后调 `refreshNuxtData()`、自定义示例）；`some-page.vue` 示例（`v-if="enabled"`、`useFetch('/api/preview',{query:{apiKey: state.token}})`、`enabled = false`）；测试 note（"should be tested locally with nuxt generate and then nuxt preview rather than nuxt dev"、"The preview command is not related to preview mode"）。

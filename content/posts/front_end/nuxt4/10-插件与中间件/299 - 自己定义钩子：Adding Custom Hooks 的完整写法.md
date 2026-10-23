@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 284 里你已经会用 `hook('app:user:registered', cb)` 和 `callHook('app:user:registered', payload)` 造自己的事件了——名字是自由字符串，机制上没问题。但 TypeScript 不认识这个名字，你在 `hook('...')` 处没有补全、也没有签名检查。这一篇就是给这些自定义名字**补类型**，官方的 "Adding Custom Hooks" 一节讲的就是这件事。
 
 ## 官方给的一段：三个接口
@@ -116,9 +117,3 @@ declare module '#app' {
 ## 下一篇
 
 270-299 插件与中间件到此收尾。下一篇 300 开 300-339 服务端引擎与 API 层：先讲 Nitro 是什么、它自带哪些能力（跨平台、serverless、API 路由、混合模式、独立产物）。
-
-## 本文依据
-
-- Lifecycle Hooks 指南（`guide/going-further/hooks`）："Adding Custom Hooks" 一节（"You can define your own custom hooks support by extending Nuxt's hook interfaces."；`import type { HookResult } from '@nuxt/schema'`；`declare module '#app' { interface RuntimeNuxtHooks { 'your-nuxt-runtime-hook': () => HookResult }; interface NuxtHooks { 'your-nuxt-hook': () => HookResult } }`；`declare module 'nitropack/types' { interface NitroRuntimeHooks { 'your-nitro-hook': () => void } }`）。
-- TypeScript（`guide/concepts/typescript`）："Augmenting Types with Project References"（app→`app/`、server→`server/`、shared→`shared/` 放置规则；见 289）。
-- Creating Custom Events（`guide/going-further/events`）：自定义事件 payload 按引用传（见 284）。

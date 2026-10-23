@@ -102,8 +102,3 @@ const { message, politeness, set, polite, assertive } = useRouteAnnouncer({
 ## 下一篇
 
 198 - ClientOnly 里的组件不跑服务端：首屏 HTML 与水合期的两条推论
-
-## 本文依据
-
-- `api/composables/use-route-announcer`：页首 "This composable observes the page title changes and updates the announcer message accordingly."；important "This composable is available in Nuxt v3.12+."；Description 两句（"Used by `<NuxtRouteAnnouncer>` and controllable."、"It hooks into Unhead's `dom:rendered` hook to read the page's title and set it as the announcer message."）；Parameters 的 `politeness` 说明；Properties 两项的类型与描述；Methods 三项的签名与描述；示例的六成员解构；末尾 callout "For announcing dynamic in-page content changes (form validation, toasts, loading states), use `useAnnouncer` instead."
-- `api/components/nuxt-route-announcer`：Props 两条（`atomic` 默认 `false`、`politeness` 默认 `polite`）；三个 callout "This component is optional."、"To achieve full customization, you can implement your own one based on its source code."、"You can hook into the underlying announcer instance using the `useRouteAnnouncer` composable, which allows you to set a custom announcement message."

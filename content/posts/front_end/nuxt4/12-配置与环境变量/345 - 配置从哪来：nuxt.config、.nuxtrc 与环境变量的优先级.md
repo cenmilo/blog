@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 340-364 到这把"配置能写在哪、谁盖谁"收个全景。先给结论顺序，再逐层说依据。
 
 ## 优先级从高到低
@@ -98,8 +99,3 @@ setups.@nuxt/test-utils="3.23.0"
 ## 下一篇
 
 下一篇 346 讲 nuxt.config 里的环境覆盖后缀 $production、$development、$env 与 --envName：给不同环境写不同配置块。
-
-## 本文依据
-
-- .nuxtrc（`directory-structure/nuxtrc`）：定位句 + rc9；"For more advanced configurations, use nuxt.config."；扁平示例（ssr=false / modules[]= / setups.@nuxt/test-utils）；"If present, the properties in the nuxt.config file will overwrite the properties in .nuxtrc file."；setups 记账 note "should not be modified manually"；Global .nuxtrc（macOS/Linux `~/.nuxtrc`、Windows `C:\Users\{username}\.nuxtrc`、"project-level .nuxtrc override global, nuxt.config take precedence over both"）。
-- Configuration（`getting-started/configuration`）：nuxt.config 是项目根、覆盖/扩展行为；single source of truth 表述（见 347）；runtimeConfig 被环境变量覆盖（见 342/335）。

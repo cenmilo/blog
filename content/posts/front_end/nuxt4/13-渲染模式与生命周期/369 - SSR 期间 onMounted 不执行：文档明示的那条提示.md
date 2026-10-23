@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 你在 Vue 里习惯这么取首屏数据：
 
 ```vue
@@ -58,9 +59,9 @@ onMounted(async () => {
 
 服务端默认**暂停依赖追踪**。
 
-:::callout
+::::callout
 There is no reactivity on the server side because Vue SSR renders the app top-down as static HTML, making it impossible to go back and modify content that has already been rendered.
-:::
+::::
 
 服务端**没有响应式**：Vue SSR 是自上而下渲染成静态 HTML，已经渲染出去的内容没法回头改。所以别指望在服务端 setup 里"改个 ref 触发重新渲染"——那一趟只负责拼出 HTML。
 
@@ -87,7 +88,3 @@ There is no reactivity on the server side because Vue SSR renders the app top-do
 ## 下一篇
 
 下一篇 370 讲这条限制的连锁后果：为什么把 `setInterval`、事件监听这类副作用写在 `<script setup>` 根作用域会泄漏——服务端卸载钩子永远不叫，定时器就一直在。
-
-## 本文依据
-
-- 服务端七步 Page and components 步的 "Vue lifecycle hooks such as onBeforeMount, onMounted, and subsequent hooks are NOT executed during SSR"、"By default, Vue pauses dependency tracking during SSR"、"There is no reactivity on the server side because Vue SSR renders the app top-down as static HTML..." 与客户端步 "Unlike on the server, the browser executes the full Vue lifecycle"（`guide/concepts/nuxt-lifecycle`）；执行位置对照回看 `guide/concepts/rendering`（365）。

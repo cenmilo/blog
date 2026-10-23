@@ -120,11 +120,3 @@ useSeoMeta({
 ## 下一篇
 
 下一篇 523 讲启动脚本与健康检查：部署页给出的 PM2 配置里那五行字段、`nuxt cleanup` 清了哪些目录，以及文档在这两件事上能给到哪一步。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/api/nuxt-config（`### buildAssetsDir` 与 `### cdnURL` 两节全部记载：定义句、`string` 类型、默认 `/_nuxt/` 与 `""`、`cdnURL: 'https://mycdn.org/'` 示例、`NUXT_APP_CDN_URL` 运行时那句与启动命令示例；`runtimeConfig` 默认 JSON 中 `app` 四键）
-- https://nuxt.com/docs/4.x/api/composables/use-runtime-config（`app` 命名空间含 `baseURL`/`cdnURL` 且可用环境变量定制、`app.cdnURL` 小节用 `NUXT_APP_CDN_URL` 服务 `.output/public` 内静态资源、`config.app.cdnURL` 的读取）
-- https://nuxt.com/docs/4.x/getting-started/seo-meta（设 `cdnURL` 后 public 资源含 favicon 由 CDN 提供、按 `cdnURL` 解析回退 `baseURL`、`app.head` 字面 `/favicon.ico` 不被解析的 `::note` 与 `useHead` 拼接示例）
-- https://nuxt.com/docs/4.x/directory-structure/public（root 提供服务且不被构建修改、`robots.txt` 保名与 `favicon.ico` 少变的官方举例、三行目录树、`useSeoMeta({ ogImage: '/og-image.png' })` 示例、Nuxt 2 叫 `static/`）
-- https://nuxt.com/docs/4.x/getting-started/deployment（CDN Proxy 一节关于多余重渲与水合错误的警告）

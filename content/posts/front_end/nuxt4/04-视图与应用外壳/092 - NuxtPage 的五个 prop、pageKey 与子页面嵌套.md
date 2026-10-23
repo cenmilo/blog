@@ -240,36 +240,3 @@ console.log(attrs.foobar) // Outputs: 123
 ## 下一篇
 
 093 讲一个空壳应用打开时看到的东西：`<NuxtWelcome>` 这个组件、它在项目初始化里的角色，以及为什么它不该留在你的生产页面里。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page`
-  - 原文（Props 清单）："`name`: tells `<RouterView>` to render the component with the corresponding name in the matched route record's components option. See Named Views for the `name@view.vue` filename convention."，type `string`
-  - 原文："`route`: route location that has all of its components resolved."，type `RouteLocationNormalized`
-  - 原文："`pageKey`: control when the `NuxtPage` component is re-rendered."，type `string` or `function`
-  - 原文："`transition`: define global transitions for all pages rendered with the `NuxtPage` component."，type `boolean` or `TransitionProps`
-  - 原文："`keepalive`: control state preservation of pages rendered with the `NuxtPage` component."，type `boolean` or `KeepAliveProps`
-  - 原文（tip）："Nuxt automatically resolves the `name` and `route` by scanning and rendering all Vue component files found in the `/pages` directory."
-  - 原文（Example）："For example, if you pass a key that never changes, the `<NuxtPage>` component will be rendered only once - when it is first mounted."；`<NuxtPage page-key="static" />`（文件标注 `app/app.vue`）
-  - 原文："You can also use a dynamic key based on the current route"；`<NuxtPage :page-key="route => route.fullPath" />`
-  - 原文（warning）："Don't use `$route` object here as it can cause problems with how `<NuxtPage>` renders pages with `<Suspense>`."
-  - 原文："Alternatively, `pageKey` can be passed as a `key` value via `definePageMeta` from the `<script>` section of your Vue component in the `/pages` directory."；示例 `definePageMeta({ key: route => route.fullPath })`
-  - 原文（Page's Ref）："To get the `ref` of a page component, access it through `ref.value.pageRef`"；示例含 `page.value.pageRef.foo()`、`<NuxtPage ref="page" />`、页面侧 `defineExpose({ foo })` 与 `console.log('foo method called')`
-  - 原文（Custom Props）："`<NuxtPage>` also accepts custom props that you may need to pass further down the hierarchy."；"For example, in the below example, the value of `foobar` will be passed to the `NuxtPage` component and then to the page components."；`<NuxtPage :foobar="123" />`；`const props = defineProps<{ foobar: number }>()` 与 `console.log(props.foobar) // Outputs: 123`
-  - 原文："If you have not defined the prop with `defineProps`, any props passed down to `NuxtPage` can still be accessed directly from the page `attrs`"；`const attrs = useAttrs()`、`console.log(attrs.foobar) // Outputs: 123`
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（Nested Routes）："It is possible to display nested routes with `<NuxtPage>`."
-  - 原文目录树：`pages/parent/child.vue` 与 `pages/parent.vue`
-  - 原文生成的路由记录：`path: '/parent'`、`component: '~/pages/parent.vue'`、`name: 'parent'`、`children: [{ path: 'child', component: '~/pages/parent/child.vue', name: 'parent-child' }]`
-  - 原文："To display the `child.vue` component, you have to insert the `<NuxtPage>` component inside `app/pages/parent.vue`"；示例 `<h1>I am the parent view</h1>` 与 `<NuxtPage :foobar="123" />`
-  - 原文子页面示例：`const props = defineProps({ foobar: String })`、`console.log(props.foobar)`
-  - 原文（Child Route Keys）："If you want more control over when the `<NuxtPage>` component is re-rendered (for example, for transitions), you can either pass a string or function via the `pageKey` prop, or you can define a `key` value via `definePageMeta`"；示例 `<NuxtPage :page-key="route => route.fullPath" />` 与 `definePageMeta({ key: route => route.fullPath })`
-  - 原文（Named Views，badge v4.5）："A single route can render into multiple `<NuxtPage>` outlets in a parent component by giving each outlet a `name` and providing a sibling page file for each name."；"Use the `name@view.vue` filename convention to declare a named view alongside the default route file"
-  - 原文目录树：`child.vue` 与 `child@sidebar.vue` 并列在 `parent/` 下
-  - 原文示例：`<NuxtPage />` 与 `<aside><NuxtPage name="sidebar" /></aside>`
-  - 原文："When the user navigates to `/parent/child`, `child.vue` renders into the default `<NuxtPage />` and `child@sidebar.vue` renders into `<NuxtPage name="sidebar" />`. Outlets without a matching named view are left empty."
-  - 原文（note）："`definePageMeta` is read from the default route file only. Meta declared inside a `name@view.vue` sibling has no effect on the route."
-  - 原文（Pages 首段）："The `app/pages/index.vue` file will be mapped to the `/` route of your application."；"If you are using `app.vue`, make sure to use the `<NuxtPage/>` component to display the current page"，示例含 `<!-- Markup shared across all pages, ex: NavBar -->`
-  - 原文："Pages **must have a single root element** to allow route transitions between pages. HTML comments are considered elements as well."
-- `https://nuxt.com/docs/4.x/getting-started/views`
-  - 原文（Layouts 示例）：`<NuxtLayout><NuxtPage /></NuxtLayout>`

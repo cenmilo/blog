@@ -133,9 +133,3 @@ tip 一句："`callOnce` is useful in combination with the Pinia module to call 
 ## 下一篇
 
 231 - onPrehydrate：水合前内联进 HTML 的那段脚本
-
-## 本文依据
-
-- `api/utils/call-once`：定位句 "Run a given function or block of code once during SSR or CSR."；v3.9 important；Purpose 两条与适用句；默认模式解释段（含"回导航也不再跑"那句）；两段示例（`useState` + `$fetch`，以及 `{ mode: 'navigation' }`）与 v3.15 important；Pinia 那条 tip 与指向 state-management 的 read-more；warning（doesn't return anything、取数请用 useAsyncData/useFetch）；note（setup/插件/路由中间件、需要往 payload 加数据）；Type 两条重载与 `CallOnceOptions`（`mode?: 'navigation' | 'render'`、`@default 'render'`）；Parameters 三条（key 的文件名+行号自动生成、fn 可异步、options 两档各自的原话）。
-- `api/composables/use-async-data`：side-effect free 那条 warning 与"用 `callOnce`"的指路（212 已逐句引）；payload 与 `payloadExtraction` 的关系（213 已逐句引）。
-- `api/composables/use-state`：SSR 友好全局状态的推荐句（100 已逐句引）。

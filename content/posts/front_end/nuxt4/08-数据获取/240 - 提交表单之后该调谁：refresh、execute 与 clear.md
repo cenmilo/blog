@@ -184,12 +184,3 @@ watch(() => route.path, (path) => {
 ## 下一篇
 
 241 - 取数与 SEO：只有服务端跑过的那次才进首屏
-
-## 本文依据
-
-- `getting-started/data-fetching`：Refresh and execute 段（定义句、按钮示例、`execute` 语义句、指向 `clearNuxtData`/`refreshNuxtData` 的 tip）；Clear 段（定义句与 route watch 示例）；`useFetch` + `$fetch` 提交示例与解释句（210 已逐句引）；Serializing/`pick` 各节不涉及本篇故不引。
-- `api/composables/use-async-data`：返回值表 `refresh`/`execute`/`clear` 三行与"等上次跑完"那句、`AsyncDataExecuteOptions` 三键、手动 abort 示例、`enabled`/`getCachedData` 说明（213/214 已逐句引）。
-- `api/composables/use-nuxt-data`：Optimistic Updates 完整示例（三钩子与三行注释）。
-- `api/utils/refresh-nuxt-data`、`api/utils/clear-nuxt-data`：两个全局函数的参数与返回（215/229 已逐句引）。
-- `guide/going-further/experimental-features`、`getting-started/upgrade`：`granularCachedData` 定位句与 `ctx.cause` 迁移写法（236 已逐句引）。
-- `api/utils/dollarfetch`：`$fetch` 适合纯浏览器动作的理由（211 已逐句引）。

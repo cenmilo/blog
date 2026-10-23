@@ -1,6 +1,6 @@
 ---
 url: /posts/cecc5a49f0aab428d63953345abfc9ec/
-title: 127 - abortNavigation：只在中间件里可用、签名返回 false 的三种写法
+title: 127 - abortNavigation：只在中间件里可用、返回 false 的三种写法
 date: 2026-11-23T10:00:00+08:00
 updated: 2026-11-23T10:00:00+08:00
 author: cmdragon
@@ -159,23 +159,3 @@ export default defineNuxtRouteMiddleware((to, from) => {
 ## 下一篇
 
 128 讲路由中间件本体：三种写法（匿名、命名、全局）、它跑在 Vue 侧而不是 Nitro 侧、不为 `/api/*` 运行，以及命名与全局中间件各自的注册规则。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/abort-navigation`
-  - 原文（描述）："abortNavigation is a helper function that prevents navigation from taking place and throws an error if one is set as a parameter."
-  - 原文（warning）："`abortNavigation` is only usable inside a route middleware handler."
-  - 原文（Type）：`export function abortNavigation (err?: Error | string): false`
-  - 原文（Parameters - `err`）：Type `Error | string`；"Optional error to be thrown by `abortNavigation`."
-  - 原文（Example）："The example below shows how you can use `abortNavigation` in a route middleware to prevent unauthorized route access:"；示例（`app/middleware/auth.ts`）`const user = useState('user')`、`if (!user.value.isAuthorized) { return abortNavigation() }`、`if (to.path !== '/edit-post') { return navigateTo('/edit-post') }`
-  - 原文（`err` as a String）："You can pass the error as a string:"；示例 `return abortNavigation('Insufficient permissions.')`
-  - 原文（`err` as an Error Object）："You can pass the error as an Error object, e.g. caught by the `catch`-block:"；示例 `try { /* code that might throw an error */ } catch (err) { return abortNavigation(err) }`
-  - 原文 Source：`packages/nuxt/src/app/composables/router.ts`
-- `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 对照用（见 124、125、126）："When using `navigateTo` within route middleware, you must **return its result** to ensure the middleware execution flow works correctly."；"Make sure to always use `await` or `return` on result of `navigateTo` when calling it."；"`navigateTo` cannot be used within Nitro routes."
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 对照用（见 113）：`redirect` —— "The redirection happens before any navigation guard and triggers a new navigation with the new target location."
-- `https://nuxt.com/docs/4.x/api/composables/use-router`
-  - 对照用（见 123）：`afterEach`/`beforeEach`/`beforeResolve` 与"route middleware 简化了导航守卫实现"的建议
-- `https://nuxt.com/docs/4.x/getting-started/error-handling` 与 `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 对照用（见 111、095）：`createError({ status, statusText })` 与 `validate` 返回 `false` 造成 404；`<NuxtErrorBoundary>` 只处理默认插槽内的客户端错误

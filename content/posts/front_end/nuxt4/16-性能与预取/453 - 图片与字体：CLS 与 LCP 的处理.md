@@ -101,9 +101,3 @@ Nuxt Fonts 那一节的定性是"automatically optimize your fonts (including cu
 ## 下一篇
 
 下一篇 454 讲第三条线：第三方脚本。官方给的不是"怎么加脚本"，而是 `useHead` 的 `script` 数组、`useHeadSafe` 那句对不可信来源的提醒，以及 Nuxt Scripts 那种"注册后由它安排加载"的路子——包括 `trigger: 'manual'` 先不加载、用 `proxy` 排队事件、`onLoaded` 等脚本就绪三种写法。
-
-## 本文依据
-
-- 三个指标的归属原话：图片与 LCP 那句、第三方脚本与 INP/LCP 那句、字体第 4 步与 CLS 那句；Nuxt Image 的定性（plug-and-play、内置优化器或你的图片 CDN）与 NuxtImg 五条增强复述；Nuxt Fonts 的定性、fontaine、五步编号清单原文、多 provider 可插拔那句；near-zero JavaScript 的四条组合原话（`guide/best-practices/performance`）
-- `<NuxtImg>` 五条能力与"outputs a native `img` tag directly (without any wrapper around it)"、Setup 命令；`<NuxtPicture>` 的三句（`api/components/nuxt-img`、`api/components/nuxt-picture`）
-- 两组图片属性示例及其注释、`experimental.prefetchPreloadTags` 默认关闭（`guide/best-practices/performance`、`guide/going-further/experimental-features`）

@@ -96,10 +96,3 @@ tags:
 ## 下一篇
 
 下一篇 525 收线上排错可用的手段：官方给的只有 source map 与调试器两节，而生产环境能读到什么、`--inspect` 为什么帮不上，正是这两节的边界。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/error-handling（开发期保留 `cause`、生产 never included 的那句；Errors with JS Chunks 的两类原因、内置硬重载、`false`/`manual` 与自动实现源码链接；Vue Errors 的三层与 `vue:error` 基于 `onErrorCaptured` 的 `::note`、`errorHandler` 收到全部错误的原句与插件示例；Startup Errors 的 `app:error` 与五项包含范围；Nitro Server Errors 的"cannot currently define a server-side handler"）
-- https://nuxt.com/docs/4.x/guide/going-further/experimental-features（`emitRouteChunkError`：发出 `app:chunkError`、默认导航时重载、`automatic`/`automatic-immediate`/`false`/`manual` 四种取值与 `automatic-immediate` 的适用场景和副作用）
-- https://nuxt.com/docs/4.x/guide/concepts/rendering（`404.html` 默认空壳、`experimental.prerenderErrorPages` 与状态码数组、错误页不能依赖请求及 `<ClientOnly>`／`import.meta.prerender` 两条应对）
-- https://nuxt.com/docs/4.x/getting-started/deployment（生产启动与 `NODE_ENV=production` 的 `::important`，用于对照"日志里会看到什么"）

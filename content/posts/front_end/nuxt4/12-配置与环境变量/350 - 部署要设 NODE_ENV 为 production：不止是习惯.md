@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `nuxt build` 出来一个 `.output`（331）。用 Node 服务器方式跑它时，官方给的启动命令是这样：
 
 ```bash [Terminal]
@@ -95,7 +96,3 @@ NODE_ENV 生效的判据是值等于 `production`。写成别的（或不设）�
 ## 下一篇
 
 下一篇 351 讲 compatibilityDate：Nuxt 靠它决定用哪批行为默认值，每个项目都该显式写，否则跨版本升级会悄悄换默认（对应错误码 B5001）。
-
-## 本文依据
-
-- Deployment（`getting-started/deployment`）：Entry Point（`NODE_ENV=production node .output/server/index.mjs`、监听端口 3000）；important "Set NODE_ENV=production when running the server. Some dependencies (notably Vue Router) only strip development-only warnings when this is set, so leaving it unset can flood your logs with messages like [Vue Router warn]: No match found for location with path …"；运行时环境变量（NITRO_PORT/PORT 默认 3000、NITRO_HOST/HOST 默认 0.0.0.0、NITRO_SSL_CERT/KEY 仅测试用、建议反向代理终止 SSL）；PM2 ecosystem.config.cjs（env.NODE_ENV: 'production'）；Cluster Mode（NITRO_PRESET=node_cluster、round robin）。

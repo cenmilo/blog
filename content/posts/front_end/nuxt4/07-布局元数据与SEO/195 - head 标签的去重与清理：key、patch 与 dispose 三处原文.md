@@ -119,10 +119,3 @@ export function useHeadSafe (input: MaybeComputedRef<HeadSafe>): void
 ## 下一篇
 
 196 - unhead 配置节：legacy 与 renderSSRHeadOptions 两个键
-
-## 本文依据
-
-- `getting-started/seo-meta`：Components 一节 "Nuxt provides the following components for this purpose: `<Title>`, `<Base>`, `<NoScript>`, `<Style>`, `<Meta>`, `<Link>`, `<Body>`, `<Html>` and `<Head>`."、"`<Head>` and `<Body>` can accept nested meta tags (for aesthetic reasons) but this does not affect *where* the nested meta tags are rendered in the final HTML."、"It's suggested to wrap your components in either a `<Head>` or `<Html>` component as tags will be deduped more intuitively."、warning "If you need to duplicate tags across client-server boundaries, apply a `key` attribute on the `<Head>` component."；开篇句 "Nuxt head tag management is powered by Unhead."。
-- `api/composables/use-head`：Type 一节的 `useHead (meta: MaybeComputedRef<MetaObject>): ActiveHeadEntry<UseHeadInput>` 与 `ActiveHeadEntry` 两条注释原文；Return Values "This composable does not return any value. It registers the head metadata with Unhead, which manages the actual DOM updates."；note "The properties of `useHead` can be dynamic, accepting `ref`, `computed` and `reactive` properties."。
-- `api/composables/use-head-safe`：签名 `export function useHeadSafe (input: MaybeComputedRef<HeadSafe>): void` 与 "This composable does not return any value."
-- `api/nuxt-config`（unhead 一节）：`legacy` 的三条变更原文与 **Default:** `false`。

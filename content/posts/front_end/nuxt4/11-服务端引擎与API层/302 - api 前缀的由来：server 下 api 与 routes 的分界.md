@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇把 `server/` 六个子目录铺开，这一篇把其中最容易被问的一个具体讲透：`/api` 这个前缀是从哪冒出来的。
 
 ## 前缀怎么来的：api 目录 vs routes 目录
@@ -129,7 +130,3 @@ const { data } = await useFetch('/api/hello')
 ## 下一篇
 
 下一篇 303 继续服务端这一层：讲 Nitro 的服务端路由怎么组织、以及 API 与页面路由的分界。
-
-## 本文依据
-
-- server 目录（`directory-structure/server`）：Server Routes 一节（"Files inside the `~~/server/api` are automatically prefixed with `/api`"、"To add server routes without `/api` prefix, put them into `~~/server/routes`"、`server/routes/hello.ts` 示例与 `/hello` 可访问、note "server routes do not support the full functionality of dynamic routes as pages do"）；Recipes 之 Route Parameters（`[name].ts` + `getRouterParam(event,'name')`、`/api/hello/nuxt`→`Hello, nuxt!`、tip `getValidatedRouterParams`）；Matching HTTP Method（`.get/.post/...` 后缀、GET/POST/其他→405 三条、`index.[method].ts` 目录形态、note GET 里用 readBody 抛 405）；Catch-all Route（`[...].ts`→`event.context.path`/`event.context.params._`、`[...slug].ts`→`event.context.params.slug`）；前端 `useFetch('/api/hello')` 示例。

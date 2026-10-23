@@ -181,18 +181,3 @@ export default defineNuxtComponent({
 ## 下一篇
 
 163 汇总"组件里到底能直接用哪些自动导入 API"：按用途分组列出常用的那批，并标出哪些只在 app 侧、哪些两侧都有。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/define-nuxt-component`
-  - 原文（定位与 note）："defineNuxtComponent() is a helper function for defining type safe components with Options API."；"`defineNuxtComponent()` is a helper function for defining type safe Vue components using options API similar to `defineComponent()`. `defineNuxtComponent()` wrapper also adds support for `asyncData` and `head` component options."；note "Using `<script setup lang=\"ts\">` is the recommended way of declaring Vue components in Nuxt."；read-more 指向 `getting-started/data-fetching`
-  - 原文（`asyncData()`）："If you choose not to use `setup()` in your app, you can use the `asyncData()` method within your component definition:" + 示例（`app/pages/index.vue`，`<script lang="ts">`）`export default defineNuxtComponent({ asyncData () { return { data: { greetings: 'hello world!' } } } })`
-  - 原文（`head()`）："If you choose not to use `setup()` in your app, you can use the `head()` method within your component definition:" + 示例 `export default defineNuxtComponent({ head (nuxtApp) { return { title: 'My site' } } })`
-  - 原文（Source）：`packages/nuxt/src/app/composables/component.ts`
-- `https://nuxt.com/docs/4.x/getting-started/data-fetching`
-  - 原文（Options API Support）："Nuxt provides a way to perform `asyncData` fetching within the Options API. You must wrap your component definition within `defineNuxtComponent` for this to work."；示例 `export default defineNuxtComponent({ /* Use the fetchKey option to provide a unique key */ fetchKey: 'hello', async asyncData () { return { hello: await $fetch('/api/hello') } } })`；note "Using `<script setup>` or `<script setup lang=\"ts\">` are the recommended way of declaring Vue components in Nuxt."；read-more 指向 `api/utils/define-nuxt-component`
-- `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`
-  - 原文（tip 与四个例外）："When using a composable that requires the Nuxt context inside a non-SFC component, you need to wrap your component with `defineNuxtComponent` instead of `defineComponent`"；"That means that (with very few exceptions) you cannot use them outside a Nuxt plugin, Nuxt route middleware or Vue setup function. On top of that, you must use them synchronously - that is, you cannot use `await` before calling a composable, except within `<script setup>` blocks, within the setup function of a component declared with `defineNuxtComponent`, in `defineNuxtPlugin` or in `defineNuxtRouteMiddleware`, where we perform a transform to keep the synchronous context even after the `await`."
-- `https://nuxt.com/docs/4.x/guide/concepts/vuejs-development`
-  - 原文（推荐方向）："The goal of Nuxt is to provide a great developer experience around the Composition API."；"Use auto-imported Reactivity functions from Vue and Nuxt built-in composables."；"Write your own auto-imported reusable functions in the `app/composables/` directory."；"Vue's single-file components (SFC or `*.vue` files) encapsulate the markup (`<template>`), logic (`<script>`) and styling (`<style>`) of a Vue component. Nuxt provides a zero-config experience for SFCs with Hot Module Replacement..."
-  - 原文（Vapor 限制）："The Options API is not supported in Vapor components, so `asyncData` and `fetchKey` via `defineNuxtComponent` are unavailable. Use `<script setup>` with `useAsyncData` instead."；"Because Nuxt runs Vapor in interop mode, some patterns that rely on the Virtual DOM behave differently inside Vapor components"；warning "Vapor Mode support is experimental and requires Vue 3.6 or newer. The API may change."

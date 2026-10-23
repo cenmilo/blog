@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 telemetry（遥测）是很多工具都有的匿名使用统计。Nuxt 也留了这个开关。这一篇按 nuxt-config 那一节的**真实内容**讲，并把它没写的部分如实标出来。
 
 ## 这个键在文档里只有一句
@@ -65,7 +66,3 @@ nuxt-config 的 `## telemetry` 节，全文是：
 ## 下一篇
 
 下一篇 355 讲 dev 与 devServer：dev 是"是否开发模式"的布尔（一般不用手设），devServer 管本地开发服务器的端口、host、HTTPS 与 CORS。
-
-## 本文依据
-
-- nuxt-config telemetry 节（`api/nuxt-config`）：全文仅 "Manually disable nuxt telemetry." 与 "See: Nuxt Telemetry for more information."（链接 https://github.com/nuxt/telemetry）。本节未列上报字段、默认状态等细节（正文如实标注，未编造）。

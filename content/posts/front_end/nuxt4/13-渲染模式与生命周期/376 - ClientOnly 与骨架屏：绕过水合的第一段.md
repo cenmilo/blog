@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 374 教的都是"想办法让两端算出一样"。但有一类内容做不到——它天生只能在浏览器里出（依赖浏览器 API 的地图、图表，或就是想在首屏之后才加载的模块）。对这种，与其硬凑一致，不如让服务端**别渲染它**。Nuxt 的第一招就是 `<ClientOnly>`。
 
 ## 它只跳过一件事：服务端渲染
@@ -119,7 +120,3 @@ watch(nuxtWelcomeRef, () => {
 ## 下一篇
 
 下一篇 377 讲 `<NuxtClientFallback>`：它不像 ClientOnly 那样无条件跳过，而是"先正常 SSR，孩子报错才退回客户端"，还带 `@ssr-error` 事件和 raw-HTML 的 XSS 警告。
-
-## 本文依据
-
-- `<ClientOnly>` 定义（purposely only client side）、默认插槽 tree-shake + CSS 可能不内联的 `::note`、props `placeholderTag`/`fallbackTag` 与 `placeholder`/`fallback`、`#fallback` 插槽（服务端渲染、挂载前显示）、两段示例、以及"内部组件挂载后才渲染、要 watch 模板 ref"的 Example（`api/components/client-only`）。

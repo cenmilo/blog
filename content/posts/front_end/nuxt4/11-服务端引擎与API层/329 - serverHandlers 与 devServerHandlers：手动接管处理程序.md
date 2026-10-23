@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 绝大多数时候，你把文件放进 `server/api`、`server/routes`、`server/middleware`，Nuxt 就自动注册好了（301）。`serverHandlers` 是给"你要显式指定路由/方法"的场景——在 `nuxt.config` 里手动登记一个处理程序。还有个 `devServerHandlers` 是它的"仅开发期"版。
 
 ## serverHandlers
@@ -104,9 +105,3 @@ nuxt-config 里紧挨着的另一节：
 ## 下一篇
 
 下一篇 330 讲 build.transpile：想让某些依赖额外走一遍 Babel 转译时怎么配，条目可以是包名、函数、字符串或正则。
-
-## 本文依据
-
-- nuxt-config serverHandlers 节（`api/nuxt-config`）："Nitro server handlers."；五个字段（handler/route "follows the conventions of rou3"/method/middleware/lazy）；类型 array；`{ route: '/path/foo/**:name', handler: '#server/foohandler.ts' }` 示例；callout "Files from server/api, server/middleware and server/routes will be automatically registered by Nuxt."。
-- nuxt-config devServerHandlers 节："Nitro development-only server handlers."、类型 array、指向 Nitro server routes 文档。
-- server 目录（`directory-structure/server`）：`#server` 别名只在 server 内用（见 311）；自动注册目录（见 301）。

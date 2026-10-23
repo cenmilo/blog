@@ -89,10 +89,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 ## 下一篇
 
 下一篇 528 讲静态兜底页：`200.html` 与 `404.html` 各服务什么场景、哪两种构建会生成它们、只按路由规则预渲染部分页面时要怎么补，以及宿主侧那句"有的平台认 200、有的认 404"。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/deployment（Serving the Same Build at Multiple Paths 整节：正常子路径部署指向 `app.baseURL`/`NUXT_APP_BASE_URL`、反向代理多路径时水合替换浏览器地址的 "may replace" 句、`app/plugins/preserve-proxy-url.server.ts` 示例全文、"Use this only when the proxy already handles assets and routing for every public path" 与"没有渲染路径就无法纠正真实错配"两句）
-- https://nuxt.com/docs/4.x/api/composables/use-nuxt-app（`payload` 小节的定义句与键清单只列 `serverRendered`/`data`/`state`；`useNuxtApp` 在 Nitro 路由内不可用的边界；插件形态示例）
-- https://nuxt.com/docs/4.x/directory-structure/app/plugins（`.server` 后缀的插件执行侧约定）
-- https://nuxt.com/docs/4.x/guide/concepts/rendering（`routeRules` 的 `redirect` 属性作为改地址的官方手段）

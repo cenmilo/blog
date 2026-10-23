@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 从别的项目过来的人，常会下意识在项目根建 `vite.config.ts`、`postcss.config.js`。在 Nuxt 里这些**不会被读到**。这一篇把官方 configuration 页的 "External Configuration Files" 讲清。
 
 ## 单一真源原则
@@ -90,8 +91,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 348 讲官方那张 runtimeConfig vs app.config 对比表：Hydrated/Bundled、环境变量、响应式、类型、每请求、HMR、非基本类型七行各说明什么。
-
-## 本文依据
-
-- Configuration（`getting-started/configuration`）："External Configuration Files" 节（"Nuxt uses nuxt.config.ts file as the single source of truth for configurations and skips reading external configuration files."；四行表 nitro.config.ts/postcss.config.js/vite.config.ts/webpack.config.ts 均划删除线、指回 nuxt.config 的 nitro/postcss/vite/webpack 键；"other common config files" 表 tsconfig.json/eslint.config.js/prettier.config.js/stylelint.config.js/tailwind.config.js/vitest.config.ts 保留）；Vue Configuration 节 vite.vue/vite.vueJsx 示例。
-- 错误码 B5004（`errors/b5004`，088/072 记录）：独立 vite/webpack 配置被忽略的场景。

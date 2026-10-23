@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 运行时钩子在插件/组件里订（275、283）。构建期钩子（294 说的那一类，`pages:extend`、`build:done` 这些）不在那一侧，官方给的是另外两个位置：`nuxt.config.ts` 里的 `hooks` 节，和模块 setup 里的 `nuxt.hook(...)`。这一篇把这两个入口讲全。
 
 ## 位置一：nuxt.config.ts 的 hooks 节
@@ -98,8 +99,3 @@ Nuxt Hooks (Build Time) 表里挑最常用的几个（都在 `api/advanced/hooks
 ## 下一篇
 
 下一篇 298 把运行时那两组讲清分工：App Hooks（应用渲染生命周期，插件/组件订）与 Server Hooks（Nitro 服务端生命周期，服务端插件订），以及它们各在哪一侧跑。
-
-## 本文依据
-
-- Lifecycle Hooks 指南（`guide/going-further/hooks`）：Nuxt Hooks (Build Time) 一节（"These hooks are available for Nuxt modules and build context."、"Within `nuxt.config.ts`" 的 `hooks:{close:()=>{}}` 示例、"Within Nuxt Modules" 的 `defineNuxtModule` + `nuxt.hook('close', ...)` 示例、read-more 指向 api/advanced/hooks#nuxt-hooks-build-time）。
-- Lifecycle Hooks API（`api/advanced/hooks`）：Nuxt Hooks (Build Time) 表若干行（`ready`/`close`/`pages:extend`/`pages:resolved`/`build:before`/`build:done`/`nitro:config`/`imports:dirs`/`components:dirs` 的参数与描述）；"Check the schema source code for all available hooks."

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 SSR 应用首屏 HTML 里，除了你看见的文字，还藏着一段给浏览器"接手用"的数据。它通常长这样：一个 `<script type="application/json">`，里面是本次渲染用到的状态和取数结果。这段东西，Nuxt 里叫 **payload**。251 篇说 `useState` "能过水合"，原理就是把值序列化塞进这段 payload，浏览器再读回来。
 
 问题也在这儿：**payload 是发给浏览器的，用户在 DevTools 里能直接翻到明文。** 同样，客户端 JS 包（浏览器要下载执行的那堆代码）也是用户能看到的。文档在三个不相邻的地方，各自点了一句"这两样里别放敏感东西"。把它们凑到一起看，才知道哪些状态天生不能进 payload。
@@ -85,11 +86,3 @@ state-management 那页对同一句又强调了一遍。含义是：既然要进
 ## 下一篇
 
 下一篇 265 专门讲两个配置容器——`app.config` 与 `runtimeConfig`——到底怎么分工：一个响应式、进客户端包；一个分公私两半、私有只在服务端。
-
-## 本文依据
-
-- app.config.ts（`directory-structure/app/app-config`）：caution "Do not put any secret values inside `app.config` file. It is exposed to the user client bundle."
-- nuxt-config runtimeConfig 节（`api/nuxt-config`）："It mainly should hold *private* configuration which is not exposed on the frontend. This could include a reference to your API secret tokens." 与 "Anything under `public` and `app` will be exposed to the frontend as well."
-- Runtime Config 指南（`guide/going-further/runtime-config`）：客户端只有 `public`/`app` 可读、服务端全部可读但只读的两条 important，以及 caution "Be careful not to expose runtime config keys to the client-side by either rendering them or passing them to `useState`."
-- useState（`api/composables/use-state`）：important "Because the data inside `useState` will be serialized to JSON ... classes, functions or symbols."；排错节 `Cannot stringify arbitrary non-POJOs` 与 `definePayloadPlugin`。
-- State Management（`getting-started/state-management`）：同一句 serialized to JSON 的 important。

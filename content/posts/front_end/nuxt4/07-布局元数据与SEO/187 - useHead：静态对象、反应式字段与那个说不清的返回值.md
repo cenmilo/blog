@@ -172,17 +172,3 @@ interface ActiveHeadEntry<Input> {
 ## 下一篇
 
 188 摊平 `useHead` 的十个字段：`title` 与 `titleTemplate`、`templateParams` 的 `%s` 之外的占位、九类标签各自的映射规则，以及 `tagPosition` 那个能把标签放进 `<body>` 的选项。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-head`
-  - 原文（描述与示例）："useHead customizes the head properties of individual pages of your Nuxt app."；"The `useHead` composable allows you to manage your head tags in a programmatic and reactive way, powered by Unhead. It lets you customize the meta tags, links, scripts, and other elements in the `<head>` section of your HTML document."；`app/app.vue` 示例（`title`、`meta`、`bodyAttrs: { class: 'test' }`、`script: [{ innerHTML: 'console.log(\'Hello world\')' }]`）
-  - 原文（warning 与 note）："If the data comes from a user or other untrusted source, we recommend you check out `useHeadSafe`."；"The properties of `useHead` can be dynamic, accepting `ref`, `computed` and `reactive` properties. The `meta` parameter can also accept a function returning an object to make the entire object reactive."；Parameters："An object accepting head metadata properties to customize the page's `<head>` section. All properties support reactive values (`ref`, `computed`, `reactive`) or can be a function returning the metadata object."
-  - 原文（Type 与返回值矛盾两处）：`export function useHead (meta: MaybeComputedRef<MetaObject>): ActiveHeadEntry<UseHeadInput>`；`interface MetaObject { title?, titleTemplate?, base?, link?, meta?, style?, script?, noscript?, htmlAttrs?, bodyAttrs? }`；`interface ActiveHeadEntry<Input> { patch: (input: Input) => void; dispose: () => void }` 及其注释 "Updates the entry with new input. Will first clear any side effects for previous input." / "Dispose the entry, removing it from the active head. Will queue side effects for removal."；"## Return Values — This composable does not return any value. It registers the head metadata with Unhead, which manages the actual DOM updates."；"See [@unhead/schema](...) for more detailed types."
-  - 原文（示例族）：Basic Meta Tags（`app/pages/about.vue` 的 `title: 'About Us'` 与 `og:title`/`og:description`）、Reactive Meta Tags（`title: computed(() => profile.value.name)` 与 `content: computed(...)`）、Using a Function for Full Reactivity（`useHead(() => ({ title: \`Count: ${count.value}\`, ... }))`）
-- `https://nuxt.com/docs/4.x/getting-started/seo-meta`
-  - 原文（三种反应式来源）："Reactivity is supported on all properties, by providing a computed value, a getter, or a reactive object." + `useHead` / `useSeoMeta` / 组件三栏 code-group（`content: description` 的 ref 直传写法）
-- `https://nuxt.com/docs/4.x/api/composables/use-head-safe`
-  - 对照用（见 189）："## Return Values — This composable does not return any value."，且其签名 `export function useHeadSafe (input: MaybeComputedRef<HeadSafe>): void` 没有 entry 返回类型
-- `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`
-  - 对照用（见 151）：composable 必须在插件/路由中间件/setup 中**同步**调用——`useHead` 属于这一族

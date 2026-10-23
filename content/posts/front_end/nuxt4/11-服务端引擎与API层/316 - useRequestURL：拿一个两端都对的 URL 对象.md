@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 想要"当前这次请求的完整 URL"，SSR 应用里有个两端不一致的问题：浏览器有 `window.location`、服务端没有；服务端有请求的 url、浏览器没有。`useRequestURL` 把这层抹平——两端都返回一个 URL 对象。
 
 ## 它返回什么
@@ -97,7 +98,3 @@ const url = useRequestURL()
 ## 下一篇
 
 下一篇 317 讲 `useResponseHeader`：在页面或中间件里给这次响应加一个响应头（v3.14+），以及它的 value 写法。
-
-## 本文依据
-
-- useRequestURL（`api/composables/use-request-url`）：定位句 "returns an URL object working on both server-side and client-side."；`about.vue` 示例（`useRequestURL()`、`url.pathname`）与开发环境结果（`http://localhost:3000/about`、`/about`）；important "When utilizing Hybrid Rendering with cache strategies, all incoming request headers are dropped when handling the cached responses via the Nitro caching layer (meaning useRequestURL will return localhost for the host)." 与 "define the cache.varies option to specify headers ... such as host and x-forwarded-host for multi-tenant environments."；MDN URL 实例属性链接。

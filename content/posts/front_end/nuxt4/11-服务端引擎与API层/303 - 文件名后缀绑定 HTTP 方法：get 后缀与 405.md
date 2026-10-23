@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `server/api` 里的文件名，最后一段可以不是 `.ts` 而是一层"方法限定"。这是 Nitro 服务端的约定，官方在 server 那一节 "Matching HTTP Method" 讲清了。
 
 ## 后缀绑方法
@@ -101,7 +102,3 @@ export default defineEventHandler((event) => {
 ## 下一篇
 
 下一篇 304 讲 `defineEventHandler` 本身：handler 的三种合法返回（可 JSON 序列化的值、Response、ReadableStream），以及"return 值"和"`event.node.res.end()` 自己写响应"两种方式的区别。
-
-## 本文依据
-
-- server 目录（`directory-structure/server`）：Matching HTTP Method 一节（"Handle file names can be suffixed with `.get`, `.post`, `.put`, `.delete`, ... to match request's HTTP Method."、`test.get.ts`/`test.post.ts` 示例、GET/POST/其他→405 三条、目录形态 `index.get.ts`/`index.post.ts`/`bar.get.ts` 示例与"create API namespaces"）；Body Handling 一节（`submit.post.ts` 与 `readBody`、note "When using `readBody` within a GET request, `readBody` will throw a 405 Method Not Allowed HTTP error."）。

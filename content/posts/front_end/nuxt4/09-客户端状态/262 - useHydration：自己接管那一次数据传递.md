@@ -132,12 +132,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 ## 下一篇
 
 263 - 状态与导航：restoreState 实验开关
-
-## 本文依据
-
-- `api/composables/use-hydration`：定位句；正文两句；两条 note（advanced/插件/模块；与 `useState` 的分工句）；Usage 段三句（payload、unique key、preventing redundant computations or API calls）；code-group 两段示例（With / Without，含 `nuxt.hooks.hook(...)` 与回调参数 `nuxtApp` 不一致这处笔误）；签名 `useHydration<T> (key, get, set): void`；Parameters 三行（含两处时机括号）；Return Values 句。
-- `guide/concepts/nuxt-lifecycle`：`app:rendered`（服务端渲染完）与 `app:created`（插件之后）两个钩子的位置（232 已逐句引）。
-- `api/composables/use-nuxt-app`：payload 一节与自定义 reducer/reviver、`definePayloadPlugin`（100/252 已逐句引）。
-- `api/composables/use-state`：官方推荐位与序列化边界（251/252 已逐句引）。
-- `api/utils/call-once`：一次性副作用的定位与"不返回值"（230 已逐句引）。
-- `getting-started/data-fetching`：取数函数自动进 payload 的机制句（210 已逐句引）。

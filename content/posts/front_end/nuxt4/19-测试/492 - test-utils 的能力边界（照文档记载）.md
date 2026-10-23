@@ -148,10 +148,3 @@ registerEndpoint('/test/', {
 ## 下一篇
 
 下一篇 493 讲组件测试的官方用法：`mountSuspended` 与 `renderSuspended` 各自适合什么写法、示例里那个从 `#components` 拿具名导出的做法、以及三份官方示例分别断言了什么。
-
-## 本文依据
-
-- 测试页 Installation 三条可选对等依赖与 `/module`（DevTools 里的 Vitest 集成）、`/config` 两个函数（`defineVitestProject`、`defineVitestConfig`）与 `environmentOptions.nuxt` 的 `rootDir`/`domEnvironment`/`overrides` 注释（`getting-started/testing`）
-- Built-In Mocks 一节：`intersectionObserver`（默认 `true`、dummy class without any functionality）、`indexedDB`（默认 `false`、fake-indexeddb 的 functional mock）、`environmentOptions.nuxt.mock` 配置示例（键名 `indexedDb`）（`getting-started/testing`）
-- Helpers 一节：`mountSuspended` 定义句与"wraps `mount` from `@vue/test-utils`"的 `::note`、`renderSuspended` 定义句（用 `@testing-library/vue`、需自装、需开 Vitest globals、渲染进 `<div id="test-wrapper"></div>`）、`mockNuxtImport` 与 `mockComponent` 两节、`registerEndpoint` 的两个参数说明／默认 GET／对象形态与 `handler`/`method`/`once` 三属性／指向环境覆盖 `$test` 的 Note、"Conflict with End-To-End Testing"整句（`getting-started/testing`）
-- E2E APIs 一节：`$fetch`/`fetch`/`url`/`getServerLogs`/`clearServerLogs` 五段定义与示例（含 `http://localhost:6840/page`、`captureServerLogs` 前提、`vi.waitFor` 用法）、Testing in a Browser 的 Playwright 定性句与 `createPage` 示例；Vitest 浏览器模式的 `render` from `@nuxt/test-utils/browser`（`getting-started/testing`）

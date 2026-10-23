@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 311、313 讲的都是"服务端代码里的 import 面"。这一篇回到**应用侧**：在一个组件/插件/中间件里，想读"当前这次请求"的底层信息，用 `useRequestEvent`。
 
 ## 它是什么、在哪能用
@@ -100,7 +101,3 @@ function useRequestEvent (nuxtApp?: NuxtApp): NuxtRequestEvent | undefined
 ## 下一篇
 
 下一篇 315 讲读请求头的两个组合式：`useRequestHeader` 读单个头、`useRequestHeaders` 读全部或指定几个，两者在浏览器分别返回 undefined / 空对象。
-
-## 本文依据
-
-- useRequestEvent（`api/composables/use-request-event`）：定位句；"Within the Nuxt context you can use useRequestEvent to access the incoming request."；示例（`useRequestEvent()`、`event?.path`、`event?.headers.get('user-agent')`）；tip "In the browser, useRequestEvent will return undefined."；签名 `useRequestEvent(nuxtApp?): NuxtRequestEvent | undefined`；"NuxtRequestEvent is the event in the shape your configured server builder provides. With the default @nuxt/nitro-server, that is h3 v1's H3Event, which is why the example above reads event.path rather than event.url."；RequestEvent 四属性表（req/url/res/context）与"only read these properties"（可移植）。

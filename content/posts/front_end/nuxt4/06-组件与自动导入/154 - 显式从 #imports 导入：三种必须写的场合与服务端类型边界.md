@@ -178,27 +178,3 @@ export default defineEventHandler(event => ({
 ## 下一篇
 
 155 讲自动导入背后的类型系统：`nuxt prepare` 生成什么、四个 tsconfig 上下文各自管哪片代码、以及为什么类型增强必须放对目录。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`
-  - 原文（Explicit Imports）："Nuxt exposes every auto-import with the `#imports` alias that can be used to make the import explicit if needed:" + 示例 `import { computed, ref } from '#imports'`（`app/pages/index.vue`）
-  - 原文（读文档约定与关闭）："In the docs, every function that is not explicitly imported is auto-imported by Nuxt and can be used as-is in your code."；"If you want to disable auto-importing composables and utilities, you can set `imports.autoImport` to `false` in the `nuxt.config` file."；"This will disable auto-imports completely but it's still possible to use explicit imports from `#imports`."
-- `https://nuxt.com/docs/4.x/guide/modules/module-anatomy`
-  - 原文（warning）："Published modules cannot leverage auto-imports for assets within their runtime directory. Instead, they have to import them explicitly from `#imports` or alike."；"Auto-imports are not enabled for files within `node_modules` (the location where a published module will eventually live) for performance reasons."
-  - 原文（模块两类与同一套机制）："There are two types of Nuxt modules: published modules are distributed on npm... "local" modules exist within a Nuxt project, either inlined in Nuxt config or within the `modules` directory."；"In either case, they work in the same way."
-  - 原文（runtime 目录可提供的资产种类）："Inside the runtime directory, you can provide any kind of assets related to the Nuxt app: Vue components / Composables / Nuxt plugins. To the server engine, Nitro: API routes / Middlewares / Nitro plugins."
-- `https://nuxt.com/docs/4.x/guide/modules/server-compatibility`
-  - 原文（两个文件的差异）："The two files differ in their imports, and wherever the handler uses an h3 v1 helper or behavior that `nuxt/server` handles differently:"；`runtime/server/status.ts` 的 `import { defineEventHandler, useRuntimeConfig } from 'nuxt/server'` + `useRuntimeConfig().public.myModule.version`；`runtime/server/status.legacy.ts` 的 `// @ts-expect-error \`#imports\` is typed for the app, not the server build` + `import { useRuntimeConfig } from '#imports'` + `import { defineEventHandler } from 'h3'` + `useRuntimeConfig(event).public.myModule.version`
-  - 原文（变体表）："`nuxt` | `nuxt/server` only | Any server builder, from Nuxt 4.6"；"`nitro2` | `h3`, `nitropack/runtime`, `#imports` | `nitropack` v2"；"`nitro3` | `nitro`, `nitro/h3`, alone or alongside `nuxt/server` | The Nitro server builder, v3"
-  - 原文（测试环境）："In playgrounds and test fixtures on Nuxt 5, h3's auto-imported `defineEventHandler` is not available: import it from `nuxt/server`."
-  - 原文（类型来源）："Builder-specific types, such as `H3Event` for `useRequestEvent()` or the full Nitro config in the `nitro:config` hook, come from the generated `.nuxt/nuxt.d.ts`. Without it, they resolve to builder-agnostic types (`RequestEvent` and a reduced Nitro config)."
-  - 原文（可移植性推荐）："`nuxt/server` is the import surface for writing agnostic server code based on Web APIs, and it ships in Nuxt 4.6+. Code written with it runs on `nitropack` v2, on Nitro v3, and under other server builders, such as `@nuxt/vite-server`."
-- `https://nuxt.com/docs/4.x/api/kit/templates`
-  - 原文（runtime 插件示例）：`import { defineNuxtPlugin } from '#imports'` + `// @ts-expect-error - virtual file` + `import metaConfig from '#build/meta.config.mjs'`
-- `https://nuxt.com/docs/4.x/guide/concepts/typescript`
-  - 原文（生成的 tsconfig 内容）："The generated `tsconfig.json` files inside the `.nuxt` directory include recommended basic TypeScript configuration for your project, references to auto-imports, API route types, path aliases like `#imports`, `~/file`, or `#build/file`, and more."
-- `https://nuxt.com/docs/4.x/directory-structure/app/components`
-  - 原文（组件侧的对应出口）："You can also explicitly import components from `#components` if you want or need to bypass Nuxt's auto-importing functionality." + `import { LazyMountainsList, NuxtLink } from '#components'`
-- `https://nuxt.com/docs/4.x/guide/going-further/server-imports`
-  - 对照用（见 151）：`nuxt/server` 的名字不自动导入、服务端同名的自动导入其实是 h3 的 helper

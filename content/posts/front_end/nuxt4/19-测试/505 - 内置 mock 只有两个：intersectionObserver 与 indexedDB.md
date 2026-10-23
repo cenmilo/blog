@@ -112,8 +112,3 @@ it('probe what the DOM environment actually gives us', () => {
 ## 下一篇
 
 下一篇 506 给 Helpers 一节的完整清单：五个入口各自的参数、返回项、以及它们与 e2e 那套混用时的硬限制。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（Built-In Mocks 整节：定性句、`intersectionObserver`（Default `true`、dummy class without any functionality）、`indexedDB`（Default `false`、用 fake-indexeddb 造 functional mock）、"configured in the `environmentOptions` section of your `vitest.config.ts`" 与那份 `defineVitestConfig` 示例及 `indexedDb` 键名写法）
-- https://nuxt.com/docs/4.x/getting-started/testing（Running Tests 的 `::warning`：单元测试环境是 happy-dom 或 jsdom，用于说明为什么需要这些 mock）

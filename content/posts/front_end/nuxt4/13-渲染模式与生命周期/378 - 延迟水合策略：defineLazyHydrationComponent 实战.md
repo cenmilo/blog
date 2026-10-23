@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 373 说水合是"浏览器再把 JS 跑一遍挂事件"。对首屏看不见、又不急着交互的组件（页脚、轮播、折叠区），这一刻就跑它的水合是浪费——它抢关键渲染路径的 CPU。延迟水合就是把这部分开销往后挪。
 
 ## 它延的是"水合"，不是"渲染"
@@ -123,7 +124,3 @@ const LazyHydrationMyComponent = defineLazyHydrationComponent(strategy, source) 
 ## 下一篇
 
 下一篇 379 转入预渲染：`nuxt generate` / `nitro.static` 用 Nitro 爬虫在构建期把页面拼成静态 HTML，`prerender.routes`、`ignore` 与 `crawlLinks` 怎么手动指定与发现。
-
-## 本文依据
-
-- `defineLazyHydrationComponent` 编译器宏定义、"defers hydration ... non-essential components"、七种策略表（`strategy` 类型 `'visible'|'idle'|'interaction'|'mediaQuery'|'if'|'time'|'never'`、`source` 类型 `() => Promise<Component>`、各 `hydrate-*` 属性与默认值：interaction 默认 pointerenter/click/focus、idle 正数超时、never 不水合）、visible/idle/interaction/mediaQuery 走 Vue 内置对应策略的 note、`@hydrated` 事件、"避免用外部变量"的 `::warning`（`api/utils/define-lazy-hydration-component`）。

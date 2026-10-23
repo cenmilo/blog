@@ -146,9 +146,3 @@ botRegex: /googlebot|bingbot|my-internal-crawler/i,
 ## 下一篇
 
 201 - OG 图片到底写相对还是绝对：两处示例给的是不同写法
-
-## 本文依据
-
-- `getting-started/prerendering`：页首定位句 "…to improve certain performance or SEO metrics"；"Nuxt will serve the prebuilt pages when requested instead of generating them on the fly."；`nuxt generate` 与 `nitro.static` / `nuxt build --prerender` 等价句；默认预渲染范围句；四步机制原文与 "pages that are not linked to a discoverable page can't be pre-rendered automatically."；`.output/public` 与 `npx serve .output/public`；`200.html` / `404.html` 兜底页一句；`prerender.routes` / `ignore` / `crawlLinks` 与 `routeRules.prerender` 三块配置示例（含 `'/blog/**'` 的注释）；"The top-level `prerender` option applies whichever `server.builder` you use. Builder-specific options, such as Nitro's `concurrency` or `failOnError`, can be set in `nitro.prerender`."；Payload Extraction 全段（含 "Prerendered routes generate their payload file at build time."、三条 `experimental.payloadExtraction` 取值、默认 `true` 与 cv5 下 `'client'`、`ssr: false` 强制 `false`、"data can be stale until the next rebuild"、devalue reducer/reviver 一句）；`prerenderRoutes`、`prerender:routes`、`prerender:generate`（`route.skip = true`）三个小节。
-- `guide/going-further/experimental-features`（streaming）：`botRegex` 两句原文与 `/googlebot|bingbot|my-internal-crawler/i` 示例；"Bot/crawler user agents, that is, requests whose `user-agent` matches `botRegex`"；"Anything else (a crawler your `botRegex` does not list, a link unfurler, `curl`) will not see those tags at all."；退出流式的 `routeRules: { '/path': { streaming: false } }`。
-- `directory-structure/public`：`robots.txt` 作为"必须保名文件"的例子（199/201 也引过那一节）。

@@ -120,8 +120,3 @@ watch(results, (results) => {
 ## 下一篇
 
 下一篇 485 讲 v4.4.2+ 新那一对：`useAnnouncer` 与 `<NuxtAnnouncer>`。官方给的差别表只有四行，其中"atomic 默认值"这一行是两个组件唯一数值不同的地方——路由播报那个默认 `false`，这个默认 `true`。
-
-## 本文依据
-
-- `useRouteAnnouncer` 页：定性句（observes the page title changes and updates the announcer message accordingly、"Used by `<NuxtRouteAnnouncer>` and controllable"、hooks into Unhead's `dom:rendered` 读标题并设为消息）、`::important` v3.12+、参数 `politeness` 三档与默认、Properties 两项类型与说明、Methods 三条原文（`set` 的第二参默认值）、解构示例（`politeness: 'assertive'`）、callout（页面内动态变化改用 `useAnnouncer`）、指向无障碍页 Route Announcements 的 read-more、源文件 `composables/route-announcer.ts`（`api/composables/use-route-announcer`）
-- 无障碍页：`const { set } = useRouteAnnouncer()` 配 `watch(results)` 播报"N results found"的完整示例与"When you need to announce something else, or to change how urgently it is announced, use `useRouteAnnouncer`"句、"announcer reads the title that Unhead rendered"（`guide/best-practices/accessibility`）

@@ -106,7 +106,3 @@ performance 那一节把这五条又复述了一遍，并额外说明 Image 模�
 ## 下一篇
 
 下一篇 424 划模块的能力边界：配置键 `image: false` 怎么在图层里关掉它、以及官方写明**默认关闭**的那个 `experimental.prefetchPreloadTags`（转发 `<NuxtImg preload>` 这类提示）为什么默认关。
-
-## 本文依据
-
-- `<NuxtImg>` 定义（drop-in replacement for native `<img>`）、五条能力清单、Setup（`npx nuxt module add image`）、"outputs a native `img` tag directly (without any wrapper around it)"与输入输出示例、read-more 指向 image.nuxt.com（`api/components/nuxt-img`）；`<NuxtPicture>` 定义（drop-in for `<picture>`）、"Usage ... almost identical to `<NuxtImg>` but it also allows serving modern formats like `webp` when possible"、MDN 指向、同一 Setup 命令（`api/components/nuxt-picture`）；Image 模块定性（plug-and-play、内置优化器或你的图片 CDN）与 NuxtImg 五条增强复述（`guide/best-practices/performance`）。

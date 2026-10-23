@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `nuxtApp.hook('名字', 回调)` 是**听**：别人广播某个时刻，你在旁边接一句。这一篇的 `callHook` 是**喊**：由你的代码在某个点主动广播一个钩子，把所有"在听这个名字"的回调跑一遍——而且能等它们跑完。
 
 ## callHook 返回 Promise
@@ -81,10 +82,3 @@ await nuxtApp.callHook('my-plugin:init')
 ## 下一篇
 
 下一篇 277 讲 `runWithContext`：在 `async`/`await`、`try/catch` 之后 Nuxt 上下文丢了、组合式报 "Nuxt instance unavailable" 时，怎么把上下文重新套回去。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）`callHook (name, ...args)` 一节："`callHook` returns a promise when called with any of the existing hooks." 与 `await nuxtApp.callHook('my-plugin:init')` 示例；Methods 一节官方只列 `provide`/`hook`/`callHook` 三个（无 callAsync）。
-- 整套文档核对：`callAsync` 在 `_research/pages` 全部 270 页里零命中。
-- plugins 目录（`directory-structure/app/plugins`）Loading Strategy："By default, Nuxt loads plugins sequentially."、parallel 段 "Nuxt won't wait until the end of the plugin's execution before loading the next plugin."、dependsOn 段（`dependsOn: ['my-plugin']`，"this plugin will wait for the end of `my-plugin`'s execution before it runs"）。
-- defineNuxtPlugin（`api/utils/define-nuxt-plugin`）：Object Syntax Plugin 示例里 `async setup` 中 `await $fetch('/api/config')`。

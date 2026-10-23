@@ -107,10 +107,3 @@ const { data } = await useFetch('/api/confidential', {
 ## 下一篇
 
 224 - useLazyAsyncData：它只是把 lazy 设成 true 的那层壳
-
-## 本文依据
-
-- `api/composables/use-request-headers`：定位句与适用范围（"within your pages, components, and plugins"）；两种取法示例（全量与 `['cookie']` 解构）；tip "In the browser, `useRequestHeaders` will return an empty object."；Example 段两句与 `headers: useRequestHeaders(['authorization'])` 示例。
-- `api/composables/use-request-fetch`：自动代理定位句、七个不转发的头、两条 tip（`useFetch` 底层使用它、客户端导航等同 `$fetch`）、`{ cookies: { foo: 'bar' } }` 与 `{ cookies: {} }` 的正反读数（222 已逐句引）。
-- `api/utils/dollarfetch`：SSR 不带 cookie 的理由（SSRF / Authentication Misuse）、不该代理的头清单、`useFetch` 相对路径自动代理那句（211 已逐句引）。
-- `guide/best-practices/hydration`：`localStorage` 案例与 `useCookie` 解法及 "This works on both server and client"（199 已逐句引）。

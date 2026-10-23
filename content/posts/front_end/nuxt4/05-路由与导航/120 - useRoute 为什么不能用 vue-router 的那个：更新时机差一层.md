@@ -160,24 +160,3 @@ const { data: mountain } = await useFetch(`/api/mountains/${route.params.slug}`)
 ## 下一篇
 
 121 把 `useRoute()` 的返回字段逐个讲清：`fullPath`/`path`/`hash`/`query`/`params`/`matched`/`meta`/`name`/`redirectedFrom` 各自含义，以及为什么看"当前这一层的 meta"要用 `matched` 而不是 `meta`。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-route`
-  - 原文（描述）："The useRoute composable returns the current route."
-  - 原文（note）："Within the template of a Vue component, you can access the route using `$route`."
-  - 原文："The `useRoute` composable is a wrapper around the identically named composable from `vue-router`, providing access to the current route in a Nuxt application."
-  - 原文："The key difference is that in Nuxt, the composable ensures that the route is updated **only after** the page content has changed after navigation. In contrast, the `vue-router` version updates the route **immediately**, which can lead to synchronization issues between different parts of the template that rely on the route metadata, for example."
-  - 原文（Example）：`const route = useRoute()`、`const { data: mountain } = await useFetch(\`/api/mountains/${route.params.slug}\`)`（文件标注 `~/pages/[slug].vue`）
-  - 原文："If you need to access the route query parameters (for example `example` in the path `/test?example=true`), then you can use `useRoute().query` instead of `useRoute().params`."
-  - 原文（API）："`fullPath`: encoded URL associated with the current route that contains path, query and hash"；"`hash`: decoded hash section of the URL that starts with a #"；"`query`: access route query parameters"；"`matched`: array of normalized matched routes with current route location"；"`meta`: custom data attached to the record"；"`name`: unique name for the route record"；"`path`: encoded pathname section of the URL"；"`redirectedFrom`: route location that was attempted to access before ending up on the current route location"
-  - 原文（Common Pitfalls - Route Synchronization Issues）："It's important to use the `useRoute()` composable from Nuxt rather than the one from `vue-router` to avoid synchronization issues during page navigation. Importing `useRoute` directly from `vue-router` bypasses Nuxt's implementation."；示例 `// ❌ do not use \`useRoute\` from \`vue-router\``、`// @errors: 2300`、`import { useRoute } from 'vue-router'`、`// ✅ use Nuxt's \`useRoute\` composable`、`import { useRoute } from '#app'`
-  - 原文（Calling `useRoute` in Middleware）："Using `useRoute` in middleware is not recommended because it can lead to unexpected behavior. There is no concept of a 'current route' in middleware. The `useRoute()` composable should only be used in the setup function of a Vue component or in a Nuxt plugin."；（warning）"This applies to any composable that uses `useRoute()` internally too."
-  - 原文（Hydration Issues with `route.fullPath`）："Browsers don't send URL fragments (for example `#foo`) when making requests. So using `route.fullPath` to affect the template can trigger hydration issues because this will include the fragment on client but not the server."
-  - 原文 Source：`packages/nuxt/src/app/composables/router.ts`
-- `https://nuxt.com/docs/4.x/directory-structure/app/middleware`
-  - 对照用（见 060）：中间件里 `useRoute()` 的表现与"永远不准确"、间接调用也告警；中间件参数是 `to`/`from`
-- `https://nuxt.com/docs/4.x/api/components/nuxt-page` 与 `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 对照用（见 091、092）：`definePageMeta({ key: route => route.fullPath })` 与 `<NuxtPage :page-key="route => route.fullPath" />`；"the new page component is mounted **before** the previous one is unmounted"；"If you are using nested routes, the page metadata from all these routes will be merged into a single object."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-welcome`
-  - 对照用（见 093、105）：`#app` 说明符的用法示例来源之一

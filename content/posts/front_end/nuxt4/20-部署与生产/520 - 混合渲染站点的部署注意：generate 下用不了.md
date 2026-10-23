@@ -124,8 +124,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 521 逐条拆 `swr` 与 `isr`：TTL 语义、`true` 时加的是哪个头、`node-server` 预设能缓整份响应这句话怎么用，以及 `_payload.json` 在这两种路由上是什么时候生成的。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/guide/concepts/rendering（Hybrid Rendering 的定义句、"previously every route/page must use the same rendering mode"与内容站加后台的例子、服务器自动注册中间件并包装缓存的机制句、那份八条 `routeRules` 示例及其逐行注释、Route Rules 九属性清单、`isr`/`swr` 也产出 `_payload.json` 的 `::note`、Server Bundle Size with `ssr: false` 整节（排除条件、三条保留情况、"build-time optimization only"）、路由规则尽量映射到平台原生规则且当前支持 Netlify 与 Vercel、`nuxt generate` 下不可用的 `::important`、Vercel ISR 示例卡；Edge-Side Rendering 一节："more a deployment target than an actual rendering mode"、三个平台与预设、可与混合渲染叠加）
-- https://nuxt.com/docs/4.x/getting-started/prerendering（`nuxt generate` 产出静态文件的机制与爬虫，用于说明为何没有执行者）

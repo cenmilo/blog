@@ -157,23 +157,3 @@ router.replace({ hash: '#bio' })
 ## 下一篇
 
 124 讲 `navigateTo`：它为什么在客户端和服务端都能用、中间件里为什么必须 **return** 它的结果，以及 `<script setup>` 里 await 它之后代码为什么还会继续跑。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-router`
-  - 原文（描述）："The useRouter composable returns the router instance."；示例 `const router = useRouter()`（文件标注 `app/pages/index.vue`）
-  - 原文（模板侧）："If you only need the router instance within your template, use `$router`:"；示例 `<button @click="$router.back()">Back</button>`
-  - 原文（与 vue-router 的关系）："If you have a `app/pages/` directory, `useRouter` is identical in behavior to the one provided by `vue-router`."
-  - 原文（Basic Manipulation）："`addRoute()`: Add a new route to the router instance. `parentName` can be provided to add new route as the child of an existing route."；"`removeRoute()`: Remove an existing route by its name."；"`getRoutes()`: Get a full list of all the route records."；"`hasRoute()`: Checks if a route with a given name exists."；"`resolve()`: Returns the normalized version of a route location. Also includes an `href` property that includes any existing base."；示例 `router.addRoute({ name: 'home', path: '/home', component: Home })`、`router.removeRoute('home')`、`router.getRoutes()`、`router.hasRoute('home')`、`router.resolve({ name: 'home' })`
-  - 原文（note）："`router.addRoute()` adds route details into an array of routes and it is useful while building Nuxt plugins while `router.push()` on the other hand, triggers a new navigation immediately and it is useful in pages, Vue components and composable."
-  - 原文（Based on History API）："`back()`: Go back in history if possible, same as `router.go(-1)`."；"`forward()`: Go forward in history if possible, same as `router.go(1)`."；"`go()`: Move forward or backward through the history without the hierarchical restrictions enforced in `router.back()` and `router.forward()`."；"`push()`: Programmatically navigate to a new URL by pushing an entry in the history stack. **It is recommended to use `navigateTo` instead.**"；"`replace()`: Programmatically navigate to a new URL by replacing the current entry in the routes history stack. **It is recommended to use `navigateTo` instead.**"；示例 `router.back()`、`router.forward()`、`router.go(3)`、`router.push({ path: '/home' })`、`router.replace({ hash: '#bio' })`
-  - 原文（Navigation Guards）："`useRouter` composable provides `afterEach`, `beforeEach` and `beforeResolve` helper methods that acts as navigation guards. However, Nuxt has a concept of **route middleware** that simplifies the implementation of navigation guards and provides a better developer experience."
-  - 原文（Promise and Error Handling）："`isReady()`: Returns a Promise that resolves when the router has completed the initial navigation."；"`onError`: Adds an error handler that is called every time a non caught error happens during navigation."
-  - 原文（Universal Router Instance）："If you do not have a `app/pages/` folder, then `useRouter` will return a universal router instance with similar helper methods, but be aware that not all features may be supported or behave in exactly the same way as with `vue-router`."
-  - 原文 Source：`packages/nuxt/src/app/composables/router.ts`
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 对照用（见 057、090）："If it is not present, Nuxt will not include the vue-router dependency."（出自 `app.vue` 一节）；"To force the pages system, set `pages: true` in `nuxt.config` or have a `router.options.ts`."
-- `https://nuxt.com/docs/4.x/api/utils/navigate-to`
-  - 对照用（见 124-126）：`navigateTo` 的定位与参数表
-- `https://nuxt.com/docs/4.x/api/composables/use-route`
-  - 对照用（见 120、121）：`useRoute` 与 `useRouter` 同在 `composables/router.ts`；`$route` 模板侧口径

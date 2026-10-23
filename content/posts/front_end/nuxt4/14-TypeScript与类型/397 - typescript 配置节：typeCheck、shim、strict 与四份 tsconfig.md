@@ -141,7 +141,3 @@ tags:
 ## 下一篇
 
 下一篇 398 处理最恼人的一类报错：明明在用的自动导入，IDE 却提示找不到——根子在生成类型没就绪与上下文目录，讲清排查顺序。
-
-## 本文依据
-
-- `## typescript` 定位句与十一个键（`appTsConfig`/`builder`/`hoist`/`includeWorkspace`/`nodeTsConfig`/`serverTsConfig`/`sharedTsConfig`/`shim`/`strict`/`tsConfig`/`typeCheck`）的类型、默认值与描述原文，含 `typeCheck` 的 true/`build` 与依赖要求、`shim` 推荐交给 Vue 官方扩展、`tsConfig` 的三条例外规则与"四个 `*TsConfig` 优先"、`builder` 的 `false`/`'shared'`、`hoist` 的 17 项默认清单与"不支持子路径"（`api/nuxt-config`）；`typescript.serverTsConfig` 与已废弃的 `nitro.typescript.tsConfig` 联动（`directory-structure/tsconfig`）；strict checks 默认随 `typeCheck` 启用与迁移期关闭（`guide/concepts/typescript`）。

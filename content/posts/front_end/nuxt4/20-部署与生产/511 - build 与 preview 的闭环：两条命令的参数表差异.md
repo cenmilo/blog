@@ -114,9 +114,3 @@ npx nuxt preview [ROOTDIR] [--cwd=<directory>] [--logLevel=<silent|info|verbose>
 ## 下一篇
 
 下一篇 512 讲 `.output` 这个目录：官方那一节只有四句话，三条硬警告；目录内部到底有什么，得从部署页、预渲染页和 ESM 那一节拼出来。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/api/commands/build（命令形状、`.output` 定性句与耗时报告、Arguments 表 `ROOTDIR`、Options 表八项含 `--prerender`/`--target`/`--profile`/`--dotenv`/`--envName`、两处 `::note`（`NODE_ENV` 设 production、`--prerender` 总是设 target 为 static）、`--preset` 别名与 `NITRO_PRESET`/`SERVER_PRESET` 顺序、`nuxt-build.cpuprofile` 与 `perf-report.json`/`perf-trace.json` 需 v4.4+）
-- https://nuxt.com/docs/4.x/api/commands/preview（命令形状与十一项选项表、`nuxt start` 同义句与转介部署页、client-only 与不可本地运行预设两种后备行为、`node_modules/.cache/nuxt/preview` 与四行接管表、`--takeover`/`--no-takeover`/"Start anyway"/不同 `--port` 并排、端口来源与 `--strictPort`、端口选择适用范围、`NODE_ENV` 设 production 与覆盖方式、`.env` 在 preview 被加载的 `::note` 与 `--env-file` 示例）
-- https://nuxt.com/docs/4.x/getting-started/deployment（生产启动命令 `NODE_ENV=production node .output/server/index.mjs`）

@@ -143,10 +143,3 @@ await navigateTo('/login', { external: false })
 ## 下一篇
 
 230 - callOnce：只跑一次那一档与 navigation 模式
-
-## 本文依据
-
-- `api/utils/refresh-nuxt-data`：定位句（覆盖四个 composable）；`<KeepAlive>` deactivated 那条 note；签名 `keys?: string | string[]`；Parameters 句（optional、不给键时全部重取）；Return Values 句（Promise 何时 resolve）；Refresh All Data 与 Refresh Specific Data 两段示例（含 `refreshing` ref、`try/finally`、`:disabled`、数组那行注释）；推荐用实例方法那条 note。
-- `api/utils/clear-nuxt-data`：定位句 "Delete cached data, error status and pending promises of useAsyncData and useFetch."；用途 note（"invalidate the data fetching for another page"）；签名（含谓词类型与返回 `void`）；Parameters 句（不给键时 all data invalidated）。
-- `api/composables/use-async-data`、`api/composables/use-fetch`：实例方法 `refresh`/`execute`/`clear` 的说明与"上次没跑完会被等住"那句（214 已逐句引）。
-- `directory-structure/app/pages`、`api/utils/navigate-to`：keepalive 与跳转的用法出处（137/124 已逐句引）。

@@ -25,66 +25,35 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+026 那篇我讲了要不要用布局这个判断。这一篇讲剩下的三件工程事，布局名是怎么从文件路径算出来的、props 怎么传进去、以及怎么在配置里集中管理而不是逐页写。
 
-026 那篇我讲了"要不要用布局"这个判断。这一篇讲剩下的三件工程事：**布局名是怎么从文件路径算出来的、props 怎么传进去、以及怎么在配置里集中管理而不是逐页写。**
+性能那条 tip，布局是异步导入的。官方在这一节第一句就给了这个性质，很多人读布局文档会跳过它，出于最佳性能，放置在此目录里的组件会在被使用时通过异步导入自动加载。
 
-## 性能那条 tip：布局是异步导入的
+这条把 012 讲过的分包落到了布局上，布局不是被打包进主块、每个页面都带上它，而是用到时才取。所以把很重的公共 UI 放进布局这件事，代价比放在 `app.vue` 里小，054 那条 note 说 `app.vue` 里的 JS 与 CSS 会全局进每个页面，而布局这一层是按需加载的。
 
-官方在这一节第一句就给了这个性质（很多人读布局文档会跳过它）：
+布局名生成规则，两张表。官方先给了那条规范化，布局名会被规范化为 kebab-case，所以 `someLayout` 变成 `some-layout`。
 
-> **出于最佳性能，放置在此目录里的组件会在被使用时通过异步导入自动加载。**
+然后给了嵌套路径的生成规则，原文是，如果你的布局在嵌套目录里，布局的名字将基于它自己的路径目录与文件名，重复的段会被去掉。
 
-**这条把 012 讲过的"分包"落到了布局上**：布局不是被打包进主块、每个页面都带上它，而是**用到时才取**。所以"把很重的公共 UI 放进布局"这件事，代价比放在 `app.vue` 里小——**054 那条 note 说 `app.vue` 里的 JS 与 CSS 会全局进每个页面，而布局这一层是按需加载的。**
+这张表是这一节的核心，我完整抄下来。`~/layouts/desktop/default.vue` 得到 `desktop-default`，`~/layouts/desktop-base/base.vue` 得到 `desktop-base`，`~/layouts/desktop/index.vue` 得到 `desktop`。
 
-## 布局名生成规则：两张表
+对照着看，三条规则各出现在哪一行。
 
-官方先给了那条规范化：
+第一行，目录名加文件名，`default` 不消失，因为它在子目录里是具体那个布局。
 
-> 布局名会被规范化为 kebab-case，所以 `someLayout` 变成 `some-layout`。
+第二行，`desktop-base/base.vue` 得到 `desktop-base`，文件名 `base` 与目录后缀 `base` 重复，重复段被去掉，这正是官方那句 duplicate segments being removed 的落点。
 
-然后给了嵌套路径的生成规则，原文是：
+第三行，`index.vue` 被吃掉，只剩目录名 `desktop`。
 
-> 如果你的布局在嵌套目录里，**布局的名字将基于它自己的路径目录与文件名，重复的段会被去掉（with duplicate segments being removed）**。
+然后官方给了一条与这套规则配套的建议，为了清晰，我们建议让布局的文件名与它自己的名字匹配。`~/layouts/desktop/DesktopDefault.vue` 得到 `desktop-default`，`~/layouts/desktop-base/DesktopBase.vue` 得到 `desktop-base`，`~/layouts/desktop/Desktop.vue` 得到 `desktop`。
 
-**这张表是这一节的核心，我完整抄下来：**
+两张表并排读，差别只有一个，文件名要不要长得像结果名。官方推荐后者，`DesktopDefault.vue` 生成的名字一眼就能预期，而 `default.vue` 在不同目录里生成 `desktop-default` 还是 `desktop`，取决于它在不在子目录。
 
-| 文件 | 布局名 |
-| --- | --- |
-| `~/layouts/desktop/default.vue` | `desktop-default` |
-| `~/layouts/desktop-base/base.vue` | `desktop-base` |
-| `~/layouts/desktop/index.vue` | `desktop` |
+三种指定方式，逐页、全局 prop、集中配置。官方给的三种，在页面里用 `definePageMeta` 设置 `layout` 属性，设置 `<NuxtLayout>` 的 `name` prop，以及在路由规则里设置 `appLayout` 属性。
 
-对照着看，三条规则各出现在哪一行：
+外加默认那条，如果没有指定布局，会使用 `app/layouts/default.vue`。
 
-1. **第一行**：目录名 + 文件名（`default` 不消失，因为它在子目录里是"具体那个布局"）。
-2. **第二行 `desktop-base/base.vue` → `desktop-base`**：文件名 `base` 与目录后缀 `base` 重复，**重复段被去掉**——这正是官方那句 "duplicate segments being removed" 的落点。
-3. **第三行**：`index.vue` 被吃掉，只剩目录名 `desktop`。
-
-然后官方给了一条与这套规则配套的建议：
-
-> 为了清晰，我们建议**让布局的文件名与它自己的名字匹配**：
-
-| 文件 | 布局名 |
-| --- | --- |
-| `~/layouts/desktop/DesktopDefault.vue` | `desktop-default` |
-| `~/layouts/desktop-base/DesktopBase.vue` | `desktop-base` |
-| `~/layouts/desktop/Desktop.vue` | `desktop` |
-
-**两张表并排读，差别只有一个：文件名要不要长得像结果名。** 官方推荐后者——**`DesktopDefault.vue` 生成的名字一眼就能预期，而 `default.vue` 在不同目录里生成 `desktop-default` 还是 `desktop`，取决于它在不在子目录。**
-
-## 三种指定方式：逐页、全局 prop、集中配置
-
-官方给的三种（这一节的 Enable Layouts 一节）：
-
-> - 在页面里用 `definePageMeta` 设置 `layout` 属性。
-> - 设置 `<NuxtLayout>` 的 `name` prop。
-> - **在路由规则里设置 `appLayout` 属性。**
-
-外加默认那条：
-
-> 如果没有指定布局，会使用 `app/layouts/default.vue`。
-
-前两种 026 讲过。**这里补第三种——它的适用理由官方写得很具体**：
+前两种 026 讲过。这里补第三种，它的适用理由官方写得很具体。
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -99,17 +68,15 @@ export default defineNuxtConfig({
 })
 ```
 
-> （tip）当你想**在配置里集中管理布局**而不是在每个页面文件里做，或者你需要**把布局应用到那些没有对应页面组件的路由**（例如可能匹配许多路径的 catch-all 页面）时，这很有用。
+官方的 tip 是，当你想在配置里集中管理布局而不是在每个页面文件里做，或者你需要把布局应用到那些没有对应页面组件的路由，例如可能匹配许多路径的 catch-all 页面，时，这很有用。
 
-**后面那半句是第三种方式独有的能力**：`/dashboard/**` 这种通配、以及 catch-all 匹配到的众多路径，**逐页写 `definePageMeta` 覆盖不到**（catch-all 只有一个文件、而它匹配很多路径）。
+后面那半句是第三种方式独有的能力，`/dashboard/**` 这种通配、以及 catch-all 匹配到的众多路径，逐页写 `definePageMeta` 覆盖不到，catch-all 只有一个文件、而它匹配很多路径。
 
-**另外注意示例里 `appLayout: false` 这一行**——它能关掉布局，这与 059 下一节的 `layout: false` 是同一语义的两种入口。
+另外注意示例里 `appLayout: false` 这一行，它能关掉布局，这与下一节的 `layout: false` 是同一语义的两种入口。
 
-## 运行时切换与"页面自己套布局"
+运行时切换与页面自己套布局。
 
-**`setPageLayout`：**
-
-> 你也可以用 `setPageLayout` 助手来动态切换布局：
+`setPageLayout`，官方原话，你也可以用 `setPageLayout` 助手来动态切换布局。
 
 ```vue [app/pages/index.vue]
 <script setup lang="ts">
@@ -131,13 +98,11 @@ definePageMeta({
 </template>
 ```
 
-**注意这两行的搭配：`definePageMeta({ layout: false })` + 事件里 `setPageLayout('custom')`。** 官方这个示例本身就说明：**先声明"这个页面默认不套布局"，再在运行时决定套哪个。**
+注意这两行的搭配，`definePageMeta({ layout: false })` 加事件里 `setPageLayout('custom')`。官方这个示例本身就说明，先声明这个页面默认不套布局，再在运行时决定套哪个。
 
-**页面内部自己用 `<NuxtLayout>`：**
+页面内部自己用 `<NuxtLayout>`，官方原话，如果你在使用页面，你可以设 `layout: false` 然后在页面内部使用 `<NuxtLayout>` 组件来取得完全控制。
 
-> 如果你在使用页面，你可以设 `layout: false` 然后在**页面内部**使用 `<NuxtLayout>` 组件来取得完全控制。
-
-官方给的这一对文件里，父页面把 `<NuxtLayout name="custom">` 放在**一个 `<div>` 里面**：
+官方给的这一对文件里，父页面把 `<NuxtLayout name="custom">` 放在一个 `<div>` 里面。
 
 ```vue [app/pages/index.vue]
 <script setup lang="ts">
@@ -174,15 +139,11 @@ definePageMeta({
 </template>
 ```
 
-而这条要求官方用 important 写着：
+而这条要求官方用 important 写着，如果你在你的页面里使用 `<NuxtLayout>`，请确保它不是根元素，或者禁用布局与页面过渡。
 
-> **如果你在你的页面里使用 `<NuxtLayout>`，请确保它不是根元素**（或者[禁用布局/页面过渡]）。
+这和 026 那条布局必须有单一根元素、且根不能是 `<slot />` 是两条不同层面的规则，一条管布局文件本身，一条管布局组件在页面里的位置。上面这对示例正好同时满足两条，`custom.vue` 的根是 `<div>`，而 `index.vue` 里的 `<NuxtLayout>` 被包在 `<div>` 里。
 
-**这和 026 那条"布局必须有单一根元素、且根不能是 `<slot />`"是两条不同层面的规则**：一条管布局文件本身，一条管"布局组件在页面里的位置"。**上面这对示例正好同时满足两条**——`custom.vue` 的根是 `<div>`，而 `index.vue` 里的 `<NuxtLayout>` 被包在 `<div>` 里。
-
-## v4.4 起：给布局传 props
-
-官方给的第一种写法是对象形式的 `layout`：
+v4.4 起，给布局传 props。官方给的第一种写法是对象形式的 `layout`。
 
 ```vue [app/pages/dashboard.vue]
 <script setup lang="ts">
@@ -219,13 +180,11 @@ const props = defineProps<{
 </template>
 ```
 
-> （tip）**props 会依据你布局的 `defineProps` 完整定型。你会在你的编辑器里拿到自动补全与类型检查。**
+官方的 tip 是，props 会依据你布局的 `defineProps` 完整定型。你会在你的编辑器里拿到自动补全与类型检查。
 
-**这一条把类型闭环做上了**：布局文件里 `defineProps` 写什么类型，页面里那个 `props` 对象就只能填什么——**填错键名会在编辑器里被标出来**。
+这一条把类型闭环做上了，布局文件里 `defineProps` 写什么类型，页面里那个 `props` 对象就只能填什么，填错键名会在编辑器里被标出来。
 
-第二种写法是运行时那条：
-
-> 你也可以在用 `setPageLayout` 动态切换布局时传 props：
+第二种写法是运行时那条，你也可以在用 `setPageLayout` 动态切换布局时传 props。
 
 ```ts
 setPageLayout('panel', { sidebar: true, title: 'Dashboard' })
@@ -238,12 +197,8 @@ setPageLayout('panel', { sidebar: true, title: 'Dashboard' })
 - [ ] `appLayout` 与 `definePageMeta({layout})` 相比，官方指出它多能覆盖什么场景？
 - [ ] 在页面内部使用 `<NuxtLayout>` 时，官方的那条 important 要求是什么？
 - [ ] 布局的 props 类型是从哪里来的？两种传法分别怎么写？
-- [ ] 为什么"很重的公共 UI 放布局"比放 `app.vue` 代价小？
+- [ ] 为什么「很重的公共 UI 放布局」比放 `app.vue` 代价小？
 
 ## 下一篇
 
-060 讲 `app/middleware/`：官方在这一节列了三种中间件、"只扫描顶层文件与子目录的 index"这条目录规则，以及那条最容易被撞的禁令——中间件里不能用 `useRoute()`，要用函数参数或 `useRouter()` 的 `currentRoute` 代替。
-
-## 本文依据
-
-- `directory-structure/app/layouts`（tip：出于最佳性能此目录中的组件会在被使用时通过异步导入自动加载；Enable Layouts：通过在 app.vue 添加 <NuxtLayout> 包住 <NuxtPage /> 来启用布局；使用布局的三种方式——definePageMeta 的 layout 属性、<NuxtLayout> 的 name prop、route rules 的 appLayout；note 布局名规范化为 kebab-case（someLayout→some-layout）；note 未指定布局时使用 app/layouts/default.vue；important 应用里只有一层布局时建议使用 app.vue；important 布局必须有单一根元素以便 Nuxt 应用布局之间的过渡且根元素不能是 <slot />；Default Layout：~/layouts/default.vue 内含 <slot />；Named Layout：layouts/custom.vue 与 definePageMeta({layout:'custom'})；嵌套目录命名规则"布局名基于自己的路径目录与文件名，重复段被去掉"与两张对照表（desktop/default.vue→desktop-default、desktop-base/base.vue→desktop-base、desktop/index.vue→desktop；以及建议文件名匹配名字 DesktopDefault.vue/DesktopBase.vue/Desktop.vue）；Changing the Layout Dynamically：setPageLayout('custom') 配合 definePageMeta({layout:false}) 的按钮示例；appLayout 标注 v4.3 与 /admin→'admin'、/dashboard/**→'dashboard'、/landing→false 示例及 tip"适合在配置里集中管理布局而非每个页面文件，或需要把布局应用到没有对应页面组件的路由（例如匹配许多路径的 catchall 页面）"；Overriding a Layout on a Per-page Basis：设 layout:false 后在页面内使用 <NuxtLayout> 可取得完全控制，示例 index.vue 把 <NuxtLayout name="custom"> 包在 div 内并用 <template #header> 与默认插槽、layouts/custom.vue 以 div 为根含 <slot name="header"> 与 <slot />，important 在页面里使用 <NuxtLayout> 时确保它不是根元素（或禁用布局/页面过渡）；Passing Props to Layouts 标注 +4.4：definePageMeta 中 layout 的 { name, props } 对象写法与 app/layouts/panel.vue 的 defineProps<{sidebar?: boolean, title?: string}> 示例、tip props 依据布局的 defineProps 完整定型并得到自动补全与类型检查、以及 setPageLayout('panel', { sidebar: true, title: 'Dashboard' })）
+060 讲 `app/middleware/`：官方在这一节列了三种中间件、「只扫描顶层文件与子目录的 index」这条目录规则，以及那条最容易被撞的禁令——中间件里不能用 `useRoute()`，要用函数参数或 `useRouter()` 的 `currentRoute` 代替。

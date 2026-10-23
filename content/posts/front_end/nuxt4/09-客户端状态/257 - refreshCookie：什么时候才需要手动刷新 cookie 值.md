@@ -103,9 +103,3 @@ const loggedIn = computed(() => !!tokenCookie.value)
 ## 下一篇
 
 258 - cookieStore 实验开关：它让手动刷新变成自动
-
-## 本文依据
-
-- `api/utils/refresh-cookie`：定位句；v3.10 的 important；Purpose 两句；Usage 示例（`tokenCookie`、`$fetch('/api/token')` 与其注释、`refreshCookie('token')`、`loggedIn` 的 computed）；签名 `refreshCookie (name: string): void`；note（v3.12.0 起 `cookieStore` 默认开启并自动刷新，指向实验特性页）。
-- `api/composables/use-cookie`：`watch` 行的手动刷新提醒原句、`default` 的 "if the cookie does not exist"、Basic Usage 里 `counter = null` 的重置写法（255/256 已逐句引）。
-- `guide/going-further/experimental-features`：`cookieStore` 一节（含 "if supported by the browser" 与默认开启的措辞，258 逐句引）。

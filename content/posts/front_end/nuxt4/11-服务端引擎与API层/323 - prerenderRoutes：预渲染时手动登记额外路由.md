@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 预渲染时，Nitro 的爬虫只会顺着页面里的 `<a href>` 链接一页页爬（200、300-339 会再讲）。问题是：有些路径（比如某个 CMS 才有的文章接口、某个没被任何链接指向的页面）爬虫发现不了，就不会被预渲染。`prerenderRoutes` 就是让你手动把这些路径"报"上去。
 
 ## 它是什么
@@ -127,8 +128,3 @@ const articleContent = await $fetch('/api/content/article/name-of-article', {
 ## 下一篇
 
 下一篇 324 讲流式 SSR（`experimental.ssrStreaming`）：先吐 HTML 外壳再逐步流式渲染 body，以及命中缓存/机器人等会退回缓冲渲染、状态头必须在 shell 刷出前设好这些边界。
-
-## 本文依据
-
-- prerenderRoutes（`api/utils/prerender-routes`）：定位句与"even if their URLs do not show up in the HTML ... Nuxt collects the hints and passes them to your server builder's prerenderer (Nitro by default)"；important "can only be called within the Nuxt context"；note "has to be executed during prerendering ... dynamic pages/routes which are not prerendered, then it will not be executed"；`prerenderRoutes('/')`/`(['/', '/about'])` 用法；note "In the browser, or if called outside prerendering ... will have no effect"；预渲染 API 路由段（"full statically generated sites (SSG) ... $fetch data as if you have an available server"、`prerenderRoutes('/api/content/article/name-of-article')` + `$fetch(..., { responseType: 'json' })`）；warning（"may not return the expected response headers ... application/octet-stream content type. Always manually set responseType"）。
-- Prerendering（`getting-started/prerendering`）：`prerenderRoutes` 页面示例与 prerender:routes / prerender:generate 钩子（见 200）。

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 367 见过 routeRules 里的 `prerender: true`，但整站预渲染、以及"哪些页会被渲出来"这件事，官方集中在 `getting-started/prerendering` 讲。这一篇先把预渲染是什么、用什么命令、怎么指定范围说清，路由从哪来与自动发现的边界留到 380。
 
 ## 预渲染是什么
@@ -110,7 +111,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 380 讲预渲染路由到底从哪来、以及自动发现的硬边界：没被任何可发现页链接指向的页面没法被自动预渲染，得靠 `prerenderRoutes()`、`prerender:routes` 钩子等补上。
-
-## 本文依据
-
-- 预渲染定义、`nuxt generate` ≈ `nitro.static`/`nuxt build --prerender`、默认从根页顺链接爬、`.output/public` 与 `npx serve`、200/404 回退、Selective 的 `prerender.routes`/`ignore`、`crawlLinks` 补 sitemap/robots、顶层 `prerender` 与 `nitro.prerender`（concurrency/failOnError）分工、routeRules `prerender:true/false`、`defineRouteRules`+`experimental.inlineRouteRules`（`getting-started/prerendering`；routeRules 见 367）。

@@ -129,17 +129,3 @@ tags:
 ## 下一篇
 
 099 讲 `<NuxtTime>`：一个必须服务端渲染安全的组件是怎么设计的——`datetime` 必填、`locale` 用 BCP 47、`Intl.DateTimeFormat` 的选项直接摊平成 prop，以及 `style` 为什么是保留 prop、必须写 `relativeStyle`。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/teleports`
-  - 原文（页面描述）："The \<Teleport> component teleports a component to a different location in the DOM."
-  - 原文（warning）："The `to` target of `<Teleport>` expects a CSS selector string or an actual DOM node. Nuxt currently has SSR support for teleports to `#teleports` only, with client-side support for other targets using a `<ClientOnly>` wrapper."
-  - 原文（Body Teleport 示例）：`<button @click="open = true">Open Modal</button>`、`<Teleport to="#teleports">`、`<div v-if="open" class="modal">`、`<p>Hello from the modal!</p>`、`<button @click="open = false">Close</button>`
-  - 原文（Client-side Teleport 示例）：`<ClientOnly><Teleport to="#some-selector"><!-- content --></Teleport></ClientOnly>`
-  - 原文 link-example 指向 `https://nuxt.com/docs/examples/advanced/teleport`
-  - 说明：这一节 `to` 的链接指向 Vue 文档 `<Teleport>` 一节，即这一组件本身来自 Vue，Nuxt 这一节处理的是 SSR 支持范围
-- `https://nuxt.com/docs/4.x/api/components/client-only`
-  - 对照用（见 096）："The `<ClientOnly>` component is used for purposely rendering a component only on client side."
-  - 原文（note）："The content of the default slot will be tree-shaken out of the server build. (This does mean that any CSS used by components within it may not be inlined when rendering the initial HTML.)"
-  - 原文（Accessing HTML Elements）："Components inside `<ClientOnly>` are rendered only after being mounted. To access the rendered elements in the DOM, you can watch a template ref"；示例含 `useTemplateRef('nuxtWelcomeRef')` 与 `{ once: true }`

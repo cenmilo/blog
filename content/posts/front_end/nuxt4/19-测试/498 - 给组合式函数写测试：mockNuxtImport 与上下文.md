@@ -155,8 +155,3 @@ vi.mocked(useRoute).mockImplementation(
 ## 下一篇
 
 下一篇 499 讲服务端路由的测试：e2e 那侧怎么真的打到 `/api/...`，以及单元侧用 `registerEndpoint` 造假接口那条路。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（Helpers 一节 `mockNuxtImport`：定义句、`useState` 最小示例、带泛型与直接传目标两种写法及 "specify the target to mock" 注释、"can only be used once per mocked import per test file" 的 `::note`、`vi.hoisted` 方案与恢复 mock 的提醒、`mockNuxtImport(useRoute, original => vi.fn(original))` 配 `beforeEach`/`getMockImplementation` 的示例）
-- https://nuxt.com/docs/4.x/getting-started/testing（Running Tests 的 `::warning`：happy-dom 或 jsdom、全局 Nuxt 应用先初始化、勿改动全局状态；Organizing Your Tests 的 `::important`：单元测试不应依赖自动导入与组合式函数；TypeScript 小节 `test/nuxt/` 与 `tests/nuxt/` 的上下文归属）

@@ -249,24 +249,3 @@ defineExpose({
 ## 下一篇
 
 095 讲 `<NuxtErrorBoundary>`：它只兜默认插槽里的客户端错误、底层是 `onErrorCaptured`、`#error` 插槽拿到 `error` 与 `clearError`，以及"把错误设成 null 会重新渲染默认插槽"这条容易踩的前提。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-layout`
-  - 原文："Nuxt provides the \<NuxtLayout> component to show layouts on pages and error pages."；"You can use `<NuxtLayout />` component to activate the `default` layout on `app.vue` or `error.vue`."
-  - 原文示例：`<NuxtLayout>some page content</NuxtLayout>`（文件标注 `app/app.vue`）
-  - 原文（Props - name）："`name`: Specify a layout name to be rendered, can be a string, reactive reference or a computed property. It **must** match the name of the corresponding layout file in the `app/layouts/` directory, or `false` to disable the layout."；type `string | false`；default `default`
-  - 原文示例：`const layout = 'custom'` 配注释 `// layouts/custom.vue`，模板 `<NuxtLayout :name="layout"><NuxtPage /></NuxtLayout>`
-  - 原文（note）："Please note the layout name is normalized to kebab-case, so if your layout file is named `errorLayout.vue`, it will become `error-layout` when passed as a `name` property to `<NuxtLayout />`."；示例 `<NuxtLayout name="error-layout"><NuxtPage /></NuxtLayout>`（文件标注 `error.vue`）
-  - 原文（fallback）："If an invalid layout is passed to the `name` prop, no layout will be rendered. Specify a `fallback` layout to be rendered in this scenario. It **must** match the name of the corresponding layout file in the `app/layouts/` directory."；type `string`；default `null`
-  - 原文（Additional Props）："`NuxtLayout` also accepts any additional props that you may need to pass to the layout. These custom props are then made accessible as attributes."；示例 `<NuxtLayout name="custom" title="I am a custom layout">`；"In the above example, the value of `title` will be available using `$attrs.title` in the template or `useAttrs().title` in `<script setup>` at custom.vue."；布局侧 `const layoutCustomProps = useAttrs()`、`console.log(layoutCustomProps.title) // I am a custom layout`
-  - 原文（Layout Props from Page Meta）："When using `definePageMeta` with the object syntax for `layout`, props are automatically passed to the layout component. The layout can receive them with `defineProps`"；示例 `layout: { name: 'admin', props: { sidebar: true } }` 与 `const props = defineProps<{ sidebar?: boolean }>()`
-  - 原文（Transitions）："`<NuxtLayout />` renders incoming content via `<slot />`, which is then wrapped around Vue's `<Transition />` component to activate layout transition. For this to work as expected, it is recommended that `<NuxtLayout />` is **not** the root element of the page component."
-  - 原文示例：页面侧 `<div><NuxtLayout name="custom"><template #header>Some header template content.</template></NuxtLayout></div>`；布局侧 `<!-- named slot --> <slot name="header" /> <slot />`
-  - 原文（Layout's Ref）："To get the ref of a layout component, access it through `ref.value.layoutRef`."；示例 `layout.value.layoutRef.foo()`、`<NuxtLayout ref="layout">default layout</NuxtLayout>`、布局侧 `defineExpose({ foo })` 与 `const foo = () => console.log('foo')`
-  - 原文 Source：`packages/nuxt/src/app/components/nuxt-layout.ts`
-- `https://nuxt.com/docs/4.x/getting-started/transitions`
-  - 原文（important）："Because Nuxt uses Vue's `<Transition>` component, a page or layout you want to animate must have a **single root element**. A page or layout with multiple root elements (a fragment) cannot be animated, so the transition will not run and navigating between routes may error. Nuxt warns about this in development. Wrap the template in a single root element (for example a `<div>`)."
-  - 原文（note）："If you are changing layouts as well as pages, the page transition you set here will not run. Instead, you should set a layout transition."
-  - 原文（Layout Transitions）："You can enable layout transitions to apply an automatic transition for all your layouts."；示例 `app: { layoutTransition: { name: 'layout', mode: 'out-in' } }`
-  - 原文（note）："Nuxt leverages Vue's `<Transition>` component to apply transitions between pages and layouts."

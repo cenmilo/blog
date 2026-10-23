@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 079/086/087 那几篇在讲目录结构时零散提过这些配置项。这一篇把 nuxt.config 里的目录类配置集中对齐——它们的默认值、以谁为基准、改了会牵动什么。
 
 ## 先摆基准：rootDir
@@ -92,8 +93,3 @@ nuxt-config 的 `## srcDir`：
 ## 下一篇
 
 下一篇 357 讲 alias 与 extensions：模块解析的两把钥匙——别名默认表、webpack 上下文必须加 `~`，以及默认解析的六种扩展名。
-
-## 本文依据
-
-- nuxt-config srcDir / serverDir / dir / buildDir 节（`api/nuxt-config`）：srcDir（"relative to the rootDir"，默认 `"app"`(Nuxt4)/`"."`(Nuxt3 compat)）；serverDir（"where Nitro routes, middleware and plugins are kept"、"relative to your rootDir"、默认 `<rootDir>/server`）；dir（"It is better to stick with defaults unless needed."、子项 app=app/assets=app/assets 等九项）；buildDir（默认 `<rootDir>/.nuxt`、"Many tools assume that .nuxt is a hidden directory ... you can use this option to prevent that"）；typesDir 默认随 buildDir（见 358）。
-- 目录结构基准与改名连带（见 079/086/087/051/052）。

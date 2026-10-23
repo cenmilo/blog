@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 374 里让两端用同一份值，靠的是 `useState`。`useHydration` 是这条"服务端写、水合读"通道的**手动挡**——你自己给出"服务端怎么取、客户端怎么写回"，Nuxt 负责把它塞进 payload 再取出来。它给非响应式的外部状态（自己 new 出来的 store、类实例）做水合同步特别合适。
 
 ## 它做什么
@@ -110,7 +111,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 ## 下一篇
 
 下一篇 376 讲 `<ClientOnly>` 与它的 `#fallback` 骨架屏：让一块内容干脆跳过服务端渲染、水合后才出现，从根上避开那些没法两边对齐的场景。
-
-## 本文依据
-
-- `useHydration` 定义、"set data on the server side every time a new HTTP request is made and receive that data on the client side"、两条 `::note`（advanced / plugins / modules；useState 更合适做响应式）、Usage 机制句（get 结果按 key 存 payload、水合取回避免重复）、签名 `useHydration<T>(key, get, set): void`、Parameters 表（get 只服务端 app:rendered 时、set 只客户端 app:created 时）、"does not return any value"、with/without useHydration 代码组（`api/composables/use-hydration`）。

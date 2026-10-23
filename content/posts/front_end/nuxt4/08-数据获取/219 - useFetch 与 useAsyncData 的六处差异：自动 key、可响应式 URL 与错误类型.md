@@ -112,10 +112,3 @@ const { data, error } = await useAsyncData(() => myGetFunction('users'))
 ## 下一篇
 
 220 - useFetch 选项表逐条：23 个键与多出来的那批请求选项
-
-## 本文依据
-
-- `api/composables/use-fetch`：开头定位两句（wrapper、三件自动事项）；note（"meant to be called directly in a setup function, plugin, or route middleware"、payload 那句）；Usage 的 `pick` 示例；`createUseFetch` 的 tip；Type 一节签名与 `UseFetchOptions` 全部 23 键；Parameters 的 `URL` 与 `options` 两句（"Extends unjs/ofetch options and `AsyncDataOptions`"）；Reactive Keys and Shared State 一节；两条 warning（reserved name + @vueuse/core）；`AsyncData` 类型与 Status Values。
-- `api/composables/use-async-data`：note（"called directly in the Nuxt context"）；签名泛型 `<ResT, DataE = unknown, DataT = ResT>`；两个重载；`useAsyncData` 定位句 "responsible for wrapping async logic and returning the result once it is resolved"；reserved name 的 warning。
-- `getting-started/data-fetching`：useAsyncData 一节（"nearly equivalent" 那条 tip、"developer experience sugar"、CMS/第三方查询层的例外句、`'users'` 与省略 key 两段示例）。
-- `api/composables/use-request-fetch`：`event.fetch` / `event.$fetch` 指向的那一节（222 详讲）。

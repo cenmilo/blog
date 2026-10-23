@@ -103,9 +103,3 @@ export default defineEventHandler(async (event) => {
 ## 下一篇
 
 下一篇 448 讲 payload 的体积从哪两头控制：`renderJsonPayloads`（默认开着，管的是 JSON payload 能不能还原复杂类型）与 `purgeCachedData`（默认开着，管路由跳转时 `useAsyncData` 与 `nuxtApp.static.data` 的缓存要不要清掉），再加上 `payloadExtraction` 三档各自的取舍。
-
-## 本文依据
-
-- `## writeEarlyHints` 整节：定义原文一句（含 "when using node server"）与配置示例；对照那一节其他默认开启开关的 "This flag is enabled by default" 措辞（`guide/going-further/experimental-features`）
-- h3 helpers 清单中出现 `writeEarlyHints`、"import `defineEventHandler` from `h3` for that handler" 与 `server/api/upload.post.ts` 示例、"`nuxt/server` isn't a re-export of h3" 的理由句（`guide/going-further/server-imports`）
-- `noScripts` 生效时被省略的四类内容清单（入口 script、import map、内联 payload 与 payload preload link、给 JS chunk 的 preload/prefetch 资源提示）与"CSS is unaffected"（`guide/going-further/features`）

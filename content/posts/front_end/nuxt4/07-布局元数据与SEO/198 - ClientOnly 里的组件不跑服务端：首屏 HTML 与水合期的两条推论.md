@@ -109,10 +109,3 @@ watch(nuxtWelcomeRef, () => {
 ## 下一篇
 
 199 - 水合错配的代价里有一条是 SEO：五种成因与对应解法
-
-## 本文依据
-
-- `api/components/client-only`：定位句 "used for purposely rendering a component only on client side"；note "The content of the default slot will be tree-shaken out of the server build. (This does mean that any CSS used by components within it may not be inlined when rendering the initial HTML.)"；Props 两条与 Slots 一条（`#fallback` "...displayed until `<ClientOnly>` is mounted in the browser."）；Accessing HTML Elements 一段与 `useTemplateRef` + `watch(..., { once: true })` 示例。
-- `guide/going-further/experimental-features`（streaming）："`useHead`/`useSeoMeta` called synchronously in `<script setup>` (before any `await`), in plugins, or in middleware render into the shell `<head>` as usual."；"Anything else (a crawler your `botRegex` does not list, a link unfurler, `curl`) will not see those tags at all."
-- `guide/best-practices/hydration`："**SEO problems**: Search engines may index different content than what users actually see."；In Summary 第 2 条 "**Wrap client-only code**: Use `ClientOnly` component for browser-specific content"。
-- `getting-started/seo-meta`：important "This method does not allow you to provide reactive data. We recommend using `useHead()` in `app.vue`."

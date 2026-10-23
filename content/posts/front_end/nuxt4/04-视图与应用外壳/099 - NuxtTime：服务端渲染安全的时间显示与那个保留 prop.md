@@ -170,19 +170,3 @@ tags:
 ## 下一篇
 
 100 讲 `<NuxtClientFallback>` 与 `useHydration`：前者是实验特性、必须先开 `experimental.clientFallback`，服务端渲染某块出错时把那一块交给客户端；后者把状态从服务端带到客户端，且 `get` 只在服务端跑、`set` 只在客户端跑。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-time`
-  - 原文（描述）："The \<NuxtTime> component displays time in a locale-friendly format with server-client consistency."
-  - 原文（important）："This component is available in Nuxt v3.17+."
-  - 原文："The `<NuxtTime>` component lets you display dates and times in a locale-friendly format with proper `<time>` HTML semantics. It ensures consistent rendering between server and client without hydration mismatches."
-  - 原文（datetime）：Type `Date | number | string`；Required `true`；"The date and time value to display. You can provide: A `Date` object / A timestamp (number) / An ISO-formatted date string"；示例 `:datetime="Date.now()"`、`:datetime="new Date()"`、`datetime="2023-06-15T09:30:00.000Z"`
-  - 原文（locale）：Type `string`；Required `false`；Default "Uses the browser or server's default locale"；"The BCP 47 language tag for formatting (e.g., 'en-US', 'fr-FR', 'ja-JP')"；示例 `locale="fr-FR"`
-  - 原文（Formatting Props）："The component accepts any property from the Intl.DateTimeFormat options"；示例 `year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit"`；"This would output something like: 'April 22, 2025, 08:30 AM'"
-  - 原文（Custom Formatting 示例）：`weekday="long"`、`month="short"`、`hour="numeric"`、`second="numeric"`、`time-zone-name="short"`
-  - 原文（relative）：Type `boolean`；Required `false`；Default `false`；"Enables relative time formatting using the Intl.RelativeTimeFormat API"；示例注释 `<!-- Shows something like "5 minutes ago" -->`、`:datetime="Date.now() - 5 * 60 * 1000"`
-  - 原文（Relative Time Formatting Props）："When `relative` is set to `true`, the component also accepts properties from Intl.RelativeTimeFormat"；（warning）"Due to `style` being a reserved prop, `relativeStyle` prop is used instead."；示例 `numeric="auto" relative-style="long"`；"This would output something like: '3 days ago' or 'last Friday' depending on the `numeric` setting."
-  - 原文（Relative Time 示例）：`Date.now() - 30 * 1000` 注释 `<!-- 30 seconds ago -->`、`Date.now() - 45 * 60 * 1000` 注释 `<!-- 45 minutes ago -->`、`Date.now() + 2 * 24 * 60 * 60 * 1000` 注释 `<!-- in 2 days -->`
-  - 原文（With Custom Locale 示例）：三个 `locale="en-US"` / `locale="fr-FR"` / `locale="ja-JP"` 配 `weekday="long"`
-  - 原文 Source：`packages/nuxt/src/app/components/nuxt-time.vue`

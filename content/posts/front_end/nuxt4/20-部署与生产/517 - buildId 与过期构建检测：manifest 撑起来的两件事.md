@@ -117,10 +117,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 518 讲环境变量：`.env` 只在 dev/build/generate 三个时机被读、生产**不读你的 `.env`**，以及 `NUXT_` 前缀这条硬要求。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/api/nuxt-config（`## buildId` 整节：定义句、Type `string`、Default 那串 UUID；`runtimeConfig` 默认 JSON 里 `app` 下四键与 `nitro.envPrefix`）
-- https://nuxt.com/docs/4.x/guide/going-further/experimental-features（`appManifest`：定位句、默认开启与关闭示例；`checkOutdatedBuildInterval`：单位、随 `appManifest` 为 `false` 而禁用、设为 `false` 可关、示例 `3600000` 与该节未列 Type/Default）
-- https://nuxt.com/docs/4.x/errors/e5001（触发条件句、manifest 支撑的两项客户端能力、Resolution 的 `appManifest: true` 示例）
-- https://nuxt.com/docs/4.x/errors/b5003（`runtimeConfig.app` 保留命名空间的内部值即 `buildId`/`baseURL`/`buildAssetsDir`/`cdnURL`，去处是 `public`（客户端可见）或顶层（仅服务端））

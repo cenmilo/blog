@@ -119,11 +119,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 238 - 配方：给外部接口做一个带鉴权的取数函数
-
-## 本文依据
-
-- `guide/concepts/rendering`：`routeRules` 配置块与九行官方注释；Route Rules 九条属性定义原文（尤其 `swr`、`isr` 两句）；"Routes using `isr` or `swr` also generate `_payload.json` files..." 那条 note；`ssr: false` 与服务端包体积一段（更具体规则重新开启 SSR 等例外）。
-- `api/composables/use-request-url`：headers dropped ⇒ host 为 `localhost`、`cache.varies` 与 `host`/`x-forwarded-host`（204 已逐句引）。
-- `getting-started/prerendering`：Payload Extraction 一节（`isr`/`swr` 首次渲染时生成 payload、CDN 可缓存、`'/**': { isr: true }` 的写法、stale 那句）与 `payloadExtraction` 三取值（200 已逐句引）。
-- `api/nuxt-config`、`api/kit/pages`：routeRules 的机制句与 `extendRouteRules`（140/206 已逐句引）。
-- `api/composables/use-request-headers`、`api/utils/call-once`：读头与"服务端那一趟"的边界（223/230 已逐句引）。

@@ -189,10 +189,3 @@ Known Issues 只有一条，但对做布局动画的人来说正好是最该知�
 ## 下一篇
 
 209 - 综合演练：一篇文章页要写齐哪些元数据
-
-## 本文依据
-
-- `getting-started/transitions`：note "If you are changing layouts as well as pages, the page transition you set here will not run."；important 单根元素整段（含 "(a fragment) cannot be animated"、"the transition will not run and navigating between routes may error"、"Nuxt warns about this in development"、"Wrap the template in a single root element (for example a `<div>`)."）；Layout Transitions 的 `app.layoutTransition` 配置块与 `app/app.vue` CSS 示例、`app/layouts/orange.vue` 示例（`<style scoped>`）；"Similar to `pageTransition`, you can apply a custom `layoutTransition` to the page component using `definePageMeta`." 与含 `layout: 'orange'` 的示例；Global Settings 段 "Both `pageTransition` and `layoutTransition` keys accept `TransitionProps` as JSON serializable values..."、warning "If you change the `name` property, you also have to rename the CSS classes accordingly."；Disable Transitions 两处写法；JavaScript Hooks 示例（`onBeforeEnter`/`onEnter`/`onAfterEnter`，键为 `pageTransition`）；Transition with NuxtPage 与 note "Remember, this page transition cannot be overridden with `definePageMeta` on individual pages."；View Transitions 一节（`experimental.viewTransition: true`、三种取值、`prefers-reduced-motion`、`app.viewTransition: false` 全局关、`definePageMeta({ viewTransition: false })` 覆盖、per-page 函数形态、`page:view-transition:start`、disable-vue-transitions 全局中间件全文）；Known Issues 那条冻结 DOM 的原话。
-- `api/nuxt-config`（app 节）：`layoutTransition` 与 `pageTransition` 两句说明（"Default values for layout transitions."、"This can be overridden with `definePageMeta` on an individual page. Only JSON-serializable values are allowed."、Type `boolean | TransitionProps`）；`viewTransition` 节 "This only has an effect when **experimental** support for View Transitions is enabled in your nuxt.config file."
-- `directory-structure/app/layouts`（182 已引）：单根要求的理由句 "to allow Nuxt to apply transitions **between layout changes**"。
-- 与 118/119 的分工：两个全局默认与四组 CSS 类名、`<NuxtPage>` 上的过渡与保活入口在 118/119 讲；本篇只处理布局侧与原生 View Transitions 的互斥关系。

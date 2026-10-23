@@ -150,11 +150,3 @@ if (error.value) {
 ## 下一篇
 
 235 - payload 有多重：载荷提取、pick 与序列化两道关
-
-## 本文依据
-
-- `api/composables/use-error`：定位句与 "available on both client and server"、"reactive, SSR-friendly"；`useError: () => Ref<NuxtError | undefined>` 与 `NuxtError` 六字段；Return Values 段（含 "will update automatically"）；示例小块。
-- `getting-started/error-handling`：`useError` 签名 `Ref<Error | { url, status, statusText, message, description, data }>`；`createError` 签名与三句（服务端全屏、客户端非致命、`fatal: true`）；`cause` 开发/生产那段；`movies/[slug]` 的 404 示例；`statusText` 字符集 tip；`showError` 两句与签名；`clearError` 签名与可选 redirect；`<NuxtErrorBoundary>` 三句与 tip；Node 16 的 cookie note。
-- `directory-structure/app/error`：`NuxtError` 八字段清单与"自定义字段放 `data`"（056/207 已逐句引）。
-- `api/composables/use-async-data`、`getting-started/data-fetching`：`error` 与 `status` 四值的说明（214 已逐句引）。
-- `api/components/nuxt-error-boundary`：错误边界与 `#error` 槽（095 已逐句引）。

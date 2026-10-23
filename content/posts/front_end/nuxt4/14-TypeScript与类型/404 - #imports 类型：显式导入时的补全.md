@@ -108,7 +108,3 @@ import lower from '#shared/formatters/lower'
 ## 下一篇
 
 下一篇 405 谈组件的 props 与 emits 在 Nuxt 文档里的真实覆盖范围：哪些地方官方明确说"完全定型"（布局 props、页面自定义 props、error 页），哪些属于 Vue 文档、Nuxt 页只当编译器宏类比。
-
-## 本文依据
-
-- "Nuxt exposes every auto-import with the `#imports` alias"与 `import { computed, ref } from '#imports'` 示例、`imports.autoImport: false` 及"disable auto-imports completely but it's still possible to use explicit imports from `#imports`"、`imports.scan: false`（框架函数仍自动导入、只停自有代码）（`guide/concepts/auto-imports`）；发布模块不能用自动导入、须从 `#imports` 显式引与 `node_modules` 因性能不启用自动导入（`guide/modules/module-anatomy`）；`#shared` 别名与"consistent imports regardless of the importing file's location"（`directory-structure/shared`）。

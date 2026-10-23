@@ -114,7 +114,3 @@ prepare 的那条 `::note` 没有"如何覆盖"这半句，两页在这点上写
 ## 下一篇
 
 下一篇 400 进入路由的类型化：`typedPages` 实验开关打开后，`navigateTo`、`<NuxtLink>`、`router.push()` 的入参开始按路由表受类型约束。
-
-## 本文依据
-
-- prepare 定义、"useful in a CI environment or as a `postinstall` command"、ROOTDIR 与五个选项表、`::note` 设 `NODE_ENV=production`（`api/commands/prepare`）；typecheck 定义与 vue-tsc/Golar、"If neither is installed you are offered the install command"、ROOTDIR 与七个选项表（含 `--checker`、`-b/--build`、`--no-build`）、Type checkers 与 build mode 两段、`::note`（设 `NODE_ENV=production` 可在 `.env` 或命令行覆盖）（`api/commands/typecheck`）；依赖 `typescript`+`vue-tsc` 与安装写法、project references 与四份 tsconfig（`guide/concepts/typescript`、`api/nuxt-config`，见 395/397）。

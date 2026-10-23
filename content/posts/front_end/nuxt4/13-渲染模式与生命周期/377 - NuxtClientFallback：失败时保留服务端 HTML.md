@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 376 的 `<ClientOnly>` 一视同仁地把整块留给客户端。但很多时候你**想**服务端渲染这块，只是担心里面某个组件在 SSR 时抛错、把整页带崩。`<NuxtClientFallback>` 就是给这种"容错"场景的：默认正常 SSR，出错才退。
 
 ## 它和 ClientOnly 的分工
@@ -117,7 +118,3 @@ tags:
 ## 下一篇
 
 下一篇 378 讲延迟水合 `defineLazyHydrationComponent`：服务端照常出 HTML，只是把水合推迟到可见/空闲/交互/媒体查询/条件/定时/永不这七种策略之一，降低首屏交互成本。
-
-## 本文依据
-
-- `<NuxtClientFallback>` 定义（render content on client if any children trigger an error in SSR）、`experimental.clientFallback` 的 `::note`、三个属性表（`fallbackTag` 默认 div / `fallback` / `keepFallback` 默认 false）、`@ssr-error` 只在服务端触发、`::warning`（placeholder/fallback 按 raw HTML 渲染、XSS、改用 `#fallback`/`#placeholder` 插槽）、`#fallback` 插槽示例（`api/components/nuxt-client-fallback`）。

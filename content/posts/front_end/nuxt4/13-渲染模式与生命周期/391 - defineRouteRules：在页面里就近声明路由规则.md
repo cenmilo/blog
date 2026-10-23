@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 367/379 的 routeRules 都写在 `nuxt.config` 里集中管。但"这页要不要预渲染、要不要关 SSR"这种决策，逻辑上属于那一个页面。`defineRouteRules` 就是把这个声明挪到页面文件里、就近写。
 
 ## 它是什么
@@ -102,7 +103,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 392 把预渲染的"发现"再抠细一层：爬虫具体顺着 HTML 里哪些 `<a href>` 去发现路由、`prerenderRoutes()` 与两个钩子怎么把发现不了的页补进去。
-
-## 本文依据
-
-- `defineRouteRules` 定义（"Define route rules for hybrid rendering at the page level"）、`experimental.inlineRouteRules` 的 `::read-more`、`{ prerender: true }`→routeRules `'/'` 翻译示例、`::note`（`nuxt build` 预渲染首页到 `.output/public/index.html`）、三条路径映射（`/foo/bar`、`/foo/*`、有限可选段逐条）、带正则/部分段/可重复段不应用+构建警告、自定义 `path`/`alias` 建议直接写 config（`api/utils/define-route-rules`；routeRules 属性与预渲染见 367/379/380）。

@@ -112,8 +112,3 @@ Unit Testing 的 Setup 是三步：
 ## 下一篇
 
 下一篇 491 把 `vitest.config.ts` 那份原文配置逐行拆开：三个 project 各自的 `environment`（`unit` 与 `e2e` 都是 `node`，只有 `nuxt` 是 `environment: 'nuxt'` 且必须用 `defineVitestProject`），以及官方那条 note——`defineVitestProject` **只给 Nuxt 环境的测试用**，端到端要按普通 `test.environment: 'node'` 的 project 配。
-
-## 本文依据
-
-- 测试页定位段（first-class support for end-to-end and unit testing、`@nuxt/test-utils` 及其"powers the tests we use on Nuxt itself"与模块生态）、Installation 三条可选对等依赖与四包安装命令（含 yarn/pnpm/bun 写法）、Unit Testing 限定句（currently only has support for `vitest`、括注欢迎贡献）、E2E 一句（支持 Vitest/Jest/Cucumber/Playwright）、Setup 三步（`@nuxt/test-utils/module` 可选且加的是 DevTools 里的 Vitest 集成、`vitest.config.ts`、`test/nuxt/` 之外的文件看 TypeScript Support in Tests）、两条 `::tip`（`"type": "module"` 或改名 `.m{ts,js}`；`.env.test`）、Organizing Your Tests 的目录树与"keeping the Nuxt runtime environment separated from Nuxt end-to-end tests is important for test stability"（`getting-started/testing`）
-- DevTools 与测试集成项的关系（`api/commands/devtools`、457 依据）

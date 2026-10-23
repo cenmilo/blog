@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 "配一个值、代码里能读到"这句话，在 Nuxt 里其实跨了构建期和运行期两个阶段。把这条链路走一遍，很多"设了没生效"的问题就通了。
 
 ## 第一段：.env 只在 dev/build/generate 被读
@@ -108,9 +109,3 @@ env 那一节给的例外（Production Preview）：
 ## 下一篇
 
 下一篇 336 把"只在服务端有值的组合式"归一：useRequestEvent/useRequestHeaders 在浏览器分别是 undefined/空对象，一张表看清哪些取请求信息的 API 服务端专用。
-
-## 本文依据
-
-- .env（`directory-structure/env`）：定位句；important 加进 .gitignore；"built-in .env support via c12 in development mode and when running nuxt build and nuxt generate"、"automatically loaded at dev, build and generate time ... accessible within your nuxt.config file and modules"；note 删变量不取消已设值；`--dotenv` 换文件；important 应用代码用 Runtime Config 而非 plain env；Production（"After your server is built, you are responsible for setting environment variables ... Your .env files will not be read at this point"、serverless/edge 无文件系统的设计理由、命令行/shell/云平台三种设值方式、important 生产只认 NUXT_ 前缀）；Production Preview（nuxt preview 会读 .env 的便利、需装依赖、纯静态站预渲染后无法再设）。
-- Runtime Config（`guide/going-further/runtime-config`）：值自动被运行时匹配的 NUXT_ 环境变量覆盖、两个前提、指向异名环境变量只构建期有效（见 265）。
-- useRuntimeConfig（`api/composables/use-runtime-config`）：.env 变量在 dev/build/generate 用 process.env 可读的 note。

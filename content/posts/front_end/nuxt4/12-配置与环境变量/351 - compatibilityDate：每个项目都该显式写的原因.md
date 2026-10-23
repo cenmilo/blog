@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 nuxt.config 里有一个 `compatibilityDate` 字段，很多 starter 项目会带上、也有人不写。这一篇说清它是干什么的、为什么官方希望你写。
 
 ## 它是什么
@@ -81,9 +82,3 @@ compatibilityDate 是"稳定当下"，compatibilityVersion 是"提前跨大版�
 ## 下一篇
 
 下一篇 352 讲 future 节：compatibilityVersion、multiApp、typescriptBundlerResolution 这三个提前启用未来默认行为的开关。
-
-## 本文依据
-
-- nuxt-config compatibilityDate 节（`api/nuxt-config`）："Specify a compatibility date for your app."、"This is used to control the behavior of presets in Nitro, Nuxt Image and other modules that may change behavior without a major version bump."、"We plan to improve the tooling around this feature in the future."
-- B5001（`errors/b5001`）："No compatibilityDate is set ... Nuxt uses this date to decide which behaviour defaults to apply, so your project stays stable across Nuxt and Nitro updates instead of silently picking up new defaults."；Resolution "using today's date so you opt in to the current defaults" + `compatibilityDate: 'YYYY-MM-DD'`。
-- features / future（`guide/going-further/features`）：compatibilityVersion（见 352）。

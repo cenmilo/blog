@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 普通 SSR（319 的第 7 步）是"全部渲染完才发 HTML"——首字节要等最慢的那段数据取完。流式渲染换了个顺序：先把"壳"发出去让浏览器动起来，body 内容随后一块块补。Nuxt 用实验开关 `experimental.ssrStreaming` 提供它。
 
 ## 机制
@@ -128,8 +129,3 @@ experimental: {
 ## 下一篇
 
 下一篇 325 讲 routeRules 的服务端选项：redirect、headers、cache、swr/isr、cors、proxy 这些规则各自干什么、在哪生效。
-
-## 本文依据
-
-- Experimental Features ssrStreaming 一节（`guide/going-further/experimental-features`）：机制句（"sends the HTML shell ... immediately, then streams the rendered body content progressively using Vue's renderToWebStream"）、`ssrStreaming: true` 开关；爬虫自动禁用与 botRegex（"Setting botRegex replaces the default pattern rather than adding to it"、Lighthouse 刻意排除）；warning "Response status and headers must be set before the shell is flushed" 及 Reaches/Dropped 两类（setResponseStatus/useResponseHeader/useCookie/setHeader 在 await 后被丢弃）、dev 模式点名丢弃；两个退出流式途径（routeRules streaming:false、render:route ctx.prefersStream=false）；自动退回缓冲清单；head 晚注册变客户端补丁 warning（JSON-LD/noscript/body 标签例外）；Module hooks 四条（render:route/render:html/render:html:chunk/render:html:close 的语义）；FOUC/嵌套异步组件与"用 build+preview 验"。
-- Rendering 指南（`guide/concepts/rendering`）：Hybrid Rendering 与 routeRules 概览（见 325）。

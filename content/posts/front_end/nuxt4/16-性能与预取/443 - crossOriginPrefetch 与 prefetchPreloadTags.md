@@ -101,10 +101,3 @@ Speculation Rules API 是浏览器侧的能力，官方给了指向规范的 rea
 ## 下一篇
 
 下一篇 444 讲手动预热的两个函数：`preloadComponents` 与 `prefetchComponents`。它们只对**全局注册过的组件**生效、名字必须写 PascalCase、在服务端完全没有效果，而且官方自己写明后者的当前实现和前者一模一样。
-
-## 本文依据
-
-- `crossOriginPrefetch` 定性原文、配置示例、指向 Speculation Rules API 规范的 read-more（`guide/going-further/experimental-features`）
-- 启用跨域预取的配置说明原文、`prefetch` 属性定义中"Used by the experimental crossOriginPrefetch config"（`api/components/nuxt-link`）
-- `prefetchPreloadTags` 全节：触发前提句（链接被预取、目标路由开 payload extraction、`useHead` 与 `@nuxt/image` 的 `<NuxtImg preload>` 两个来源）、降级规则与 `as="image"` 例外、只转发用户自定义 head 标签、默认关闭的理由句、Chromium/Safari 警告原文、无 `Purpose: prefetch` 头与 CDN 配额/限流/统计、配置示例、指向 issue #34953 的 read-more（`guide/going-further/experimental-features`）
-- `experimental.payloadExtraction` 三档含义与默认值（`guide/going-further/experimental-features`、`getting-started/prerendering`）

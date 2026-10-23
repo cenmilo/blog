@@ -122,15 +122,3 @@ useSeoMeta({
 ## 下一篇
 
 193 讲 JSON-LD 结构化数据：官方给的 `useHead` 写法（`script` 数组那族字段怎么组合），以及它与 189 白名单的冲突点在哪。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-seo-meta`
-  - 原文（六字段示例与定位）："The `useSeoMeta` composable lets you define your site's SEO meta tags as a flat object with full TypeScript support."；"This helps you avoid common mistakes, such as using `name` instead of `property`, as well as typos - with over 100+ meta tags fully typed."；important "This is the recommended way to add meta tags to your site as it is XSS safe and has full TypeScript support."；Usage 示例六个键（`title`、`ogTitle`、`description`、`ogDescription`、`ogImage: 'https://example.com/image.png'`、`twitterCard: 'summary_large_image'`）；"There are over 100 parameters. See the full list of parameters in the source code."
-- `https://nuxt.com/docs/4.x/api/composables/use-head`
-  - 原文（Basic Meta Tags 示例，给出渲染属性形态）：`useHead({ title: 'About Us', meta: [{ name: 'description', content: 'Learn more about our company' }, { property: 'og:title', content: 'About Us' }, { property: 'og:description', content: 'Learn more about our company' }] })`（`app/pages/about.vue`）；`title` — "Sets the page title."；`meta` — "Array of meta objects. Each element is mapped to a `<meta>` tag, where object properties correspond to HTML attributes."
-- `https://nuxt.com/docs/4.x/api/composables/use-head-safe`
-  - 原文（白名单）："`meta`: ['name', 'property', 'charset', 'content', 'media']"（`WhitelistAttributes` 对象内）；warning "potentially dangerous attributes like `innerHTML` in scripts or `http-equiv` in meta tags are automatically stripped out"；示例 `content: userBio.value // Safely sanitized`
-- `https://nuxt.com/docs/4.x/getting-started/seo-meta`
-  - 原文（同一六字段示例与 useHead 手写 meta 的对照）：`useSeoMeta({ title, ogTitle, description, ogDescription, ogImage, twitterCard })` 段；"This helps you avoid typos and common mistakes, such as using `name` instead of `property`."
-- 相关篇章（见 187、188、189、190）：`useHead` 的字段与示例、`useHeadSafe` 的属性过滤、`useSeoMeta` 的反应式与服务端条件写法

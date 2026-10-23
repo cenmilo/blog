@@ -218,22 +218,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 153 反过来讲"往里加"：`imports.dirs`、`imports.presets` 的字段、`imports:sources` / `imports:extend` / `imports:dirs` 三个构建期钩子，以及 kit 的 `addImports`、`addImportsDir`、`addImportsExtend` 各自加在哪一层。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/guide/concepts/auto-imports`
-  - 原文（Disabling Auto-imports）："If you want to disable auto-importing composables and utilities, you can set `imports.autoImport` to `false` in the `nuxt.config` file." + `imports: { autoImport: false }`；"This will disable auto-imports completely but it's still possible to use explicit imports from `#imports`."（该句链接指向本页 `#explicit-imports` 小节）
-  - 原文（Explicit Imports）："Nuxt exposes every auto-import with the `#imports` alias that can be used to make the import explicit if needed:" + `import { computed, ref } from '#imports'`
-  - 原文（Partially Disabling Auto-imports）："If you want framework-specific functions like `ref` to remain auto-imported but wish to disable auto-imports for your own code (e.g., custom composables), you can set the `imports.scan` option to `false` in your `nuxt.config.ts` file:" + `imports: { scan: false }`；"With this configuration: Framework functions like `ref`, `computed`, or `watch` will still work without needing manual imports. Custom code, such as composables, will need to be manually imported in your files."；warning "**Caution:** This setup has certain limitations: If you structure your project with layers, you will need to explicitly import the composables from each layer, rather than relying on auto-imports. This breaks the layer system's override feature. If you use `imports.scan: false`, ensure you understand this side-effect and adjust your architecture accordingly."
-  - 原文（Auto-imported Components）："Nuxt also automatically imports components from your `~/components` directory, although this is configured separately from auto-importing composables and utility functions."；"To disable auto-importing components from your own `~/components` directory, you can set `components.dirs` to an empty array (though note that this will not affect components added by modules)." + `components: { dirs: [] }`
-  - 原文（读文档约定）："In the docs, every function that is not explicitly imported is auto-imported by Nuxt and can be used as-is in your code."
-- `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 原文（imports 节定位）："## imports" / "Configure how Nuxt auto-imports composables into your application."（See 链接指向 `directory-structure/app/composables`）
-  - 原文（`imports.dirs`）："An array of custom directories that will be auto-imported. Note that this option will not override the default directories (`~/composables`, `~/utils`)." / Type `array`；示例 `dirs: ['stores']` 及注释 "Auto-import pinia stores defined in `~/stores`"
-  - 原文（`imports.global`）："### `global`" 只给 "**Type**: `boolean`" 与 "**Default:** `false`"，无说明文字
-  - 原文（`imports.scan`）："Whether to scan your `app/composables/` and `app/utils/` directories for composables to auto-import. Auto-imports registered by Nuxt or other modules, such as imports from `vue` or `nuxt`, will still be enabled." / "**Type**: `boolean`" / "**Default:** `true`"
-  - 原文（components 节）："## components" / "Configure Nuxt component auto-registration." / "Any components in the directories configured here can be used throughout your pages, layouts (and other components) without needing to explicitly import them." / Type `object` / Default `{ "dirs": [ { "path": "~/components/global", "global": true }, "~/components" ] }`；See 链接指向 `directory-structure/app/components`
-- `https://nuxt.com/docs/4.x/directory-structure/app/components` 与 `https://nuxt.com/docs/4.x/directory-structure/app/composables`
-  - 对照用（见 062、063、156）：`components` 与 `imports` 两节的 See 链接目标
-- `https://nuxt.com/docs/4.x/directory-structure/shared`
-  - 对照用（见 151）："`shared/utils` 与 `shared/types` 的自动导入方式与 `app/composables/`、`app/utils/` **identical**"；子目录需要同时加进 `imports.dirs` 与 `nitro.imports.dirs`

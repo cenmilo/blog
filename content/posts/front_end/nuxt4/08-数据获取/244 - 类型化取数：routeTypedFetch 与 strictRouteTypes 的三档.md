@@ -133,12 +133,3 @@ await $fetch('/api/todos')
 ## 下一篇
 
 245 - baseURL 的三个来源：请求选项、runtimeConfig 与 app 命名空间
-
-## 本文依据
-
-- `guide/going-further/experimental-features`：`routeTypedFetch` 一节（定义句、配置示例、"carries the `body`, `query` and `headers` a handler validates... typed as it arrives over the wire"、五条后果原文、opt-in 与 `compatibilityVersion: 5`、显式选择的两句、"This option exists only while both typings are supported..." 的 note）；`strictRouteTypes` 一节（定义与依赖句、配置示例、"a response is typed by the handler that answers it whatever this option is set to"澄清句、三档逐项原文、`$fetch` 判例三行与两条错误注释）。
-- `api/composables/create-use-fetch`：`routes` 一节（"including when `experimental.routeTypedFetch` is off"、四条限制、两个开关同开才拒绝、客户端声明隔离句、fetchdts tip）（226 已逐句引）。
-- `api/composables/use-fetch`：`query`/`params` 两行互为别名的原文（220 已逐句引）。
-- `getting-started/data-fetching`：Serializing Data From API Routes 段（"Nuxt does its best to convert the return type"）（235 已逐句引）。
-- `api/commands/typecheck`：`nuxt typecheck` 的用法与前置（035/036 已逐句引）。
-- `directory-structure/server`：服务端路由动态段与 catch-all 的记载（065 已逐句引）。

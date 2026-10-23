@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 368 里服务端第 6 步用 `useFetch`/`useAsyncData` 取数，客户端第 4 步才挂载水合。中间那句"`await`"其实决定了页面导航时用户看到什么。很多人以为 `await` 是让服务端多等一会儿——恰恰相反。这一篇把"到底谁在等谁"说清。
 
 ## Nuxt 用 `<Suspense>` 挡导航
@@ -71,7 +72,7 @@ tags:
 
 | 阶段 | 等不等 | 靠什么 |
 | --- | --- | --- |
-| 服务端渲染 | 等（无论如何都等取数完再出 HTML） | `<Suspense>` + `onServerPrefetch`，与 `await` 无关 |
+| 服务端渲染 | 等（无论如何都等取数完才出 HTML） | `<Suspense>` + `onServerPrefetch`，与 `await` 无关 |
 | 客户端导航 · 带 `await` 非 lazy | 挡导航到数据就绪 | 默认行为 |
 | 客户端导航 · 不带 `await` | 不挡，立刻切，data 后填 | 自己处理 `status`/`error` |
 | 客户端导航 · `lazy` | 不挡，请求推迟到挂载 | 显式非阻塞标记 |
@@ -87,8 +88,3 @@ tags:
 ## 下一篇
 
 下一篇 373 进入水合专题：先讲清水合是什么、为什么会同时存在"服务端 HTML"和"客户端重建"两套 DOM。
-
-## 本文依据
-
-- 取数页 Suspense 小节（"Nuxt uses Vue's `<Suspense>` component under the hood to prevent navigation before every async data is available"）、NuxtLoadingIndicator note、A note on `await` 的 "The `await` does not change the server-rendered HTML ... (`<Suspense>`, and `onServerPrefetch` under the hood)"、with/without await 两条、"Neither approach is universally better"、lazy 与不 await 的区别句、`::warning`（await+lazy 在客户端立即返回）（`getting-started/data-fetching`）。
-- 服务端第 6 步用 useFetch/useAsyncData 取数、客户端挂载水合（`guide/concepts/nuxt-lifecycle`）；`app:suspense:resolve`、`page:start`、`page:finish` 三个钩子名逐条列在 `api/advanced/hooks`（371 已展开，`directory-structure/app/app` 里也有 `app:suspense:resolve`）。

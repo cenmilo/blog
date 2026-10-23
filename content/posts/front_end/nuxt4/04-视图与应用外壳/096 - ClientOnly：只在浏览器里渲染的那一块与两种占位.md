@@ -179,24 +179,3 @@ watch(nuxtWelcomeRef, () => {
 ## 下一篇
 
 097 讲 `<DevOnly>`：它的内容为什么不会进生产构建、`#fallback` 那一支在生产里顶替什么，以及官方那句"一定要用 `nuxt preview` 来测这一支"。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/client-only`
-  - 原文（标题与描述）："Render components only in client-side with the \<ClientOnly> component."；"The `<ClientOnly>` component is used for purposely rendering a component only on client side."
-  - 原文（note）："The content of the default slot will be tree-shaken out of the server build. (This does mean that any CSS used by components within it may not be inlined when rendering the initial HTML.)"
-  - 原文（Props）："`placeholderTag` | `fallbackTag`: specify a tag to be rendered server-side."；"`placeholder` | `fallback`: specify a content to be rendered server-side."
-  - 原文示例：`<ClientOnly fallback-tag="span" fallback="Loading comments..."><Comment /></ClientOnly>`，注释 `<!-- The <Comment> component will only be rendered on client-side -->`
-  - 原文（Slots）："`#fallback`: specify a content to be rendered on the server and displayed until `<ClientOnly>` is mounted in the browser."
-  - 原文示例：`<ClientOnly fallback-tag="span">` 三条注释 `<!-- This renders the "span" element on the server side -->`、`<!-- this component will only be rendered on client side -->`、`<!-- this will be rendered on server side -->`，插槽内 `<p>Loading comments...</p>`
-  - 原文（Accessing HTML Elements）："Components inside `<ClientOnly>` are rendered only after being mounted. To access the rendered elements in the DOM, you can watch a template ref:"；示例 `useTemplateRef('nuxtWelcomeRef')`、`// The watch will be triggered when the component is available`、`console.log('<NuxtWelcome /> mounted')`、`}, { once: true })`、`<ClientOnly><NuxtWelcome ref="nuxtWelcomeRef" /></ClientOnly>`
-  - 原文 Source：`packages/nuxt/src/app/components/client-only.ts`
-- `https://nuxt.com/docs/4.x/guide/concepts/rendering`
-  - 原文（示例注释）：`const counter = ref(0) // executes in server and client environments`；`counter.value++ // executes only in a client environment`
-  - 原文："On the initial request, the `counter` ref is initialized in the server since it is rendered inside the `<p>` tag. The contents of `handleClick` is never executed here. During hydration in the browser, the `counter` ref is re-initialized. The `handleClick` finally binds itself to the button; Therefore it is reasonable to deduce that the body of `handleClick` will always run in a browser environment."
-  - 原文："Middlewares and pages run in the server and on the client during hydration. Plugins can be rendered on the server or client or both. **Components can be forced to run on the client only as well.** Composables and utilities are rendered based on the context of their usage."
-  - 原文（important）："When importing a library that relies on browser APIs and has side effects, make sure the component importing it is only called client-side. Bundlers do not treeshake imports of modules containing side effects."
-  - 原文（预渲染兜底页）："Because a single file is served for every missing path, the error page cannot depend on the request: `useRoute()`, `useRequestURL()` and data fetched with the current path will hold the build-time values in the prerendered HTML and be corrected on hydration. Wrap request-specific markup in `<ClientOnly>`, and skip request-specific data fetching with `import.meta.prerender`:"
-  - 原文示例（`error.vue`）：`<h1>{{ error.statusCode }}</h1>` 与 `<ClientOnly><p>Nothing found at {{ route.path }}</p></ClientOnly>`
-  - 原文："You can enable client-side only rendering with Nuxt in your `nuxt.config.ts`:" + `export default defineNuxtConfig({ ssr: false, })`
-  - 原文（tip）："For more examples about writing Vue code without hydration mismatch, see the Vue docs."

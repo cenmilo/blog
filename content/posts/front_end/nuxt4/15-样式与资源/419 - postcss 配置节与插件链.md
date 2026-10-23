@@ -103,7 +103,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 420 讲 CSS 框架接入的官方口径：styling 那页给的六个模块（UnoCSS、Tailwind CSS、Fontaine、Pinceau、Nuxt UI、Panda CSS）与一句重要态度——没有模块不等于不能用，自己配即可。
-
-## 本文依据
-
-- "Nuxt comes with postcss built-in. You can configure it in your nuxt.config file."、`postcss.plugins` 以包名为键的示例（`postcss-nested`/`postcss-custom-media`）、`lang="postcss"` 语法高亮、默认四个预配置插件及各自官方描述（`getting-started/styling`）；`## postcss` 的 `order`（"A strategy for ordering PostCSS plugins."，function）与 `plugins`（含只具名展开的 `autoprefixer`、`cssnano`，类型 object）（`api/nuxt-config`）。

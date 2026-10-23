@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 `import ... from '~/components/Foo'` 和 `from 'data/test.json'` 这两种写法能成立，靠的是两个配置：`alias`（路径前缀映射）和 `extensions`（补全扩展名）。这一篇一起讲。
 
 ## alias：路径前缀指哪
@@ -103,9 +104,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 358 讲 typesDir：生成的类型与 tsconfig 放哪、它为什么默认跟 buildDir 走却被刻意分开。
-
-## 本文依据
-
-- nuxt-config alias 节（`api/nuxt-config`）：定位句（"improve your DX by defining additional aliases to access custom directories within your JavaScript and CSS"）、十项默认表、webpack 上下文必须 `~` 前缀 callout（image sources, CSS - but not JavaScript）、别名自动进生成 tsconfig 的 callout、images/style/data 示例与 `~images/main-bg.jpg`/`@import '~style/...'`。
-- nuxt-config extensions 节："The extensions that should be resolved by the Nuxt resolver."、默认六项（.js/.jsx/.mjs/.ts/.tsx/.vue，无 .json）。
-- vite.resolve.extensions 是另一份、同名不同扩展未定义（见 081）。

@@ -168,26 +168,3 @@ start({ force: true })
 ## 下一篇
 
 103 讲应用外壳这个概念：一趟导航里哪些区域是固定的、哪些会随路由更换，以及 090 那五层怎么组合成一个可持续的外壳——这是把前面这些出口组件串起来的收束篇。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/components/nuxt-loading-indicator`
-  - 原文（描述与首句）："Display a progress bar between page navigations."
-  - 原文（Usage）："Add `<NuxtLoadingIndicator/>` in your `app.vue` or `app/layouts/`."；示例 `<NuxtLoadingIndicator />` 与 `<NuxtLayout><NuxtPage /></NuxtLayout>` 并列
-  - 原文（Slots）："You can pass custom HTML or components through the loading indicator's default slot."
-  - 原文（Props）："`color`: The color of the loading bar. It can be set to `false` to turn off explicit color styling."；"`errorColor`: The color of the loading bar when `error` is set to `true`."；"`height`: Height of the loading bar, in pixels (default `3`)."；"`duration`: Duration of the loading bar, in milliseconds (default `2000`)."；"`throttle`: Throttle the appearing and hiding, in milliseconds (default `200`)."；"`estimatedProgress`: By default Nuxt will back off as it approaches 100%. You can provide a custom function to customize the progress estimation, which is a function that receives the duration of the loading bar (above) and the elapsed time. It should return a value between 0 and 100."
-  - 原文（note）："This component is optional. To achieve full customization, you can implement your own one based on its source code."
-  - 原文（note）："You can hook into the underlying indicator instance using the `useLoadingIndicator` composable, which will allow you to trigger start/finish events yourself."
-  - 原文（tip）："The loading indicator's speed gradually decreases after reaching a specific point controlled by `estimatedProgress`. This adjustment provides a more accurate reflection of longer page loading times and prevents the indicator from prematurely showing 100% completion."
-  - 原文 link-example 指向 `https://nuxt.com/docs/examples/routing/pages`；Source 指向 `packages/nuxt/src/app/components/nuxt-loading-indicator.ts`
-- `https://nuxt.com/docs/4.x/api/composables/use-loading-indicator`
-  - 原文（描述）："This composable gives you access to the loading state of the app page."
-  - 原文（Description）："A composable which returns the loading state of the page. Used by `<NuxtLoadingIndicator>` and controllable. It hooks into `page:loading:start` and `page:loading:end` to change its state."
-  - 原文（Parameters）："`duration`: Duration of the loading bar, in milliseconds (default `2000`)."；"`throttle`: Throttle the appearing and hiding, in milliseconds (default `200`)."；"`estimatedProgress`: By default Nuxt will back off as it approaches 100%. ... It should return a value between 0 and 100."
-  - 原文（Properties）：`isLoading` — type `Readonly<ShallowRef<boolean>>`、"The loading state"；`error` — type `Readonly<ShallowRef<boolean>>`、"The error state"；`progress` — type `Readonly<ShallowRef<number>>`、"The progress state. From `0` to `100`."
-  - 原文（Methods）：`start()` — "Set `isLoading` to true and start to increase the `progress` value. `start` accepts a `{ force: true }` option to skip the interval and show the loading state immediately."；`set()` — "Set the `progress` value to a specific value. `set` accepts a `{ force: true }` option to skip the interval and show the loading state immediately."；`finish()` — "Set the `progress` value to `100`, stop all timers and intervals then reset the loading state `500` ms later. `finish` accepts a `{ force: true }` option to skip the interval before the state is reset, and `{ error: true }` to change the loading bar color and set the error property to true."；`clear()` — "Used by `finish()`. Clear all timers and intervals used by the composable."
-  - 原文（Example）：`useLoadingIndicator({ duration: 2000, throttle: 200, estimatedProgress: (duration, elapsed) => (2 / Math.PI * 100) * Math.atan(elapsed / duration * 100 / 50) })`，注释 `// This is how progress is calculated by default`
-  - 原文（Example 2）：`const { start, set } = useLoadingIndicator()`、`// same as set(0, { force: true })`、`// set the progress to 0, and show loading immediately`、`start({ force: true })`
-  - 原文 Source：`packages/nuxt/src/app/composables/loading-indicator.ts`
-- `https://nuxt.com/docs/4.x/api/components/nuxt-route-announcer`
-  - 对照用（见 101）：放置位置同为 `app.vue` 或 `app/layouts/`，同样可选、同样可基于源码自实现

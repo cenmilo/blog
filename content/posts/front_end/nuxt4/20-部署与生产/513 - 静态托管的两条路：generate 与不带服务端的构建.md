@@ -143,11 +143,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 下一篇 514 讲另一侧：Node 服务器方式部署——入口文件怎么起、`node-server` 预设的三条定性、以及 Nitro 那份"独立于 node_modules 的 dist"意味着你能只搬一个目录。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/api/commands/generate（定性句与"triggers the `nuxt build` command with the `prerender` argument set to `true`"、命令形状、Arguments 与 Options 七项、指向部署页 Static Hosting 的 read-more、五条运行命令）
-- https://nuxt.com/docs/4.x/getting-started/prerendering（Crawl-based Pre-rendering 的等价句与默认行为、`.output/public` 与 `npx serve`、200/404 兜底、爬虫四步与"not linked to a discoverable page"结论句、Selective Pre-rendering 三份配置示例、顶层 `prerender` 与 `nitro.prerender` 的分工、`defineRouteRules` 需 `experimental.inlineRouteRules`、Payload Extraction 三种取值与默认值、三条 practical consequences、`prerenderRoutes`/`prerender:routes`/`prerender:generate` 三段）
-- https://nuxt.com/docs/4.x/getting-started/deployment（Static Hosting 两条路与 `ssr: false` 的空 `<div id="__nuxt"></div>`、丢 SEO 与建议 `<ClientOnly>`、`_payload.json`）
-- https://nuxt.com/docs/4.x/guide/concepts/rendering（What are 200.html and 404.html 的写入条件；Hybrid Rendering 在 `nuxt generate` 下不可用的 `::important`）
-- https://nuxt.com/docs/4.x/directory-structure/env（纯静态站点预渲染后无法设置运行时配置的说明）

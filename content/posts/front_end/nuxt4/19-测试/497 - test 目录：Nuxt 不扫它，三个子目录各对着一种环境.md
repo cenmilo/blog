@@ -108,10 +108,3 @@ tags:
 ## 下一篇
 
 下一篇 498 讲怎么给自动导入的组合式函数写测试：`mockNuxtImport` 的三种写法、它为什么一个文件里只能对同一个导入用一次，以及 `vi.hoisted` 那条绕法。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/directory-structure/test（整页：recommended place 与 "Nuxt does not scan it the way it does `app/` or `server/`" 的原句、目录树、三条子目录定义、指向 Organizing Your Tests 的 read-more）
-- https://nuxt.com/docs/4.x/getting-started/testing（Organizing Your Tests 的目录树与四条文件；TypeScript 小节中 `test/nuxt/` 与 `tests/nuxt/` 并列；`mountSuspended`/`renderSuspended`/`mockNuxtImport`/Playwright 各示例的文件名；e2e Setup 示例 `test/my-test.spec.ts`）
-- https://nuxt.com/docs/4.x/getting-started/testing（Conflict with End-To-End Testing 一节：两种环境不能同文件的原因句、`// @vitest-environment nuxt` 注释与 "name your runtime unit test files with the `.nuxt.spec.ts` extension"、`app.nuxt.spec.ts` 与 `app.e2e.spec.ts` 两份示例文件名）
-- https://nuxt.com/docs/4.x/guide/modules/testing（`test/fixtures/ssr/nuxt.config.ts` 与 `test/rendering.ts`）

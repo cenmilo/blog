@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 314–316 都在"读"这次请求。这一篇反过来，给这次**响应**加一个头。工具是 `useResponseHeader`。
 
 ## 它是什么、怎么用
@@ -102,7 +103,3 @@ export default defineNuxtRouteMiddleware((to, from) => {
 ## 下一篇
 
 下一篇 318 讲 `useRequestFetch`：SSR 取数时把这次请求的上下文和头自动转发过去，和手动 useRequestHeaders 转发的对比。
-
-## 本文依据
-
-- useResponseHeader（`api/composables/use-response-header`）：定位句；important "This composable is available in Nuxt v3.14+."；"set any server response header within your pages, components, and plugins."；`useResponseHeader('X-My-Header')` + `header.value = 'my-value'` 基本用法；`test.vue` 按页示例；`my-header-middleware.ts` 中间件示例（"for example in Nuxt middleware to set a response header for all pages"）。

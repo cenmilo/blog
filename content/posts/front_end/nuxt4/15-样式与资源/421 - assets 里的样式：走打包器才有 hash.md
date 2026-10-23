@@ -131,7 +131,3 @@ const logoUrl = (await logos[props.theme]()).default
 ## 下一篇
 
 下一篇 422 讲 `public/`：文件按根 URL 直出、保留原文件名，以及静态字面量会补 `app.baseURL`、运行时拼的不会这个前缀差别。
-
-## 本文依据
-
-- "The assets/ directory is used to add all the website's assets that the build tool will process"、三类内容清单、"If you want to serve assets from the server ... look at the public/ directory"（`directory-structure/app/assets`）；两目录对照（public as-is / assets 交 Vite 或 webpack 处理）、`::note` 不提供 `/assets/my-file.png` 静态 URL、无自动扫描且可换名、`~/assets/` 引用与 `<img src="~/assets/img/nuxt.png">` 示例、Static vs. Dynamic `src` 三段（字面量重写、public 路径包 baseURL、bundled 路径变 import 解析到 hashed output）、`app.baseURL` 运行时应用因此部署期才定的也能工作但仅限构建器可见的字面量、`:src` 运行时拼接不重写与自行用 `useRuntimeConfig().app.baseURL`+`joinURL`、`?url` 显式导入与 `import.meta.glob`（eager/lazy、每个匹配都进产物、eager 增大初始 JS）、`::warning` SSR 前须 await（`getting-started/assets`）。

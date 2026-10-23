@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 上一篇（351）的 compatibilityDate 是"把默认锁在现在"。这一篇的 `future` 相反——"把某些未来的默认提前打开"。
 
 ## future 是干嘛的
@@ -99,9 +100,3 @@ future: { multiApp: true }
 
 ## 下一篇
 下一篇 353：features 节：文档里那几个可选特性开关
-
-## 本文依据
-
-- nuxt-config future 节（`api/nuxt-config`）：read-more 指向 features#features、"opting-in to new features that will become default in a future (possibly major) version"。
-- Features `future` 节（`guide/going-further/features`）：定位句 "There is also a `future` namespace for early opting-in to new features that will become default in a future (possibly major) version of the framework."；compatibilityVersion（"Setting compatibilityVersion to 5 changes defaults throughout ... opt in to Nuxt v5 behaviour, including enabling the Vite Environment API"、read-more 指向 upgrade#testing-nuxt-5）；multiApp（"early access to the experimental multi-app support"、tracker #21635）；typescriptBundlerResolution（"Bundler module resolution ... recommended setting for frameworks like Nuxt and Vite"、false 退回 legacy Node 模式）。
-- compatibilityDate（`api/nuxt-config` / `errors/b5001`）：锁当前默认、防漂移（见 351）。

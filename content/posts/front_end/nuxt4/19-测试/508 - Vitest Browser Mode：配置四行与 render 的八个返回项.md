@@ -149,8 +149,3 @@ it('can render using the render helper', async () => {
 ## 下一篇
 
 下一篇 509 把端到端这一侧的方法面收齐：三个取页面的方法各自返回什么、`createPage` 与 Playwright 运行器与 Browser Mode 三种浏览器入口怎么选。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/testing（Vitest Browser Mode 整节：定性句、Setup 两步（`@vitest/browser-playwright` 四包管理器安装、`projects` 内的 `defineVitestProject` 配置全文含 `name`/`include`/`browser.enabled`/`provider`/`instances`/`setupFiles` 与那条注释）、两条 `::note`（`compilerOptions.types` 与 test/browser/ 目录要加进 TS 上下文）、Usage 的两种入口示例与 `expect.element(...).toBeVisible()`、选项四项与返回八项的逐条说明含 trace mark）
-- https://nuxt.com/docs/4.x/getting-started/testing（对照：`mountSuspended`/`renderSuspended` 的 `route`/`spy`/`setupState` 措辞、Adding other test directories 小节）

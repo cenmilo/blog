@@ -100,11 +100,3 @@ export default defineNuxtConfig({
 ## 下一篇
 
 259 - 会话与登录态：官方配方把状态放在哪一层
-
-## 本文依据
-
-- `guide/going-further/experimental-features`（`cookieStore`）：定义句（含 "if supported by the browser" 与 "refresh `useCookie` ref values"）、"This flag is enabled by default, but you can disable this feature:"、`cookieStore: false` 配置块、指向 MDN CookieStore 的 read-more。
-- `api/utils/refresh-cookie`：v3.12.0 起默认开启那条 note、"Refresh useCookie values manually when a cookie has changed" 定位句与 Purpose（257 已逐句引）。
-- `api/composables/use-cookie`：`watch` 行的手动刷新提醒（256 已逐句引）。
-- `api/utils/clear-nuxt-state`、`guide/best-practices/performance`：`experimental.defaults.useState.resetOnClear` 与 `experimental.defaults.nuxtLink.prefetchOn` 两处 defaults 形态（243/253 已逐句引）。
-- `guide/going-further/experimental-features`（`granularCachedData`、`purgeCachedData`、`routeTypedFetch`）：三处"This flag is enabled by default"与兼容性版本相关的措辞（236/244 已逐句引）。

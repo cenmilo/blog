@@ -274,39 +274,3 @@ watch(status, (newStatus) => {
 ## 下一篇
 
 145 讲 `preloadRouteComponents`：怎么手动预取下一条路由的组件，以及官方示例里为什么这句调用不做 `await`。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/composables/use-route-announcer`
-  - 原文（页标题与描述）："This composable observes the page title changes and updates the announcer message accordingly."；"A composable which observes the page title changes and updates the announcer message accordingly. Used by `<NuxtRouteAnnouncer>` and controllable. It hooks into Unhead's `dom:rendered` hook to read the page's title and set it as the announcer message."
-  - 原文（版本）："This composable is available in Nuxt v3.12+."
-  - 原文（Parameters）："`politeness`: Sets the urgency for screen reader announcements: `off` (disable the announcement), `polite` (waits for silence), or `assertive` (interrupts immediately). (default `polite`)."
-  - 原文（Properties）：`message` — "**type**: `Ref<string>`" / "The message to announce"；`politeness` — "**type**: `Ref<string>`" / "Screen reader announcement urgency level `off`, `polite`, or `assertive`"
-  - 原文（Methods）："`set(message, politeness = "polite")` Sets the message to announce with its urgency level."；"`polite(message)` Sets the message with `politeness = "polite"`"；"`assertive(message)` Sets the message with `politeness = "assertive"`"
-  - 原文（Example）：`const { message, politeness, set, polite, assertive } = useRouteAnnouncer({ politeness: 'assertive' })`（`app/pages/index.vue`）
-  - 原文（callout）："For announcing dynamic in-page content changes (form validation, toasts, loading states), use `useAnnouncer` instead."
-- `https://nuxt.com/docs/4.x/api/composables/use-announcer`
-  - 原文（描述）："A composable for announcing dynamic content changes to screen readers. Unlike `useRouteAnnouncer` which automatically announces route changes, `useAnnouncer` gives you manual control over what and when to announce."；"Use this for in-page updates like form validation, async operations, toast notifications, and live content changes."
-  - 原文（版本）："This composable is available in Nuxt v4.4.2+."
-  - 原文（Parameters）："`politeness`: Sets the default urgency for screen reader announcements: `off` (disable the announcement), `polite` (waits for silence), or `assertive` (interrupts immediately). (default `polite`)"
-  - 原文（Properties）：`message` — `Ref<string>` / "The current message to announce"；`politeness` — `Ref<'polite' | 'assertive' | 'off'>` / "Screen reader announcement urgency level"
-  - 原文（Methods）："`set(message, politeness = "polite")`"；"`polite(message)` Sets the message with `politeness = "polite"`. Use for non-urgent updates that can wait for the screen reader to finish its current task."；"`assertive(message)` Sets the message with `politeness = "assertive"`. Use for urgent updates that should interrupt the screen reader immediately."
-  - 原文（Example 与 Use Cases）：`app/pages/contact.vue` 的 `submitForm` 里 `polite('Message sent successfully')` / `assertive('Error: Failed to send message')`；`app/components/LoginForm.vue` 的 `assertive(\`Form has ${errors.length} errors: ${errors.join(', ')}\`)`；`app/pages/dashboard.vue` 的 `watch(status, ...)` → `polite('Loading data...')` / `polite('Data loaded successfully')`；`app/components/Search.vue` 的 `watch(results, (newResults) => { polite(\`Found ${newResults.length} results\`) })`
-  - 原文（两条 callout）："You need to add the `<NuxtAnnouncer>` component to your app for the announcements to be rendered in the DOM."；"For automatic announcements of route/page changes, use `useRouteAnnouncer` with the `<NuxtRouteAnnouncer>` component instead."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-announcer`
-  - 原文（描述与版本）："The `<NuxtAnnouncer>` component adds a hidden element to announce dynamic content changes to assistive technologies."；"This component is available in Nuxt v4.4.2+."
-  - 原文（Usage）："Add `<NuxtAnnouncer/>` in your `app.vue` or `app/layouts/` to enable announcing dynamic content changes to screen readers. This is useful for form validation, toast notifications, loading states, and other in-page updates."；`app/app.vue` 示例把 `<NuxtAnnouncer />` 与 `<NuxtRouteAnnouncer />` 一起放在 `<NuxtLayout><NuxtPage /></NuxtLayout>` 之前
-  - 原文（Slots）："You can pass custom HTML or components through the announcer's default slot." + `<template #default="{ message }"><p>{{ message }}</p></template>`
-  - 原文（Props）："`atomic`: Controls if screen readers announce only changes or the entire content. Set to true for full content readouts on updates, false for changes only. (default `true`)"；"`politeness`: Sets the default urgency for screen reader announcements: `off` (disable the announcement), `polite` (waits for silence), or `assertive` (interrupts immediately). (default `polite`)"
-  - 原文（Differences from `<NuxtRouteAnnouncer>` 表）：Purpose — "Announces route/page changes" / "Announces any dynamic content"；Trigger — "Automatic on navigation" / "Manual via `polite()`/`assertive()`"；Message source — "Page `<title>`" / "Developer-provided"；atomic default — "`false`" / "`true`"
-  - 原文（两条 callout）："This component is optional. To achieve full customization, you can implement your own one based on its source code."；"You can hook into the underlying announcer instance using the `useAnnouncer` composable, which allows you to set custom announcement messages."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-route-announcer`
-  - 原文（描述与版本）："The `<NuxtRouteAnnouncer>` component adds a hidden element with the page title to announce route changes to assistive technologies."；"This component is available in Nuxt v3.12+."
-  - 原文（Usage）："Add `<NuxtRouteAnnouncer/>` in your `app.vue` or `app/layouts/` to enhance accessibility by informing assistive technologies about page title changes. This ensures that navigational changes are announced to users relying on screen readers."
-  - 原文（Props）："`atomic`: ... (default `false`)"；"`politeness`: Sets the urgency for screen reader announcements: ... (default `polite`)"
-  - 原文（插槽示例）：`<template #default="{ message }"><p>{{ message }} was loaded.</p></template>`
-  - 原文（callout）："For announcing in-page content changes (form validation, toast notifications, loading states, etc.), use the `<NuxtAnnouncer>` component with the `useAnnouncer` composable instead."
-- `https://nuxt.com/docs/4.x/guide/best-practices/accessibility`
-  - 原文（开篇动机）："Once your app has hydrated, it routes on the client, so the document is never reloaded and the browser no longer announces a new page or resets focus for you."
-  - 原文（Route Announcements）："Screen readers announce a full page load by themselves, but they have no way of knowing that a client-side navigation happened. `<NuxtRouteAnnouncer>` solves this by rendering a hidden live region and writing the new page title into it after every navigation."；"The announcer reads the title that Unhead rendered, so it is only as useful as your titles are. If two routes share the same `<title>`, users hear nothing on the way between them."；"When you need to announce something else, or to change how urgently it is announced, use `useRouteAnnouncer`."；示例 `const { set } = useRouteAnnouncer()` + `watch(results, (results) => { set(\`${results?.length ?? 0} results found\`) })`；"For in-page updates that are not navigations, such as form validation or toasts, use `<NuxtAnnouncer>` with `useAnnouncer` instead."
-  - 原文（Page Titles）："Because the route announcer follows the document title, giving every route a distinct title is the single most valuable thing you can do. Set a global template in `app.vue` and let each page fill in its own part:" + `useHead({ titleTemplate: title => title ? \`${title} - Nuxt\` : 'Nuxt' })`

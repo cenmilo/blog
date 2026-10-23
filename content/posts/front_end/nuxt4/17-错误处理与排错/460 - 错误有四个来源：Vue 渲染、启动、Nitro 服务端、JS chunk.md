@@ -137,12 +137,3 @@ export default defineNuxtPlugin((nuxtApp) => {
 ## 下一篇
 
 下一篇 461 讲读当前错误的那个组合式函数：`useError()` 不收任何参数，返回一个 `Ref`，**在客户端和服务端都可用**，错误状态变化时它会自动更新；它给出的 `NuxtError` 接口是六个字段——和 `error.vue` 那个错误对象的字段清单不是同一份写法。
-
-## 本文依据
-
-- 开篇的 full-stack 定性句与四类来源清单原文、`::tip` 的 SSR/CSR 释义（`getting-started/error-handling`）
-- Vue Errors 一节：`onErrorCaptured`、`vue:error`（错误冒泡到顶层时调用）、`vueApp.config.errorHandler`（"It will receive all Vue errors, even if they are handled."）、`::note` 关于 `vue:error` 基于 `onErrorCaptured`、插件写法示例与三参形态（`getting-started/error-handling`）
-- Startup Errors 一节：`app:error` 与"This includes"五项原文及第 4 项的建议句（`getting-started/error-handling`）
-- Nitro Server Errors 一句原文；`::note` 关于 fatal 定义、`Accept: application/json` 与全屏错误页、`compatibilityVersion: 5` 的两条差异（`getting-started/error-handling`）
-- Errors with JS Chunks 一节：两条成因、内置硬重载原文、`experimental.emitRouteChunkError` 的 `false`/`manual` 与自动实现链接（`getting-started/error-handling`、`guide/going-further/experimental-features`）
-- 代码分割与 chunk 数量的关系（`directory-structure/app/components`、`guide/concepts/server-components`）

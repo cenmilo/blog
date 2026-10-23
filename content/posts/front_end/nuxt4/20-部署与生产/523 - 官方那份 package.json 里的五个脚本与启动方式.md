@@ -128,11 +128,3 @@ export default defineEventHandler(() => ({ status: 'ok' }))
 ## 下一篇
 
 下一篇 524 讲上线前该核对的四件事：错误 `cause` 在生产不会外泄、chunk 加载失败有内置处理、启动错误与 Nitro 服务端错误各自能钩到哪一层。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/directory-structure/package（引导句与整份最小 `package.json`：name/private/type/五个脚本/三个依赖、指向 npm 文档的 read-more）
-- https://nuxt.com/docs/4.x/api/commands/prepare（`.nuxt` 与类型生成、"useful in a CI environment or as a `postinstall` command"）
-- https://nuxt.com/docs/4.x/api/commands/build、https://nuxt.com/docs/4.x/api/commands/generate、https://nuxt.com/docs/4.x/api/commands/preview（三条命令各自的定性句与 `nuxt start` 同义说明）
-- https://nuxt.com/docs/4.x/getting-started/deployment（启动命令与默认 3000、`::important` 关于 `NODE_ENV=production` 与 `[Vue Router warn]`、`ecosystem.config.cjs` 全文、`server/api` 与 `server/routes` 的前缀规则来自 `directory-structure/server`）
-- https://nuxt.com/docs/4.x/guide/modules/server-compatibility 与 https://nuxt.com/docs/4.x/guide/going-further/server-imports（文档里最接近状态端点的服务端处理函数示例形态；整套文档无 health check 记载的结论据此核对）

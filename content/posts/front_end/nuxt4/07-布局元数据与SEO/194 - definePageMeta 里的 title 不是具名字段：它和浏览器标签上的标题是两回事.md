@@ -135,10 +135,3 @@ definePageMeta({
 ## 下一篇
 
 195 - head 标签的去重与清理：key、patch 与 dispose 三处原文
-
-## 本文依据
-
-- `api/utils/define-page-meta`：`PageMeta` 接口全文（15 个具名字段 + `[key: string]: unknown`）；页首定位句 "a compiler macro that you can use to set metadata for your **page** components located in the [`app/pages/`] directory (unless set otherwise)"。
-- `getting-started/seo-meta`：`With definePageMeta` 小节三句原文与两段示例（`title: 'Some Page'` 与 `layouts/default.vue` 里的 `content: \`App Name - ${route.meta.title}\``）；`app.head` 示例里的 `title: 'Nuxt', // default fallback title` 注释；important 框 "This method does not allow you to provide reactive data. We recommend using `useHead()` in `app.vue`."。
-- `api/composables/use-head`：参数表 `title` 行 "Sets the page title."；`titleTemplate` 行 "Configures a dynamic template to customize the page title. Can be a string with `%s` placeholder or a function."。
-- `guide/going-further/experimental-features`：`scanPageMeta` 节 "specifically `alias`, `name`, `path`, `redirect`, `props` and `middleware`" 与 "This only works with static or strings/arrays rather than variables or conditional assignment."；`extraPageMetaExtractionKeys` 节 "This option allows passing additional keys to extract from the page metadata when using `scanPageMeta`." 与 `foo: 'bar'` 示例；`extractSerializablePageMeta` 节 "By default, Nuxt only reads a fixed list of `definePageMeta()` keys at build time (plus anything in `extraPageMetaExtractionKeys`); everything else is resolved at runtime from a separate module generated per page." 与含 `title: 'Dashboard'` 的示例。

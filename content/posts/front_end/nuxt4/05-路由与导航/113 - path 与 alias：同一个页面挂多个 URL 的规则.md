@@ -130,21 +130,3 @@ definePageMeta({
 ## 下一篇
 
 114 讲动态段与可选段的差别：`[id].vue` 与 `[[id]].vue` 各自匹配什么、为什么可选段必须用**双层**中括号，以及 `users-[group]/[id].vue` 这种"混合文字与参数"的目录名怎么取值。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/utils/define-page-meta`
-  - 原文（`path`）："You may define a custom regular expression if you have a more complex pattern than can be expressed with the file name."；Type `string`
-  - 原文（Using a Custom Regular Expression）："A custom regular expression is a good way to resolve conflicts between overlapping routes, for instance: The two routes '/test-category' and '/1234-post' match both `[postId]-[postSlug].vue` and `[categorySlug].vue` page routes."；"To make sure that we are only matching digits (`\d+`) for `postId` in the `[postId]-[postSlug]` route, we can add the following to the `[postId]-[postSlug].vue` page template"；示例 `definePageMeta({ path: '/:postId(\\d+)-:postSlug' })`；"For more examples see Vue Router's Matching Syntax"
-  - 原文（`alias`）："Aliases for the record. Allows defining extra paths that will behave like a copy of the record. Allows having paths shorthands like `/users/:id` and `/u/:id`. All `alias` and `path` values must share the same params."；Type `string | string[]`
-  - 原文（`redirect`）："Where to redirect if the route is directly matched. The redirection happens before any navigation guard and triggers a new navigation with the new target location."；Type `RouteRecordRedirectOption`
-  - 原文（`name`）："You may define a name for this page's route. By default, name is generated based on path inside the `app/pages/` directory."
-  - 原文（Type 签名）：`name?: string`、`path?: string`、`props?: RouteRecordRaw['props']`、`alias?: string | string[]`、`groups?: string[]`、`redirect?: RouteRecordRedirectOption`、`validate?: ((route: RouteLocationNormalized) => boolean | Promise<boolean> | Partial<NuxtError> | Promise<Partial<NuxtError>>)`、`[key: string]: unknown`
-- `https://nuxt.com/docs/4.x/directory-structure/app/pages`
-  - 原文（`#### path`）："You may define a path matcher, if you have a more complex pattern than can be expressed with the file name. See the `vue-router` docs for more information."（链接指向 route-matching-syntax 的 Custom-regex-in-params 一节）
-  - 原文（`#### alias`）："You can define page aliases. They allow you to access the same page from different paths. It can be either a string or an array of strings as defined in the vue-router documentation."
-  - 原文（`#### name`）："You may define a name for this page's route."
-  - 原文（`#### props`）："Allows accessing the route `params` as props passed to the page component."
-  - 原文（Dynamic Routes）："If you place anything within square brackets, it will be turned into a dynamic route parameter. You can mix and match multiple parameters and even non-dynamic text within a file name or directory."
-- `https://nuxt.com/docs/4.x/getting-started/routing`
-  - 对照用（见 110、112）：生成的路由记录形如 `{"path": "/posts/:id", "component": "pages/posts/[id].vue"}`；`{ name: 'posts-id', params: { id: 123 } }` 渲染成 `<a href="/posts/123">`

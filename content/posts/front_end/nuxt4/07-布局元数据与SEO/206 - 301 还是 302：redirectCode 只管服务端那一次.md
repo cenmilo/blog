@@ -137,11 +137,3 @@ export default defineNuxtRouteMiddleware((to, from) => {
 ## 下一篇
 
 207 - 错误页那一层要不要套外壳：它不是路由所以没有页面元数据
-
-## 本文依据
-
-- `api/utils/navigate-to`：`redirectCode` 条目全文（Type `number`、Default `302`、两句说明含 MDN 状态码链接）；`replace` 条目全文；`NavigateToOptions` 四键接口；Within Route Middleware 的正反两段示例与三句说明（"you must **return its result**"、"❌ This will not work as expected"、"will be executed but not returned, which may lead to unexpected behavior"）；`to` 参数默认 `'/'`。
-- `getting-started/server`：`routeRules` 示例三行（`'/': { prerender: true }` 的注释 "Generated at build time for SEO purpose"、`cache: { maxAge: 60 * 60 }`、`redirect: { to: '/new-page', statusCode: 302 }` 的注释 "Redirection to avoid 404"）与原话 "Nuxt compiles the rules, and the default server builder (Nitro) applies the server-side ones."
-- `api/kit/pages`：`extendRouteRules('/preview', { redirect: { to: '/preview-new', statusCode: 302 } })` 与 `extendPages` 并置的模块示例。
-- `api/utils/define-page-meta`：`redirect?: RouteRecordRedirectOption`；字段说明中"早于任何导航守卫"这一条（与 135 同源）。
-- `directory-structure/app/middleware`：`navigateTo` 与 `sendRedirect` 的分工（124 已引 Nitro 路由那条 warning）。

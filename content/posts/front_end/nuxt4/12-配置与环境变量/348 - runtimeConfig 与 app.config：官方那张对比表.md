@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 340 讲了 runtimeConfig 的内部分层。这一篇讲**它和 app.config 之间怎么选**——官方 configuration 页有专门一节和一张表。
 
 ## 两句选型判据
@@ -78,8 +79,3 @@ configuration 页的表原文：
 ## 下一篇
 
 下一篇 349 专讲 .env 与密钥：文档给的存法、生产不读 .env、以及哪些值绝不能进 .env 进而被 runtimeConfig 下发前端。
-
-## 本文依据
-
-- Configuration（`getting-started/configuration`）：runtimeConfig vs app.config 节两条判断句 + 七行对比表（Client-side Hydrated/Bundled、Environment variables、Reactive、Types support Partial/Yes、Configuration per request、HMR、Non-primitive JS types）；App Configuration 节（app.config 暴露构建期可定的公开变量、不能被环境变量覆盖、defineAppConfig/useAppConfig）。
-- app.config.ts / runtime-config（`directory-structure/app/app-config`、`guide/going-further/runtime-config`）：app.config 禁密钥（264）、updateAppConfig 与 HMR（266）、per-request 副本（265/313）；runtimeConfig 环境变量覆盖（342）与 payload 水合（264）。

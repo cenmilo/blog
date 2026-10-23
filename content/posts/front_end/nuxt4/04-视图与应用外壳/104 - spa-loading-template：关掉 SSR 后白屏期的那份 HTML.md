@@ -150,29 +150,4 @@ export default defineNuxtConfig({
 
 ## 下一篇
 
-105 讲读官方文档时会撞上的两种符号：`#imports`、`#server`、`#build` 这类以 `#` 开头的导入别名分别指向哪里，以及文档里那些 `:::note`、`::code-group`、`::read-more` 是什么语法、为什么不能直接粘进 `.vue` 文件。
-
-## 本文依据
-
-- `https://nuxt.com/docs/4.x/api/nuxt-config`
-  - 原文（spaLoadingTemplate 节）："Boolean or a path to an HTML file with the contents of which will be inserted into any HTML page rendered with `ssr: false`."
-  - 原文三条：
-    - "If it is unset, it will use `~/spa-loading-template.html` file in one of your layers, if it exists."
-    - "If it is false, no SPA loading indicator will be loaded."
-    - "If true, Nuxt will look for `~/spa-loading-template.html` file in one of your layers, or a default Nuxt image will be used."
-  - 原文："Some good sources for spinners are SpinKit or SVG Spinners."（SpinKit 指向 `https://github.com/tobiasahlin/SpinKit`，SVG Spinners 指向 `https://icones.js.org/collection/svg-spinners`）
-  - 原文：Default: `null`
-  - 原文（Example）："\~/spa-loading-template.html"，其后完整代码块内容为 `<!-- https://github.com/barelyhuman/snips/blob/dev/pages/css-loader.md -->`、`<div class="loader"></div>` 以及 `.loader` 规则（`display: block`、`position: fixed`、`z-index: 1031`、`top: 50%`、`left: 50%`、`transform: translate(-50%, -50%)`、`width: 18px`、`height: 18px`、`box-sizing: border-box`、`border: solid 2px transparent`、`border-top-color: #000`、`border-left-color: #000`、`border-bottom-color: #efefef`、`border-right-color: #efefef`、`border-radius: 50%`、`-webkit-animation: loader 400ms linear infinite`、`animation: loader 400ms linear infinite`）与 `@-webkit-keyframes loader` / `@keyframes loader`（`0%` 到 `100%` 的 `rotate(0deg)` → `rotate(360deg)`）
-  - 原文（devServer.loadingTemplate）：类型为 `function`，说明为"用于显示加载屏的模板"
-  - 原文（alias 默认值）：`"~": "/<rootDir>/app"`；原文（srcDir）：默认 `"app"`（Nuxt 4）、相对路径相对 `rootDir`
-- `https://nuxt.com/docs/4.x/guide/concepts/rendering`
-  - 原文（note）："If you do use `ssr: false`, you should also place an HTML file in `~/spa-loading-template.html` with some HTML you would like to use to render a loading screen that will be rendered until your app is hydrated."
-  - 原文："You can enable client-side only rendering with Nuxt in your `nuxt.config.ts`:" + `export default defineNuxtConfig({ ssr: false, })`
-  - 原文（水合）："This is called **Hydration**. When hydration is complete, the page can enjoy benefits such as dynamic interfaces and page transitions."
-  - 原文（静态托管）："You might only need a single `index.html` file, plus `200.html` and `404.html` fallbacks"
-- `https://nuxt.com/docs/4.x/api/components/client-only`
-  - 对照用（见 096）："`#fallback`: specify a content to be rendered on the server and displayed until `<ClientOnly>` is mounted in the browser."
-- `https://nuxt.com/docs/4.x/api/components/nuxt-loading-indicator`
-  - 对照用（见 102）："Display a progress bar between page navigations."；"`throttle`: Throttle the appearing and hiding, in milliseconds (default `200`)."
-- `https://nuxt.com/docs/4.x/directory-structure/layers`
-  - 对照用（见 068）：图层需要 `nuxt.config.ts`；官方的 "in one of your layers" 即指这份模板也可以由层提供
+105 讲读官方文档时会撞上的两种符号：`#imports`、`#server`、`#build` 这类以 `#` 开头的导入别名分别指向哪里，以及文档里那些 `::note`、`::code-group`、`::read-more` 是什么语法、为什么不能直接粘进 `.vue` 文件。

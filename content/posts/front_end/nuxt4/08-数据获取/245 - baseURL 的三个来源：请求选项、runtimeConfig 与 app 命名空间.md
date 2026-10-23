@@ -169,12 +169,3 @@ export default defineNuxtPlugin((NuxtApp) => {
 ## 下一篇
 
 246 - 刷新与导航：refreshNuxtData、key 与保活组件的竞态
-
-## 本文依据
-
-- `api/composables/use-fetch`：选项表 `baseURL` 行与 `query`/`params`/`cache` 相邻各行；`createUseFetch` 的 tip（"pre-defined defaults (like `baseURL` or auth headers）"）。
-- `api/composables/create-use-fetch`：`baseURL: 'https://api.nuxt.com'` 两处示例、Default vs Override Mode 两段与其注释句、`routes` 一节 "Do not prefix them with the `baseURL`." 与匹配规则。
-- `api/composables/use-runtime-config`：runtimeConfig 配置块（`apiSecret` 与 `public.apiBase` 的注释）、public/非 public 归属句、`server/api/test.ts` 示例与两侧可见性总结句、环境变量段（`NUXT_PUBLIC_API_BASE`/`NUXT_API_SECRET` 示例、`.env` 只在 development 与 build/generate、生产不用 `.env`）、`app` 命名空间两段（含 reserved namespace 的 note）、`app.baseURL` 三句与插件示例、`app.cdnURL` 与 `NUXT_APP_CDN_URL`。
-- `api/utils/dollarfetch`、`guide/recipes/custom-usefetch`：SSR 打内部 API 直接调用函数、省一次请求的两句（211/238 已逐句引）。
-- `api/nuxt-config`（app.baseURL）：说明句、默认 `"/"`、`NUXT_APP_BASE_URL` 与启动命令示例（222 已逐句引）。
-- `getting-started/seo-meta`：`cdnURL` 解析与"字面路径不解析"整段 note（186/201 已逐句引）。

@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 接口里抛了个 `createError({ status: 400, message: '邮箱格式不对' })`，前端 `useFetch` 拿到 `error`，点开却发现那句中文 `message` 不见了、只剩状态码。这不是 bug，是官方定的下发规则。这一篇讲清"为什么"和"那我要给前端带信息该怎么办"。
 
 ## 规则：API 路由里的 message 不下发
@@ -79,8 +80,3 @@ tags:
 ## 下一篇
 
 下一篇 310 讲 `showError`：在应用侧主动抛一个可被渲染成错误页的错误，以及它和 createError、app:error 钩子的关系。
-
-## 本文依据
-
-- createError（`api/utils/create-error`）：In API Routes 一节原句——"using `createError` by passing an object with a short `statusText` is recommended because it can be accessed on the client side. Otherwise, a `message` passed to `createError` on an API route will not propagate to the client. Alternatively, you can use the `data` property to pass data back to the client. When handling the error with `useFetch`, the custom data is available at `error.value.data.data`."；安全句 "avoiding to put dynamic user input to the message to avoid potential security issues."；参数表 `{ cause, data, message, name, stack, status, statusText, fatal }`（NuxtError 字段，见 308）。
-- Error Handling（`getting-started/error-handling`）：NuxtError 结构（见 056/90-109 记录，message/status/statusText/data 为错误对象字段）。

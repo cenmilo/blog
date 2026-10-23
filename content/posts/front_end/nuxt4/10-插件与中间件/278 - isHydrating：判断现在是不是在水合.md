@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 先把术语讲平：**水合（hydration）= 浏览器拿到服务器发来的那段 HTML 后，Vue 接手它、把事件监听和组件状态挂上去，让静态 HTML 变成可交互应用的过程。** `nuxtApp.isHydrating` 就是这段过程进行中时为 `true` 的一个布尔开关。
 
 ## isHydrating 是什么
@@ -95,8 +96,3 @@ export default defineComponent({
 ## 下一篇
 
 下一篇 279 讲 `nuxtApp.payload`：服务端算出来、发给浏览器的那份数据到底长什么样，`data` 和 `state` 两个键分别装什么，以及自定义序列化（reducer/reviver）。
-
-## 本文依据
-
-- useNuxtApp（`api/composables/use-nuxt-app`）`isHydrating` 一节："Use `nuxtApp.isHydrating` (boolean) to check if the Nuxt app is hydrating on the client side." 与 `nuxt-error-boundary.ts` 里 `onErrorCaptured` + `import.meta.client && !nuxtApp.isHydrating` 示例。
-- Nuxt and Hydration（`guide/best-practices/hydration`）："Why fixing hydration issues is important"；性能与功能两类的原文要点（re-render entire component tree、flashing/layout shifts、事件监听不挂、state out of sync、搜索引擎索引不同内容）；五类成因与各自 Solution（`localStorage`→`useCookie`、`Math.random()`→`useState('random', ...)`、`window?.innerWidth`→媒体查询、第三方库→"Initialise libraries after hydration has completed"（`onMounted`）、时间→`NuxtTime` 或 `ClientOnly`+`onMounted`）；In Summary 四条；以及 `if (import.meta.client) { ... init() }` 被列为反例。

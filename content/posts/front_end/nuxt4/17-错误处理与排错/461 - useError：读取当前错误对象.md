@@ -134,9 +134,3 @@ throw createError({
 ## 下一篇
 
 下一篇 462 讲两个动作的分工：`createError()` 是**用来 throw 的**、双端可用，服务端抛出会触发全屏错误页、客户端抛出默认是非致命的，要全屏得自己写 `fatal: true`；`showError()` 是直接调用它、任何时刻都能调（服务端限中间件、插件或 `setup()`），而官方对它的建议是"其实更推荐用 `throw createError()`"。
-
-## 本文依据
-
-- `useError` 那一节：定位句（global Nuxt error、available on both client and server、reactive SSR-friendly error state）、`const error = useError()` 用法、"This composable does not take any parameters"、返回值段（`Ref`、无错误时 `undefined`、自动更新）、`NuxtError<DataT = unknown>` 六字段接口与 `() => Ref<NuxtError | undefined>` 签名、`console.error` 示例、指向错误处理页的 read-more、源文件 `composables/error.ts`（`api/composables/use-error`）
-- 错误处理那一节：`useError` 签名行（含 `url`、`description`）、两条 `::note`（错误页是独立页面加载所以中间件会再跑一遍、可在中间件里用 `useError`；Node 16 下在错误页设 cookie 会覆盖先前 cookie 且官方建议升级）、`::important` 关于依赖插件的内容要先检查、`clearError` 的可选 redirect（`getting-started/error-handling`）
-- `error.vue` 那一节：错误页只有 `error` 一个 prop、八字段 `NuxtError` 清单（含 `unhandled` 与两个标注 legacy/deprecated 的等价字段）、"自定义字段会丢失、应放进 `data`"及其 `createError({ data: {...} })` 示例、`import type { NuxtError } from '#app'`（`directory-structure/app/error`）

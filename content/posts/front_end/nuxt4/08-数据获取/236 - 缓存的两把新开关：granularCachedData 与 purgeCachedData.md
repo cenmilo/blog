@@ -161,10 +161,3 @@ const { data: users2 } = useAsyncData('users-2', (_nuxtApp, { signal }) => $fetc
 ## 下一篇
 
 237 - 缓存命中时取数还跑吗：swr、isr 与 payload 文件
-
-## 本文依据
-
-- `guide/going-further/experimental-features`：`purgeCachedData` 一节（定位句、解释句、默认开启、配置块、PR #31379 read-more）；`granularCachedData` 一节（定位句、默认开启、配置块、PR #31373 read-more）；`payloadExtraction` 一节（235 已逐句引）；`useState.resetOnClear` 那句。
-- `getting-started/upgrade`：「Update `getCachedData` implementations」整段 diff（含 `ctx.cause` 四值注释、"Don't use cache on manual refresh" 判例）与 "Alternatively, for now, you can disable this behaviour with:" 及两键配置块。
-- `api/composables/use-async-data`：默认 `getCachedData` 实现与 `payloadExtraction` 限定句、`enabled`/`serialize`/`middleware` 三行原文与版本徽标、Shared State 两张清单（213/215 已逐句引）。
-- `getting-started/data-fetching`：Reactive Keys 示例与"old data cleaned up if no other components use it"注释、Refresh and execute 段、Shared State 两张清单与"if you need independent instances, use different keys"及代码块（215/216 已逐句引）。

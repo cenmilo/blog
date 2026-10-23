@@ -24,6 +24,7 @@ tags:
 
 扫描[二维码](https://api2.cmdragon.cn/upload/cmder/20250304_012821924.jpg)关注或者微信搜一搜：`编程智域 前端至全栈交流与成长`
 
+
 首屏要快，靠的是"先让用户看见内容、别被次要逻辑拖住"。有一类活天生就该往后放：大的分析/统计库、和首屏无关的初始化。`onNuxtReady` 是 Nuxt 给这类活的专用挂载点。
 
 ## 它是什么、只在哪跑
@@ -95,9 +96,3 @@ export default defineNuxtPlugin(() => {
 ## 下一篇
 
 270-299 插件这一段先到这里。下一篇 283 讲 `useRuntimeHook`：在组件（不只是插件）里订阅运行时钩子的组合式。
-
-## 本文依据
-
-- onNuxtReady（`api/utils/on-nuxt-ready`）：定位句 "The onNuxtReady composable allows running a callback after your app has finished initializing."；important "`onNuxtReady` only runs on the client-side." 与 "It is ideal for running code that should not block the initial rendering of your app."；`ready.client.ts` 示例（`onNuxtReady(async () => { const myAnalyticsLibrary = await import('my-big-analytics-library') })`）；"It is 'safe' to run even after your app has initialized. In this case, then the code will be registered to run in the next idle callback."
-- Nuxt and Hydration（`guide/best-practices/hydration`）：第三方库的官方对策 "Initialise libraries after hydration has completed"（`onMounted`）——用于对比作用域。
-- useNuxtApp（`api/composables/use-nuxt-app`）：`isHydrating` 一节（278 已展开）——用于区分"判断水合期"与"就绪后再跑"。

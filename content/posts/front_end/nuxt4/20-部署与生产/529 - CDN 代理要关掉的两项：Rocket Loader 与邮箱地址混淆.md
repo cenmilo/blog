@@ -91,9 +91,3 @@ tags:
 ## 下一篇
 
 510-529 到这里收尾。下一篇 530 进 530-599 那几篇，开始把 `nuxt.config.ts` 的选项参考逐节读完：这一节有多少顶层节、三层结构长什么样、以及它连开场段都没有这个事实。
-
-## 本文依据
-
-- https://nuxt.com/docs/4.x/getting-started/deployment（CDN Proxy 整节：第三方内容与 Cloudflare "Minification and Security Options" 的点名、要关掉的两个菜单路径逐字、"unnecessary re-rendering or hydration errors could impact your production application" 的后果句、"won't inject scripts into your Nuxt application that may cause unwanted side effects" 与位置常变的 `::tip`）
-- https://nuxt.com/docs/4.x/api/nuxt-config 与 https://nuxt.com/docs/4.x/api/composables/use-runtime-config（`app.cdnURL` 与 `NUXT_APP_CDN_URL` 只影响 public 资源地址，用于对照）
-- https://nuxt.com/docs/4.x/guide/best-practices/hydration 与 https://nuxt.com/docs/4.x/guide/concepts/rendering（水合的定义：浏览器接手服务端渲出的 HTML；DOM 被改动会影响挂接）
