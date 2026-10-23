@@ -1,7 +1,7 @@
 ---
 url: /posts/3c98122f3e31b4bb42b579b690de8ac7/
 title: 082 - ignore 三件套：默认那九条 glob，和只管四个目录的前缀
-date:2026-11-08T10:00:00+08:00
+date: 2026-11-08T10:00:00+08:00
 updated: 2026-11-08T10:00:00+08:00
 author: cmdragon
 
